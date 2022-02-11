@@ -1,0 +1,19 @@
+//
+//  macOSDevelopment.xcconfig
+//  DefiWallet
+//
+//  Created by Brandon Shaw on 2/10/22.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BUILD_NUMBER = 1
+
+MARKETING_VERSION = 0.0.1
+
+DISPLAY_NAME = DefiWallet Dev
+
+PRODUCT_BUNDLE_IDENTIFIER = com.defiwalletmac.dev
+
+ICON_ASSET = AppIcon-Dev
