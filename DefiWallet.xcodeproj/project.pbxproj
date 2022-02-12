@@ -20,6 +20,9 @@
 		0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88727B4D28D000478B8 /* TabBarButton.swift */; };
 		0548B88A27B4D472000478B8 /* macBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88927B4D472000478B8 /* macBlurView.swift */; };
 		0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88C27B4DFF1000478B8 /* SideNavigationBar.swift */; };
+		0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550300C27B82EF0005EE87C /* StatusBar.swift */; };
+		057806B827B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
+		057806B927B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,8 @@
 		0548B89627B4E9BF000478B8 /* DefiWalletDevelopment.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DefiWalletDevelopment.xcconfig; sourceTree = "<group>"; };
 		0548B89727B4E9F4000478B8 /* DefiWalletProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DefiWalletProduction.xcconfig; sourceTree = "<group>"; };
 		0548B89827B4EBB9000478B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0550300C27B82EF0005EE87C /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
+		057806B727B838E60008051B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		05B6F35A27B617E500ECF820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,9 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				0548B87227B4C9A6000478B8 /* DefiWalletApp_macOS.swift */,
-				0548B87427B4C9A6000478B8 /* ContentView.swift */,
 				0548B88327B4D1B2000478B8 /* ViewModels */,
-				0548B88627B4D268000478B8 /* Views */,
+				0550300B27B82E9B005EE87C /* Views */,
 				0548B88027B4D010000478B8 /* Helpers */,
 				0548B87627B4C9A8000478B8 /* Assets.xcassets */,
 				0548B87B27B4C9A8000478B8 /* DefiWallet__macOS_.entitlements */,
@@ -135,6 +139,7 @@
 		0548B87F27B4CAF5000478B8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				057806B727B838E60008051B /* Colors.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -155,22 +160,32 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		0548B88627B4D268000478B8 /* Views */ = {
+		0548B88627B4D268000478B8 /* Status Bar */ = {
 			isa = PBXGroup;
 			children = (
-				0548B88B27B4DFA0000478B8 /* Navigation View */,
-				0548B88927B4D472000478B8 /* macBlurView.swift */,
+				0550300C27B82EF0005EE87C /* StatusBar.swift */,
 			);
-			path = Views;
+			path = "Status Bar";
 			sourceTree = "<group>";
 		};
-		0548B88B27B4DFA0000478B8 /* Navigation View */ = {
+		0548B88B27B4DFA0000478B8 /* Navigation Bar */ = {
 			isa = PBXGroup;
 			children = (
 				0548B88C27B4DFF1000478B8 /* SideNavigationBar.swift */,
 				0548B88727B4D28D000478B8 /* TabBarButton.swift */,
 			);
-			path = "Navigation View";
+			path = "Navigation Bar";
+			sourceTree = "<group>";
+		};
+		0550300B27B82E9B005EE87C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0548B87427B4C9A6000478B8 /* ContentView.swift */,
+				0548B88627B4D268000478B8 /* Status Bar */,
+				0548B88B27B4DFA0000478B8 /* Navigation Bar */,
+				0548B88927B4D472000478B8 /* macBlurView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057806B827B838E60008051B /* Colors.xcassets in Resources */,
 				0548B86627B4C959000478B8 /* Preview Assets.xcassets in Resources */,
 				0548B86327B4C959000478B8 /* Assets.xcassets in Resources */,
 			);
@@ -261,6 +277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057806B927B838E60008051B /* Colors.xcassets in Resources */,
 				0548B87A27B4C9A8000478B8 /* Preview Assets.xcassets in Resources */,
 				0548B87727B4C9A8000478B8 /* Assets.xcassets in Resources */,
 			);
@@ -285,6 +302,7 @@
 				0548B87527B4C9A6000478B8 /* ContentView.swift in Sources */,
 				0548B88227B4D04C000478B8 /* macConstants.swift in Sources */,
 				0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */,
+				0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				0548B88A27B4D472000478B8 /* macBlurView.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,

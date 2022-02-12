@@ -21,7 +21,7 @@ struct TabBarButton: View {
                 Image(systemName: image)
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundColor(selectedTab == title || hoverOver ? .primary : .secondary)
-                    .padding(.leading)
+                    .padding(.leading, 10)
 
                 Text(title)
                     .font(.headline)
@@ -31,13 +31,12 @@ struct TabBarButton: View {
                 Spacer()
             }
             .padding(.vertical, 10)
-            .frame(width: 180)
             .contentShape(Rectangle())
-            .background(Color.primary.opacity(selectedTab == title || hoverOver ? 0.15 : 0))
-            .cornerRadius(10)
-            .scaleEffect(hoverOver ? 1.03 : 1.0)
         })
         .buttonStyle(PlainButtonStyle())
+        .background(Color.primary.opacity(selectedTab == title || hoverOver ? 0.15 : 0))
+        .cornerRadius(10)
+        //.scaleEffect(hoverOver ? 1.03 : 1.0)
         .onHover { over in
             withAnimation(.easeOut) {
                 hoverOver = over

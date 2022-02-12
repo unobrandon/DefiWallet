@@ -27,26 +27,32 @@ struct SideNavigationBar: View {
                         .foregroundColor(.primary)
                 }
             }
-            
-            Divider().frame(width: 100)
-                .padding(.top, 10)
+            .padding(.horizontal)
+            .padding(.top, 10)
 
-            TabBarButton(image: "folder", title: "Wallet", selectedTab: $general.selectedTab)
-                .padding(.top)
-            
-            TabBarButton(image: "safari", title: "Discover", selectedTab: $general.selectedTab)
-            
-            TabBarButton(image: "chart.bar.xaxis", title: "Markets", selectedTab: $general.selectedTab)
-            
-            TabBarButton(image: "arrow.triangle.swap", title: "Swap", selectedTab: $general.selectedTab)
+            Divider()
+                .padding(.top, 5)
+                .padding(.leading)
 
-            TabBarButton(image: "app.badge", title: "Dapps", selectedTab: $general.selectedTab)
+            List {
+                TabBarButton(image: "folder", title: "Wallet", selectedTab: $general.selectedTab)
+
+                TabBarButton(image: "safari", title: "Discover", selectedTab: $general.selectedTab)
+
+                TabBarButton(image: "chart.bar.xaxis", title: "Markets", selectedTab: $general.selectedTab)
+
+                TabBarButton(image: "arrow.triangle.swap", title: "Swap", selectedTab: $general.selectedTab)
+
+                TabBarButton(image: "app.badge", title: "Dapps", selectedTab: $general.selectedTab)
+            }
+            .listStyle(.sidebar)
+            .padding(.top, 5)
 
             Spacer()
+            Divider().padding(.leading)
             TabBarButton(image: "gear", title: "Settings", selectedTab: $general.selectedTab)
+                .padding(.horizontal)
+                .padding(.bottom)
         }
-        .padding()
-        .padding(.top, 35)
-        .background(macBlurView())
     }
 }
