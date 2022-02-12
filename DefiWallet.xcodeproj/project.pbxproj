@@ -23,6 +23,8 @@
 		0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550300C27B82EF0005EE87C /* StatusBar.swift */; };
 		057806B827B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
 		057806B927B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
+		057806BE27B8432B0008051B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806BD27B8432B0008051B /* Constants.swift */; };
+		057806BF27B8432B0008051B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806BD27B8432B0008051B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,7 @@
 		0548B89827B4EBB9000478B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0550300C27B82EF0005EE87C /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		057806B727B838E60008051B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		057806BD27B8432B0008051B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		05B6F35A27B617E500ECF820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				0548B85E27B4C957000478B8 /* DefiWalletApp.swift */,
-				0548B86027B4C957000478B8 /* ContentView.swift */,
+				057806BA27B841EB0008051B /* Views */,
 				0548B86227B4C959000478B8 /* Assets.xcassets */,
 				0548B86427B4C959000478B8 /* Preview Content */,
 				0548B89827B4EBB9000478B8 /* Info.plist */,
@@ -140,6 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				057806B727B838E60008051B /* Colors.xcassets */,
+				057806BD27B8432B0008051B /* Constants.swift */,
+				057806BB27B841FE0008051B /* Views */,
+				057806BC27B842050008051B /* Models */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -186,6 +192,28 @@
 				0548B88927B4D472000478B8 /* macBlurView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		057806BA27B841EB0008051B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0548B86027B4C957000478B8 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		057806BB27B841FE0008051B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		057806BC27B842050008051B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +320,7 @@
 			files = (
 				0548B86127B4C957000478B8 /* ContentView.swift in Sources */,
 				0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */,
+				057806BE27B8432B0008051B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +336,7 @@
 				0548B88A27B4D472000478B8 /* macBlurView.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
 				0548B88527B4D212000478B8 /* GeneralViewModel.swift in Sources */,
+				057806BF27B8432B0008051B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
