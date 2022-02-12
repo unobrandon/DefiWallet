@@ -14,7 +14,7 @@ struct ContentView: View {
         HStack(spacing: 0) {
             NavigationView {
                 SideNavigationBar(general: general)
-
+                
                 ZStack {
                     switch general.selectedTab {
                     case "Wallet": Text("Wallet")
@@ -30,11 +30,22 @@ struct ContentView: View {
                 .background(Color("bgColor"))
                 .animation(.none)
             }
+            .toolbar {
+                ToolbarItem(placement: .navigation) {
+                    Button(action: toggleSidebar, label: {
+                        Image(systemName: "sidebar.leading")
+                    })
+                }
+            }
         }
         .ignoresSafeArea(.all, edges: .all)
-        .frame(maxWidth: macConstants.screenWidth / 1.5, maxHeight: macConstants.screenHeight / 1.5)
-        .frame(minWidth: 650, minHeight: 450)
+        .frame(maxWidth: MacConstants.screenWidth / 1.5, maxHeight: MacConstants.screenHeight / 1.5)
+        .frame(minWidth: 650, minHeight: 200)
         .frame(idealWidth: 1050, idealHeight: 950)
+    }
+    
+    private func toggleSidebar() {
+        NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
     }
 }
 

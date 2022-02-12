@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-final class Constants {
-    
-    static let deviceType = UIDevice.current.userInterfaceIdiom
+public struct Constants {
+
 
 }

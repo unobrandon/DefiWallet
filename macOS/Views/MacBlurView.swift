@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct macBlurView: NSViewRepresentable {
+struct MacBlurView: NSViewRepresentable {
     func makeNSView(context: Context) -> NSVisualEffectView {
         let view = NSVisualEffectView()
         view.blendingMode = .behindWindow
-        
+
         return view
     }
 

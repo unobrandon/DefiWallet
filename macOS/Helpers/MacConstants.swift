@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct macConstants {
+public struct MacConstants {
 
     public static let screenWidth = NSScreen.main?.visibleFrame.width ?? 1400
     public static let screenHeight = NSScreen.main?.visibleFrame.height ?? 1000

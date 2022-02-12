@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
-    
+
     var body: some View {
         TabView {
             WalletView()
@@ -26,7 +25,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("", systemImage: "wallet.pass")
                 }
-            
+
             WalletView()
                 .tabItem {
                     Label("", systemImage: "wallet.pass")
@@ -44,7 +43,7 @@ struct ContentView: View {
 }
 
 struct WalletView: View {
-    
+
     var body: some View {
         Text("yes")
     }

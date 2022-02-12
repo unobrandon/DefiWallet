@@ -9,32 +9,31 @@ import SwiftUI
 
 struct SideNavigationBar: View {
     @StateObject var general: GeneralViewModel
-    
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .center, spacing: 10) {
                 Circle()
                     .frame(width: 34, height: 34)
                     .foregroundColor(.secondary)
-                
+
                 VStack(alignment: .leading) {
                     Text("0xf43...fB6a")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
-                    
+
                     Text("@unobrandon")
                         .font(.headline)
                         .foregroundColor(.primary)
-                }
+                }.fixedSize()
             }
             .padding(.horizontal)
             .padding(.top, 10)
 
             Divider()
-                .padding(.top, 5)
-                .padding(.leading)
+                .padding(.vertical, 10)
 
-            List {
+            ScrollView(.vertical, showsIndicators: false) {
                 TabBarButton(image: "folder", title: "Wallet", selectedTab: $general.selectedTab)
 
                 TabBarButton(image: "safari", title: "Discover", selectedTab: $general.selectedTab)
@@ -45,14 +44,13 @@ struct SideNavigationBar: View {
 
                 TabBarButton(image: "app.badge", title: "Dapps", selectedTab: $general.selectedTab)
             }
-            .listStyle(.sidebar)
-            .padding(.top, 5)
+            .padding(.horizontal)
 
-            Spacer()
-            Divider().padding(.leading)
+            Divider()
             TabBarButton(image: "gear", title: "Settings", selectedTab: $general.selectedTab)
                 .padding(.horizontal)
                 .padding(.bottom)
+                .padding(.top, 5)
         }
     }
 }
