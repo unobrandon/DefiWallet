@@ -9,5 +9,4 @@ import SwiftUI
 
 public struct Constants {
 
-
 }

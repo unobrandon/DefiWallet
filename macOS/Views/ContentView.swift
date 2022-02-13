@@ -13,11 +13,12 @@ struct ContentView: View {
     var body: some View {
         HStack(spacing: 0) {
             NavigationView {
+                // Note: Can not set 'min/maxWidth'. Set it in the content view.
                 SideNavigationBar(general: general)
-                
+
                 ZStack {
                     switch general.selectedTab {
-                    case "Wallet": Text("Wallet")
+                    case "Wallet": Text("Wallet").navigationTitle("Wallet").frame(minWidth: 450)
                     case "Discover": Text("Discover")
                     case "Markets": Text("Markets")
                     case "Swap": Text("Swap")
@@ -43,7 +44,7 @@ struct ContentView: View {
         .frame(minWidth: 650, minHeight: 200)
         .frame(idealWidth: 1050, idealHeight: 950)
     }
-    
+
     private func toggleSidebar() {
         NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
     }

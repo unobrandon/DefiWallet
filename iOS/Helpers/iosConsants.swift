@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct iosConstants {
+public struct MobileConstants {
 
     static let deviceType = UIDevice.current.userInterfaceIdiom
 
