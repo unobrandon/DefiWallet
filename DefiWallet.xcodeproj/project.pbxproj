@@ -32,23 +32,16 @@
 		057806D927B870620008051B /* iosConsants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806D827B870620008051B /* iosConsants.swift */; };
 		057806DC27B8B8B20008051B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806DB27B8B8B20008051B /* Preview Assets.xcassets */; };
 		057806E227B8DE3E0008051B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E127B8DE3E0008051B /* MainCoordinator.swift */; };
-		057806E327B8DE3E0008051B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E127B8DE3E0008051B /* MainCoordinator.swift */; };
 		057806E527B8DF240008051B /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E427B8DF240008051B /* CurrentUser.swift */; };
 		057806E627B8DF240008051B /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E427B8DF240008051B /* CurrentUser.swift */; };
 		057806E827B8DF980008051B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E727B8DF980008051B /* AuthenticationService.swift */; };
 		057806E927B8DF980008051B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E727B8DF980008051B /* AuthenticationService.swift */; };
 		057806EB27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */; };
-		057806EC27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */; };
 		057806F027B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EF27B8E25F0008051B /* UnauthenticatedCoordinator.swift */; };
-		057806F127B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EF27B8E25F0008051B /* UnauthenticatedCoordinator.swift */; };
 		057806F327B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F227B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift */; };
-		057806F427B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F227B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift */; };
 		057806F627B8E3C10008051B /* AuthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F527B8E3C10008051B /* AuthenticatedCoordinator.swift */; };
-		057806F727B8E3C10008051B /* AuthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F527B8E3C10008051B /* AuthenticatedCoordinator.swift */; };
 		057806F927B8E4320008051B /* AuthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F827B8E4320008051B /* AuthenticatedCoordinator+Factory.swift */; };
-		057806FA27B8E4320008051B /* AuthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F827B8E4320008051B /* AuthenticatedCoordinator+Factory.swift */; };
 		057806FC27B8E56B0008051B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FB27B8E56B0008051B /* WelcomeView.swift */; };
-		057806FD27B8E56B0008051B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FB27B8E56B0008051B /* WelcomeView.swift */; };
 		057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */; };
 		0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */; };
 		0578070427B8E8E00008051B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070327B8E8E00008051B /* RoundedButton.swift */; };
@@ -56,17 +49,12 @@
 		0578070727B8EC2E0008051B /* WelcomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070627B8EC2E0008051B /* WelcomeService.swift */; };
 		0578070827B8EC2E0008051B /* WelcomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070627B8EC2E0008051B /* WelcomeService.swift */; };
 		0578070C27B8F1370008051B /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070B27B8F1370008051B /* WalletView.swift */; };
-		0578070D27B8F1370008051B /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070B27B8F1370008051B /* WalletView.swift */; };
 		0578070F27B8F1BC0008051B /* WalletCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070E27B8F1BC0008051B /* WalletCoordinator.swift */; };
-		0578071027B8F1BC0008051B /* WalletCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070E27B8F1BC0008051B /* WalletCoordinator.swift */; };
 		0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */; };
-		0578071327B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */; };
 		0578071527B8F61F0008051B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071427B8F61F0008051B /* ProfileView.swift */; };
-		0578071627B8F61F0008051B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071427B8F61F0008051B /* ProfileView.swift */; };
 		0578071827B8F6980008051B /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071727B8F6980008051B /* ProfileCoordinator.swift */; };
-		0578071927B8F6980008051B /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071727B8F6980008051B /* ProfileCoordinator.swift */; };
 		0578071B27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071A27B8F6D50008051B /* ProfileCoordinator+Factory.swift */; };
-		0578071C27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071A27B8F6D50008051B /* ProfileCoordinator+Factory.swift */; };
+		0578071D27B90A050008051B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806BD27B8432B0008051B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -558,30 +546,18 @@
 			files = (
 				0578070827B8EC2E0008051B /* WelcomeService.swift in Sources */,
 				057806E627B8DF240008051B /* CurrentUser.swift in Sources */,
-				0578071C27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */,
-				057806F727B8E3C10008051B /* AuthenticatedCoordinator.swift in Sources */,
-				0578071927B8F6980008051B /* ProfileCoordinator.swift in Sources */,
-				0578071327B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */,
-				057806F127B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */,
 				0578070527B8E8E00008051B /* RoundedButton.swift in Sources */,
 				0548B87527B4C9A6000478B8 /* ContentView.swift in Sources */,
 				0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */,
-				057806FD27B8E56B0008051B /* WelcomeView.swift in Sources */,
 				0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */,
 				057806E927B8DF980008051B /* AuthenticationService.swift in Sources */,
 				0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				0548B88A27B4D472000478B8 /* MacBlurView.swift in Sources */,
-				057806EC27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */,
 				0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
-				0578071627B8F61F0008051B /* ProfileView.swift in Sources */,
-				057806FA27B8E4320008051B /* AuthenticatedCoordinator+Factory.swift in Sources */,
+				0578071D27B90A050008051B /* Constants.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
-				0578070D27B8F1370008051B /* WalletView.swift in Sources */,
-				057806E327B8DE3E0008051B /* MainCoordinator.swift in Sources */,
-				057806F427B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */,
 				0548B88527B4D212000478B8 /* GeneralViewModel.swift in Sources */,
-				0578071027B8F1BC0008051B /* WalletCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
