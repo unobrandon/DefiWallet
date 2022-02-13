@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import Stinsen
 
 @main
 struct DefiWalletApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainCoordinator().view()
         }
     }
 }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B85E27B4C957000478B8 /* DefiWalletApp.swift */; };
-		0548B86127B4C957000478B8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B86027B4C957000478B8 /* ContentView.swift */; };
 		0548B86327B4C959000478B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0548B86227B4C959000478B8 /* Assets.xcassets */; };
 		0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B87227B4C9A6000478B8 /* DefiWalletApp_macOS.swift */; };
 		0548B87527B4C9A6000478B8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B87427B4C9A6000478B8 /* ContentView.swift */; };
@@ -31,12 +30,48 @@
 		057806D127B862480008051B /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 057806D027B862480008051B /* SwiftUICharts */; };
 		057806D427B862910008051B /* LightChart in Frameworks */ = {isa = PBXBuildFile; productRef = 057806D327B862910008051B /* LightChart */; };
 		057806D927B870620008051B /* iosConsants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806D827B870620008051B /* iosConsants.swift */; };
+		057806DC27B8B8B20008051B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806DB27B8B8B20008051B /* Preview Assets.xcassets */; };
+		057806E227B8DE3E0008051B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E127B8DE3E0008051B /* MainCoordinator.swift */; };
+		057806E327B8DE3E0008051B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E127B8DE3E0008051B /* MainCoordinator.swift */; };
+		057806E527B8DF240008051B /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E427B8DF240008051B /* CurrentUser.swift */; };
+		057806E627B8DF240008051B /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E427B8DF240008051B /* CurrentUser.swift */; };
+		057806E827B8DF980008051B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E727B8DF980008051B /* AuthenticationService.swift */; };
+		057806E927B8DF980008051B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E727B8DF980008051B /* AuthenticationService.swift */; };
+		057806EB27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */; };
+		057806EC27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */; };
+		057806F027B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EF27B8E25F0008051B /* UnauthenticatedCoordinator.swift */; };
+		057806F127B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EF27B8E25F0008051B /* UnauthenticatedCoordinator.swift */; };
+		057806F327B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F227B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift */; };
+		057806F427B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F227B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift */; };
+		057806F627B8E3C10008051B /* AuthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F527B8E3C10008051B /* AuthenticatedCoordinator.swift */; };
+		057806F727B8E3C10008051B /* AuthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F527B8E3C10008051B /* AuthenticatedCoordinator.swift */; };
+		057806F927B8E4320008051B /* AuthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F827B8E4320008051B /* AuthenticatedCoordinator+Factory.swift */; };
+		057806FA27B8E4320008051B /* AuthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F827B8E4320008051B /* AuthenticatedCoordinator+Factory.swift */; };
+		057806FC27B8E56B0008051B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FB27B8E56B0008051B /* WelcomeView.swift */; };
+		057806FD27B8E56B0008051B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FB27B8E56B0008051B /* WelcomeView.swift */; };
+		057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */; };
+		0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */; };
+		0578070427B8E8E00008051B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070327B8E8E00008051B /* RoundedButton.swift */; };
+		0578070527B8E8E00008051B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070327B8E8E00008051B /* RoundedButton.swift */; };
+		0578070727B8EC2E0008051B /* WelcomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070627B8EC2E0008051B /* WelcomeService.swift */; };
+		0578070827B8EC2E0008051B /* WelcomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070627B8EC2E0008051B /* WelcomeService.swift */; };
+		0578070C27B8F1370008051B /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070B27B8F1370008051B /* WalletView.swift */; };
+		0578070D27B8F1370008051B /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070B27B8F1370008051B /* WalletView.swift */; };
+		0578070F27B8F1BC0008051B /* WalletCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070E27B8F1BC0008051B /* WalletCoordinator.swift */; };
+		0578071027B8F1BC0008051B /* WalletCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070E27B8F1BC0008051B /* WalletCoordinator.swift */; };
+		0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */; };
+		0578071327B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */; };
+		0578071527B8F61F0008051B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071427B8F61F0008051B /* ProfileView.swift */; };
+		0578071627B8F61F0008051B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071427B8F61F0008051B /* ProfileView.swift */; };
+		0578071827B8F6980008051B /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071727B8F6980008051B /* ProfileCoordinator.swift */; };
+		0578071927B8F6980008051B /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071727B8F6980008051B /* ProfileCoordinator.swift */; };
+		0578071B27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071A27B8F6D50008051B /* ProfileCoordinator+Factory.swift */; };
+		0578071C27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071A27B8F6D50008051B /* ProfileCoordinator+Factory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0548B85B27B4C957000478B8 /* DefiWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DefiWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0548B85E27B4C957000478B8 /* DefiWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefiWalletApp.swift; sourceTree = "<group>"; };
-		0548B86027B4C957000478B8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0548B86227B4C959000478B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0548B87027B4C9A6000478B8 /* DefiWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DefiWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0548B87227B4C9A6000478B8 /* DefiWalletApp_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefiWalletApp_macOS.swift; sourceTree = "<group>"; };
@@ -58,6 +93,25 @@
 		057806B727B838E60008051B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		057806BD27B8432B0008051B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		057806D827B870620008051B /* iosConsants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosConsants.swift; sourceTree = "<group>"; };
+		057806DB27B8B8B20008051B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		057806E127B8DE3E0008051B /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		057806E427B8DF240008051B /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		057806E727B8DF980008051B /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCoordinator+Factory.swift"; sourceTree = "<group>"; };
+		057806EF27B8E25F0008051B /* UnauthenticatedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedCoordinator.swift; sourceTree = "<group>"; };
+		057806F227B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnauthenticatedCoordinator+Factory.swift"; sourceTree = "<group>"; };
+		057806F527B8E3C10008051B /* AuthenticatedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedCoordinator.swift; sourceTree = "<group>"; };
+		057806F827B8E4320008051B /* AuthenticatedCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticatedCoordinator+Factory.swift"; sourceTree = "<group>"; };
+		057806FB27B8E56B0008051B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedServices.swift; sourceTree = "<group>"; };
+		0578070327B8E8E00008051B /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		0578070627B8EC2E0008051B /* WelcomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeService.swift; sourceTree = "<group>"; };
+		0578070B27B8F1370008051B /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		0578070E27B8F1BC0008051B /* WalletCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCoordinator.swift; sourceTree = "<group>"; };
+		0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletCoordinator+Factory.swift"; sourceTree = "<group>"; };
+		0578071427B8F61F0008051B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		0578071727B8F6980008051B /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		0578071A27B8F6D50008051B /* ProfileCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileCoordinator+Factory.swift"; sourceTree = "<group>"; };
 		05B6F35A27B617E500ECF820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,9 +163,9 @@
 			isa = PBXGroup;
 			children = (
 				0548B85E27B4C957000478B8 /* DefiWalletApp.swift */,
-				057806BA27B841EB0008051B /* Views */,
 				057806D727B86F860008051B /* Helpers */,
 				0548B86227B4C959000478B8 /* Assets.xcassets */,
+				057806DB27B8B8B20008051B /* Preview Assets.xcassets */,
 				0548B89827B4EBB9000478B8 /* Info.plist */,
 				0548B89727B4E9F4000478B8 /* DefiWalletProduction.xcconfig */,
 				0548B89627B4E9BF000478B8 /* DefiWalletDevelopment.xcconfig */,
@@ -127,30 +181,26 @@
 				0550300B27B82E9B005EE87C /* Views */,
 				0548B88027B4D010000478B8 /* Helpers */,
 				0548B87627B4C9A8000478B8 /* Assets.xcassets */,
+				0548B87927B4C9A8000478B8 /* Preview Assets.xcassets */,
 				0548B87B27B4C9A8000478B8 /* DefiWallet__macOS_.entitlements */,
 				05B6F35A27B617E500ECF820 /* Info.plist */,
 				0548B89527B4E89A000478B8 /* macOSProduction.xcconfig */,
 				0548B89427B4E881000478B8 /* macOSDevelopment.xcconfig */,
-				0548B87827B4C9A8000478B8 /* Preview Content */,
 			);
 			path = macOS;
-			sourceTree = "<group>";
-		};
-		0548B87827B4C9A8000478B8 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				0548B87927B4C9A8000478B8 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		0548B87F27B4CAF5000478B8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				057806B727B838E60008051B /* Colors.xcassets */,
-				057806BD27B8432B0008051B /* Constants.swift */,
-				057806BB27B841FE0008051B /* Views */,
+				057806DE27B8CC880008051B /* Coordinators */,
 				057806BC27B842050008051B /* Models */,
+				057806BB27B841FE0008051B /* Views */,
+				057806E027B8DD460008051B /* Services */,
+				0578070127B8E80A0008051B /* Components */,
+				057806DF27B8CCD50008051B /* Extensions */,
+				057806DD27B8CC6C0008051B /* Helpers */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -199,17 +249,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		057806BA27B841EB0008051B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				0548B86027B4C957000478B8 /* ContentView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		057806BB27B841FE0008051B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				057806FB27B8E56B0008051B /* WelcomeView.swift */,
+				0578070927B8F0680008051B /* Wallet View */,
+				0578070A27B8F0720008051B /* Profile View */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,6 +262,7 @@
 		057806BC27B842050008051B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				057806E427B8DF240008051B /* CurrentUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -227,6 +273,97 @@
 				057806D827B870620008051B /* iosConsants.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		057806DD27B8CC6C0008051B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				057806BD27B8432B0008051B /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		057806DE27B8CC880008051B /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */,
+				057806E127B8DE3E0008051B /* MainCoordinator.swift */,
+				057806ED27B8E1BD0008051B /* Unauthenticated */,
+				057806EE27B8E1D10008051B /* Authenticated */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		057806DF27B8CCD50008051B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		057806E027B8DD460008051B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				057806E727B8DF980008051B /* AuthenticationService.swift */,
+				057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */,
+				0578070627B8EC2E0008051B /* WelcomeService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		057806ED27B8E1BD0008051B /* Unauthenticated */ = {
+			isa = PBXGroup;
+			children = (
+				057806EF27B8E25F0008051B /* UnauthenticatedCoordinator.swift */,
+				057806F227B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift */,
+			);
+			path = Unauthenticated;
+			sourceTree = "<group>";
+		};
+		057806EE27B8E1D10008051B /* Authenticated */ = {
+			isa = PBXGroup;
+			children = (
+				057806F527B8E3C10008051B /* AuthenticatedCoordinator.swift */,
+				057806F827B8E4320008051B /* AuthenticatedCoordinator+Factory.swift */,
+			);
+			name = Authenticated;
+			path = Unauthenticated;
+			sourceTree = "<group>";
+		};
+		0578070127B8E80A0008051B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0578070227B8E8240008051B /* Buttons */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		0578070227B8E8240008051B /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				0578070327B8E8E00008051B /* RoundedButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		0578070927B8F0680008051B /* Wallet View */ = {
+			isa = PBXGroup;
+			children = (
+				0578070B27B8F1370008051B /* WalletView.swift */,
+				0578070E27B8F1BC0008051B /* WalletCoordinator.swift */,
+				0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */,
+			);
+			path = "Wallet View";
+			sourceTree = "<group>";
+		};
+		0578070A27B8F0720008051B /* Profile View */ = {
+			isa = PBXGroup;
+			children = (
+				0578071427B8F61F0008051B /* ProfileView.swift */,
+				0578071727B8F6980008051B /* ProfileCoordinator.swift */,
+				0578071A27B8F6D50008051B /* ProfileCoordinator+Factory.swift */,
+			);
+			path = "Profile View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				057806B827B838E60008051B /* Colors.xcassets in Resources */,
+				057806DC27B8B8B20008051B /* Preview Assets.xcassets in Resources */,
 				0548B86327B4C959000478B8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,10 +528,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057806F327B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */,
+				0578070427B8E8E00008051B /* RoundedButton.swift in Sources */,
 				057806D927B870620008051B /* iosConsants.swift in Sources */,
-				0548B86127B4C957000478B8 /* ContentView.swift in Sources */,
+				0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */,
 				0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */,
+				057806E227B8DE3E0008051B /* MainCoordinator.swift in Sources */,
+				057806EB27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */,
+				057806E527B8DF240008051B /* CurrentUser.swift in Sources */,
+				0578071827B8F6980008051B /* ProfileCoordinator.swift in Sources */,
+				057806FC27B8E56B0008051B /* WelcomeView.swift in Sources */,
 				057806BE27B8432B0008051B /* Constants.swift in Sources */,
+				057806F627B8E3C10008051B /* AuthenticatedCoordinator.swift in Sources */,
+				0578071B27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */,
+				0578070C27B8F1370008051B /* WalletView.swift in Sources */,
+				057806F027B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */,
+				0578070727B8EC2E0008051B /* WelcomeService.swift in Sources */,
+				057806E827B8DF980008051B /* AuthenticationService.swift in Sources */,
+				057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
+				0578071527B8F61F0008051B /* ProfileView.swift in Sources */,
+				057806F927B8E4320008051B /* AuthenticatedCoordinator+Factory.swift in Sources */,
+				0578070F27B8F1BC0008051B /* WalletCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,14 +556,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0578070827B8EC2E0008051B /* WelcomeService.swift in Sources */,
+				057806E627B8DF240008051B /* CurrentUser.swift in Sources */,
+				0578071C27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */,
+				057806F727B8E3C10008051B /* AuthenticatedCoordinator.swift in Sources */,
+				0578071927B8F6980008051B /* ProfileCoordinator.swift in Sources */,
+				0578071327B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */,
+				057806F127B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */,
+				0578070527B8E8E00008051B /* RoundedButton.swift in Sources */,
 				0548B87527B4C9A6000478B8 /* ContentView.swift in Sources */,
 				0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */,
+				057806FD27B8E56B0008051B /* WelcomeView.swift in Sources */,
 				0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */,
+				057806E927B8DF980008051B /* AuthenticationService.swift in Sources */,
 				0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				0548B88A27B4D472000478B8 /* MacBlurView.swift in Sources */,
+				057806EC27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */,
+				0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
+				0578071627B8F61F0008051B /* ProfileView.swift in Sources */,
+				057806FA27B8E4320008051B /* AuthenticatedCoordinator+Factory.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
+				0578070D27B8F1370008051B /* WalletView.swift in Sources */,
+				057806E327B8DE3E0008051B /* MainCoordinator.swift in Sources */,
+				057806F427B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */,
 				0548B88527B4D212000478B8 /* GeneralViewModel.swift in Sources */,
+				0578071027B8F1BC0008051B /* WalletCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,7 +712,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DEVELOPMENT_ASSET_PATHS = "\"iOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"iOS\"";
 				DEVELOPMENT_TEAM = TEV97DGLYR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -573,7 +746,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DEVELOPMENT_ASSET_PATHS = "\"iOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"iOS\"";
 				DEVELOPMENT_TEAM = TEV97DGLYR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -609,7 +782,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"macOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"macOS\"";
 				DEVELOPMENT_TEAM = TEV97DGLYR;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -641,7 +814,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"macOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"macOS\"";
 				DEVELOPMENT_TEAM = TEV97DGLYR;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -732,7 +905,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DEVELOPMENT_ASSET_PATHS = "\"iOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"iOS\"";
 				DEVELOPMENT_TEAM = TEV97DGLYR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -768,7 +941,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"macOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"macOS\"";
 				DEVELOPMENT_TEAM = TEV97DGLYR;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -853,7 +1026,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DEVELOPMENT_ASSET_PATHS = "\"iOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"iOS\"";
 				DEVELOPMENT_TEAM = TEV97DGLYR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -889,7 +1062,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"macOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"macOS\"";
 				DEVELOPMENT_TEAM = TEV97DGLYR;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
