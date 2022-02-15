@@ -33,7 +33,7 @@ struct RoundedButton: View {
         case .primary:
             return .white
         case .secondary:
-            return Color.primary
+            return Color.black
         case .bordered:
             return Color.primary
         }
@@ -83,8 +83,8 @@ struct RoundedButton: View {
             .background(
                 RoundedRectangle(cornerRadius: 15, style: .circular)
                     .foregroundColor(backgroundColor))
-            .frame(maxWidth: 300, minHeight: 50)
-        })
+            .frame(maxWidth: 500, minHeight: 50)
+        }).padding(.horizontal)
     }
 
 }
