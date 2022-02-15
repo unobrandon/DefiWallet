@@ -10,8 +10,6 @@ import Stinsen
 
 struct InvestView: View {
 
-    @EnvironmentObject private var authenticatedRouter: AuthenticatedCoordinator.Router
-
     init() {
 
     }

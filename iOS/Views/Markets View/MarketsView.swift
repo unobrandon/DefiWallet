@@ -10,8 +10,6 @@ import Stinsen
 
 struct MarketsView: View {
 
-    @EnvironmentObject private var authenticatedRouter: AuthenticatedCoordinator.Router
-
     init() {
         print("markets view did inittt")
     }

@@ -10,8 +10,6 @@ import Stinsen
 
 struct DiscoverView: View {
 
-    @EnvironmentObject private var authenticatedRouter: AuthenticatedCoordinator.Router
-
     init() {
 
     }

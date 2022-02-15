@@ -92,6 +92,10 @@
 		0578077627BB71410008051B /* IrregularGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077227BB71410008051B /* IrregularGradient.swift */; };
 		0578077927BB71410008051B /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077427BB71410008051B /* Blob.swift */; };
 		0578077A27BB71410008051B /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077427BB71410008051B /* Blob.swift */; };
+		0578077C27BB822D0008051B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077B27BB822C0008051B /* String+Extensions.swift */; };
+		0578077D27BB822D0008051B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077B27BB822C0008051B /* String+Extensions.swift */; };
+		0578077F27BB87C80008051B /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077E27BB87C80008051B /* Wallet.swift */; };
+		0578078027BB87C80008051B /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077E27BB87C80008051B /* Wallet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +164,8 @@
 		0578076E27BB6D200008051B /* DefaultTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTemplate.swift; sourceTree = "<group>"; };
 		0578077227BB71410008051B /* IrregularGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IrregularGradient.swift; sourceTree = "<group>"; };
 		0578077427BB71410008051B /* Blob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
+		0578077B27BB822C0008051B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		0578077E27BB87C80008051B /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		05B6F35A27B617E500ECF820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -315,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				057806E427B8DF240008051B /* CurrentUser.swift */,
+				0578077E27BB87C80008051B /* Wallet.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -352,6 +359,7 @@
 			children = (
 				0578074E27BB5ED00008051B /* View+Extensions.swift */,
 				0578075127BB5EF10008051B /* Font+Extensions.swift */,
+				0578077B27BB822C0008051B /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -669,6 +677,7 @@
 				057806EB27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */,
 				0578074327BB5B770008051B /* InvestCoordinator+Factory.swift in Sources */,
 				0578075C27BB64410008051B /* NetworkingService+Markets.swift in Sources */,
+				0578077F27BB87C80008051B /* Wallet.swift in Sources */,
 				057806E527B8DF240008051B /* CurrentUser.swift in Sources */,
 				0578071827B8F6980008051B /* ProfileCoordinator.swift in Sources */,
 				057806FC27B8E56B0008051B /* WelcomeView.swift in Sources */,
@@ -695,6 +704,7 @@
 				0578074927BB5E610008051B /* FontTemplating.swift in Sources */,
 				0578071527B8F61F0008051B /* ProfileView.swift in Sources */,
 				0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */,
+				0578077C27BB822D0008051B /* String+Extensions.swift in Sources */,
 				057806F927B8E4320008051B /* AuthenticatedCoordinator+Factory.swift in Sources */,
 				0578077927BB71410008051B /* Blob.swift in Sources */,
 				0578076227BB647E0008051B /* NetworkingService+Invest.swift in Sources */,
@@ -706,6 +716,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0578078027BB87C80008051B /* Wallet.swift in Sources */,
 				0578070827B8EC2E0008051B /* WelcomeService.swift in Sources */,
 				057806E627B8DF240008051B /* CurrentUser.swift in Sources */,
 				0578076627BB64A40008051B /* NetworkingService+Profile.swift in Sources */,
@@ -730,6 +741,7 @@
 				0578075727BB60160008051B /* NetworkingService.swift in Sources */,
 				0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
+				0578077D27BB822D0008051B /* String+Extensions.swift in Sources */,
 				0548B88527B4D212000478B8 /* GeneralViewModel.swift in Sources */,
 				0578074727BB5E1A0008051B /* FontTemplate.swift in Sources */,
 				0578076327BB647E0008051B /* NetworkingService+Invest.swift in Sources */,

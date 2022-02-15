@@ -14,11 +14,16 @@ public struct IrregularGradient<Background: View>: View {
     var speed: Double
     var shouldAnimate: Binding<Bool>
 
-    public init(colors: [Color], background: @autoclosure @escaping () -> Background, speed: Double = 10, shouldAnimate: Binding<Bool> = .constant(true)) {
+    public init(colors: [Color],
+                background: @autoclosure @escaping () -> Background,
+                speed: Double = 10,
+                shouldAnimate: Binding<Bool> = .constant(true)) {
+
         self.colors = colors
         self.background = background()
         self.shouldAnimate = shouldAnimate
         self.speed = speed
+
     }
 
     public var body: some View {
