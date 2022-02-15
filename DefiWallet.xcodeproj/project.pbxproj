@@ -29,7 +29,7 @@
 		057806CE27B862270008051B /* Colorful in Frameworks */ = {isa = PBXBuildFile; productRef = 057806CD27B862270008051B /* Colorful */; };
 		057806D127B862480008051B /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 057806D027B862480008051B /* SwiftUICharts */; };
 		057806D427B862910008051B /* LightChart in Frameworks */ = {isa = PBXBuildFile; productRef = 057806D327B862910008051B /* LightChart */; };
-		057806D927B870620008051B /* iosConsants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806D827B870620008051B /* iosConsants.swift */; };
+		057806D927B870620008051B /* MobileConsants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806D827B870620008051B /* MobileConsants.swift */; };
 		057806DC27B8B8B20008051B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806DB27B8B8B20008051B /* Preview Assets.xcassets */; };
 		057806E227B8DE3E0008051B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E127B8DE3E0008051B /* MainCoordinator.swift */; };
 		057806E527B8DF240008051B /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E427B8DF240008051B /* CurrentUser.swift */; };
@@ -55,6 +55,43 @@
 		0578071827B8F6980008051B /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071727B8F6980008051B /* ProfileCoordinator.swift */; };
 		0578071B27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071A27B8F6D50008051B /* ProfileCoordinator+Factory.swift */; };
 		0578071D27B90A050008051B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806BD27B8432B0008051B /* Constants.swift */; };
+		0578073127BB59D30008051B /* MarketsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578072E27BB59D30008051B /* MarketsCoordinator.swift */; };
+		0578073227BB59D30008051B /* MarketsCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578072F27BB59D30008051B /* MarketsCoordinator+Factory.swift */; };
+		0578073327BB59D30008051B /* MarketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578073027BB59D30008051B /* MarketsView.swift */; };
+		0578073627BB59DC0008051B /* DiscoverCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578073427BB59DC0008051B /* DiscoverCoordinator.swift */; };
+		0578073727BB59DC0008051B /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578073527BB59DC0008051B /* DiscoverView.swift */; };
+		0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578073C27BB5B1A0008051B /* InvestCoordinator.swift */; };
+		0578073F27BB5B470008051B /* InvestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578073E27BB5B460008051B /* InvestView.swift */; };
+		0578074127BB5B500008051B /* DiscoverCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074027BB5B4F0008051B /* DiscoverCoordinator+Factory.swift */; };
+		0578074327BB5B770008051B /* InvestCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074227BB5B770008051B /* InvestCoordinator+Factory.swift */; };
+		0578074627BB5E1A0008051B /* FontTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074527BB5E1A0008051B /* FontTemplate.swift */; };
+		0578074727BB5E1A0008051B /* FontTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074527BB5E1A0008051B /* FontTemplate.swift */; };
+		0578074927BB5E610008051B /* FontTemplating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074827BB5E610008051B /* FontTemplating.swift */; };
+		0578074A27BB5E610008051B /* FontTemplating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074827BB5E610008051B /* FontTemplating.swift */; };
+		0578074C27BB5E860008051B /* FontTemplateModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074B27BB5E860008051B /* FontTemplateModifier.swift */; };
+		0578074D27BB5E860008051B /* FontTemplateModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074B27BB5E860008051B /* FontTemplateModifier.swift */; };
+		0578074F27BB5ED00008051B /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074E27BB5ED00008051B /* View+Extensions.swift */; };
+		0578075027BB5ED00008051B /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074E27BB5ED00008051B /* View+Extensions.swift */; };
+		0578075227BB5EF10008051B /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075127BB5EF10008051B /* Font+Extensions.swift */; };
+		0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075127BB5EF10008051B /* Font+Extensions.swift */; };
+		0578075627BB60160008051B /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075527BB60160008051B /* NetworkingService.swift */; };
+		0578075727BB60160008051B /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075527BB60160008051B /* NetworkingService.swift */; };
+		0578075927BB640A0008051B /* NetworkingService+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075827BB64090008051B /* NetworkingService+Wallet.swift */; };
+		0578075A27BB640A0008051B /* NetworkingService+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075827BB64090008051B /* NetworkingService+Wallet.swift */; };
+		0578075C27BB64410008051B /* NetworkingService+Markets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075B27BB64410008051B /* NetworkingService+Markets.swift */; };
+		0578075D27BB64410008051B /* NetworkingService+Markets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075B27BB64410008051B /* NetworkingService+Markets.swift */; };
+		0578075F27BB64600008051B /* NetworkingService+Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075E27BB64600008051B /* NetworkingService+Discover.swift */; };
+		0578076027BB64600008051B /* NetworkingService+Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075E27BB64600008051B /* NetworkingService+Discover.swift */; };
+		0578076227BB647E0008051B /* NetworkingService+Invest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076127BB647E0008051B /* NetworkingService+Invest.swift */; };
+		0578076327BB647E0008051B /* NetworkingService+Invest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076127BB647E0008051B /* NetworkingService+Invest.swift */; };
+		0578076527BB64A40008051B /* NetworkingService+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076427BB64A40008051B /* NetworkingService+Profile.swift */; };
+		0578076627BB64A40008051B /* NetworkingService+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076427BB64A40008051B /* NetworkingService+Profile.swift */; };
+		0578076F27BB6D200008051B /* DefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076E27BB6D200008051B /* DefaultTemplate.swift */; };
+		0578077027BB6D200008051B /* DefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076E27BB6D200008051B /* DefaultTemplate.swift */; };
+		0578077527BB71410008051B /* IrregularGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077227BB71410008051B /* IrregularGradient.swift */; };
+		0578077627BB71410008051B /* IrregularGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077227BB71410008051B /* IrregularGradient.swift */; };
+		0578077927BB71410008051B /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077427BB71410008051B /* Blob.swift */; };
+		0578077A27BB71410008051B /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077427BB71410008051B /* Blob.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,7 +117,7 @@
 		0550300C27B82EF0005EE87C /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		057806B727B838E60008051B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		057806BD27B8432B0008051B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		057806D827B870620008051B /* iosConsants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosConsants.swift; sourceTree = "<group>"; };
+		057806D827B870620008051B /* MobileConsants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileConsants.swift; sourceTree = "<group>"; };
 		057806DB27B8B8B20008051B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		057806E127B8DE3E0008051B /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		057806E427B8DF240008051B /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
@@ -100,6 +137,29 @@
 		0578071427B8F61F0008051B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0578071727B8F6980008051B /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		0578071A27B8F6D50008051B /* ProfileCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileCoordinator+Factory.swift"; sourceTree = "<group>"; };
+		0578072E27BB59D30008051B /* MarketsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketsCoordinator.swift; sourceTree = "<group>"; };
+		0578072F27BB59D30008051B /* MarketsCoordinator+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MarketsCoordinator+Factory.swift"; sourceTree = "<group>"; };
+		0578073027BB59D30008051B /* MarketsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketsView.swift; sourceTree = "<group>"; };
+		0578073427BB59DC0008051B /* DiscoverCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCoordinator.swift; sourceTree = "<group>"; };
+		0578073527BB59DC0008051B /* DiscoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		0578073C27BB5B1A0008051B /* InvestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestCoordinator.swift; sourceTree = "<group>"; };
+		0578073E27BB5B460008051B /* InvestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestView.swift; sourceTree = "<group>"; };
+		0578074027BB5B4F0008051B /* DiscoverCoordinator+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DiscoverCoordinator+Factory.swift"; sourceTree = "<group>"; };
+		0578074227BB5B770008051B /* InvestCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InvestCoordinator+Factory.swift"; sourceTree = "<group>"; };
+		0578074527BB5E1A0008051B /* FontTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTemplate.swift; sourceTree = "<group>"; };
+		0578074827BB5E610008051B /* FontTemplating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTemplating.swift; sourceTree = "<group>"; };
+		0578074B27BB5E860008051B /* FontTemplateModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTemplateModifier.swift; sourceTree = "<group>"; };
+		0578074E27BB5ED00008051B /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		0578075127BB5EF10008051B /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
+		0578075527BB60160008051B /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		0578075827BB64090008051B /* NetworkingService+Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingService+Wallet.swift"; sourceTree = "<group>"; };
+		0578075B27BB64410008051B /* NetworkingService+Markets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingService+Markets.swift"; sourceTree = "<group>"; };
+		0578075E27BB64600008051B /* NetworkingService+Discover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingService+Discover.swift"; sourceTree = "<group>"; };
+		0578076127BB647E0008051B /* NetworkingService+Invest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingService+Invest.swift"; sourceTree = "<group>"; };
+		0578076427BB64A40008051B /* NetworkingService+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingService+Profile.swift"; sourceTree = "<group>"; };
+		0578076E27BB6D200008051B /* DefaultTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTemplate.swift; sourceTree = "<group>"; };
+		0578077227BB71410008051B /* IrregularGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IrregularGradient.swift; sourceTree = "<group>"; };
+		0578077427BB71410008051B /* Blob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
 		05B6F35A27B617E500ECF820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				0548B85E27B4C957000478B8 /* DefiWalletApp.swift */,
+				057806DE27B8CC880008051B /* Coordinators */,
+				057806BB27B841FE0008051B /* Views */,
 				057806D727B86F860008051B /* Helpers */,
 				0548B86227B4C959000478B8 /* Assets.xcassets */,
 				057806DB27B8B8B20008051B /* Preview Assets.xcassets */,
@@ -182,12 +244,11 @@
 			isa = PBXGroup;
 			children = (
 				057806B727B838E60008051B /* Colors.xcassets */,
-				057806DE27B8CC880008051B /* Coordinators */,
 				057806BC27B842050008051B /* Models */,
-				057806BB27B841FE0008051B /* Views */,
 				057806E027B8DD460008051B /* Services */,
 				0578070127B8E80A0008051B /* Components */,
 				057806DF27B8CCD50008051B /* Extensions */,
+				0578076727BB651C0008051B /* Templates */,
 				057806DD27B8CC6C0008051B /* Helpers */,
 			);
 			path = Shared;
@@ -242,6 +303,9 @@
 			children = (
 				057806FB27B8E56B0008051B /* WelcomeView.swift */,
 				0578070927B8F0680008051B /* Wallet View */,
+				0578072027BB521C0008051B /* Markets View */,
+				0578072B27BB59780008051B /* Discover View */,
+				0578071E27BB511E0008051B /* Invest View */,
 				0578070A27B8F0720008051B /* Profile View */,
 			);
 			path = Views;
@@ -258,7 +322,7 @@
 		057806D727B86F860008051B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				057806D827B870620008051B /* iosConsants.swift */,
+				057806D827B870620008051B /* MobileConsants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -267,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				057806BD27B8432B0008051B /* Constants.swift */,
+				0578077127BB71250008051B /* IrregularGradients */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -274,8 +339,8 @@
 		057806DE27B8CC880008051B /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */,
 				057806E127B8DE3E0008051B /* MainCoordinator.swift */,
+				057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */,
 				057806ED27B8E1BD0008051B /* Unauthenticated */,
 				057806EE27B8E1D10008051B /* Authenticated */,
 			);
@@ -285,6 +350,8 @@
 		057806DF27B8CCD50008051B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0578074E27BB5ED00008051B /* View+Extensions.swift */,
+				0578075127BB5EF10008051B /* Font+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +359,7 @@
 		057806E027B8DD460008051B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0578075427BB5FFB0008051B /* Networking */,
 				057806E727B8DF980008051B /* AuthenticationService.swift */,
 				057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */,
 				0578070627B8EC2E0008051B /* WelcomeService.swift */,
@@ -352,6 +420,77 @@
 				0578071A27B8F6D50008051B /* ProfileCoordinator+Factory.swift */,
 			);
 			path = "Profile View";
+			sourceTree = "<group>";
+		};
+		0578071E27BB511E0008051B /* Invest View */ = {
+			isa = PBXGroup;
+			children = (
+				0578073E27BB5B460008051B /* InvestView.swift */,
+				0578073C27BB5B1A0008051B /* InvestCoordinator.swift */,
+				0578074227BB5B770008051B /* InvestCoordinator+Factory.swift */,
+			);
+			path = "Invest View";
+			sourceTree = "<group>";
+		};
+		0578072027BB521C0008051B /* Markets View */ = {
+			isa = PBXGroup;
+			children = (
+				0578073027BB59D30008051B /* MarketsView.swift */,
+				0578072E27BB59D30008051B /* MarketsCoordinator.swift */,
+				0578072F27BB59D30008051B /* MarketsCoordinator+Factory.swift */,
+			);
+			path = "Markets View";
+			sourceTree = "<group>";
+		};
+		0578072B27BB59780008051B /* Discover View */ = {
+			isa = PBXGroup;
+			children = (
+				0578073527BB59DC0008051B /* DiscoverView.swift */,
+				0578073427BB59DC0008051B /* DiscoverCoordinator.swift */,
+				0578074027BB5B4F0008051B /* DiscoverCoordinator+Factory.swift */,
+			);
+			path = "Discover View";
+			sourceTree = "<group>";
+		};
+		0578074427BB5DEF0008051B /* Font Template */ = {
+			isa = PBXGroup;
+			children = (
+				0578074527BB5E1A0008051B /* FontTemplate.swift */,
+				0578074827BB5E610008051B /* FontTemplating.swift */,
+				0578074B27BB5E860008051B /* FontTemplateModifier.swift */,
+			);
+			path = "Font Template";
+			sourceTree = "<group>";
+		};
+		0578075427BB5FFB0008051B /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				0578075527BB60160008051B /* NetworkingService.swift */,
+				0578075827BB64090008051B /* NetworkingService+Wallet.swift */,
+				0578075B27BB64410008051B /* NetworkingService+Markets.swift */,
+				0578075E27BB64600008051B /* NetworkingService+Discover.swift */,
+				0578076127BB647E0008051B /* NetworkingService+Invest.swift */,
+				0578076427BB64A40008051B /* NetworkingService+Profile.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		0578076727BB651C0008051B /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				0578076E27BB6D200008051B /* DefaultTemplate.swift */,
+				0578074427BB5DEF0008051B /* Font Template */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
+		0578077127BB71250008051B /* IrregularGradients */ = {
+			isa = PBXGroup;
+			children = (
+				0578077427BB71410008051B /* Blob.swift */,
+				0578077227BB71410008051B /* IrregularGradient.swift */,
+			);
+			path = IrregularGradients;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,24 +657,47 @@
 			files = (
 				057806F327B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */,
 				0578070427B8E8E00008051B /* RoundedButton.swift in Sources */,
-				057806D927B870620008051B /* iosConsants.swift in Sources */,
+				0578074627BB5E1A0008051B /* FontTemplate.swift in Sources */,
+				0578075627BB60160008051B /* NetworkingService.swift in Sources */,
+				057806D927B870620008051B /* MobileConsants.swift in Sources */,
 				0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */,
+				0578075F27BB64600008051B /* NetworkingService+Discover.swift in Sources */,
 				0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */,
 				057806E227B8DE3E0008051B /* MainCoordinator.swift in Sources */,
+				0578073327BB59D30008051B /* MarketsView.swift in Sources */,
+				0578077527BB71410008051B /* IrregularGradient.swift in Sources */,
 				057806EB27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */,
+				0578074327BB5B770008051B /* InvestCoordinator+Factory.swift in Sources */,
+				0578075C27BB64410008051B /* NetworkingService+Markets.swift in Sources */,
 				057806E527B8DF240008051B /* CurrentUser.swift in Sources */,
 				0578071827B8F6980008051B /* ProfileCoordinator.swift in Sources */,
 				057806FC27B8E56B0008051B /* WelcomeView.swift in Sources */,
 				057806BE27B8432B0008051B /* Constants.swift in Sources */,
+				0578073627BB59DC0008051B /* DiscoverCoordinator.swift in Sources */,
+				0578073727BB59DC0008051B /* DiscoverView.swift in Sources */,
 				057806F627B8E3C10008051B /* AuthenticatedCoordinator.swift in Sources */,
+				0578075227BB5EF10008051B /* Font+Extensions.swift in Sources */,
+				0578073F27BB5B470008051B /* InvestView.swift in Sources */,
 				0578071B27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */,
+				0578076F27BB6D200008051B /* DefaultTemplate.swift in Sources */,
 				0578070C27B8F1370008051B /* WalletView.swift in Sources */,
+				0578076527BB64A40008051B /* NetworkingService+Profile.swift in Sources */,
+				0578074C27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
 				057806F027B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */,
+				0578073227BB59D30008051B /* MarketsCoordinator+Factory.swift in Sources */,
+				0578074127BB5B500008051B /* DiscoverCoordinator+Factory.swift in Sources */,
+				0578074F27BB5ED00008051B /* View+Extensions.swift in Sources */,
+				0578075927BB640A0008051B /* NetworkingService+Wallet.swift in Sources */,
 				0578070727B8EC2E0008051B /* WelcomeService.swift in Sources */,
+				0578073127BB59D30008051B /* MarketsCoordinator.swift in Sources */,
 				057806E827B8DF980008051B /* AuthenticationService.swift in Sources */,
 				057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
+				0578074927BB5E610008051B /* FontTemplating.swift in Sources */,
 				0578071527B8F61F0008051B /* ProfileView.swift in Sources */,
+				0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */,
 				057806F927B8E4320008051B /* AuthenticatedCoordinator+Factory.swift in Sources */,
+				0578077927BB71410008051B /* Blob.swift in Sources */,
+				0578076227BB647E0008051B /* NetworkingService+Invest.swift in Sources */,
 				0578070F27B8F1BC0008051B /* WalletCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -546,18 +708,32 @@
 			files = (
 				0578070827B8EC2E0008051B /* WelcomeService.swift in Sources */,
 				057806E627B8DF240008051B /* CurrentUser.swift in Sources */,
+				0578076627BB64A40008051B /* NetworkingService+Profile.swift in Sources */,
 				0578070527B8E8E00008051B /* RoundedButton.swift in Sources */,
 				0548B87527B4C9A6000478B8 /* ContentView.swift in Sources */,
 				0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */,
 				0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */,
 				057806E927B8DF980008051B /* AuthenticationService.swift in Sources */,
 				0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */,
+				0578077A27BB71410008051B /* Blob.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
+				0578075D27BB64410008051B /* NetworkingService+Markets.swift in Sources */,
 				0548B88A27B4D472000478B8 /* MacBlurView.swift in Sources */,
+				0578075027BB5ED00008051B /* View+Extensions.swift in Sources */,
 				0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
+				0578074A27BB5E610008051B /* FontTemplating.swift in Sources */,
+				0578077027BB6D200008051B /* DefaultTemplate.swift in Sources */,
+				0578074D27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
 				0578071D27B90A050008051B /* Constants.swift in Sources */,
+				0578077627BB71410008051B /* IrregularGradient.swift in Sources */,
+				0578075A27BB640A0008051B /* NetworkingService+Wallet.swift in Sources */,
+				0578075727BB60160008051B /* NetworkingService.swift in Sources */,
+				0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
 				0548B88527B4D212000478B8 /* GeneralViewModel.swift in Sources */,
+				0578074727BB5E1A0008051B /* FontTemplate.swift in Sources */,
+				0578076327BB647E0008051B /* NetworkingService+Invest.swift in Sources */,
+				0578076027BB64600008051B /* NetworkingService+Discover.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

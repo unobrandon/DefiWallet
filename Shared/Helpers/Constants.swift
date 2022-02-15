@@ -8,5 +8,5 @@
 import SwiftUI
 
 public struct Constants {
-
+    // Made for both iOS and macOS
 }

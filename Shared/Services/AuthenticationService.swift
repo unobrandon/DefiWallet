@@ -9,20 +9,6 @@ import Foundation
 
 class AuthenticationService: ObservableObject {
 
-    init() {
-        let decoder = JSONDecoder()
-        if let data = UserDefaults.standard.data(forKey: "currentUser") {
-            do {
-                self.authStatus = try CurrentUserStatus.authenticated(decoder.decode(CurrentUser.self, from: data))
-
-            } catch {
-                self.authStatus = CurrentUserStatus.unauthenticated
-            }
-        } else {
-            self.authStatus = CurrentUserStatus.unauthenticated
-        }
-    }
-
     enum CurrentUserStatus: Equatable {
         case authenticated(CurrentUser)
         case unauthenticated
@@ -46,6 +32,20 @@ class AuthenticationService: ObservableObject {
                     authStatus = .unauthenticated
                 }
             }
+        }
+    }
+
+    init() {
+        let decoder = JSONDecoder()
+        if let data = UserDefaults.standard.data(forKey: "currentUser") {
+            do {
+                self.authStatus = try CurrentUserStatus.authenticated(decoder.decode(CurrentUser.self, from: data))
+
+            } catch {
+                self.authStatus = CurrentUserStatus.unauthenticated
+            }
+        } else {
+            self.authStatus = CurrentUserStatus.unauthenticated
         }
     }
 

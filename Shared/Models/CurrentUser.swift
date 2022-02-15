@@ -8,9 +8,11 @@
 import Foundation
 
 struct CurrentUser: Codable, Equatable {
+
     let accessToken: String
     let username: String
     let ethAddress: String?
     let accountValue: String?
     let secretPhrase: String?
+
 }

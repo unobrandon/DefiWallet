@@ -9,7 +9,9 @@ import SwiftUI
 import Stinsen
 
 extension WalletCoordinator {
+
     @ViewBuilder func makeStart() -> some View {
         WalletView()
     }
+
 }
