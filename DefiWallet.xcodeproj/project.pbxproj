@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051BCF5227BC87DB0056E047 /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5127BC87DB0056E047 /* AccountBalance.swift */; };
+		051BCF5327BC87DB0056E047 /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5127BC87DB0056E047 /* AccountBalance.swift */; };
+		051BCF5527BC970A0056E047 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* TransactionHistory.swift */; };
+		051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* TransactionHistory.swift */; };
+		051BCF5827BCACB30056E047 /* AuthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */; };
+		051BCF5927BCACB30056E047 /* AuthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */; };
+		051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5C27BCAE150056E047 /* WalletService.swift */; };
+		051BCF5E27BCAE150056E047 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5C27BCAE150056E047 /* WalletService.swift */; };
 		0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B85E27B4C957000478B8 /* DefiWalletApp.swift */; };
 		0548B86327B4C959000478B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0548B86227B4C959000478B8 /* Assets.xcassets */; };
 		0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B87227B4C9A6000478B8 /* DefiWalletApp_macOS.swift */; };
@@ -76,16 +84,6 @@
 		0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075127BB5EF10008051B /* Font+Extensions.swift */; };
 		0578075627BB60160008051B /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075527BB60160008051B /* NetworkingService.swift */; };
 		0578075727BB60160008051B /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075527BB60160008051B /* NetworkingService.swift */; };
-		0578075927BB640A0008051B /* NetworkingService+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075827BB64090008051B /* NetworkingService+Wallet.swift */; };
-		0578075A27BB640A0008051B /* NetworkingService+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075827BB64090008051B /* NetworkingService+Wallet.swift */; };
-		0578075C27BB64410008051B /* NetworkingService+Markets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075B27BB64410008051B /* NetworkingService+Markets.swift */; };
-		0578075D27BB64410008051B /* NetworkingService+Markets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075B27BB64410008051B /* NetworkingService+Markets.swift */; };
-		0578075F27BB64600008051B /* NetworkingService+Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075E27BB64600008051B /* NetworkingService+Discover.swift */; };
-		0578076027BB64600008051B /* NetworkingService+Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075E27BB64600008051B /* NetworkingService+Discover.swift */; };
-		0578076227BB647E0008051B /* NetworkingService+Invest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076127BB647E0008051B /* NetworkingService+Invest.swift */; };
-		0578076327BB647E0008051B /* NetworkingService+Invest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076127BB647E0008051B /* NetworkingService+Invest.swift */; };
-		0578076527BB64A40008051B /* NetworkingService+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076427BB64A40008051B /* NetworkingService+Profile.swift */; };
-		0578076627BB64A40008051B /* NetworkingService+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076427BB64A40008051B /* NetworkingService+Profile.swift */; };
 		0578076F27BB6D200008051B /* DefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076E27BB6D200008051B /* DefaultTemplate.swift */; };
 		0578077027BB6D200008051B /* DefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076E27BB6D200008051B /* DefaultTemplate.swift */; };
 		0578077527BB71410008051B /* IrregularGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077227BB71410008051B /* IrregularGradient.swift */; };
@@ -99,6 +97,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		051BCF5127BC87DB0056E047 /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
+		051BCF5427BC970A0056E047 /* TransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistory.swift; sourceTree = "<group>"; };
+		051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedServices.swift; sourceTree = "<group>"; };
+		051BCF5C27BCAE150056E047 /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		0548B85B27B4C957000478B8 /* DefiWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DefiWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0548B85E27B4C957000478B8 /* DefiWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefiWalletApp.swift; sourceTree = "<group>"; };
 		0548B86227B4C959000478B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,11 +158,6 @@
 		0578074E27BB5ED00008051B /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		0578075127BB5EF10008051B /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
 		0578075527BB60160008051B /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
-		0578075827BB64090008051B /* NetworkingService+Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingService+Wallet.swift"; sourceTree = "<group>"; };
-		0578075B27BB64410008051B /* NetworkingService+Markets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingService+Markets.swift"; sourceTree = "<group>"; };
-		0578075E27BB64600008051B /* NetworkingService+Discover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingService+Discover.swift"; sourceTree = "<group>"; };
-		0578076127BB647E0008051B /* NetworkingService+Invest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingService+Invest.swift"; sourceTree = "<group>"; };
-		0578076427BB64A40008051B /* NetworkingService+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingService+Profile.swift"; sourceTree = "<group>"; };
 		0578076E27BB6D200008051B /* DefaultTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTemplate.swift; sourceTree = "<group>"; };
 		0578077227BB71410008051B /* IrregularGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IrregularGradient.swift; sourceTree = "<group>"; };
 		0578077427BB71410008051B /* Blob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
@@ -194,6 +191,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		051BCF5A27BCAD200056E047 /* Authenticated */ = {
+			isa = PBXGroup;
+			children = (
+				051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */,
+				051BCF5C27BCAE150056E047 /* WalletService.swift */,
+			);
+			path = Authenticated;
+			sourceTree = "<group>";
+		};
+		051BCF5B27BCAD3C0056E047 /* Unauthenticated */ = {
+			isa = PBXGroup;
+			children = (
+				057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */,
+				0578070627B8EC2E0008051B /* WelcomeService.swift */,
+			);
+			path = Unauthenticated;
+			sourceTree = "<group>";
+		};
 		0548B85227B4C957000478B8 = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +337,8 @@
 			children = (
 				057806E427B8DF240008051B /* CurrentUser.swift */,
 				0578077E27BB87C80008051B /* Wallet.swift */,
+				051BCF5127BC87DB0056E047 /* AccountBalance.swift */,
+				051BCF5427BC970A0056E047 /* TransactionHistory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,8 +386,8 @@
 			children = (
 				0578075427BB5FFB0008051B /* Networking */,
 				057806E727B8DF980008051B /* AuthenticationService.swift */,
-				057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */,
-				0578070627B8EC2E0008051B /* WelcomeService.swift */,
+				051BCF5A27BCAD200056E047 /* Authenticated */,
+				051BCF5B27BCAD3C0056E047 /* Unauthenticated */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -474,11 +491,6 @@
 			isa = PBXGroup;
 			children = (
 				0578075527BB60160008051B /* NetworkingService.swift */,
-				0578075827BB64090008051B /* NetworkingService+Wallet.swift */,
-				0578075B27BB64410008051B /* NetworkingService+Markets.swift */,
-				0578075E27BB64600008051B /* NetworkingService+Discover.swift */,
-				0578076127BB647E0008051B /* NetworkingService+Invest.swift */,
-				0578076427BB64A40008051B /* NetworkingService+Profile.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -585,6 +597,7 @@
 				057806CF27B862480008051B /* XCRemoteSwiftPackageReference "ChartView" */,
 				057806D227B862910008051B /* XCRemoteSwiftPackageReference "LightChart" */,
 				057806D527B865330008051B /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				051BCF5027BC86140056E047 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 0548B85C27B4C957000478B8 /* Products */;
 			projectDirPath = "";
@@ -669,14 +682,14 @@
 				0578075627BB60160008051B /* NetworkingService.swift in Sources */,
 				057806D927B870620008051B /* MobileConsants.swift in Sources */,
 				0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */,
-				0578075F27BB64600008051B /* NetworkingService+Discover.swift in Sources */,
 				0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */,
 				057806E227B8DE3E0008051B /* MainCoordinator.swift in Sources */,
 				0578073327BB59D30008051B /* MarketsView.swift in Sources */,
+				051BCF5827BCACB30056E047 /* AuthenticatedServices.swift in Sources */,
 				0578077527BB71410008051B /* IrregularGradient.swift in Sources */,
+				051BCF5527BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				057806EB27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */,
 				0578074327BB5B770008051B /* InvestCoordinator+Factory.swift in Sources */,
-				0578075C27BB64410008051B /* NetworkingService+Markets.swift in Sources */,
 				0578077F27BB87C80008051B /* Wallet.swift in Sources */,
 				057806E527B8DF240008051B /* CurrentUser.swift in Sources */,
 				0578071827B8F6980008051B /* ProfileCoordinator.swift in Sources */,
@@ -690,24 +703,23 @@
 				0578071B27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */,
 				0578076F27BB6D200008051B /* DefaultTemplate.swift in Sources */,
 				0578070C27B8F1370008051B /* WalletView.swift in Sources */,
-				0578076527BB64A40008051B /* NetworkingService+Profile.swift in Sources */,
 				0578074C27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
 				057806F027B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */,
 				0578073227BB59D30008051B /* MarketsCoordinator+Factory.swift in Sources */,
 				0578074127BB5B500008051B /* DiscoverCoordinator+Factory.swift in Sources */,
 				0578074F27BB5ED00008051B /* View+Extensions.swift in Sources */,
-				0578075927BB640A0008051B /* NetworkingService+Wallet.swift in Sources */,
+				051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */,
 				0578070727B8EC2E0008051B /* WelcomeService.swift in Sources */,
 				0578073127BB59D30008051B /* MarketsCoordinator.swift in Sources */,
 				057806E827B8DF980008051B /* AuthenticationService.swift in Sources */,
 				057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
+				051BCF5227BC87DB0056E047 /* AccountBalance.swift in Sources */,
 				0578074927BB5E610008051B /* FontTemplating.swift in Sources */,
 				0578071527B8F61F0008051B /* ProfileView.swift in Sources */,
 				0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */,
 				0578077C27BB822D0008051B /* String+Extensions.swift in Sources */,
 				057806F927B8E4320008051B /* AuthenticatedCoordinator+Factory.swift in Sources */,
 				0578077927BB71410008051B /* Blob.swift in Sources */,
-				0578076227BB647E0008051B /* NetworkingService+Invest.swift in Sources */,
 				0578070F27B8F1BC0008051B /* WalletCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -719,7 +731,7 @@
 				0578078027BB87C80008051B /* Wallet.swift in Sources */,
 				0578070827B8EC2E0008051B /* WelcomeService.swift in Sources */,
 				057806E627B8DF240008051B /* CurrentUser.swift in Sources */,
-				0578076627BB64A40008051B /* NetworkingService+Profile.swift in Sources */,
+				051BCF5E27BCAE150056E047 /* WalletService.swift in Sources */,
 				0578070527B8E8E00008051B /* RoundedButton.swift in Sources */,
 				0548B87527B4C9A6000478B8 /* ContentView.swift in Sources */,
 				0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */,
@@ -727,25 +739,24 @@
 				057806E927B8DF980008051B /* AuthenticationService.swift in Sources */,
 				0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */,
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
+				051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
-				0578075D27BB64410008051B /* NetworkingService+Markets.swift in Sources */,
 				0548B88A27B4D472000478B8 /* MacBlurView.swift in Sources */,
 				0578075027BB5ED00008051B /* View+Extensions.swift in Sources */,
 				0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
 				0578074A27BB5E610008051B /* FontTemplating.swift in Sources */,
 				0578077027BB6D200008051B /* DefaultTemplate.swift in Sources */,
 				0578074D27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
+				051BCF5327BC87DB0056E047 /* AccountBalance.swift in Sources */,
 				0578071D27B90A050008051B /* Constants.swift in Sources */,
+				051BCF5927BCACB30056E047 /* AuthenticatedServices.swift in Sources */,
 				0578077627BB71410008051B /* IrregularGradient.swift in Sources */,
-				0578075A27BB640A0008051B /* NetworkingService+Wallet.swift in Sources */,
 				0578075727BB60160008051B /* NetworkingService.swift in Sources */,
 				0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
 				0578077D27BB822D0008051B /* String+Extensions.swift in Sources */,
 				0548B88527B4D212000478B8 /* GeneralViewModel.swift in Sources */,
 				0578074727BB5E1A0008051B /* FontTemplate.swift in Sources */,
-				0578076327BB647E0008051B /* NetworkingService+Invest.swift in Sources */,
-				0578076027BB64600008051B /* NetworkingService+Discover.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1287,6 +1298,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		051BCF5027BC86140056E047 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		057806C027B85E700008051B /* XCRemoteSwiftPackageReference "stinsen" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rundfunk47/stinsen";

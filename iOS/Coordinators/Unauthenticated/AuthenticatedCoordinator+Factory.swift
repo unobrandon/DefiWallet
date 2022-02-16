@@ -11,7 +11,7 @@ import Stinsen
 extension AuthenticatedCoordinator {
 
     func makeWallet() -> NavigationViewCoordinator<WalletCoordinator> {
-        return NavigationViewCoordinator(WalletCoordinator(currentUser: currentUser))
+        return NavigationViewCoordinator(WalletCoordinator(services: authenticatedServices))
     }
 
     @ViewBuilder func makeWalletTab(isActive: Bool) -> some View {

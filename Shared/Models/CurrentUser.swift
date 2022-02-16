@@ -11,7 +11,7 @@ struct CurrentUser: Codable, Equatable {
 
     let accessToken: String
     let username: String
-    let walletAddress: String?
+    let walletAddress: String
     let accountValue: String?
     let secretPhrase: String?
 

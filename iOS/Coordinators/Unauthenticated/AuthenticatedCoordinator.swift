@@ -19,6 +19,7 @@ final class AuthenticatedCoordinator: TabCoordinatable {
              \AuthenticatedCoordinator.profile
         ])
 
+    let authenticatedServices: AuthenticatedServices
     let currentUser: CurrentUser
 
     @Route(tabItem: makeWalletTab) var wallet = makeWallet
@@ -28,6 +29,7 @@ final class AuthenticatedCoordinator: TabCoordinatable {
     @Route(tabItem: makeProfileTab) var profile = makeProfile
 
     init(user: CurrentUser) {
+        self.authenticatedServices = AuthenticatedServices(currentUser: user)
         self.currentUser = user
 
         // Load init network requests and

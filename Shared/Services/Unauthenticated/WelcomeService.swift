@@ -15,7 +15,7 @@ class WelcomeServices: ObservableObject {
             AuthenticationService.shared.authStatus = .authenticated(
                 CurrentUser(accessToken: UUID().uuidString,
                             username: "testUsernamelol",
-                            walletAddress: "",
+                            walletAddress: "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9",
                             accountValue: "0.00",
                             secretPhrase: "")
             )
@@ -31,6 +31,7 @@ class WelcomeServices: ObservableObject {
         }
     }
 
+    /*
     // MARK: Create Wallet
 
     // Create wallet with Private Key - wallet is NOT HD
@@ -110,5 +111,6 @@ class WelcomeServices: ObservableObject {
             return nil
         }
     }
-
+     */
+     
 }
