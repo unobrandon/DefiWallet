@@ -40,6 +40,7 @@ struct WalletView: View {
 
             Text("History")
                 .fontTemplate(DefaultTemplates.title)
+                .padding(.top)
 
             ForEach(store.history, id: \.self) { item in
                 HStack(alignment: .center) {
