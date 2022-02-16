@@ -18,7 +18,7 @@ struct ContentView: View {
 
                 ZStack {
                     switch general.selectedTab {
-                    case "Wallet": Text("Wallet").navigationTitle("Wallet").frame(minWidth: 450)
+                    case "Wallet": WalletViewMac()
                     case "Discover": Text("Discover")
                     case "Markets": Text("Markets")
                     case "Swap": Text("Swap")
@@ -53,5 +53,45 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct WalletViewMac: View {
+    @ObservedObject private var store: WalletService = WalletService()
+
+    var body: some View {
+        VStack {
+            ForEach(store.history, id: \.self) { item in
+                HStack(alignment: .center) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(item.direction == .incoming ? "Received" : item.direction == .outgoing ? "Sent" : "Exchange")
+                            .fontTemplate(DefaultTemplates.subheading)
+
+                        if let fromAddress = item.fromEns == nil ? item.from : item.fromEns {
+                            Text("from: " + "\("".formatAddress(fromAddress))")
+                                .fontTemplate(DefaultTemplates.caption)
+                        }
+                    }
+
+                    Spacer()
+                    VStack(alignment: .trailing, spacing: 5) {
+                        Text("\(item.timeStamp.getFullElapsedInterval())")
+                            .fontTemplate(DefaultTemplates.caption)
+
+                        Text("\(item.symbol) \(item.amount)")
+                            .fontTemplate(DefaultTemplates.body)
+                    }
+                }
+                .padding(.vertical, 10)
+                .padding(.horizontal)
+                .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.secondary.opacity(0.2)))
+                .padding(.horizontal)
+            }
+        }
+        .onAppear {
+            store.fetchHistory("0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9", completion: {
+                print("done with history")
+            })
+        }
     }
 }

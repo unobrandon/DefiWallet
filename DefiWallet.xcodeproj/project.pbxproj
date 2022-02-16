@@ -15,6 +15,15 @@
 		051BCF5927BCACB30056E047 /* AuthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */; };
 		051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5C27BCAE150056E047 /* WalletService.swift */; };
 		051BCF5E27BCAE150056E047 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5C27BCAE150056E047 /* WalletService.swift */; };
+		051BCF6127BCD6710056E047 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF6027BCD6710056E047 /* Alamofire */; };
+		051BCF6327BCD6800056E047 /* web3swift in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF6227BCD6800056E047 /* web3swift */; };
+		051BCF6527BCD6830056E047 /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF6427BCD6830056E047 /* Stinsen */; };
+		051BCF6727BCD6890056E047 /* Colorful in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF6627BCD6890056E047 /* Colorful */; };
+		051BCF6927BCD68C0056E047 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF6827BCD68C0056E047 /* SwiftUICharts */; };
+		051BCF6F27BCD69F0056E047 /* SwiftLintFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF6E27BCD69F0056E047 /* SwiftLintFramework */; };
+		051BCF7127BCD69F0056E047 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF7027BCD69F0056E047 /* Realm */; };
+		051BCF7327BCD69F0056E047 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF7227BCD69F0056E047 /* RealmSwift */; };
+		051BCF7427BCD6A60056E047 /* WelcomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070627B8EC2E0008051B /* WelcomeService.swift */; };
 		0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B85E27B4C957000478B8 /* DefiWalletApp.swift */; };
 		0548B86327B4C959000478B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0548B86227B4C959000478B8 /* Assets.xcassets */; };
 		0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B87227B4C9A6000478B8 /* DefiWalletApp_macOS.swift */; };
@@ -55,7 +64,6 @@
 		0578070427B8E8E00008051B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070327B8E8E00008051B /* RoundedButton.swift */; };
 		0578070527B8E8E00008051B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070327B8E8E00008051B /* RoundedButton.swift */; };
 		0578070727B8EC2E0008051B /* WelcomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070627B8EC2E0008051B /* WelcomeService.swift */; };
-		0578070827B8EC2E0008051B /* WelcomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070627B8EC2E0008051B /* WelcomeService.swift */; };
 		0578070C27B8F1370008051B /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070B27B8F1370008051B /* WalletView.swift */; };
 		0578070F27B8F1BC0008051B /* WalletCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070E27B8F1BC0008051B /* WalletCoordinator.swift */; };
 		0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */; };
@@ -185,6 +193,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				051BCF6527BCD6830056E047 /* Stinsen in Frameworks */,
+				051BCF6127BCD6710056E047 /* Alamofire in Frameworks */,
+				051BCF6727BCD6890056E047 /* Colorful in Frameworks */,
+				051BCF6F27BCD69F0056E047 /* SwiftLintFramework in Frameworks */,
+				051BCF6327BCD6800056E047 /* web3swift in Frameworks */,
+				051BCF7127BCD69F0056E047 /* Realm in Frameworks */,
+				051BCF7327BCD69F0056E047 /* RealmSwift in Frameworks */,
+				051BCF6927BCD68C0056E047 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +225,13 @@
 			path = Unauthenticated;
 			sourceTree = "<group>";
 		};
+		051BCF5F27BCD6710056E047 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0548B85227B4C957000478B8 = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +239,7 @@
 				0548B85D27B4C957000478B8 /* iOS */,
 				0548B87127B4C9A6000478B8 /* macOS */,
 				0548B85C27B4C957000478B8 /* Products */,
+				051BCF5F27BCD6710056E047 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -557,6 +581,16 @@
 			dependencies = (
 			);
 			name = "DefiWallet (macOS)";
+			packageProductDependencies = (
+				051BCF6027BCD6710056E047 /* Alamofire */,
+				051BCF6227BCD6800056E047 /* web3swift */,
+				051BCF6427BCD6830056E047 /* Stinsen */,
+				051BCF6627BCD6890056E047 /* Colorful */,
+				051BCF6827BCD68C0056E047 /* SwiftUICharts */,
+				051BCF6E27BCD69F0056E047 /* SwiftLintFramework */,
+				051BCF7027BCD69F0056E047 /* Realm */,
+				051BCF7227BCD69F0056E047 /* RealmSwift */,
+			);
 			productName = "DefiWallet (macOS)";
 			productReference = 0548B87027B4C9A6000478B8 /* DefiWallet.app */;
 			productType = "com.apple.product-type.application";
@@ -729,7 +763,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0578078027BB87C80008051B /* Wallet.swift in Sources */,
-				0578070827B8EC2E0008051B /* WelcomeService.swift in Sources */,
 				057806E627B8DF240008051B /* CurrentUser.swift in Sources */,
 				051BCF5E27BCAE150056E047 /* WalletService.swift in Sources */,
 				0578070527B8E8E00008051B /* RoundedButton.swift in Sources */,
@@ -742,6 +775,7 @@
 				051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				0548B88A27B4D472000478B8 /* MacBlurView.swift in Sources */,
+				051BCF7427BCD6A60056E047 /* WelcomeService.swift in Sources */,
 				0578075027BB5ED00008051B /* View+Extensions.swift in Sources */,
 				0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
 				0578074A27BB5E610008051B /* FontTemplating.swift in Sources */,
@@ -1373,6 +1407,46 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		051BCF6027BCD6710056E047 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 057806C327B85EBD0008051B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		051BCF6227BCD6800056E047 /* web3swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 057806C627B85F9F0008051B /* XCRemoteSwiftPackageReference "web3swift" */;
+			productName = web3swift;
+		};
+		051BCF6427BCD6830056E047 /* Stinsen */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 057806C027B85E700008051B /* XCRemoteSwiftPackageReference "stinsen" */;
+			productName = Stinsen;
+		};
+		051BCF6627BCD6890056E047 /* Colorful */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 057806CC27B862270008051B /* XCRemoteSwiftPackageReference "Colorful" */;
+			productName = Colorful;
+		};
+		051BCF6827BCD68C0056E047 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 057806CF27B862480008051B /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+		051BCF6E27BCD69F0056E047 /* SwiftLintFramework */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 057806D527B865330008051B /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = SwiftLintFramework;
+		};
+		051BCF7027BCD69F0056E047 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 051BCF5027BC86140056E047 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		051BCF7227BCD69F0056E047 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 051BCF5027BC86140056E047 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		057806C127B85E700008051B /* Stinsen */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 057806C027B85E700008051B /* XCRemoteSwiftPackageReference "stinsen" */;

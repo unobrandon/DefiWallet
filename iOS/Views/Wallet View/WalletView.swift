@@ -19,8 +19,6 @@ struct WalletView: View {
         self.store = services.wallet
     }
 
-    @State var count = 0
-
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 5) {
@@ -30,26 +28,15 @@ struct WalletView: View {
                 Text(services.currentUser.username)
                     .fontTemplate(DefaultTemplates.heading)
 
-                Text("The Sub-Header is here:... |  \(store.testInt)  |")
+                Text("The Sub-Header is here")
                     .fontTemplate(DefaultTemplates.subheading)
 
                 Text("The body texts!!")
                     .fontTemplate(DefaultTemplates.body)
 
-                Text("caption timee")
+                Text("caption time")
                     .fontTemplate(DefaultTemplates.caption)
-
-                Text("\(count)")
-                    .fontTemplate(DefaultTemplates.heading)
             }.frame(width: MobileConstants.screenWidth)
-
-            RoundedButton("Add Count", style: .primary, systemImage: nil, action: {
-                store.testInt += 1
-            })
-
-            RoundedButton("Add Count3", style: .bordered, systemImage: nil, action: {
-                count += 1
-            })
 
             Text("History")
                 .fontTemplate(DefaultTemplates.title)
@@ -57,7 +44,7 @@ struct WalletView: View {
             ForEach(store.history, id: \.self) { item in
                 HStack(alignment: .center) {
                     VStack(alignment: .leading, spacing: 5) {
-                        Text(item.direction == .incoming ? "INCOMING" : item.direction == .outgoing ? "OUTGOING" : "exchange")
+                        Text(item.direction == .incoming ? "Received" : item.direction == .outgoing ? "Sent" : "Exchange")
                             .fontTemplate(DefaultTemplates.subheading)
 
                         if let fromAddress = item.fromEns == nil ? item.from : item.fromEns {

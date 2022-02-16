@@ -15,7 +15,7 @@ struct DefiWalletApp_macOS: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .background(MacBlurView())
+//                .background(MacBlurView())
                 .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification),
                            perform: { _ in
                     // disable the full screen button

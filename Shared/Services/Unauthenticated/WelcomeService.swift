@@ -112,5 +112,5 @@ class WelcomeServices: ObservableObject {
         }
     }
      */
-     
+
 }
