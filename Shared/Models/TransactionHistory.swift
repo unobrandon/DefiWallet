@@ -21,6 +21,7 @@
 
 import Foundation
 import Alamofire
+import RealmSwift
 
 // MARK: - TransactionHistory
 struct TransactionHistory: Codable {

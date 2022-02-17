@@ -17,6 +17,8 @@ struct WalletView: View {
     init(services: AuthenticatedServices) {
         self.services = services
         self.store = services.wallet
+
+        self.fetchHistory()
     }
 
     var body: some View {
@@ -70,11 +72,12 @@ struct WalletView: View {
             }
         }
         .navigationTitle("Wallet")
-        .onAppear {
-            store.fetchHistory(services.currentUser.walletAddress, completion: {
-                print("done getting history")
-            })
-        }
+    }
+
+    private func fetchHistory() {
+        store.fetchHistory(services.currentUser.walletAddress, completion: {
+            print("done getting history")
+        })
     }
 
 }

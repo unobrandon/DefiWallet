@@ -37,13 +37,13 @@ extension AuthenticatedCoordinator {
         Text("Discover")
     }
 
+    func makeInvest() -> NavigationViewCoordinator<InvestCoordinator> {
+        return NavigationViewCoordinator(InvestCoordinator(services: authenticatedServices))
+    }
+
     @ViewBuilder func makeInvestTab(isActive: Bool) -> some View {
         Image(systemName: "leaf" + (isActive ? ".fill" : ""))
         Text("Invest")
-    }
-
-    func makeInvest() -> NavigationViewCoordinator<InvestCoordinator> {
-        return NavigationViewCoordinator(InvestCoordinator(currentUser: currentUser))
     }
 
     func makeProfile() -> NavigationViewCoordinator<ProfileCoordinator> {

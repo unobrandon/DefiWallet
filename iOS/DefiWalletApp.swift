@@ -7,12 +7,14 @@
 
 import SwiftUI
 import Stinsen
+import RealmSwift
 
 @main
-struct DefiWalletApp: App {
+struct DefiWalletApp: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             MainCoordinator().view()
+                .environment(\.realmConfiguration, Realm.Configuration())
         }
     }
 }

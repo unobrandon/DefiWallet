@@ -6,6 +6,23 @@
 //
 
 import Foundation
+import RealmSwift
+
+final class TaskItem: Object, Identifiable {
+
+    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted var taskTitle: String
+    @Persisted var taskDate: Date = Date()
+
+}
+
+final class Group: Object, ObjectKeyIdentifiable {
+    /// The unique ID of the Group. `primaryKey: true` declares the
+    /// _id member as the primary key to the realm.
+    @Persisted(primaryKey: true) var id: ObjectId
+    /// The collection of Items in this group.
+    @Persisted var items = RealmSwift.List<TaskItem>()
+}
 
 // struct Wallet {
 //    let address: String
