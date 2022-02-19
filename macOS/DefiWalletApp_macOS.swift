@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Stinsen
 
 @main
 struct DefiWalletApp_macOS: App {
@@ -14,8 +15,7 @@ struct DefiWalletApp_macOS: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-//                .background(MacBlurView())
+            MainCoordinator().view()
                 .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification),
                            perform: { _ in
                     // disable the full screen button
@@ -26,7 +26,6 @@ struct DefiWalletApp_macOS: App {
         }
 //        .windowStyle(HiddenTitleBarWindowStyle())
         .commands(content: {
-
             // Adds item in the 'View' section
             CommandGroup(replacing: .toolbar) {
                 Button("MyApp Help") {
@@ -41,41 +40,5 @@ struct DefiWalletApp_macOS: App {
                 }.keyboardShortcut("p")
             }
         })
-    }
-}
-
-class MacAppDelegate: NSObject, NSApplicationDelegate {
-    var statusItem: NSStatusItem?
-    var popOver = NSPopover()
-
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        let menuView = StatusBar()
-
-        popOver.behavior = .transient
-        popOver.animates = false
-
-        popOver.contentViewController = NSViewController()
-        popOver.contentViewController?.view = NSHostingView(rootView: menuView)
-
-        popOver.contentViewController?.view.window?.makeKey()
-
-        // creating status bar button....
-        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-
-        // Safe Check if status Button is Available or not...
-        if let menuButton = statusItem?.button {
-            menuButton.image = NSImage(systemSymbolName: "icloud.and.arrow.up.fill", accessibilityDescription: nil)
-            menuButton.action = #selector(statusBarToggle)
-        }
-    }
-
-    @objc func statusBarToggle(sender: AnyObject) {
-        guard !popOver.isShown, let menuButton = statusItem?.button else {
-            popOver.performClose(sender)
-
-            return
-        }
-
-        self.popOver.show(relativeTo: menuButton.bounds, of: menuButton, preferredEdge: NSRectEdge.minY)
     }
 }

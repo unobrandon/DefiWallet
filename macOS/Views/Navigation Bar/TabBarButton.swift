@@ -9,24 +9,26 @@ import SwiftUI
 
 struct TabBarButton: View {
 
-    var image: String
-    var title: String
+    let image: String
+    let title: String
 
-    @Binding var selectedTab: String
+    @ObservedObject var services: AuthenticatedServices
     @State private var hoverOver = false
 
+    var action: () -> Void
+
     var body: some View {
-        Button(action: { withAnimation { selectedTab = title }}, label: {
+        Button(action: withAnimation { action }, label: {
             HStack(spacing: 10) {
                 Image(systemName: image)
                     .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(selectedTab == title || hoverOver ? .primary : .secondary)
+                    .foregroundColor(services.macTabStatus.rawValue == title.lowercased() || hoverOver ? .primary : .secondary)
                     .padding(.leading, 10)
 
                 Text(title)
                     .font(.headline)
-                    .fontWeight(selectedTab == title || hoverOver ? .medium : .regular)
-                    .foregroundColor(selectedTab == title || hoverOver ? .primary : .secondary)
+                    .fontWeight(services.macTabStatus.rawValue == title.lowercased() || hoverOver ? .medium : .regular)
+                    .foregroundColor(services.macTabStatus.rawValue == title.lowercased() || hoverOver ? .primary : .secondary)
                     .lineLimit(1)
                     .fixedSize()
 
@@ -36,7 +38,7 @@ struct TabBarButton: View {
             .contentShape(Rectangle())
         })
         .buttonStyle(PlainButtonStyle())
-        .background(Color.primary.opacity(selectedTab == title || hoverOver ? 0.15 : 0))
+        .background(Color.primary.opacity(services.macTabStatus.rawValue == title.lowercased() || hoverOver ? 0.15 : 0))
         .cornerRadius(10)
 //        .scaleEffect(hoverOver ? 1.03 : 1.0)
         .onHover { over in

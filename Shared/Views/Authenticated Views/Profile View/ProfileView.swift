@@ -10,8 +10,6 @@ import Stinsen
 
 struct ProfileView: View {
 
-    @EnvironmentObject private var authenticatedRouter: AuthenticatedCoordinator.Router
-
     init() {
 
     }

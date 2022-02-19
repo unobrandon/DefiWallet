@@ -6,9 +6,17 @@
 //
 
 import SwiftUI
+import Stinsen
 
 struct SideNavigationBar: View {
-    @StateObject var general: GeneralViewModel
+
+    @ObservedObject var services: AuthenticatedServices
+
+    @EnvironmentObject private var macauthenticatedRouter: MacAuthenticatedCoordinator.Router
+
+    init(services: AuthenticatedServices) {
+        self.services = services
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -34,20 +42,32 @@ struct SideNavigationBar: View {
                 .padding(.vertical, 10)
 
             ScrollView(.vertical, showsIndicators: false) {
-                TabBarButton(image: "folder", title: "Wallet", selectedTab: $general.selectedTab)
+                TabBarButton(image: "folder", title: "Wallet", services: services, action: {
+                    services.macTabStatus = .wallet
+                })
 
-                TabBarButton(image: "safari", title: "Discover", selectedTab: $general.selectedTab)
+                TabBarButton(image: "chart.bar.xaxis", title: "Markets", services: services, action: {
+                    services.macTabStatus = .markets
+                })
 
-                TabBarButton(image: "chart.bar.xaxis", title: "Markets", selectedTab: $general.selectedTab)
+                TabBarButton(image: "safari", title: "Discover", services: services, action: {
+                    services.macTabStatus = .discover
+                })
 
-                TabBarButton(image: "arrow.triangle.swap", title: "Swap", selectedTab: $general.selectedTab)
+                TabBarButton(image: "leaf", title: "Invest", services: services, action: {
+                    services.macTabStatus = .invest
+                })
 
-                TabBarButton(image: "app.badge", title: "Dapps", selectedTab: $general.selectedTab)
+                TabBarButton(image: "app.badge", title: "Dapps", services: services, action: {
+                    services.macTabStatus = .profile
+                })
             }
             .padding(.horizontal)
 
             Divider()
-            TabBarButton(image: "gear", title: "Settings", selectedTab: $general.selectedTab)
+            TabBarButton(image: "gear", title: "Settings", services: services, action: {
+                services.macTabStatus = .profile
+            })
                 .padding(.horizontal)
                 .padding(.bottom)
                 .padding(.top, 5)

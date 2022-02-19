@@ -30,11 +30,9 @@
 		0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B85E27B4C957000478B8 /* DefiWalletApp.swift */; };
 		0548B86327B4C959000478B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0548B86227B4C959000478B8 /* Assets.xcassets */; };
 		0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B87227B4C9A6000478B8 /* DefiWalletApp_macOS.swift */; };
-		0548B87527B4C9A6000478B8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B87427B4C9A6000478B8 /* ContentView.swift */; };
 		0548B87727B4C9A8000478B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0548B87627B4C9A8000478B8 /* Assets.xcassets */; };
 		0548B87A27B4C9A8000478B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0548B87927B4C9A8000478B8 /* Preview Assets.xcassets */; };
 		0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88127B4D04C000478B8 /* MacConstants.swift */; };
-		0548B88527B4D212000478B8 /* GeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88427B4D212000478B8 /* GeneralViewModel.swift */; };
 		0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88727B4D28D000478B8 /* TabBarButton.swift */; };
 		0548B88A27B4D472000478B8 /* MacBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88927B4D472000478B8 /* MacBlurView.swift */; };
 		0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88C27B4DFF1000478B8 /* SideNavigationBar.swift */; };
@@ -59,8 +57,6 @@
 		057806EB27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */; };
 		057806F027B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EF27B8E25F0008051B /* UnauthenticatedCoordinator.swift */; };
 		057806F327B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F227B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift */; };
-		057806F627B8E3C10008051B /* AuthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F527B8E3C10008051B /* AuthenticatedCoordinator.swift */; };
-		057806F927B8E4320008051B /* AuthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F827B8E4320008051B /* AuthenticatedCoordinator+Factory.swift */; };
 		057806FC27B8E56B0008051B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FB27B8E56B0008051B /* WelcomeView.swift */; };
 		057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */; };
 		0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */; };
@@ -105,6 +101,31 @@
 		0578077D27BB822D0008051B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077B27BB822C0008051B /* String+Extensions.swift */; };
 		0578077F27BB87C80008051B /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077E27BB87C80008051B /* Wallet.swift */; };
 		0578078027BB87C80008051B /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077E27BB87C80008051B /* Wallet.swift */; };
+		05D1094527C08B2B008DCC66 /* UnauthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F227B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift */; };
+		05D1094627C08B2B008DCC66 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E127B8DE3E0008051B /* MainCoordinator.swift */; };
+		05D1094727C08B2B008DCC66 /* UnauthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EF27B8E25F0008051B /* UnauthenticatedCoordinator.swift */; };
+		05D1094927C08B2B008DCC66 /* MainCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */; };
+		05D1094A27C08B3E008DCC66 /* MarketsCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578072F27BB59D30008051B /* MarketsCoordinator+Factory.swift */; };
+		05D1094B27C08B3E008DCC66 /* InvestCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074227BB5B770008051B /* InvestCoordinator+Factory.swift */; };
+		05D1094C27C08B3E008DCC66 /* InvestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578073C27BB5B1A0008051B /* InvestCoordinator.swift */; };
+		05D1094D27C08B3E008DCC66 /* WalletCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070E27B8F1BC0008051B /* WalletCoordinator.swift */; };
+		05D1094E27C08B3E008DCC66 /* DiscoverCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578073427BB59DC0008051B /* DiscoverCoordinator.swift */; };
+		05D1094F27C08B3E008DCC66 /* InvestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578073E27BB5B460008051B /* InvestView.swift */; };
+		05D1095027C08B3E008DCC66 /* WalletCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */; };
+		05D1095127C08B3E008DCC66 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071727B8F6980008051B /* ProfileCoordinator.swift */; };
+		05D1095227C08B3E008DCC66 /* DiscoverCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074027BB5B4F0008051B /* DiscoverCoordinator+Factory.swift */; };
+		05D1095327C08B3E008DCC66 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070B27B8F1370008051B /* WalletView.swift */; };
+		05D1095427C08B3E008DCC66 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578073527BB59DC0008051B /* DiscoverView.swift */; };
+		05D1095527C08B3E008DCC66 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071427B8F61F0008051B /* ProfileView.swift */; };
+		05D1095627C08B3E008DCC66 /* ProfileCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071A27B8F6D50008051B /* ProfileCoordinator+Factory.swift */; };
+		05D1095727C08B3E008DCC66 /* MarketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578073027BB59D30008051B /* MarketsView.swift */; };
+		05D1095827C08B3E008DCC66 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FB27B8E56B0008051B /* WelcomeView.swift */; };
+		05D1095927C08B3E008DCC66 /* MarketsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578072E27BB59D30008051B /* MarketsCoordinator.swift */; };
+		05D1095C27C08D06008DCC66 /* MacAuthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1095B27C08D06008DCC66 /* MacAuthenticatedCoordinator.swift */; };
+		05D1095E27C08D1B008DCC66 /* MacAuthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1095D27C08D1B008DCC66 /* MacAuthenticatedCoordinator+Factory.swift */; };
+		05D1096627C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1096427C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift */; };
+		05D1096727C0C241008DCC66 /* AuthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1096527C0C241008DCC66 /* AuthenticatedCoordinator.swift */; };
+		05D1096B27C0C4A7008DCC66 /* MacAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1096A27C0C4A7008DCC66 /* MacAppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,12 +139,10 @@
 		0548B86227B4C959000478B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0548B87027B4C9A6000478B8 /* DefiWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DefiWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0548B87227B4C9A6000478B8 /* DefiWalletApp_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefiWalletApp_macOS.swift; sourceTree = "<group>"; };
-		0548B87427B4C9A6000478B8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0548B87627B4C9A8000478B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0548B87927B4C9A8000478B8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0548B87B27B4C9A8000478B8 /* DefiWallet__macOS_.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DefiWallet__macOS_.entitlements; sourceTree = "<group>"; };
 		0548B88127B4D04C000478B8 /* MacConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacConstants.swift; sourceTree = "<group>"; };
-		0548B88427B4D212000478B8 /* GeneralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewModel.swift; sourceTree = "<group>"; };
 		0548B88727B4D28D000478B8 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		0548B88927B4D472000478B8 /* MacBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacBlurView.swift; sourceTree = "<group>"; };
 		0548B88C27B4DFF1000478B8 /* SideNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideNavigationBar.swift; sourceTree = "<group>"; };
@@ -143,8 +162,6 @@
 		057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCoordinator+Factory.swift"; sourceTree = "<group>"; };
 		057806EF27B8E25F0008051B /* UnauthenticatedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedCoordinator.swift; sourceTree = "<group>"; };
 		057806F227B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnauthenticatedCoordinator+Factory.swift"; sourceTree = "<group>"; };
-		057806F527B8E3C10008051B /* AuthenticatedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedCoordinator.swift; sourceTree = "<group>"; };
-		057806F827B8E4320008051B /* AuthenticatedCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticatedCoordinator+Factory.swift"; sourceTree = "<group>"; };
 		057806FB27B8E56B0008051B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedServices.swift; sourceTree = "<group>"; };
 		0578070327B8E8E00008051B /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -176,6 +193,11 @@
 		0578077B27BB822C0008051B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		0578077E27BB87C80008051B /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		05B6F35A27B617E500ECF820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05D1095B27C08D06008DCC66 /* MacAuthenticatedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAuthenticatedCoordinator.swift; sourceTree = "<group>"; };
+		05D1095D27C08D1B008DCC66 /* MacAuthenticatedCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MacAuthenticatedCoordinator+Factory.swift"; sourceTree = "<group>"; };
+		05D1096427C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AuthenticatedCoordinator+Factory.swift"; sourceTree = "<group>"; };
+		05D1096527C0C241008DCC66 /* AuthenticatedCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedCoordinator.swift; sourceTree = "<group>"; };
+		05D1096A27C0C4A7008DCC66 /* MacAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,7 +285,6 @@
 			children = (
 				0548B85E27B4C957000478B8 /* DefiWalletApp.swift */,
 				057806DE27B8CC880008051B /* Coordinators */,
-				057806BB27B841FE0008051B /* Views */,
 				057806D727B86F860008051B /* Helpers */,
 				0548B86227B4C959000478B8 /* Assets.xcassets */,
 				057806DB27B8B8B20008051B /* Preview Assets.xcassets */,
@@ -278,7 +299,8 @@
 			isa = PBXGroup;
 			children = (
 				0548B87227B4C9A6000478B8 /* DefiWalletApp_macOS.swift */,
-				0548B88327B4D1B2000478B8 /* ViewModels */,
+				05D1096A27C0C4A7008DCC66 /* MacAppDelegate.swift */,
+				05D1095A27C08CD8008DCC66 /* Coordinators */,
 				0550300B27B82E9B005EE87C /* Views */,
 				0548B88027B4D010000478B8 /* Helpers */,
 				0548B87627B4C9A8000478B8 /* Assets.xcassets */,
@@ -295,8 +317,10 @@
 			isa = PBXGroup;
 			children = (
 				057806B727B838E60008051B /* Colors.xcassets */,
-				057806BC27B842050008051B /* Models */,
 				057806E027B8DD460008051B /* Services */,
+				057806BC27B842050008051B /* Models */,
+				05D1096327C0C17F008DCC66 /* Coordinators */,
+				057806BB27B841FE0008051B /* Views */,
 				0578070127B8E80A0008051B /* Components */,
 				057806DF27B8CCD50008051B /* Extensions */,
 				0578076727BB651C0008051B /* Templates */,
@@ -311,14 +335,6 @@
 				0548B88127B4D04C000478B8 /* MacConstants.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		0548B88327B4D1B2000478B8 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				0548B88427B4D212000478B8 /* GeneralViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		0548B88627B4D268000478B8 /* Status Bar */ = {
@@ -341,7 +357,6 @@
 		0550300B27B82E9B005EE87C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0548B87427B4C9A6000478B8 /* ContentView.swift */,
 				0548B88627B4D268000478B8 /* Status Bar */,
 				0548B88B27B4DFA0000478B8 /* Navigation Bar */,
 				0548B88927B4D472000478B8 /* MacBlurView.swift */,
@@ -352,12 +367,8 @@
 		057806BB27B841FE0008051B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				057806FB27B8E56B0008051B /* WelcomeView.swift */,
-				0578070927B8F0680008051B /* Wallet View */,
-				0578072027BB521C0008051B /* Markets View */,
-				0578072B27BB59780008051B /* Discover View */,
-				0578071E27BB511E0008051B /* Invest View */,
-				0578070A27B8F0720008051B /* Profile View */,
+				05D1096827C0C37C008DCC66 /* Unauthenticated Views */,
+				05D1096927C0C391008DCC66 /* Authenticated Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -393,10 +404,8 @@
 		057806DE27B8CC880008051B /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				057806E127B8DE3E0008051B /* MainCoordinator.swift */,
-				057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */,
-				057806ED27B8E1BD0008051B /* Unauthenticated */,
-				057806EE27B8E1D10008051B /* Authenticated */,
+				05D1096527C0C241008DCC66 /* AuthenticatedCoordinator.swift */,
+				05D1096427C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -414,8 +423,8 @@
 		057806E027B8DD460008051B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				0578075427BB5FFB0008051B /* Networking */,
 				057806E727B8DF980008051B /* AuthenticationService.swift */,
+				0578075427BB5FFB0008051B /* Networking */,
 				051BCF5A27BCAD200056E047 /* Authenticated */,
 				051BCF5B27BCAD3C0056E047 /* Unauthenticated */,
 			);
@@ -428,16 +437,6 @@
 				057806EF27B8E25F0008051B /* UnauthenticatedCoordinator.swift */,
 				057806F227B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift */,
 			);
-			path = Unauthenticated;
-			sourceTree = "<group>";
-		};
-		057806EE27B8E1D10008051B /* Authenticated */ = {
-			isa = PBXGroup;
-			children = (
-				057806F527B8E3C10008051B /* AuthenticatedCoordinator.swift */,
-				057806F827B8E4320008051B /* AuthenticatedCoordinator+Factory.swift */,
-			);
-			name = Authenticated;
 			path = Unauthenticated;
 			sourceTree = "<group>";
 		};
@@ -541,6 +540,45 @@
 				0578077227BB71410008051B /* IrregularGradient.swift */,
 			);
 			path = IrregularGradients;
+			sourceTree = "<group>";
+		};
+		05D1095A27C08CD8008DCC66 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				05D1095B27C08D06008DCC66 /* MacAuthenticatedCoordinator.swift */,
+				05D1095D27C08D1B008DCC66 /* MacAuthenticatedCoordinator+Factory.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		05D1096327C0C17F008DCC66 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				057806E127B8DE3E0008051B /* MainCoordinator.swift */,
+				057806EA27B8E1640008051B /* MainCoordinator+Factory.swift */,
+				057806ED27B8E1BD0008051B /* Unauthenticated */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		05D1096827C0C37C008DCC66 /* Unauthenticated Views */ = {
+			isa = PBXGroup;
+			children = (
+				057806FB27B8E56B0008051B /* WelcomeView.swift */,
+			);
+			path = "Unauthenticated Views";
+			sourceTree = "<group>";
+		};
+		05D1096927C0C391008DCC66 /* Authenticated Views */ = {
+			isa = PBXGroup;
+			children = (
+				0578070927B8F0680008051B /* Wallet View */,
+				0578072027BB521C0008051B /* Markets View */,
+				0578072B27BB59780008051B /* Discover View */,
+				0578071E27BB511E0008051B /* Invest View */,
+				0578070A27B8F0720008051B /* Profile View */,
+			);
+			path = "Authenticated Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -729,6 +767,7 @@
 				051BCF5827BCACB30056E047 /* AuthenticatedServices.swift in Sources */,
 				0578077527BB71410008051B /* IrregularGradient.swift in Sources */,
 				051BCF5527BC970A0056E047 /* TransactionHistory.swift in Sources */,
+				05D1096627C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift in Sources */,
 				057806EB27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */,
 				0578074327BB5B770008051B /* InvestCoordinator+Factory.swift in Sources */,
 				0578077F27BB87C80008051B /* Wallet.swift in Sources */,
@@ -738,7 +777,6 @@
 				057806BE27B8432B0008051B /* Constants.swift in Sources */,
 				0578073627BB59DC0008051B /* DiscoverCoordinator.swift in Sources */,
 				0578073727BB59DC0008051B /* DiscoverView.swift in Sources */,
-				057806F627B8E3C10008051B /* AuthenticatedCoordinator.swift in Sources */,
 				0578075227BB5EF10008051B /* Font+Extensions.swift in Sources */,
 				0578073F27BB5B470008051B /* InvestView.swift in Sources */,
 				0578071B27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */,
@@ -748,6 +786,7 @@
 				057806F027B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */,
 				0578073227BB59D30008051B /* MarketsCoordinator+Factory.swift in Sources */,
 				0578074127BB5B500008051B /* DiscoverCoordinator+Factory.swift in Sources */,
+				05D1096727C0C241008DCC66 /* AuthenticatedCoordinator.swift in Sources */,
 				0578074F27BB5ED00008051B /* View+Extensions.swift in Sources */,
 				051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */,
 				0578070727B8EC2E0008051B /* WelcomeService.swift in Sources */,
@@ -760,7 +799,6 @@
 				0578071527B8F61F0008051B /* ProfileView.swift in Sources */,
 				0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */,
 				0578077C27BB822D0008051B /* String+Extensions.swift in Sources */,
-				057806F927B8E4320008051B /* AuthenticatedCoordinator+Factory.swift in Sources */,
 				0578077927BB71410008051B /* Blob.swift in Sources */,
 				0578070F27B8F1BC0008051B /* WalletCoordinator.swift in Sources */,
 			);
@@ -770,36 +808,57 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05D1095127C08B3E008DCC66 /* ProfileCoordinator.swift in Sources */,
+				05D1095E27C08D1B008DCC66 /* MacAuthenticatedCoordinator+Factory.swift in Sources */,
+				05D1095927C08B3E008DCC66 /* MarketsCoordinator.swift in Sources */,
+				05D1094F27C08B3E008DCC66 /* InvestView.swift in Sources */,
+				05D1095027C08B3E008DCC66 /* WalletCoordinator+Factory.swift in Sources */,
+				05D1094E27C08B3E008DCC66 /* DiscoverCoordinator.swift in Sources */,
 				0578078027BB87C80008051B /* Wallet.swift in Sources */,
+				05D1094B27C08B3E008DCC66 /* InvestCoordinator+Factory.swift in Sources */,
+				05D1094C27C08B3E008DCC66 /* InvestCoordinator.swift in Sources */,
 				057806E627B8DF240008051B /* CurrentUser.swift in Sources */,
 				051BCF5E27BCAE150056E047 /* WalletService.swift in Sources */,
+				05D1094A27C08B3E008DCC66 /* MarketsCoordinator+Factory.swift in Sources */,
+				05D1095327C08B3E008DCC66 /* WalletView.swift in Sources */,
 				0578070527B8E8E00008051B /* RoundedButton.swift in Sources */,
-				0548B87527B4C9A6000478B8 /* ContentView.swift in Sources */,
 				0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */,
 				0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */,
+				05D1094927C08B2B008DCC66 /* MainCoordinator+Factory.swift in Sources */,
 				057806E927B8DF980008051B /* AuthenticationService.swift in Sources */,
 				0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */,
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
 				051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
+				05D1095827C08B3E008DCC66 /* WelcomeView.swift in Sources */,
 				0548B88A27B4D472000478B8 /* MacBlurView.swift in Sources */,
 				051BCF7427BCD6A60056E047 /* WelcomeService.swift in Sources */,
+				05D1095727C08B3E008DCC66 /* MarketsView.swift in Sources */,
+				05D1094727C08B2B008DCC66 /* UnauthenticatedCoordinator.swift in Sources */,
 				0578075027BB5ED00008051B /* View+Extensions.swift in Sources */,
+				05D1095627C08B3E008DCC66 /* ProfileCoordinator+Factory.swift in Sources */,
 				0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
+				05D1094627C08B2B008DCC66 /* MainCoordinator.swift in Sources */,
+				05D1094527C08B2B008DCC66 /* UnauthenticatedCoordinator+Factory.swift in Sources */,
 				0578074A27BB5E610008051B /* FontTemplating.swift in Sources */,
 				0578077027BB6D200008051B /* DefaultTemplate.swift in Sources */,
 				0578074D27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
+				05D1095427C08B3E008DCC66 /* DiscoverView.swift in Sources */,
+				05D1095C27C08D06008DCC66 /* MacAuthenticatedCoordinator.swift in Sources */,
 				051BCF5327BC87DB0056E047 /* AccountBalance.swift in Sources */,
 				053EC29327BE0E3600FBC681 /* InvestService.swift in Sources */,
 				0578071D27B90A050008051B /* Constants.swift in Sources */,
+				05D1096B27C0C4A7008DCC66 /* MacAppDelegate.swift in Sources */,
 				051BCF5927BCACB30056E047 /* AuthenticatedServices.swift in Sources */,
+				05D1095227C08B3E008DCC66 /* DiscoverCoordinator+Factory.swift in Sources */,
 				0578077627BB71410008051B /* IrregularGradient.swift in Sources */,
+				05D1095527C08B3E008DCC66 /* ProfileView.swift in Sources */,
 				0578075727BB60160008051B /* NetworkingService.swift in Sources */,
 				0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
 				0578077D27BB822D0008051B /* String+Extensions.swift in Sources */,
-				0548B88527B4D212000478B8 /* GeneralViewModel.swift in Sources */,
 				0578074727BB5E1A0008051B /* FontTemplate.swift in Sources */,
+				05D1094D27C08B3E008DCC66 /* WalletCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

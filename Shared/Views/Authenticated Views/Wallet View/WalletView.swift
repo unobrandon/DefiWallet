@@ -38,7 +38,7 @@ struct WalletView: View {
 
                 Text("caption time")
                     .fontTemplate(DefaultTemplates.caption)
-            }.frame(width: MobileConstants.screenWidth)
+            }//.frame(width: MobileConstants.screenWidth)
 
             Text("History")
                 .fontTemplate(DefaultTemplates.title)

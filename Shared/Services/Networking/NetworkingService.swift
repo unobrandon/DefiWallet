@@ -44,4 +44,9 @@ class NetworkingService: ObservableObject {
             }
         }
     }
+
+    func getConfigValue(forKey key: String) -> String? {
+        return Bundle.main.infoDictionary?[key] as? String
+    }
+
 }

@@ -11,10 +11,12 @@ import RealmSwift
 
 @main
 struct DefiWalletApp: SwiftUI.App {
+
     var body: some Scene {
         WindowGroup {
             MainCoordinator().view()
                 .environment(\.realmConfiguration, Realm.Configuration())
         }
     }
+
 }
