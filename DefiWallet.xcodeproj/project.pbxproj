@@ -424,9 +424,9 @@
 			isa = PBXGroup;
 			children = (
 				057806E727B8DF980008051B /* AuthenticationService.swift */,
-				0578075427BB5FFB0008051B /* Networking */,
-				051BCF5A27BCAD200056E047 /* Authenticated */,
 				051BCF5B27BCAD3C0056E047 /* Unauthenticated */,
+				051BCF5A27BCAD200056E047 /* Authenticated */,
+				0578075427BB5FFB0008051B /* Networking */,
 			);
 			path = Services;
 			sourceTree = "<group>";

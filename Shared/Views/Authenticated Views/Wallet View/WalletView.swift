@@ -38,7 +38,7 @@ struct WalletView: View {
 
                 Text("caption time")
                     .fontTemplate(DefaultTemplates.caption)
-            }//.frame(width: MobileConstants.screenWidth)
+            }
 
             Text("History")
                 .fontTemplate(DefaultTemplates.title)
@@ -50,10 +50,8 @@ struct WalletView: View {
                         Text(item.direction == .incoming ? "Received" : item.direction == .outgoing ? "Sent" : "Exchange")
                             .fontTemplate(DefaultTemplates.subheading)
 
-                        if let fromAddress = item.fromEns == nil ? item.from : item.fromEns {
-                            Text("from: " + "\("".formatAddress(fromAddress))")
-                                .fontTemplate(DefaultTemplates.caption)
-                        }
+                        Text("\(item.symbol) \(item.amount)")
+                            .fontTemplate(DefaultTemplates.body)
                     }
 
                     Spacer()
@@ -61,8 +59,10 @@ struct WalletView: View {
                         Text("\(item.timeStamp.getFullElapsedInterval())")
                             .fontTemplate(DefaultTemplates.caption)
 
-                        Text("\(item.symbol) \(item.amount)")
-                            .fontTemplate(DefaultTemplates.body)
+                        if let fromAddress = item.fromEns == nil ? item.from : item.fromEns {
+                            Text("from: " + "\("".formatAddress(fromAddress))")
+                                .fontTemplate(DefaultTemplates.caption)
+                        }
                     }
                 }
                 .padding(.vertical, 10)
