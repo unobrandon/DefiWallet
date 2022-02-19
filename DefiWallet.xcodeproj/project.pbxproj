@@ -126,6 +126,12 @@
 		05D1096627C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1096427C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift */; };
 		05D1096727C0C241008DCC66 /* AuthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1096527C0C241008DCC66 /* AuthenticatedCoordinator.swift */; };
 		05D1096B27C0C4A7008DCC66 /* MacAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1096A27C0C4A7008DCC66 /* MacAppDelegate.swift */; };
+		05D1096D27C15D80008DCC66 /* EthereumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1096C27C15D80008DCC66 /* EthereumService.swift */; };
+		05D1096E27C15D80008DCC66 /* EthereumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1096C27C15D80008DCC66 /* EthereumService.swift */; };
+		05D1097027C17D49008DCC66 /* ERC20Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1096F27C17D49008DCC66 /* ERC20Token.swift */; };
+		05D1097127C17D49008DCC66 /* ERC20Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1096F27C17D49008DCC66 /* ERC20Token.swift */; };
+		05D1097327C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1097227C18462008DCC66 /* EthereumServiceDelegate.swift */; };
+		05D1097427C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1097227C18462008DCC66 /* EthereumServiceDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,6 +204,9 @@
 		05D1096427C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AuthenticatedCoordinator+Factory.swift"; sourceTree = "<group>"; };
 		05D1096527C0C241008DCC66 /* AuthenticatedCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedCoordinator.swift; sourceTree = "<group>"; };
 		05D1096A27C0C4A7008DCC66 /* MacAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAppDelegate.swift; sourceTree = "<group>"; };
+		05D1096C27C15D80008DCC66 /* EthereumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumService.swift; sourceTree = "<group>"; };
+		05D1096F27C17D49008DCC66 /* ERC20Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20Token.swift; sourceTree = "<group>"; };
+		05D1097227C18462008DCC66 /* EthereumServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumServiceDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +249,8 @@
 				051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */,
 				051BCF5C27BCAE150056E047 /* WalletService.swift */,
 				053EC29127BE0E3600FBC681 /* InvestService.swift */,
+				05D1096C27C15D80008DCC66 /* EthereumService.swift */,
+				05D1097227C18462008DCC66 /* EthereumServiceDelegate.swift */,
 			);
 			path = Authenticated;
 			sourceTree = "<group>";
@@ -378,6 +389,7 @@
 			children = (
 				057806E427B8DF240008051B /* CurrentUser.swift */,
 				0578077E27BB87C80008051B /* Wallet.swift */,
+				05D1096F27C17D49008DCC66 /* ERC20Token.swift */,
 				051BCF5127BC87DB0056E047 /* AccountBalance.swift */,
 				051BCF5427BC970A0056E047 /* TransactionHistory.swift */,
 			);
@@ -761,8 +773,11 @@
 				0578075627BB60160008051B /* NetworkingService.swift in Sources */,
 				057806D927B870620008051B /* MobileConsants.swift in Sources */,
 				0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */,
+				05D1096D27C15D80008DCC66 /* EthereumService.swift in Sources */,
 				0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */,
+				05D1097027C17D49008DCC66 /* ERC20Token.swift in Sources */,
 				057806E227B8DE3E0008051B /* MainCoordinator.swift in Sources */,
+				05D1097327C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */,
 				0578073327BB59D30008051B /* MarketsView.swift in Sources */,
 				051BCF5827BCACB30056E047 /* AuthenticatedServices.swift in Sources */,
 				0578077527BB71410008051B /* IrregularGradient.swift in Sources */,
@@ -822,12 +837,14 @@
 				05D1094A27C08B3E008DCC66 /* MarketsCoordinator+Factory.swift in Sources */,
 				05D1095327C08B3E008DCC66 /* WalletView.swift in Sources */,
 				0578070527B8E8E00008051B /* RoundedButton.swift in Sources */,
+				05D1097127C17D49008DCC66 /* ERC20Token.swift in Sources */,
 				0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */,
 				0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */,
 				05D1094927C08B2B008DCC66 /* MainCoordinator+Factory.swift in Sources */,
 				057806E927B8DF980008051B /* AuthenticationService.swift in Sources */,
 				0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */,
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
+				05D1097427C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */,
 				051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				05D1095827C08B3E008DCC66 /* WelcomeView.swift in Sources */,
@@ -856,6 +873,7 @@
 				0578075727BB60160008051B /* NetworkingService.swift in Sources */,
 				0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
+				05D1096E27C15D80008DCC66 /* EthereumService.swift in Sources */,
 				0578077D27BB822D0008051B /* String+Extensions.swift in Sources */,
 				0578074727BB5E1A0008051B /* FontTemplate.swift in Sources */,
 				05D1094D27C08B3E008DCC66 /* WalletCoordinator.swift in Sources */,

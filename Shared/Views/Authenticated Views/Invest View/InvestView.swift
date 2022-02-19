@@ -11,11 +11,14 @@ import RealmSwift
 
 struct InvestView: View {
 
+    private let services: AuthenticatedServices
+
     @ObservedObject private var store: InvestService
 
     @ObservedResults(TaskItem.self, sortDescriptor: SortDescriptor.init(keyPath: "taskDate", ascending: false)) var tasksFetched
 
     init(services: AuthenticatedServices) {
+        self.services = services
         self.store = services.invest
     }
 

@@ -7,8 +7,20 @@
 
 import Foundation
 import RealmSwift
+import web3swift
 
 class AuthenticatedServices: ObservableObject {
+
+    // MARK: screen services
+    var wallet: WalletService = WalletService()
+    var invest: InvestService = InvestService()
+
+    // MARK: network delegates
+    var ethereum: EthereumService?
+
+    // MARK: stored values
+    @Published var currentUser: CurrentUser
+    @Published var macTabStatus: MacTabStatus
 
     enum MacTabStatus: String, Equatable {
         case wallet
@@ -19,14 +31,10 @@ class AuthenticatedServices: ObservableObject {
         case settings
     }
 
-    var wallet: WalletService = WalletService()
-    var invest: InvestService = InvestService()
-
-    @Published var currentUser: CurrentUser
-    @Published var macTabStatus: MacTabStatus
-
     init(currentUser: CurrentUser) {
         self.currentUser = currentUser
+        self.ethereum = EthereumService(currentUser: currentUser)
+
         self.macTabStatus = .wallet
     }
 

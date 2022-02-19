@@ -24,7 +24,7 @@ import Alamofire
 // MARK: - AccountBalance
 struct AccountBalance: Codable {
     let deposits, debt, vesting: Claimable?
-    let wallet: [String: Wallet]?
+    let wallet: [String: WalletBalance]?
     let claimable, locked: Claimable?
 }
 
@@ -51,7 +51,7 @@ struct Claimable: Codable {
 //   }
 
 // MARK: - Wallet
-struct Wallet: Codable {
+struct WalletBalance: Codable {
     let appID, address, network: String?
     let balanceUSD: Double?
     let metaType: String?

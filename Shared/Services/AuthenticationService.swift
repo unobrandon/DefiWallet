@@ -49,4 +49,8 @@ class AuthenticationService: ObservableObject {
         }
     }
 
+    func decode(_ name: String) {
+        
+    }
+
 }
