@@ -21,22 +21,12 @@
 
 import Foundation
 import Alamofire
-import RealmSwift
 
 // MARK: - TransactionHistory
 struct TransactionHistory: Codable {
     let error: [String]?
     let data: [Datum]?
 }
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseDatum { response in
-//     if let datum = response.result.value {
-//       ...
-//     }
-//   }
 
 // MARK: - Datum
 struct Datum: Codable, Hashable {
@@ -86,15 +76,6 @@ enum Network: String, Codable {
     case ethereum = "ethereum"
     case polygon = "polygon"
 }
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseSubTransaction { response in
-//     if let subTransaction = response.result.value {
-//       ...
-//     }
-//   }
 
 // MARK: - SubTransaction
 struct SubTransaction: Codable {

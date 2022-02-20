@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RealmSwift
 import web3swift
 
 class AuthenticatedServices: ObservableObject {

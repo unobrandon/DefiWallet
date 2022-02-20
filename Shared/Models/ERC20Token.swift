@@ -5,7 +5,6 @@
 //  Created by Brandon Shaw on 2/19/22.
 //
 
-
 class ERC20Token {
 
     var name: String

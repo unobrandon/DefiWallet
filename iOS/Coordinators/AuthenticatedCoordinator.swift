@@ -31,9 +31,6 @@ final class AuthenticatedCoordinator: TabCoordinatable {
     init(user: CurrentUser) {
         self.authenticatedServices = AuthenticatedServices(currentUser: user)
         self.currentUser = user
-
-        // Load init network requests and
-        // other configuration here for ALL tabs
     }
 
     deinit {

@@ -33,7 +33,7 @@ extension String {
         return strDate
     }
 
-    func getFullElapsedInterval() -> String {
+    public func getFullElapsedInterval() -> String {
         guard let unixTime = Double(self) else {
             return ""
         }

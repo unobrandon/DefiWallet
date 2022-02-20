@@ -47,10 +47,9 @@ class AuthenticationService: ObservableObject {
         } else {
             self.authStatus = CurrentUserStatus.unauthenticated
         }
-    }
 
-    func decode(_ name: String) {
-        
+        // Load init network requests and
+        // other configuration here for ALL tabs
     }
 
 }
