@@ -16,24 +16,43 @@ class EthereumService: ObservableObject {
 
     var keystore: EthereumKeystoreV3?
     var hdKeystore: BIP32Keystore?
+    var keystoreManager: KeystoreManager?
 
     init(currentUser: CurrentUser) {
         print("eth service init")
 
-        let socketUrl = "wss://speedy-nodes-nyc.moralis.io/b8a2c97baf6d1f1c575ebd0e/eth/mainnet/ws"
-        socketProvider = WebsocketProvider(socketUrl, delegate: self, network: .Mainnet)
+        let data = currentUser.wallet.data
 
-        socketProvider?.connectSocket()
-
-        if let provider = socketProvider {
-            web3Service = web3(provider: provider)
+        if currentUser.wallet.isHD {
+            hdKeystore = BIP32Keystore(data)
+            if let hdKey = hdKeystore {
+                keystoreManager = KeystoreManager([hdKey])
+            }
+        } else {
+            keystore = EthereumKeystoreV3(data)
+            if let key = keystore {
+                keystoreManager = KeystoreManager([key])
+            }
         }
+
+        connectWebsocket()
     }
 
     deinit {
         print("deinit authenticated services")
 
         socketProvider?.disconnectSocket()
+    }
+
+    private func connectWebsocket() {
+        // Moralis node uses (socketUrl, delegate: self)
+        socketProvider = InfuraWebsocketProvider(Constants.infuraBaseWssUrl + Constants.infuraProjectId, delegate: self, projectId: Constants.infuraProjectId, keystoreManager: keystoreManager)
+
+        socketProvider?.connectSocket()
+
+        if let provider = socketProvider {
+            web3Service = web3(provider: provider)
+        }
     }
 
     // MARK: Create Wallet

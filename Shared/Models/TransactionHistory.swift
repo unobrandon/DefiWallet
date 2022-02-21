@@ -29,7 +29,7 @@ struct TransactionHistory: Codable {
 }
 
 // MARK: - Datum
-struct Datum: Codable, Hashable {
+struct Datum: Decodable, Encodable, Hashable {
 
     static func == (lhs: Datum, rhs: Datum) -> Bool {
         return lhs.hash == rhs.hash && lhs.blockNumber == rhs.blockNumber

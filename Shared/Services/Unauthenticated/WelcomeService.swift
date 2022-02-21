@@ -17,7 +17,8 @@ class WelcomeServices: ObservableObject {
                             username: "testUsernamelol",
                             walletAddress: "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9",
                             accountValue: "0.00",
-                            secretPhrase: "")
+                            secretPhrase: "",
+                            wallet: Wallet(address: "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9", data: Data(), name: "testNameee", isHD: true))
             )
 
             completion?()

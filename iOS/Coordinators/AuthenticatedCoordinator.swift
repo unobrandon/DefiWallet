@@ -31,6 +31,7 @@ final class AuthenticatedCoordinator: TabCoordinatable {
     init(user: CurrentUser) {
         self.authenticatedServices = AuthenticatedServices(currentUser: user)
         self.currentUser = user
+        print("devvv??: \(Constants.zapperApiKey)")
     }
 
     deinit {

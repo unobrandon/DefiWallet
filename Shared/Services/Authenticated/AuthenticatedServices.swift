@@ -15,7 +15,7 @@ class AuthenticatedServices: ObservableObject {
     var invest: InvestService = InvestService()
 
     // MARK: network delegates
-    var ethereum: EthereumService?
+    var ethereum: EthereumService
 
     // MARK: stored values
     @Published var currentUser: CurrentUser

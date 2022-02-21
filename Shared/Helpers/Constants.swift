@@ -11,10 +11,21 @@ public struct Constants {
     // Made for both iOS and macOS
 
     static let moralisBaseWssUrl = "wss://speedy-nodes-nyc.moralis.io/"
+    static let infuraBaseWssUrl = "wss://mainnet.infura.io/ws/v3/"
+
     static let zapperBaseUrl = "https://api.zapper.fi/v1/"
 
-    // MARK: Universal
-    static let zapperApiKey = "api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241"
+    // MARK: Keys
+    static var zapperApiKey: String {
+        guard let key = Bundle.main.infoDictionary?["ZAPPER_API_KEY"] as? String else { return "api_key=" }
+        return "api_key=" + key
+    }
+    static var infuraProjectId: String {
+        return Bundle.main.infoDictionary?["INFURA_PROJECT_ID"] as? String ?? ""
+    }
+    static var infuraProjectSecret: String {
+        return Bundle.main.infoDictionary?["INFURA_PROJECT_SECRET"] as? String ?? ""
+    }
 
     // MARK: Ethereum
     static var ethNodeWssUrl: String {

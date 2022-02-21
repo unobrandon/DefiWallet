@@ -8,6 +8,8 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
+#include "Shared/ProdPrivateKeys.xcconfig"
+
 BUILD_NUMBER = 3
 
 MARKETING_VERSION = 4.0.1

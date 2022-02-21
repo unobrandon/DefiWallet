@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Wallet {
+struct Wallet: Codable, Equatable {
     let address: String
     let data: Data
     let name: String
