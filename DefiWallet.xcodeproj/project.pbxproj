@@ -140,6 +140,8 @@
 		05D1098727C3537D008DCC66 /* ProdPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098527C3537C008DCC66 /* ProdPrivateKeys.xcconfig */; };
 		05D1098927C36EFF008DCC66 /* DevPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */; };
 		05D1098A27C36EFF008DCC66 /* DevPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */; };
+		05E8589427C5D7F000B85195 /* GasPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8589327C5D7F000B85195 /* GasPrice.swift */; };
+		05E8589527C5D7F000B85195 /* GasPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8589327C5D7F000B85195 /* GasPrice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -218,6 +220,7 @@
 		05D1098227C31511008DCC66 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		05D1098527C3537C008DCC66 /* ProdPrivateKeys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ProdPrivateKeys.xcconfig; sourceTree = "<group>"; };
 		05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DevPrivateKeys.xcconfig; sourceTree = "<group>"; };
+		05E8589327C5D7F000B85195 /* GasPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasPrice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -404,6 +407,7 @@
 			children = (
 				057806E427B8DF240008051B /* CurrentUser.swift */,
 				0578077E27BB87C80008051B /* Wallet.swift */,
+				05E8589327C5D7F000B85195 /* GasPrice.swift */,
 				05D1096F27C17D49008DCC66 /* ERC20Token.swift */,
 				051BCF5127BC87DB0056E047 /* AccountBalance.swift */,
 				051BCF5427BC970A0056E047 /* TransactionHistory.swift */,
@@ -790,6 +794,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05E8589427C5D7F000B85195 /* GasPrice.swift in Sources */,
 				057806F327B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */,
 				0578070427B8E8E00008051B /* RoundedButton.swift in Sources */,
 				0578074627BB5E1A0008051B /* FontTemplate.swift in Sources */,
@@ -870,6 +875,7 @@
 				05D1098427C31512008DCC66 /* StorageService.swift in Sources */,
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
 				05D1097427C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */,
+				05E8589527C5D7F000B85195 /* GasPrice.swift in Sources */,
 				051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				05D1095827C08B3E008DCC66 /* WelcomeView.swift in Sources */,

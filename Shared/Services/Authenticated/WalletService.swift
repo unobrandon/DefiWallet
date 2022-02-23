@@ -36,4 +36,21 @@ class WalletService: ObservableObject {
         }
     }
 
+    func fetchCustomGas(completion: @escaping () -> Void) {
+
+        AF.request("https://defiwallet-backend.herokuapp.com/gas", method: .get).responseDecodable(of: GasPrice.self) { response in
+            switch response.result {
+            case .success(let gas):
+                print("gas is: \(gas.standardGas)")
+
+                completion()
+
+            case .failure(let error):
+                print("error loading gas: \(error)")
+
+                completion()
+            }
+        }
+    }
+
 }

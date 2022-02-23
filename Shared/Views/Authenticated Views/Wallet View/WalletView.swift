@@ -78,6 +78,10 @@ struct WalletView: View {
         store.fetchHistory(services.currentUser.walletAddress, completion: {
             print("done getting history")
         })
+
+        store.fetchCustomGas(completion: {
+            print("done getting gas")
+        })
     }
 
 }
