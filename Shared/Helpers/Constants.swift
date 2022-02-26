@@ -10,6 +10,23 @@ import SwiftUI
 public struct Constants {
     // Made for both iOS and macOS
 
+    enum DeviceType {
+        case ios
+        case mac
+        case macCatalyst
+        case unknown
+    }
+
+    static var device: DeviceType {
+        #if targetEnvironment(macCatalyst)
+        return .macCatalyst
+        #elseif os(macOS)
+        return .mac
+        #elseif os(iOS)
+        return .ios
+        #endif
+    }
+
     static let moralisBaseWssUrl = "wss://speedy-nodes-nyc.moralis.io/"
     static let infuraBaseWssUrl = "wss://mainnet.infura.io/ws/v3/"
 

@@ -14,7 +14,7 @@ class StorageService {
 
     private let storageExpiry = Date().addingTimeInterval(168*3600)
 
-    let diskConfig: DiskConfig
+//    let diskConfig: DiskConfig
     let memoryConfig: MemoryConfig
 
     var historyStorage: Cache.Storage<String, TransactionHistory>?
@@ -22,20 +22,36 @@ class StorageService {
     init() {
         self.memoryConfig = MemoryConfig(expiry: .date(storageExpiry), countLimit: 50, totalCostLimit: 0)
 
+        /*
         do {
-            let documentsDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("MyPreferences")
+            let documentsDirectory = try FileManager.default.url(for: .documentDirectory,
+                                                                in: .userDomainMask,
+                                                                appropriateFor: nil,
+                                                                create: true).appendingPathComponent("MyPreferences")
 
-            self.diskConfig = DiskConfig(name: "DefiStorage", expiry: .date(storageExpiry), maxSize: 10000, directory: documentsDirectory, protectionType: .complete)
+            self.diskConfig = DiskConfig(name: "DefiStorage",
+                                         expiry: .date(storageExpiry),
+                                         maxSize: 10000,
+                                         directory: documentsDirectory,
+                                         protectionType: .complete)
         } catch {
-            self.diskConfig = DiskConfig(name: "AppStorage", expiry: .date(storageExpiry), maxSize: 10000, directory: nil, protectionType: .complete)
+            self.diskConfig = DiskConfig(name: "AppStorage",
+                                         expiry: .date(storageExpiry),
+                                         maxSize: 10000,
+                                         directory: nil,
+                                         protectionType: .complete)
         }
 
         // history
         do {
-            self.historyStorage = try Storage(diskConfig: diskConfig, memoryConfig: memoryConfig, transformer: TransformerFactory.forCodable(ofType: TransactionHistory.self))
+            self.historyStorage = try Storage(diskConfig: diskConfig,
+                                              memoryConfig: memoryConfig,
+                                              transformer: TransformerFactory.forCodable(ofType: TransactionHistory.self))
         } catch {
             print(error)
         }
+        */
+
     }
 
     func getHistory() {

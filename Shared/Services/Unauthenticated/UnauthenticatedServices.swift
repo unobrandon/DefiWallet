@@ -9,7 +9,7 @@ import Foundation
 
 class UnauthenticatedServices: ObservableObject {
 
-    var welcome: WelcomeServices = WelcomeServices()
+    var userOnboarding: UserOnboardingServices = UserOnboardingServices()
 
     init() {
 

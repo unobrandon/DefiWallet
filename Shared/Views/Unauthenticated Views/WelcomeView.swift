@@ -8,36 +8,54 @@
 import SwiftUI
 import Stinsen
 
+import Colorful
+
 struct WelcomeView: View {
 
     @EnvironmentObject private var unauthenticatedRouter: UnauthenticatedCoordinator.Router
 
-    private let services: UnauthenticatedServices
-
-    init(services: UnauthenticatedServices) {
-        self.services = services
-    }
-
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
-            Text("Welcome! So Excited!")
-                .font(.headline)
-                .foregroundColor(.primary)
-                .padding()
+        NavigationView {
+            GeometryReader { geo in
+                VStack(alignment: .center, spacing: 20) {
+                    MainCarouselView()
 
-            RoundedButton("Create New Wallet", style: .primary, systemImage: "paperplane.fill", action: {
-                services.welcome.newWallet(completion: nil)
-            })
+                    VStack(alignment: .center, spacing: 20) {
+                        RoundedButton("Create Wallet", style: .primary, systemImage: "paperplane.fill", action: {
+                            unauthenticatedRouter.route(to: \.createWallet)
+                            #if os(iOS)
+                                HapticFeedback.rigidHapticFeedback()
+                            #endif
+                        })
 
-            RoundedButton("Import Wallet", style: .secondary, systemImage: nil, action: {
-                services.welcome.importWallet(completion: nil)
-            })
+                        Button("Import Wallet") {
+                            unauthenticatedRouter.route(to: \.importWallet)
+                            #if os(iOS)
+                                HapticFeedback.lightHapticFeedback()
+                            #endif
+                        }
+                        .padding(.bottom)
+                    }
+                    .background(bottomGradientView(geo))
+                }.background(ColorfulView(colors: [.red, .pink, .purple, .blue]))
+            }
         }
+        #if os(iOS)
+        .navigationViewStyle(StackNavigationViewStyle())
+        #endif
     }
-}
 
-struct WelcomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeView(services: UnauthenticatedServices())
+    @ViewBuilder
+    func bottomGradientView(_ proxy: GeometryProxy) -> some View {
+        Rectangle().fill(
+            LinearGradient(gradient: Gradient(stops: [
+                .init(color: DefaultTemplates.systemBackgroundColor.opacity(0.01), location: 0),
+                .init(color: DefaultTemplates.systemBackgroundColor, location: 1)
+                ]), startPoint: .top, endPoint: .bottom)
+            ).frame(width: proxy.size.width, height: 140)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .offset(y: 20)
+            .edgesIgnoringSafeArea(.vertical)
     }
+
 }

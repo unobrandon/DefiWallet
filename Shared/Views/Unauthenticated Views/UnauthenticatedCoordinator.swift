@@ -14,10 +14,10 @@ final class UnauthenticatedCoordinator: NavigationCoordinatable {
     let unauthenticatedServices = UnauthenticatedServices()
 
     @Root var start = makeStart
-//    @Route(.push) var forgotPassword = makeForgotPassword
-//    @Route(.push) var registration = makeRegistration
+    @Route(.push) var importWallet = makeImportWallet
+    @Route(.push) var createWallet = makeCreateWallet
 
     deinit {
-        print("Deinit UnauthenticatedCoordinator")
+        print("De-init UnauthenticatedCoordinator")
     }
 }

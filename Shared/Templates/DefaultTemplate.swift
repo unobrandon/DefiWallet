@@ -19,4 +19,14 @@ struct DefaultTemplates {
 
     static let caption = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .secondary)
 
+    static var systemBackgroundColor: Color = {
+        #if targetEnvironment(macCatalyst)
+        return Color(NSColor.controlBackgroundColor)
+        #elseif os(macOS)
+        return Color(NSColor.controlBackgroundColor)
+        #elseif os(iOS)
+        return Color(UIColor.systemBackground)
+        #endif
+    }()
+
 }
