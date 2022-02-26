@@ -22,5 +22,6 @@ struct ImportWalletView: View {
         NavigationView {
             Text("import wallet view")
         }
+        .navigationTitle("Import Wallet")
     }
 }
