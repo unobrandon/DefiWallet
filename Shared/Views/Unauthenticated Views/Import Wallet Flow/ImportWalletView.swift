@@ -27,7 +27,7 @@ struct ImportWalletView: View {
             VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
-                TextViewBordered(text: $textViewText, placeholder: "enter your 12 or 24 word seed phrase here", textLimit: nil, maxHeight: 100, onCommit: {
+                TextViewBordered(text: $textViewText, placeholder: "enter your 12 or 24 word seed phrase or secret phrase here", textLimit: nil, maxHeight: 100, onCommit: {
                     print("commit ed")
                 })
                 .frame(maxWidth: 640)

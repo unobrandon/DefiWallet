@@ -37,7 +37,7 @@ struct WelcomeView: View {
                 }
                 .padding(.horizontal)
                 .background(bottomGradientView(geo))
-            }.background(ColorfulView(animation: Animation.easeInOut(duration: 12.5), colors: [.red, .pink, .purple, .blue]))
+            }.background(ColorfulView(animation: Animation.easeInOut(duration: 10), colors: [.red, .pink, .purple, .blue]))
         }.background(Color("baseBackground"))
         #if os(iOS)
         .navigationViewStyle(StackNavigationViewStyle())
