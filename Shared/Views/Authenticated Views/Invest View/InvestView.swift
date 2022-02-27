@@ -20,8 +20,12 @@ struct InvestView: View {
     }
 
     var body: some View {
-        ScrollView {
-            Text("It's the Investment view!!")
+        ZStack {
+            Color("baseBackground").ignoresSafeArea()
+
+            ScrollView {
+                Text("It's the Invest view!!")
+            }
         }
         .navigationTitle("Invest")
     }

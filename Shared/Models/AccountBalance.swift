@@ -99,15 +99,4 @@ struct DisplayProps: Codable {
     let secondaryLabel: String?
     let images: [String]?
     let stats: [String]?
-    let info: [Info]?
-}
-
-// MARK: - Info
-struct Info: Codable {
-    let label, value: Label?
-}
-
-// MARK: - Label
-struct Label: Codable {
-    let type, value: String?
 }

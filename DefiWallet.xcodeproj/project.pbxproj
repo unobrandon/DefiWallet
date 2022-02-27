@@ -34,7 +34,6 @@
 		0548B87A27B4C9A8000478B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0548B87927B4C9A8000478B8 /* Preview Assets.xcassets */; };
 		0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88127B4D04C000478B8 /* MacConstants.swift */; };
 		0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88727B4D28D000478B8 /* TabBarButton.swift */; };
-		0548B88A27B4D472000478B8 /* MacBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88927B4D472000478B8 /* MacBlurView.swift */; };
 		0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88C27B4DFF1000478B8 /* SideNavigationBar.swift */; };
 		0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550300C27B82EF0005EE87C /* StatusBar.swift */; };
 		057806B827B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
@@ -162,6 +161,37 @@
 		05E858B927CA04D000B85195 /* MainCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858B827CA04D000B85195 /* MainCarouselView.swift */; };
 		05E858BB27CA069400B85195 /* MainCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858B827CA04D000B85195 /* MainCarouselView.swift */; };
 		05E858BD27CA078E00B85195 /* WelcomeCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858BC27CA078E00B85195 /* WelcomeCarouselView.swift */; };
+		05E858C027CAEFFA00B85195 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858BF27CAEFFA00B85195 /* SettingsView.swift */; };
+		05E858C227CAF9D200B85195 /* AppCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C127CAF9D200B85195 /* AppCommands.swift */; };
+		05E858C427CB230B00B85195 /* EmptyAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C327CB230B00B85195 /* EmptyAvatarView.swift */; };
+		05E858C527CB230B00B85195 /* EmptyAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C327CB230B00B85195 /* EmptyAvatarView.swift */; };
+		05E858C727CB238800B85195 /* Character+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C627CB238800B85195 /* Character+Extensions.swift */; };
+		05E858C827CB238800B85195 /* Character+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C627CB238800B85195 /* Character+Extensions.swift */; };
+		05E858CA27CB240300B85195 /* AppGradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C927CB240300B85195 /* AppGradients.swift */; };
+		05E858CB27CB240300B85195 /* AppGradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C927CB240300B85195 /* AppGradients.swift */; };
+		05E858CE27CB25C200B85195 /* AlertBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858CD27CB25C200B85195 /* AlertBadge.swift */; };
+		05E858D127CB25EB00B85195 /* NotificationHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858D027CB25EB00B85195 /* NotificationHUD.swift */; };
+		05E858D627CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858D427CB264600B85195 /* DefaultInteractiveStyle.swift */; };
+		05E858D727CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858D427CB264600B85195 /* DefaultInteractiveStyle.swift */; };
+		05E858D827CB264600B85195 /* ClickInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858D527CB264600B85195 /* ClickInteractiveStyle.swift */; };
+		05E858D927CB264600B85195 /* ClickInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858D527CB264600B85195 /* ClickInteractiveStyle.swift */; };
+		05E858DB27CB27AF00B85195 /* NotificationViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858DA27CB27AF00B85195 /* NotificationViewExtension.swift */; };
+		05E858DC27CB27E400B85195 /* AlertBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858CD27CB25C200B85195 /* AlertBadge.swift */; };
+		05E858E527CB2D3E00B85195 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858E427CB2D3E00B85195 /* VisualEffectView.swift */; };
+		05E858E727CB301B00B85195 /* ListButtonStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858E627CB301B00B85195 /* ListButtonStandard.swift */; };
+		05E858E827CB301B00B85195 /* ListButtonStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858E627CB301B00B85195 /* ListButtonStandard.swift */; };
+		05E858EB27CB322100B85195 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858EA27CB322100B85195 /* ListSection.swift */; };
+		05E858EC27CB322100B85195 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858EA27CB322100B85195 /* ListSection.swift */; };
+		05E858EE27CB388B00B85195 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858ED27CB388B00B85195 /* AppTheme.swift */; };
+		05E858EF27CB388B00B85195 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858ED27CB388B00B85195 /* AppTheme.swift */; };
+		05E858F127CB43BC00B85195 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858F027CB43BC00B85195 /* LoadingIndicator.swift */; };
+		05E858F227CB43BC00B85195 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858F027CB43BC00B85195 /* LoadingIndicator.swift */; };
+		05E858F527CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858F427CB481D00B85195 /* TextFieldSingleBordered.swift */; };
+		05E858F627CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858F427CB481D00B85195 /* TextFieldSingleBordered.swift */; };
+		05E858F827CB5A3200B85195 /* TextFieldSingleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858F727CB5A3200B85195 /* TextFieldSingleList.swift */; };
+		05E858F927CB5A3200B85195 /* TextFieldSingleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858F727CB5A3200B85195 /* TextFieldSingleList.swift */; };
+		05E858FB27CB5FCC00B85195 /* TextViewBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858FA27CB5FCC00B85195 /* TextViewBordered.swift */; };
+		05E858FC27CB5FCC00B85195 /* TextViewBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858FA27CB5FCC00B85195 /* TextViewBordered.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,7 +210,6 @@
 		0548B87B27B4C9A8000478B8 /* DefiWallet__macOS_.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DefiWallet__macOS_.entitlements; sourceTree = "<group>"; };
 		0548B88127B4D04C000478B8 /* MacConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacConstants.swift; sourceTree = "<group>"; };
 		0548B88727B4D28D000478B8 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
-		0548B88927B4D472000478B8 /* MacBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacBlurView.swift; sourceTree = "<group>"; };
 		0548B88C27B4DFF1000478B8 /* SideNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideNavigationBar.swift; sourceTree = "<group>"; };
 		0548B89427B4E881000478B8 /* macOSDevelopment.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = macOSDevelopment.xcconfig; sourceTree = "<group>"; };
 		0548B89527B4E89A000478B8 /* macOSProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = macOSProduction.xcconfig; sourceTree = "<group>"; };
@@ -252,6 +281,24 @@
 		05E858B227C9F9F900B85195 /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 		05E858B827CA04D000B85195 /* MainCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCarouselView.swift; sourceTree = "<group>"; };
 		05E858BC27CA078E00B85195 /* WelcomeCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCarouselView.swift; sourceTree = "<group>"; };
+		05E858BF27CAEFFA00B85195 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		05E858C127CAF9D200B85195 /* AppCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCommands.swift; sourceTree = "<group>"; };
+		05E858C327CB230B00B85195 /* EmptyAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAvatarView.swift; sourceTree = "<group>"; };
+		05E858C627CB238800B85195 /* Character+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extensions.swift"; sourceTree = "<group>"; };
+		05E858C927CB240300B85195 /* AppGradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGradients.swift; sourceTree = "<group>"; };
+		05E858CD27CB25C200B85195 /* AlertBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBadge.swift; sourceTree = "<group>"; };
+		05E858D027CB25EB00B85195 /* NotificationHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHUD.swift; sourceTree = "<group>"; };
+		05E858D427CB264600B85195 /* DefaultInteractiveStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultInteractiveStyle.swift; sourceTree = "<group>"; };
+		05E858D527CB264600B85195 /* ClickInteractiveStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickInteractiveStyle.swift; sourceTree = "<group>"; };
+		05E858DA27CB27AF00B85195 /* NotificationViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewExtension.swift; sourceTree = "<group>"; };
+		05E858E427CB2D3E00B85195 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		05E858E627CB301B00B85195 /* ListButtonStandard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonStandard.swift; sourceTree = "<group>"; };
+		05E858EA27CB322100B85195 /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
+		05E858ED27CB388B00B85195 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		05E858F027CB43BC00B85195 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		05E858F427CB481D00B85195 /* TextFieldSingleBordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSingleBordered.swift; sourceTree = "<group>"; };
+		05E858F727CB5A3200B85195 /* TextFieldSingleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSingleList.swift; sourceTree = "<group>"; };
+		05E858FA27CB5FCC00B85195 /* TextViewBordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewBordered.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,17 +420,17 @@
 		0548B87F27B4CAF5000478B8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				057806B727B838E60008051B /* Colors.xcassets */,
-				05D1098527C3537C008DCC66 /* ProdPrivateKeys.xcconfig */,
-				05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */,
-				057806BC27B842050008051B /* Models */,
 				05D1096327C0C17F008DCC66 /* Main Coordinator */,
 				057806E027B8DD460008051B /* Services */,
 				057806BB27B841FE0008051B /* Views */,
 				0578070127B8E80A0008051B /* Components */,
-				057806DF27B8CCD50008051B /* Extensions */,
+				057806BC27B842050008051B /* Models */,
 				0578076727BB651C0008051B /* Templates */,
 				057806DD27B8CC6C0008051B /* Helpers */,
+				057806DF27B8CCD50008051B /* Extensions */,
+				057806B727B838E60008051B /* Colors.xcassets */,
+				05D1098527C3537C008DCC66 /* ProdPrivateKeys.xcconfig */,
+				05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -392,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				0548B88127B4D04C000478B8 /* MacConstants.swift */,
+				05E858C127CAF9D200B85195 /* AppCommands.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -418,7 +466,7 @@
 			children = (
 				0548B88627B4D268000478B8 /* Status Bar */,
 				0548B88B27B4DFA0000478B8 /* Navigation Bar */,
-				0548B88927B4D472000478B8 /* MacBlurView.swift */,
+				05E858BF27CAEFFA00B85195 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -458,6 +506,7 @@
 			isa = PBXGroup;
 			children = (
 				057806BD27B8432B0008051B /* Constants.swift */,
+				05E858C927CB240300B85195 /* AppGradients.swift */,
 				0578077127BB71250008051B /* IrregularGradients */,
 			);
 			path = Helpers;
@@ -478,6 +527,7 @@
 				0578074E27BB5ED00008051B /* View+Extensions.swift */,
 				0578075127BB5EF10008051B /* Font+Extensions.swift */,
 				0578077B27BB822C0008051B /* String+Extensions.swift */,
+				05E858C627CB238800B85195 /* Character+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -499,7 +549,9 @@
 			isa = PBXGroup;
 			children = (
 				05E8589D27C9F5E000B85195 /* Views */,
+				05E858E927CB320700B85195 /* Lists */,
 				0578070227B8E8240008051B /* Buttons */,
+				05E858F327CB47B500B85195 /* Text Fields */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -507,7 +559,9 @@
 		0578070227B8E8240008051B /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				05E858D327CB262900B85195 /* Modifiers */,
 				0578070327B8E8E00008051B /* RoundedButton.swift */,
+				05E858E627CB301B00B85195 /* ListButtonStandard.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -583,6 +637,7 @@
 		0578076727BB651C0008051B /* Templates */ = {
 			isa = PBXGroup;
 			children = (
+				05E858ED27CB388B00B85195 /* AppTheme.swift */,
 				0578076E27BB6D200008051B /* DefaultTemplate.swift */,
 				0578074427BB5DEF0008051B /* Font Template */,
 			);
@@ -622,8 +677,8 @@
 				057806FB27B8E56B0008051B /* WelcomeView.swift */,
 				057806EF27B8E25F0008051B /* UnauthenticatedCoordinator.swift */,
 				057806F227B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift */,
-				05E8589E27C9F5F500B85195 /* Import Wallet View */,
-				05E858A827C9F73B00B85195 /* Create Wallet View */,
+				05E8589E27C9F5F500B85195 /* Import Wallet Flow */,
+				05E858A827C9F73B00B85195 /* Create Wallet Flow */,
 			);
 			path = "Unauthenticated Views";
 			sourceTree = "<group>";
@@ -640,48 +695,52 @@
 			path = "Authenticated Views";
 			sourceTree = "<group>";
 		};
-		05E8589627C9D5A000B85195 /* Carousel Views */ = {
+		05E8589627C9D5A000B85195 /* Welcome Carousel */ = {
 			isa = PBXGroup;
 			children = (
 				05E858B827CA04D000B85195 /* MainCarouselView.swift */,
 				05E8589727C9D5D000B85195 /* CarouselViewOne.swift */,
 				05E8589A27C9DA3700B85195 /* CarouselViewTwo.swift */,
 			);
-			path = "Carousel Views";
+			path = "Welcome Carousel";
 			sourceTree = "<group>";
 		};
 		05E8589D27C9F5E000B85195 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				05E8589627C9D5A000B85195 /* Carousel Views */,
+				05E8589627C9D5A000B85195 /* Welcome Carousel */,
+				05E858C327CB230B00B85195 /* EmptyAvatarView.swift */,
+				05E858CD27CB25C200B85195 /* AlertBadge.swift */,
+				05E858F027CB43BC00B85195 /* LoadingIndicator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		05E8589E27C9F5F500B85195 /* Import Wallet View */ = {
+		05E8589E27C9F5F500B85195 /* Import Wallet Flow */ = {
 			isa = PBXGroup;
 			children = (
 				05E8589F27C9F62000B85195 /* ImportWalletView.swift */,
 				05E858A227C9F63300B85195 /* ImportWalletCoordinator.swift */,
 				05E858A527C9F66200B85195 /* ImportWalletCoordinator+Factory.swift */,
 			);
-			path = "Import Wallet View";
+			path = "Import Wallet Flow";
 			sourceTree = "<group>";
 		};
-		05E858A827C9F73B00B85195 /* Create Wallet View */ = {
+		05E858A827C9F73B00B85195 /* Create Wallet Flow */ = {
 			isa = PBXGroup;
 			children = (
 				05E858A927C9F75C00B85195 /* CreateWalletView.swift */,
 				05E858AC27C9F76E00B85195 /* CreateWalletCoordinator.swift */,
 				05E858AF27C9F77C00B85195 /* CreateWalletCoordinator+Factory.swift */,
 			);
-			path = "Create Wallet View";
+			path = "Create Wallet Flow";
 			sourceTree = "<group>";
 		};
 		05E858B727CA04A800B85195 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				05E858BA27CA04D800B85195 /* Views */,
+				05E858CC27CB257C00B85195 /* Notifications */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -690,6 +749,7 @@
 			isa = PBXGroup;
 			children = (
 				05E858BC27CA078E00B85195 /* WelcomeCarouselView.swift */,
+				05E858E427CB2D3E00B85195 /* VisualEffectView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -701,6 +761,42 @@
 				05D1097227C18462008DCC66 /* EthereumServiceDelegate.swift */,
 			);
 			path = Networks;
+			sourceTree = "<group>";
+		};
+		05E858CC27CB257C00B85195 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				05E858DA27CB27AF00B85195 /* NotificationViewExtension.swift */,
+				05E858D027CB25EB00B85195 /* NotificationHUD.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		05E858D327CB262900B85195 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				05E858D427CB264600B85195 /* DefaultInteractiveStyle.swift */,
+				05E858D527CB264600B85195 /* ClickInteractiveStyle.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		05E858E927CB320700B85195 /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				05E858EA27CB322100B85195 /* ListSection.swift */,
+			);
+			path = Lists;
+			sourceTree = "<group>";
+		};
+		05E858F327CB47B500B85195 /* Text Fields */ = {
+			isa = PBXGroup;
+			children = (
+				05E858F427CB481D00B85195 /* TextFieldSingleBordered.swift */,
+				05E858F727CB5A3200B85195 /* TextFieldSingleList.swift */,
+				05E858FA27CB5FCC00B85195 /* TextViewBordered.swift */,
+			);
+			path = "Text Fields";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -887,12 +983,16 @@
 				05E8589427C5D7F000B85195 /* GasPrice.swift in Sources */,
 				057806F327B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */,
 				0578070427B8E8E00008051B /* RoundedButton.swift in Sources */,
+				05E858EE27CB388B00B85195 /* AppTheme.swift in Sources */,
+				05E858E727CB301B00B85195 /* ListButtonStandard.swift in Sources */,
 				0578074627BB5E1A0008051B /* FontTemplate.swift in Sources */,
 				0578075627BB60160008051B /* NetworkingService.swift in Sources */,
 				057806D927B870620008051B /* MobileConsants.swift in Sources */,
+				05E858C427CB230B00B85195 /* EmptyAvatarView.swift in Sources */,
 				0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */,
 				05D1096D27C15D80008DCC66 /* EthereumService.swift in Sources */,
 				0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */,
+				05E858CA27CB240300B85195 /* AppGradients.swift in Sources */,
 				05D1097027C17D49008DCC66 /* ERC20Token.swift in Sources */,
 				057806E227B8DE3E0008051B /* MainCoordinator.swift in Sources */,
 				05D1097327C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */,
@@ -901,6 +1001,7 @@
 				051BCF5827BCACB30056E047 /* AuthenticatedServices.swift in Sources */,
 				05E858BD27CA078E00B85195 /* WelcomeCarouselView.swift in Sources */,
 				0578077527BB71410008051B /* IrregularGradient.swift in Sources */,
+				05E858E527CB2D3E00B85195 /* VisualEffectView.swift in Sources */,
 				051BCF5527BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				05E858B327C9F9F900B85195 /* HapticFeedback.swift in Sources */,
 				05D1096627C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift in Sources */,
@@ -912,25 +1013,33 @@
 				057806FC27B8E56B0008051B /* WelcomeView.swift in Sources */,
 				05E858AA27C9F75C00B85195 /* CreateWalletView.swift in Sources */,
 				057806BE27B8432B0008051B /* Constants.swift in Sources */,
+				05E858C727CB238800B85195 /* Character+Extensions.swift in Sources */,
 				05E858B027C9F77C00B85195 /* CreateWalletCoordinator+Factory.swift in Sources */,
 				0578073627BB59DC0008051B /* DiscoverCoordinator.swift in Sources */,
+				05E858F827CB5A3200B85195 /* TextFieldSingleList.swift in Sources */,
 				0578073727BB59DC0008051B /* DiscoverView.swift in Sources */,
 				05E858A627C9F66200B85195 /* ImportWalletCoordinator+Factory.swift in Sources */,
+				05E858D827CB264600B85195 /* ClickInteractiveStyle.swift in Sources */,
+				05E858F527CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */,
 				05E8589827C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
 				0578075227BB5EF10008051B /* Font+Extensions.swift in Sources */,
+				05E858EB27CB322100B85195 /* ListSection.swift in Sources */,
 				0578073F27BB5B470008051B /* InvestView.swift in Sources */,
 				0578071B27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */,
+				05E858D627CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */,
 				05E858AD27C9F76E00B85195 /* CreateWalletCoordinator.swift in Sources */,
 				0578076F27BB6D200008051B /* DefaultTemplate.swift in Sources */,
 				0578070C27B8F1370008051B /* WalletView.swift in Sources */,
 				0578074C27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
 				057806F027B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */,
+				05E858CE27CB25C200B85195 /* AlertBadge.swift in Sources */,
 				0578073227BB59D30008051B /* MarketsCoordinator+Factory.swift in Sources */,
 				0578074127BB5B500008051B /* DiscoverCoordinator+Factory.swift in Sources */,
 				05E858B927CA04D000B85195 /* MainCarouselView.swift in Sources */,
 				05D1096727C0C241008DCC66 /* AuthenticatedCoordinator.swift in Sources */,
 				05D1098327C31511008DCC66 /* StorageService.swift in Sources */,
 				0578074F27BB5ED00008051B /* View+Extensions.swift in Sources */,
+				05E858D127CB25EB00B85195 /* NotificationHUD.swift in Sources */,
 				051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */,
 				05E858A027C9F62000B85195 /* ImportWalletView.swift in Sources */,
 				0578070727B8EC2E0008051B /* UserOnboardingServices.swift in Sources */,
@@ -941,7 +1050,10 @@
 				057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
 				051BCF5227BC87DB0056E047 /* AccountBalance.swift in Sources */,
 				0578074927BB5E610008051B /* FontTemplating.swift in Sources */,
+				05E858FB27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,
+				05E858F127CB43BC00B85195 /* LoadingIndicator.swift in Sources */,
 				0578071527B8F61F0008051B /* ProfileView.swift in Sources */,
+				05E858DB27CB27AF00B85195 /* NotificationViewExtension.swift in Sources */,
 				0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */,
 				0578077C27BB822D0008051B /* String+Extensions.swift in Sources */,
 				0578077927BB71410008051B /* Blob.swift in Sources */,
@@ -956,6 +1068,7 @@
 				05D1095127C08B3E008DCC66 /* ProfileCoordinator.swift in Sources */,
 				05E858BB27CA069400B85195 /* MainCarouselView.swift in Sources */,
 				05D1095E27C08D1B008DCC66 /* MacAuthenticatedCoordinator+Factory.swift in Sources */,
+				05E858EC27CB322100B85195 /* ListSection.swift in Sources */,
 				05D1095927C08B3E008DCC66 /* MarketsCoordinator.swift in Sources */,
 				05D1094F27C08B3E008DCC66 /* InvestView.swift in Sources */,
 				05E858B127C9F77C00B85195 /* CreateWalletCoordinator+Factory.swift in Sources */,
@@ -968,16 +1081,22 @@
 				057806E627B8DF240008051B /* CurrentUser.swift in Sources */,
 				051BCF5E27BCAE150056E047 /* WalletService.swift in Sources */,
 				05D1094A27C08B3E008DCC66 /* MarketsCoordinator+Factory.swift in Sources */,
+				05E858D727CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */,
+				05E858F227CB43BC00B85195 /* LoadingIndicator.swift in Sources */,
 				05D1095327C08B3E008DCC66 /* WalletView.swift in Sources */,
 				0578070527B8E8E00008051B /* RoundedButton.swift in Sources */,
+				05E858C227CAF9D200B85195 /* AppCommands.swift in Sources */,
 				05D1097127C17D49008DCC66 /* ERC20Token.swift in Sources */,
+				05E858D927CB264600B85195 /* ClickInteractiveStyle.swift in Sources */,
 				05E858A727C9F66200B85195 /* ImportWalletCoordinator+Factory.swift in Sources */,
 				0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */,
 				0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */,
+				05E858C027CAEFFA00B85195 /* SettingsView.swift in Sources */,
 				05D1094927C08B2B008DCC66 /* MainCoordinator+Factory.swift in Sources */,
 				057806E927B8DF980008051B /* AuthenticationService.swift in Sources */,
 				0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */,
 				05D1098427C31512008DCC66 /* StorageService.swift in Sources */,
+				05E858F627CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */,
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
 				05D1097427C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */,
 				05E8589527C5D7F000B85195 /* GasPrice.swift in Sources */,
@@ -985,7 +1104,6 @@
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				05D1095827C08B3E008DCC66 /* WelcomeView.swift in Sources */,
 				05E858AB27C9F75C00B85195 /* CreateWalletView.swift in Sources */,
-				0548B88A27B4D472000478B8 /* MacBlurView.swift in Sources */,
 				051BCF7427BCD6A60056E047 /* UserOnboardingServices.swift in Sources */,
 				05E858A127C9F62000B85195 /* ImportWalletView.swift in Sources */,
 				05D1095727C08B3E008DCC66 /* MarketsView.swift in Sources */,
@@ -1005,6 +1123,7 @@
 				053EC29327BE0E3600FBC681 /* InvestService.swift in Sources */,
 				05E858AE27C9F76E00B85195 /* CreateWalletCoordinator.swift in Sources */,
 				0578071D27B90A050008051B /* Constants.swift in Sources */,
+				05E858C827CB238800B85195 /* Character+Extensions.swift in Sources */,
 				05D1096B27C0C4A7008DCC66 /* MacAppDelegate.swift in Sources */,
 				051BCF5927BCACB30056E047 /* AuthenticatedServices.swift in Sources */,
 				05D1095227C08B3E008DCC66 /* DiscoverCoordinator+Factory.swift in Sources */,
@@ -1014,8 +1133,15 @@
 				0578075727BB60160008051B /* NetworkingService.swift in Sources */,
 				0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
+				05E858F927CB5A3200B85195 /* TextFieldSingleList.swift in Sources */,
 				05D1096E27C15D80008DCC66 /* EthereumService.swift in Sources */,
+				05E858CB27CB240300B85195 /* AppGradients.swift in Sources */,
+				05E858DC27CB27E400B85195 /* AlertBadge.swift in Sources */,
+				05E858EF27CB388B00B85195 /* AppTheme.swift in Sources */,
 				0578077D27BB822D0008051B /* String+Extensions.swift in Sources */,
+				05E858C527CB230B00B85195 /* EmptyAvatarView.swift in Sources */,
+				05E858FC27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,
+				05E858E827CB301B00B85195 /* ListButtonStandard.swift in Sources */,
 				0578074727BB5E1A0008051B /* FontTemplate.swift in Sources */,
 				05D1094D27C08B3E008DCC66 /* WalletCoordinator.swift in Sources */,
 			);

@@ -9,7 +9,7 @@ import SwiftUI
 
 extension Font {
 
-    public func italic(_ value: Bool) -> Font {
+    func italic(_ value: Bool) -> Font {
         return value ? self.italic() : self
     }
 

@@ -15,8 +15,12 @@ struct MarketsView: View {
     }
 
     var body: some View {
-        ScrollView {
-            Text("It's the market view!!")
+        ZStack {
+            Color("baseBackground").ignoresSafeArea()
+   
+            ScrollView {
+                Text("It's the market view!!")
+            }
         }
         .navigationTitle("Market")
     }

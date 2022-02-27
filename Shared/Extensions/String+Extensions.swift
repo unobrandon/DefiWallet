@@ -9,7 +9,26 @@ import SwiftUI
 
 extension String {
 
-    public func formatAddress(_ address: String) -> String {
+    var wordValue: Int { compactMap(\.letterValue).reduce(0, +) }
+
+    func cleanUpPastedText() -> String {
+        let stage1 = self.components(separatedBy: CharacterSet.punctuationCharacters).joined(separator: "")
+        let stage2 = stage1.replacingOccurrences(of: ">", with: "")
+        let components = stage2.components(separatedBy: .whitespacesAndNewlines)
+
+        return components.filter { !$0.isEmpty }.joined(separator: " ")
+     }
+
+    func countWords() -> Int? {
+        guard !self.isEmpty else { return nil }
+
+        let components = self.components(separatedBy: .whitespacesAndNewlines)
+        let words = components.filter { !$0.isEmpty }
+
+        return words.count
+    }
+
+    func formatAddress(_ address: String) -> String {
         guard !address.contains(".eth") else {
            return address
         }
@@ -17,7 +36,7 @@ extension String {
         return address.prefix(4) + "..." + address.suffix(4)
     }
 
-    public func createDateTime(_ timestamp: String) -> String {
+    func createDateTime(_ timestamp: String) -> String {
         var strDate = "undefined"
 
         if let unixTime = Double(timestamp) {
@@ -33,7 +52,7 @@ extension String {
         return strDate
     }
 
-    public func getFullElapsedInterval() -> String {
+    func getFullElapsedInterval() -> String {
         guard let unixTime = Double(self) else {
             return ""
         }

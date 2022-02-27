@@ -64,7 +64,7 @@ public struct Constants {
         return Bundle.main.infoDictionary?["AVAX_NODE_WWS_URL"] as? String ?? ""
     }
 
-    // MARK: Public functions
+    // MARK: Get Any Value
 
     public func getConfigValue(forKey key: String) -> String {
         return Bundle.main.infoDictionary?[key] as? String ?? ""

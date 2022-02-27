@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-public struct MobileConstants {
+struct MobileConstants {
 
     static let deviceType = UIDevice.current.userInterfaceIdiom
 
-    public static let screenWidth = UIScreen.main.bounds.width
-    public static let screenHeight = UIScreen.main.bounds.height
+    static let screenWidth = UIScreen.main.bounds.width
+    static let screenHeight = UIScreen.main.bounds.height
 
 }

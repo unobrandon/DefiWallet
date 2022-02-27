@@ -3,7 +3,7 @@
     {
       "color" : {
         "platform" : "ios",
-        "reference" : "systemIndigoColor"
+        "reference" : "systemBlueColor"
       },
       "idiom" : "universal"
     },
@@ -15,13 +15,8 @@
         }
       ],
       "color" : {
-        "color-space" : "srgb",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.580",
-          "green" : "0.229",
-          "red" : "0.234"
-        }
+        "platform" : "ios",
+        "reference" : "systemBlueColor"
       },
       "idiom" : "universal"
     }

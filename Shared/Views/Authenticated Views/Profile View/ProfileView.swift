@@ -10,17 +10,17 @@ import Stinsen
 
 struct ProfileView: View {
 
-    init() {
+    var body: some View {        
+        ZStack {
+            Color("baseBackground").ignoresSafeArea()
 
-    }
+            ScrollView {
+                Text("It's the Profile view!!")
 
-    var body: some View {
-        ScrollView {
-            Text("It's the profile view!!")
-
-            RoundedButton("Log Out", style: .bordered, systemImage: "", action: {
-                AuthenticationService.shared.authStatus = .unauthenticated
-            })
+                RoundedButton("Log Out", style: .bordered, systemImage: "", action: {
+                    AuthenticationService.shared.authStatus = .unauthenticated
+                })
+            }
         }
         .navigationTitle("Profile")
     }

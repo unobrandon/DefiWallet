@@ -1,6 +1,6 @@
 //
 //  Blob.swift
-//  ChatrUI
+//  DefiWallet
 //
 //  Created by Brandon Shaw on 1/24/22.
 //

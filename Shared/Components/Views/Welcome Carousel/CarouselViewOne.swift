@@ -10,12 +10,12 @@ import SwiftUI
 struct CarouselViewOne: View {
     var body: some View {
         ZStack(alignment: .leading) {
-            Image("welcomeCarouselOne")
+            Image("welcomeCarouselThree")
                 .resizable()
                 .scaledToFit()
 
             Text("YOUR\nNEW DIFI\nDASHBOARD")
-                .fontTemplate(DefaultTemplates.title)
+                .fontTemplate(DefaultTemplate.title)
                 .multilineTextAlignment(.leading)
                 .padding(.horizontal)
         }

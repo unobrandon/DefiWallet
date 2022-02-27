@@ -22,53 +22,57 @@ struct WalletView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 5) {
-                Text("Welcome to \nthe wallet view")
-                    .fontTemplate(DefaultTemplates.title)
+        ZStack {
+            Color("baseBackground").ignoresSafeArea()
 
-                Text(services.currentUser.username)
-                    .fontTemplate(DefaultTemplates.heading)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Welcome to \nthe wallet view")
+                        .fontTemplate(DefaultTemplate.title)
 
-                Text("The Sub-Header is here")
-                    .fontTemplate(DefaultTemplates.subheading)
+                    Text(services.currentUser.username)
+                        .fontTemplate(DefaultTemplate.heading)
 
-                Text("The body texts!!")
-                    .fontTemplate(DefaultTemplates.body)
+                    Text("The Sub-Header is here")
+                        .fontTemplate(DefaultTemplate.subheading)
 
-                Text("caption time")
-                    .fontTemplate(DefaultTemplates.caption)
-            }
+                    Text("The body texts!!")
+                        .fontTemplate(DefaultTemplate.body)
 
-            Text("History")
-                .fontTemplate(DefaultTemplates.title)
-                .padding(.top)
+                    Text("caption time")
+                        .fontTemplate(DefaultTemplate.caption)
+                }
 
-            ForEach(store.history, id: \.self) { item in
-                HStack(alignment: .center) {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text(item.direction == .incoming ? "Received" : item.direction == .outgoing ? "Sent" : "Exchange")
-                            .fontTemplate(DefaultTemplates.subheading)
+                Text("History")
+                    .fontTemplate(DefaultTemplate.title)
+                    .padding(.top)
 
-                        Text("\(item.symbol) \(item.amount)")
-                            .fontTemplate(DefaultTemplates.body)
-                    }
+                ForEach(store.history, id: \.self) { item in
+                    HStack(alignment: .center) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(item.direction == .incoming ? "Received" : item.direction == .outgoing ? "Sent" : "Exchange")
+                                .fontTemplate(DefaultTemplate.subheading)
 
-                    Spacer()
-                    VStack(alignment: .trailing, spacing: 5) {
-                        Text("\(item.timeStamp.getFullElapsedInterval())")
-                            .fontTemplate(DefaultTemplates.caption)
+                            Text("\(item.symbol) \(item.amount)")
+                                .fontTemplate(DefaultTemplate.body)
+                        }
 
-                        if let fromAddress = item.fromEns == nil ? item.from : item.fromEns {
-                            Text("from: " + "\("".formatAddress(fromAddress))")
-                                .fontTemplate(DefaultTemplates.caption)
+                        Spacer()
+                        VStack(alignment: .trailing, spacing: 5) {
+                            Text("\(item.timeStamp.getFullElapsedInterval())")
+                                .fontTemplate(DefaultTemplate.caption)
+
+                            if let fromAddress = item.fromEns == nil ? item.from : item.fromEns {
+                                Text("from: " + "\("".formatAddress(fromAddress))")
+                                    .fontTemplate(DefaultTemplate.caption)
+                            }
                         }
                     }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
+                    .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.secondary.opacity(0.2)))
+                    .padding(.horizontal)
                 }
-                .padding(.vertical, 10)
-                .padding(.horizontal)
-                .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.secondary.opacity(0.2)))
-                .padding(.horizontal)
             }
         }
         .navigationTitle("Wallet")

@@ -5,7 +5,7 @@
 //  Created by Brandon Shaw on 2/13/22.
 //
 
-import Foundation
+import SwiftUI
 
 class UnauthenticatedServices: ObservableObject {
 
@@ -13,6 +13,14 @@ class UnauthenticatedServices: ObservableObject {
 
     init() {
 
+    }
+
+    func pasteText() -> String {
+        guard let clipboard = UIPasteboard.general.string else {
+            return ""
+        }
+
+        return clipboard.cleanUpPastedText()
     }
 
 }

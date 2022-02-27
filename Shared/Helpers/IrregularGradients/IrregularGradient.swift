@@ -1,20 +1,20 @@
 //
 //  IrregularGradient.swift
-//  ChatrUI
+//  DefiWallet
 //
 //  Created by Brandon Shaw on 1/24/22.
 //
 
 import SwiftUI
 
-public struct IrregularGradient<Background: View>: View {
+struct IrregularGradient<Background: View>: View {
 
     var colors: [Color]
     var background: Background
     var speed: Double
     var shouldAnimate: Binding<Bool>
 
-    public init(colors: [Color],
+    init(colors: [Color],
                 background: @autoclosure @escaping () -> Background,
                 speed: Double = 10,
                 shouldAnimate: Binding<Bool> = .constant(true)) {
@@ -26,7 +26,7 @@ public struct IrregularGradient<Background: View>: View {
 
     }
 
-    public var body: some View {
+    var body: some View {
         GeometryReader { geometry in
             ZStack {
                 background
@@ -43,7 +43,7 @@ public struct IrregularGradient<Background: View>: View {
 
 }
 
-public extension IrregularGradient where Background == Color {
+extension IrregularGradient where Background == Color {
 
     init(colors: [Color], backgroundColor: Color = .clear, speed: Double = 10, shouldAnimate: Binding<Bool> = .constant(true)) {
         self.colors = colors

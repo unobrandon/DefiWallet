@@ -24,21 +24,11 @@ struct DefiWalletApp_macOS: App {
                     }
                 })
         }
-//        .windowStyle(HiddenTitleBarWindowStyle())
-        .commands(content: {
-            // Adds item in the 'View' section
-            CommandGroup(replacing: .toolbar) {
-                Button("MyApp Help") {
-                    print("Hello youuu!")
-                }
-            }
+        .commands {AppCommands() }
 
-            // Makes own Menu item
-            CommandMenu("My Wallet") {
-                Button("Print message") {
-                    print("Hello World!")
-                }.keyboardShortcut("p")
-            }
-        })
+        #if os(macOS)
+            Settings { SettingsView() }.windowStyle(HiddenTitleBarWindowStyle())
+        #endif
+
     }
 }

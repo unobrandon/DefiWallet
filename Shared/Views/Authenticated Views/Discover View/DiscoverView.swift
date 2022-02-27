@@ -15,8 +15,12 @@ struct DiscoverView: View {
     }
 
     var body: some View {
-        ScrollView {
-            Text("It's the Discover view!!")
+        ZStack {
+            Color("baseBackground").ignoresSafeArea()
+
+            ScrollView {
+                Text("It's the Discover view!!")
+            }
         }
         .navigationTitle("Discover")
     }

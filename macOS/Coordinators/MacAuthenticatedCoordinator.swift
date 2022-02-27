@@ -40,7 +40,7 @@ final class MacAuthenticatedCoordinator: NavigationCoordinatable {
 
             view
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color("bgColor"))
+                .background(Color("baseBackground"))
                 .animation(.none)
                 .onReceive(self.authenticatedServices.$macTabStatus, perform: { status in
                     switch status {

@@ -7,37 +7,37 @@
 
 import UIKit
 
-public struct HapticFeedback {
+struct HapticFeedback {
 
-    public static func rigidHapticFeedback() {
+    static func rigidHapticFeedback() {
         UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
     }
 
-    public static func lightHapticFeedback() {
+    static func lightHapticFeedback() {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
     }
 
-    public static func softHapticFeedback() {
+    static func softHapticFeedback() {
         UIImpactFeedbackGenerator(style: .soft).impactOccurred()
     }
 
-    public static func mediumHapticFeedback() {
+    static func mediumHapticFeedback() {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
     }
 
-    public static func heavyHapticFeedback() {
+    static func heavyHapticFeedback() {
         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
     }
 
-    public static func successHapticFeedback() {
+    static func successHapticFeedback() {
         UINotificationFeedbackGenerator().notificationOccurred(.success)
     }
 
-    public static func warningHapticFeedback() {
+    static func warningHapticFeedback() {
         UINotificationFeedbackGenerator().notificationOccurred(.warning)
     }
 
-    public static func errorHapticFeedback() {
+    static func errorHapticFeedback() {
         UINotificationFeedbackGenerator().notificationOccurred(.error)
     }
 
