@@ -24,12 +24,13 @@ struct ImportWalletView: View {
         ZStack {
             Color("baseBackground").ignoresSafeArea()
 
-            VStack(alignment: .trailing, spacing: 10) {
+            VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
                 TextViewBordered(text: $textViewText, placeholder: "enter your 12 or 24 word seed phrase here", textLimit: nil, maxHeight: 100, onCommit: {
                     print("commit ed")
                 })
+                .frame(maxWidth: 640)
 
                 HStack {
                     Text("seed phrases and private keys are stored offline on your device.")
@@ -51,6 +52,7 @@ struct ImportWalletView: View {
                     .buttonBorderShape(.roundedRectangle)
                     .disabled(!textViewText.isEmpty)
                 }
+                .frame(maxWidth: 640)
 
                 Spacer()
                 RoundedButton("Import Wallet", style: .primary, systemImage: "paperplane.fill", action: {
