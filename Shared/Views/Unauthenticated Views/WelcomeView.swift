@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Stinsen
-
 import Colorful
 
 struct WelcomeView: View {

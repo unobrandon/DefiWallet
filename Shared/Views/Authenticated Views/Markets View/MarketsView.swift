@@ -17,7 +17,7 @@ struct MarketsView: View {
     var body: some View {
         ZStack {
             Color("baseBackground").ignoresSafeArea()
-   
+
             ScrollView {
                 Text("It's the market view!!")
             }

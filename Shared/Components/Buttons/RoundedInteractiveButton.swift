@@ -1,22 +1,23 @@
 //
-//  RoundedButton.swift
+//  RoundedInteractiveButton.swift
 //  DefiWallet
 //
-//  Created by Brandon Shaw on 2/13/22.
+//  Created by Brandon Shaw on 2/27/22.
 //
 
-import Foundation
 import SwiftUI
 
-struct RoundedButton: View {
+struct RoundedInteractiveButton: View {
 
     let title: String
+    @Binding var isDisabled: Bool
     var action: () -> Void
     let style: Style
     let systemImage: String?
 
-    init(_ title: String, style: Style = .primary, systemImage: String?, action: @escaping () -> Void) {
+    init(_ title: String, isDisabled: Binding<Bool>, style: Style = .primary, systemImage: String?, action: @escaping () -> Void) {
         self.title = title
+        self._isDisabled = isDisabled
         self.style = style
         self.systemImage = systemImage ?? nil
         self.action = action
@@ -79,20 +80,25 @@ struct RoundedButton: View {
                 Spacer()
             }
             .buttonStyle(ClickInteractiveStyle())
-            .foregroundColor(foregroundColor)
+            .foregroundColor(isDisabled ? .secondary : foregroundColor)
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 15, style: .circular)
-                    .foregroundColor(backgroundColor))
+                    .foregroundColor(isDisabled ? DefaultTemplate.disabledGray : backgroundColor))
             .frame(maxWidth: 380, minHeight: 49)
         })
     }
 
     private func actionTap() {
         #if os(iOS)
+        if isDisabled {
+            HapticFeedback.errorHapticFeedback()
+        } else {
             HapticFeedback.lightHapticFeedback()
+        }
         #endif
 
+        guard !isDisabled else { return }
         action()
     }
 

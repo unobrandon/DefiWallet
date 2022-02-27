@@ -6,14 +6,18 @@
 //
 
 import SwiftUI
+import Stinsen
 
 struct ImportWalletView: View {
+
+    @EnvironmentObject private var unauthenticatedRouter: UnauthenticatedCoordinator.Router
 
     private let services: UnauthenticatedServices
 
     @ObservedObject private var store: UserOnboardingServices
 
     @State var textViewText: String = ""
+    @State var disableImport: Bool = true
 
     init(services: UnauthenticatedServices) {
         self.services = services
@@ -31,9 +35,12 @@ struct ImportWalletView: View {
                     print("commit ed")
                 })
                 .frame(maxWidth: 640)
+                .onChange(of: textViewText, perform: { text in
+                    disableImport = text.isEmpty
+                })
 
                 HStack {
-                    Text("seed phrases and private keys are stored offline on your device.")
+                    Text("seed phrases and private keys are never uploaded and are only stored offline on your device.")
                         .fontTemplate(DefaultTemplate.caption)
                         .multilineTextAlignment(.leading)
 
@@ -50,12 +57,16 @@ struct ImportWalletView: View {
                     .buttonStyle(.bordered)
                     .controlSize(.mini)
                     .buttonBorderShape(.roundedRectangle)
-                    .disabled(!textViewText.isEmpty)
+                    .disabled(!disableImport)
                 }
                 .frame(maxWidth: 640)
 
                 Spacer()
-                RoundedButton("Import Wallet", style: .primary, systemImage: "paperplane.fill", action: {
+                TermsOfServiceButton(action: {
+                    unauthenticatedRouter.route(to: \.terms)
+                })
+
+                RoundedInteractiveButton("Import Wallet", isDisabled: $disableImport, style: .primary, systemImage: "arrow.down.to.line", action: {
                     #if os(iOS)
                     guard let count = textViewText.countWords() else {
                         print("no words entered")

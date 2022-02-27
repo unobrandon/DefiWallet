@@ -32,6 +32,17 @@ public struct Constants {
 
     static let zapperBaseUrl = "https://api.zapper.fi/v1/"
 
+    // MARK: General
+    static var projectVersion: String {
+        #if targetEnvironment(macCatalyst)
+        return MacConstants.appVersion
+        #elseif os(macOS)
+        return MacConstants.appVersion
+        #elseif os(iOS)
+        return MobileConstants.appVersion
+        #endif
+    }
+
     // MARK: Keys
     static var zapperApiKey: String {
         guard let key = Bundle.main.infoDictionary?["ZAPPER_API_KEY"] as? String else { return "api_key=" }

@@ -22,4 +22,8 @@ extension UnauthenticatedCoordinator {
         CreateWalletView(services: unauthenticatedServices)
     }
 
+    @ViewBuilder func makeTerms() -> some View {
+        TermsView(navTitle: termsHeader)
+    }
+
 }

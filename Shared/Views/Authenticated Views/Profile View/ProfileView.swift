@@ -9,7 +9,6 @@ import SwiftUI
 import Stinsen
 
 struct ProfileView: View {
-
     var body: some View {        
         ZStack {
             Color("baseBackground").ignoresSafeArea()

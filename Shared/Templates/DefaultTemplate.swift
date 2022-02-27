@@ -39,4 +39,14 @@ struct DefaultTemplate {
         #endif
     }()
 
+    static var disabledGray: Color = {
+        #if targetEnvironment(macCatalyst)
+        return Color(NSColor.systemGray3)
+        #elseif os(macOS)
+        return Color(NSColor.systemGray3)
+        #elseif os(iOS)
+        return Color(.systemGray3)
+        #endif
+    }()
+
 }

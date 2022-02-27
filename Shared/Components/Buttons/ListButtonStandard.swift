@@ -53,7 +53,7 @@ struct ListButtonStandard: View {
 
         ZStack(alignment: .center) {
 
-            Button(action: action) {
+            Button(action: { self.actionTap() }) {
                 VStack(alignment: .trailing, spacing: 0) {
                     HStack(alignment: .center) {
                         if !systemImage.isEmpty {
