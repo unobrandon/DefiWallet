@@ -39,7 +39,7 @@ struct ImportWalletView: View {
                     disableImport = text.isEmpty
                 })
 
-                HStack {
+                HStack(alignment: .top, spacing: 5) {
                     Text("seed phrases and private keys are never uploaded and are only stored offline on your device.")
                         .fontTemplate(DefaultTemplate.caption)
                         .multilineTextAlignment(.leading)

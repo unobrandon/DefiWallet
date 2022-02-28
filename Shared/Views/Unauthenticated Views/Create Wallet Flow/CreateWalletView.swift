@@ -27,8 +27,6 @@ struct CreateWalletView: View {
             Color("baseBackground").ignoresSafeArea()
 
             VStack(alignment: .center, spacing: 20) {
-                Text("Create wallet")
-
                 LoadingIndicator()
 
                 RoundedButton("Show Noti", style: .secondary, systemImage: "paperplane.fill", action: {

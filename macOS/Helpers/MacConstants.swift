@@ -12,6 +12,7 @@ struct MacConstants {
     static let screenWidth = NSScreen.main?.visibleFrame.width ?? 1400
     static let screenHeight = NSScreen.main?.visibleFrame.height ?? 1000
 
+    static let appName: String = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? ""
     static let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
 
 }

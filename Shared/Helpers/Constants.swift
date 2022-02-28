@@ -33,6 +33,17 @@ public struct Constants {
     static let zapperBaseUrl = "https://api.zapper.fi/v1/"
 
     // MARK: General
+
+    static var projectName: String {
+        #if targetEnvironment(macCatalyst)
+        return MacConstants.appName
+        #elseif os(macOS)
+        return MacConstants.appName
+        #elseif os(iOS)
+        return MobileConstants.appName
+        #endif
+    }
+
     static var projectVersion: String {
         #if targetEnvironment(macCatalyst)
         return MacConstants.appVersion

@@ -14,6 +14,7 @@ struct MobileConstants {
     static let screenWidth = UIScreen.main.bounds.width
     static let screenHeight = UIScreen.main.bounds.height
 
+    static let appName: String = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? ""
     static let appVersion: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
 
 }
