@@ -14,8 +14,18 @@ struct AppGradients {
                                                         redOrangeGradient, mintTealGradient,
                                                         greenMintGradient, indigoPurpleGradient]
 
+    static var movingNumbersMask: some View {
+        return AnyView(LinearGradient(gradient: Gradient(stops: [
+                                        Gradient.Stop(color: .clear, location: 0),
+                                        Gradient.Stop(color: .black, location: 0.2),
+                                        Gradient.Stop(color: .black, location: 0.8),
+                                        Gradient.Stop(color: .clear, location: 1.0)]),
+                                      startPoint: .top,
+                                      endPoint: .bottom))
+    }
+
     static let backgroundFade = LinearGradient(gradient:
-                                                Gradient(stops: [.init(color: Color("baseBackground").opacity(0.01), location: 0),
+                                                Gradient(stops: [.init(color: Color("baseBackground").opacity(0), location: 0),
                                                                  .init(color: Color("baseBackground"), location: 1)]),
                                                startPoint: .top, endPoint: .bottom)
 
@@ -72,5 +82,10 @@ struct AppGradients {
                                                 Gradient(colors: [Color(red: 218 / 255, green: 218 / 255, blue: 218 / 255, opacity: 0.25),
                                                                   Color(.sRGB, red: 166 / 255, green: 166 / 255, blue: 166 / 255, opacity: 0.45)]),
                                              startPoint: .top, endPoint: .bottom)
+
+    static let lightBluePurpleGradient = LinearGradient(gradient:
+                                                        Gradient(colors: [Color(red: 69 / 255, green: 104 / 255, blue: 220 / 255, opacity: 0.3),
+                                                                          Color(red: 176 / 255, green: 106 / 255, blue: 179 / 255, opacity: 0.3).opacity(0.3)]),
+                                                     startPoint: .top, endPoint: .bottom)
 
 }

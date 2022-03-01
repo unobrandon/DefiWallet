@@ -18,7 +18,7 @@ struct TermsOfServiceButton: View {
     var body: some View {
 
             VStack(alignment: .center, spacing: 2) {
-                Text("By importing your wallet, you agree to \(Constants.projectName)'s")
+                Text("By continuing, you agree to \(Constants.projectName)'s")
                     .font(.system(size: 12))
                     .font(.footnote)
                     .foregroundColor(Color.secondary)

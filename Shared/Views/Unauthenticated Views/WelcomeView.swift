@@ -13,6 +13,14 @@ struct WelcomeView: View {
 
     @EnvironmentObject private var unauthenticatedRouter: UnauthenticatedCoordinator.Router
 
+    @ObservedObject private var store: UserOnboardingServices
+
+    @State var showSheet: Bool = false
+
+    init(services: UnauthenticatedServices) {
+        self.store = services.userOnboarding
+    }
+
     var body: some View {
         GeometryReader { geo in
             VStack(alignment: .center, spacing: 10) {
@@ -20,7 +28,12 @@ struct WelcomeView: View {
 
                 VStack(alignment: .center, spacing: 20) {
                     RoundedButton("Create New Wallet", style: .primary, systemImage: "paperplane.fill", action: {
-                        unauthenticatedRouter.route(to: \.createWallet)
+                        guard store.generatedAddrress.isEmpty else {
+                            showSheet.toggle()
+                            return
+                        }
+
+                        unauthenticatedRouter.route(to: \.generateWallet)
                         #if os(iOS)
                             HapticFeedback.rigidHapticFeedback()
                         #endif
@@ -37,7 +50,19 @@ struct WelcomeView: View {
                 .padding(.horizontal)
                 .background(bottomGradientView(geo))
             }.background(ColorfulView(animation: Animation.easeInOut(duration: 10), colors: [.red, .pink, .purple, .blue]))
-        }.background(Color("baseBackground"))
+            .confirmationDialog("We notice you have generated \(store.generatedAddrress.formatAddress()).\nKeep current address or generate a new address?",
+                                isPresented: $showSheet,
+                                titleVisibility: .visible) {
+                Button("Continue Onboarding") {
+                    unauthenticatedRouter.route(to: \.ensUsername)
+                }
+
+                Button("Generate New Wallet", role: .destructive) {
+                    store.generatedAddrress = ""
+                    unauthenticatedRouter.route(to: \.generateWallet)
+                }
+            }
+        }.background(AppGradients.purpleGradient)
         #if os(iOS)
         .navigationViewStyle(StackNavigationViewStyle())
         #endif

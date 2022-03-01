@@ -36,6 +36,22 @@ extension String {
         return address.prefix(4) + "..." + address.suffix(4)
     }
 
+    func formatAddress() -> String {
+        guard !self.contains(".eth") else {
+           return self
+        }
+
+        return self.prefix(4) + "..." + self.suffix(4)
+    }
+
+    func formatAddressExtended() -> String {
+        guard !self.contains(".eth") else {
+           return self
+        }
+
+        return self.prefix(8) + "..." + self.suffix(8)
+    }
+
     func createDateTime(_ timestamp: String) -> String {
         var strDate = "undefined"
 

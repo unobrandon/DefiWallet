@@ -31,16 +31,27 @@ struct ImportWalletView: View {
             VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
-                TextViewBordered(text: $textViewText, placeholder: "enter your 12 or 24 word seed phrase or secret phrase here", textLimit: nil, maxHeight: 100, onCommit: {
+                Image(systemName: "arrow.triangle.2.circlepath")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 46, height: 46, alignment: .center)
+                    .irregularGradient(colors: [.blue, .orange, .red, .yellow], backgroundColor: .pink, speed: 4)
+
+                Text("Restore an existing wallet with your 12 or 24-word secret recovery phrase.")
+                    .fontTemplate(DefaultTemplate.subheadingBold)
+                    .multilineTextAlignment(.leading)
+
+                Spacer()
+                TextViewBordered(text: $textViewText, placeholder: "enter 12 or 24-word recovery phrase here", textLimit: nil, maxHeight: 100, onCommit: {
                     print("commit ed")
                 })
-                .frame(maxWidth: 640)
+                .frame(maxWidth: Constants.iPadMaxWidth)
                 .onChange(of: textViewText, perform: { text in
-                    disableImport = text.isEmpty
+                    enablePrimaryButton(text: text)
                 })
 
                 HStack(alignment: .top, spacing: 5) {
-                    Text("seed phrases and private keys are never uploaded and are only stored offline on your device.")
+                    Text("seed phrases and private keys are only stored offline on your device.")
                         .fontTemplate(DefaultTemplate.caption)
                         .multilineTextAlignment(.leading)
 
@@ -62,31 +73,35 @@ struct ImportWalletView: View {
                 .frame(maxWidth: 640)
 
                 Spacer()
-                TermsOfServiceButton(action: {
-                    unauthenticatedRouter.route(to: \.terms)
-                })
-
-                RoundedInteractiveButton("Import Wallet", isDisabled: $disableImport, style: .primary, systemImage: "arrow.down.to.line", action: {
-                    #if os(iOS)
-                    guard let count = textViewText.countWords() else {
-                        print("no words entered")
-                        return
-                    }
-
-                    let clean = textViewText.cleanUpPastedText()
-                    if count.isMultiple(of: 12) {
-                        print("Success importing wallet! Word count is: \(count). Cleaned up: \(clean)")
-                        HapticFeedback.successHapticFeedback()
+                RoundedInteractiveButton("Import Wallet", isDisabled: self.$disableImport, style: .primary, systemImage: "arrow.down.to.line", action: {
+                    if !disableImport {
+                        #if os(iOS)
+                            HapticFeedback.successHapticFeedback()
+                        #endif
                     } else {
-                        print("error importing wallet. Word count is: \(count). Cleaned up: \(clean)")
-                        HapticFeedback.errorHapticFeedback()
+                        #if os(iOS)
+                            HapticFeedback.errorHapticFeedback()
+                        #endif
                     }
-                    #endif
                 })
                 .padding(.bottom, 10)
             }
             .padding(.horizontal)
         }
-        .navigationTitle("Import Wallet")
+        .navigationBarTitle("Import Wallet", displayMode: .inline)
     }
+
+    private func enablePrimaryButton(text: String) {
+        guard let count = textViewText.countWords() else {
+            disableImport = false
+            return
+        }
+
+        if count.isMultiple(of: 12) || textViewText.count == 64 {
+            disableImport = true
+        } else {
+            disableImport = false
+        }
+    }
+
 }

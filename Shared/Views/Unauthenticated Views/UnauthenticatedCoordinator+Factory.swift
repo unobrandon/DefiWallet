@@ -11,15 +11,23 @@ import Stinsen
 extension UnauthenticatedCoordinator {
 
     @ViewBuilder func makeStart() -> some View {
-        WelcomeView()
+        WelcomeView(services: unauthenticatedServices)
     }
 
     @ViewBuilder func makeImportWallet() -> some View {
         ImportWalletView(services: unauthenticatedServices)
     }
 
-    @ViewBuilder func makeCreateWallet() -> some View {
-        CreateWalletView(services: unauthenticatedServices)
+    @ViewBuilder func makeGenerateWallet() -> some View {
+        GenerateWalletView(services: unauthenticatedServices)
+    }
+
+    @ViewBuilder func makeEnsUsername() -> some View {
+        EnsUsernameView(services: unauthenticatedServices)
+    }
+
+    @ViewBuilder func makePassword() -> some View {
+       SetPasswordView(services: unauthenticatedServices)
     }
 
     @ViewBuilder func makeTerms() -> some View {

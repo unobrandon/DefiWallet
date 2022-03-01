@@ -10,19 +10,22 @@ import web3swift
 
 class UserOnboardingServices: ObservableObject {
 
-    let generateWalletDelay = 1.75
+    @Published var generatedAddrress: String = ""
+
+    let generateWalletDelay = 3.75
 
     func newWallet(completion: (() -> Void)?) {
         DispatchQueue.main.async {
             let myWallet = Wallet(address: "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9", data: Data(), name: "testNameee", isHD: true)
 
             let newUser = CurrentUser(accessToken: UUID().uuidString,
-                                        username: "testUsernamelol",
-                                        walletAddress: "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9",
-                                        avatar: "http://",
-                                        accountValue: "0.00",
-                                        secretPhrase: "",
-                                        wallet: myWallet)
+                                      walletAddress: "testUsernamelol",
+                                      secretPhrase: "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9",
+                                      password: "http://",
+                                      username: "",
+                                      avatar: "",
+                                      accountValue: "0.00",
+                                      wallet: myWallet)
 
             AuthenticationService.shared.authStatus = .authenticated(newUser)
 

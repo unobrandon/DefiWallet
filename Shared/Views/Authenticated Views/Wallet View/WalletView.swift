@@ -30,7 +30,7 @@ struct WalletView: View {
                     Text("Welcome to \nthe wallet view")
                         .fontTemplate(DefaultTemplate.title)
 
-                    Text(services.currentUser.username)
+                    Text(services.currentUser.username ?? "")
                         .fontTemplate(DefaultTemplate.heading)
 
                     Text("The Sub-Header is here")

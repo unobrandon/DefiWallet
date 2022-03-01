@@ -13,11 +13,15 @@ struct DefaultTemplate {
 
     static let heading = FontTemplate(font: Font.system(size: 24.0), weight: .semibold, foregroundColor: .primary, lineSpacing: 8)
 
-    static let subheading = FontTemplate(font: Font.system(size: 18.0), weight: .medium, foregroundColor: .primary, lineSpacing: 6)
+    static let subheading = FontTemplate(font: Font.system(size: 18.0), weight: .medium, foregroundColor: .primary, lineSpacing: 5)
+    static let subheadingSemiBold = FontTemplate(font: Font.system(size: 18.0), weight: .semibold, foregroundColor: .primary, lineSpacing: 5)
+    static let subheadingBold = FontTemplate(font: Font.system(size: 18.0), weight: .bold, foregroundColor: .primary, lineSpacing: 5)
 
     static let body = FontTemplate(font: Font.system(size: 14.0), weight: .regular, foregroundColor: .primary, lineSpacing: 4)
 
     static let caption = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .secondary, lineSpacing: 2)
+
+    static let monospace = FontTemplate(font: Font.system(.caption, design: .monospaced), weight: .regular, foregroundColor: .primary, lineSpacing: 2)
 
     static var systemBackgroundColor: Color = {
         #if targetEnvironment(macCatalyst)
