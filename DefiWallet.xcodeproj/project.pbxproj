@@ -24,6 +24,8 @@
 		051BCF7127BCD69F0056E047 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF7027BCD69F0056E047 /* Realm */; };
 		051BCF7327BCD69F0056E047 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF7227BCD69F0056E047 /* RealmSwift */; };
 		051BCF7427BCD6A60056E047 /* UserOnboardingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070627B8EC2E0008051B /* UserOnboardingServices.swift */; };
+		053C7D3B27CD903B0081DCEA /* MovingNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */; };
+		053C7D3C27CD903B0081DCEA /* MovingNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */; };
 		053EC29227BE0E3600FBC681 /* InvestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053EC29127BE0E3600FBC681 /* InvestService.swift */; };
 		053EC29327BE0E3600FBC681 /* InvestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053EC29127BE0E3600FBC681 /* InvestService.swift */; };
 		053EC29527BE0FE600FBC681 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 053EC29427BE0FE600FBC681 /* RealmSwift */; };
@@ -199,6 +201,8 @@
 		051BCF5427BC970A0056E047 /* TransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistory.swift; sourceTree = "<group>"; };
 		051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedServices.swift; sourceTree = "<group>"; };
 		051BCF5C27BCAE150056E047 /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
+		053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingNumbersView.swift; sourceTree = "<group>"; };
+		053C7D3D27CD940B0081DCEA /* ExampleComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleComponents.swift; sourceTree = "<group>"; };
 		053EC29127BE0E3600FBC681 /* InvestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestService.swift; sourceTree = "<group>"; };
 		0548B85B27B4C957000478B8 /* DefiWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DefiWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0548B85E27B4C957000478B8 /* DefiWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefiWalletApp.swift; sourceTree = "<group>"; };
@@ -363,6 +367,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		053C7D3927CD8FC20081DCEA /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				0578077127BB71250008051B /* IrregularGradients */,
+				053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */,
+			);
+			path = Extra;
+			sourceTree = "<group>";
+		};
 		0548B85227B4C957000478B8 = {
 			isa = PBXGroup;
 			children = (
@@ -507,7 +520,6 @@
 			children = (
 				057806BD27B8432B0008051B /* Constants.swift */,
 				05E858C927CB240300B85195 /* AppGradients.swift */,
-				0578077127BB71250008051B /* IrregularGradients */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -548,10 +560,12 @@
 		0578070127B8E80A0008051B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				053C7D3D27CD940B0081DCEA /* ExampleComponents.swift */,
 				05E8589D27C9F5E000B85195 /* Views */,
 				05E858E927CB320700B85195 /* Lists */,
 				0578070227B8E8240008051B /* Buttons */,
 				05E858F327CB47B500B85195 /* Text Fields */,
+				053C7D3927CD8FC20081DCEA /* Extra */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1042,6 +1056,7 @@
 				051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */,
 				05E858A027C9F62000B85195 /* ImportWalletView.swift in Sources */,
 				0578070727B8EC2E0008051B /* UserOnboardingServices.swift in Sources */,
+				053C7D3B27CD903B0081DCEA /* MovingNumbersView.swift in Sources */,
 				053EC29227BE0E3600FBC681 /* InvestService.swift in Sources */,
 				0578073127BB59D30008051B /* MarketsCoordinator.swift in Sources */,
 				05E8589B27C9DA3700B85195 /* CarouselViewTwo.swift in Sources */,
@@ -1122,6 +1137,7 @@
 				053EC29327BE0E3600FBC681 /* InvestService.swift in Sources */,
 				0578071D27B90A050008051B /* Constants.swift in Sources */,
 				05E858C827CB238800B85195 /* Character+Extensions.swift in Sources */,
+				053C7D3C27CD903B0081DCEA /* MovingNumbersView.swift in Sources */,
 				05E8590327CC12A400B85195 /* TermsOfServiceButton.swift in Sources */,
 				05D1096B27C0C4A7008DCC66 /* MacAppDelegate.swift in Sources */,
 				051BCF5927BCACB30056E047 /* AuthenticatedServices.swift in Sources */,
