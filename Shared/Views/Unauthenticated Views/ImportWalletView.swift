@@ -12,15 +12,12 @@ struct ImportWalletView: View {
 
     @EnvironmentObject private var unauthenticatedRouter: UnauthenticatedCoordinator.Router
 
-    private let services: UnauthenticatedServices
-
     @ObservedObject private var store: UserOnboardingServices
 
     @State var textViewText: String = ""
-    @State var disableImport: Bool = true
+    @State var disablePrimaryAction: Bool = true
 
     init(services: UnauthenticatedServices) {
-        self.services = services
         self.store = services.userOnboarding
     }
 
@@ -31,15 +28,18 @@ struct ImportWalletView: View {
             VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
-                Image(systemName: "arrow.triangle.2.circlepath")
+                Image(systemName: "folder.badge.plus")
                     .resizable()
                     .scaledToFit()
+                    .font(Font.title.weight(.medium))
                     .frame(width: 46, height: 46, alignment: .center)
+                    .padding(.bottom, 10)
                     .irregularGradient(colors: [.blue, .orange, .red, .yellow], backgroundColor: .pink, speed: 4)
 
                 Text("Restore an existing wallet with your 12 or 24-word secret recovery phrase.")
-                    .fontTemplate(DefaultTemplate.subheadingBold)
-                    .multilineTextAlignment(.leading)
+                    .fontTemplate(DefaultTemplate.subheadingSemiBold)
+                    .padding(.horizontal)
+                    .multilineTextAlignment(.center)
 
                 Spacer()
                 TextViewBordered(text: $textViewText, placeholder: "enter 12 or 24-word recovery phrase here", textLimit: nil, maxHeight: 100, onCommit: {
@@ -51,16 +51,16 @@ struct ImportWalletView: View {
                 })
 
                 HStack(alignment: .top, spacing: 5) {
-                    Text("seed phrases and private keys are only stored offline on your device.")
+                    Text("seed phrases and private keys are stored offline on your device.")
                         .fontTemplate(DefaultTemplate.caption)
                         .multilineTextAlignment(.leading)
 
                     Spacer()
                     Button(action: {
-                        self.textViewText = services.pasteText()
+                        self.textViewText = store.pasteText()
 
                         #if os(iOS)
-                            HapticFeedback.rigidHapticFeedback()
+                            HapticFeedback.successHapticFeedback()
                         #endif
                     }, label: {
                         Label("Paste", systemImage: "doc.on.clipboard.fill")
@@ -68,13 +68,14 @@ struct ImportWalletView: View {
                     .buttonStyle(.bordered)
                     .controlSize(.mini)
                     .buttonBorderShape(.roundedRectangle)
-                    .disabled(!disableImport)
+                    .disabled(!disablePrimaryAction)
                 }
                 .frame(maxWidth: 640)
 
                 Spacer()
-                RoundedInteractiveButton("Import Wallet", isDisabled: self.$disableImport, style: .primary, systemImage: "arrow.down.to.line", action: {
-                    if !disableImport {
+                RoundedInteractiveButton("Import Wallet", isDisabled: $disablePrimaryAction, style: .primary, systemImage: "arrow.down.to.line", action: {
+                    if !disablePrimaryAction {
+                        unauthenticatedRouter.route(to: \.setPassword)
                         #if os(iOS)
                             HapticFeedback.successHapticFeedback()
                         #endif
@@ -90,17 +91,18 @@ struct ImportWalletView: View {
         }
         .navigationBarTitle("Import Wallet", displayMode: .inline)
     }
-
     private func enablePrimaryButton(text: String) {
         guard let count = textViewText.countWords() else {
-            disableImport = false
+            disablePrimaryAction = false
             return
         }
 
-        if count.isMultiple(of: 12) || textViewText.count == 64 {
-            disableImport = true
+        if count == 12 || count == 24 || textViewText.count == 64 {
+            disablePrimaryAction = true
+            print("isDisabled: true")
         } else {
-            disableImport = false
+            disablePrimaryAction = false
+            print("isDisabled: false")
         }
     }
 

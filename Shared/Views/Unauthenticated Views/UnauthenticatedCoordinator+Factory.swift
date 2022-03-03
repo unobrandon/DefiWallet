@@ -22,12 +22,20 @@ extension UnauthenticatedCoordinator {
         GenerateWalletView(services: unauthenticatedServices)
     }
 
-    @ViewBuilder func makeEnsUsername() -> some View {
-        EnsUsernameView(services: unauthenticatedServices)
+    @ViewBuilder func makePrivateKeys() -> some View {
+        PrivateKeysView(services: unauthenticatedServices)
     }
 
     @ViewBuilder func makePassword() -> some View {
-       SetPasswordView(services: unauthenticatedServices)
+       PasswordView(services: unauthenticatedServices)
+    }
+
+    @ViewBuilder func makeEnsUsername() -> some View {
+        EnsProfileView(services: unauthenticatedServices)
+    }
+
+    @ViewBuilder func makeCompleted() -> some View {
+        CompletedView(services: unauthenticatedServices)
     }
 
     @ViewBuilder func makeTerms() -> some View {

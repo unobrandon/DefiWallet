@@ -86,6 +86,7 @@ struct RoundedButton: View {
                     .foregroundColor(backgroundColor))
             .frame(maxWidth: 380, minHeight: 49)
         })
+        .buttonStyle(ClickInteractiveStyle())
     }
 
     private func actionTap() {

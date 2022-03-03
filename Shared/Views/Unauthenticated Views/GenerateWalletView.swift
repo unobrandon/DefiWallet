@@ -15,8 +15,9 @@ struct GenerateWalletView: View {
 
     @State var doneGenerating: Bool = false
     @State var ethAddress: Double = 0
+    @State var isConnecting = false
 
-    private let timer = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 0.33, on: .main, in: .common).autoconnect()
 
     init(services: UnauthenticatedServices) {
         self.store = services.userOnboarding
@@ -27,6 +28,14 @@ struct GenerateWalletView: View {
             Color("baseBackground").ignoresSafeArea()
 
             VStack(alignment: .center, spacing: 10) {
+
+                if doneGenerating && isConnecting {
+                    CheckmarkView(size: 45, color: .green)
+                        .padding(.bottom)
+                } else {
+                    HeaderIcon(size: 46, imageName: "arrow.triangle.2.circlepath")
+                        .padding(.bottom)
+                }
 
                 if !doneGenerating {
                     HStack(alignment: .center, spacing: 0) {
@@ -55,49 +64,47 @@ struct GenerateWalletView: View {
                         self.ethAddress = Double(randomInt)
                     }
                 } else {
-                    Text(store.generatedAddrress.formatAddressExtended())
+                    Text(store.generatedAddress.formatAddressExtended())
                         .fontTemplate(DefaultTemplate.monospace)
                         .padding(5)
                         .background(RoundedRectangle(cornerRadius: 3).foregroundColor(Color("baseButton")))
                         .mask(AppGradients.movingNumbersMask)
                 }
 
-                VStack(alignment: .center, spacing: 10) {
-                    Text(!doneGenerating ? "generating..." : "success!")
-                        .fontTemplate(DefaultTemplate.body)
-
-                    if doneGenerating {
-                        CheckmarkView(size: 30)
-                            .onAppear {
-                                store.generatedAddrress = "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9"
-                            }
-                    }
-                }
+                Text(!doneGenerating ? "generating..." : !isConnecting ? "connecting..." : "success!")
+                    .fontTemplate(DefaultTemplate.body)
             }
         }
-        .navigationBarTitle( "Generat\(doneGenerating ? "ed" : "ing") Wallet", displayMode: .inline)
+        .navigationBarTitle( "Generat\(doneGenerating && isConnecting ? "ed" : "ing") Wallet", displayMode: .inline)
         #if os(iOS)
         .navigationBarBackButtonHidden(true)
         #endif
         .onAppear {
-            guard store.generatedAddrress.isEmpty else {
+            guard store.generatedAddress.isEmpty else {
                 unauthenticatedRouter.popToRoot()
 
                 return
             }
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + store.generateWalletDelay) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + (store.generateWalletDelay * 0.5)) {
                 withAnimation {
                     doneGenerating = true
                 }
                 self.timer.upstream.connect().cancel()
+                store.generatedAddress = "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9"
 
                 #if os(iOS)
                     HapticFeedback.successHapticFeedback()
                 #endif
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    unauthenticatedRouter.route(to: \.setPassword)
+                DispatchQueue.main.asyncAfter(deadline: .now() + (store.generateWalletDelay * 0.2)) {
+                    withAnimation {
+                        isConnecting = true
+                    }
+
+                    DispatchQueue.main.asyncAfter(deadline: .now() + (store.generateWalletDelay * 0.3)) {
+                        unauthenticatedRouter.route(to: \.privateKeys)
+                    }
                 }
             }
         }

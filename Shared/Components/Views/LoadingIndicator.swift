@@ -20,12 +20,17 @@ struct LoadingIndicator: View {
     }
 
     var body: some View {
-        Circle()
-            .trim(from: 0, to: 0.75)
-            .stroke(Color.primary, style: StrokeStyle(lineWidth: size >= 22 ? 2 : size >= 18 ? 1.5 : 1.2, lineCap: .round))
-            .rotationEffect(.init(degrees: self.isLoading ? 360 : 0))
-            .frame(width: size, height: size)
-            .shadow(color: Color.black.opacity(0.15), radius: 4, x: 0, y: 0)
+        Rectangle()
+            .frame(width: size, height: size, alignment: .center)
+            .foregroundColor(.clear)
+            .overlay(
+                Circle()
+                    .trim(from: 0, to: 0.75)
+                    .stroke(Color.primary, style: StrokeStyle(lineWidth: size >= 22 ? 2 : size >= 18 ? 1.5 : 1.2, lineCap: .round))
+                    .padding(2.5)
+                    .rotationEffect(.init(degrees: self.isLoading ? 360 : 0))
+                    .shadow(color: Color.black.opacity(0.15), radius: 4, x: 0, y: 0)
+            )
             .onAppear {
                 withAnimation(animation, {
                     self.isLoading.toggle()

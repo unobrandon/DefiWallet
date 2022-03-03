@@ -13,16 +13,18 @@ struct CheckmarkView: View {
     @State private var circle = false
 
     private let size: CGFloat
+    private let color: Color
 
-    init(size: CGFloat) {
+    init(size: CGFloat, color: Color? = nil) {
         self.size = size
+        self.color = color ?? .primary
     }
 
     var body: some View {
             ZStack(alignment: .center) {
                 Circle()
                     .trim(from: 0, to: circle ? 0.85 : 0)
-                    .stroke(Color.primary, style: StrokeStyle(lineWidth: size >= 22 ? 2 : size >= 18 ? 1.5 : 1.2, lineCap: .round))
+                    .stroke(color, style: StrokeStyle(lineWidth: size >= 22 ? 2 : size >= 18 ? 1.5 : 1.2, lineCap: .round))
                     .rotationEffect(.init(degrees: -10))
                     .frame(width: size, height: size)
                     .shadow(color: Color.black.opacity(0.15), radius: 4, x: 0, y: 0)
@@ -40,6 +42,7 @@ struct CheckmarkView: View {
                     }
                     .trim(from: 0, to: checkmark ? 1 : 0)
                     .stroke(style: StrokeStyle(lineWidth: size >= 45 ? 5 : size >= 30 ? 3 : size >= 25 ? 2.5 : 2, lineCap: .round))
+                    .foregroundColor(color)
                     .frame(width: size * 0.6, height: size * 0.6)
                     .aspectRatio(1, contentMode: .fit)
                     .offset(y: size * 0.1)

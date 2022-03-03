@@ -15,12 +15,4 @@ class UnauthenticatedServices: ObservableObject {
 
     }
 
-    func pasteText() -> String {
-        guard let clipboard = UIPasteboard.general.string else {
-            return ""
-        }
-
-        return clipboard.cleanUpPastedText()
-    }
-
 }

@@ -6,13 +6,27 @@
 //
 
 import Foundation
+import SwiftUI
 import web3swift
 
 class UserOnboardingServices: ObservableObject {
 
-    @Published var generatedAddrress: String = ""
+    @Published var generatedAddress: String = ""
+    @Published var secretPhrase: [String] = ["essay", "work", "merry", "clap", "coast", "arm", "nephew", "dog", "banana", "liberty", "please", "reward"]
 
-    let generateWalletDelay = 3.75
+    let generateWalletDelay = 6.0
+
+    func pasteText() -> String {
+        guard let clipboard = UIPasteboard.general.string else {
+            return ""
+        }
+
+        return clipboard.cleanUpPastedText()
+    }
+
+    func copyPrivateKey() {
+        UIPasteboard.general.string = secretPhrase.joined(separator: " ")
+    }
 
     func newWallet(completion: (() -> Void)?) {
         DispatchQueue.main.async {
