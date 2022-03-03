@@ -14,6 +14,8 @@ struct SetPasswordView: View {
     @ObservedObject private var store: UserOnboardingServices
 
     @State var disableSetPassword: Bool = true
+    @State var passwordText: String = ""
+    @State var confirmPasswordText: String = ""
 
     init(services: UnauthenticatedServices) {
         self.store = services.userOnboarding
@@ -26,8 +28,15 @@ struct SetPasswordView: View {
             VStack(alignment: .center, spacing: 20) {
                 Spacer()
 
-                TextFieldSingleBordered(text: "", placeholder: "password", systemImage: "lock.shield", textLimit: 20, onEditingChanged: { text in
-                    print("text changed: \(text)")
+                TextFieldSingleBordered(text: passwordText, placeholder: "password", textLimit: 20, isSecure: true, onEditingChanged: { text in
+                    print("password changed: \(text)")
+                }, onCommit: {
+                    print("returned username ehh")
+                })
+                .frame(maxWidth: Constants.iPadMaxWidth)
+
+                TextFieldSingleBordered(text: confirmPasswordText, placeholder: "confirm password", textLimit: 20, isSecure: true, onEditingChanged: { text in
+                    print("confirm password changed: \(text)")
                 }, onCommit: {
                     print("returned username ehh")
                 })

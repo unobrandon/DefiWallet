@@ -13,6 +13,8 @@ struct TextFieldSingleBordered: View {
 
     @State private var hasText: Bool = false
     @State private var exceededLimit: Bool = false
+    @State private var isSecure: Bool = false
+    @State private var isTextVisible: Bool = false
     @FocusState private var focusedField: Bool
 
     private let placeholder: String
@@ -48,6 +50,15 @@ struct TextFieldSingleBordered: View {
         self.onEditingChanged = onEditingChanged
     }
 
+    init(text: String, placeholder: String, textLimit: Int?, isSecure: Bool, onEditingChanged: @escaping (String) -> Void = { _ in }, onCommit: @escaping () -> Void) {
+        self.text = text
+        self.placeholder = placeholder
+        self.textLimit = textLimit ?? 0
+        self.isSecure = isSecure
+        self.onCommit = onCommit
+        self.onEditingChanged = onEditingChanged
+    }
+
     init(placeholder: String, onEditingChanged: @escaping (String) -> Void = { _ in }, onCommit: @escaping () -> Void) {
         self.placeholder = placeholder
         self.onCommit = onCommit
@@ -74,32 +85,30 @@ struct TextFieldSingleBordered: View {
                         .offset(y: hasText ? 5 : 0)
                 }
 
-                TextField("", text: $text)
-                    .focused($focusedField)
-                    .offset(y: hasText ? 5 : 0)
-                    .onSubmit { self.onCommit() }
-                    .onChange(of: text) { text in
-                        self.onEditingChanged(text)
+                if isSecure && !isTextVisible {
+                    SecureField("", text: $text)
+                        .focused($focusedField)
+                        .offset(y: hasText ? 4 : 0)
+                        .onSubmit { self.onCommit() }
+                } else {
+                    TextField("", text: $text)
+                        .focused($focusedField)
+                        .offset(y: hasText ? 5 : 0)
+                        .onSubmit { self.onCommit() }
+                }
 
-                        if text.count >= textLimit, textLimit != 0 {
-                            exceededLimit = true
+                if isSecure {
+                    Button {
+                        isTextVisible.toggle()
+                        #if os(iOS)
                             HapticFeedback.lightHapticFeedback()
-                        } else {
-                            exceededLimit = false
-                        }
-
-                        guard text.isEmpty, hasText else {
-                            withAnimation(.spring(response: 0.25, dampingFraction: 0.85, blendDuration: 0)) {
-                                hasText = true
-                            }
-
-                            return
-                        }
-
-                        withAnimation(.spring(response: 0.25, dampingFraction: 0.85, blendDuration: 0)) {
-                            hasText = false
-                        }
+                        #endif
+                    } label: {
+                        Image(systemName: isTextVisible ? "eye" : "eye.slash")
+                            .foregroundColor(.secondary)
                     }
+                    .padding(.trailing, 5)
+                }
             }
             .padding(.top, hasText ? 7.5 : 0)
             .background(
@@ -123,6 +132,28 @@ struct TextFieldSingleBordered: View {
                     .stroke(exceededLimit ? Color("alertRed") : DefaultTemplate.borderColor, lineWidth: 2)
                     .shadow(color: focusedField ? .black.opacity(0.1) : .clear, radius: 5, x: 0, y: 1))
         .padding(.horizontal)
+        .onChange(of: text) { text in
+            self.onEditingChanged(text)
+
+            if text.count >= textLimit, textLimit != 0 {
+                exceededLimit = true
+                HapticFeedback.lightHapticFeedback()
+            } else {
+                exceededLimit = false
+            }
+
+            guard text.isEmpty, hasText else {
+                withAnimation(.spring(response: 0.25, dampingFraction: 0.85, blendDuration: 0)) {
+                    hasText = true
+                }
+
+                return
+            }
+
+            withAnimation(.spring(response: 0.25, dampingFraction: 0.85, blendDuration: 0)) {
+                hasText = false
+            }
+        }
         .onAppear {
             if !text.isEmpty {
                 hasText = true

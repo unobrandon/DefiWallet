@@ -26,55 +26,52 @@ struct GenerateWalletView: View {
         ZStack(alignment: .center) {
             Color("baseBackground").ignoresSafeArea()
 
-            VStack(alignment: .center, spacing: 20) {
+            VStack(alignment: .center, spacing: 10) {
 
                 if !doneGenerating {
-                    VStack(alignment: .leading, spacing: 0) {
-                        HStack(alignment: .center, spacing: 0) {
-                            Text("0x").fontTemplate(DefaultTemplate.monospace)
+                    HStack(alignment: .center, spacing: 0) {
+                        Text("0x").fontTemplate(DefaultTemplate.monospace)
 
-                            MovingNumbersView(number: ethAddress, numberOfDecimalPlaces: 0, showComma: false) { str in
-                                Text(self.customLabelMapping(str))
-                                    .fontTemplate(DefaultTemplate.monospace)
-                            }
-                            .mask(AppGradients.movingNumbersMask)
-
-                            Text("...").fontTemplate(DefaultTemplate.monospace)
-
-                            MovingNumbersView(number: ethAddress, numberOfDecimalPlaces: 0, showComma: false) { str in
-                                Text(self.customLabelMapping(str))
-                                    .fontTemplate(DefaultTemplate.monospace)
-                            }
-                            .mask(AppGradients.movingNumbersMask)
-                        }.onReceive(timer) { _ in
-                            let low: Int = 10000000
-                            let high: Int = 99999999
-                            let randomInt = Int.random(in: low..<high)
-                            self.ethAddress = Double(randomInt)
+                        MovingNumbersView(number: ethAddress, numberOfDecimalPlaces: 0, fixedWidth: 50, showComma: false) { str in
+                            Text(self.customLabelMapping(str))
+                                .fontTemplate(DefaultTemplate.monospace)
                         }
+                        .mask(AppGradients.movingNumbersMask)
+
+                        Text("...").fontTemplate(DefaultTemplate.monospace)
+
+                        MovingNumbersView(number: ethAddress, numberOfDecimalPlaces: 0, fixedWidth: 50, showComma: false) { str in
+                            Text(self.customLabelMapping(str))
+                                .fontTemplate(DefaultTemplate.monospace)
+                        }
+                        .mask(AppGradients.movingNumbersMask)
                     }
                     .padding(5)
                     .background(RoundedRectangle(cornerRadius: 3).foregroundColor(Color("baseButton")))
+                    .onReceive(timer) { _ in
+                        let low: Int = 10000000
+                        let high: Int = 99999999
+                        let randomInt = Int.random(in: low..<high)
+                        self.ethAddress = Double(randomInt)
+                    }
                 } else {
                     Text(store.generatedAddrress.formatAddressExtended())
                         .fontTemplate(DefaultTemplate.monospace)
-                        .multilineTextAlignment(.leading)
                         .padding(5)
                         .background(RoundedRectangle(cornerRadius: 3).foregroundColor(Color("baseButton")))
+                        .mask(AppGradients.movingNumbersMask)
                 }
 
                 VStack(alignment: .center, spacing: 10) {
-                    if !doneGenerating {
-                        LoadingIndicator(size: 20)
-                    } else {
+                    Text(!doneGenerating ? "generating..." : "success!")
+                        .fontTemplate(DefaultTemplate.body)
+
+                    if doneGenerating {
                         CheckmarkView(size: 30)
                             .onAppear {
                                 store.generatedAddrress = "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9"
                             }
                     }
-
-                    Text(!doneGenerating ? "generating..." : "success!")
-                        .fontTemplate(DefaultTemplate.body)
                 }
             }
         }
@@ -90,7 +87,9 @@ struct GenerateWalletView: View {
             }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + store.generateWalletDelay) {
-                doneGenerating = true
+                withAnimation {
+                    doneGenerating = true
+                }
                 self.timer.upstream.connect().cancel()
 
                 #if os(iOS)
