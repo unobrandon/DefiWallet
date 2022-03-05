@@ -88,11 +88,13 @@ struct TextFieldSingleBordered: View {
                 if isSecure && !isTextVisible {
                     SecureField("", text: $text)
                         .focused($focusedField)
+                        .autocapitalization(.none)
                         .offset(y: hasText ? 4 : 0)
                         .onSubmit { self.onCommit() }
                 } else {
                     TextField("", text: $text)
                         .focused($focusedField)
+                        .autocapitalization(isSecure ? .none : .words)
                         .offset(y: hasText ? 5 : 0)
                         .onSubmit { self.onCommit() }
                 }

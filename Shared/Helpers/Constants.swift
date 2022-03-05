@@ -10,30 +10,21 @@ import SwiftUI
 public struct Constants {
     // Made for both iOS and macOS
 
+    static let moralisBaseWssUrl = "wss://speedy-nodes-nyc.moralis.io/"
+    static let infuraBaseWssUrl = "wss://mainnet.infura.io/ws/v3/"
+    static let zapperBaseUrl = "https://api.zapper.fi/v1/"
+
+    static let iPadMaxWidth: CGFloat = 640
+    static let generateWalletDelay = 5.0
+
+    // MARK: General
+
     enum DeviceType {
         case ios
         case mac
         case macCatalyst
         case unknown
     }
-
-    static var device: DeviceType {
-        #if targetEnvironment(macCatalyst)
-        return .macCatalyst
-        #elseif os(macOS)
-        return .mac
-        #elseif os(iOS)
-        return .ios
-        #endif
-    }
-
-    static let moralisBaseWssUrl = "wss://speedy-nodes-nyc.moralis.io/"
-    static let infuraBaseWssUrl = "wss://mainnet.infura.io/ws/v3/"
-    static let zapperBaseUrl = "https://api.zapper.fi/v1/"
-
-    static let iPadMaxWidth: CGFloat = 640
-
-    // MARK: General
 
     static var projectName: String {
         #if targetEnvironment(macCatalyst)
@@ -55,7 +46,18 @@ public struct Constants {
         #endif
     }
 
+    static var device: DeviceType {
+        #if targetEnvironment(macCatalyst)
+        return .macCatalyst
+        #elseif os(macOS)
+        return .mac
+        #elseif os(iOS)
+        return .ios
+        #endif
+    }
+
     // MARK: Keys
+
     static var zapperApiKey: String {
         guard let key = Bundle.main.infoDictionary?["ZAPPER_API_KEY"] as? String else { return "api_key=" }
         return "api_key=" + key

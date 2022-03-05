@@ -1,29 +1,33 @@
 //
-//  TextViewBordered.swift
+//  TextViewInteractiveBordered.swift
 //  DefiWallet
 //
-//  Created by Brandon Shaw on 2/27/22.
+//  Created by Brandon Shaw on 3/4/22.
 //
 
 import SwiftUI
 import SwiftUIX
 
-struct TextViewBordered: View {
+struct TextViewInteractiveBordered: View {
 
     @Binding var text: String
+    @Binding var hasError: Bool
 
     @State private var hasText: Bool = false
     @State private var isFocused: Bool = false
     @State private var exceededLimit: Bool = false
 
     private let placeholder: String
+    private let errorMessage: String
     private var textLimit: Int
     private var maxHeight: Int
     private let onCommit: () -> Void
 
-    init(text: Binding<String>, placeholder: String, textLimit: Int?, maxHeight: Int?, onCommit: @escaping () -> Void) {
+    init(text: Binding<String>, hasError: Binding<Bool>, placeholder: String, errorMessage: String, textLimit: Int?, maxHeight: Int?, onCommit: @escaping () -> Void) {
         self._text = text
+        self._hasError = hasError
         self.placeholder = placeholder
+        self.errorMessage = errorMessage
         self.textLimit = textLimit ?? 0
         self.maxHeight = maxHeight ?? 120
         self.onCommit = onCommit
@@ -35,7 +39,7 @@ struct TextViewBordered: View {
                 self.isFocused = isFocused
             }, onCommit: { self.onCommit() })
             #if os(iOS)
-            .returnKeyType(.next)
+            .returnKeyType(.join)
             #endif
             .padding(.horizontal)
             .offset(y: hasText ? 12.5 : 0)
@@ -44,12 +48,12 @@ struct TextViewBordered: View {
                     Text(placeholder)
                         .scaleEffect(hasText ? 0.8 : 1)
                         .lineLimit(hasText ? 1 : 3)
-                        .foregroundColor(hasText ? (exceededLimit ? .red : (isFocused ? Color("AccentColor") : .secondary)) : .secondary)
+                        .foregroundColor(hasText ? (exceededLimit || hasError ? .red : (isFocused ? Color("AccentColor") : .secondary)) : .secondary)
 
                     if hasText && textLimit != 0 {
-                        Text("\(text.count)" + "/" + "\(textLimit)")
+                        Text(hasError ? errorMessage : "\(text.count)" + "/" + "\(textLimit)")
                             .font(.caption)
-                            .foregroundColor(exceededLimit ? .red : .secondary)
+                            .foregroundColor(exceededLimit || hasError ? .red : .secondary)
                             .offset(x: -5)
                     }
                     Spacer()
@@ -82,7 +86,7 @@ struct TextViewBordered: View {
         .padding(.vertical, 12.5)
         .cornerRadius(10)
         .overlay(RoundedRectangle(cornerRadius: 10, style: .circular)
-                    .stroke(exceededLimit ? Color("alertRed") : DefaultTemplate.borderColor, lineWidth: 2)
+                    .stroke(exceededLimit || hasError ? Color("alertRed") : DefaultTemplate.borderColor, lineWidth: 2)
                     .shadow(color: isFocused ? .black.opacity(0.1) : .clear, radius: 5, x: 0, y: 1))
         .onAppear {
             if !text.isEmpty {
@@ -96,5 +100,4 @@ struct TextViewBordered: View {
             }
         }
     }
-
 }

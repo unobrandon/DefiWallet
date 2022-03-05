@@ -11,39 +11,70 @@ struct CompletedView: View {
 
     @EnvironmentObject private var unauthenticatedRouter: UnauthenticatedCoordinator.Router
 
-    @ObservedObject private var store: UserOnboardingServices
+    @ObservedObject private var store: UnauthenticatedServices
+
+    @State var confettiCounter: Int = 0
 
     init(services: UnauthenticatedServices) {
-        self.store = services.userOnboarding
+        self.store = services
     }
 
     var body: some View {
         ZStack(alignment: .center) {
             Color("baseBackground").ignoresSafeArea()
 
-            VStack(alignment: .center, spacing: 20) {
+            VStack(alignment: .center, spacing: 0) {
                 Spacer()
 
-                HeaderIcon(size: 48, imageName: "person.text.rectangle")
+                Button(action: {
+                    self.confettiCounter += 1
+
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
+                }, label: {
+                    HeaderIcon(size: 48, imageName: "person.text.rectangle")
+                        .padding(.bottom)
+                })
+                .buttonStyle(ClickInteractiveStyle())
+
+                Text("Congratulations!")
+                    .fontTemplate(DefaultTemplate.titleSemibold)
+                    .padding(.horizontal)
+                    .multilineTextAlignment(.center)
                     .padding(.bottom)
 
-                Text("Congrats!")
-                    .fontTemplate(DefaultTemplate.subheadingBold)
-                    .padding(.horizontal)
-                    .multilineTextAlignment(.center)
-
-                Text("Your \(Constants.projectName) wallet is fully set up. You can begin to explore all the possibilities.")
-                    .fontTemplate(DefaultTemplate.bodySemibold)
+                Text("Your \(Constants.projectName) wallet is fully set up. You can now begin to explore all the possibilities.")
+                    .fontTemplate(DefaultTemplate.subheadingSemiBold)
                     .padding(.horizontal)
                     .multilineTextAlignment(.center)
 
                 Spacer()
+                TermsOfServiceButton(action: {
+                    unauthenticatedRouter.route(to: \.terms)
+                })
+                .padding(.bottom)
+
                 RoundedButton("Get Started", style: .primary, systemImage: nil, action: {
 
                 })
                 .padding(.bottom, 10)
             }
+
+            ConfettiCannon(counter: $confettiCounter, repetitions: confettiCounter >= 1 ? 1 : 3, repetitionInterval: 0.2)
         }.navigationBarTitle("", displayMode: .inline)
+        #if os(iOS)
+        .navigationBarBackButtonHidden(true)
+        #endif
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                self.confettiCounter += 1
+
+                #if os(iOS)
+                    HapticFeedback.successHapticFeedback()
+                #endif
+            }
+        }
     }
 
 }

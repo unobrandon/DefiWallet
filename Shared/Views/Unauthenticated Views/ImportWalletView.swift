@@ -12,13 +12,17 @@ struct ImportWalletView: View {
 
     @EnvironmentObject private var unauthenticatedRouter: UnauthenticatedCoordinator.Router
 
-    @ObservedObject private var store: UserOnboardingServices
+    @ObservedObject private var store: UnauthenticatedServices
 
     @State var textViewText: String = ""
+    @State var isLoading: Bool = false
+    @State var isSuccess: Bool = false
     @State var disablePrimaryAction: Bool = true
+    @State var invalidPhrase: Bool = false
+    @State var attempts: Int = 0
 
     init(services: UnauthenticatedServices) {
-        self.store = services.userOnboarding
+        self.store = services
     }
 
     var body: some View {
@@ -42,16 +46,22 @@ struct ImportWalletView: View {
                     .multilineTextAlignment(.center)
 
                 Spacer()
-                TextViewBordered(text: $textViewText, placeholder: "enter 12 or 24-word recovery phrase here", textLimit: nil, maxHeight: 100, onCommit: {
-                    print("commit ed")
+                TextViewInteractiveBordered(text: $textViewText, hasError: $invalidPhrase,
+                                            placeholder: "enter 12 or 24-word recovery phrase here",
+                                            errorMessage: "invalid secret phrase, please try again",
+                                            textLimit: nil, maxHeight: 100, onCommit: {
+                    guard !isLoading, !isSuccess else { return }
+
+                    submitInput()
                 })
+                .modifier(Shake(animatableData: CGFloat(attempts)))
                 .frame(maxWidth: Constants.iPadMaxWidth)
                 .onChange(of: textViewText, perform: { text in
-                    enablePrimaryButton(text: text)
+                    enablePrimaryButton(text)
                 })
 
                 HStack(alignment: .top, spacing: 5) {
-                    Text("seed phrases and private keys are stored offline on your device.")
+                    Text("secret recovery phrases are stored offline on your local device.")
                         .fontTemplate(DefaultTemplate.caption)
                         .multilineTextAlignment(.leading)
 
@@ -73,37 +83,75 @@ struct ImportWalletView: View {
                 .frame(maxWidth: 640)
 
                 Spacer()
-                RoundedInteractiveButton("Import Wallet", isDisabled: $disablePrimaryAction, style: .primary, systemImage: "arrow.down.to.line", action: {
-                    if !disablePrimaryAction {
-                        unauthenticatedRouter.route(to: \.setPassword)
-                        #if os(iOS)
-                            HapticFeedback.successHapticFeedback()
-                        #endif
-                    } else {
-                        #if os(iOS)
-                            HapticFeedback.errorHapticFeedback()
-                        #endif
-                    }
-                })
-                .padding(.bottom, 10)
+                if isLoading {
+                    LoadingIndicator(size: 36).padding(.bottom, 10)
+                } else if isSuccess {
+                    CheckmarkView(size: 42, color: .green)
+                        .padding(.bottom, 10)
+                } else {
+                    RoundedInteractiveButton("Import Wallet", isDisabled: $disablePrimaryAction, style: .primary, systemImage: "arrow.down.to.line", action: {
+                        submitInput()
+                    }).padding(.bottom, 10)
+                }
             }
             .padding(.horizontal)
         }
         .navigationBarTitle("Import Wallet", displayMode: .inline)
     }
-    private func enablePrimaryButton(text: String) {
-        guard let count = textViewText.countWords() else {
-            disablePrimaryAction = false
+
+    private func enablePrimaryButton(_ text: String) {
+        guard let count = textViewText.countWords(),
+                count == 12 ||
+                count == 24 ||
+                textViewText.count == 64 else {
+            disablePrimaryAction = true
+            invalidPhrase = false
             return
         }
 
-        if count == 12 || count == 24 || textViewText.count == 64 {
-            disablePrimaryAction = true
-            print("isDisabled: true")
-        } else {
-            disablePrimaryAction = false
-            print("isDisabled: false")
+        disablePrimaryAction = false
+    }
+
+    private func submitInput() {
+        guard !disablePrimaryAction else {
+            #if os(iOS)
+                HapticFeedback.errorHapticFeedback()
+            #endif
+
+            return
         }
+
+        isLoading = true
+        textViewText = textViewText.cleanUpPastedText()
+        isSuccess = false
+
+        store.checkPhraseValid(textViewText, completion: { isValid in
+            isLoading = false
+
+            if isValid {
+                invalidPhrase = false
+                isSuccess = true
+
+                #if os(iOS)
+                    HapticFeedback.successHapticFeedback()
+                #endif
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    unauthenticatedRouter.route(to: \.setPassword)
+                    isSuccess = true
+                }
+            } else {
+                invalidPhrase = true
+                isSuccess = false
+                withAnimation(.easeOut(duration: 0.32)) {
+                    attempts += 1
+                }
+
+                #if os(iOS)
+                    HapticFeedback.errorHapticFeedback()
+                #endif
+            }
+        })
     }
 
 }

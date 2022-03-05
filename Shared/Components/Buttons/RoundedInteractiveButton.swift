@@ -79,7 +79,6 @@ struct RoundedInteractiveButton: View {
                 Text(title).font(.headline)
                 Spacer()
             }
-            .buttonStyle(ClickInteractiveStyle())
             .foregroundColor(isDisabled ? .secondary : foregroundColor)
             .padding()
             .background(

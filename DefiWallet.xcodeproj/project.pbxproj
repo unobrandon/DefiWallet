@@ -23,7 +23,6 @@
 		051BCF6F27BCD69F0056E047 /* SwiftLintFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF6E27BCD69F0056E047 /* SwiftLintFramework */; };
 		051BCF7127BCD69F0056E047 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF7027BCD69F0056E047 /* Realm */; };
 		051BCF7327BCD69F0056E047 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF7227BCD69F0056E047 /* RealmSwift */; };
-		051BCF7427BCD6A60056E047 /* UserOnboardingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070627B8EC2E0008051B /* UserOnboardingServices.swift */; };
 		053C7D3B27CD903B0081DCEA /* MovingNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */; };
 		053C7D3C27CD903B0081DCEA /* MovingNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */; };
 		053C7D3F27CDBF600081DCEA /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053C7D3E27CDBF600081DCEA /* CheckmarkView.swift */; };
@@ -69,7 +68,6 @@
 		0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */; };
 		0578070427B8E8E00008051B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070327B8E8E00008051B /* RoundedButton.swift */; };
 		0578070527B8E8E00008051B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070327B8E8E00008051B /* RoundedButton.swift */; };
-		0578070727B8EC2E0008051B /* UserOnboardingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070627B8EC2E0008051B /* UserOnboardingServices.swift */; };
 		0578070C27B8F1370008051B /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070B27B8F1370008051B /* WalletView.swift */; };
 		0578070F27B8F1BC0008051B /* WalletCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578070E27B8F1BC0008051B /* WalletCoordinator.swift */; };
 		0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */; };
@@ -155,6 +153,24 @@
 		05D1098727C3537D008DCC66 /* ProdPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098527C3537C008DCC66 /* ProdPrivateKeys.xcconfig */; };
 		05D1098927C36EFF008DCC66 /* DevPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */; };
 		05D1098A27C36EFF008DCC66 /* DevPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */; };
+		05E5F84227D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */; };
+		05E5F84327D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */; };
+		05E5F84527D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */; };
+		05E5F84627D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */; };
+		05E5F84927D321920090290C /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84827D321920090290C /* Shake.swift */; };
+		05E5F84A27D321920090290C /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84827D321920090290C /* Shake.swift */; };
+		05E5F84C27D34F570090290C /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84B27D34F570090290C /* PermissionsView.swift */; };
+		05E5F84D27D34F570090290C /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84B27D34F570090290C /* PermissionsView.swift */; };
+		05E5F84F27D351CA0090290C /* BiometryBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84E27D351CA0090290C /* BiometryBanner.swift */; };
+		05E5F85027D351CA0090290C /* BiometryBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84E27D351CA0090290C /* BiometryBanner.swift */; };
+		05E5F85327D3614A0090290C /* ConfettiSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85227D3614A0090290C /* ConfettiSwiftUI.swift */; };
+		05E5F85427D3614A0090290C /* ConfettiSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85227D3614A0090290C /* ConfettiSwiftUI.swift */; };
+		05E5F85727D361980090290C /* RoundedCross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85627D361980090290C /* RoundedCross.swift */; };
+		05E5F85827D361980090290C /* RoundedCross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85627D361980090290C /* RoundedCross.swift */; };
+		05E5F85A27D361AF0090290C /* SlimRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85927D361AF0090290C /* SlimRectangle.swift */; };
+		05E5F85B27D361AF0090290C /* SlimRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85927D361AF0090290C /* SlimRectangle.swift */; };
+		05E5F85D27D361CA0090290C /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85C27D361CA0090290C /* Triangle.swift */; };
+		05E5F85E27D361CA0090290C /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85C27D361CA0090290C /* Triangle.swift */; };
 		05E8589427C5D7F000B85195 /* GasPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8589327C5D7F000B85195 /* GasPrice.swift */; };
 		05E8589527C5D7F000B85195 /* GasPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8589327C5D7F000B85195 /* GasPrice.swift */; };
 		05E8589827C9D5D000B85195 /* CarouselViewOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8589727C9D5D000B85195 /* CarouselViewOne.swift */; };
@@ -251,7 +267,6 @@
 		057806FB27B8E56B0008051B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedServices.swift; sourceTree = "<group>"; };
 		0578070327B8E8E00008051B /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
-		0578070627B8EC2E0008051B /* UserOnboardingServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingServices.swift; sourceTree = "<group>"; };
 		0578070B27B8F1370008051B /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		0578070E27B8F1BC0008051B /* WalletCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCoordinator.swift; sourceTree = "<group>"; };
 		0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletCoordinator+Factory.swift"; sourceTree = "<group>"; };
@@ -294,6 +309,15 @@
 		05D1098227C31511008DCC66 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		05D1098527C3537C008DCC66 /* ProdPrivateKeys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ProdPrivateKeys.xcconfig; sourceTree = "<group>"; };
 		05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DevPrivateKeys.xcconfig; sourceTree = "<group>"; };
+		05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRoundedInteractiveStyle.swift; sourceTree = "<group>"; };
+		05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewInteractiveBordered.swift; sourceTree = "<group>"; };
+		05E5F84827D321920090290C /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
+		05E5F84B27D34F570090290C /* PermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsView.swift; sourceTree = "<group>"; };
+		05E5F84E27D351CA0090290C /* BiometryBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometryBanner.swift; sourceTree = "<group>"; };
+		05E5F85227D3614A0090290C /* ConfettiSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiSwiftUI.swift; sourceTree = "<group>"; };
+		05E5F85627D361980090290C /* RoundedCross.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCross.swift; sourceTree = "<group>"; };
+		05E5F85927D361AF0090290C /* SlimRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlimRectangle.swift; sourceTree = "<group>"; };
+		05E5F85C27D361CA0090290C /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		05E8589327C5D7F000B85195 /* GasPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasPrice.swift; sourceTree = "<group>"; };
 		05E8589727C9D5D000B85195 /* CarouselViewOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewOne.swift; sourceTree = "<group>"; };
 		05E8589A27C9DA3700B85195 /* CarouselViewTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewTwo.swift; sourceTree = "<group>"; };
@@ -376,7 +400,6 @@
 			isa = PBXGroup;
 			children = (
 				057806FE27B8E5B20008051B /* UnauthenticatedServices.swift */,
-				0578070627B8EC2E0008051B /* UserOnboardingServices.swift */,
 			);
 			path = Unauthenticated;
 			sourceTree = "<group>";
@@ -391,7 +414,9 @@
 		053C7D3927CD8FC20081DCEA /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				05E5F84727D321860090290C /* Animations */,
 				0578077127BB71250008051B /* IrregularGradients */,
+				05E5F85127D361250090290C /* ConfettiView */,
 				053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */,
 			);
 			path = Extra;
@@ -727,6 +752,7 @@
 				05E858A927C9F75C00B85195 /* GenerateWalletView.swift */,
 				058C786427D07E3600EB91CA /* PrivateKeysView.swift */,
 				053C7D4427CDD5620081DCEA /* PasswordView.swift */,
+				05E5F84B27D34F570090290C /* PermissionsView.swift */,
 				053C7D4127CDCFDE0081DCEA /* EnsProfileView.swift */,
 				058C786A27D09E5900EB91CA /* CompletedView.swift */,
 			);
@@ -743,6 +769,33 @@
 				0578070A27B8F0720008051B /* Profile View */,
 			);
 			path = "Authenticated Views";
+			sourceTree = "<group>";
+		};
+		05E5F84727D321860090290C /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				05E5F84827D321920090290C /* Shake.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		05E5F85127D361250090290C /* ConfettiView */ = {
+			isa = PBXGroup;
+			children = (
+				05E5F85527D3616D0090290C /* Shapes */,
+				05E5F85227D3614A0090290C /* ConfettiSwiftUI.swift */,
+			);
+			path = ConfettiView;
+			sourceTree = "<group>";
+		};
+		05E5F85527D3616D0090290C /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				05E5F85627D361980090290C /* RoundedCross.swift */,
+				05E5F85927D361AF0090290C /* SlimRectangle.swift */,
+				05E5F85C27D361CA0090290C /* Triangle.swift */,
+			);
+			path = Shapes;
 			sourceTree = "<group>";
 		};
 		05E8589627C9D5A000B85195 /* Welcome Carousel */ = {
@@ -762,6 +815,7 @@
 				05E858C327CB230B00B85195 /* EmptyAvatarView.swift */,
 				05E858CD27CB25C200B85195 /* AlertBadge.swift */,
 				058C786727D0831700EB91CA /* AlertBanner.swift */,
+				05E5F84E27D351CA0090290C /* BiometryBanner.swift */,
 				05E858F027CB43BC00B85195 /* LoadingIndicator.swift */,
 				053C7D3E27CDBF600081DCEA /* CheckmarkView.swift */,
 				05E8590427CC198A00B85195 /* TermsView.swift */,
@@ -810,6 +864,7 @@
 			isa = PBXGroup;
 			children = (
 				05E858D427CB264600B85195 /* DefaultInteractiveStyle.swift */,
+				05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */,
 				05E858D527CB264600B85195 /* ClickInteractiveStyle.swift */,
 			);
 			path = Modifiers;
@@ -829,6 +884,7 @@
 				05E858F427CB481D00B85195 /* TextFieldSingleBordered.swift */,
 				05E858F727CB5A3200B85195 /* TextFieldSingleList.swift */,
 				05E858FA27CB5FCC00B85195 /* TextViewBordered.swift */,
+				05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */,
 			);
 			path = "Text Fields";
 			sourceTree = "<group>";
@@ -1049,6 +1105,7 @@
 				0578077F27BB87C80008051B /* Wallet.swift in Sources */,
 				057806E527B8DF240008051B /* CurrentUser.swift in Sources */,
 				0578071827B8F6980008051B /* ProfileCoordinator.swift in Sources */,
+				05E5F84C27D34F570090290C /* PermissionsView.swift in Sources */,
 				057806FC27B8E56B0008051B /* WelcomeView.swift in Sources */,
 				05E858AA27C9F75C00B85195 /* GenerateWalletView.swift in Sources */,
 				057806BE27B8432B0008051B /* Constants.swift in Sources */,
@@ -1065,23 +1122,28 @@
 				0578073F27BB5B470008051B /* InvestView.swift in Sources */,
 				0578071B27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */,
 				05E858D627CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */,
+				05E5F85727D361980090290C /* RoundedCross.swift in Sources */,
 				0578076F27BB6D200008051B /* DefaultTemplate.swift in Sources */,
 				0578070C27B8F1370008051B /* WalletView.swift in Sources */,
 				0578074C27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
 				058C786827D0831700EB91CA /* AlertBanner.swift in Sources */,
+				05E5F85D27D361CA0090290C /* Triangle.swift in Sources */,
 				057806F027B8E25F0008051B /* UnauthenticatedCoordinator.swift in Sources */,
+				05E5F84F27D351CA0090290C /* BiometryBanner.swift in Sources */,
 				05E858CE27CB25C200B85195 /* AlertBadge.swift in Sources */,
 				0578073227BB59D30008051B /* MarketsCoordinator+Factory.swift in Sources */,
+				05E5F84927D321920090290C /* Shake.swift in Sources */,
 				0578074127BB5B500008051B /* DiscoverCoordinator+Factory.swift in Sources */,
 				05E858B927CA04D000B85195 /* MainCarouselView.swift in Sources */,
+				05E5F84227D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */,
 				05D1096727C0C241008DCC66 /* AuthenticatedCoordinator.swift in Sources */,
 				05D1098327C31511008DCC66 /* StorageService.swift in Sources */,
 				0578074F27BB5ED00008051B /* View+Extensions.swift in Sources */,
 				05E858D127CB25EB00B85195 /* NotificationHUD.swift in Sources */,
+				05E5F85327D3614A0090290C /* ConfettiSwiftUI.swift in Sources */,
 				051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */,
 				058C785F27D06D5600EB91CA /* HeaderIcon.swift in Sources */,
 				05E858A027C9F62000B85195 /* ImportWalletView.swift in Sources */,
-				0578070727B8EC2E0008051B /* UserOnboardingServices.swift in Sources */,
 				058C786B27D09E5900EB91CA /* CompletedView.swift in Sources */,
 				053C7D3B27CD903B0081DCEA /* MovingNumbersView.swift in Sources */,
 				053EC29227BE0E3600FBC681 /* InvestService.swift in Sources */,
@@ -1089,7 +1151,9 @@
 				05E8589B27C9DA3700B85195 /* CarouselViewTwo.swift in Sources */,
 				057806E827B8DF980008051B /* AuthenticationService.swift in Sources */,
 				057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
+				05E5F85A27D361AF0090290C /* SlimRectangle.swift in Sources */,
 				051BCF5227BC87DB0056E047 /* AccountBalance.swift in Sources */,
+				05E5F84527D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */,
 				0578074927BB5E610008051B /* FontTemplating.swift in Sources */,
 				05E858FB27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,
 				05E858F127CB43BC00B85195 /* LoadingIndicator.swift in Sources */,
@@ -1107,10 +1171,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05E5F85027D351CA0090290C /* BiometryBanner.swift in Sources */,
 				05D1095127C08B3E008DCC66 /* ProfileCoordinator.swift in Sources */,
 				05E858BB27CA069400B85195 /* MainCarouselView.swift in Sources */,
 				05D1095E27C08D1B008DCC66 /* MacAuthenticatedCoordinator+Factory.swift in Sources */,
+				05E5F84627D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */,
 				05E858EC27CB322100B85195 /* ListSection.swift in Sources */,
+				05E5F85B27D361AF0090290C /* SlimRectangle.swift in Sources */,
 				05D1095927C08B3E008DCC66 /* MarketsCoordinator.swift in Sources */,
 				05D1094F27C08B3E008DCC66 /* InvestView.swift in Sources */,
 				05D1095027C08B3E008DCC66 /* WalletCoordinator+Factory.swift in Sources */,
@@ -1124,7 +1191,9 @@
 				05D1094A27C08B3E008DCC66 /* MarketsCoordinator+Factory.swift in Sources */,
 				05E858D727CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */,
 				05E858F227CB43BC00B85195 /* LoadingIndicator.swift in Sources */,
+				05E5F85827D361980090290C /* RoundedCross.swift in Sources */,
 				05D1095327C08B3E008DCC66 /* WalletView.swift in Sources */,
+				05E5F85E27D361CA0090290C /* Triangle.swift in Sources */,
 				053C7D4627CDD5620081DCEA /* PasswordView.swift in Sources */,
 				0578070527B8E8E00008051B /* RoundedButton.swift in Sources */,
 				058C786627D07E3700EB91CA /* PrivateKeysView.swift in Sources */,
@@ -1132,9 +1201,11 @@
 				058C786027D06D5600EB91CA /* HeaderIcon.swift in Sources */,
 				05D1097127C17D49008DCC66 /* ERC20Token.swift in Sources */,
 				05E858D927CB264600B85195 /* ClickInteractiveStyle.swift in Sources */,
+				05E5F85427D3614A0090290C /* ConfettiSwiftUI.swift in Sources */,
 				0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */,
 				0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */,
 				05E858C027CAEFFA00B85195 /* SettingsView.swift in Sources */,
+				05E5F84327D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */,
 				05D1094927C08B2B008DCC66 /* MainCoordinator+Factory.swift in Sources */,
 				057806E927B8DF980008051B /* AuthenticationService.swift in Sources */,
 				0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */,
@@ -1145,9 +1216,9 @@
 				05E8589527C5D7F000B85195 /* GasPrice.swift in Sources */,
 				051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
+				05E5F84D27D34F570090290C /* PermissionsView.swift in Sources */,
 				05D1095827C08B3E008DCC66 /* WelcomeView.swift in Sources */,
 				05E858AB27C9F75C00B85195 /* GenerateWalletView.swift in Sources */,
-				051BCF7427BCD6A60056E047 /* UserOnboardingServices.swift in Sources */,
 				05E858A127C9F62000B85195 /* ImportWalletView.swift in Sources */,
 				05D1095727C08B3E008DCC66 /* MarketsView.swift in Sources */,
 				05D1094727C08B2B008DCC66 /* UnauthenticatedCoordinator.swift in Sources */,
@@ -1161,6 +1232,7 @@
 				05E8589C27C9DA3700B85195 /* CarouselViewTwo.swift in Sources */,
 				053C7D4327CDCFDE0081DCEA /* EnsProfileView.swift in Sources */,
 				0578077027BB6D200008051B /* DefaultTemplate.swift in Sources */,
+				05E5F84A27D321920090290C /* Shake.swift in Sources */,
 				0578074D27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
 				05E8590027CC08F200B85195 /* RoundedInteractiveButton.swift in Sources */,
 				05D1095427C08B3E008DCC66 /* DiscoverView.swift in Sources */,

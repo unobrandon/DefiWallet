@@ -11,7 +11,7 @@ struct PrivateKeysView: View {
 
     @EnvironmentObject private var unauthenticatedRouter: UnauthenticatedCoordinator.Router
 
-    @ObservedObject private var store: UserOnboardingServices
+    @ObservedObject private var store: UnauthenticatedServices
 
     @State private var keyHidden: Bool = true
     @State private var didCopy: Bool = false
@@ -19,7 +19,7 @@ struct PrivateKeysView: View {
     private let alertMessage = "Never share your recovery phrase with anyone! Think carefully where you store this phrase."
 
     init(services: UnauthenticatedServices) {
-        self.store = services.userOnboarding
+        self.store = services
     }
 
     var body: some View {
@@ -37,10 +37,9 @@ struct PrivateKeysView: View {
                     .multilineTextAlignment(.center)
                     .padding()
 
+                Spacer()
                 AlertBanner(message: alertMessage, color: .orange)
                     .padding(.horizontal)
-
-                Spacer()
 
                 ListSection(title: "".formatAddress(store.generatedAddress), style: .border, {
                     HStack(alignment: .top, spacing: 0) {
@@ -110,7 +109,7 @@ struct PrivateKeysView: View {
                 }.padding(.horizontal)
 
                 Spacer()
-                RoundedButton("Continue", style: .primary, systemImage: nil, action: {
+                RoundedButton("Next", style: .primary, systemImage: nil, action: {
                     unauthenticatedRouter.route(to: \.setPassword)
                 })
                 .padding(.bottom, 10)

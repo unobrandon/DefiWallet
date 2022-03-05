@@ -16,7 +16,7 @@ extension String {
         let stage2 = stage1.replacingOccurrences(of: ">", with: "")
         let components = stage2.components(separatedBy: .whitespacesAndNewlines)
 
-        return components.filter { !$0.isEmpty }.joined(separator: " ")
+        return components.filter { !$0.isEmpty }.joined(separator: " ").lowercased()
      }
 
     func countWords() -> Int? {

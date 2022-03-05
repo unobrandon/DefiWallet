@@ -11,7 +11,7 @@ struct GenerateWalletView: View {
 
     @EnvironmentObject private var unauthenticatedRouter: UnauthenticatedCoordinator.Router
 
-    @ObservedObject private var store: UserOnboardingServices
+    @ObservedObject private var store: UnauthenticatedServices
 
     @State var doneGenerating: Bool = false
     @State var ethAddress: Double = 0
@@ -20,7 +20,7 @@ struct GenerateWalletView: View {
     private let timer = Timer.publish(every: 0.33, on: .main, in: .common).autoconnect()
 
     init(services: UnauthenticatedServices) {
-        self.store = services.userOnboarding
+        self.store = services
     }
 
     var body: some View {
@@ -86,23 +86,22 @@ struct GenerateWalletView: View {
                 return
             }
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + (store.generateWalletDelay * 0.5)) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.5)) {
                 withAnimation {
                     doneGenerating = true
                 }
                 self.timer.upstream.connect().cancel()
                 store.generatedAddress = "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9"
 
-                #if os(iOS)
-                    HapticFeedback.successHapticFeedback()
-                #endif
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + (store.generateWalletDelay * 0.2)) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.2)) {
                     withAnimation {
                         isConnecting = true
                     }
 
-                    DispatchQueue.main.asyncAfter(deadline: .now() + (store.generateWalletDelay * 0.3)) {
+                    #if os(iOS)
+                        HapticFeedback.successHapticFeedback()
+                    #endif
+                    DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.3)) {
                         unauthenticatedRouter.route(to: \.privateKeys)
                     }
                 }

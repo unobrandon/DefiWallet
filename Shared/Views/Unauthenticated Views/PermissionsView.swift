@@ -1,19 +1,17 @@
 //
-//  EnsUsernameView.swift
+//  EnablePermissionsView.swift
 //  DefiWallet
 //
-//  Created by Brandon Shaw on 2/28/22.
+//  Created by Brandon Shaw on 3/5/22.
 //
 
 import SwiftUI
 
-struct EnsProfileView: View {
+struct PermissionsView: View {
 
     @EnvironmentObject private var unauthenticatedRouter: UnauthenticatedCoordinator.Router
 
     @ObservedObject private var store: UnauthenticatedServices
-
-    @State var disablePrimaryAction: Bool = true
 
     init(services: UnauthenticatedServices) {
         self.store = services
@@ -26,36 +24,39 @@ struct EnsProfileView: View {
             VStack(alignment: .center, spacing: 20) {
                 Spacer()
 
-                HeaderIcon(size: 48, imageName: "person.text.rectangle")
+                HeaderIcon(size: 48, imageName: "lock.fill")
                     .padding(.bottom)
 
-                Text("Lets set up a universal username & avatar")
-                    .fontTemplate(DefaultTemplate.subheadingBold)
+                Text("Protect your wallet")
+                    .fontTemplate(DefaultTemplate.titleSemibold)
+                    .padding(.horizontal)
+                    .multilineTextAlignment(.center)
+
+                Text("Enable biometric security to help protect your wallet when signing smart contracts and transactions.")
+                    .fontTemplate(DefaultTemplate.subheadingSemiBold)
                     .padding(.horizontal)
                     .multilineTextAlignment(.center)
 
                 Spacer()
-                TextFieldSingleBordered(text: "", placeholder: "username", systemImage: "person.crop.circle", textLimit: 20, onEditingChanged: { text in
-                    print("text changed: \(text)")
-                }, onCommit: {
-                    print("returned username ehh")
-                })
-                .frame(maxWidth: Constants.iPadMaxWidth)
+
+                BiometryBanner(style: .border)
+                    .padding(.horizontal)
+                    .frame(maxWidth: Constants.iPadMaxWidth)
 
                 Spacer()
-                RoundedInteractiveButton("Set Profile", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
-
+                RoundedButton("Next", style: .primary, systemImage: nil, action: {
+                    unauthenticatedRouter.route(to: \.ensUsername)
                 })
                 .padding(.bottom, 10)
             }
-        }.navigationBarTitle("ENS Profile", displayMode: .inline)
+        }.navigationBarTitle("Enable Permission", displayMode: .inline)
         #if os(iOS)
         .navigationBarBackButtonHidden(true)
         #endif
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    unauthenticatedRouter.route(to: \.completed)
+                    unauthenticatedRouter.route(to: \.ensUsername)
                     #if os(iOS)
                         HapticFeedback.lightHapticFeedback()
                     #endif

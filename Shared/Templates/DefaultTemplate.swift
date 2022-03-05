@@ -28,6 +28,7 @@ struct DefaultTemplate {
     static let bodyMedium = FontTemplate(font: Font.system(size: 14.0), weight: .medium, foregroundColor: .primary, lineSpacing: 2)
 
     static let caption = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .secondary, lineSpacing: 2)
+    static let captionError = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .red, lineSpacing: 2)
 
     static let alertMessage = FontTemplate(font: Font.system(size: 12.0), weight: .semibold, foregroundColor: .white, lineSpacing: 0)
 

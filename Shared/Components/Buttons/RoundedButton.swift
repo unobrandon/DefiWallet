@@ -78,7 +78,6 @@ struct RoundedButton: View {
                 Text(title).font(.headline)
                 Spacer()
             }
-            .buttonStyle(ClickInteractiveStyle())
             .foregroundColor(foregroundColor)
             .padding()
             .background(

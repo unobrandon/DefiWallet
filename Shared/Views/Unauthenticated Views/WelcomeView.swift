@@ -13,12 +13,12 @@ struct WelcomeView: View {
 
     @EnvironmentObject private var unauthenticatedRouter: UnauthenticatedCoordinator.Router
 
-    @ObservedObject private var store: UserOnboardingServices
+    @ObservedObject private var store: UnauthenticatedServices
 
     @State var showSheet: Bool = false
 
     init(services: UnauthenticatedServices) {
-        self.store = services.userOnboarding
+        self.store = services
     }
 
     var body: some View {
