@@ -34,11 +34,10 @@ struct PasswordView: View {
 
                 Text("Set a password to protects your wallet.\nUsed to sign contracts & transactions.")
                     .fontTemplate(DefaultTemplate.subheadingSemiBold)
-                    .padding(.horizontal)
                     .multilineTextAlignment(.center)
 
                 Spacer()
-                TextFieldSingleBordered(text: passwordText, placeholder: "password", textLimit: 20, isSecure: true, onEditingChanged: { text in
+                TextFieldSingleBordered(text: passwordText, placeholder: "password", textLimit: 20, isSecure: true, initFocus: true, onEditingChanged: { text in
                     print("password changed: \(text)")
                     passwordText = text
                     enablePrimaryButton()
@@ -48,7 +47,7 @@ struct PasswordView: View {
                 .frame(maxWidth: Constants.iPadMaxWidth)
                 .padding(.bottom)
 
-                TextFieldSingleBordered(text: confirmPasswordText, placeholder: "confirm password", textLimit: 20, isSecure: true, onEditingChanged: { text in
+                TextFieldSingleBordered(text: confirmPasswordText, placeholder: "confirm password", textLimit: 20, isSecure: true, initFocus: false, onEditingChanged: { text in
                     print("confirm password changed: \(text)")
                     confirmPasswordText = text
                     enablePrimaryButton()
@@ -61,7 +60,6 @@ struct PasswordView: View {
                 HStack {
                     Text("minimum of 6 characters")
                         .fontTemplate(DefaultTemplate.caption)
-                        .padding(.horizontal)
                         .multilineTextAlignment(.leading)
                     Spacer()
                 }
@@ -70,13 +68,13 @@ struct PasswordView: View {
                 RoundedInteractiveButton("Set Password", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
                     let context = LAContext()
                     if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
-                        unauthenticatedRouter.route(to: \.permissions)
+                        unauthenticatedRouter.route(to: \.biometry)
                     } else {
                         unauthenticatedRouter.route(to: \.ensUsername)
                     }
                 })
-                .padding(.bottom, 10)
-            }
+                .padding(.bottom)
+            }.padding(.horizontal)
         }.navigationBarTitle("Create Password", displayMode: .inline)
     }
 

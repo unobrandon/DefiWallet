@@ -19,6 +19,7 @@ struct TextFieldSingleBordered: View {
 
     private let placeholder: String
     private var textLimit: Int = 0
+    private var initFocus: Bool = false
     private var systemImage: String = ""
     private var localImage: String = ""
     private let onEditingChanged: (String) -> Void
@@ -50,11 +51,12 @@ struct TextFieldSingleBordered: View {
         self.onEditingChanged = onEditingChanged
     }
 
-    init(text: String, placeholder: String, textLimit: Int?, isSecure: Bool, onEditingChanged: @escaping (String) -> Void = { _ in }, onCommit: @escaping () -> Void) {
+    init(text: String, placeholder: String, textLimit: Int?, isSecure: Bool, initFocus: Bool, onEditingChanged: @escaping (String) -> Void = { _ in }, onCommit: @escaping () -> Void) {
         self.text = text
         self.placeholder = placeholder
         self.textLimit = textLimit ?? 0
         self.isSecure = isSecure
+        self.initFocus = initFocus
         self.onCommit = onCommit
         self.onEditingChanged = onEditingChanged
     }
@@ -133,7 +135,6 @@ struct TextFieldSingleBordered: View {
         .overlay(RoundedRectangle(cornerRadius: 10, style: .circular)
                     .stroke(exceededLimit ? Color("alertRed") : DefaultTemplate.borderColor, lineWidth: 2)
                     .shadow(color: focusedField ? .black.opacity(0.1) : .clear, radius: 5, x: 0, y: 1))
-        .padding(.horizontal)
         .onChange(of: text) { text in
             self.onEditingChanged(text)
 
@@ -166,6 +167,9 @@ struct TextFieldSingleBordered: View {
             } else {
                 exceededLimit = false
             }
+
+            focusedField = initFocus
         }
     }
+
 }

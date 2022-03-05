@@ -28,7 +28,7 @@ struct WelcomeView: View {
 
                 VStack(alignment: .center, spacing: 20) {
                     RoundedButton("Create New Wallet", style: .primary, systemImage: "paperplane.fill", action: {
-                        guard store.generatedAddress.isEmpty else {
+                        guard store.unauthenticatedWallet.address.isEmpty else {
                             showSheet.toggle()
                             return
                         }
@@ -50,16 +50,19 @@ struct WelcomeView: View {
                 .padding(.horizontal)
                 .background(bottomGradientView(geo))
             }.background(ColorfulView(animation: Animation.easeInOut(duration: 10), colors: [.red, .pink, .purple, .blue]))
-            .confirmationDialog("We notice you have generated \(store.generatedAddress.formatAddress()).\nKeep current address or generate a new address?",
+                .confirmationDialog("We notice you have generated \(store.unauthenticatedWallet.name).\nKeep current address or generate a new address?",
                                 isPresented: $showSheet,
                                 titleVisibility: .visible) {
                 Button("Continue") {
-                    unauthenticatedRouter.route(to: \.ensUsername)
+                    unauthenticatedRouter.route(to: \.privateKeys)
                 }
 
                 Button("New Wallet", role: .destructive) {
-                    store.generatedAddress = ""
                     unauthenticatedRouter.route(to: \.generateWallet)
+
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
                 }
             }
         }.background(AppGradients.purpleGradient)

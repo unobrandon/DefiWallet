@@ -30,12 +30,16 @@ extension UnauthenticatedCoordinator {
        PasswordView(services: unauthenticatedServices)
     }
 
-    @ViewBuilder func makePermissions() -> some View {
-       PermissionsView(services: unauthenticatedServices)
+    @ViewBuilder func makeBiometry() -> some View {
+        BiometryPermissionsView(services: unauthenticatedServices)
     }
 
     @ViewBuilder func makeEnsUsername() -> some View {
         EnsProfileView(services: unauthenticatedServices)
+    }
+
+    @ViewBuilder func makeNotifications() -> some View {
+        NotiPermissionsView(services: unauthenticatedServices)
     }
 
     @ViewBuilder func makeCompleted() -> some View {

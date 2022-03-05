@@ -19,8 +19,9 @@ final class UnauthenticatedCoordinator: NavigationCoordinatable {
     @Route(.push) var generateWallet = makeGenerateWallet
     @Route(.push) var privateKeys = makePrivateKeys
     @Route(.push) var setPassword = makePassword
-    @Route(.push) var permissions = makePermissions
+    @Route(.push) var biometry = makeBiometry
     @Route(.push) var ensUsername = makeEnsUsername
+    @Route(.push) var notifications = makeNotifications
     @Route(.push) var completed = makeCompleted
     @Route(.push) var terms = makeTerms
 

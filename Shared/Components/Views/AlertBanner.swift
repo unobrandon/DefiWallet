@@ -29,9 +29,9 @@ struct AlertBanner: View {
                 .fontTemplate(DefaultTemplate.alertMessage)
                 .padding(.horizontal)
         }
-        .padding(10)
-        .background(RoundedRectangle(cornerRadius: 5, style: .circular).stroke(color, lineWidth: 1.5).background(color.opacity(0.3)))
         .frame(maxWidth: Constants.iPadMaxWidth)
+        .padding(.vertical, 10)
+        .background(RoundedRectangle(cornerRadius: 5, style: .circular).stroke(color, lineWidth: 1.5).background(color.opacity(0.3)))
     }
 
 }

@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
+import UserNotifications
 import web3swift
 
 class UnauthenticatedServices: ObservableObject {
 
     @Published var unauthenticatedWallet: Wallet = Wallet(address: "", data: Data(), name: "", isHD: true)
-    @Published var generatedAddress: String = ""
-    @Published var secretPhrase: [String] = ["essay", "work", "merry", "clap", "coast", "arm", "nephew", "dog", "banana", "liberty", "please", "reward"]
+    @Published var secretPhrase: [String] = []
 
     init() {
 
@@ -30,8 +30,16 @@ class UnauthenticatedServices: ObservableObject {
         UIPasteboard.general.string = secretPhrase.joined(separator: " ")
     }
 
-    func newWallet(completion: (() -> Void)?) {
+    func generateWallet(completion: (() -> Void)?) {
         DispatchQueue.main.async {
+            if let newWallet = self.createAccountWithSeedPhrase(walletName: "", password: "", seedStrength: .twelveWords) {
+                self.unauthenticatedWallet = newWallet
+                self.unauthenticatedWallet.name = newWallet.address.formatAddress()
+
+                completion?()
+            }
+
+            /*
             let newUser = CurrentUser(accessToken: UUID().uuidString,
                                       walletAddress: "testUsernamelol",
                                       secretPhrase: "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9",
@@ -42,8 +50,7 @@ class UnauthenticatedServices: ObservableObject {
                                       wallet: self.unauthenticatedWallet)
 
             AuthenticationService.shared.authStatus = .authenticated(newUser)
-
-            completion?()
+            */
         }
     }
 
@@ -132,6 +139,8 @@ class UnauthenticatedServices: ObservableObject {
 
             guard let address = keystore?.addresses?.first?.address else { return nil }
 
+            secretPhrase = mnemonics.components(separatedBy: " ")
+
             return Wallet(address: address, data: keyData, name: walletName, isHD: true)
         } catch {
             return nil
@@ -185,6 +194,18 @@ class UnauthenticatedServices: ObservableObject {
         } catch {
             return nil
         }
+    }
+
+    func checkNotificationPermission(completion: ((Bool) -> Void)?) {
+        UNUserNotificationCenter.current().getNotificationSettings(completionHandler: { (settings) in
+            if settings.authorizationStatus == .notDetermined {
+                completion?(false)
+            } else if settings.authorizationStatus == .denied {
+                completion?(false)
+            } else if settings.authorizationStatus == .authorized {
+                completion?(true)
+            }
+        })
     }
 
 }

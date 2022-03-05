@@ -1,14 +1,14 @@
 //
-//  EnableBiometryBanner.swift
+//  NotificationBanner.swift
 //  DefiWallet
 //
 //  Created by Brandon Shaw on 3/5/22.
 //
 
 import SwiftUI
-import LocalAuthentication
+import UserNotifications
 
-struct BiometryBanner: View {
+struct NotificationBanner: View {
 
     @State private var lockedOutText: String = ""
     @State private var toggleOn = false
@@ -22,7 +22,7 @@ struct BiometryBanner: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
-            Image(systemName: lockedOutText == "Touch ID" ? "touchid" : "faceid")
+            Image(systemName: "bell.badge")
                 .resizable()
                 .frame(width: 25, height: 25, alignment: .center)
                 .font(Font.title.weight(.medium))
@@ -30,10 +30,10 @@ struct BiometryBanner: View {
                 .padding(.horizontal, 20)
 
             VStack(alignment: .leading, spacing: 5) {
-                Text(lockedOutText)
+                Text("Push Notifications")
                     .fontTemplate(DefaultTemplate.bodyBold)
 
-                Text("Authentication with \(lockedOutText)")
+                Text("Receive alerts and more")
                     .fontTemplate(DefaultTemplate.caption)
                     .lineLimit(1)
             }
@@ -46,7 +46,7 @@ struct BiometryBanner: View {
                 .onChange(of: toggleOn) { _ in
                     guard toggleOn else { return }
 
-                    authenticate()
+                    askNotifications()
 
                     #if os(iOS)
                         HapticFeedback.rigidHapticFeedback()
@@ -58,29 +58,27 @@ struct BiometryBanner: View {
                     .stroke(DefaultTemplate.borderColor.opacity(style == .border ? 1.0 : 0.0), lineWidth: 2)
                     .foregroundColor(style == .border ? Color.clear : Color("baseButton")))
         .shadow(color: Color.black.opacity(style == .shadow ? 0.15 : 0.0), radius: 15, x: 0, y: 8)
-        .onAppear {
-            switch(LAContext().biometryType) {
-            case .none:
-                lockedOutText = "Sign In"
-            case .touchID:
-                lockedOutText = "Touch ID"
-            case .faceID:
-                lockedOutText = "Face ID"
-            @unknown default:
-                print("unknown locked out method")
-            }
-        }
     }
 
-    private func authenticate() {
-        let context = LAContext()
+    private func askNotifications() {
+        if #available(iOS 10, *) {
+            UserNotifications.UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound, .carPlay], completionHandler: { (_, error) in
+                if error == nil {
+                    DispatchQueue.main.async(execute: {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    })
 
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
-            let reason = "Protect your wallet. Used for signing smart contracts and transactions."
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, _ in
-                toggleOn = success
-                self.onSuccess()
-            }
+                    onSuccess()
+                }
+            })
+        } else {
+            let notificationSettings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
+            DispatchQueue.main.async(execute: {
+                UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+                UIApplication.shared.registerForRemoteNotifications()
+            })
+
+            onSuccess()
         }
     }
 

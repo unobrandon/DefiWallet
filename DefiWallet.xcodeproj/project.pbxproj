@@ -159,8 +159,8 @@
 		05E5F84627D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */; };
 		05E5F84927D321920090290C /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84827D321920090290C /* Shake.swift */; };
 		05E5F84A27D321920090290C /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84827D321920090290C /* Shake.swift */; };
-		05E5F84C27D34F570090290C /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84B27D34F570090290C /* PermissionsView.swift */; };
-		05E5F84D27D34F570090290C /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84B27D34F570090290C /* PermissionsView.swift */; };
+		05E5F84C27D34F570090290C /* BiometryPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84B27D34F570090290C /* BiometryPermissionsView.swift */; };
+		05E5F84D27D34F570090290C /* BiometryPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84B27D34F570090290C /* BiometryPermissionsView.swift */; };
 		05E5F84F27D351CA0090290C /* BiometryBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84E27D351CA0090290C /* BiometryBanner.swift */; };
 		05E5F85027D351CA0090290C /* BiometryBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84E27D351CA0090290C /* BiometryBanner.swift */; };
 		05E5F85327D3614A0090290C /* ConfettiSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85227D3614A0090290C /* ConfettiSwiftUI.swift */; };
@@ -171,6 +171,10 @@
 		05E5F85B27D361AF0090290C /* SlimRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85927D361AF0090290C /* SlimRectangle.swift */; };
 		05E5F85D27D361CA0090290C /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85C27D361CA0090290C /* Triangle.swift */; };
 		05E5F85E27D361CA0090290C /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85C27D361CA0090290C /* Triangle.swift */; };
+		05E5F86027D406370090290C /* NotiPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85F27D406370090290C /* NotiPermissionsView.swift */; };
+		05E5F86127D406370090290C /* NotiPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F85F27D406370090290C /* NotiPermissionsView.swift */; };
+		05E5F86327D407A60090290C /* NotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F86227D407A60090290C /* NotificationBanner.swift */; };
+		05E5F86427D407A60090290C /* NotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F86227D407A60090290C /* NotificationBanner.swift */; };
 		05E8589427C5D7F000B85195 /* GasPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8589327C5D7F000B85195 /* GasPrice.swift */; };
 		05E8589527C5D7F000B85195 /* GasPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8589327C5D7F000B85195 /* GasPrice.swift */; };
 		05E8589827C9D5D000B85195 /* CarouselViewOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8589727C9D5D000B85195 /* CarouselViewOne.swift */; };
@@ -312,12 +316,14 @@
 		05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRoundedInteractiveStyle.swift; sourceTree = "<group>"; };
 		05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewInteractiveBordered.swift; sourceTree = "<group>"; };
 		05E5F84827D321920090290C /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
-		05E5F84B27D34F570090290C /* PermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsView.swift; sourceTree = "<group>"; };
+		05E5F84B27D34F570090290C /* BiometryPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometryPermissionsView.swift; sourceTree = "<group>"; };
 		05E5F84E27D351CA0090290C /* BiometryBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometryBanner.swift; sourceTree = "<group>"; };
 		05E5F85227D3614A0090290C /* ConfettiSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiSwiftUI.swift; sourceTree = "<group>"; };
 		05E5F85627D361980090290C /* RoundedCross.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCross.swift; sourceTree = "<group>"; };
 		05E5F85927D361AF0090290C /* SlimRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlimRectangle.swift; sourceTree = "<group>"; };
 		05E5F85C27D361CA0090290C /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		05E5F85F27D406370090290C /* NotiPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiPermissionsView.swift; sourceTree = "<group>"; };
+		05E5F86227D407A60090290C /* NotificationBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBanner.swift; sourceTree = "<group>"; };
 		05E8589327C5D7F000B85195 /* GasPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasPrice.swift; sourceTree = "<group>"; };
 		05E8589727C9D5D000B85195 /* CarouselViewOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewOne.swift; sourceTree = "<group>"; };
 		05E8589A27C9DA3700B85195 /* CarouselViewTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewTwo.swift; sourceTree = "<group>"; };
@@ -752,8 +758,9 @@
 				05E858A927C9F75C00B85195 /* GenerateWalletView.swift */,
 				058C786427D07E3600EB91CA /* PrivateKeysView.swift */,
 				053C7D4427CDD5620081DCEA /* PasswordView.swift */,
-				05E5F84B27D34F570090290C /* PermissionsView.swift */,
+				05E5F84B27D34F570090290C /* BiometryPermissionsView.swift */,
 				053C7D4127CDCFDE0081DCEA /* EnsProfileView.swift */,
+				05E5F85F27D406370090290C /* NotiPermissionsView.swift */,
 				058C786A27D09E5900EB91CA /* CompletedView.swift */,
 			);
 			path = "Unauthenticated Views";
@@ -816,6 +823,7 @@
 				05E858CD27CB25C200B85195 /* AlertBadge.swift */,
 				058C786727D0831700EB91CA /* AlertBanner.swift */,
 				05E5F84E27D351CA0090290C /* BiometryBanner.swift */,
+				05E5F86227D407A60090290C /* NotificationBanner.swift */,
 				05E858F027CB43BC00B85195 /* LoadingIndicator.swift */,
 				053C7D3E27CDBF600081DCEA /* CheckmarkView.swift */,
 				05E8590427CC198A00B85195 /* TermsView.swift */,
@@ -1105,7 +1113,7 @@
 				0578077F27BB87C80008051B /* Wallet.swift in Sources */,
 				057806E527B8DF240008051B /* CurrentUser.swift in Sources */,
 				0578071827B8F6980008051B /* ProfileCoordinator.swift in Sources */,
-				05E5F84C27D34F570090290C /* PermissionsView.swift in Sources */,
+				05E5F84C27D34F570090290C /* BiometryPermissionsView.swift in Sources */,
 				057806FC27B8E56B0008051B /* WelcomeView.swift in Sources */,
 				05E858AA27C9F75C00B85195 /* GenerateWalletView.swift in Sources */,
 				057806BE27B8432B0008051B /* Constants.swift in Sources */,
@@ -1118,10 +1126,12 @@
 				05E858F527CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */,
 				05E8589827C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
 				0578075227BB5EF10008051B /* Font+Extensions.swift in Sources */,
+				05E5F86327D407A60090290C /* NotificationBanner.swift in Sources */,
 				05E858EB27CB322100B85195 /* ListSection.swift in Sources */,
 				0578073F27BB5B470008051B /* InvestView.swift in Sources */,
 				0578071B27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */,
 				05E858D627CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */,
+				05E5F86027D406370090290C /* NotiPermissionsView.swift in Sources */,
 				05E5F85727D361980090290C /* RoundedCross.swift in Sources */,
 				0578076F27BB6D200008051B /* DefaultTemplate.swift in Sources */,
 				0578070C27B8F1370008051B /* WalletView.swift in Sources */,
@@ -1176,6 +1186,7 @@
 				05E858BB27CA069400B85195 /* MainCarouselView.swift in Sources */,
 				05D1095E27C08D1B008DCC66 /* MacAuthenticatedCoordinator+Factory.swift in Sources */,
 				05E5F84627D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */,
+				05E5F86127D406370090290C /* NotiPermissionsView.swift in Sources */,
 				05E858EC27CB322100B85195 /* ListSection.swift in Sources */,
 				05E5F85B27D361AF0090290C /* SlimRectangle.swift in Sources */,
 				05D1095927C08B3E008DCC66 /* MarketsCoordinator.swift in Sources */,
@@ -1216,7 +1227,7 @@
 				05E8589527C5D7F000B85195 /* GasPrice.swift in Sources */,
 				051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
-				05E5F84D27D34F570090290C /* PermissionsView.swift in Sources */,
+				05E5F84D27D34F570090290C /* BiometryPermissionsView.swift in Sources */,
 				05D1095827C08B3E008DCC66 /* WelcomeView.swift in Sources */,
 				05E858AB27C9F75C00B85195 /* GenerateWalletView.swift in Sources */,
 				05E858A127C9F62000B85195 /* ImportWalletView.swift in Sources */,
@@ -1263,6 +1274,7 @@
 				05E858C527CB230B00B85195 /* EmptyAvatarView.swift in Sources */,
 				05E858FC27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,
 				058C786927D0831700EB91CA /* AlertBanner.swift in Sources */,
+				05E5F86427D407A60090290C /* NotificationBanner.swift in Sources */,
 				05E858E827CB301B00B85195 /* ListButtonStandard.swift in Sources */,
 				0578074727BB5E1A0008051B /* FontTemplate.swift in Sources */,
 				05D1094D27C08B3E008DCC66 /* WalletCoordinator.swift in Sources */,

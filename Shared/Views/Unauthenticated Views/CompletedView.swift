@@ -46,7 +46,6 @@ struct CompletedView: View {
 
                 Text("Your \(Constants.projectName) wallet is fully set up. You can now begin to explore all the possibilities.")
                     .fontTemplate(DefaultTemplate.subheadingSemiBold)
-                    .padding(.horizontal)
                     .multilineTextAlignment(.center)
 
                 Spacer()
@@ -59,9 +58,9 @@ struct CompletedView: View {
 
                 })
                 .padding(.bottom, 10)
-            }
+            }.padding(.horizontal)
 
-            ConfettiCannon(counter: $confettiCounter, repetitions: confettiCounter >= 1 ? 1 : 3, repetitionInterval: 0.2)
+            ConfettiCannon(counter: $confettiCounter, repetitions: confettiCounter > 0 ? 1 : 3, repetitionInterval: 0.2)
         }.navigationBarTitle("", displayMode: .inline)
         #if os(iOS)
         .navigationBarBackButtonHidden(true)

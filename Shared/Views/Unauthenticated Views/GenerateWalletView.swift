@@ -64,7 +64,7 @@ struct GenerateWalletView: View {
                         self.ethAddress = Double(randomInt)
                     }
                 } else {
-                    Text(store.generatedAddress.formatAddressExtended())
+                    Text(store.unauthenticatedWallet.address.formatAddressExtended())
                         .fontTemplate(DefaultTemplate.monospace)
                         .padding(5)
                         .background(RoundedRectangle(cornerRadius: 3).foregroundColor(Color("baseButton")))
@@ -80,32 +80,33 @@ struct GenerateWalletView: View {
         .navigationBarBackButtonHidden(true)
         #endif
         .onAppear {
-            guard store.generatedAddress.isEmpty else {
+            guard store.unauthenticatedWallet.address.isEmpty else {
                 unauthenticatedRouter.popToRoot()
 
                 return
             }
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.5)) {
-                withAnimation {
-                    doneGenerating = true
-                }
-                self.timer.upstream.connect().cancel()
-                store.generatedAddress = "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9"
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.2)) {
+            store.generateWallet(completion: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.5)) {
                     withAnimation {
-                        isConnecting = true
+                        doneGenerating = true
                     }
+                    self.timer.upstream.connect().cancel()
 
-                    #if os(iOS)
-                        HapticFeedback.successHapticFeedback()
-                    #endif
-                    DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.3)) {
-                        unauthenticatedRouter.route(to: \.privateKeys)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.2)) {
+                        withAnimation {
+                            isConnecting = true
+                        }
+
+                        #if os(iOS)
+                            HapticFeedback.successHapticFeedback()
+                        #endif
+                        DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.3)) {
+                            unauthenticatedRouter.route(to: \.privateKeys)
+                        }
                     }
                 }
-            }
+            })
         }
         .onDisappear {
             self.timer.upstream.connect().cancel()

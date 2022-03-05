@@ -23,15 +23,19 @@ struct EnsProfileView: View {
         ZStack(alignment: .center) {
             Color("baseBackground").ignoresSafeArea()
 
-            VStack(alignment: .center, spacing: 20) {
+            VStack(alignment: .center, spacing: 0) {
                 Spacer()
 
                 HeaderIcon(size: 48, imageName: "person.text.rectangle")
                     .padding(.bottom)
 
-                Text("Lets set up a universal username & avatar")
-                    .fontTemplate(DefaultTemplate.subheadingBold)
-                    .padding(.horizontal)
+                Text("Universal\nusername & avatar")
+                    .fontTemplate(DefaultTemplate.subheadingSemiBold)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom)
+
+                Text("Change your crazy long wallet address to a readable username.")
+                    .fontTemplate(DefaultTemplate.bodyBold)
                     .multilineTextAlignment(.center)
 
                 Spacer()
@@ -43,11 +47,15 @@ struct EnsProfileView: View {
                 .frame(maxWidth: Constants.iPadMaxWidth)
 
                 Spacer()
+                Text("powered by Ethereum Name Service.")
+                    .fontTemplate(DefaultTemplate.caption)
+                    .padding(.bottom, 10)
+
                 RoundedInteractiveButton("Set Profile", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
 
                 })
-                .padding(.bottom, 10)
-            }
+                .padding(.bottom)
+            }.padding(.horizontal)
         }.navigationBarTitle("ENS Profile", displayMode: .inline)
         #if os(iOS)
         .navigationBarBackButtonHidden(true)
@@ -55,7 +63,14 @@ struct EnsProfileView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    unauthenticatedRouter.route(to: \.completed)
+                    store.checkNotificationPermission(completion: { isEnabled in
+                        if isEnabled {
+                            unauthenticatedRouter.route(to: \.completed)
+                        } else {
+                            unauthenticatedRouter.route(to: \.notifications)
+                        }
+                    })
+
                     #if os(iOS)
                         HapticFeedback.lightHapticFeedback()
                     #endif

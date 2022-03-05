@@ -16,7 +16,7 @@ struct PrivateKeysView: View {
     @State private var keyHidden: Bool = true
     @State private var didCopy: Bool = false
 
-    private let alertMessage = "Never share your recovery phrase with anyone! Think carefully where you store this phrase."
+    private let alertMessage = "Never share your recovery phrase with anyone! Store this phrase in a safe place."
 
     init(services: UnauthenticatedServices) {
         self.store = services
@@ -32,16 +32,15 @@ struct PrivateKeysView: View {
                 HeaderIcon(size: 48, imageName: "key")
                     .rotationEffect(.init(degrees: 45))
 
-                Text("Write down or copy these words in the right order. Save them somewhere safe.")
+                Text("Write down or copy these words in the right order.")
                     .fontTemplate(DefaultTemplate.subheadingSemiBold)
                     .multilineTextAlignment(.center)
                     .padding()
 
                 Spacer()
                 AlertBanner(message: alertMessage, color: .orange)
-                    .padding(.horizontal)
 
-                ListSection(title: "".formatAddress(store.generatedAddress), style: .border, {
+                ListSection(title: store.unauthenticatedWallet.address.formatAddressExtended(), style: .border, {
                     HStack(alignment: .top, spacing: 0) {
                         Spacer()
 
@@ -106,14 +105,14 @@ struct PrivateKeysView: View {
                     .buttonStyle(.bordered)
                     .controlSize(.mini)
                     .buttonBorderShape(.roundedRectangle)
-                }.padding(.horizontal)
+                }
 
                 Spacer()
                 RoundedButton("Next", style: .primary, systemImage: nil, action: {
                     unauthenticatedRouter.route(to: \.setPassword)
                 })
                 .padding(.bottom, 10)
-            }
+            }.padding(.horizontal)
         }.navigationBarTitle("Secure Your Keys", displayMode: .inline)
     }
 
