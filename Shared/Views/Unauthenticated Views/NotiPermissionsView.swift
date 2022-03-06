@@ -55,7 +55,7 @@ struct NotiPermissionsView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    unauthenticatedRouter.route(to: \.ensUsername)
+                    unauthenticatedRouter.route(to: \.completed)
                     #if os(iOS)
                         HapticFeedback.lightHapticFeedback()
                     #endif

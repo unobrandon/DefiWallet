@@ -81,7 +81,7 @@ struct RoundedButton: View {
             .foregroundColor(foregroundColor)
             .padding()
             .background(
-                RoundedRectangle(cornerRadius: 15, style: .circular)
+                RoundedRectangle(cornerRadius: 10, style: .circular)
                     .foregroundColor(backgroundColor))
             .frame(maxWidth: 380, minHeight: 49)
         })

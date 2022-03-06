@@ -67,7 +67,7 @@ struct PasswordView: View {
                 Spacer()
                 RoundedInteractiveButton("Set Password", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
                     let context = LAContext()
-                    if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
+                    if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil),                     !UserDefaults.standard.bool(forKey: "biometryEnabled") {
                         unauthenticatedRouter.route(to: \.biometry)
                     } else {
                         unauthenticatedRouter.route(to: \.ensUsername)

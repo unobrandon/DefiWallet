@@ -31,12 +31,14 @@ class UnauthenticatedServices: ObservableObject {
     }
 
     func generateWallet(completion: (() -> Void)?) {
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .userInteractive).async {
             if let newWallet = self.createAccountWithSeedPhrase(walletName: "", password: "", seedStrength: .twelveWords) {
-                self.unauthenticatedWallet = newWallet
-                self.unauthenticatedWallet.name = newWallet.address.formatAddress()
+                DispatchQueue.main.async {
+                    self.unauthenticatedWallet = newWallet
+                    self.unauthenticatedWallet.name = newWallet.address.formatAddress()
 
-                completion?()
+                    completion?()
+                }
             }
 
             /*

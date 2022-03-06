@@ -30,7 +30,7 @@ struct EnsProfileView: View {
                     .padding(.bottom)
 
                 Text("Universal\nusername & avatar")
-                    .fontTemplate(DefaultTemplate.subheadingSemiBold)
+                    .fontTemplate(DefaultTemplate.titleSemibold)
                     .multilineTextAlignment(.center)
                     .padding(.bottom)
 
@@ -47,7 +47,7 @@ struct EnsProfileView: View {
                 .frame(maxWidth: Constants.iPadMaxWidth)
 
                 Spacer()
-                Text("powered by Ethereum Name Service.")
+                Text("powered by Ethereum Name Service")
                     .fontTemplate(DefaultTemplate.caption)
                     .padding(.bottom, 10)
 

@@ -87,23 +87,21 @@ struct GenerateWalletView: View {
             }
 
             store.generateWallet(completion: {
-                DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.5)) {
+                withAnimation {
+                    doneGenerating = true
+                }
+                self.timer.upstream.connect().cancel()
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.2)) {
                     withAnimation {
-                        doneGenerating = true
+                        isConnecting = true
                     }
-                    self.timer.upstream.connect().cancel()
 
-                    DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.2)) {
-                        withAnimation {
-                            isConnecting = true
-                        }
-
-                        #if os(iOS)
-                            HapticFeedback.successHapticFeedback()
-                        #endif
-                        DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.3)) {
-                            unauthenticatedRouter.route(to: \.privateKeys)
-                        }
+                    #if os(iOS)
+                        HapticFeedback.successHapticFeedback()
+                    #endif
+                    DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.3)) {
+                        unauthenticatedRouter.route(to: \.privateKeys)
                     }
                 }
             })

@@ -28,7 +28,7 @@ struct WelcomeView: View {
 
                 VStack(alignment: .center, spacing: 20) {
                     RoundedButton("Create New Wallet", style: .primary, systemImage: "paperplane.fill", action: {
-                        guard store.unauthenticatedWallet.address.isEmpty else {
+                        guard store.unauthenticatedWallet.address == "" else {
                             showSheet.toggle()
                             return
                         }
@@ -58,6 +58,7 @@ struct WelcomeView: View {
                 }
 
                 Button("New Wallet", role: .destructive) {
+                    store.unauthenticatedWallet = Wallet(address: "", data: Data(), name: "", isHD: true)
                     unauthenticatedRouter.route(to: \.generateWallet)
 
                     #if os(iOS)

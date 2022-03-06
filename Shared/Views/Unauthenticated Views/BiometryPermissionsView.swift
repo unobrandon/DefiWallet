@@ -37,6 +37,8 @@ struct BiometryPermissionsView: View {
 
                 Spacer()
                 BiometryBanner(style: .border, onSuccess: {
+                    UserDefaults.standard.setValue(true, forKey: "biometryEnabled")
+
                     unauthenticatedRouter.route(to: \.ensUsername)
                 })
                 .frame(maxWidth: Constants.iPadMaxWidth)

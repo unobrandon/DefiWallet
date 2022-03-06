@@ -59,6 +59,8 @@ struct BiometryBanner: View {
                     .foregroundColor(style == .border ? Color.clear : Color("baseButton")))
         .shadow(color: Color.black.opacity(style == .shadow ? 0.15 : 0.0), radius: 15, x: 0, y: 8)
         .onAppear {
+            self.toggleOn = UserDefaults.standard.bool(forKey: "biometryEnabled")
+
             switch(LAContext().biometryType) {
             case .none:
                 lockedOutText = "Sign In"

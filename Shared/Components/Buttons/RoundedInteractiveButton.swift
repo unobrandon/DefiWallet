@@ -82,7 +82,7 @@ struct RoundedInteractiveButton: View {
             .foregroundColor(isDisabled ? .secondary : foregroundColor)
             .padding()
             .background(
-                RoundedRectangle(cornerRadius: 15, style: .circular)
+                RoundedRectangle(cornerRadius: 10, style: .circular)
                     .foregroundColor(isDisabled ? DefaultTemplate.disabledGray : backgroundColor))
             .frame(maxWidth: 380, minHeight: 49)
         })
