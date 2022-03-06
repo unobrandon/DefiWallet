@@ -14,9 +14,7 @@ class UnauthenticatedServices: ObservableObject {
     @Published var unauthenticatedWallet: Wallet = Wallet(address: "", data: Data(), name: "", isHD: true)
     @Published var secretPhrase: [String] = []
 
-    init() {
-
-    }
+    init() { }
 
     func pasteText() -> String {
         guard let clipboard = UIPasteboard.general.string else {
@@ -77,39 +75,47 @@ class UnauthenticatedServices: ObservableObject {
     }
 
     func checkPhraseValid(_ phrase: String, completion: ((Bool) -> Void)?) {
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .userInteractive).async {
             if self.isWalletHD(phrase) {
                 do {
                     let keystore = try BIP32Keystore(mnemonics: phrase, password: "password", mnemonicsPassword: "", language: .english)
 
-                    guard (keystore?.addresses?.first?.address) != nil else {
-                        completion?(false)
-                        return
-                    }
+                    DispatchQueue.main.async {
+                        guard (keystore?.addresses?.first?.address) != nil else {
+                            completion?(false)
+                            return
+                        }
 
-                    completion?(true)
+                        completion?(true)
+                    }
                 } catch {
-                    completion?(false)
+                    DispatchQueue.main.async {
+                        completion?(false)
+                    }
                 }
             } else {
                 let formattedKey = phrase.trimmingCharacters(in: .whitespacesAndNewlines)
 
                 guard let dataKey = Data.fromHex(formattedKey) else {
-                    completion?(false)
+                    DispatchQueue.main.async { completion?(false) }
                     return
                 }
 
                 do {
                     let keystore = try EthereumKeystoreV3(privateKey: dataKey, password: "password")
 
-                    guard (keystore?.addresses?.first?.address) != nil else {
-                        completion?(false)
-                        return
-                    }
+                    DispatchQueue.main.async {
+                        guard (keystore?.addresses?.first?.address) != nil else {
+                            completion?(false)
+                            return
+                        }
 
-                    completion?(true)
+                        completion?(true)
+                    }
                 } catch {
-                    completion?(false)
+                    DispatchQueue.main.async {
+                        completion?(false)
+                    }
                 }
             }
         }
@@ -141,7 +147,9 @@ class UnauthenticatedServices: ObservableObject {
 
             guard let address = keystore?.addresses?.first?.address else { return nil }
 
-            secretPhrase = mnemonics.components(separatedBy: " ")
+            DispatchQueue.main.async {
+                self.secretPhrase = mnemonics.components(separatedBy: " ")
+            }
 
             return Wallet(address: address, data: keyData, name: walletName, isHD: true)
         } catch {

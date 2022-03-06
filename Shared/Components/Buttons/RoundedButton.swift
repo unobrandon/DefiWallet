@@ -70,21 +70,26 @@ struct RoundedButton: View {
 
     var iosView: some View {
         Button(action: { self.actionTap() }, label: {
-            HStack {
+            HStack(alignment: .center, spacing: 10) {
                 Spacer()
                 if let systemImage = systemImage {
                     Image(systemName: systemImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20, alignment: .center)
+                        .font(Font.title.weight(.medium))
                 }
-                Text(title).font(.headline)
+
+                Text(title)
+                    .fontTemplate(DefaultTemplate.primaryButton)
+
                 Spacer()
             }
+            .background(RoundedRectangle(cornerRadius: 10, style: .circular)
+                            .foregroundColor(backgroundColor).frame(height: 49))
             .foregroundColor(foregroundColor)
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 10, style: .circular)
-                    .foregroundColor(backgroundColor))
-            .frame(maxWidth: 380, minHeight: 49)
         })
+        .frame(maxWidth: 380)
         .buttonStyle(ClickInteractiveStyle())
     }
 

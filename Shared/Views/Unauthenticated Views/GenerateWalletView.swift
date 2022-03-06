@@ -28,6 +28,7 @@ struct GenerateWalletView: View {
             Color("baseBackground").ignoresSafeArea()
 
             VStack(alignment: .center, spacing: 10) {
+                Spacer()
 
                 if doneGenerating && isConnecting {
                     CheckmarkView(size: 45, color: .green)
@@ -41,22 +42,23 @@ struct GenerateWalletView: View {
                     HStack(alignment: .center, spacing: 0) {
                         Text("0x").fontTemplate(DefaultTemplate.monospace)
 
-                        MovingNumbersView(number: ethAddress, numberOfDecimalPlaces: 0, fixedWidth: 50, showComma: false) { str in
+                        MovingNumbersView(number: ethAddress, numberOfDecimalPlaces: 0, fixedWidth: 52, showComma: false) { str in
                             Text(self.customLabelMapping(str))
-                                .fontTemplate(DefaultTemplate.monospace)
+                                .fontTemplate(DefaultTemplate.bodyMono)
                         }
                         .mask(AppGradients.movingNumbersMask)
 
-                        Text("...").fontTemplate(DefaultTemplate.monospace)
+                        Text("...").fontTemplate(DefaultTemplate.bodyMono)
 
-                        MovingNumbersView(number: ethAddress, numberOfDecimalPlaces: 0, fixedWidth: 50, showComma: false) { str in
+                        MovingNumbersView(number: ethAddress, numberOfDecimalPlaces: 0, fixedWidth: 52, showComma: false) { str in
                             Text(self.customLabelMapping(str))
-                                .fontTemplate(DefaultTemplate.monospace)
+                                .fontTemplate(DefaultTemplate.bodyMono)
                         }
                         .mask(AppGradients.movingNumbersMask)
                     }
                     .padding(5)
-                    .background(RoundedRectangle(cornerRadius: 3).foregroundColor(Color("baseButton")))
+                    .padding(.horizontal, 10)
+                    .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("baseButton")))
                     .onReceive(timer) { _ in
                         let low: Int = 10000000
                         let high: Int = 99999999
@@ -65,14 +67,16 @@ struct GenerateWalletView: View {
                     }
                 } else {
                     Text(store.unauthenticatedWallet.address.formatAddressExtended())
-                        .fontTemplate(DefaultTemplate.monospace)
+                        .fontTemplate(DefaultTemplate.bodyMono)
                         .padding(5)
                         .background(RoundedRectangle(cornerRadius: 3).foregroundColor(Color("baseButton")))
                         .mask(AppGradients.movingNumbersMask)
                 }
 
-                Text(!doneGenerating ? "generating..." : !isConnecting ? "connecting..." : "success!")
-                    .fontTemplate(DefaultTemplate.body)
+                Text(!doneGenerating ? "generating..." : !isConnecting ? "syncing..." : "success!")
+                    .fontTemplate(DefaultTemplate.monospace)
+
+                Spacer()
             }
         }
         .navigationBarTitle( "Generat\(doneGenerating && isConnecting ? "ed" : "ing") Wallet", displayMode: .inline)

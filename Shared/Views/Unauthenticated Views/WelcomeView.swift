@@ -25,6 +25,7 @@ struct WelcomeView: View {
         GeometryReader { geo in
             VStack(alignment: .center, spacing: 10) {
                 MainCarouselView()
+                    .padding(.bottom, 10)
 
                 VStack(alignment: .center, spacing: 20) {
                     RoundedButton("Create New Wallet", style: .primary, systemImage: "paperplane.fill", action: {
@@ -45,7 +46,7 @@ struct WelcomeView: View {
                             HapticFeedback.lightHapticFeedback()
                         #endif
                     }
-                    .padding(.bottom)
+                    .padding(.vertical, 10)
                 }
                 .padding(.horizontal)
                 .background(bottomGradientView(geo))

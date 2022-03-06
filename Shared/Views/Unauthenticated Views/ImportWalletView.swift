@@ -29,7 +29,7 @@ struct ImportWalletView: View {
         ZStack {
             Color("baseBackground").ignoresSafeArea()
 
-            VStack(alignment: .center, spacing: 10) {
+            VStack(alignment: .center, spacing: 0) {
                 Spacer()
 
                 Image(systemName: "folder.badge.plus")
@@ -40,10 +40,14 @@ struct ImportWalletView: View {
                     .padding(.bottom, 10)
                     .irregularGradient(colors: [.blue, .orange, .red, .yellow], backgroundColor: .pink, speed: 4)
 
-                Text("Restore an existing wallet with your 12 or 24-word secret recovery phrase.")
-                    .fontTemplate(DefaultTemplate.subheadingSemiBold)
-                    .padding(.horizontal)
+                Text("Import Secret Phrase")
+                    .fontTemplate(DefaultTemplate.headingSemiBold)
                     .multilineTextAlignment(.center)
+
+                Text("Restore an existing wallet with your 12 or 24-word secret recovery phrase.")
+                    .fontTemplate(DefaultTemplate.bodyMono_secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical, 10)
 
                 Spacer()
                 TextViewInteractiveBordered(text: $textViewText, hasError: $invalidPhrase,
@@ -56,6 +60,7 @@ struct ImportWalletView: View {
                 })
                 .modifier(Shake(animatableData: CGFloat(attempts)))
                 .frame(maxWidth: Constants.iPadMaxWidth)
+                .padding(.bottom, 10)
                 .onChange(of: textViewText, perform: { text in
                     enablePrimaryButton(text)
                 })
@@ -84,14 +89,13 @@ struct ImportWalletView: View {
 
                 Spacer()
                 if isLoading {
-                    LoadingIndicator(size: 36).padding(.bottom, 10)
+                    LoadingIndicator(size: 30).padding(.bottom)
                 } else if isSuccess {
-                    CheckmarkView(size: 42, color: .green)
-                        .padding(.bottom, 10)
+                    CheckmarkView(size: 36, color: .green).padding(.bottom)
                 } else {
                     RoundedInteractiveButton("Import Wallet", isDisabled: $disablePrimaryAction, style: .primary, systemImage: "arrow.down.to.line", action: {
                         submitInput()
-                    }).padding(.bottom, 10)
+                    }).padding(.bottom)
                 }
             }
             .padding(.horizontal)

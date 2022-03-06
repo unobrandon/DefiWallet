@@ -32,5 +32,15 @@
 	<string>$(ZAPPER_API_KEY)</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Protect your wallet even further with biometric security.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>LabMono-Regular.otf</string>
+		<string>Poppins-Light.ttf</string>
+		<string>Poppins-Regular.ttf</string>
+		<string>Poppins-Medium.ttf</string>
+		<string>Poppins-SemiBold.ttf</string>
+		<string>Poppins-Bold.ttf</string>
+		<string>Poppins-ExtraBold.ttf</string>
+	</array>
 </dict>
 </plist>

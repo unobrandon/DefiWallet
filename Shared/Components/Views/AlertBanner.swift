@@ -24,14 +24,16 @@ struct AlertBanner: View {
                 .frame(width: 18, height: 18, alignment: .center)
                 .font(Font.title.weight(.semibold))
                 .foregroundColor(color)
+                .padding(.leading, 5)
 
             Text(message)
                 .fontTemplate(DefaultTemplate.alertMessage)
-                .padding(.horizontal)
+                .padding(.leading, 15)
+                .padding(.trailing, 5)
         }
         .frame(maxWidth: Constants.iPadMaxWidth)
         .padding(.vertical, 10)
-        .background(RoundedRectangle(cornerRadius: 5, style: .circular).stroke(color, lineWidth: 1.5).background(color.opacity(0.3)))
+        .background(RoundedRectangle(cornerRadius: 10, style: .circular).stroke(color, lineWidth: 1).background(color.opacity(0.15)))
     }
 
 }

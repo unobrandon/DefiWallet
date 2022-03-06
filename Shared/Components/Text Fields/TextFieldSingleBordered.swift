@@ -104,11 +104,13 @@ struct TextFieldSingleBordered: View {
                 if isSecure {
                     Button {
                         isTextVisible.toggle()
+                        focusedField = true
+
                         #if os(iOS)
                             HapticFeedback.lightHapticFeedback()
                         #endif
                     } label: {
-                        Image(systemName: isTextVisible ? "eye" : "eye.slash")
+                        Image(systemName: isTextVisible ? "eye.slash" : "eye")
                             .foregroundColor(.secondary)
                     }
                     .padding(.trailing, 5)

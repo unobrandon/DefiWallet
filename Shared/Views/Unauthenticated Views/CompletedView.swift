@@ -39,13 +39,13 @@ struct CompletedView: View {
                 .buttonStyle(ClickInteractiveStyle())
 
                 Text("Congratulations!")
-                    .fontTemplate(DefaultTemplate.titleSemibold)
+                    .fontTemplate(DefaultTemplate.titleSemiBold)
                     .padding(.horizontal)
                     .multilineTextAlignment(.center)
                     .padding(.bottom)
 
-                Text("Your \(Constants.projectName) wallet is fully set up. You can now begin to explore all the possibilities.")
-                    .fontTemplate(DefaultTemplate.subheadingSemiBold)
+                Text("Your \(Constants.projectName) wallet is now set up. Begin exploring all the possibilities!")
+                    .fontTemplate(DefaultTemplate.bodyMono)
                     .multilineTextAlignment(.center)
 
                 Spacer()

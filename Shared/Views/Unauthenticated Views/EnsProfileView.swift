@@ -29,17 +29,17 @@ struct EnsProfileView: View {
                 HeaderIcon(size: 48, imageName: "person.text.rectangle")
                     .padding(.bottom)
 
-                Text("Universal\nusername & avatar")
-                    .fontTemplate(DefaultTemplate.titleSemibold)
+                Text("Universal username")
+                    .fontTemplate(DefaultTemplate.headingSemiBold)
                     .multilineTextAlignment(.center)
-                    .padding(.bottom)
+                    .padding(.bottom, 10)
 
                 Text("Change your crazy long wallet address to a readable username.")
-                    .fontTemplate(DefaultTemplate.bodyBold)
+                    .fontTemplate(DefaultTemplate.bodyMono_secondary)
                     .multilineTextAlignment(.center)
 
                 Spacer()
-                TextFieldSingleBordered(text: "", placeholder: "username", systemImage: "person.crop.circle", textLimit: 20, onEditingChanged: { text in
+                TextFieldSingleBordered(text: "", placeholder: "username.deifiwallet.eth", systemImage: "person.crop.circle", textLimit: 20, onEditingChanged: { text in
                     print("text changed: \(text)")
                 }, onCommit: {
                     print("returned username ehh")
@@ -49,12 +49,11 @@ struct EnsProfileView: View {
                 Spacer()
                 Text("powered by Ethereum Name Service")
                     .fontTemplate(DefaultTemplate.caption)
-                    .padding(.bottom, 10)
 
-                RoundedInteractiveButton("Set Profile", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
+                RoundedInteractiveButton("Set Username", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
 
                 })
-                .padding(.bottom)
+                .padding(.vertical)
             }.padding(.horizontal)
         }.navigationBarTitle("ENS Profile", displayMode: .inline)
         #if os(iOS)

@@ -24,7 +24,7 @@ struct TermsView: View {
                 VStack {
                     ListSection(title: "", style: .border, {
                         Text("Text downloaded from the webs.")
-                            .fontTemplate(DefaultTemplate.title)
+                            .fontTemplate(DefaultTemplate.subheadingLight)
                             .padding()
                     })
 

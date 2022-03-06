@@ -32,10 +32,14 @@ struct PrivateKeysView: View {
                 HeaderIcon(size: 48, imageName: "key")
                     .rotationEffect(.init(degrees: 45))
 
-                Text("Write down or copy these words in the right order.")
-                    .fontTemplate(DefaultTemplate.subheadingSemiBold)
+                Text("Recovery Phrase")
+                    .fontTemplate(DefaultTemplate.headingSemiBold)
                     .multilineTextAlignment(.center)
-                    .padding()
+                    .padding(.bottom, 10)
+
+                Text("Write down or copy these words in the right order.")
+                    .fontTemplate(DefaultTemplate.bodyMono_secondary)
+                    .multilineTextAlignment(.center)
 
                 Spacer()
                 AlertBanner(message: alertMessage, color: .orange)

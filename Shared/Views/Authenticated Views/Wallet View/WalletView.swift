@@ -28,13 +28,13 @@ struct WalletView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Welcome to \nthe wallet view")
-                        .fontTemplate(DefaultTemplate.title)
+                        .fontTemplate(DefaultTemplate.titleBold)
 
                     Text(services.currentUser.username ?? "")
-                        .fontTemplate(DefaultTemplate.heading)
+                        .fontTemplate(DefaultTemplate.headingSemiBold)
 
                     Text("The Sub-Header is here")
-                        .fontTemplate(DefaultTemplate.subheading)
+                        .fontTemplate(DefaultTemplate.subheadingMedium)
 
                     Text("The body texts!!")
                         .fontTemplate(DefaultTemplate.body)
@@ -44,14 +44,14 @@ struct WalletView: View {
                 }
 
                 Text("History")
-                    .fontTemplate(DefaultTemplate.title)
+                    .fontTemplate(DefaultTemplate.headingBold)
                     .padding(.top)
 
                 ForEach(store.history, id: \.self) { item in
                     HStack(alignment: .center) {
                         VStack(alignment: .leading, spacing: 5) {
                             Text(item.direction == .incoming ? "Received" : item.direction == .outgoing ? "Sent" : "Exchange")
-                                .fontTemplate(DefaultTemplate.subheading)
+                                .fontTemplate(DefaultTemplate.subheadingSemiBold)
 
                             Text("\(item.symbol) \(item.amount)")
                                 .fontTemplate(DefaultTemplate.body)

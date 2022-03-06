@@ -27,12 +27,12 @@ struct NotiPermissionsView: View {
                 HeaderIcon(size: 48, imageName: "bell.fill")
                     .padding(.bottom)
 
-                Text("Enable\n Notifications")
-                    .fontTemplate(DefaultTemplate.titleSemibold)
+                Text("Enable notifications")
+                    .fontTemplate(DefaultTemplate.headingSemiBold)
                     .multilineTextAlignment(.center)
 
                 Text("Receive push notifications for price alerts and wallet activity.")
-                    .fontTemplate(DefaultTemplate.subheadingSemiBold)
+                    .fontTemplate(DefaultTemplate.bodyMono_secondary)
                     .multilineTextAlignment(.center)
 
                 Spacer()

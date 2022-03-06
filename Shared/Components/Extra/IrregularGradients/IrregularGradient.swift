@@ -15,9 +15,9 @@ struct IrregularGradient<Background: View>: View {
     var shouldAnimate: Binding<Bool>
 
     init(colors: [Color],
-                background: @autoclosure @escaping () -> Background,
-                speed: Double = 10,
-                shouldAnimate: Binding<Bool> = .constant(true)) {
+         background: @autoclosure @escaping () -> Background,
+         speed: Double = 10,
+         shouldAnimate: Binding<Bool> = .constant(true)) {
 
         self.colors = colors
         self.background = background()

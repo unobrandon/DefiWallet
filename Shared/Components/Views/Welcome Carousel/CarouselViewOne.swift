@@ -15,7 +15,7 @@ struct CarouselViewOne: View {
                 .scaledToFit()
 
             Text("YOUR\nNEW DIFI\nDASHBOARD")
-                .fontTemplate(DefaultTemplate.title)
+                .fontTemplate(DefaultTemplate.titleBold)
                 .multilineTextAlignment(.leading)
                 .padding(.horizontal)
         }

@@ -28,11 +28,11 @@ struct BiometryPermissionsView: View {
                     .padding(.bottom)
 
                 Text("Protect your wallet")
-                    .fontTemplate(DefaultTemplate.titleSemibold)
+                    .fontTemplate(DefaultTemplate.headingSemiBold)
                     .multilineTextAlignment(.center)
 
                 Text("Enable biometric security to help protect your wallet when signing smart contracts and transactions.")
-                    .fontTemplate(DefaultTemplate.subheadingSemiBold)
+                    .fontTemplate(DefaultTemplate.bodyMono_secondary)
                     .multilineTextAlignment(.center)
 
                 Spacer()

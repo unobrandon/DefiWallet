@@ -16,7 +16,6 @@ struct PasswordView: View {
 
     @State var disablePrimaryAction: Bool = true
     @State var passwordText: String = ""
-    @State var confirmPasswordText: String = ""
 
     init(services: UnauthenticatedServices) {
         self.store = services
@@ -32,8 +31,13 @@ struct PasswordView: View {
                 HeaderIcon(size: 48, imageName: "lock.shield")
                     .padding(.bottom)
 
-                Text("Set a password to protects your wallet.\nUsed to sign contracts & transactions.")
-                    .fontTemplate(DefaultTemplate.subheadingSemiBold)
+                Text("Protect your wallet")
+                    .fontTemplate(DefaultTemplate.headingSemiBold)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 10)
+
+                Text("Used to sign contracts & transactions.")
+                    .fontTemplate(DefaultTemplate.bodyMono_secondary)
                     .multilineTextAlignment(.center)
 
                 Spacer()
@@ -45,27 +49,19 @@ struct PasswordView: View {
                     print("returned username ehh")
                 })
                 .frame(maxWidth: Constants.iPadMaxWidth)
-                .padding(.bottom)
-
-                TextFieldSingleBordered(text: confirmPasswordText, placeholder: "confirm password", textLimit: 20, isSecure: true, initFocus: false, onEditingChanged: { text in
-                    print("confirm password changed: \(text)")
-                    confirmPasswordText = text
-                    enablePrimaryButton()
-                }, onCommit: {
-                    print("returned username ehh")
-                })
-                .frame(maxWidth: Constants.iPadMaxWidth)
                 .padding(.bottom, 10)
 
                 HStack {
                     Text("minimum of 6 characters")
                         .fontTemplate(DefaultTemplate.caption)
                         .multilineTextAlignment(.leading)
+                        .padding(.leading)
                     Spacer()
                 }
 
                 Spacer()
                 RoundedInteractiveButton("Set Password", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
+
                     let context = LAContext()
                     if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil),                     !UserDefaults.standard.bool(forKey: "biometryEnabled") {
                         unauthenticatedRouter.route(to: \.biometry)
@@ -79,7 +75,7 @@ struct PasswordView: View {
     }
 
     private func enablePrimaryButton() {
-        guard passwordText.count >= 6, confirmPasswordText.count >= 6, passwordText == confirmPasswordText else {
+        guard passwordText.count >= 6 else {
             disablePrimaryAction = true
 
             return
