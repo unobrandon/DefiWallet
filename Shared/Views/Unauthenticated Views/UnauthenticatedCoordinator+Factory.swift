@@ -35,7 +35,11 @@ extension UnauthenticatedCoordinator {
     }
 
     @ViewBuilder func makeEnsUsername() -> some View {
-        EnsProfileView(services: unauthenticatedServices)
+        EnsUsernameView(services: unauthenticatedServices)
+    }
+
+    @ViewBuilder func makeEnsAvatar() -> some View {
+        EnsAvatarView(services: unauthenticatedServices)
     }
 
     @ViewBuilder func makeNotifications() -> some View {

@@ -29,7 +29,7 @@ struct ImportWalletView: View {
         ZStack {
             Color("baseBackground").ignoresSafeArea()
 
-            VStack(alignment: .center, spacing: 0) {
+            VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
                 Image(systemName: "folder.badge.plus")
@@ -47,7 +47,6 @@ struct ImportWalletView: View {
                 Text("Restore an existing wallet with your 12 or 24-word secret recovery phrase.")
                     .fontTemplate(DefaultTemplate.bodyMono_secondary)
                     .multilineTextAlignment(.center)
-                    .padding(.vertical, 10)
 
                 Spacer()
                 TextViewInteractiveBordered(text: $textViewText, hasError: $invalidPhrase,
@@ -60,7 +59,6 @@ struct ImportWalletView: View {
                 })
                 .modifier(Shake(animatableData: CGFloat(attempts)))
                 .frame(maxWidth: Constants.iPadMaxWidth)
-                .padding(.bottom, 10)
                 .onChange(of: textViewText, perform: { text in
                     enablePrimaryButton(text)
                 })
@@ -86,6 +84,7 @@ struct ImportWalletView: View {
                     .disabled(!disablePrimaryAction)
                 }
                 .frame(maxWidth: 640)
+                .padding(.bottom)
 
                 Spacer()
                 if isLoading {
@@ -95,7 +94,7 @@ struct ImportWalletView: View {
                 } else {
                     RoundedInteractiveButton("Import Wallet", isDisabled: $disablePrimaryAction, style: .primary, systemImage: "arrow.down.to.line", action: {
                         submitInput()
-                    }).padding(.bottom)
+                    }).padding(.bottom, 30)
                 }
             }
             .padding(.horizontal)
@@ -117,13 +116,7 @@ struct ImportWalletView: View {
     }
 
     private func submitInput() {
-        guard !disablePrimaryAction else {
-            #if os(iOS)
-                HapticFeedback.errorHapticFeedback()
-            #endif
-
-            return
-        }
+        guard !disablePrimaryAction else { return }
 
         isLoading = true
         textViewText = textViewText.cleanUpPastedText()

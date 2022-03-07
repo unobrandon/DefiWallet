@@ -21,11 +21,11 @@ struct NotiPermissionsView: View {
         ZStack(alignment: .center) {
             Color("baseBackground").ignoresSafeArea()
 
-            VStack(alignment: .center, spacing: 20) {
+            VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
                 HeaderIcon(size: 48, imageName: "bell.fill")
-                    .padding(.bottom)
+                    .padding(.bottom, 10)
 
                 Text("Enable notifications")
                     .fontTemplate(DefaultTemplate.headingSemiBold)
@@ -44,7 +44,7 @@ struct NotiPermissionsView: View {
 
                 Spacer()
                 RoundedButton("Next", style: .primary, systemImage: nil, action: {
-                    unauthenticatedRouter.route(to: \.ensUsername)
+                    unauthenticatedRouter.route(to: \.completed)
                 })
                 .padding(.bottom, 10)
             }.padding(.horizontal)

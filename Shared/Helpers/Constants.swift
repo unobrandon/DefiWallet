@@ -13,6 +13,7 @@ public struct Constants {
     static let moralisBaseWssUrl = "wss://speedy-nodes-nyc.moralis.io/"
     static let infuraBaseWssUrl = "wss://mainnet.infura.io/ws/v3/"
     static let zapperBaseUrl = "https://api.zapper.fi/v1/"
+    static let backendBaseUrl = "https://defiwallet-backend.herokuapp.com/"
 
     static let iPadMaxWidth: CGFloat = 640
     static let generateWalletDelay = 5.0

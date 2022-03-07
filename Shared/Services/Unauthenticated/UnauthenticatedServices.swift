@@ -7,31 +7,22 @@
 
 import SwiftUI
 import UserNotifications
+import Alamofire
 import web3swift
 
 class UnauthenticatedServices: ObservableObject {
 
     @Published var unauthenticatedWallet: Wallet = Wallet(address: "", data: Data(), name: "", isHD: true)
     @Published var secretPhrase: [String] = []
+    @Published var hasEnsName: Bool = false
 
     init() { }
-
-    func pasteText() -> String {
-        guard let clipboard = UIPasteboard.general.string else {
-            return ""
-        }
-
-        return clipboard.cleanUpPastedText()
-    }
-
-    func copyPrivateKey() {
-        UIPasteboard.general.string = secretPhrase.joined(separator: " ")
-    }
 
     func generateWallet(completion: (() -> Void)?) {
         DispatchQueue.global(qos: .userInteractive).async {
             if let newWallet = self.createAccountWithSeedPhrase(walletName: "", password: "", seedStrength: .twelveWords) {
                 DispatchQueue.main.async {
+                    print("done generating wallet: \(newWallet.address) && \(self.secretPhrase.description)")
                     self.unauthenticatedWallet = newWallet
                     self.unauthenticatedWallet.name = newWallet.address.formatAddress()
 
@@ -79,12 +70,15 @@ class UnauthenticatedServices: ObservableObject {
             if self.isWalletHD(phrase) {
                 do {
                     let keystore = try BIP32Keystore(mnemonics: phrase, password: "password", mnemonicsPassword: "", language: .english)
+                    let keyData = try JSONEncoder().encode(keystore?.keystoreParams)
 
                     DispatchQueue.main.async {
-                        guard (keystore?.addresses?.first?.address) != nil else {
+                        guard let address = keystore?.addresses?.first?.address else {
                             completion?(false)
                             return
                         }
+
+                        self.unauthenticatedWallet = Wallet(address: address, data: keyData, name: address.formatAddress(), isHD: true)
 
                         completion?(true)
                     }
@@ -103,12 +97,15 @@ class UnauthenticatedServices: ObservableObject {
 
                 do {
                     let keystore = try EthereumKeystoreV3(privateKey: dataKey, password: "password")
+                    let keyData = try JSONEncoder().encode(keystore?.keystoreParams)
 
                     DispatchQueue.main.async {
-                        guard (keystore?.addresses?.first?.address) != nil else {
+                        guard let address = keystore?.addresses?.first?.address else {
                             completion?(false)
                             return
                         }
+
+                        self.unauthenticatedWallet = Wallet(address: address, data: keyData, name: address.formatAddress(), isHD: false)
 
                         completion?(true)
                     }
@@ -128,6 +125,42 @@ class UnauthenticatedServices: ObservableObject {
         }
 
         return true
+    }
+
+    func registerUser(username: String, password: String, address: String, completion: ((Bool) -> Void)?) {
+        DispatchQueue.main.async {
+            let backendUrl: String = "createNewUser?username=\(username)&password=\(password)&address=\(address)"
+
+            AF.request(Constants.backendBaseUrl + backendUrl, method: .get).response { response in
+                debugPrint("Response: \(response.result)")
+
+                switch response.result {
+                case .success(let success):
+                    print("success reregistering: \(String(describing: success.debugDescription))")
+                    let endpoint = "https://speedy-nodes-nyc.moralis.io/" + "b8a2c97baf6d1f1c575ebd0e/eth/mainnet"
+
+                    guard let url = URL(string: endpoint), let web3Http = Web3HttpProvider(url) else {
+                        completion?(false)
+                        return
+                    }
+
+                    let web = web3(provider: web3Http)
+                    if let ens = ENS(web3: web) {
+                        do {
+                            let name = try ens.getName(forNode: address)
+                            print("found wallet with ENS name: \(name)")
+
+                            completion?(true)
+                        } catch {
+                            completion?(false)
+                        }
+                    }
+                case .failure(let error):
+                    print("error loading register: \(error)")
+                    completion?(false)
+                }
+            }
+        }
     }
 
     // MARK: Create Wallet
@@ -216,6 +249,18 @@ class UnauthenticatedServices: ObservableObject {
                 completion?(true)
             }
         })
+    }
+
+    func pasteText() -> String {
+        guard let clipboard = UIPasteboard.general.string else {
+            return ""
+        }
+
+        return clipboard.cleanUpPastedText()
+    }
+
+    func copyPrivateKey() {
+        UIPasteboard.general.string = secretPhrase.joined(separator: " ")
     }
 
 }

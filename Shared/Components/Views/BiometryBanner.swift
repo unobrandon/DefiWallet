@@ -79,9 +79,13 @@ struct BiometryBanner: View {
 
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
             let reason = "Protect your wallet. Used for signing smart contracts and transactions."
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, _ in
-                toggleOn = success
-                self.onSuccess()
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
+                if (error != nil) {
+                    toggleOn = success
+                    if success {
+                        self.onSuccess()
+                    }
+                }
             }
         }
     }

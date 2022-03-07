@@ -39,7 +39,17 @@ struct BiometryPermissionsView: View {
                 BiometryBanner(style: .border, onSuccess: {
                     UserDefaults.standard.setValue(true, forKey: "biometryEnabled")
 
-                    unauthenticatedRouter.route(to: \.ensUsername)
+                    if !self.store.hasEnsName {
+                        unauthenticatedRouter.route(to: \.ensUsername)
+                    } else {
+                        store.checkNotificationPermission(completion: { isEnabled in
+                            if isEnabled {
+                                unauthenticatedRouter.route(to: \.completed)
+                            } else {
+                                unauthenticatedRouter.route(to: \.notifications)
+                            }
+                        })
+                    }
                 })
                 .frame(maxWidth: Constants.iPadMaxWidth)
 

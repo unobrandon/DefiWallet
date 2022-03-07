@@ -82,7 +82,7 @@ struct TextViewInteractiveBordered: View {
                 }
             }
         }
-        .frame(minHeight: CGFloat(Double(maxHeight) / 1.5), maxHeight: CGFloat(maxHeight))
+        .frame(minHeight: CGFloat(Double(maxHeight) / 1.75), maxHeight: CGFloat(maxHeight))
         .padding(.vertical, 12.5)
         .cornerRadius(10)
         .overlay(RoundedRectangle(cornerRadius: 10, style: .circular)

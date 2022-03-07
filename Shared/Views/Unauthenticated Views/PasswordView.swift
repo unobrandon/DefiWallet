@@ -25,16 +25,15 @@ struct PasswordView: View {
         ZStack(alignment: .center) {
             Color("baseBackground").ignoresSafeArea()
 
-            VStack(alignment: .center, spacing: 0) {
+            VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
                 HeaderIcon(size: 48, imageName: "lock.shield")
-                    .padding(.bottom)
+                    .padding(.bottom, 10)
 
                 Text("Protect your wallet")
                     .fontTemplate(DefaultTemplate.headingSemiBold)
                     .multilineTextAlignment(.center)
-                    .padding(.bottom, 10)
 
                 Text("Used to sign contracts & transactions.")
                     .fontTemplate(DefaultTemplate.bodyMono_secondary)
@@ -42,14 +41,10 @@ struct PasswordView: View {
 
                 Spacer()
                 TextFieldSingleBordered(text: passwordText, placeholder: "password", textLimit: 20, isSecure: true, initFocus: true, onEditingChanged: { text in
-                    print("password changed: \(text)")
                     passwordText = text
                     enablePrimaryButton()
-                }, onCommit: {
-                    print("returned username ehh")
-                })
+                }, onCommit: {  })
                 .frame(maxWidth: Constants.iPadMaxWidth)
-                .padding(.bottom, 10)
 
                 HStack {
                     Text("minimum of 6 characters")
@@ -61,15 +56,29 @@ struct PasswordView: View {
 
                 Spacer()
                 RoundedInteractiveButton("Set Password", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
-
-                    let context = LAContext()
-                    if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil),                     !UserDefaults.standard.bool(forKey: "biometryEnabled") {
-                        unauthenticatedRouter.route(to: \.biometry)
-                    } else {
-                        unauthenticatedRouter.route(to: \.ensUsername)
-                    }
+                    self.disablePrimaryAction = true
+                    store.registerUser(username: store.unauthenticatedWallet.address, password: passwordText, address: store.unauthenticatedWallet.address, completion: { hasENS in
+                        self.store.hasEnsName = hasENS
+                        self.disablePrimaryAction = false
+                        let context = LAContext()
+                        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil),                     !UserDefaults.standard.bool(forKey: "biometryEnabled") {
+                            unauthenticatedRouter.route(to: \.biometry)
+                        } else {
+                            if hasENS {
+                                store.checkNotificationPermission(completion: { isEnabled in
+                                    if isEnabled {
+                                        unauthenticatedRouter.route(to: \.completed)
+                                    } else {
+                                        unauthenticatedRouter.route(to: \.notifications)
+                                    }
+                                })
+                            } else {
+                                unauthenticatedRouter.route(to: \.ensUsername)
+                            }
+                        }
+                    })
                 })
-                .padding(.bottom)
+                .padding(.bottom, 30)
             }.padding(.horizontal)
         }.navigationBarTitle("Create Password", displayMode: .inline)
     }
@@ -81,9 +90,7 @@ struct PasswordView: View {
             return
         }
 
-        withAnimation {
-            disablePrimaryAction = false
-        }
+        disablePrimaryAction = false
     }
 
 }

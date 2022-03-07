@@ -23,7 +23,7 @@ struct CompletedView: View {
         ZStack(alignment: .center) {
             Color("baseBackground").ignoresSafeArea()
 
-            VStack(alignment: .center, spacing: 0) {
+            VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
                 Button(action: {
@@ -34,9 +34,9 @@ struct CompletedView: View {
                     #endif
                 }, label: {
                     HeaderIcon(size: 48, imageName: "person.text.rectangle")
-                        .padding(.bottom)
                 })
                 .buttonStyle(ClickInteractiveStyle())
+                .padding(.bottom, 10)
 
                 Text("Congratulations!")
                     .fontTemplate(DefaultTemplate.titleSemiBold)
@@ -52,7 +52,7 @@ struct CompletedView: View {
                 TermsOfServiceButton(action: {
                     unauthenticatedRouter.route(to: \.terms)
                 })
-                .padding(.bottom)
+                .padding(.bottom, 10)
 
                 RoundedButton("Get Started", style: .primary, systemImage: nil, action: {
 

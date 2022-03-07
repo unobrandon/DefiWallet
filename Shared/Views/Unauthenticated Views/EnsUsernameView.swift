@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct EnsProfileView: View {
+struct EnsUsernameView: View {
 
     @EnvironmentObject private var unauthenticatedRouter: UnauthenticatedCoordinator.Router
 
     @ObservedObject private var store: UnauthenticatedServices
 
-    @State var disablePrimaryAction: Bool = true
+    @State var disablePrimaryAction: Bool = false
 
     init(services: UnauthenticatedServices) {
         self.store = services
@@ -23,16 +23,15 @@ struct EnsProfileView: View {
         ZStack(alignment: .center) {
             Color("baseBackground").ignoresSafeArea()
 
-            VStack(alignment: .center, spacing: 0) {
+            VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
                 HeaderIcon(size: 48, imageName: "person.text.rectangle")
-                    .padding(.bottom)
+                    .padding(.bottom, 10)
 
                 Text("Universal username")
                     .fontTemplate(DefaultTemplate.headingSemiBold)
                     .multilineTextAlignment(.center)
-                    .padding(.bottom, 10)
 
                 Text("Change your crazy long wallet address to a readable username.")
                     .fontTemplate(DefaultTemplate.bodyMono_secondary)
@@ -49,13 +48,14 @@ struct EnsProfileView: View {
                 Spacer()
                 Text("powered by Ethereum Name Service")
                     .fontTemplate(DefaultTemplate.caption)
+                    .padding(.bottom, 10)
 
                 RoundedInteractiveButton("Set Username", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
-
+                    unauthenticatedRouter.route(to: \.ensAvatar)
                 })
-                .padding(.vertical)
+                .padding(.bottom, 30)
             }.padding(.horizontal)
-        }.navigationBarTitle("ENS Profile", displayMode: .inline)
+        }.navigationBarTitle("ENS Domain Name", displayMode: .inline)
         #if os(iOS)
         .navigationBarBackButtonHidden(true)
         #endif
