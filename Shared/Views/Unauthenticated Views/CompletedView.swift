@@ -57,7 +57,7 @@ struct CompletedView: View {
                 RoundedButton("Get Started", style: .primary, systemImage: nil, action: {
 
                 })
-                .padding(.bottom, 10)
+                .padding(.bottom, 30)
             }.padding(.horizontal)
 
             ConfettiCannon(counter: $confettiCounter, repetitions: confettiCounter > 0 ? 1 : 3, repetitionInterval: 0.2)

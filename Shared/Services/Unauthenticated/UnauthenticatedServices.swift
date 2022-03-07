@@ -147,7 +147,7 @@ class UnauthenticatedServices: ObservableObject {
                     let web = web3(provider: web3Http)
                     if let ens = ENS(web3: web) {
                         do {
-                            let name = try ens.getName(forNode: address)
+                            let name = try ens.getAddress(forNode: address)
                             print("found wallet with ENS name: \(name)")
 
                             completion?(true)
