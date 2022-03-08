@@ -61,6 +61,7 @@ struct NotificationBanner: View {
     }
 
     private func askNotifications() {
+        #if os(iOS)
         if #available(iOS 10, *) {
             UserNotifications.UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound, .carPlay], completionHandler: { (_, error) in
                 if error == nil {
@@ -80,6 +81,9 @@ struct NotificationBanner: View {
 
             onSuccess()
         }
+        #else
+        onSuccess()
+        #endif
     }
 
 }

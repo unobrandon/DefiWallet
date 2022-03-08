@@ -11,7 +11,7 @@ import Stinsen
 extension ProfileCoordinator {
 
     @ViewBuilder func makeStart() -> some View {
-        ProfileView()
+        ProfileView(service: services)
     }
 
 }

@@ -51,7 +51,7 @@ struct WelcomeView: View {
                 .padding(.horizontal)
                 .background(bottomGradientView(geo))
             }.background(ColorfulView(animation: Animation.easeInOut(duration: 10), colors: [.red, .pink, .purple, .blue]))
-                .confirmationDialog("We notice you have generated \(store.unauthenticatedWallet.name).\nKeep current address or generate a new address?",
+            .confirmationDialog("Abandon generated address?",
                                 isPresented: $showSheet,
                                 titleVisibility: .visible) {
                 Button("Continue") {
@@ -66,6 +66,8 @@ struct WelcomeView: View {
                         HapticFeedback.rigidHapticFeedback()
                     #endif
                 }
+            } message: {
+                Text("We notice you have generated \(store.unauthenticatedWallet.name).\nKeep current address or generate a new address?")
             }
         }.background(AppGradients.purpleGradient)
         #if os(iOS)

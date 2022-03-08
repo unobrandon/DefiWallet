@@ -42,7 +42,7 @@ struct GenerateWalletView: View {
                     HStack(alignment: .center, spacing: 0) {
                         Text("0x").fontTemplate(DefaultTemplate.monospace)
 
-                        MovingNumbersView(number: ethAddress, numberOfDecimalPlaces: 0, fixedWidth: 52, showComma: false) { str in
+                        MovingNumbersView(number: ethAddress, numberOfDecimalPlaces: 0, fixedWidth: 62, showComma: false) { str in
                             Text(self.customLabelMapping(str))
                                 .fontTemplate(DefaultTemplate.bodyMono)
                         }
@@ -50,14 +50,14 @@ struct GenerateWalletView: View {
 
                         Text("...").fontTemplate(DefaultTemplate.bodyMono)
 
-                        MovingNumbersView(number: ethAddress, numberOfDecimalPlaces: 0, fixedWidth: 52, showComma: false) { str in
+                        MovingNumbersView(number: ethAddress, numberOfDecimalPlaces: 0, fixedWidth: 62, showComma: false) { str in
                             Text(self.customLabelMapping(str))
                                 .fontTemplate(DefaultTemplate.bodyMono)
                         }
                         .mask(AppGradients.movingNumbersMask)
                     }
                     .padding(5)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 5)
                     .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("baseButton")))
                     .onReceive(timer) { _ in
                         let low: Int = 10000000
@@ -68,9 +68,10 @@ struct GenerateWalletView: View {
                 } else {
                     Text(store.unauthenticatedWallet.address.formatAddressExtended())
                         .fontTemplate(DefaultTemplate.bodyMono)
-                        .padding(5)
-                        .background(RoundedRectangle(cornerRadius: 3).foregroundColor(Color("baseButton")))
                         .mask(AppGradients.movingNumbersMask)
+                        .padding(5)
+                        .padding(.horizontal, 5)
+                        .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("baseButton")))
                 }
 
                 Text(!doneGenerating ? "generating..." : !isConnecting ? "syncing..." : "success!")

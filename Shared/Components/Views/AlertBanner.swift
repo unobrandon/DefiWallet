@@ -30,6 +30,8 @@ struct AlertBanner: View {
                 .fontTemplate(DefaultTemplate.alertMessage)
                 .padding(.leading, 15)
                 .padding(.trailing, 5)
+
+            Spacer()
         }
         .frame(maxWidth: Constants.iPadMaxWidth)
         .padding(.vertical, 10)

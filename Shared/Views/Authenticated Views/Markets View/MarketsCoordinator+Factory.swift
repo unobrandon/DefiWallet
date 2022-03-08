@@ -11,7 +11,7 @@ import Stinsen
 extension MarketsCoordinator {
 
     @ViewBuilder func makeStart() -> some View {
-        MarketsView()
+        MarketsView(service: services)
     }
 
 }

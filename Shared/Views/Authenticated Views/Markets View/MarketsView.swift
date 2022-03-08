@@ -10,8 +10,10 @@ import Stinsen
 
 struct MarketsView: View {
 
-    init() {
-        print("markets view did inittt")
+    @ObservedObject private var store: MarketsService
+
+    init(service: AuthenticatedServices) {
+        self.store = service.market
     }
 
     var body: some View {

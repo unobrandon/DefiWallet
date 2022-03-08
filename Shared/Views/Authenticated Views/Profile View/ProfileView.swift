@@ -10,6 +10,17 @@ import Stinsen
 
 struct ProfileView: View {
 
+    private let service: AuthenticatedServices
+
+    @ObservedObject private var store: ProfileService
+
+    @State var showSheet: Bool = false
+
+    init(service: AuthenticatedServices) {
+        self.service = service
+        self.store = service.profile
+    }
+
     var body: some View {
         ZStack {
             Color("baseBackground").ignoresSafeArea()
@@ -18,8 +29,17 @@ struct ProfileView: View {
                 Text("It's the Profile view!!")
 
                 RoundedButton("Log Out", style: .bordered, systemImage: "", action: {
-                    AuthenticationService.shared.authStatus = .unauthenticated
+                    self.showSheet.toggle()
                 })
+            }
+            .confirmationDialog(service.currentUser.shortAddress,
+                                isPresented: $showSheet,
+                                titleVisibility: .visible) {
+                Button("Logout", role: .destructive) {
+                    store.logout()
+                }
+            } message: {
+                Text("Are you sure you want to log out?")
             }
         }
         .navigationTitle("Profile")

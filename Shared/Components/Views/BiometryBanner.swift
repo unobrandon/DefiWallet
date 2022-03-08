@@ -76,6 +76,7 @@ struct BiometryBanner: View {
 
     private func authenticate() {
         let context = LAContext()
+        UserDefaults.standard.setValue(true, forKey: "biometryEnabled")
 
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
             let reason = "Protect your wallet. Used for signing smart contracts and transactions."
@@ -87,6 +88,8 @@ struct BiometryBanner: View {
                     }
                 }
             }
+        } else {
+            toggleOn = false
         }
     }
 

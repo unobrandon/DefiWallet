@@ -11,7 +11,7 @@ import Stinsen
 extension AuthenticatedCoordinator {
 
     func makeWallet() -> NavigationViewCoordinator<WalletCoordinator> {
-        return NavigationViewCoordinator(WalletCoordinator(services: authenticatedServices))
+        return NavigationViewCoordinator(WalletCoordinator(currentUser: currentUser, services: authenticatedServices))
     }
 
     @ViewBuilder func makeWalletTab(isActive: Bool) -> some View {
@@ -20,7 +20,7 @@ extension AuthenticatedCoordinator {
     }
 
     func makeMarkets() -> NavigationViewCoordinator<MarketsCoordinator> {
-        return NavigationViewCoordinator(MarketsCoordinator(currentUser: currentUser))
+        return NavigationViewCoordinator(MarketsCoordinator(currentUser: currentUser, services: authenticatedServices))
     }
 
     @ViewBuilder func makeMarketsTab(isActive: Bool) -> some View {
@@ -29,7 +29,7 @@ extension AuthenticatedCoordinator {
     }
 
     func makeDiscover() -> NavigationViewCoordinator<DiscoverCoordinator> {
-        return NavigationViewCoordinator(DiscoverCoordinator(currentUser: currentUser))
+        return NavigationViewCoordinator(DiscoverCoordinator(currentUser: currentUser, services: authenticatedServices))
     }
 
     @ViewBuilder func makeDiscoverTab(isActive: Bool) -> some View {
@@ -38,7 +38,7 @@ extension AuthenticatedCoordinator {
     }
 
     func makeInvest() -> NavigationViewCoordinator<InvestCoordinator> {
-        return NavigationViewCoordinator(InvestCoordinator(services: authenticatedServices))
+        return NavigationViewCoordinator(InvestCoordinator(currentUser: currentUser, services: authenticatedServices))
     }
 
     @ViewBuilder func makeInvestTab(isActive: Bool) -> some View {
@@ -47,7 +47,7 @@ extension AuthenticatedCoordinator {
     }
 
     func makeProfile() -> NavigationViewCoordinator<ProfileCoordinator> {
-        return NavigationViewCoordinator(ProfileCoordinator(currentUser: currentUser))
+        return NavigationViewCoordinator(ProfileCoordinator(currentUser: currentUser, services: authenticatedServices))
     }
 
     @ViewBuilder func makeProfileTab(isActive: Bool) -> some View {

@@ -81,7 +81,7 @@ struct RoundedButton: View {
                 }
 
                 Text(title)
-                    .fontTemplate(DefaultTemplate.primaryButton)
+                    .fontTemplate(FontTemplate(font: Font.custom("Poppins-Medium", size: 16), weight: .medium, foregroundColor: foregroundColor, lineSpacing: 0))
 
                 Spacer()
             }

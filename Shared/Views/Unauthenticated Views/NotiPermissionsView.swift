@@ -46,7 +46,7 @@ struct NotiPermissionsView: View {
                 RoundedButton("Next", style: .primary, systemImage: nil, action: {
                     unauthenticatedRouter.route(to: \.completed)
                 })
-                .padding(.bottom, 10)
+                .padding(.bottom, 30)
             }.padding(.horizontal)
         }.navigationBarTitle("Enable Notifications", displayMode: .inline)
         #if os(iOS)

@@ -11,7 +11,7 @@ import Stinsen
 extension DiscoverCoordinator {
 
     @ViewBuilder func makeStart() -> some View {
-        DiscoverView()
+        DiscoverView(service: services)
     }
 
 }

@@ -37,25 +37,13 @@ struct BiometryPermissionsView: View {
 
                 Spacer()
                 BiometryBanner(style: .border, onSuccess: {
-                    UserDefaults.standard.setValue(true, forKey: "biometryEnabled")
-
-                    if !self.store.hasEnsName {
-                        unauthenticatedRouter.route(to: \.ensUsername)
-                    } else {
-                        store.checkNotificationPermission(completion: { isEnabled in
-                            if isEnabled {
-                                unauthenticatedRouter.route(to: \.completed)
-                            } else {
-                                unauthenticatedRouter.route(to: \.notifications)
-                            }
-                        })
-                    }
+                    next()
                 })
                 .frame(maxWidth: Constants.iPadMaxWidth)
 
                 Spacer()
                 RoundedButton("Next", style: .primary, systemImage: nil, action: {
-                    unauthenticatedRouter.route(to: \.ensUsername)
+                    next()
                 })
                 .padding(.bottom)
             }.padding(.horizontal)
@@ -63,16 +51,24 @@ struct BiometryPermissionsView: View {
         #if os(iOS)
         .navigationBarBackButtonHidden(true)
         #endif
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    unauthenticatedRouter.route(to: \.ensUsername)
-                    #if os(iOS)
-                        HapticFeedback.lightHapticFeedback()
-                    #endif
-                }, label: Text("skip").foregroundColor(.secondary))
-            }
+    }
+
+    private func next() {
+        if !self.store.hasEnsName {
+            unauthenticatedRouter.route(to: \.ensUsername)
+        } else {
+            store.checkNotificationPermission(completion: { isEnabled in
+                if isEnabled {
+                    unauthenticatedRouter.route(to: \.completed)
+                } else {
+                    unauthenticatedRouter.route(to: \.notifications)
+                }
+            })
         }
+
+        #if os(iOS)
+            HapticFeedback.lightHapticFeedback()
+        #endif
     }
 
 }

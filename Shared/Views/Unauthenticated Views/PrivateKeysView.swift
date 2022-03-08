@@ -83,14 +83,20 @@ struct PrivateKeysView: View {
                         }.opacity(keyHidden ? 1 : 0)
                     )
                 })
+                .frame(maxWidth: Constants.iPadMaxWidth)
                 .padding(.bottom, 5)
-                .onLongPressGesture(minimumDuration: 0.2) {
-                    keyHidden.toggle()
-                }
+                .onLongPressGesture(minimumDuration: 15.0, pressing: { pressing in
+                    keyHidden = !pressing
+
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
+                }, perform: {  })
 
                 HStack(alignment: .top, spacing: 5) {
                     Text("\(Constants.projectName) will never ask for your recovery phrase")
                         .fontTemplate(DefaultTemplate.caption)
+                        .padding(.leading)
                         .multilineTextAlignment(.leading)
 
                     Spacer()
@@ -110,12 +116,13 @@ struct PrivateKeysView: View {
                     .controlSize(.mini)
                     .buttonBorderShape(.roundedRectangle)
                 }
+                .frame(maxWidth: Constants.iPadMaxWidth)
 
                 Spacer()
                 RoundedButton("Next", style: .primary, systemImage: nil, action: {
                     unauthenticatedRouter.route(to: \.setPassword)
                 })
-                .padding(.bottom, 10)
+                .padding(.bottom, 30)
             }.padding(.horizontal)
         }.navigationBarTitle("Secure Your Keys", displayMode: .inline)
     }

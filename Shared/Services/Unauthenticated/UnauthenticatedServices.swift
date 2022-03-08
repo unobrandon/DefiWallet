@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
-import UserNotifications
+import NotificationCenter
 import Alamofire
 import web3swift
 
 class UnauthenticatedServices: ObservableObject {
 
     @Published var unauthenticatedWallet: Wallet = Wallet(address: "", data: Data(), name: "", isHD: true)
+    @Published var password: String = ""
     @Published var secretPhrase: [String] = []
     @Published var hasEnsName: Bool = false
 
@@ -29,19 +30,6 @@ class UnauthenticatedServices: ObservableObject {
                     completion?()
                 }
             }
-
-            /*
-            let newUser = CurrentUser(accessToken: UUID().uuidString,
-                                      walletAddress: "testUsernamelol",
-                                      secretPhrase: "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9",
-                                      password: "http://",
-                                      username: "",
-                                      avatar: "",
-                                      accountValue: "0.00",
-                                      wallet: self.unauthenticatedWallet)
-
-            AuthenticationService.shared.authStatus = .authenticated(newUser)
-            */
         }
     }
 
@@ -118,6 +106,21 @@ class UnauthenticatedServices: ObservableObject {
         }
     }
 
+    func getStarted() {
+        let newUser = CurrentUser(id: UUID().uuidString,
+                                  address: unauthenticatedWallet.address,
+                                  mediumAddress: unauthenticatedWallet.address.formatAddressExtended(),
+                                  shortAddress: unauthenticatedWallet.address.formatAddress(),
+                                  secretPhrase: secretPhrase,
+                                  password: password,
+                                  username: nil,
+                                  avatar: nil,
+                                  miniAvatar: nil,
+                                  wallet: unauthenticatedWallet)
+
+        AuthenticationService.shared.authStatus = .authenticated(newUser)
+    }
+
     private func isWalletHD(_ text: String) -> Bool {
         guard let count = text.countWords(),
                 count == 12 || count == 24 else {
@@ -128,36 +131,38 @@ class UnauthenticatedServices: ObservableObject {
     }
 
     func registerUser(username: String, password: String, address: String, completion: ((Bool) -> Void)?) {
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .userInteractive).async {
             let backendUrl: String = "createNewUser?username=\(username)&password=\(password)&address=\(address)"
 
             AF.request(Constants.backendBaseUrl + backendUrl, method: .get).response { response in
                 debugPrint("Response: \(response.result)")
 
-                switch response.result {
-                case .success(let success):
-                    print("success reregistering: \(String(describing: success.debugDescription))")
-                    let endpoint = "https://speedy-nodes-nyc.moralis.io/" + "b8a2c97baf6d1f1c575ebd0e/eth/mainnet"
+                DispatchQueue.main.async {
+                    switch response.result {
+                    case .success(let success):
+                        print("success reregistering: \(String(describing: success.debugDescription))")
+                        let endpoint = "https://speedy-nodes-nyc.moralis.io/" + "b8a2c97baf6d1f1c575ebd0e/eth/mainnet"
 
-                    guard let url = URL(string: endpoint), let web3Http = Web3HttpProvider(url) else {
-                        completion?(false)
-                        return
-                    }
-
-                    let web = web3(provider: web3Http)
-                    if let ens = ENS(web3: web) {
-                        do {
-                            let name = try ens.getAddress(forNode: address)
-                            print("found wallet with ENS name: \(name)")
-
-                            completion?(true)
-                        } catch {
+                        guard let url = URL(string: endpoint), let web3Http = Web3HttpProvider(url) else {
                             completion?(false)
+                            return
                         }
+
+                        let web = web3(provider: web3Http)
+                        if let ens = ENS(web3: web) {
+                            do {
+                                let name = try ens.getAddress(forNode: address)
+                                print("found wallet with ENS name: \(name)")
+
+                                completion?(true)
+                            } catch {
+                                completion?(false)
+                            }
+                        }
+                    case .failure(let error):
+                        print("error loading register: \(error)")
+                        completion?(false)
                     }
-                case .failure(let error):
-                    print("error loading register: \(error)")
-                    completion?(false)
                 }
             }
         }
@@ -247,20 +252,29 @@ class UnauthenticatedServices: ObservableObject {
                 completion?(false)
             } else if settings.authorizationStatus == .authorized {
                 completion?(true)
+            } else {
+                completion?(false)
             }
         })
     }
 
     func pasteText() -> String {
-        guard let clipboard = UIPasteboard.general.string else {
-            return ""
-        }
+        #if os(iOS)
+            guard let clipboard = UIPasteboard.general.string else {
+                return ""
+            }
 
-        return clipboard.cleanUpPastedText()
+            return clipboard.cleanUpPastedText()
+
+        #else
+            return ""
+        #endif
     }
 
     func copyPrivateKey() {
-        UIPasteboard.general.string = secretPhrase.joined(separator: " ")
+        #if os(iOS)
+            UIPasteboard.general.string = secretPhrase.joined(separator: " ")
+        #endif
     }
 
 }

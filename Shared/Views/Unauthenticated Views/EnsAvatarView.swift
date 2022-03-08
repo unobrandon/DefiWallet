@@ -13,10 +13,10 @@ struct EnsAvatarView: View {
 
     @ObservedObject private var store: UnauthenticatedServices
 
-    @State var disablePrimaryAction: Bool = false
+    @State var disablePrimaryAction: Bool = true
     @State var showImagePicker: Bool = false
-//    @State private var image: Image? = nil
-//    @State private var inputImage: UIImage? = nil
+    @State private var image: Image? = nil
+    @State private var inputImage: UIImage? = nil
     @State private var avatarProgress: Double = 0.0
 
     init(services: UnauthenticatedServices) {
@@ -62,17 +62,13 @@ struct EnsAvatarView: View {
                                 .foregroundColor(Color("baseButton"))
                                 .frame(width: 90, height: 90, alignment: .center)
 
-//                            if (image == nil) {
-                                VStack {
-                                    Image(systemName: "person.fill")
-                                        .resizable()
-                                        .foregroundColor(Color.secondary)
-                                        .frame(width: 27, height: 25, alignment: .center)
-
-                                    Text("select avatar")
-                                        .fontTemplate(DefaultTemplate.alertMessage)
-                                }
-//                            }
+                            if (image == nil) {
+                                Image(systemName: "person.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(Color("disabledGray"))
+                                    .frame(width: 24, height: 24, alignment: .center)
+                            }
                         }
                     }
                     .buttonStyle(ClickInteractiveStyle())
@@ -88,8 +84,19 @@ struct EnsAvatarView: View {
                          */
 //                    }
 
-//                    image?.resizable().scaledToFill().clipped().frame(width: 90, height: 90).cornerRadius(45)
+                    image?.resizable().scaledToFill().clipped().frame(width: 90, height: 90).cornerRadius(45)
                 }
+
+                Button("Select Avatar", action: {
+                    showImagePicker.toggle()
+
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
+                })
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+                .buttonBorderShape(.roundedRectangle)
 
                 Spacer()
                 Text("decentralized by IPFS")
@@ -98,7 +105,7 @@ struct EnsAvatarView: View {
                 RoundedInteractiveButton("Next", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
                     nextView()
                 })
-                .padding(.vertical)
+                .padding(.bottom, 30)
             }.padding(.horizontal)
         }.navigationBarTitle("Set Avatar", displayMode: .inline)
         #if os(iOS)

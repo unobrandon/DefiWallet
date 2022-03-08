@@ -89,7 +89,10 @@ struct TextFieldSingleList: View {
 
                         if text.count >= textLimit, textLimit != 0 {
                             exceededLimit = true
-                            HapticFeedback.lightHapticFeedback()
+
+                            #if os(iOS)
+                                HapticFeedback.rigidHapticFeedback()
+                            #endif
                         } else {
                             exceededLimit = false
                         }

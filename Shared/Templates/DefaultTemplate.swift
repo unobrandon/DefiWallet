@@ -70,7 +70,7 @@ struct DefaultTemplate {
         #if targetEnvironment(macCatalyst)
         return Color(NSColor.systemGray4)
         #elseif os(macOS)
-        return Color(NSColor.systemGray4)
+        return Color(NSColor(red: 0.82, green: 0.82, blue: 0.84, alpha: 1.0))
         #elseif os(iOS)
         return Color(.systemGray4)
         #endif
@@ -80,7 +80,7 @@ struct DefaultTemplate {
         #if targetEnvironment(macCatalyst)
         return Color(NSColor.systemGray3)
         #elseif os(macOS)
-        return Color(NSColor.systemGray3)
+        return Color(NSColor(red: 0.82, green: 0.82, blue: 0.84, alpha: 1.0))
         #elseif os(iOS)
         return Color(.systemGray3)
         #endif

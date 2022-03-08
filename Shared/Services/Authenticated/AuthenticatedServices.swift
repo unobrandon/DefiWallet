@@ -12,7 +12,10 @@ class AuthenticatedServices: ObservableObject {
 
     // MARK: screen services
     var wallet: WalletService = WalletService()
+    var market: MarketsService = MarketsService()
+    var discover: DiscoverService = DiscoverService()
     var invest: InvestService = InvestService()
+    var profile: ProfileService = ProfileService()
 
     // MARK: network delegates
     var ethereum: EthereumService

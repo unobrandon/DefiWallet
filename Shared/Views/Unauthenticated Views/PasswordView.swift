@@ -15,6 +15,7 @@ struct PasswordView: View {
     @ObservedObject private var store: UnauthenticatedServices
 
     @State var disablePrimaryAction: Bool = true
+    @State var isLoading: Bool = false
     @State var passwordText: String = ""
 
     init(services: UnauthenticatedServices) {
@@ -53,34 +54,51 @@ struct PasswordView: View {
                         .padding(.leading)
                     Spacer()
                 }
+                .frame(maxWidth: Constants.iPadMaxWidth)
 
                 Spacer()
-                RoundedInteractiveButton("Set Password", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
-                    self.disablePrimaryAction = true
-                    store.registerUser(username: store.unauthenticatedWallet.address, password: passwordText, address: store.unauthenticatedWallet.address, completion: { hasENS in
-                        self.store.hasEnsName = hasENS
-                        self.disablePrimaryAction = false
-                        let context = LAContext()
-                        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil),                     !UserDefaults.standard.bool(forKey: "biometryEnabled") {
-                            unauthenticatedRouter.route(to: \.biometry)
-                        } else {
-                            if hasENS {
-                                store.checkNotificationPermission(completion: { isEnabled in
-                                    if isEnabled {
-                                        unauthenticatedRouter.route(to: \.completed)
-                                    } else {
-                                        unauthenticatedRouter.route(to: \.notifications)
-                                    }
-                                })
-                            } else {
-                                unauthenticatedRouter.route(to: \.ensUsername)
-                            }
-                        }
+                if isLoading {
+                    LoadingIndicator(size: 30).padding(.bottom, 30)
+                } else {
+                    RoundedInteractiveButton("Set Password", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
+                        setPassword()
                     })
-                })
-                .padding(.bottom, 30)
+                    .padding(.bottom, 30)
+                }
             }.padding(.horizontal)
         }.navigationBarTitle("Create Password", displayMode: .inline)
+    }
+
+    private func setPassword() {
+        self.disablePrimaryAction = true
+        self.isLoading = true
+
+        store.registerUser(username: store.unauthenticatedWallet.address,
+                           password: passwordText,
+                           address: store.unauthenticatedWallet.address,
+                           completion: { hasENS in
+            self.store.password = passwordText
+            self.store.hasEnsName = hasENS
+            self.isLoading = false
+            self.disablePrimaryAction = false
+
+            let context = LAContext()
+            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil),                     !UserDefaults.standard.bool(forKey: "biometryEnabled") {
+                unauthenticatedRouter.route(to: \.biometry)
+            } else {
+                if hasENS {
+                    store.checkNotificationPermission(completion: { isEnabled in
+                        if isEnabled {
+                            unauthenticatedRouter.route(to: \.completed)
+                        } else {
+                            unauthenticatedRouter.route(to: \.notifications)
+                        }
+                    })
+                } else {
+                    unauthenticatedRouter.route(to: \.ensUsername)
+                }
+            }
+        })
     }
 
     private func enablePrimaryButton() {

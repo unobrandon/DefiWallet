@@ -10,8 +10,10 @@ import Stinsen
 
 struct DiscoverView: View {
 
-    init() {
+    @ObservedObject private var store: DiscoverService
 
+    init(service: AuthenticatedServices) {
+        self.store = service.discover
     }
 
     var body: some View {

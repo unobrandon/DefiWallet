@@ -15,9 +15,11 @@ final class DiscoverCoordinator: NavigationCoordinatable {
     @Root var start = makeStart
 
     let currentUser: CurrentUser
+    let services: AuthenticatedServices
 
-    init(currentUser: CurrentUser) {
+    init(currentUser: CurrentUser, services: AuthenticatedServices) {
         self.currentUser = currentUser
+        self.services = services
     }
 
     deinit {

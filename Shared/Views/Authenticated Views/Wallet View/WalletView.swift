@@ -44,7 +44,7 @@ struct WalletView: View {
                 }
 
                 Text("History")
-                    .fontTemplate(DefaultTemplate.headingBold)
+                    .fontTemplate(DefaultTemplate.headingSemiBold)
                     .padding(.top)
 
                 ForEach(store.history, id: \.self) { item in
@@ -79,7 +79,7 @@ struct WalletView: View {
     }
 
     private func fetchHistory() {
-        store.fetchHistory(services.currentUser.walletAddress, completion: {
+        store.fetchHistory(services.currentUser.address, completion: {
             print("done getting history")
         })
 

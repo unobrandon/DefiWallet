@@ -13,7 +13,7 @@ struct EnsUsernameView: View {
 
     @ObservedObject private var store: UnauthenticatedServices
 
-    @State var disablePrimaryAction: Bool = false
+    @State var disablePrimaryAction: Bool = true
 
     init(services: UnauthenticatedServices) {
         self.store = services
@@ -69,6 +69,7 @@ struct EnsUsernameView: View {
                             unauthenticatedRouter.route(to: \.notifications)
                         }
                     })
+//                    unauthenticatedRouter.route(to: \.notifications)
 
                     #if os(iOS)
                         HapticFeedback.lightHapticFeedback()

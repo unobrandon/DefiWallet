@@ -64,7 +64,10 @@ struct TextViewInteractiveBordered: View {
 
                 if text.count >= textLimit, textLimit != 0 {
                     exceededLimit = true
-                    HapticFeedback.lightHapticFeedback()
+
+                    #if os(iOS)
+                        HapticFeedback.lightHapticFeedback()
+                    #endif
                 } else {
                     exceededLimit = false
                 }

@@ -46,6 +46,7 @@ struct CompletedView: View {
 
                 Text("Your \(Constants.projectName) wallet is now set up. Begin exploring all the possibilities!")
                     .fontTemplate(DefaultTemplate.bodyMono)
+                    .frame(maxWidth: Constants.iPadMaxWidth)
                     .multilineTextAlignment(.center)
 
                 Spacer()
@@ -55,7 +56,7 @@ struct CompletedView: View {
                 .padding(.bottom, 10)
 
                 RoundedButton("Get Started", style: .primary, systemImage: nil, action: {
-
+                    store.getStarted()
                 })
                 .padding(.bottom, 30)
             }.padding(.horizontal)

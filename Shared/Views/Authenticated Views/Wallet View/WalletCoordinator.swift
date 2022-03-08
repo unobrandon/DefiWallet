@@ -14,9 +14,11 @@ final class WalletCoordinator: NavigationCoordinatable {
 
     @Root var start = makeStart
 
+    let currentUser: CurrentUser
     let services: AuthenticatedServices
 
-    init(services: AuthenticatedServices) {
+    init(currentUser: CurrentUser, services: AuthenticatedServices) {
+        self.currentUser = currentUser
         self.services = services
     }
 

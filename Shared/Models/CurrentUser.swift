@@ -9,13 +9,15 @@ import Foundation
 
 struct CurrentUser: Codable, Equatable {
 
-    let accessToken: String
-    let walletAddress: String
-    let secretPhrase: String
+    let id: String
+    let address: String
+    let mediumAddress: String
+    let shortAddress: String
+    let secretPhrase: [String]
     let password: String
     let username: String?
     let avatar: String?
-    let accountValue: String?
+    let miniAvatar: String?
     let wallet: Wallet
 
 }
