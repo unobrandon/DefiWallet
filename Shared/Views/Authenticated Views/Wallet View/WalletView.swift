@@ -107,6 +107,10 @@ struct WalletView: View {
         store.fetchChainBalances(services.currentUser.address, completion: {
             print("completed getting chain overview: \(store.accountBalance.count)")
         })
+
+        store.fetchAccountNfts(services.currentUser.address, completion: {
+            print("completed getting NFTs: \(store.accountNfts)")
+        })
     }
 
 }

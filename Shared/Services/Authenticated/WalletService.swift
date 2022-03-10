@@ -13,6 +13,7 @@ class WalletService: ObservableObject {
 
     @Published var history = [Datum]()
     @Published var accountBalance = [ChainBalance]()
+    @Published var accountNfts = [NetworkNfts]()
 
     func fetchChainBalances(_ address: String, completion: @escaping () -> Void) {
 
@@ -25,6 +26,28 @@ class WalletService: ObservableObject {
                     self.accountBalance = chains
                 }
                 print("chainBalance count is: \(self.accountBalance.count)")
+
+                completion()
+
+            case .failure(let error):
+                print("error loading history: \(error)")
+
+                completion()
+            }
+        }
+    }
+
+    func fetchAccountNfts(_ address: String, completion: @escaping () -> Void) {
+
+        let url = Constants.backendBaseUrl + "accountNfts" + "?address=\(address)"
+
+        AF.request(url, method: .get).responseDecodable(of: AccountNfts.self) { response in
+            switch response.result {
+            case .success(let accountBalance):
+                if let networks = accountBalance.networkNfts {
+                    self.accountNfts = networks
+                }
+                print("NFT count is: \(self.accountNfts.count)")
 
                 completion()
 
