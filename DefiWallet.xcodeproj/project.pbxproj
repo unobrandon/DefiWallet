@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		051BCF5227BC87DB0056E047 /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5127BC87DB0056E047 /* AccountBalance.swift */; };
-		051BCF5327BC87DB0056E047 /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5127BC87DB0056E047 /* AccountBalance.swift */; };
 		051BCF5527BC970A0056E047 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* TransactionHistory.swift */; };
 		051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* TransactionHistory.swift */; };
 		051BCF5827BCACB30056E047 /* AuthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */; };
@@ -114,6 +112,10 @@
 		058C786927D0831700EB91CA /* AlertBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C786727D0831700EB91CA /* AlertBanner.swift */; };
 		058C786B27D09E5900EB91CA /* CompletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C786A27D09E5900EB91CA /* CompletedView.swift */; };
 		058C786C27D09E5900EB91CA /* CompletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C786A27D09E5900EB91CA /* CompletedView.swift */; };
+		0593020D27D9900A006DDFFF /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020C27D9900A006DDFFF /* AccountBalance.swift */; };
+		0593020E27D9900A006DDFFF /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020C27D9900A006DDFFF /* AccountBalance.swift */; };
+		0593021027D9C790006DDFFF /* Double+Extenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020F27D9C790006DDFFF /* Double+Extenions.swift */; };
+		0593021127D9C790006DDFFF /* Double+Extenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020F27D9C790006DDFFF /* Double+Extenions.swift */; };
 		059F73C927D7041A00B27E80 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 059F73C827D7041A00B27E80 /* SwiftUIX */; };
 		059F73CF27D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
 		059F73D027D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
@@ -256,7 +258,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		051BCF5127BC87DB0056E047 /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
 		051BCF5427BC970A0056E047 /* TransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistory.swift; sourceTree = "<group>"; };
 		051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedServices.swift; sourceTree = "<group>"; };
 		051BCF5C27BCAE150056E047 /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
@@ -326,6 +327,8 @@
 		058C786427D07E3600EB91CA /* PrivateKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeysView.swift; sourceTree = "<group>"; };
 		058C786727D0831700EB91CA /* AlertBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBanner.swift; sourceTree = "<group>"; };
 		058C786A27D09E5900EB91CA /* CompletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedView.swift; sourceTree = "<group>"; };
+		0593020C27D9900A006DDFFF /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
+		0593020F27D9C790006DDFFF /* Double+Extenions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extenions.swift"; sourceTree = "<group>"; };
 		059F73CE27D7160D00B27E80 /* DiscoverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverService.swift; sourceTree = "<group>"; };
 		059F73D127D7164700B27E80 /* MarketsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsService.swift; sourceTree = "<group>"; };
 		059F73D427D7166A00B27E80 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -593,7 +596,7 @@
 				0578077E27BB87C80008051B /* Wallet.swift */,
 				05E8589327C5D7F000B85195 /* GasPrice.swift */,
 				05D1096F27C17D49008DCC66 /* ERC20Token.swift */,
-				051BCF5127BC87DB0056E047 /* AccountBalance.swift */,
+				0593020C27D9900A006DDFFF /* AccountBalance.swift */,
 				051BCF5427BC970A0056E047 /* TransactionHistory.swift */,
 			);
 			path = Models;
@@ -634,6 +637,7 @@
 				0578075127BB5EF10008051B /* Font+Extensions.swift */,
 				0578077B27BB822C0008051B /* String+Extensions.swift */,
 				05E858C627CB238800B85195 /* Character+Extensions.swift */,
+				0593020F27D9C790006DDFFF /* Double+Extenions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1221,6 +1225,7 @@
 				05E858CE27CB25C200B85195 /* AlertBadge.swift in Sources */,
 				0578073227BB59D30008051B /* MarketsCoordinator+Factory.swift in Sources */,
 				05E5F84927D321920090290C /* Shake.swift in Sources */,
+				0593021027D9C790006DDFFF /* Double+Extenions.swift in Sources */,
 				0578074127BB5B500008051B /* DiscoverCoordinator+Factory.swift in Sources */,
 				05E858B927CA04D000B85195 /* MainCarouselView.swift in Sources */,
 				05E5F84227D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */,
@@ -1231,6 +1236,7 @@
 				05E5F85327D3614A0090290C /* ConfettiSwiftUI.swift in Sources */,
 				051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */,
 				058C785F27D06D5600EB91CA /* HeaderIcon.swift in Sources */,
+				0593020D27D9900A006DDFFF /* AccountBalance.swift in Sources */,
 				05E858A027C9F62000B85195 /* ImportWalletView.swift in Sources */,
 				058C786B27D09E5900EB91CA /* CompletedView.swift in Sources */,
 				053C7D3B27CD903B0081DCEA /* MovingNumbersView.swift in Sources */,
@@ -1240,7 +1246,6 @@
 				057806E827B8DF980008051B /* AuthenticationService.swift in Sources */,
 				057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
 				05E5F85A27D361AF0090290C /* SlimRectangle.swift in Sources */,
-				051BCF5227BC87DB0056E047 /* AccountBalance.swift in Sources */,
 				05E5F84527D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */,
 				0578074927BB5E610008051B /* FontTemplating.swift in Sources */,
 				05E858FB27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,
@@ -1278,6 +1283,7 @@
 				05D1094C27C08B3E008DCC66 /* InvestCoordinator.swift in Sources */,
 				057806E627B8DF240008051B /* CurrentUser.swift in Sources */,
 				051BCF5E27BCAE150056E047 /* WalletService.swift in Sources */,
+				0593020E27D9900A006DDFFF /* AccountBalance.swift in Sources */,
 				05D1094A27C08B3E008DCC66 /* MarketsCoordinator+Factory.swift in Sources */,
 				05E858D727CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */,
 				05E858F227CB43BC00B85195 /* LoadingIndicator.swift in Sources */,
@@ -1303,6 +1309,7 @@
 				05E858F627CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */,
 				059F73D327D7164700B27E80 /* MarketsService.swift in Sources */,
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
+				0593021127D9C790006DDFFF /* Double+Extenions.swift in Sources */,
 				05D1097427C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */,
 				05E8589527C5D7F000B85195 /* GasPrice.swift in Sources */,
 				051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */,
@@ -1330,7 +1337,6 @@
 				05E8590027CC08F200B85195 /* RoundedInteractiveButton.swift in Sources */,
 				05D1095427C08B3E008DCC66 /* DiscoverView.swift in Sources */,
 				05D1095C27C08D06008DCC66 /* MacAuthenticatedCoordinator.swift in Sources */,
-				051BCF5327BC87DB0056E047 /* AccountBalance.swift in Sources */,
 				053EC29327BE0E3600FBC681 /* InvestService.swift in Sources */,
 				0578071D27B90A050008051B /* Constants.swift in Sources */,
 				05E858C827CB238800B85195 /* Character+Extensions.swift in Sources */,

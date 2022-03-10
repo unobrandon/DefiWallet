@@ -69,7 +69,7 @@ struct EnsUsernameView: View {
                             unauthenticatedRouter.route(to: \.notifications)
                         }
                     })
-//                    unauthenticatedRouter.route(to: \.notifications)
+                    unauthenticatedRouter.route(to: \.notifications)
 
                     #if os(iOS)
                         HapticFeedback.lightHapticFeedback()

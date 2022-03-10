@@ -12,6 +12,29 @@ class WalletService: ObservableObject {
     // Wallet view functions go here
 
     @Published var history = [Datum]()
+    @Published var accountBalance = [ChainBalance]()
+
+    func fetchChainBalances(_ address: String, completion: @escaping () -> Void) {
+
+        let url = Constants.backendBaseUrl + "accountCompleteBalance" + "?address=\(address)"
+
+        AF.request(url, method: .get).responseDecodable(of: AccountBalance.self) { response in
+            switch response.result {
+            case .success(let accountBalance):
+                if let chains = accountBalance.chainBalance {
+                    self.accountBalance = chains
+                }
+                print("chainBalance count is: \(self.accountBalance.count)")
+
+                completion()
+
+            case .failure(let error):
+                print("error loading history: \(error)")
+
+                completion()
+            }
+        }
+    }
 
     func fetchHistory(_ address: String, completion: @escaping () -> Void) {
 

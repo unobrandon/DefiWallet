@@ -26,21 +26,38 @@ struct WalletView: View {
             Color("baseBackground").ignoresSafeArea()
 
             ScrollView {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Welcome to \nthe wallet view")
-                        .fontTemplate(DefaultTemplate.titleBold)
+                Text("Networks")
+                    .fontTemplate(DefaultTemplate.headingSemiBold)
+                    .padding(.top)
 
-                    Text(services.currentUser.username ?? "")
-                        .fontTemplate(DefaultTemplate.headingSemiBold)
+                ForEach(store.accountBalance, id: \.self) { item in
+                    HStack(alignment: .center) {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(item.network ?? "unknown")
+                                .fontTemplate(DefaultTemplate.bodySemibold)
 
-                    Text("The Sub-Header is here")
-                        .fontTemplate(DefaultTemplate.subheadingMedium)
+                            if let tokenCount = item.tokenBalance?.count, tokenCount != 0 {
+                                Text("+\(tokenCount) other tokens")
+                                    .fontTemplate(DefaultTemplate.caption)
+                            }
+                        }
 
-                    Text("The body texts!!")
-                        .fontTemplate(DefaultTemplate.body)
-
-                    Text("caption time")
-                        .fontTemplate(DefaultTemplate.caption)
+                        Spacer()
+                        if let native = item.nativeBalance,
+                           let balance = Double(native),
+                           let formatted = (balance / Constants.eighteenDecimal),
+                           let roundedValue = formatted.truncate(places: 4),
+                           let network = item.network?.formatNetwork() {
+                            Text("".forTrailingZero(temp: roundedValue) + " " + network)
+                                .font(Font.custom("Poppins-SemiBold", size: 14))
+                                .foregroundColor(Color.primary)
+                                .textCase(.uppercase)
+                        }
+                    }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
+                    .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.secondary.opacity(0.2)))
+                    .padding(.horizontal)
                 }
 
                 Text("History")
@@ -85,6 +102,10 @@ struct WalletView: View {
 
         store.fetchCustomGas(completion: {
             print("done getting gas")
+        })
+
+        store.fetchChainBalances(services.currentUser.address, completion: {
+            print("completed getting chain overview: \(store.accountBalance.count)")
         })
     }
 

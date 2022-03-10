@@ -18,6 +18,8 @@ public struct Constants {
     static let iPadMaxWidth: CGFloat = 640
     static let generateWalletDelay = 5.0
 
+    static let eighteenDecimal: Double = 1000000000000000000
+
     // MARK: General
 
     enum DeviceType {

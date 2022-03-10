@@ -28,6 +28,25 @@ extension String {
         return words.count
     }
 
+    func forTrailingZero(temp: Double) -> String {
+        let tempVar = String(format: "%g", temp)
+        return tempVar
+    }
+
+    func formatNetwork() -> String {
+        guard !self.isEmpty else { return self }
+
+        if self == "polygon" {
+            return "ply"
+        } else if self == "avalanche" {
+            return "avax"
+        } else if self == "fantom" {
+            return "ftm"
+        } else {
+            return self
+        }
+    }
+
     func formatAddress(_ address: String) -> String {
         guard !address.contains(".eth") else {
            return address
