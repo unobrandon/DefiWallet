@@ -29,20 +29,13 @@ struct PrivateKeysView: View {
             VStack(alignment: .center, spacing: 0) {
                 Spacer()
 
-                HeaderIcon(size: 48, imageName: "key")
-                    .rotationEffect(.init(degrees: 45))
-
-                Text("Recovery Phrase")
-                    .fontTemplate(DefaultTemplate.headingSemiBold)
-                    .multilineTextAlignment(.center)
-                    .padding(.bottom, 10)
-
-                Text("Write down or copy these words in the right order.")
-                    .fontTemplate(DefaultTemplate.bodyMono_secondary)
-                    .multilineTextAlignment(.center)
+                OnboardingHeaderView(imageName: "key",
+                                     title: "Recovery Phrase",
+                                     subtitle: "Write down or copy these words in the right order.")
 
                 Spacer()
                 AlertBanner(message: alertMessage, color: .orange)
+                    .padding(.bottom)
 
                 ListSection(title: store.unauthenticatedWallet.address.formatAddressExtended(), style: .border, {
                     HStack(alignment: .top, spacing: 0) {
@@ -84,7 +77,6 @@ struct PrivateKeysView: View {
                     )
                 })
                 .frame(maxWidth: Constants.iPadMaxWidth)
-                .padding(.bottom, 5)
                 .onLongPressGesture(minimumDuration: 15.0, pressing: { pressing in
                     keyHidden = !pressing
 
@@ -116,14 +108,16 @@ struct PrivateKeysView: View {
                     .controlSize(.mini)
                     .buttonBorderShape(.roundedRectangle)
                 }
+                .padding(.horizontal)
                 .frame(maxWidth: Constants.iPadMaxWidth)
+                .offset(y: -10)
 
                 Spacer()
                 RoundedButton("Next", style: .primary, systemImage: nil, action: {
                     unauthenticatedRouter.route(to: \.setPassword)
                 })
                 .padding(.bottom, 30)
-            }.padding(.horizontal)
+            }
         }.navigationBarTitle("Secure Your Keys", displayMode: .inline)
     }
 

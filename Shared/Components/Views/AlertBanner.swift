@@ -18,17 +18,16 @@ struct AlertBanner: View {
     }
 
     var body: some View {
-        HStack(alignment: .center, spacing: 0) {
+        HStack(alignment: .center, spacing: 15) {
             Image(systemName: "exclamationmark.triangle")
                 .resizable()
                 .frame(width: 18, height: 18, alignment: .center)
                 .font(Font.title.weight(.semibold))
                 .foregroundColor(color)
-                .padding(.leading, 5)
+                .padding(.leading, 15)
 
             Text(message)
                 .fontTemplate(DefaultTemplate.alertMessage)
-                .padding(.leading, 15)
                 .padding(.trailing, 5)
 
             Spacer()
@@ -36,6 +35,8 @@ struct AlertBanner: View {
         .frame(maxWidth: Constants.iPadMaxWidth)
         .padding(.vertical, 10)
         .background(RoundedRectangle(cornerRadius: 10, style: .circular).stroke(color, lineWidth: 1).background(color.opacity(0.15)))
+        .padding(.horizontal, 2)
+        .padding(.horizontal)
     }
 
 }

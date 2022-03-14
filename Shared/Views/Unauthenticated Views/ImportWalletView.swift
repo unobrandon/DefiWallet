@@ -32,21 +32,9 @@ struct ImportWalletView: View {
             VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
-                Image(systemName: "folder.badge.plus")
-                    .resizable()
-                    .scaledToFit()
-                    .font(Font.title.weight(.medium))
-                    .frame(width: 46, height: 46, alignment: .center)
-                    .padding(.bottom, 10)
-                    .irregularGradient(colors: [.blue, .orange, .red, .yellow], backgroundColor: .pink, speed: 4)
-
-                Text("Import Secret Phrase")
-                    .fontTemplate(DefaultTemplate.headingSemiBold)
-                    .multilineTextAlignment(.center)
-
-                Text("Restore an existing wallet with your 12 or 24-word secret recovery phrase.")
-                    .fontTemplate(DefaultTemplate.bodyMono_secondary)
-                    .multilineTextAlignment(.center)
+                OnboardingHeaderView(imageName: "folder.badge.plus",
+                                     title: "Import Secret Phrase",
+                                     subtitle: "Restore an existing wallet with your 12 or 24-word secret recovery phrase.")
 
                 Spacer()
                 TextViewInteractiveBordered(text: $textViewText, hasError: $invalidPhrase,

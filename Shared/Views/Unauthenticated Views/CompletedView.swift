@@ -59,7 +59,7 @@ struct CompletedView: View {
                     store.getStarted()
                 })
                 .padding(.bottom, 30)
-            }.padding(.horizontal)
+            }
 
             ConfettiCannon(counter: $confettiCounter, repetitions: confettiCounter > 0 ? 1 : 3, repetitionInterval: 0.2)
         }.navigationBarTitle("", displayMode: .inline)

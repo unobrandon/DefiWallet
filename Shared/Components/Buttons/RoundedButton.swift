@@ -89,6 +89,7 @@ struct RoundedButton: View {
                             .foregroundColor(backgroundColor).frame(height: 49))
             .foregroundColor(foregroundColor)
         })
+        .padding(.horizontal)
         .frame(maxWidth: 380)
         .buttonStyle(ClickInteractiveStyle())
     }

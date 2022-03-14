@@ -29,16 +29,9 @@ struct PasswordView: View {
             VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
-                HeaderIcon(size: 48, imageName: "lock.shield")
-                    .padding(.bottom, 10)
-
-                Text("Protect your wallet")
-                    .fontTemplate(DefaultTemplate.headingSemiBold)
-                    .multilineTextAlignment(.center)
-
-                Text("Used to sign contracts & transactions.")
-                    .fontTemplate(DefaultTemplate.bodyMono_secondary)
-                    .multilineTextAlignment(.center)
+                OnboardingHeaderView(imageName: "lock.shield",
+                                     title: "Protect your wallet",
+                                     subtitle: "Used to sign contracts & transactions.")
 
                 Spacer()
                 TextFieldSingleBordered(text: passwordText, placeholder: "password", textLimit: 20, isSecure: true, initFocus: true, onEditingChanged: { text in

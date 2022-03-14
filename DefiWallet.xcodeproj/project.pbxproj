@@ -122,6 +122,8 @@
 		0593021727DEFA95006DDFFF /* CompleteBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021527DEFA95006DDFFF /* CompleteBalance.swift */; };
 		0593021927DFCB3D006DDFFF /* ListButtonHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021827DFCB3D006DDFFF /* ListButtonHeader.swift */; };
 		0593021A27DFCB3D006DDFFF /* ListButtonHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021827DFCB3D006DDFFF /* ListButtonHeader.swift */; };
+		0593021C27DFF0E5006DDFFF /* OnboardingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021B27DFF0E5006DDFFF /* OnboardingHeaderView.swift */; };
+		0593021D27DFF0E5006DDFFF /* OnboardingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021B27DFF0E5006DDFFF /* OnboardingHeaderView.swift */; };
 		059F73C927D7041A00B27E80 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 059F73C827D7041A00B27E80 /* SwiftUIX */; };
 		059F73CF27D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
 		059F73D027D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
@@ -338,6 +340,7 @@
 		0593021227D9E33E006DDFFF /* AccountNft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNft.swift; sourceTree = "<group>"; };
 		0593021527DEFA95006DDFFF /* CompleteBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteBalance.swift; sourceTree = "<group>"; };
 		0593021827DFCB3D006DDFFF /* ListButtonHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonHeader.swift; sourceTree = "<group>"; };
+		0593021B27DFF0E5006DDFFF /* OnboardingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingHeaderView.swift; sourceTree = "<group>"; };
 		059F73CE27D7160D00B27E80 /* DiscoverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverService.swift; sourceTree = "<group>"; };
 		059F73D127D7164700B27E80 /* MarketsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsService.swift; sourceTree = "<group>"; };
 		059F73D427D7166A00B27E80 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -898,6 +901,7 @@
 				058C786727D0831700EB91CA /* AlertBanner.swift */,
 				05E5F84E27D351CA0090290C /* BiometryBanner.swift */,
 				05E5F86227D407A60090290C /* NotificationBanner.swift */,
+				0593021B27DFF0E5006DDFFF /* OnboardingHeaderView.swift */,
 				05E858F027CB43BC00B85195 /* LoadingIndicator.swift */,
 				053C7D3E27CDBF600081DCEA /* CheckmarkView.swift */,
 				05E8590427CC198A00B85195 /* TermsView.swift */,
@@ -1227,6 +1231,7 @@
 				05E858D627CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */,
 				05E5F86027D406370090290C /* NotiPermissionsView.swift in Sources */,
 				05E5F85727D361980090290C /* RoundedCross.swift in Sources */,
+				0593021C27DFF0E5006DDFFF /* OnboardingHeaderView.swift in Sources */,
 				0578076F27BB6D200008051B /* DefaultTemplate.swift in Sources */,
 				0578070C27B8F1370008051B /* WalletView.swift in Sources */,
 				0578074C27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
@@ -1320,6 +1325,7 @@
 				05D1094927C08B2B008DCC66 /* MainCoordinator+Factory.swift in Sources */,
 				057806E927B8DF980008051B /* AuthenticationService.swift in Sources */,
 				0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */,
+				0593021D27DFF0E5006DDFFF /* OnboardingHeaderView.swift in Sources */,
 				05D1098427C31512008DCC66 /* StorageService.swift in Sources */,
 				05E858F627CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */,
 				059F73D327D7164700B27E80 /* MarketsService.swift in Sources */,

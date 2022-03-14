@@ -26,16 +26,9 @@ struct EnsUsernameView: View {
             VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
-                HeaderIcon(size: 48, imageName: "person.text.rectangle")
-                    .padding(.bottom, 10)
-
-                Text("Universal username")
-                    .fontTemplate(DefaultTemplate.headingSemiBold)
-                    .multilineTextAlignment(.center)
-
-                Text("Change your crazy long wallet address to a readable username.")
-                    .fontTemplate(DefaultTemplate.bodyMono_secondary)
-                    .multilineTextAlignment(.center)
+                OnboardingHeaderView(imageName: "person.text.rectangle",
+                                     title: "Universal username",
+                                     subtitle: "Change your crazy long wallet address to a readable username.")
 
                 Spacer()
                 TextFieldSingleBordered(text: "", placeholder: "username.deifiwallet.eth", systemImage: "person.crop.circle", textLimit: 20, onEditingChanged: { text in

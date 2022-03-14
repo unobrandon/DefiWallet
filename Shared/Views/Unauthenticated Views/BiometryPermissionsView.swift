@@ -24,16 +24,9 @@ struct BiometryPermissionsView: View {
             VStack(alignment: .center, spacing: 20) {
                 Spacer()
 
-                HeaderIcon(size: 48, imageName: "lock.fill")
-                    .padding(.bottom)
-
-                Text("Protect your wallet")
-                    .fontTemplate(DefaultTemplate.headingSemiBold)
-                    .multilineTextAlignment(.center)
-
-                Text("Enable biometric security to help protect your wallet when signing smart contracts and transactions.")
-                    .fontTemplate(DefaultTemplate.bodyMono_secondary)
-                    .multilineTextAlignment(.center)
+                OnboardingHeaderView(imageName: "lock.fill",
+                                     title: "Protect your wallet",
+                                     subtitle: "Enable biometric security to help protect your wallet when signing smart contracts and transactions.")
 
                 Spacer()
                 BiometryBanner(style: .border, onSuccess: {
@@ -46,7 +39,7 @@ struct BiometryPermissionsView: View {
                     next()
                 })
                 .padding(.bottom)
-            }.padding(.horizontal)
+            }
         }.navigationBarTitle("Enable Permission", displayMode: .inline)
         #if os(iOS)
         .navigationBarBackButtonHidden(true)

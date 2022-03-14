@@ -21,7 +21,7 @@ class AuthenticatedServices: ObservableObject {
     var ethereum: EthereumService
 
     // MARK: stored values
-    @Published var themeStyle: AppStyle = .shadow
+    @Published var themeStyle: AppStyle = .border
     @Published var currentUser: CurrentUser
     @Published var macTabStatus: MacTabStatus
 

@@ -58,6 +58,8 @@ struct BiometryBanner: View {
                     .stroke(DefaultTemplate.borderColor.opacity(style == .border ? 1.0 : 0.0), lineWidth: 2)
                     .foregroundColor(style == .border ? Color.clear : Color("baseButton")))
         .shadow(color: Color.black.opacity(style == .shadow ? 0.15 : 0.0), radius: 15, x: 0, y: 8)
+        .padding(.horizontal, 2)
+        .padding(.horizontal)
         .onAppear {
             self.toggleOn = UserDefaults.standard.bool(forKey: "biometryEnabled")
 

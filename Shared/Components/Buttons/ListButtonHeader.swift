@@ -24,7 +24,6 @@ struct ListButtonHeader: View {
     }
 
     var body: some View {
-
         ZStack(alignment: .center) {
 
             Button(action: { self.actionTap() }) {

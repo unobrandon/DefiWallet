@@ -48,7 +48,6 @@ struct WelcomeView: View {
                     }
                     .padding(.vertical, 10)
                 }
-                .padding(.horizontal)
                 .background(bottomGradientView(geo))
             }.background(ColorfulView(animation: Animation.easeInOut(duration: 10), colors: [.red, .pink, .purple, .blue]))
             .confirmationDialog("Abandon generated address?",

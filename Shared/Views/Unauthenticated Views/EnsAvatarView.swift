@@ -30,16 +30,9 @@ struct EnsAvatarView: View {
             VStack(alignment: .center, spacing: 10) {
                 Spacer()
 
-                HeaderIcon(size: 48, imageName: "person.circle")
-                    .padding(.bottom, 10)
-
-                Text("Profile avatar")
-                    .fontTemplate(DefaultTemplate.headingSemiBold)
-                    .multilineTextAlignment(.center)
-
-                Text("Upload an avatar that will be linked to your universal ENS username")
-                    .fontTemplate(DefaultTemplate.bodyMono_secondary)
-                    .multilineTextAlignment(.center)
+                OnboardingHeaderView(imageName: "person.circle",
+                                     title: "Profile avatar",
+                                     subtitle: "Upload an avatar that will be linked to your universal ENS username")
 
                 Spacer()
                 ZStack(alignment: .center) {
