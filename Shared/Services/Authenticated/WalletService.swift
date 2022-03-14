@@ -18,21 +18,15 @@ class WalletService: ObservableObject {
 
     func fetchAccountBalance(_ address: String, completion: @escaping () -> Void) {
 
-        let url = Constants.backendBaseUrl + "accountNfts" + "?address=\(address)"
+        let url = Constants.backendBaseUrl + "accountBalance" + "?address=\(address)"
 
         AF.request(url, method: .get).responseDecodable(of: AccountBalance.self) { response in
             switch response.result {
             case .success(let accountBalance):
                 if let balance = accountBalance.completeBalance {
                     self.completeBalance = balance
+                    print("account balance is: \(self.completeBalance.description)")
                 }
-
-                if let nfts = accountBalance.accountNfts {
-                    self.accountNfts = nfts
-                    print("account NFTs is: \(self.accountNfts.description)")
-                }
-
-                print("account item count is: \(self.accountBalance.count)")
 
                 completion()
 

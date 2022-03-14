@@ -32,12 +32,17 @@ struct WalletView: View {
 
                 ForEach(store.completeBalance, id: \.self) { item in
                     HStack(alignment: .center) {
-                        VStack(alignment: .leading, spacing: 2) {
+                        VStack(alignment: .leading, spacing: 2.5) {
                             Text(item.network ?? "unknown")
                                 .fontTemplate(DefaultTemplate.bodySemibold)
 
                             if let tokenCount = item.tokenBalance?.count, tokenCount != 0 {
-                                Text("+\(tokenCount) other tokens")
+                                Text("+\(tokenCount) tokens")
+                                    .fontTemplate(DefaultTemplate.caption)
+                            }
+
+                            if let nfts = item.nfts, let nftCount = nfts.result?.count, nftCount != 0 {
+                                Text("+\(nftCount) collectables")
                                     .fontTemplate(DefaultTemplate.caption)
                             }
                         }
@@ -66,16 +71,16 @@ struct WalletView: View {
 
                 ForEach(store.history, id: \.self) { item in
                     HStack(alignment: .center) {
-                        VStack(alignment: .leading, spacing: 5) {
+                        VStack(alignment: .leading, spacing: 2.5) {
                             Text(item.direction == .incoming ? "Received" : item.direction == .outgoing ? "Sent" : "Exchange")
-                                .fontTemplate(DefaultTemplate.subheadingSemiBold)
+                                .fontTemplate(DefaultTemplate.bodyBold)
 
-                            Text("\(item.symbol) \(item.amount)")
-                                .fontTemplate(DefaultTemplate.body)
+                            Text("\(item.amount) \(item.symbol)")
+                                .fontTemplate(DefaultTemplate.bodyMedium)
                         }
 
                         Spacer()
-                        VStack(alignment: .trailing, spacing: 5) {
+                        VStack(alignment: .trailing, spacing: 2.5) {
                             Text("\(item.timeStamp.getFullElapsedInterval())")
                                 .fontTemplate(DefaultTemplate.caption)
 

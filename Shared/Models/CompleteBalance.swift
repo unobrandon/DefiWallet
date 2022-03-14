@@ -21,6 +21,7 @@ struct CompleteBalance: Codable, Hashable {
 
     let network, nativeBalance: String?
     let tokenBalance: [TokenBalance]?
+    let nfts: Nfts?
 
 }
 
