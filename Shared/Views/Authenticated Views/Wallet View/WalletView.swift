@@ -30,7 +30,7 @@ struct WalletView: View {
                     .fontTemplate(DefaultTemplate.headingSemiBold)
                     .padding(.top)
 
-                ForEach(store.accountBalance, id: \.self) { item in
+                ForEach(store.completeBalance, id: \.self) { item in
                     HStack(alignment: .center) {
                         VStack(alignment: .leading, spacing: 2) {
                             Text(item.network ?? "unknown")
@@ -104,12 +104,8 @@ struct WalletView: View {
             print("done getting gas")
         })
 
-        store.fetchChainBalances(services.currentUser.address, completion: {
+        store.fetchAccountBalance(services.currentUser.address, completion: {
             print("completed getting chain overview: \(store.accountBalance.count)")
-        })
-
-        store.fetchAccountNfts(services.currentUser.address, completion: {
-            print("completed getting NFTs: \(store.accountNfts)")
         })
     }
 

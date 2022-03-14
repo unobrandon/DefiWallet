@@ -1,42 +1,19 @@
 //
-//  TokenBalance.swift
+//  AccountBalance.swift
 //  DefiWallet
 //
-//  Created by Brandon Shaw on 3/9/22.
+//  Created by Brandon Shaw on 2/15/22.
+//
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
 //
 
 import Foundation
+import Alamofire
 
+// MARK: - AccountBalance
 struct AccountBalance: Codable {
     let error: [String]?
-    let chainBalance: [ChainBalance]?
-}
-
-struct ChainBalance: Decodable, Encodable, Hashable {
-
-    static func == (lhs: ChainBalance, rhs: ChainBalance) -> Bool {
-        return lhs.network == rhs.network && lhs.nativeBalance == rhs.nativeBalance
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(network)
-        hasher.combine(nativeBalance)
-    }
-
-    let network: String?
-    let nativeBalance: String?
-    let tokenBalance: [TokenBalance]?
-
-    enum CodingKeys: String, CodingKey {
-        case network, nativeBalance, tokenBalance
-    }
-}
-
-struct TokenBalance: Codable {
-    let tokenAddress, name, symbol, logo, thumbnail, decimals, balance: String?
-
-    enum CodingKeys: String, CodingKey {
-        case tokenAddress = "token_address"
-        case name, symbol, logo, thumbnail, decimals, balance
-    }
+    let accountNfts: [AccountNft]?
+    let completeBalance: [CompleteBalance]?
 }

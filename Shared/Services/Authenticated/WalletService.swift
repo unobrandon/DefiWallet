@@ -11,43 +11,28 @@ import Alamofire
 class WalletService: ObservableObject {
     // Wallet view functions go here
 
+    @Published var accountBalance = [AccountBalance]()
+    @Published var completeBalance = [CompleteBalance]()
+    @Published var accountNfts = [AccountNft]()
     @Published var history = [Datum]()
-    @Published var accountBalance = [ChainBalance]()
-    @Published var accountNfts = [NetworkNfts]()
 
-    func fetchChainBalances(_ address: String, completion: @escaping () -> Void) {
+    func fetchAccountBalance(_ address: String, completion: @escaping () -> Void) {
 
-        let url = Constants.backendBaseUrl + "accountCompleteBalance" + "?address=\(address)"
+        let url = Constants.backendBaseUrl + "accountNfts" + "?address=\(address)"
 
         AF.request(url, method: .get).responseDecodable(of: AccountBalance.self) { response in
             switch response.result {
             case .success(let accountBalance):
-                if let chains = accountBalance.chainBalance {
-                    self.accountBalance = chains
+                if let balance = accountBalance.completeBalance {
+                    self.completeBalance = balance
                 }
-                print("chainBalance count is: \(self.accountBalance.count)")
 
-                completion()
-
-            case .failure(let error):
-                print("error loading history: \(error)")
-
-                completion()
-            }
-        }
-    }
-
-    func fetchAccountNfts(_ address: String, completion: @escaping () -> Void) {
-
-        let url = Constants.backendBaseUrl + "accountNfts" + "?address=\(address)"
-
-        AF.request(url, method: .get).responseDecodable(of: AccountNfts.self) { response in
-            switch response.result {
-            case .success(let accountBalance):
-                if let networks = accountBalance.networkNfts {
-                    self.accountNfts = networks
+                if let nfts = accountBalance.accountNfts {
+                    self.accountNfts = nfts
+                    print("account NFTs is: \(self.accountNfts.description)")
                 }
-                print("NFT count is: \(self.accountNfts.count)")
+
+                print("account item count is: \(self.accountBalance.count)")
 
                 completion()
 

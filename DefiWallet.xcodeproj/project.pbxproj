@@ -116,8 +116,10 @@
 		0593020E27D9900A006DDFFF /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020C27D9900A006DDFFF /* AccountBalance.swift */; };
 		0593021027D9C790006DDFFF /* Double+Extenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020F27D9C790006DDFFF /* Double+Extenions.swift */; };
 		0593021127D9C790006DDFFF /* Double+Extenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020F27D9C790006DDFFF /* Double+Extenions.swift */; };
-		0593021327D9E33E006DDFFF /* AccountNFTs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021227D9E33E006DDFFF /* AccountNFTs.swift */; };
-		0593021427D9E33E006DDFFF /* AccountNFTs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021227D9E33E006DDFFF /* AccountNFTs.swift */; };
+		0593021327D9E33E006DDFFF /* AccountNft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021227D9E33E006DDFFF /* AccountNft.swift */; };
+		0593021427D9E33E006DDFFF /* AccountNft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021227D9E33E006DDFFF /* AccountNft.swift */; };
+		0593021627DEFA95006DDFFF /* CompleteBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021527DEFA95006DDFFF /* CompleteBalance.swift */; };
+		0593021727DEFA95006DDFFF /* CompleteBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021527DEFA95006DDFFF /* CompleteBalance.swift */; };
 		059F73C927D7041A00B27E80 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 059F73C827D7041A00B27E80 /* SwiftUIX */; };
 		059F73CF27D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
 		059F73D027D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
@@ -331,7 +333,8 @@
 		058C786A27D09E5900EB91CA /* CompletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedView.swift; sourceTree = "<group>"; };
 		0593020C27D9900A006DDFFF /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
 		0593020F27D9C790006DDFFF /* Double+Extenions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extenions.swift"; sourceTree = "<group>"; };
-		0593021227D9E33E006DDFFF /* AccountNFTs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNFTs.swift; sourceTree = "<group>"; };
+		0593021227D9E33E006DDFFF /* AccountNft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNft.swift; sourceTree = "<group>"; };
+		0593021527DEFA95006DDFFF /* CompleteBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteBalance.swift; sourceTree = "<group>"; };
 		059F73CE27D7160D00B27E80 /* DiscoverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverService.swift; sourceTree = "<group>"; };
 		059F73D127D7164700B27E80 /* MarketsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsService.swift; sourceTree = "<group>"; };
 		059F73D427D7166A00B27E80 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -600,7 +603,8 @@
 				05E8589327C5D7F000B85195 /* GasPrice.swift */,
 				05D1096F27C17D49008DCC66 /* ERC20Token.swift */,
 				0593020C27D9900A006DDFFF /* AccountBalance.swift */,
-				0593021227D9E33E006DDFFF /* AccountNFTs.swift */,
+				0593021527DEFA95006DDFFF /* CompleteBalance.swift */,
+				0593021227D9E33E006DDFFF /* AccountNft.swift */,
 				051BCF5427BC970A0056E047 /* TransactionHistory.swift */,
 			);
 			path = Models;
@@ -1230,9 +1234,10 @@
 				0578073227BB59D30008051B /* MarketsCoordinator+Factory.swift in Sources */,
 				05E5F84927D321920090290C /* Shake.swift in Sources */,
 				0593021027D9C790006DDFFF /* Double+Extenions.swift in Sources */,
+				0593021627DEFA95006DDFFF /* CompleteBalance.swift in Sources */,
 				0578074127BB5B500008051B /* DiscoverCoordinator+Factory.swift in Sources */,
 				05E858B927CA04D000B85195 /* MainCarouselView.swift in Sources */,
-				0593021327D9E33E006DDFFF /* AccountNFTs.swift in Sources */,
+				0593021327D9E33E006DDFFF /* AccountNft.swift in Sources */,
 				05E5F84227D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */,
 				05D1096727C0C241008DCC66 /* AuthenticatedCoordinator.swift in Sources */,
 				05D1098327C31511008DCC66 /* StorageService.swift in Sources */,
@@ -1321,7 +1326,7 @@
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				05E5F84D27D34F570090290C /* BiometryPermissionsView.swift in Sources */,
 				059F73D027D7160D00B27E80 /* DiscoverService.swift in Sources */,
-				0593021427D9E33E006DDFFF /* AccountNFTs.swift in Sources */,
+				0593021427D9E33E006DDFFF /* AccountNft.swift in Sources */,
 				05D1095827C08B3E008DCC66 /* WelcomeView.swift in Sources */,
 				05E858AB27C9F75C00B85195 /* GenerateWalletView.swift in Sources */,
 				05E858A127C9F62000B85195 /* ImportWalletView.swift in Sources */,
@@ -1362,6 +1367,7 @@
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
 				05E858F927CB5A3200B85195 /* TextFieldSingleList.swift in Sources */,
 				05D1096E27C15D80008DCC66 /* EthereumService.swift in Sources */,
+				0593021727DEFA95006DDFFF /* CompleteBalance.swift in Sources */,
 				05E858CB27CB240300B85195 /* AppGradients.swift in Sources */,
 				05E858DC27CB27E400B85195 /* AlertBadge.swift in Sources */,
 				05E858EF27CB388B00B85195 /* AppTheme.swift in Sources */,
