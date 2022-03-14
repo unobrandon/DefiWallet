@@ -20,8 +20,8 @@ struct FooterInformation: View {
                     .frame(width: 27, height: 18, alignment: .center)
 
                 Text("DefiWallet")
-                    .font(.system(size: 20))
-                    .fontWeight(.semibold)
+                    .font(.system(size: 16))
+                    .fontWeight(.bold)
                     .foregroundColor(.secondary)
                     .offset(x: -2)
             }

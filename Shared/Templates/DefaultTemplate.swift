@@ -43,6 +43,8 @@ struct DefaultTemplate {
     static let bodyMedium_standard = FontTemplate(font: Font.custom("Poppins-Medium", size: 14), weight: .medium, foregroundColor: .primary, lineSpacing: 1)
     static let bodyRegular_standard = FontTemplate(font: Font.custom("Poppins-Regular", size: 14), weight: .medium, foregroundColor: .primary, lineSpacing: 1)
 
+    static let bodyMedium_accent_standard = FontTemplate(font: Font.custom("Poppins-Medium", size: 14), weight: .medium, foregroundColor: Color("AccentColor"), lineSpacing: 1)
+
     static let bodyMono = FontTemplate(font: Font.custom("LabMono-Regular", size: 14), weight: .regular, foregroundColor: .primary, lineSpacing: 1)
     static let bodyMono_secondary = FontTemplate(font: Font.custom("LabMono-Regular", size: 14), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)
 

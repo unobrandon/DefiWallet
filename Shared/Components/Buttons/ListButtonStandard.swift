@@ -74,11 +74,7 @@ struct ListButtonStandard: View {
                             EmptyView().frame(height: 20)
                         }
 
-                        Text(title)
-                            .font(.none)
-                            .fontWeight(.none)
-                            .foregroundColor(.primary)
-                            .multilineTextAlignment(.leading)
+                        Text(title).fontTemplate(DefaultTemplate.body)
 
                         Spacer()
                         Image(systemName: "chevron.right")
@@ -89,7 +85,7 @@ struct ListButtonStandard: View {
                             .foregroundColor(.secondary)
                     }
                     .padding(.horizontal)
-                    .padding(.vertical, localImage.isEmpty ? 15 : 10)
+                    .padding(.vertical, localImage.isEmpty ? 12.5 : 10)
 
                     if style == .shadow, !isLast {
                         Divider()

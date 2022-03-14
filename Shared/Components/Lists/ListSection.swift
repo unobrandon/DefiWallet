@@ -40,7 +40,9 @@ struct ListSection<Content: View>: View {
                 .shadow(color: Color.black.opacity(style == .shadow ? 0.15 : 0.0), radius: 15, x: 0, y: 8)
                 .overlay(RoundedRectangle(cornerRadius: 15, style: .circular).stroke(DefaultTemplate.borderColor.opacity(style == .border ? 1.0 : 0.0), lineWidth: 2))
                 .padding(.bottom, 5)
+                .padding(.horizontal, 2)
         }
-        .padding(.top)
+        .padding(.bottom)
+        .padding(.horizontal)
     }
 }

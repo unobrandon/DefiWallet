@@ -120,6 +120,8 @@
 		0593021427D9E33E006DDFFF /* AccountNft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021227D9E33E006DDFFF /* AccountNft.swift */; };
 		0593021627DEFA95006DDFFF /* CompleteBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021527DEFA95006DDFFF /* CompleteBalance.swift */; };
 		0593021727DEFA95006DDFFF /* CompleteBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021527DEFA95006DDFFF /* CompleteBalance.swift */; };
+		0593021927DFCB3D006DDFFF /* ListButtonHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021827DFCB3D006DDFFF /* ListButtonHeader.swift */; };
+		0593021A27DFCB3D006DDFFF /* ListButtonHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021827DFCB3D006DDFFF /* ListButtonHeader.swift */; };
 		059F73C927D7041A00B27E80 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 059F73C827D7041A00B27E80 /* SwiftUIX */; };
 		059F73CF27D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
 		059F73D027D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
@@ -335,6 +337,7 @@
 		0593020F27D9C790006DDFFF /* Double+Extenions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extenions.swift"; sourceTree = "<group>"; };
 		0593021227D9E33E006DDFFF /* AccountNft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNft.swift; sourceTree = "<group>"; };
 		0593021527DEFA95006DDFFF /* CompleteBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteBalance.swift; sourceTree = "<group>"; };
+		0593021827DFCB3D006DDFFF /* ListButtonHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonHeader.swift; sourceTree = "<group>"; };
 		059F73CE27D7160D00B27E80 /* DiscoverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverService.swift; sourceTree = "<group>"; };
 		059F73D127D7164700B27E80 /* MarketsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsService.swift; sourceTree = "<group>"; };
 		059F73D427D7166A00B27E80 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -685,6 +688,7 @@
 				0578070327B8E8E00008051B /* RoundedButton.swift */,
 				05E858FE27CC08F200B85195 /* RoundedInteractiveButton.swift */,
 				05E858E627CB301B00B85195 /* ListButtonStandard.swift */,
+				0593021827DFCB3D006DDFFF /* ListButtonHeader.swift */,
 				05E8590127CC12A400B85195 /* TermsOfServiceButton.swift */,
 			);
 			path = Buttons;
@@ -1248,6 +1252,7 @@
 				058C785F27D06D5600EB91CA /* HeaderIcon.swift in Sources */,
 				0593020D27D9900A006DDFFF /* AccountBalance.swift in Sources */,
 				05E858A027C9F62000B85195 /* ImportWalletView.swift in Sources */,
+				0593021927DFCB3D006DDFFF /* ListButtonHeader.swift in Sources */,
 				058C786B27D09E5900EB91CA /* CompletedView.swift in Sources */,
 				053C7D3B27CD903B0081DCEA /* MovingNumbersView.swift in Sources */,
 				053EC29227BE0E3600FBC681 /* InvestService.swift in Sources */,
@@ -1326,6 +1331,7 @@
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				05E5F84D27D34F570090290C /* BiometryPermissionsView.swift in Sources */,
 				059F73D027D7160D00B27E80 /* DiscoverService.swift in Sources */,
+				0593021A27DFCB3D006DDFFF /* ListButtonHeader.swift in Sources */,
 				0593021427D9E33E006DDFFF /* AccountNft.swift in Sources */,
 				05D1095827C08B3E008DCC66 /* WelcomeView.swift in Sources */,
 				05E858AB27C9F75C00B85195 /* GenerateWalletView.swift in Sources */,
