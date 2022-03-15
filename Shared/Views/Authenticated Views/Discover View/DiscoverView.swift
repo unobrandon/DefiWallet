@@ -33,6 +33,16 @@ struct DiscoverView: View {
             SearchBar("Search all web3...", text: $searchText)
         }
         .navigationSearchBarHiddenWhenScrolling(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    print("search")
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                }
+                .foregroundColor(Color.primary)
+            }
+        }
     }
 
 }

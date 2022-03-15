@@ -27,8 +27,9 @@ struct ProfileHeaderButton: View {
 
     var body: some View {
         ZStack(alignment: .center) {
-            Button(action: { self.actionTap() }) {
-
+            Button(action: {
+                self.actionTap()
+            }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
                     HStack(alignment: .center) {
                         UserAvatar(size: 48, user: user, style: style)
@@ -54,7 +55,7 @@ struct ProfileHeaderButton: View {
                     .padding(.vertical, 10)
                 }
                 .contentShape(Rectangle())
-            }
+            })
             .buttonStyle(DefaultInteractiveStyle(style: self.style))
             .frame(minWidth: 100, maxWidth: .infinity)
 

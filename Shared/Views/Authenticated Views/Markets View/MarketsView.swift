@@ -16,6 +16,7 @@ struct MarketsView: View {
     @ObservedObject private var store: MarketsService
 
     @State var searchText: String = ""
+    @State var searchHide: Bool = true
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -32,7 +33,26 @@ struct MarketsView: View {
         .navigationSearchBar {
             SearchBar("Search tokens and more...", text: $searchText)
         }
-        .navigationSearchBarHiddenWhenScrolling(true)
+        .navigationSearchBarHiddenWhenScrolling(searchHide)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                HStack(alignment: .center, spacing: 10) {
+                    Button {
+                        print("gas")
+                    } label: {
+                        Image(systemName: "fuelpump.fill")
+                    }
+                    .foregroundColor(Color.primary)
+
+                    Button {
+                        self.searchHide.toggle()
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                    }
+                    .foregroundColor(Color.primary)
+                }
+            }
+        }
     }
 
 }

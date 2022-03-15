@@ -25,7 +25,9 @@ struct TermsOfServiceButton: View {
                     .lineLimit(1)
                     .multilineTextAlignment(.center)
 
-                Button(action: { self.actionTap() }) {
+                Button(action: {
+                    self.actionTap()
+                }) {
                     Text("Terms of Service & Privacy Policy.")
                         .font(.system(size: 12))
                         .font(.footnote)

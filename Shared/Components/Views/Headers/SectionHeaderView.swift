@@ -42,7 +42,7 @@ struct SectionHeaderView: View {
                 .padding(.trailing, 5)
             }
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 30)
         .padding(.bottom, 10)
     }
 

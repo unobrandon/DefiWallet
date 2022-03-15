@@ -10,4 +10,3 @@ import SwiftUI
 class DiscoverService: ObservableObject {
 
 }
-

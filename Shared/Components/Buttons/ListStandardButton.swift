@@ -54,7 +54,7 @@ struct ListStandardButton: View {
 
             Button(action: {
                 self.actionTap()
-            }) {
+            }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
                     HStack(alignment: .center) {
                         if !systemImage.isEmpty {
@@ -98,7 +98,7 @@ struct ListStandardButton: View {
 
                 }
                 .contentShape(Rectangle())
-            }
+            })
             .buttonStyle(DefaultInteractiveStyle(style: self.style))
             .frame(minWidth: 100, maxWidth: .infinity)
 

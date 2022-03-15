@@ -18,6 +18,16 @@ class EthereumService: ObservableObject {
     var hdKeystore: BIP32Keystore?
     var keystoreManager: KeystoreManager?
 
+    @Published var ethNetworkStatus: EthNetworkStatus = .undefined
+
+    enum EthNetworkStatus: String {
+        case error
+        case undefined
+        case connecting
+        case connected
+        case disconnected
+    }
+
     init(currentUser: CurrentUser) {
         print("eth service init")
 
@@ -45,12 +55,13 @@ class EthereumService: ObservableObject {
     }
 
     private func connectWebsocket() {
+        self.ethNetworkStatus = .connecting
         // Moralis node uses (socketUrl, delegate: self)
         socketProvider = WebsocketProvider(Constants.moralisBaseWssUrl + Constants.ethNodeWssUrl, delegate: self)
         // InfuraWebsocketProvider(Constants.infuraBaseWssUrl + Constants.infuraProjectId,
         // delegate: self, projectId: Constants.infuraProjectId, keystoreManager: keystoreManager)
 
-        socketProvider?.network = .Ropsten
+        socketProvider?.network = .Mainnet
         socketProvider?.connectSocket()
 
         if let provider = socketProvider {

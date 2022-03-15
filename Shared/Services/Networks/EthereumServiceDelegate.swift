@@ -12,6 +12,7 @@ extension EthereumService: Web3SocketDelegate {
 
     func socketConnected(_ headers: [String : String]) {
         print("websocket connected!!!: \(headers)")
+        self.ethNetworkStatus = .connected
     }
 
     func received(message: Any) {

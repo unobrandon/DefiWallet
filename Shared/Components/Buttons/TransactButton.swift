@@ -38,11 +38,12 @@ struct TransactButton: View {
                     .sizeToFit()
                     .frame(width: size * 0.5, height: size * 0.5, alignment: .center)
                     .foregroundColor(style == .shadow ? Color.white : Color("AccentColor"))
-                    .background(RoundedRectangle(cornerRadius: 10, style: .circular).foregroundColor(Color("AccentColor").opacity(style == .shadow ? 1.0 : 0.15)).frame(width: size * 1.4, height: size))
-                    .shadow(color: Color.black.opacity(style == .shadow ? 0.175 : 0.0),
+                    .background(RoundedRectangle(cornerRadius: 10, style: .circular)
+                                    .foregroundColor(Color("AccentColor").opacity(style == .shadow ? 1.0 : 0.15)).frame(width: size * 1.4, height: size))
+                    .shadow(color: Color("AccentColor").opacity(style == .shadow ? 0.175 : 0.0),
                             radius: size > 40 ? (size / 7) : size < 25 ? 3 : 5, x: 0, y: size > 40 ? (size / 8) : size < 25 ? 3 : 5)
             })
-            .buttonStyle(ClickInteractiveStyle(0.925))
+            .buttonStyle(ClickInteractiveStyle(0.933))
 
             Text(title)
                 .fontTemplate(DefaultTemplate.bodyMedium_accent_standard)

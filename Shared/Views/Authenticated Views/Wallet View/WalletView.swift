@@ -26,12 +26,26 @@ struct WalletView: View {
             ScrollView {
 
                 HStack(alignment: .center, spacing: 10) {
-                    Text("$0.00")
-                        .fontTemplate(DefaultTemplate.titleBold)
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("Total Balance:")
+                            .fontTemplate(DefaultTemplate.body_secondary)
+
+                        HStack(alignment: .center, spacing: 0) {
+                            Text("$").fontTemplate(DefaultTemplate.titleBold)
+
+                            MovingNumbersView(number: 18.93,
+                                              numberOfDecimalPlaces: 2,
+                                              fixedWidth: 260,
+                                              showComma: true) { str in
+                                Text(str).fontTemplate(DefaultTemplate.titleBold)
+                            }
+                        }.mask(AppGradients.movingNumbersMask)
+                    }
 
                     Spacer()
                 }
                 .padding()
+                .padding(.bottom, 160)
 
                 TransactButtonView(style: service.themeStyle,
                                    enableDeposit: true,
@@ -52,9 +66,8 @@ struct WalletView: View {
                     print("see more")
                 })
 
-                
-                ForEach(store.completeBalance, id: \.self) { item in
-                    ListSection(style: service.themeStyle) {
+                ListSection(style: service.themeStyle) {
+                    ForEach(store.completeBalance, id: \.self) { item in
                         HStack(alignment: .center) {
                             VStack(alignment: .leading, spacing: 2.5) {
                                 Text(item.network ?? "unknown")
@@ -127,25 +140,15 @@ struct WalletView: View {
         .navigationBarTitle("", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                HStack(alignment: .center, spacing: 10) {
-                    UserAvatar(size: 38, user: service.currentUser, style: service.themeStyle)
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(service.currentUser.username ?? "Welcome back")
-                            .fontTemplate(DefaultTemplate.bodySemibold)
-
-                        Text(service.currentUser.shortAddress)
-                            .fontTemplate(DefaultTemplate.bodyMono_secondary)
-                    }
-                }
+                WalletNavigationView(service: service)
             }
 
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(alignment: .center, spacing: 10) {
                     Button {
-                        print("add")
+                        print("qr code")
                     } label: {
-                        Image(systemName: "person.badge.plus")
+                        Image(systemName: "qrcode.viewfinder")
                     }
                     .foregroundColor(Color.primary)
 
