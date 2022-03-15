@@ -22,10 +22,9 @@ struct ProfileView: View {
     }
 
     var body: some View {
-        ZStack {
-            Color("baseBackground").ignoresSafeArea()
-
+        BaseBackgroundColor(style: service.themeStyle, {
             ScrollView(.vertical, showsIndicators: false) {
+
                 ListSection(style: service.themeStyle) {
                     ListButtonHeader(name: service.currentUser.shortAddress, localImage: "welcomeCarouselThree", style: service.themeStyle, action: {
                         print("edit profile")
@@ -131,7 +130,7 @@ struct ProfileView: View {
                     store.logout()
                 }
             } message: { Text("Are you sure you want to log out?") }
-        }
+        })
         .navigationTitle("Profile")
     }
 

@@ -10,23 +10,21 @@ import Stinsen
 
 struct InvestView: View {
 
-    private let services: AuthenticatedServices
+    private let service: AuthenticatedServices
 
     @ObservedObject private var store: InvestService
 
-    init(services: AuthenticatedServices) {
-        self.services = services
-        self.store = services.invest
+    init(service: AuthenticatedServices) {
+        self.service = service
+        self.store = service.invest
     }
 
     var body: some View {
-        ZStack {
-            Color("baseBackground").ignoresSafeArea()
-
+        BaseBackgroundColor(style: service.themeStyle, {
             ScrollView {
                 Text("It's the Invest view!!")
             }
-        }
+        })
         .navigationTitle("Invest")
     }
 

@@ -10,20 +10,21 @@ import Stinsen
 
 struct DiscoverView: View {
 
+    private let service: AuthenticatedServices
+
     @ObservedObject private var store: DiscoverService
 
     init(service: AuthenticatedServices) {
+        self.service = service
         self.store = service.discover
     }
 
     var body: some View {
-        ZStack {
-            Color("baseBackground").ignoresSafeArea()
-
+        BaseBackgroundColor(style: service.themeStyle, {
             ScrollView {
                 Text("It's the Discover view!!")
             }
-        }
+        })
         .navigationTitle("Discover")
     }
 

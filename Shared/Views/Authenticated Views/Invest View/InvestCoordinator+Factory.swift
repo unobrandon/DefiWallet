@@ -11,7 +11,7 @@ import Stinsen
 extension InvestCoordinator {
 
     @ViewBuilder func makeStart() -> some View {
-        InvestView(services: services)
+        InvestView(service: services)
     }
 
 }

@@ -11,7 +11,7 @@ import Stinsen
 extension WalletCoordinator {
 
     @ViewBuilder func makeStart() -> some View {
-        WalletView(services: services)
+        WalletView(service: services)
     }
 
 }

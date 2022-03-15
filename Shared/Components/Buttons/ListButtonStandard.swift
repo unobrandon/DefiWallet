@@ -85,14 +85,14 @@ struct ListButtonStandard: View {
                             .foregroundColor(.secondary)
                     }
                     .padding(.horizontal)
-                    .padding(.vertical, localImage.isEmpty ? 12.5 : 10)
+                    .padding(.vertical, localImage.isEmpty ? 15 : 10)
 
                     if style == .shadow, !isLast {
                         Divider()
                             .padding(.leading, (localImage.isEmpty && systemImage.isEmpty ? 20 : (localImage.isEmpty ? 50 : 65)))
                     } else if style == .border, !isLast {
                         Rectangle().foregroundColor(DefaultTemplate.borderColor)
-                            .frame(height: 1.5)
+                            .frame(height: 1)
                     }
 
                 }

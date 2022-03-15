@@ -10,20 +10,21 @@ import Stinsen
 
 struct MarketsView: View {
 
+    private let service: AuthenticatedServices
+
     @ObservedObject private var store: MarketsService
 
     init(service: AuthenticatedServices) {
+        self.service = service
         self.store = service.market
     }
 
     var body: some View {
-        ZStack {
-            Color("baseBackground").ignoresSafeArea()
-
+        BaseBackgroundColor(style: service.themeStyle, {
             ScrollView {
                 Text("It's the market view!!")
             }
-        }
+        })
         .navigationTitle("Market")
     }
 

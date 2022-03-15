@@ -33,7 +33,7 @@ struct ListButtonHeader: View {
                             .resizable()
                             .scaledToFill()
                             .foregroundColor(Color.primary)
-                            .frame(width: 44, height: 44, alignment: .center)
+                            .frame(width: 48, height: 48, alignment: .center)
                             .clipShape(Circle())
                             .padding(.trailing, 5)
 

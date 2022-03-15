@@ -10,25 +10,24 @@ import Stinsen
 
 struct WalletView: View {
 
-    private let services: AuthenticatedServices
+    private let service: AuthenticatedServices
 
     @ObservedObject private var store: WalletService
 
-    init(services: AuthenticatedServices) {
-        self.services = services
-        self.store = services.wallet
+    init(service: AuthenticatedServices) {
+        self.service = service
+        self.store = service.wallet
 
         self.fetchHistory()
     }
 
     var body: some View {
-        ZStack {
-            Color("baseBackground").ignoresSafeArea()
-
+        BaseBackgroundColor(style: service.themeStyle, {
             ScrollView {
-                Text("Networks")
-                    .fontTemplate(DefaultTemplate.headingSemiBold)
-                    .padding(.top)
+
+                SectionHeaderView(title: "Networks", subtitle: "hello world!", actionTitle: "See more", action: {
+                    print("see more")
+                })
 
                 ForEach(store.completeBalance, id: \.self) { item in
                     HStack(alignment: .center) {
@@ -65,9 +64,11 @@ struct WalletView: View {
                     .padding(.horizontal)
                 }
 
-                Text("History")
-                    .fontTemplate(DefaultTemplate.headingSemiBold)
-                    .padding(.top)
+                if !store.history.isEmpty {
+                    SectionHeaderView(title: "History", actionTitle: "See more", action: {
+                        print("see more")
+                    })
+                }
 
                 ForEach(store.history, id: \.self) { item in
                     HStack(alignment: .center) {
@@ -96,12 +97,12 @@ struct WalletView: View {
                     .padding(.horizontal)
                 }
             }
-        }
+        })
         .navigationTitle("Wallet")
     }
 
     private func fetchHistory() {
-        store.fetchHistory(services.currentUser.address, completion: {
+        store.fetchHistory(service.currentUser.address, completion: {
             print("done getting history")
         })
 
@@ -109,7 +110,7 @@ struct WalletView: View {
             print("done getting gas")
         })
 
-        store.fetchAccountBalance(services.currentUser.address, completion: {
+        store.fetchAccountBalance(service.currentUser.address, completion: {
             print("completed getting chain overview: \(store.accountBalance.count)")
         })
     }
