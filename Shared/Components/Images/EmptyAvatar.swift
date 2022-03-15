@@ -22,9 +22,9 @@ struct EmptyAvatar: View {
     var body: some View {
         Circle()
             .frame(width: size, height: size, alignment: .center)
+            .irregularGradient(colors: getIrregularGradient(), backgroundColor: Color("baseButton_selected"), speed: 6)
             .shadow(color: Color.black.opacity(style == .shadow ? 0.175 : 0.0),
                     radius: size > 40 ? (size / 7) : size < 25 ? 3 : 5, x: 0, y: size > 40 ? (size / 8) : size < 25 ? 3 : 5)
-            .irregularGradient(colors: getIrregularGradient(), backgroundColor: Color("baseButton"), speed: 6)
             .overlay(
                 ZStack(alignment: .center) {
                     if let username = username, !username.isEmpty {
