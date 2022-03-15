@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-    
+
 struct BaseBackgroundColor<Content: View>: View {
 
     private let content: Content
@@ -23,6 +23,6 @@ struct BaseBackgroundColor<Content: View>: View {
 
             content
         }
-        
     }
+
 }

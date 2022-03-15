@@ -10,7 +10,7 @@ import Stinsen
 
 struct MarketsView: View {
 
-    private let service: AuthenticatedServices
+    @ObservedObject private var service: AuthenticatedServices
 
     @ObservedObject private var store: MarketsService
 
