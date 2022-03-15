@@ -36,7 +36,7 @@ struct ProfileView: View {
                         print("Currency")
                     })
 
-                    ListStandardButton(title: "Currency", systemImage: "dollarsign.square", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Currency", systemImage: Constants.currencySquareImage, isLast: false, style: service.themeStyle, action: {
                         print("Currency")
                     })
 

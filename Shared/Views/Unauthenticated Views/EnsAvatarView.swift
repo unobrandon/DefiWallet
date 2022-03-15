@@ -42,7 +42,7 @@ struct EnsAvatarView: View {
 
                             HapticFeedback.lightHapticFeedback()
                         #endif
-                    }) {
+                    }, label: {
                         ZStack(alignment: .center) {
                             Circle()
                                 .trim(from: 0, to: avatarProgress)
@@ -63,8 +63,8 @@ struct EnsAvatarView: View {
                                     .frame(width: 24, height: 24, alignment: .center)
                             }
                         }
-                    }
-                    .buttonStyle(ClickInteractiveStyle())
+                    })
+                    .buttonStyle(ClickInteractiveStyle(0.99))
 //                    .sheet(isPresented: $showImagePicker) {
                         /*
                         ImagePickerHelper(sourceType: .photoLibrary) { (imageUrl, img) in

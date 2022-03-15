@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 import Stinsen
 
 struct MarketsView: View {
@@ -13,6 +14,8 @@ struct MarketsView: View {
     @ObservedObject private var service: AuthenticatedServices
 
     @ObservedObject private var store: MarketsService
+
+    @State var searchText: String = ""
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -26,6 +29,10 @@ struct MarketsView: View {
             }
         })
         .navigationTitle("Market")
+        .navigationSearchBar {
+            SearchBar("Search tokens and more...", text: $searchText)
+        }
+        .navigationSearchBarHiddenWhenScrolling(true)
     }
 
 }

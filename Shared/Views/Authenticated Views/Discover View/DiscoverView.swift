@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 import Stinsen
 
 struct DiscoverView: View {
@@ -13,6 +14,8 @@ struct DiscoverView: View {
     @ObservedObject private var service: AuthenticatedServices
 
     @ObservedObject private var store: DiscoverService
+
+    @State var searchText: String = ""
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -26,6 +29,10 @@ struct DiscoverView: View {
             }
         })
         .navigationTitle("Discover")
+        .navigationSearchBar {
+            SearchBar("Search all web3...", text: $searchText)
+        }
+        .navigationSearchBarHiddenWhenScrolling(true)
     }
 
 }

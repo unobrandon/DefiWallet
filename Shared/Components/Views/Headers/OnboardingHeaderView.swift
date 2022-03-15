@@ -25,11 +25,11 @@ struct OnboardingHeaderView: View {
                 .rotationEffect(.init(degrees: imageName == "key" ? 45 : 0))
                 .padding(.bottom, 10)
 
-            Text("Protect your wallet")
+            Text(title)
                 .fontTemplate(DefaultTemplate.headingSemiBold)
                 .multilineTextAlignment(.center)
 
-            Text("Used to sign contracts & transactions.")
+            Text(subtitle)
                 .fontTemplate(DefaultTemplate.bodyMono_secondary)
                 .multilineTextAlignment(.center)
         }

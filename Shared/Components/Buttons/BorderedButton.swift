@@ -30,6 +30,7 @@ struct BorderedButton: View {
         .buttonStyle(.bordered)
         .controlSize(buttonSize ?? .small)
         .buttonBorderShape(.roundedRectangle)
+        .buttonStyle(ClickInteractiveStyle(0.99))
     }
 
     private func actionTap() {

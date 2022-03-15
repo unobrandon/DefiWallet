@@ -134,6 +134,10 @@
 		0593022B27E03A1C006DDFFF /* BackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022927E03A1C006DDFFF /* BackgroundColorView.swift */; };
 		0593022D27E03F45006DDFFF /* UserAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022C27E03F45006DDFFF /* UserAvatar.swift */; };
 		0593022E27E03F45006DDFFF /* UserAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022C27E03F45006DDFFF /* UserAvatar.swift */; };
+		0593023027E061BC006DDFFF /* TransactButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022F27E061BC006DDFFF /* TransactButtonView.swift */; };
+		0593023127E061BC006DDFFF /* TransactButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022F27E061BC006DDFFF /* TransactButtonView.swift */; };
+		0593023327E067AE006DDFFF /* TransactButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593023227E067AE006DDFFF /* TransactButton.swift */; };
+		0593023427E067AE006DDFFF /* TransactButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593023227E067AE006DDFFF /* TransactButton.swift */; };
 		059F73C927D7041A00B27E80 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 059F73C827D7041A00B27E80 /* SwiftUIX */; };
 		059F73CF27D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
 		059F73D027D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
@@ -356,6 +360,8 @@
 		0593022427E02D63006DDFFF /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		0593022927E03A1C006DDFFF /* BackgroundColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColorView.swift; sourceTree = "<group>"; };
 		0593022C27E03F45006DDFFF /* UserAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatar.swift; sourceTree = "<group>"; };
+		0593022F27E061BC006DDFFF /* TransactButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactButtonView.swift; sourceTree = "<group>"; };
+		0593023227E067AE006DDFFF /* TransactButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactButton.swift; sourceTree = "<group>"; };
 		059F73CE27D7160D00B27E80 /* DiscoverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverService.swift; sourceTree = "<group>"; };
 		059F73D127D7164700B27E80 /* MarketsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsService.swift; sourceTree = "<group>"; };
 		059F73D427D7166A00B27E80 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -707,6 +713,7 @@
 				05E858FE27CC08F200B85195 /* RoundedInteractiveButton.swift */,
 				0593022127E02B7E006DDFFF /* BorderlessButton.swift */,
 				0593022427E02D63006DDFFF /* BorderedButton.swift */,
+				0593023227E067AE006DDFFF /* TransactButton.swift */,
 				05E858E627CB301B00B85195 /* ListStandardButton.swift */,
 				0593021827DFCB3D006DDFFF /* ProfileHeaderButton.swift */,
 				05E8590127CC12A400B85195 /* TermsOfServiceButton.swift */,
@@ -937,6 +944,7 @@
 				0593022727E03342006DDFFF /* Banners */,
 				0593022827E03354006DDFFF /* Headers */,
 				05E858CD27CB25C200B85195 /* AlertBadge.swift */,
+				0593022F27E061BC006DDFFF /* TransactButtonView.swift */,
 				05E858F027CB43BC00B85195 /* LoadingIndicator.swift */,
 				053C7D3E27CDBF600081DCEA /* CheckmarkView.swift */,
 				05E8590427CC198A00B85195 /* TermsView.swift */,
@@ -1255,6 +1263,7 @@
 				05E858C727CB238800B85195 /* Character+Extensions.swift in Sources */,
 				0593022527E02D63006DDFFF /* BorderedButton.swift in Sources */,
 				0578073627BB59DC0008051B /* DiscoverCoordinator.swift in Sources */,
+				0593023327E067AE006DDFFF /* TransactButton.swift in Sources */,
 				05E858F827CB5A3200B85195 /* TextFieldSingleList.swift in Sources */,
 				053C7D4527CDD5620081DCEA /* PasswordView.swift in Sources */,
 				0578073727BB59DC0008051B /* DiscoverView.swift in Sources */,
@@ -1313,6 +1322,7 @@
 				0578071527B8F61F0008051B /* ProfileView.swift in Sources */,
 				05E858DB27CB27AF00B85195 /* NotificationViewExtension.swift in Sources */,
 				0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */,
+				0593023027E061BC006DDFFF /* TransactButtonView.swift in Sources */,
 				0578077C27BB822D0008051B /* String+Extensions.swift in Sources */,
 				05E858FF27CC08F200B85195 /* RoundedInteractiveButton.swift in Sources */,
 				0578077927BB71410008051B /* Blob.swift in Sources */,
@@ -1409,6 +1419,7 @@
 				0578071D27B90A050008051B /* Constants.swift in Sources */,
 				05E858C827CB238800B85195 /* Character+Extensions.swift in Sources */,
 				053C7D3C27CD903B0081DCEA /* MovingNumbersView.swift in Sources */,
+				0593023127E061BC006DDFFF /* TransactButtonView.swift in Sources */,
 				05E8590327CC12A400B85195 /* TermsOfServiceButton.swift in Sources */,
 				05D1096B27C0C4A7008DCC66 /* MacAppDelegate.swift in Sources */,
 				051BCF5927BCACB30056E047 /* AuthenticatedServices.swift in Sources */,
@@ -1429,6 +1440,7 @@
 				05E858DC27CB27E400B85195 /* AlertBadge.swift in Sources */,
 				0593022327E02B7E006DDFFF /* BorderlessButton.swift in Sources */,
 				05E858EF27CB388B00B85195 /* AppTheme.swift in Sources */,
+				0593023427E067AE006DDFFF /* TransactButton.swift in Sources */,
 				0578077D27BB822D0008051B /* String+Extensions.swift in Sources */,
 				05E858C527CB230B00B85195 /* EmptyAvatar.swift in Sources */,
 				05E858FC27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,

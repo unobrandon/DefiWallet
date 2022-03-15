@@ -35,7 +35,7 @@ struct CompletedView: View {
                 }, label: {
                     HeaderIcon(size: 48, imageName: "person.text.rectangle")
                 })
-                .buttonStyle(ClickInteractiveStyle())
+                .buttonStyle(ClickInteractiveStyle(0.99))
                 .padding(.bottom, 10)
 
                 Text("Congratulations!")

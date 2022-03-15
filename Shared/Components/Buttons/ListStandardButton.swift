@@ -50,10 +50,11 @@ struct ListStandardButton: View {
     }
 
     var body: some View {
-
         ZStack(alignment: .center) {
 
-            Button(action: { self.actionTap() }) {
+            Button(action: {
+                self.actionTap()
+            }) {
                 VStack(alignment: .trailing, spacing: 0) {
                     HStack(alignment: .center) {
                         if !systemImage.isEmpty {

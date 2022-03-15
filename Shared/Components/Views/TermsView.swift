@@ -65,7 +65,7 @@ struct TermsView: View {
                                         .scaledToFit()
                                         .foregroundColor(Color("AccentColor"))
                                         .frame(width: 22, height: 22)
-                                }.buttonStyle(ClickInteractiveStyle())
+                                }.buttonStyle(ClickInteractiveStyle(0.99))
             )
         }
     }

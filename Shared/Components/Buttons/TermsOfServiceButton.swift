@@ -33,7 +33,7 @@ struct TermsOfServiceButton: View {
                         .lineLimit(1)
                         .multilineTextAlignment(.center)
                     }
-                    .buttonStyle(ClickInteractiveStyle())
+                    .buttonStyle(ClickInteractiveStyle(0.99))
             }.padding(.horizontal)
     }
 

@@ -20,6 +20,13 @@ public struct Constants {
 
     static let eighteenDecimal: Double = 1000000000000000000
 
+    static var currencyCircleImage: String {
+        return "dollarsign.circle"
+    }
+    static var currencySquareImage: String {
+        return "dollarsign.square"
+    }
+
     // MARK: General
 
     enum DeviceType {

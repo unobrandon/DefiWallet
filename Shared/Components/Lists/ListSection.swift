@@ -10,29 +10,25 @@ import SwiftUI
 struct ListSection<Content: View>: View {
 
     private let content: Content
-    private let title: String
+    private let title: String?
     private let style: AppStyle
 
-    init(title: String, style: AppStyle, @ViewBuilder _ content: () -> Content) {
+    init(title: String? = nil, style: AppStyle, @ViewBuilder _ content: () -> Content) {
         self.title = title
-        self.style = style
-        self.content = content()
-    }
-
-    init(style: AppStyle, @ViewBuilder _ content: () -> Content) {
-        self.title = ""
         self.style = style
         self.content = content()
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(title.isEmpty ? "" : title + ":")
-                .font(.caption)
-                .fontWeight(.regular)
-                .textCase(.uppercase)
-                .foregroundColor(.secondary)
-                .padding(.horizontal)
+            if let title = title {
+                Text(title + ":")
+                    .font(.caption)
+                    .fontWeight(.regular)
+                    .textCase(.uppercase)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal)
+            }
 
             VStack(alignment: .center, spacing: 0) { content }
                 .background(style == .shadow ? Color("baseButton") : Color.clear)

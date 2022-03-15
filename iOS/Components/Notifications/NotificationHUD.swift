@@ -83,7 +83,7 @@ struct NotificationHUD: View {
                         .overlay(Capsule().stroke(Color("baseBackground").opacity(0.4), lineWidth: 2.5))
                 )
             })
-            .buttonStyle(ClickInteractiveStyle())
+            .buttonStyle(ClickInteractiveStyle(0.99))
             .clipShape(Capsule())
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .offset(y: showHUD ? 0 : -200)

@@ -91,7 +91,7 @@ struct RoundedInteractiveButton: View {
             .foregroundColor(isDisabled ? .secondary : foregroundColor)
         })
         .frame(maxWidth: 380)
-        .buttonStyle(ClickInteractiveStyle())
+        .buttonStyle(ClickInteractiveStyle(0.99))
     }
 
     private func actionTap() {
