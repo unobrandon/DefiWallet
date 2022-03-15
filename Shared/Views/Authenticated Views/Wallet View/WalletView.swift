@@ -22,10 +22,10 @@ struct WalletView: View {
     }
 
     var body: some View {
-        BaseBackgroundColor(style: service.themeStyle, {
+        BackgroundColorView(style: service.themeStyle, {
             ScrollView {
 
-                SectionHeaderView(title: "Networks", subtitle: "hello world!", actionTitle: "See more", action: {
+                SectionHeaderView(title: "Networks", actionTitle: "See more", action: {
                     print("see more")
                 })
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ListButtonStandard: View {
+struct ListStandardButton: View {
 
     private let title: String
     private var systemImage: String = ""

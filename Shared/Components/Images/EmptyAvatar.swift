@@ -7,31 +7,35 @@
 
 import SwiftUI
 
-struct EmptyAvatarView: View {
+struct EmptyAvatar: View {
 
-    private let fullName: String
+    private let username: String?
     private let size: CGFloat
+    private let style: AppStyle
 
-    init(fullName: String, size: CGFloat) {
-        self.fullName = fullName
+    init(username: String?, size: CGFloat, style: AppStyle) {
+        self.username = username
         self.size = size
+        self.style = style
     }
 
     var body: some View {
         Circle()
             .frame(width: size, height: size, alignment: .center)
-            .foregroundColor(Color("baseBackground"))
-            .shadow(color: Color.black.opacity(0.15),
+            .shadow(color: Color.black.opacity(style == .shadow ? 0.175 : 0.0),
                     radius: size > 40 ? (size / 7) : size < 25 ? 3 : 5, x: 0, y: size > 40 ? (size / 8) : size < 25 ? 3 : 5)
+            .irregularGradient(colors: getIrregularGradient(), backgroundColor: Color("baseButton"), speed: 6)
             .overlay(
                 ZStack(alignment: .center) {
-                    getGradient(name: fullName)
-                        .clipShape(Circle())
+                    if let username = username, !username.isEmpty {
+                        getGradient(name: username)
+                            .clipShape(Circle())
 
-                    Text(firstLetters(name: fullName))
-                        .font(.system(size: size <= 28 ? 12 : size >= 60 ? 26 : size / 2.33))
+                        Text(firstLetters(name: username))
+                            .font(.system(size: size <= 28 ? 12 : size >= 60 ? 26 : size / 2.33))
                             .fontWeight(.semibold)
-                            .foregroundColor(Color.primary)
+                            .irregularGradient(colors: [.orange, .red, .orange, .yellow, .orange, .red], backgroundColor: .orange, speed: 5)
+                    }
                 }
             )
     }
@@ -44,6 +48,14 @@ struct EmptyAvatarView: View {
         let result = wordValue - reminders
 
         return AppGradients.emptyAvatarGradients[result]
+    }
+
+    private func getIrregularGradient() -> [Color] {
+        if let username = username, !username.isEmpty {
+            return [.clear]
+        } else {
+            return [.orange, .yellow, .red]
+        }
     }
 
     private func firstLetters(name: String) -> String {

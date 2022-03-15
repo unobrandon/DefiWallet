@@ -20,7 +20,7 @@ struct InvestView: View {
     }
 
     var body: some View {
-        BaseBackgroundColor(style: service.themeStyle, {
+        BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 Text("It's the Invest view!!")
             }

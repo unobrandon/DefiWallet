@@ -120,8 +120,8 @@
 		0593021427D9E33E006DDFFF /* AccountNft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021227D9E33E006DDFFF /* AccountNft.swift */; };
 		0593021627DEFA95006DDFFF /* CompleteBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021527DEFA95006DDFFF /* CompleteBalance.swift */; };
 		0593021727DEFA95006DDFFF /* CompleteBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021527DEFA95006DDFFF /* CompleteBalance.swift */; };
-		0593021927DFCB3D006DDFFF /* ListButtonHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021827DFCB3D006DDFFF /* ListButtonHeader.swift */; };
-		0593021A27DFCB3D006DDFFF /* ListButtonHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021827DFCB3D006DDFFF /* ListButtonHeader.swift */; };
+		0593021927DFCB3D006DDFFF /* ProfileHeaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021827DFCB3D006DDFFF /* ProfileHeaderButton.swift */; };
+		0593021A27DFCB3D006DDFFF /* ProfileHeaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021827DFCB3D006DDFFF /* ProfileHeaderButton.swift */; };
 		0593021C27DFF0E5006DDFFF /* OnboardingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021B27DFF0E5006DDFFF /* OnboardingHeaderView.swift */; };
 		0593021D27DFF0E5006DDFFF /* OnboardingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021B27DFF0E5006DDFFF /* OnboardingHeaderView.swift */; };
 		0593021F27E029CE006DDFFF /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021E27E029CE006DDFFF /* SectionHeaderView.swift */; };
@@ -130,8 +130,10 @@
 		0593022327E02B7E006DDFFF /* BorderlessButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022127E02B7E006DDFFF /* BorderlessButton.swift */; };
 		0593022527E02D63006DDFFF /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022427E02D63006DDFFF /* BorderedButton.swift */; };
 		0593022627E02D63006DDFFF /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022427E02D63006DDFFF /* BorderedButton.swift */; };
-		0593022A27E03A1C006DDFFF /* BaseBackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022927E03A1C006DDFFF /* BaseBackgroundColor.swift */; };
-		0593022B27E03A1C006DDFFF /* BaseBackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022927E03A1C006DDFFF /* BaseBackgroundColor.swift */; };
+		0593022A27E03A1C006DDFFF /* BackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022927E03A1C006DDFFF /* BackgroundColorView.swift */; };
+		0593022B27E03A1C006DDFFF /* BackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022927E03A1C006DDFFF /* BackgroundColorView.swift */; };
+		0593022D27E03F45006DDFFF /* UserAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022C27E03F45006DDFFF /* UserAvatar.swift */; };
+		0593022E27E03F45006DDFFF /* UserAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593022C27E03F45006DDFFF /* UserAvatar.swift */; };
 		059F73C927D7041A00B27E80 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 059F73C827D7041A00B27E80 /* SwiftUIX */; };
 		059F73CF27D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
 		059F73D027D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
@@ -234,8 +236,8 @@
 		05E858BD27CA078E00B85195 /* WelcomeCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858BC27CA078E00B85195 /* WelcomeCarouselView.swift */; };
 		05E858C027CAEFFA00B85195 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858BF27CAEFFA00B85195 /* SettingsView.swift */; };
 		05E858C227CAF9D200B85195 /* AppCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C127CAF9D200B85195 /* AppCommands.swift */; };
-		05E858C427CB230B00B85195 /* EmptyAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C327CB230B00B85195 /* EmptyAvatarView.swift */; };
-		05E858C527CB230B00B85195 /* EmptyAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C327CB230B00B85195 /* EmptyAvatarView.swift */; };
+		05E858C427CB230B00B85195 /* EmptyAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C327CB230B00B85195 /* EmptyAvatar.swift */; };
+		05E858C527CB230B00B85195 /* EmptyAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C327CB230B00B85195 /* EmptyAvatar.swift */; };
 		05E858C727CB238800B85195 /* Character+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C627CB238800B85195 /* Character+Extensions.swift */; };
 		05E858C827CB238800B85195 /* Character+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C627CB238800B85195 /* Character+Extensions.swift */; };
 		05E858CA27CB240300B85195 /* AppGradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858C927CB240300B85195 /* AppGradients.swift */; };
@@ -249,8 +251,8 @@
 		05E858DB27CB27AF00B85195 /* NotificationViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858DA27CB27AF00B85195 /* NotificationViewExtension.swift */; };
 		05E858DC27CB27E400B85195 /* AlertBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858CD27CB25C200B85195 /* AlertBadge.swift */; };
 		05E858E527CB2D3E00B85195 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858E427CB2D3E00B85195 /* VisualEffectView.swift */; };
-		05E858E727CB301B00B85195 /* ListButtonStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858E627CB301B00B85195 /* ListButtonStandard.swift */; };
-		05E858E827CB301B00B85195 /* ListButtonStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858E627CB301B00B85195 /* ListButtonStandard.swift */; };
+		05E858E727CB301B00B85195 /* ListStandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858E627CB301B00B85195 /* ListStandardButton.swift */; };
+		05E858E827CB301B00B85195 /* ListStandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858E627CB301B00B85195 /* ListStandardButton.swift */; };
 		05E858EB27CB322100B85195 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858EA27CB322100B85195 /* ListSection.swift */; };
 		05E858EC27CB322100B85195 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858EA27CB322100B85195 /* ListSection.swift */; };
 		05E858EE27CB388B00B85195 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E858ED27CB388B00B85195 /* AppTheme.swift */; };
@@ -347,12 +349,13 @@
 		0593020F27D9C790006DDFFF /* Double+Extenions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extenions.swift"; sourceTree = "<group>"; };
 		0593021227D9E33E006DDFFF /* AccountNft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNft.swift; sourceTree = "<group>"; };
 		0593021527DEFA95006DDFFF /* CompleteBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteBalance.swift; sourceTree = "<group>"; };
-		0593021827DFCB3D006DDFFF /* ListButtonHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonHeader.swift; sourceTree = "<group>"; };
+		0593021827DFCB3D006DDFFF /* ProfileHeaderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderButton.swift; sourceTree = "<group>"; };
 		0593021B27DFF0E5006DDFFF /* OnboardingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingHeaderView.swift; sourceTree = "<group>"; };
 		0593021E27E029CE006DDFFF /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		0593022127E02B7E006DDFFF /* BorderlessButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessButton.swift; sourceTree = "<group>"; };
 		0593022427E02D63006DDFFF /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
-		0593022927E03A1C006DDFFF /* BaseBackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBackgroundColor.swift; sourceTree = "<group>"; };
+		0593022927E03A1C006DDFFF /* BackgroundColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColorView.swift; sourceTree = "<group>"; };
+		0593022C27E03F45006DDFFF /* UserAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatar.swift; sourceTree = "<group>"; };
 		059F73CE27D7160D00B27E80 /* DiscoverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverService.swift; sourceTree = "<group>"; };
 		059F73D127D7164700B27E80 /* MarketsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsService.swift; sourceTree = "<group>"; };
 		059F73D427D7166A00B27E80 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -398,7 +401,7 @@
 		05E858BC27CA078E00B85195 /* WelcomeCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCarouselView.swift; sourceTree = "<group>"; };
 		05E858BF27CAEFFA00B85195 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		05E858C127CAF9D200B85195 /* AppCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCommands.swift; sourceTree = "<group>"; };
-		05E858C327CB230B00B85195 /* EmptyAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAvatarView.swift; sourceTree = "<group>"; };
+		05E858C327CB230B00B85195 /* EmptyAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAvatar.swift; sourceTree = "<group>"; };
 		05E858C627CB238800B85195 /* Character+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extensions.swift"; sourceTree = "<group>"; };
 		05E858C927CB240300B85195 /* AppGradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGradients.swift; sourceTree = "<group>"; };
 		05E858CD27CB25C200B85195 /* AlertBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBadge.swift; sourceTree = "<group>"; };
@@ -407,7 +410,7 @@
 		05E858D527CB264600B85195 /* ClickInteractiveStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickInteractiveStyle.swift; sourceTree = "<group>"; };
 		05E858DA27CB27AF00B85195 /* NotificationViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewExtension.swift; sourceTree = "<group>"; };
 		05E858E427CB2D3E00B85195 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
-		05E858E627CB301B00B85195 /* ListButtonStandard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonStandard.swift; sourceTree = "<group>"; };
+		05E858E627CB301B00B85195 /* ListStandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStandardButton.swift; sourceTree = "<group>"; };
 		05E858EA27CB322100B85195 /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
 		05E858ED27CB388B00B85195 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		05E858F027CB43BC00B85195 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
@@ -704,8 +707,8 @@
 				05E858FE27CC08F200B85195 /* RoundedInteractiveButton.swift */,
 				0593022127E02B7E006DDFFF /* BorderlessButton.swift */,
 				0593022427E02D63006DDFFF /* BorderedButton.swift */,
-				05E858E627CB301B00B85195 /* ListButtonStandard.swift */,
-				0593021827DFCB3D006DDFFF /* ListButtonHeader.swift */,
+				05E858E627CB301B00B85195 /* ListStandardButton.swift */,
+				0593021827DFCB3D006DDFFF /* ProfileHeaderButton.swift */,
 				05E8590127CC12A400B85195 /* TermsOfServiceButton.swift */,
 			);
 			path = Buttons;
@@ -802,6 +805,8 @@
 			isa = PBXGroup;
 			children = (
 				058C785E27D06D5600EB91CA /* HeaderIcon.swift */,
+				0593022C27E03F45006DDFFF /* UserAvatar.swift */,
+				05E858C327CB230B00B85195 /* EmptyAvatar.swift */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -931,13 +936,12 @@
 				05E8589627C9D5A000B85195 /* Welcome Carousel */,
 				0593022727E03342006DDFFF /* Banners */,
 				0593022827E03354006DDFFF /* Headers */,
-				05E858C327CB230B00B85195 /* EmptyAvatarView.swift */,
 				05E858CD27CB25C200B85195 /* AlertBadge.swift */,
 				05E858F027CB43BC00B85195 /* LoadingIndicator.swift */,
 				053C7D3E27CDBF600081DCEA /* CheckmarkView.swift */,
 				05E8590427CC198A00B85195 /* TermsView.swift */,
 				05E8590727CC1A8800B85195 /* FooterInformation.swift */,
-				0593022927E03A1C006DDFFF /* BaseBackgroundColor.swift */,
+				0593022927E03A1C006DDFFF /* BackgroundColorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1208,12 +1212,12 @@
 				05E8590227CC12A400B85195 /* TermsOfServiceButton.swift in Sources */,
 				0578070427B8E8E00008051B /* RoundedButton.swift in Sources */,
 				05E858EE27CB388B00B85195 /* AppTheme.swift in Sources */,
-				05E858E727CB301B00B85195 /* ListButtonStandard.swift in Sources */,
+				05E858E727CB301B00B85195 /* ListStandardButton.swift in Sources */,
 				0578074627BB5E1A0008051B /* FontTemplate.swift in Sources */,
 				059F73D527D7166A00B27E80 /* ProfileService.swift in Sources */,
 				0578075627BB60160008051B /* NetworkingService.swift in Sources */,
 				057806D927B870620008051B /* MobileConsants.swift in Sources */,
-				05E858C427CB230B00B85195 /* EmptyAvatarView.swift in Sources */,
+				05E858C427CB230B00B85195 /* EmptyAvatar.swift in Sources */,
 				0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */,
 				05D1096D27C15D80008DCC66 /* EthereumService.swift in Sources */,
 				0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */,
@@ -1246,6 +1250,7 @@
 				05E5F84C27D34F570090290C /* BiometryPermissionsView.swift in Sources */,
 				057806FC27B8E56B0008051B /* WelcomeView.swift in Sources */,
 				05E858AA27C9F75C00B85195 /* GenerateWalletView.swift in Sources */,
+				0593022D27E03F45006DDFFF /* UserAvatar.swift in Sources */,
 				057806BE27B8432B0008051B /* Constants.swift in Sources */,
 				05E858C727CB238800B85195 /* Character+Extensions.swift in Sources */,
 				0593022527E02D63006DDFFF /* BorderedButton.swift in Sources */,
@@ -1283,7 +1288,7 @@
 				0593021327D9E33E006DDFFF /* AccountNft.swift in Sources */,
 				05E5F84227D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */,
 				05D1096727C0C241008DCC66 /* AuthenticatedCoordinator.swift in Sources */,
-				0593022A27E03A1C006DDFFF /* BaseBackgroundColor.swift in Sources */,
+				0593022A27E03A1C006DDFFF /* BackgroundColorView.swift in Sources */,
 				05D1098327C31511008DCC66 /* StorageService.swift in Sources */,
 				0578074F27BB5ED00008051B /* View+Extensions.swift in Sources */,
 				05E858D127CB25EB00B85195 /* NotificationHUD.swift in Sources */,
@@ -1292,7 +1297,7 @@
 				058C785F27D06D5600EB91CA /* HeaderIcon.swift in Sources */,
 				0593020D27D9900A006DDFFF /* AccountBalance.swift in Sources */,
 				05E858A027C9F62000B85195 /* ImportWalletView.swift in Sources */,
-				0593021927DFCB3D006DDFFF /* ListButtonHeader.swift in Sources */,
+				0593021927DFCB3D006DDFFF /* ProfileHeaderButton.swift in Sources */,
 				058C786B27D09E5900EB91CA /* CompletedView.swift in Sources */,
 				053C7D3B27CD903B0081DCEA /* MovingNumbersView.swift in Sources */,
 				053EC29227BE0E3600FBC681 /* InvestService.swift in Sources */,
@@ -1356,6 +1361,7 @@
 				05E858D927CB264600B85195 /* ClickInteractiveStyle.swift in Sources */,
 				05E5F85427D3614A0090290C /* ConfettiSwiftUI.swift in Sources */,
 				0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */,
+				0593022E27E03F45006DDFFF /* UserAvatar.swift in Sources */,
 				0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */,
 				05E858C027CAEFFA00B85195 /* SettingsView.swift in Sources */,
 				05E5F84327D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */,
@@ -1366,7 +1372,7 @@
 				05D1098427C31512008DCC66 /* StorageService.swift in Sources */,
 				05E858F627CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */,
 				059F73D327D7164700B27E80 /* MarketsService.swift in Sources */,
-				0593022B27E03A1C006DDFFF /* BaseBackgroundColor.swift in Sources */,
+				0593022B27E03A1C006DDFFF /* BackgroundColorView.swift in Sources */,
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
 				0593021127D9C790006DDFFF /* Double+Extenions.swift in Sources */,
 				05D1097427C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */,
@@ -1376,7 +1382,7 @@
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				05E5F84D27D34F570090290C /* BiometryPermissionsView.swift in Sources */,
 				059F73D027D7160D00B27E80 /* DiscoverService.swift in Sources */,
-				0593021A27DFCB3D006DDFFF /* ListButtonHeader.swift in Sources */,
+				0593021A27DFCB3D006DDFFF /* ProfileHeaderButton.swift in Sources */,
 				0593021427D9E33E006DDFFF /* AccountNft.swift in Sources */,
 				05D1095827C08B3E008DCC66 /* WelcomeView.swift in Sources */,
 				05E858AB27C9F75C00B85195 /* GenerateWalletView.swift in Sources */,
@@ -1424,11 +1430,11 @@
 				0593022327E02B7E006DDFFF /* BorderlessButton.swift in Sources */,
 				05E858EF27CB388B00B85195 /* AppTheme.swift in Sources */,
 				0578077D27BB822D0008051B /* String+Extensions.swift in Sources */,
-				05E858C527CB230B00B85195 /* EmptyAvatarView.swift in Sources */,
+				05E858C527CB230B00B85195 /* EmptyAvatar.swift in Sources */,
 				05E858FC27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,
 				058C786927D0831700EB91CA /* AlertBanner.swift in Sources */,
 				05E5F86427D407A60090290C /* NotificationBanner.swift in Sources */,
-				05E858E827CB301B00B85195 /* ListButtonStandard.swift in Sources */,
+				05E858E827CB301B00B85195 /* ListStandardButton.swift in Sources */,
 				0578074727BB5E1A0008051B /* FontTemplate.swift in Sources */,
 				05D1094D27C08B3E008DCC66 /* WalletCoordinator.swift in Sources */,
 			);

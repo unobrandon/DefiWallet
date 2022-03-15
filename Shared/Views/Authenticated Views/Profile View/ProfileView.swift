@@ -22,29 +22,29 @@ struct ProfileView: View {
     }
 
     var body: some View {
-        BaseBackgroundColor(style: service.themeStyle, {
+        BackgroundColorView(style: service.themeStyle, {
             ScrollView(.vertical, showsIndicators: false) {
 
                 ListSection(style: service.themeStyle) {
-                    ListButtonHeader(name: service.currentUser.shortAddress, localImage: "welcomeCarouselThree", style: service.themeStyle, action: {
+                    ProfileHeaderButton(name: service.currentUser.shortAddress, style: service.themeStyle, user: service.currentUser, action: {
                         print("edit profile")
                     })
                 }
 
                 ListSection(title: "General", style: service.themeStyle) {
-                    ListButtonStandard(title: "ENS Domain", systemImage: "person", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "ENS Domain", systemImage: "person", isLast: false, style: service.themeStyle, action: {
                         print("Currency")
                     })
 
-                    ListButtonStandard(title: "Currency", systemImage: "dollarsign.square", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Currency", systemImage: "dollarsign.square", isLast: false, style: service.themeStyle, action: {
                         print("Currency")
                     })
 
-                    ListButtonStandard(title: "Language", systemImage: "text.quote", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Language", systemImage: "text.quote", isLast: false, style: service.themeStyle, action: {
                         print("Currency")
                     })
 
-                    ListButtonStandard(title: "Appearance", systemImage: "paintbrush.pointed", isLast: true, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Appearance", systemImage: "paintbrush.pointed", isLast: true, style: service.themeStyle, action: {
                         print("Currency")
                         if service.themeStyle == .shadow {
                             withAnimation(.easeInOut) {
@@ -59,63 +59,63 @@ struct ProfileView: View {
                 }
 
                 ListSection(title: "Security & Privacy", style: service.themeStyle) {
-                    ListButtonStandard(title: "Sensitive Info", systemImage: "eye", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Sensitive Info", systemImage: "eye", isLast: false, style: service.themeStyle, action: {
                         print("Sensitive")
                     })
 
-                    ListButtonStandard(title: "Secret Phrase", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Secret Phrase", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {
                         print("Secret")
                     })
 
-                    ListButtonStandard(title: "Face ID", systemImage: "faceid", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Face ID", systemImage: "faceid", isLast: false, style: service.themeStyle, action: {
                         print("Face")
                     })
 
-                    ListButtonStandard(title: "Auto Lock", systemImage: "lock", isLast: true, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Auto Lock", systemImage: "lock", isLast: true, style: service.themeStyle, action: {
                         print("Auto")
                     })
                 }
 
                 ListSection(title: "Support", style: service.themeStyle) {
-                    ListButtonStandard(title: "website.io", systemImage: "safari", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "website.io", systemImage: "safari", isLast: false, style: service.themeStyle, action: {
                         print("website")
                     })
 
-                    ListButtonStandard(title: "FAQ & Support", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "FAQ & Support", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {
                         print("FAQ")
                     })
 
-                    ListButtonStandard(title: "Rate Us", systemImage: "star", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Rate Us", systemImage: "star", isLast: false, style: service.themeStyle, action: {
                         print("Rate")
                     })
 
-                    ListButtonStandard(title: "Discord", systemImage: "lock", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Discord", systemImage: "lock", isLast: false, style: service.themeStyle, action: {
                         print("Discord")
                     })
 
-                    ListButtonStandard(title: "Twitter", systemImage: "lock", isLast: true, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Twitter", systemImage: "lock", isLast: true, style: service.themeStyle, action: {
                         print("Twitter")
                     })
                 }
 
                 ListSection(title: "More", style: service.themeStyle) {
-                    ListButtonStandard(title: "Advanced", systemImage: "eye", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Advanced", systemImage: "eye", isLast: false, style: service.themeStyle, action: {
                         print("Sensitive")
                     })
 
-                    ListButtonStandard(title: "Terms of Service", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Terms of Service", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {
                         print("Secret")
                     })
 
-                    ListButtonStandard(title: "Privacy Policy", systemImage: "faceid", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Privacy Policy", systemImage: "faceid", isLast: false, style: service.themeStyle, action: {
                         print("Face")
                     })
 
-                    ListButtonStandard(title: "EULA Agreement", systemImage: "lock", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "EULA Agreement", systemImage: "lock", isLast: false, style: service.themeStyle, action: {
                         print("Auto")
                     })
 
-                    ListButtonStandard(title: "Log Out", systemImage: "lock", isLast: true, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Log Out", systemImage: "lock", isLast: true, style: service.themeStyle, action: {
                         self.showSheet.toggle()
                     })
                 }

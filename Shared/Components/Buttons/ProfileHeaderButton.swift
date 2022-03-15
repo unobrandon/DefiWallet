@@ -6,35 +6,32 @@
 //
 
 import SwiftUI
+import RealmSwift
 
-struct ListButtonHeader: View {
+struct ProfileHeaderButton: View {
 
     private let name: String
     private var localImage: String = ""
     private let hasHaptic: Bool?
     private let style: AppStyle
+    private let user: CurrentUser
     private let action: () -> Void
 
-    init(name: String, localImage: String, hasHaptic: Bool? = true, style: AppStyle, action: @escaping () -> Void) {
+    init(name: String, hasHaptic: Bool? = true, style: AppStyle, user: CurrentUser, action: @escaping () -> Void) {
         self.name = name
-        self.localImage = localImage
         self.hasHaptic = hasHaptic
         self.style = style
+        self.user = user
         self.action = action
     }
 
     var body: some View {
         ZStack(alignment: .center) {
-
             Button(action: { self.actionTap() }) {
+
                 VStack(alignment: .trailing, spacing: 0) {
                     HStack(alignment: .center) {
-                        Image(localImage)
-                            .resizable()
-                            .scaledToFill()
-                            .foregroundColor(Color.primary)
-                            .frame(width: 48, height: 48, alignment: .center)
-                            .clipShape(Circle())
+                        UserAvatar(size: 48, user: user, style: style)
                             .padding(.trailing, 5)
 
                         VStack(alignment: .leading, spacing: 1) {
@@ -70,7 +67,9 @@ struct ListButtonHeader: View {
 
     private func actionTap() {
         #if os(iOS)
-            HapticFeedback.lightHapticFeedback()
+            if hasHaptic ?? true {
+                HapticFeedback.lightHapticFeedback()
+            }
         #endif
 
         action()
