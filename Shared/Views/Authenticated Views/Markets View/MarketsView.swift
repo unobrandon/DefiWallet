@@ -54,8 +54,8 @@ struct MarketsView: View {
                                            visualType: .filled(color: .purple, lineWidth: 3),
                                            offset: 0.2,
                                            currentValueLineType: .dash(color: .secondary, lineWidth: 1, dash: [4]))
-                                    .frame(width: 58, height: 28, alignment: .center)
-                                    .padding(.trailing, 5)
+                                    .frame(width: 50, height: 28, alignment: .center)
+                                    .padding(.trailing, 10)
 
                             MovingNumbersView(number: Double(standard.baseFeePerGas ?? 0), numberOfDecimalPlaces: 0, fixedWidth: 22, showComma: false) { gas in
                                 Text(gas)
