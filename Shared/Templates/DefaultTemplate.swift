@@ -30,6 +30,8 @@ struct DefaultTemplate {
     static let subheadingRegular = FontTemplate(font: Font.custom("Poppins-Regular", size: 18), weight: .regular, foregroundColor: .primary, lineSpacing: 2)
     static let subheadingLight = FontTemplate(font: Font.custom("Poppins-Light", size: 18), weight: .light, foregroundColor: .primary, lineSpacing: 2)
 
+    static let gasPriceFont = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 16), weight: .semibold, foregroundColor: .primary, lineSpacing: 0)
+
     static let primaryButton = FontTemplate(font: Font.custom("Poppins-Medium", size: 16), weight: .medium, foregroundColor: .white, lineSpacing: 0)
 
     static let body = FontTemplate(font: Font.system(size: 14.0), weight: .regular, foregroundColor: .primary, lineSpacing: 1)
@@ -49,7 +51,7 @@ struct DefaultTemplate {
     static let body_secondary = FontTemplate(font: Font.custom("Poppins-Regular", size: 14), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)
 
     static let bodyMono = FontTemplate(font: Font.custom("LabMono-Regular", size: 14), weight: .regular, foregroundColor: .primary, lineSpacing: 1)
-    static let bodyMono_secondary = FontTemplate(font: Font.custom("LabMono-Regular", size: 14), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)
+    static let body_Mono_secondary = FontTemplate(font: Font.custom("LabMono-Regular", size: 14), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)
 
     static let caption = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)
     static let captionError = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .red, lineSpacing: 1)

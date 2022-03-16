@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Stinsen
+import SwiftUICharts
 
 struct WalletView: View {
 
@@ -41,11 +42,17 @@ struct WalletView: View {
                             }
                         }.mask(AppGradients.movingNumbersMask)
                     }
-
                     Spacer()
                 }
-                .padding()
-                .padding(.bottom, 160)
+                .padding(.horizontal)
+                .padding(.top)
+
+                LineChart(data: [90,99,78,111,70,60,77],
+                          frame: CGRect(x: 20, y: 0, width: MobileConstants.screenWidth - 40, height: 160),
+                          visualType: ChartVisualType.filled(color: Color("AccentColor"), lineWidth: 3), offset: 0,
+                          currentValueLineType: CurrentValueLineType.dash(color: .secondary, lineWidth: 2, dash: [8]))
+                    .frame(height: 160)
+                    .padding()
 
                 TransactButtonView(style: service.themeStyle,
                                    enableDeposit: true,
@@ -60,7 +67,7 @@ struct WalletView: View {
                     print("receive")
                 }, actionSwap: {
                     print("swap")
-                })
+                }).padding(.top)
 
                 SectionHeaderView(title: "Networks", action: {
                     print("see more")
@@ -140,7 +147,7 @@ struct WalletView: View {
         .navigationBarTitle("", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                WalletNavigationView(service: service)
+                WalletNavigationView(service: service).offset(y: -2.5)
             }
 
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -151,13 +158,6 @@ struct WalletView: View {
                         Image(systemName: "qrcode.viewfinder")
                     }
                     .foregroundColor(Color.primary)
-
-                    Button {
-                        print("search")
-                    } label: {
-                        Image(systemName: "magnifyingglass")
-                    }
-                    .foregroundColor(Color.primary)
                 }
             }
         }
@@ -166,10 +166,6 @@ struct WalletView: View {
     private func fetchHistory() {
         store.fetchHistory(service.currentUser.address, completion: {
             print("done getting history")
-        })
-
-        store.fetchCustomGas(completion: {
-            print("done getting gas")
         })
 
         store.fetchAccountBalance(service.currentUser.address, completion: {

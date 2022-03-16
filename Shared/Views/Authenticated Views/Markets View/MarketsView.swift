@@ -21,37 +21,57 @@ struct MarketsView: View {
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.market
+
+        self.store.fetchEthGasPriceTrends(completion: {
+            print("gas")
+        })
     }
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
-                Text("It's the market view!!")
+                Text("hello market view")
             }
         })
-        .navigationTitle("Market")
+        .navigationTitle("Markets")
         .navigationSearchBar {
             SearchBar("Search tokens and more...", text: $searchText)
         }
         .navigationSearchBarHiddenWhenScrolling(searchHide)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                HStack(alignment: .center, spacing: 10) {
-                    Button {
-                        print("gas")
-                    } label: {
-                        Image(systemName: "fuelpump.fill")
-                    }
-                    .foregroundColor(Color.primary)
+            ToolbarItem(placement: .navigationBarTrailing, content: {
+                Button(action: {
+                    self.store.fetchEthGasPriceTrends(completion: {
+                        print("gas reloaded")
+                    })
+                }, label: {
+                    HStack(alignment: .center, spacing: 5) {
+                        if let gas = store.ethGasPriceTrends,
+                           let trends = gas.trend,
+                           let standard = gas.current?.standard {
+                            LightChartView(data: trends[0...5].map({ $0.baseFee ?? 0 }).reversed(),
+                                           type: .curved,
+                                           visualType: .filled(color: .purple, lineWidth: 3),
+                                           offset: 0.2,
+                                           currentValueLineType: .dash(color: .secondary, lineWidth: 1, dash: [4]))
+                                    .frame(width: 58, height: 28, alignment: .center)
+                                    .padding(.trailing, 5)
 
-                    Button {
-                        self.searchHide.toggle()
-                    } label: {
-                        Image(systemName: "magnifyingglass")
+                            MovingNumbersView(number: Double(standard.baseFeePerGas ?? 0), numberOfDecimalPlaces: 0, fixedWidth: 22, showComma: false) { gas in
+                                Text(gas)
+                                    .fontTemplate(DefaultTemplate.gasPriceFont)
+                            }
+                            .mask(AppGradients.movingNumbersMask)
+
+                            Image(systemName: "fuelpump.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 16, height: 18, alignment: .center)
+                                .foregroundColor(.primary)
+                        }
                     }
-                    .foregroundColor(Color.primary)
-                }
-            }
+                })
+            })
         }
     }
 

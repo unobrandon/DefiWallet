@@ -30,7 +30,7 @@ struct OnboardingHeaderView: View {
                 .multilineTextAlignment(.center)
 
             Text(subtitle)
-                .fontTemplate(DefaultTemplate.bodyMono_secondary)
+                .fontTemplate(DefaultTemplate.body_Mono_secondary)
                 .multilineTextAlignment(.center)
         }
         .padding(.horizontal)

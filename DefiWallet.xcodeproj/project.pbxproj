@@ -50,7 +50,6 @@
 		057806CB27B862010008051B /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 057806CA27B862010008051B /* SwiftUIX */; };
 		057806CE27B862270008051B /* Colorful in Frameworks */ = {isa = PBXBuildFile; productRef = 057806CD27B862270008051B /* Colorful */; };
 		057806D127B862480008051B /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 057806D027B862480008051B /* SwiftUICharts */; };
-		057806D427B862910008051B /* LightChart in Frameworks */ = {isa = PBXBuildFile; productRef = 057806D327B862910008051B /* LightChart */; };
 		057806D927B870620008051B /* MobileConsants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806D827B870620008051B /* MobileConsants.swift */; };
 		057806DC27B8B8B20008051B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806DB27B8B8B20008051B /* Preview Assets.xcassets */; };
 		057806E227B8DE3E0008051B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E127B8DE3E0008051B /* MainCoordinator.swift */; };
@@ -140,6 +139,20 @@
 		0593023427E067AE006DDFFF /* TransactButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593023227E067AE006DDFFF /* TransactButton.swift */; };
 		0593023727E08031006DDFFF /* WalletNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593023627E08031006DDFFF /* WalletNavigationView.swift */; };
 		0593023827E08031006DDFFF /* WalletNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593023627E08031006DDFFF /* WalletNavigationView.swift */; };
+		0593023B27E1816A006DDFFF /* ReversedStandardLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593023A27E18169006DDFFF /* ReversedStandardLabelStyle.swift */; };
+		0593023C27E1816A006DDFFF /* ReversedStandardLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593023A27E18169006DDFFF /* ReversedStandardLabelStyle.swift */; };
+		0593025327E19C51006DDFFF /* ChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593025227E19C51006DDFFF /* ChartType.swift */; };
+		0593025427E19C51006DDFFF /* ChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593025227E19C51006DDFFF /* ChartType.swift */; };
+		0593025727E19C7A006DDFFF /* CurvedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593025627E19C7A006DDFFF /* CurvedChart.swift */; };
+		0593025827E19C7A006DDFFF /* CurvedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593025627E19C7A006DDFFF /* CurvedChart.swift */; };
+		0593025A27E19C98006DDFFF /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593025927E19C98006DDFFF /* LineChart.swift */; };
+		0593025B27E19C98006DDFFF /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593025927E19C98006DDFFF /* LineChart.swift */; };
+		0593025D27E19CAF006DDFFF /* DataRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593025C27E19CAF006DDFFF /* DataRepresentable.swift */; };
+		0593025E27E19CAF006DDFFF /* DataRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593025C27E19CAF006DDFFF /* DataRepresentable.swift */; };
+		0593026027E19CD6006DDFFF /* LightChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593025F27E19CD6006DDFFF /* LightChart.swift */; };
+		0593026127E19CD6006DDFFF /* LightChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593025F27E19CD6006DDFFF /* LightChart.swift */; };
+		0593026327E19D27006DDFFF /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593026227E19D27006DDFFF /* Math.swift */; };
+		0593026427E19D27006DDFFF /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593026227E19D27006DDFFF /* Math.swift */; };
 		059F73C927D7041A00B27E80 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 059F73C827D7041A00B27E80 /* SwiftUIX */; };
 		059F73CF27D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
 		059F73D027D7160D00B27E80 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F73CE27D7160D00B27E80 /* DiscoverService.swift */; };
@@ -365,6 +378,13 @@
 		0593022F27E061BC006DDFFF /* TransactButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactButtonView.swift; sourceTree = "<group>"; };
 		0593023227E067AE006DDFFF /* TransactButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactButton.swift; sourceTree = "<group>"; };
 		0593023627E08031006DDFFF /* WalletNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNavigationView.swift; sourceTree = "<group>"; };
+		0593023A27E18169006DDFFF /* ReversedStandardLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversedStandardLabelStyle.swift; sourceTree = "<group>"; };
+		0593025227E19C51006DDFFF /* ChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartType.swift; sourceTree = "<group>"; };
+		0593025627E19C7A006DDFFF /* CurvedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedChart.swift; sourceTree = "<group>"; };
+		0593025927E19C98006DDFFF /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
+		0593025C27E19CAF006DDFFF /* DataRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepresentable.swift; sourceTree = "<group>"; };
+		0593025F27E19CD6006DDFFF /* LightChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightChart.swift; sourceTree = "<group>"; };
+		0593026227E19D27006DDFFF /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		059F73CE27D7160D00B27E80 /* DiscoverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverService.swift; sourceTree = "<group>"; };
 		059F73D127D7164700B27E80 /* MarketsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsService.swift; sourceTree = "<group>"; };
 		059F73D427D7166A00B27E80 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -444,7 +464,6 @@
 				057806C827B85F9F0008051B /* web3swift in Frameworks */,
 				057806D127B862480008051B /* SwiftUICharts in Frameworks */,
 				057806CE27B862270008051B /* Colorful in Frameworks */,
-				057806D427B862910008051B /* LightChart in Frameworks */,
 				057806CB27B862010008051B /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,6 +521,7 @@
 			children = (
 				05E5F84727D321860090290C /* Animations */,
 				0578077127BB71250008051B /* IrregularGradients */,
+				0593025127E19C39006DDFFF /* LightChart */,
 				05E5F85127D361250090290C /* ConfettiView */,
 				053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */,
 			);
@@ -702,6 +722,7 @@
 				0578070227B8E8240008051B /* Buttons */,
 				058C785D27D06D2300EB91CA /* Images */,
 				05E858F327CB47B500B85195 /* Text Fields */,
+				0593023927E18137006DDFFF /* Labels */,
 				05E5F86627D452360090290C /* Fonts */,
 				053C7D3927CD8FC20081DCEA /* Extra */,
 			);
@@ -846,6 +867,35 @@
 				0593023627E08031006DDFFF /* WalletNavigationView.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		0593023927E18137006DDFFF /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				0593023A27E18169006DDFFF /* ReversedStandardLabelStyle.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		0593025127E19C39006DDFFF /* LightChart */ = {
+			isa = PBXGroup;
+			children = (
+				0593025527E19C54006DDFFF /* Charts */,
+				0593025F27E19CD6006DDFFF /* LightChart.swift */,
+				0593025227E19C51006DDFFF /* ChartType.swift */,
+				0593025C27E19CAF006DDFFF /* DataRepresentable.swift */,
+				0593026227E19D27006DDFFF /* Math.swift */,
+			);
+			path = LightChart;
+			sourceTree = "<group>";
+		};
+		0593025527E19C54006DDFFF /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				0593025627E19C7A006DDFFF /* CurvedChart.swift */,
+				0593025927E19C98006DDFFF /* LineChart.swift */,
+			);
+			path = Charts;
 			sourceTree = "<group>";
 		};
 		05D1095A27C08CD8008DCC66 /* Coordinators */ = {
@@ -1055,7 +1105,6 @@
 				057806CA27B862010008051B /* SwiftUIX */,
 				057806CD27B862270008051B /* Colorful */,
 				057806D027B862480008051B /* SwiftUICharts */,
-				057806D327B862910008051B /* LightChart */,
 				053EC29427BE0FE600FBC681 /* RealmSwift */,
 				05D1097E27C1DDC9008DCC66 /* Cache */,
 			);
@@ -1127,7 +1176,6 @@
 				057806C927B862010008051B /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 				057806CC27B862270008051B /* XCRemoteSwiftPackageReference "Colorful" */,
 				057806CF27B862480008051B /* XCRemoteSwiftPackageReference "ChartView" */,
-				057806D227B862910008051B /* XCRemoteSwiftPackageReference "LightChart" */,
 				057806D527B865330008051B /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				051BCF5027BC86140056E047 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				05D1097D27C1DDC9008DCC66 /* XCRemoteSwiftPackageReference "Cache" */,
@@ -1229,6 +1277,7 @@
 			files = (
 				05E8589427C5D7F000B85195 /* GasPrice.swift in Sources */,
 				057806F327B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */,
+				0593025327E19C51006DDFFF /* ChartType.swift in Sources */,
 				05E8590227CC12A400B85195 /* TermsOfServiceButton.swift in Sources */,
 				0578070427B8E8E00008051B /* RoundedButton.swift in Sources */,
 				05E858EE27CB388B00B85195 /* AppTheme.swift in Sources */,
@@ -1238,6 +1287,7 @@
 				0578075627BB60160008051B /* NetworkingService.swift in Sources */,
 				0593023727E08031006DDFFF /* WalletNavigationView.swift in Sources */,
 				057806D927B870620008051B /* MobileConsants.swift in Sources */,
+				0593025A27E19C98006DDFFF /* LineChart.swift in Sources */,
 				05E858C427CB230B00B85195 /* EmptyAvatar.swift in Sources */,
 				0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */,
 				05D1096D27C15D80008DCC66 /* EthereumService.swift in Sources */,
@@ -1260,6 +1310,7 @@
 				05E858E527CB2D3E00B85195 /* VisualEffectView.swift in Sources */,
 				058C786527D07E3700EB91CA /* PrivateKeysView.swift in Sources */,
 				051BCF5527BC970A0056E047 /* TransactionHistory.swift in Sources */,
+				0593026327E19D27006DDFFF /* Math.swift in Sources */,
 				05E858B327C9F9F900B85195 /* HapticFeedback.swift in Sources */,
 				05D1096627C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift in Sources */,
 				057806EB27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */,
@@ -1278,10 +1329,12 @@
 				0578073627BB59DC0008051B /* DiscoverCoordinator.swift in Sources */,
 				0593023327E067AE006DDFFF /* TransactButton.swift in Sources */,
 				05E858F827CB5A3200B85195 /* TextFieldSingleList.swift in Sources */,
+				0593026027E19CD6006DDFFF /* LightChart.swift in Sources */,
 				053C7D4527CDD5620081DCEA /* PasswordView.swift in Sources */,
 				0578073727BB59DC0008051B /* DiscoverView.swift in Sources */,
 				05E858D827CB264600B85195 /* ClickInteractiveStyle.swift in Sources */,
 				05E858F527CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */,
+				0593025727E19C7A006DDFFF /* CurvedChart.swift in Sources */,
 				05E8589827C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
 				0578075227BB5EF10008051B /* Font+Extensions.swift in Sources */,
 				05E5F86327D407A60090290C /* NotificationBanner.swift in Sources */,
@@ -1313,6 +1366,7 @@
 				0593022A27E03A1C006DDFFF /* BackgroundColorView.swift in Sources */,
 				05D1098327C31511008DCC66 /* StorageService.swift in Sources */,
 				0578074F27BB5ED00008051B /* View+Extensions.swift in Sources */,
+				0593023B27E1816A006DDFFF /* ReversedStandardLabelStyle.swift in Sources */,
 				05E858D127CB25EB00B85195 /* NotificationHUD.swift in Sources */,
 				05E5F85327D3614A0090290C /* ConfettiSwiftUI.swift in Sources */,
 				051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */,
@@ -1337,6 +1391,7 @@
 				0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */,
 				0593023027E061BC006DDFFF /* TransactButtonView.swift in Sources */,
 				0578077C27BB822D0008051B /* String+Extensions.swift in Sources */,
+				0593025D27E19CAF006DDFFF /* DataRepresentable.swift in Sources */,
 				05E858FF27CC08F200B85195 /* RoundedInteractiveButton.swift in Sources */,
 				0578077927BB71410008051B /* Blob.swift in Sources */,
 				0593022227E02B7E006DDFFF /* BorderlessButton.swift in Sources */,
@@ -1371,6 +1426,7 @@
 				0593020E27D9900A006DDFFF /* AccountBalance.swift in Sources */,
 				05D1094A27C08B3E008DCC66 /* MarketsCoordinator+Factory.swift in Sources */,
 				05E858D727CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */,
+				0593025827E19C7A006DDFFF /* CurvedChart.swift in Sources */,
 				05E858F227CB43BC00B85195 /* LoadingIndicator.swift in Sources */,
 				05E5F85827D361980090290C /* RoundedCross.swift in Sources */,
 				05D1095327C08B3E008DCC66 /* WalletView.swift in Sources */,
@@ -1381,11 +1437,13 @@
 				05E858C227CAF9D200B85195 /* AppCommands.swift in Sources */,
 				058C786027D06D5600EB91CA /* HeaderIcon.swift in Sources */,
 				0593022027E029CE006DDFFF /* SectionHeaderView.swift in Sources */,
+				0593025427E19C51006DDFFF /* ChartType.swift in Sources */,
 				05D1097127C17D49008DCC66 /* ERC20Token.swift in Sources */,
 				05E858D927CB264600B85195 /* ClickInteractiveStyle.swift in Sources */,
 				05E5F85427D3614A0090290C /* ConfettiSwiftUI.swift in Sources */,
 				0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */,
 				0593022E27E03F45006DDFFF /* UserAvatar.swift in Sources */,
+				0593025E27E19CAF006DDFFF /* DataRepresentable.swift in Sources */,
 				0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */,
 				05E858C027CAEFFA00B85195 /* SettingsView.swift in Sources */,
 				05E5F84327D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */,
@@ -1399,6 +1457,7 @@
 				0593022B27E03A1C006DDFFF /* BackgroundColorView.swift in Sources */,
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
 				0593021127D9C790006DDFFF /* Double+Extenions.swift in Sources */,
+				0593025B27E19C98006DDFFF /* LineChart.swift in Sources */,
 				05D1097427C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */,
 				05E8589527C5D7F000B85195 /* GasPrice.swift in Sources */,
 				0593022627E02D63006DDFFF /* BorderedButton.swift in Sources */,
@@ -1437,12 +1496,15 @@
 				05E8590327CC12A400B85195 /* TermsOfServiceButton.swift in Sources */,
 				05D1096B27C0C4A7008DCC66 /* MacAppDelegate.swift in Sources */,
 				051BCF5927BCACB30056E047 /* AuthenticatedServices.swift in Sources */,
+				0593026127E19CD6006DDFFF /* LightChart.swift in Sources */,
 				05D1095227C08B3E008DCC66 /* DiscoverCoordinator+Factory.swift in Sources */,
+				0593023C27E1816A006DDFFF /* ReversedStandardLabelStyle.swift in Sources */,
 				05E8590927CC1A8800B85195 /* FooterInformation.swift in Sources */,
 				058C786C27D09E5900EB91CA /* CompletedView.swift in Sources */,
 				05E8589927C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
 				0578077627BB71410008051B /* IrregularGradient.swift in Sources */,
 				05D1095527C08B3E008DCC66 /* ProfileView.swift in Sources */,
+				0593026427E19D27006DDFFF /* Math.swift in Sources */,
 				059F73D627D7166A00B27E80 /* ProfileService.swift in Sources */,
 				0578075727BB60160008051B /* NetworkingService.swift in Sources */,
 				0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */,
@@ -2060,14 +2122,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		057806D227B862910008051B /* XCRemoteSwiftPackageReference "LightChart" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pichukov/LightChart";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		057806D527B865330008051B /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint";
@@ -2161,11 +2215,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 057806CF27B862480008051B /* XCRemoteSwiftPackageReference "ChartView" */;
 			productName = SwiftUICharts;
-		};
-		057806D327B862910008051B /* LightChart */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 057806D227B862910008051B /* XCRemoteSwiftPackageReference "LightChart" */;
-			productName = LightChart;
 		};
 		059F73C827D7041A00B27E80 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;

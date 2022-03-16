@@ -25,7 +25,7 @@ class WalletService: ObservableObject {
             case .success(let accountBalance):
                 if let balance = accountBalance.completeBalance {
                     self.completeBalance = balance
-                    print("account balance is: \(self.completeBalance.description)")
+                    print("account balance is: \(self.completeBalance.count)")
                 }
 
                 completion()
@@ -55,23 +55,6 @@ class WalletService: ObservableObject {
 
             case .failure(let error):
                 print("error loading history: \(error)")
-
-                completion()
-            }
-        }
-    }
-
-    func fetchCustomGas(completion: @escaping () -> Void) {
-
-        AF.request("https://defiwallet-backend.herokuapp.com/gas", method: .get).responseDecodable(of: GasPrice.self) { response in
-            switch response.result {
-            case .success(let gas):
-                print("gas is: \(gas.standardGas)")
-
-                completion()
-
-            case .failure(let error):
-                print("error loading gas: \(error)")
 
                 completion()
             }
