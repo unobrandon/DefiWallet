@@ -45,7 +45,7 @@ struct MarketsView: View {
                         print("gas reloaded")
                     })
                 }, label: {
-                    HStack(alignment: .center, spacing: 5) {
+                    HStack(alignment: .center, spacing: 10) {
                         if let gas = store.ethGasPriceTrends,
                            let trends = gas.trend,
                            let standard = gas.current?.standard {
@@ -53,9 +53,9 @@ struct MarketsView: View {
                                            type: .curved,
                                            visualType: .filled(color: .purple, lineWidth: 3),
                                            offset: 0.2,
-                                           currentValueLineType: .dash(color: .secondary, lineWidth: 1, dash: [4]))
+                                           currentValueLineType: .none)
                                     .frame(width: 50, height: 28, alignment: .center)
-                                    .padding(.trailing, 10)
+                                    .padding(.trailing, 5)
 
                             MovingNumbersView(number: Double(standard.baseFeePerGas ?? 0), numberOfDecimalPlaces: 0, fixedWidth: 22, showComma: false) { gas in
                                 Text(gas)
