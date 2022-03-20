@@ -84,7 +84,7 @@ public struct SlideOverCard<Content: View>: View {
     private var card: some View {
 
         ZStack(alignment: .topTrailing) {
-            content.padding([.horizontal, .bottom], 14)
+            content.padding(.bottom, 15)
 
             if !options.contains(.hideExitButton) {
                 Button(action: dismiss) {

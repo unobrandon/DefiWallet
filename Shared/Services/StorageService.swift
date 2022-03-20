@@ -7,6 +7,7 @@
 
 import Foundation
 import Cache
+import UIKit
 
 class StorageService {
 
@@ -14,13 +15,20 @@ class StorageService {
 
     private let storageExpiry = Date().addingTimeInterval(168*3600)
 
-//    let diskConfig: DiskConfig
+    let diskConfig = DiskConfig(name: "DefiWallet")
     let memoryConfig: MemoryConfig
 
+    var dataStorage: Storage<String, Data>?
     var historyStorage: Cache.Storage<String, TransactionHistory>?
 
     init() {
         self.memoryConfig = MemoryConfig(expiry: .date(storageExpiry), countLimit: 50, totalCostLimit: 0)
+
+        do {
+            self.dataStorage = try Storage<String, Data>(diskConfig: diskConfig, memoryConfig: memoryConfig, transformer: TransformerFactory.forData())
+        } catch {
+            print("error getting data storage")
+        }
 
         /*
         do {
@@ -51,7 +59,6 @@ class StorageService {
             print(error)
         }
         */
-
     }
 
     func getHistory() {

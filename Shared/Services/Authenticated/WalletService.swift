@@ -24,8 +24,8 @@ class WalletService: ObservableObject {
     init() {
         print("the wallet connect id: \(Constants.walletConnectProjectId)")
         let metadata = AppMetadata(name: Constants.projectName,
-            description: "Difi Wallet App", url: "defi.wallet",
-            icons: ["https://play.google.com/store/apps/details?id=com.jndapp.cartoon.crayon.iconpack&hl=en_US&gl=US"])
+                                   description: "Difi Wallet App", url: "defi.wallet",
+                                   icons: [Constants.walletConnectMetadataIcon])
         let relayer = Relayer(relayHost: "relay.walletconnect.com", projectId: Constants.walletConnectProjectId)
 
         self.walletConnectClient = WalletConnectClient(metadata: metadata, relayer: relayer)

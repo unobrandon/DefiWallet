@@ -15,22 +15,28 @@ extension WalletService: WalletConnectClientDelegate {
     }
 
     func didReceive(sessionProposal: Session.Proposal) {
-        print("received session proposal: \(sessionProposal)")
         DispatchQueue.main.async {
+            print("received session proposal: \(sessionProposal)")
             self.walletConnectProposal = sessionProposal
         }
     }
 
     func didSettle(session: Session) {
-        print("did settle: \(session)")
+        DispatchQueue.main.async {
+            print("did settle: \(session)")
+        }
     }
 
     func didDelete(sessionTopic: String, reason: Reason) {
-        print("did delete session topic: \(sessionTopic) \nfor reason: \(reason)")
+        DispatchQueue.main.async {
+            print("did delete session topic: \(sessionTopic) \nfor reason: \(reason)")
+        }
     }
 
     func didUpgrade(sessionTopic: String, permissions: Session.Permissions) {
-        print("did upgrade session topic: \(sessionTopic) \nand the permissions are: \(permissions)")
+        DispatchQueue.main.async {
+            print("did upgrade session topic: \(sessionTopic) \nand the permissions are: \(permissions)")
+        }
     }
 
 }

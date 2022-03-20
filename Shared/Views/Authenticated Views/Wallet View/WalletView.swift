@@ -157,19 +157,11 @@ struct WalletView: View {
                     Button {
                         UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
                         SOCManager.present(isPresented: $showSheet) {
-                            ScanQRView(showSheet: $showSheet, service: service, actionScan: { uriLink in
-                                store.connectDapp(uri: uriLink, completion: { success in
-                                    if success {
-                                        // call a dismiss maybe
-                                    } else {
-                                        // reset scan screen
-                                    }
-                                })
-                            })
+                            ScanQRView(showSheet: $showSheet, service: service)
                             #if os(macOS)
                             .frame(height: 400, alignment: .center)
                             #elseif os(iOS)
-                            .frame(minHeight: MobileConstants.screenHeight / 2.5, maxHeight: MobileConstants.screenHeight / 1.75, alignment: .center)
+                            .frame(minHeight: MobileConstants.screenHeight / 2.5, maxHeight: MobileConstants.screenHeight / 1.7, alignment: .center)
                             #endif
                         }
                     } label: {

@@ -14,6 +14,8 @@ public struct Constants {
     static let infuraBaseWssUrl = "wss://mainnet.infura.io/ws/v3/"
     static let zapperBaseUrl = "https://api.zapper.fi/v1/"
     static let backendBaseUrl = "https://defiwallet-backend.herokuapp.com/"
+    static let walletConnectMetadataIcon = "https://ucarecdn.com/12bb9755-e63c-46ad-b118-3a44703a5d8f/C1F62A2EBB0145DA9D837855713C5A93.jpeg"
+    // "https://iconstore.co/assets/img/set/cover/zodiac-signs-cover.png"
 
     static let iPadMaxWidth: CGFloat = 640
     static let generateWalletDelay = 5.0
