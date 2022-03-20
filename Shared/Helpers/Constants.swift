@@ -78,6 +78,9 @@ public struct Constants {
     static var infuraProjectSecret: String {
         return Bundle.main.infoDictionary?["INFURA_PROJECT_SECRET"] as? String ?? ""
     }
+    static var walletConnectProjectId: String {
+        return Bundle.main.infoDictionary?["WALLET_CONNECT_PROJECT_ID"] as? String ?? ""
+    }
 
     // MARK: Ethereum
     static var ethNodeWssUrl: String {

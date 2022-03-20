@@ -30,6 +30,8 @@
 	<string>$(INFURA_PROJECT_SECRET)</string>
 	<key>ZAPPER_API_KEY</key>
 	<string>$(ZAPPER_API_KEY)</string>
+	<key>WALLET_CONNECT_PROJECT_ID</key>
+	<string>$(WALLET_CONNECT_PROJECT_ID)</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Protect your wallet even further with biometric security.</string>
 	<key>UIAppFonts</key>

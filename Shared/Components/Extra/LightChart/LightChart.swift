@@ -38,18 +38,18 @@ public struct LightChartView: View {
 
     private func chart(withFrame frame: CGRect) -> AnyView {
         switch type {
-            case .line:
-                return AnyView(LineChart(data: data,
+        case .line:
+            return AnyView(LineChart(data: data,
+                        frame: frame,
+                        visualType: visualType,
+                        offset: offset,
+                        currentValueLineType: currentValueLineType))
+        case .curved:
+            return AnyView(CurvedChart(data: data,
                             frame: frame,
                             visualType: visualType,
                             offset: offset,
                             currentValueLineType: currentValueLineType))
-            case .curved:
-                return AnyView(CurvedChart(data: data,
-                                frame: frame,
-                                visualType: visualType,
-                                offset: offset,
-                                currentValueLineType: currentValueLineType))
         }
     }
 

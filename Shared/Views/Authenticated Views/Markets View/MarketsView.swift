@@ -49,13 +49,12 @@ struct MarketsView: View {
                         if let gas = store.ethGasPriceTrends,
                            let trends = gas.trend,
                            let standard = gas.current?.standard {
-                            LightChartView(data: trends[0...5].map({ $0.baseFee ?? 0 }).reversed(),
+                            LightChartView(data: trends[0...6].map({ $0.baseFee ?? 0 }).reversed(),
                                            type: .curved,
                                            visualType: .filled(color: .purple, lineWidth: 3),
                                            offset: 0.2,
                                            currentValueLineType: .none)
                                     .frame(width: 50, height: 28, alignment: .center)
-                                    .padding(.trailing, 5)
 
                             MovingNumbersView(number: Double(standard.baseFeePerGas ?? 0), numberOfDecimalPlaces: 0, fixedWidth: 22, showComma: false) { gas in
                                 Text(gas)

@@ -23,7 +23,7 @@ class AuthenticatedServices: ObservableObject {
     // MARK: stored values
     @Published var themeStyle: AppStyle = .border
     @Published var currentUser: CurrentUser
-    @Published var macTabStatus: MacTabStatus
+    @Published var macTabStatus: MacTabStatus = .wallet
 
     enum MacTabStatus: String, Equatable {
         case wallet
@@ -37,8 +37,6 @@ class AuthenticatedServices: ObservableObject {
     init(currentUser: CurrentUser) {
         self.currentUser = currentUser
         self.ethereum = EthereumService(currentUser: currentUser)
-
-        self.macTabStatus = .wallet
     }
 
 }

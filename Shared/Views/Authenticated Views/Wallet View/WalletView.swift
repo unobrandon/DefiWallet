@@ -15,6 +15,8 @@ struct WalletView: View {
 
     @ObservedObject private var store: WalletService
 
+    @State private var showSheet = false
+
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
@@ -153,13 +155,32 @@ struct WalletView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(alignment: .center, spacing: 10) {
                     Button {
-                        print("qr code")
+                        UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
+                        SOCManager.present(isPresented: $showSheet) {
+                            ScanQRView(showSheet: $showSheet, service: service, actionScan: { uriLink in
+                                store.connectDapp(uri: uriLink, completion: { success in
+                                    if success {
+                                        // call a dismiss maybe
+                                    } else {
+                                        // reset scan screen
+                                    }
+                                })
+                            })
+                            #if os(macOS)
+                            .frame(height: 400, alignment: .center)
+                            #elseif os(iOS)
+                            .frame(minHeight: MobileConstants.screenHeight / 2.5, maxHeight: MobileConstants.screenHeight / 1.75, alignment: .center)
+                            #endif
+                        }
                     } label: {
                         Image(systemName: "qrcode.viewfinder")
                     }
                     .foregroundColor(Color.primary)
                 }
             }
+        }
+        .slideOverCard(isPresented: $showSheet) {
+
         }
     }
 

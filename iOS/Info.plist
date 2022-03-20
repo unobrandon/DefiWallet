@@ -20,6 +20,8 @@
 	<string>Protect your wallet even further with biometric security.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Grant access to the photo library to set your avatar and more.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Grant access to the camera to scan QR codes and more.</string>
 	<key>ETH_NODE_WWS_URL</key>
 	<string>$(ETH_NODE_WWS_URL)</string>
 	<key>POLYGON_NODE_WWS_URL</key>
@@ -34,6 +36,10 @@
 	<string>$(INFURA_PROJECT_SECRET)</string>
 	<key>ZAPPER_API_KEY</key>
 	<string>$(ZAPPER_API_KEY)</string>
+	<key>WALLET_CONNECT_PROJECT_ID</key>
+	<string>$(WALLET_CONNECT_PROJECT_ID)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>LabMono-Regular.otf</string>

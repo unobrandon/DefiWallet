@@ -27,13 +27,13 @@ struct CompleteBalance: Codable, Hashable {
 
 // MARK: - TokenBalance
 struct TokenBalance: Codable {
-    let tokenAddress, name, symbol: String?
+    let tokenAddress, name, symbol, decimals: String?
     let logo, thumbnail: JSONNull?
-    let decimals, balance: String?
+    let balance, usd, usdTotal: String?
 
     enum CodingKeys: String, CodingKey {
         case tokenAddress = "token_address"
-        case name, symbol, logo, thumbnail, decimals, balance
+        case name, symbol, logo, thumbnail, decimals, balance, usd, usdTotal
     }
 }
 
