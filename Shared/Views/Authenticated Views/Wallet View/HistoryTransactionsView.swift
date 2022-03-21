@@ -18,7 +18,6 @@ struct HistoryTransactionsView: View {
     @State private var directionFilter: Direction?
     @State private var directionSelector: Int = 0
     @State private var limitCells: Int = 20
-    @State private var searchText: String = ""
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -42,8 +41,6 @@ struct HistoryTransactionsView: View {
                 }
             }
         })
-        .navigationSearchBar { SearchBar("Search transactions", text: $searchText) }
-        .navigationSearchBarHiddenWhenScrolling(true)
         .navigationBarTitle("Transactions", displayMode: .large)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
