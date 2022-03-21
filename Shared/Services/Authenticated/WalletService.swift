@@ -16,8 +16,9 @@ class WalletService: ObservableObject {
     @Published var accountBalance = [AccountBalance]()
     @Published var completeBalance = [CompleteBalance]()
     @Published var accountNfts = [AccountNft]()
-    @Published var history = [Datum]()
-    @Published var walletConnectProposal: WalletConnect.Session.Proposal?
+    @Published var history = [HistoryData]()
+    @Published var wcProposal: WalletConnect.Session.Proposal?
+    @Published var wcActiveSessions = [WCSessionInfo]()
 
     var walletConnectClient: WalletConnectClient
 
@@ -29,8 +30,8 @@ class WalletService: ObservableObject {
         let relayer = Relayer(relayHost: "relay.walletconnect.com", projectId: Constants.walletConnectProjectId)
 
         self.walletConnectClient = WalletConnectClient(metadata: metadata, relayer: relayer)
-
         self.walletConnectClient.delegate = self
+        self.reloadActiveSessions()
     }
 
     func connectDapp(uri: String, completion: @escaping (Bool) -> Void) {
@@ -41,6 +42,19 @@ class WalletService: ObservableObject {
         } catch {
             DispatchQueue.main.async { completion(false) }
         }
+    }
+
+    func disconnectDapp(sessionTopic: String) {
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.walletConnectClient.disconnect(topic: sessionTopic, reason: Reason(code: 0, message: "User disconnected from \(Constants.projectName)"))
+
+            self.reloadActiveSessions()
+            HapticFeedback.successHapticFeedback()
+        }
+    }
+
+    func viewDappWebsite(link: String) {
+        print("visit dapp's website: \(link)")
     }
 
     func fetchAccountBalance(_ address: String, completion: @escaping () -> Void) {
@@ -85,6 +99,41 @@ class WalletService: ObservableObject {
 
                 completion()
             }
+        }
+    }
+
+    func transactionImage(_ direction: Direction) -> String {
+        switch direction {
+        case .incoming:
+            return "arrow.down"
+        case .outgoing:
+            return "paperplane.fill"
+        case .exchange:
+            return "arrow.left.arrow.right"
+        }
+    }
+
+    func transactionColor(_ direction: Direction) -> Color {
+        switch direction {
+        case .incoming:
+            return Color.green
+        case .outgoing:
+            return Color.red
+        case .exchange:
+            return Color.blue
+        }
+    }
+
+    func getNetworkImage(_ netwrok: Network) -> Image {
+        switch netwrok {
+        case .ethereum:
+            return Image("eth_logo")
+        case .polygon:
+            return Image("polygon_logo")
+        case .binanceSmartChain:
+            return Image("binance_logo")
+        case .avalanche:
+            return Image("avalanche_logo")
         }
     }
 

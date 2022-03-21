@@ -10,18 +10,36 @@ import SwiftUI
 struct WalletNavigationView: View {
 
     private let service: AuthenticatedServices
+    @ObservedObject private var store: WalletService
 
     @State var connectionStatus: String = "Welcome"
     @State var hasCopiedAddress: Bool = false
 
     init(service: AuthenticatedServices) {
         self.service = service
+        self.store = service.wallet
     }
 
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
             ZStack {
-                UserAvatar(size: 34, user: service.currentUser, style: service.themeStyle)
+                if let sessions = store.wcActiveSessions, !sessions.isEmpty {
+                    Menu {
+                        ForEach(sessions.indices, id: \.self) { session in
+                            Button("Disconnect \(sessions[session].name)", action: { store.disconnectDapp(sessionTopic: sessions[session].topic) })
+                        }
+                    } label: {
+                        ZStack(alignment: .center) {
+                            ForEach(sessions.prefix(3).indices, id: \.self) { session in
+                                RemoteImage(imageUrl: sessions[session].iconURL, size: 36)
+                                    .overlay(Circle().foregroundColor(.clear).overlay(Circle().stroke(Color("baseBackground_bordered"), lineWidth: 4)))
+                                    .padding(.leading, CGFloat(25 * session))
+                            }
+                        }
+                    }
+                } else {
+                    UserAvatar(size: 34, user: service.currentUser, style: service.themeStyle)
+                }
 
                 Circle()
                     .stroke(Color("baseBackground_bordered"), lineWidth: 2)
@@ -31,12 +49,18 @@ struct WalletNavigationView: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(connectionStatus)
-                    .fontTemplate(DefaultTemplate.bodySemibold)
+                if let session = store.wcActiveSessions.first {
+                    let others = (store.wcActiveSessions.count <= 1 ? "" : " & \(store.wcActiveSessions.count - 1) other" + (store.wcActiveSessions.count == 2 ? "" : "s"))
+                    Text(session.name + others)
+                        .fontTemplate(DefaultTemplate.bodyBold)
+                } else {
+                    Text(connectionStatus).fontTemplate(DefaultTemplate.bodyBold)
+                }
 
                 Button(action: {
                     UIPasteboard.general.string = service.currentUser.address
-                    UINotificationFeedbackGenerator().notificationOccurred(.success)
+                    HapticFeedback.successHapticFeedback()
+                    showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied wallet address", subtitle: nil)
                     withAnimation {
                         hasCopiedAddress = true
                     }
@@ -58,7 +82,7 @@ struct WalletNavigationView: View {
                             .font(Font.title.weight(.semibold))
                             .foregroundColor(.secondary)
                     }
-                }).buttonStyle(ClickInteractiveStyle(0.99))
+                }).buttonStyle(ClickInteractiveStyle(0.95))
             }
         }
         .padding(.trailing)

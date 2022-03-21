@@ -54,6 +54,7 @@ struct DefaultTemplate {
     static let body_Mono_secondary = FontTemplate(font: Font.custom("LabMono-Regular", size: 14), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)
 
     static let caption = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)
+    static let captionPrimary = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .primary, lineSpacing: 1)
     static let captionError = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .red, lineSpacing: 1)
 
     static let alertMessage = FontTemplate(font: Font.system(size: 12.0), weight: .semibold, foregroundColor: .primary, lineSpacing: 0)

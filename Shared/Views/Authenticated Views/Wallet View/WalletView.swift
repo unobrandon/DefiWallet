@@ -12,7 +12,6 @@ import SwiftUICharts
 struct WalletView: View {
 
     @ObservedObject private var service: AuthenticatedServices
-
     @ObservedObject private var store: WalletService
 
     @State private var showSheet = false
@@ -57,7 +56,7 @@ struct WalletView: View {
                     .padding()
 
                 TransactButtonView(style: service.themeStyle,
-                                   enableDeposit: true,
+                                   enableDeposit: false,
                                    enableSend: true,
                                    enableReceive: true,
                                    enableSwap: true,
@@ -111,39 +110,7 @@ struct WalletView: View {
                     }
                 }
 
-                if !store.history.isEmpty {
-                    SectionHeaderView(title: "History", actionTitle: "See more", action: {
-                        print("see more")
-                    })
-                    .padding(.top)
-                }
-
-                ForEach(store.history, id: \.self) { item in
-                    HStack(alignment: .center) {
-                        VStack(alignment: .leading, spacing: 2.5) {
-                            Text(item.direction == .incoming ? "Received" : item.direction == .outgoing ? "Sent" : "Exchange")
-                                .fontTemplate(DefaultTemplate.bodyBold)
-
-                            Text("\(item.amount) \(item.symbol)")
-                                .fontTemplate(DefaultTemplate.bodyMedium)
-                        }
-
-                        Spacer()
-                        VStack(alignment: .trailing, spacing: 2.5) {
-                            Text("\(item.timeStamp.getFullElapsedInterval())")
-                                .fontTemplate(DefaultTemplate.caption)
-
-                            if let fromAddress = item.fromEns == nil ? item.from : item.fromEns {
-                                Text("from: " + "\("".formatAddress(fromAddress))")
-                                    .fontTemplate(DefaultTemplate.caption)
-                            }
-                        }
-                    }
-                    .padding(.vertical, 10)
-                    .padding(.horizontal)
-                    .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.secondary.opacity(0.2)))
-                    .padding(.horizontal)
-                }
+                HistorySectionView(service: service)
             }
         })
         .navigationBarTitle("", displayMode: .inline)
@@ -155,7 +122,7 @@ struct WalletView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(alignment: .center, spacing: 10) {
                     Button {
-                        UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
+                        HapticFeedback.rigidHapticFeedback()
                         SOCManager.present(isPresented: $showSheet) {
                             ScanQRView(showSheet: $showSheet, service: service)
                             #if os(macOS)

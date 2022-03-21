@@ -39,30 +39,33 @@ struct TransactButtonView: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
-            Spacer()
-
             if enableDeposit {
+                Spacer()
+
                 TransactButton(title: "Deposit", systemImage: Constants.currencyCircleImage, size: 46, style: style, action: {
                     actionDeposit()
                 })
             }
 
-            Spacer()
             if enableSend {
+                Spacer()
+
                 TransactButton(title: "Send", systemImage: "paperplane.fill", size: 46, style: style, action: {
                     actionSend()
                 })
             }
 
-            Spacer()
             if enableReceive {
+                Spacer()
+
                 TransactButton(title: "Receive", systemImage: "arrow.down.circle", size: 46, style: style, action: {
                     actionReceive()
                 })
             }
 
-            Spacer()
             if enableSwap {
+                Spacer()
+
                 TransactButton(title: "Swap", systemImage: "arrow.left.arrow.right", size: 46, style: style, action: {
                     actionSwap()
                 })

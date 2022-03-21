@@ -53,6 +53,12 @@
 		0531140E27E7985300368657 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531140C27E7985300368657 /* RemoteImage.swift */; };
 		0531141127E7A25D00368657 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0531141027E7A25D00368657 /* SDWebImageSwiftUI */; };
 		0531141327E7A26600368657 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0531141227E7A26600368657 /* SDWebImageSwiftUI */; };
+		0531141727E7E63000368657 /* DappProposalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531141627E7E63000368657 /* DappProposalView.swift */; };
+		0531141827E7E63000368657 /* DappProposalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531141627E7E63000368657 /* DappProposalView.swift */; };
+		0531141A27E7E73700368657 /* ScanQACameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531141927E7E73700368657 /* ScanQACameraView.swift */; };
+		0531141B27E7E73700368657 /* ScanQACameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531141927E7E73700368657 /* ScanQACameraView.swift */; };
+		0531141D27E7EE1B00368657 /* WCSessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531141C27E7EE1B00368657 /* WCSessionInfo.swift */; };
+		0531141E27E7EE1B00368657 /* WCSessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531141C27E7EE1B00368657 /* WCSessionInfo.swift */; };
 		053C7D3B27CD903B0081DCEA /* MovingNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */; };
 		053C7D3C27CD903B0081DCEA /* MovingNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */; };
 		053C7D3F27CDBF600081DCEA /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053C7D3E27CDBF600081DCEA /* CheckmarkView.swift */; };
@@ -73,6 +79,12 @@
 		0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88727B4D28D000478B8 /* TabBarButton.swift */; };
 		0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88C27B4DFF1000478B8 /* SideNavigationBar.swift */; };
 		0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550300C27B82EF0005EE87C /* StatusBar.swift */; };
+		0566AEC227E83792006B645F /* HistorySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC127E83792006B645F /* HistorySectionView.swift */; };
+		0566AEC327E83792006B645F /* HistorySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC127E83792006B645F /* HistorySectionView.swift */; };
+		0566AEC527E8399B006B645F /* HistoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC427E8399B006B645F /* HistoryListCell.swift */; };
+		0566AEC627E8399B006B645F /* HistoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC427E8399B006B645F /* HistoryListCell.swift */; };
+		0566AEC827E84711006B645F /* StandardSystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC727E84711006B645F /* StandardSystemImage.swift */; };
+		0566AEC927E84711006B645F /* StandardSystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC727E84711006B645F /* StandardSystemImage.swift */; };
 		057806B827B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
 		057806B927B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
 		057806BE27B8432B0008051B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806BD27B8432B0008051B /* Constants.swift */; };
@@ -344,6 +356,9 @@
 		0531140027E6DD1500368657 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		0531140827E6E39F00368657 /* WalletConnectDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectDelegate.swift; sourceTree = "<group>"; };
 		0531140C27E7985300368657 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
+		0531141627E7E63000368657 /* DappProposalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DappProposalView.swift; sourceTree = "<group>"; };
+		0531141927E7E73700368657 /* ScanQACameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQACameraView.swift; sourceTree = "<group>"; };
+		0531141C27E7EE1B00368657 /* WCSessionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionInfo.swift; sourceTree = "<group>"; };
 		053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingNumbersView.swift; sourceTree = "<group>"; };
 		053C7D3D27CD940B0081DCEA /* ExampleComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleComponents.swift; sourceTree = "<group>"; };
 		053C7D3E27CDBF600081DCEA /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
@@ -367,6 +382,9 @@
 		0548B89727B4E9F4000478B8 /* DefiWalletProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DefiWalletProduction.xcconfig; sourceTree = "<group>"; };
 		0548B89827B4EBB9000478B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0550300C27B82EF0005EE87C /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
+		0566AEC127E83792006B645F /* HistorySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySectionView.swift; sourceTree = "<group>"; };
+		0566AEC427E8399B006B645F /* HistoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCell.swift; sourceTree = "<group>"; };
+		0566AEC727E84711006B645F /* StandardSystemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardSystemImage.swift; sourceTree = "<group>"; };
 		057806B727B838E60008051B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		057806BD27B8432B0008051B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		057806D827B870620008051B /* MobileConsants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileConsants.swift; sourceTree = "<group>"; };
@@ -595,6 +613,8 @@
 			isa = PBXGroup;
 			children = (
 				053113FD27E6CFE500368657 /* ScanQRView.swift */,
+				0531141927E7E73700368657 /* ScanQACameraView.swift */,
+				0531141627E7E63000368657 /* DappProposalView.swift */,
 			);
 			path = SlideOverCards;
 			sourceTree = "<group>";
@@ -735,6 +755,7 @@
 			children = (
 				057806E427B8DF240008051B /* CurrentUser.swift */,
 				0578077E27BB87C80008051B /* Wallet.swift */,
+				0531141C27E7EE1B00368657 /* WCSessionInfo.swift */,
 				05E8589327C5D7F000B85195 /* GasPrice.swift */,
 				05D1096F27C17D49008DCC66 /* ERC20Token.swift */,
 				0593020C27D9900A006DDFFF /* AccountBalance.swift */,
@@ -823,9 +844,9 @@
 				0593022127E02B7E006DDFFF /* BorderlessButton.swift */,
 				0593022427E02D63006DDFFF /* BorderedButton.swift */,
 				0593023227E067AE006DDFFF /* TransactButton.swift */,
-				0531140027E6DD1500368657 /* CloseButton.swift */,
 				05E858E627CB301B00B85195 /* ListStandardButton.swift */,
 				0593021827DFCB3D006DDFFF /* ProfileHeaderButton.swift */,
+				0531140027E6DD1500368657 /* CloseButton.swift */,
 				05E8590127CC12A400B85195 /* TermsOfServiceButton.swift */,
 			);
 			path = Buttons;
@@ -837,6 +858,10 @@
 				0578070E27B8F1BC0008051B /* WalletCoordinator.swift */,
 				0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */,
 				0578070B27B8F1370008051B /* WalletView.swift */,
+				0593023627E08031006DDFFF /* WalletNavigationView.swift */,
+				0593022F27E061BC006DDFFF /* TransactButtonView.swift */,
+				0566AEC127E83792006B645F /* HistorySectionView.swift */,
+				0566AEC427E8399B006B645F /* HistoryListCell.swift */,
 			);
 			path = "Wallet View";
 			sourceTree = "<group>";
@@ -924,6 +949,7 @@
 				0531140C27E7985300368657 /* RemoteImage.swift */,
 				058C785E27D06D5600EB91CA /* HeaderIcon.swift */,
 				0593022C27E03F45006DDFFF /* UserAvatar.swift */,
+				0566AEC727E84711006B645F /* StandardSystemImage.swift */,
 				05E858C327CB230B00B85195 /* EmptyAvatar.swift */,
 			);
 			path = Images;
@@ -951,7 +977,6 @@
 		0593023527E08002006DDFFF /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				0593023627E08031006DDFFF /* WalletNavigationView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1094,7 +1119,6 @@
 				0593023527E08002006DDFFF /* Navigation */,
 				0531141527E7B62500368657 /* SlideOverCards */,
 				05E858CD27CB25C200B85195 /* AlertBadge.swift */,
-				0593022F27E061BC006DDFFF /* TransactButtonView.swift */,
 				05E858F027CB43BC00B85195 /* LoadingIndicator.swift */,
 				053C7D3E27CDBF600081DCEA /* CheckmarkView.swift */,
 				05E8590427CC198A00B85195 /* TermsView.swift */,
@@ -1394,6 +1418,7 @@
 				05D1097027C17D49008DCC66 /* ERC20Token.swift in Sources */,
 				053C7D4227CDCFDE0081DCEA /* EnsUsernameView.swift in Sources */,
 				057806E227B8DE3E0008051B /* MainCoordinator.swift in Sources */,
+				0531141727E7E63000368657 /* DappProposalView.swift in Sources */,
 				05E5F88027D5D4190090290C /* ImagePickerHelper.swift in Sources */,
 				059F73D227D7164700B27E80 /* MarketsService.swift in Sources */,
 				05D1097327C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */,
@@ -1410,9 +1435,11 @@
 				0593026327E19D27006DDFFF /* Math.swift in Sources */,
 				05E858B327C9F9F900B85195 /* HapticFeedback.swift in Sources */,
 				05D1096627C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift in Sources */,
+				0531141A27E7E73700368657 /* ScanQACameraView.swift in Sources */,
 				057806EB27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */,
 				0578074327BB5B770008051B /* InvestCoordinator+Factory.swift in Sources */,
 				053113FB27E6CF7100368657 /* CBScanner.swift in Sources */,
+				0566AEC527E8399B006B645F /* HistoryListCell.swift in Sources */,
 				05E8590527CC198A00B85195 /* TermsView.swift in Sources */,
 				0578077F27BB87C80008051B /* Wallet.swift in Sources */,
 				057806E527B8DF240008051B /* CurrentUser.swift in Sources */,
@@ -1473,6 +1500,7 @@
 				0593023B27E1816A006DDFFF /* ReversedStandardLabelStyle.swift in Sources */,
 				053113F827E6CF3C00368657 /* CBBarcodeView.swift in Sources */,
 				05E858D127CB25EB00B85195 /* NotificationHUD.swift in Sources */,
+				0531141D27E7EE1B00368657 /* WCSessionInfo.swift in Sources */,
 				05E5F85327D3614A0090290C /* ConfettiSwiftUI.swift in Sources */,
 				051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */,
 				058C785F27D06D5600EB91CA /* HeaderIcon.swift in Sources */,
@@ -1486,6 +1514,7 @@
 				0578073127BB59D30008051B /* MarketsCoordinator.swift in Sources */,
 				05E8589B27C9DA3700B85195 /* CarouselViewTwo.swift in Sources */,
 				057806E827B8DF980008051B /* AuthenticationService.swift in Sources */,
+				0566AEC827E84711006B645F /* StandardSystemImage.swift in Sources */,
 				053113FE27E6CFE500368657 /* ScanQRView.swift in Sources */,
 				057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
 				05E5F85A27D361AF0090290C /* SlimRectangle.swift in Sources */,
@@ -1494,6 +1523,7 @@
 				05E858FB27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,
 				05E858F127CB43BC00B85195 /* LoadingIndicator.swift in Sources */,
 				053113EB27E6C76400368657 /* SlideOverCardView.swift in Sources */,
+				0566AEC227E83792006B645F /* HistorySectionView.swift in Sources */,
 				0578071527B8F61F0008051B /* ProfileView.swift in Sources */,
 				05E858DB27CB27AF00B85195 /* NotificationViewExtension.swift in Sources */,
 				0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */,
@@ -1520,6 +1550,7 @@
 				053113FF27E6CFE500368657 /* ScanQRView.swift in Sources */,
 				05E5F86127D406370090290C /* NotiPermissionsView.swift in Sources */,
 				05E5F87E27D5D0820090290C /* EnsAvatarView.swift in Sources */,
+				0566AEC927E84711006B645F /* StandardSystemImage.swift in Sources */,
 				05E858EC27CB322100B85195 /* ListSection.swift in Sources */,
 				05E5F85B27D361AF0090290C /* SlimRectangle.swift in Sources */,
 				05D1095927C08B3E008DCC66 /* MarketsCoordinator.swift in Sources */,
@@ -1590,6 +1621,7 @@
 				0531140A27E6E39F00368657 /* WalletConnectDelegate.swift in Sources */,
 				05D1094727C08B2B008DCC66 /* UnauthenticatedCoordinator.swift in Sources */,
 				0578075027BB5ED00008051B /* View+Extensions.swift in Sources */,
+				0531141827E7E63000368657 /* DappProposalView.swift in Sources */,
 				05D1095627C08B3E008DCC66 /* ProfileCoordinator+Factory.swift in Sources */,
 				0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
 				05D1094627C08B2B008DCC66 /* MainCoordinator.swift in Sources */,
@@ -1612,12 +1644,14 @@
 				05E858C827CB238800B85195 /* Character+Extensions.swift in Sources */,
 				053C7D3C27CD903B0081DCEA /* MovingNumbersView.swift in Sources */,
 				0593023127E061BC006DDFFF /* TransactButtonView.swift in Sources */,
+				0531141B27E7E73700368657 /* ScanQACameraView.swift in Sources */,
 				05E8590327CC12A400B85195 /* TermsOfServiceButton.swift in Sources */,
 				05D1096B27C0C4A7008DCC66 /* MacAppDelegate.swift in Sources */,
 				051BCF5927BCACB30056E047 /* AuthenticatedServices.swift in Sources */,
 				0593026127E19CD6006DDFFF /* LightChart.swift in Sources */,
 				05D1095227C08B3E008DCC66 /* DiscoverCoordinator+Factory.swift in Sources */,
 				0593023C27E1816A006DDFFF /* ReversedStandardLabelStyle.swift in Sources */,
+				0531141E27E7EE1B00368657 /* WCSessionInfo.swift in Sources */,
 				05E8590927CC1A8800B85195 /* FooterInformation.swift in Sources */,
 				058C786C27D09E5900EB91CA /* CompletedView.swift in Sources */,
 				053113FC27E6CF7100368657 /* CBScanner.swift in Sources */,
@@ -1637,11 +1671,13 @@
 				05E858CB27CB240300B85195 /* AppGradients.swift in Sources */,
 				05E858DC27CB27E400B85195 /* AlertBadge.swift in Sources */,
 				0593022327E02B7E006DDFFF /* BorderlessButton.swift in Sources */,
+				0566AEC327E83792006B645F /* HistorySectionView.swift in Sources */,
 				05E858EF27CB388B00B85195 /* AppTheme.swift in Sources */,
 				0593023427E067AE006DDFFF /* TransactButton.swift in Sources */,
 				0578077D27BB822D0008051B /* String+Extensions.swift in Sources */,
 				05E858C527CB230B00B85195 /* EmptyAvatar.swift in Sources */,
 				05E858FC27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,
+				0566AEC627E8399B006B645F /* HistoryListCell.swift in Sources */,
 				058C786927D0831700EB91CA /* AlertBanner.swift in Sources */,
 				05E5F86427D407A60090290C /* NotificationBanner.swift in Sources */,
 				05E858E827CB301B00B85195 /* ListStandardButton.swift in Sources */,

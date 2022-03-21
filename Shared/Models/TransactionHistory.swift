@@ -25,13 +25,13 @@ import Alamofire
 // MARK: - TransactionHistory
 struct TransactionHistory: Codable {
     let error: [String]?
-    let data: [Datum]?
+    let data: [HistoryData]?
 }
 
 // MARK: - Datum
-struct Datum: Decodable, Encodable, Hashable {
+struct HistoryData: Decodable, Encodable, Hashable {
 
-    static func == (lhs: Datum, rhs: Datum) -> Bool {
+    static func == (lhs: HistoryData, rhs: HistoryData) -> Bool {
         return lhs.hash == rhs.hash && lhs.blockNumber == rhs.blockNumber
     }
 
