@@ -88,9 +88,9 @@ struct HistoryTransactionsView: View {
     }
 
     private func filterHistory() -> [HistoryData] {
-        guard searchText.isEmpty else {
-            return self.store.history.filter({ $0.address == searchText })
-        }
+//        guard searchText.isEmpty else {
+//            return self.store.history.filter({ $0.address == searchText })
+//        }
 
         if let network = networkFilter, directionFilter == nil {
             return self.store.history.filter({ $0.network == network })
