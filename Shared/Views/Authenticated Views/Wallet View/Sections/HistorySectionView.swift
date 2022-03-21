@@ -25,11 +25,7 @@ struct HistorySectionView: View {
     var body: some View {
         LazyVStack(alignment: .center, spacing: 0) {
             if !store.history.isEmpty {
-                SectionHeaderView(title: "History", actionTitle: store.history.count < limitCells ? "" : "Show more", action: {
-                    withAnimation(.easeOut) {
-                        self.limitCells += 5
-                    }
-                })
+                SectionHeaderView(title: "History", actionTitle: store.history.count < limitCells ? "" : limitCells == 10 ? "Show less" : "Show more", action: showMoreLess)
                 .padding(.vertical, 10)
             }
 
@@ -40,7 +36,7 @@ struct HistorySectionView: View {
                     })
 
                     if store.history.last == item || item == store.history[limitCells - 1] {
-                        ListStandardButton(title: "\(store.history.count - limitCells) more transactions", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                        ListStandardButton(title: "see \(store.history.count - limitCells) more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
                             walletRouter.route(to: \.history)
                             #if os(iOS)
                                 HapticFeedback.rigidHapticFeedback()
@@ -52,4 +48,11 @@ struct HistorySectionView: View {
         }
     }
 
+    private func showMoreLess() {
+        if limitCells == 5 {
+            withAnimation(.easeOut) { limitCells += 5 }
+        } else if limitCells == 10 {
+            withAnimation(.easeOut) { limitCells -= 5 }
+        }
+    }
 }
