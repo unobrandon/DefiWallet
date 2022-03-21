@@ -30,9 +30,9 @@ struct HistoryListCell: View {
                 self.actionTap()
             }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
-                    HStack(alignment: .center) {
+                    HStack(alignment: .center, spacing: 10) {
                         ZStack {
-                            StandardSystemImage(service.wallet.transactionImage(data.direction), color: service.wallet.transactionColor(data.direction), size: 44, cornerRadius: 22, style: style)
+                            StandardSystemImage(service.wallet.transactionImage(data.direction), color: service.wallet.transactionColor(data.direction), size: 42, cornerRadius: 21, style: style)
                                 .padding(.horizontal, 10)
 
                             service.wallet.getNetworkImage(data.network)
@@ -44,36 +44,44 @@ struct HistoryListCell: View {
                                 .offset(x: -15, y: 15)
                         }
 
-                        VStack(alignment: .leading, spacing: 2.5) {
-                            Text(data.direction == .incoming ? "Received" : data.direction == .outgoing ? "Sent" : "Exchanged")
-                                .fontTemplate(DefaultTemplate.subheadingSemiBold)
+                        VStack(alignment: .leading, spacing: 0) {
+                            // Upper details
+                            HStack(alignment: .center, spacing: 5) {
+                                Text(data.direction == .incoming ? "Received" : data.direction == .outgoing ? "Sent" : "Exchanged")
+                                    .fontTemplate(DefaultTemplate.subheadingMedium)
 
-                            Text((data.direction == .outgoing ? "-" : "") + "\("".forTrailingZero(temp: Double(data.amount)?.truncate(places: 4) ?? 0.00)) \(data.symbol.prefix(6))")
-                                .fontTemplate(FontTemplate(font: Font.system(size: 14.0), weight: .medium, foregroundColor: service.wallet.transactionColor(data.direction), lineSpacing: 0))
-                        }
-
-                        Spacer()
-                        VStack(alignment: .trailing, spacing: 2.5) {
-                            HStack(alignment: .center) {
+                                Spacer()
                                 Text("\(data.timeStamp.getFullElapsedInterval())").fontTemplate(DefaultTemplate.caption)
 
                                 Image(systemName: "chevron.right")
                                     .resizable()
                                     .font(Font.title.weight(.semibold))
                                     .scaledToFit()
-                                    .frame(width: 5, height: 10, alignment: .center)
+                                    .frame(width: 6, height: 12, alignment: .center)
                                     .foregroundColor(.secondary)
                             }
 
-                            if data.direction == .incoming, let fromAddress = data.fromEns == nil ? data.from : data.fromEns {
-                                Text("from: " + "\("".formatAddress(fromAddress))")
-                                    .fontTemplate(DefaultTemplate.captionPrimary)
-                            } else if data.direction == .outgoing, let toAddress = data.destination {
-                                Text("to: " + "\("".formatAddress(toAddress))")
-                                    .fontTemplate(DefaultTemplate.captionPrimary)
-                            } else if data.direction == .exchange, let gasFee = data.gasPrice {
-                                Text("gas fee: \(gasFee)")
-                                    .fontTemplate(DefaultTemplate.captionPrimary)
+                            // Lower details
+                            HStack(alignment: .center, spacing: 5) {
+                                Text((data.direction == .outgoing ? "-" : "") + "\("".forTrailingZero(temp: Double(data.amount)?.truncate(places: 4) ?? 0.00)) \(data.symbol.prefix(6))")
+                                    .fontTemplate(FontTemplate(font: Font.system(size: 14.0), weight: .medium, foregroundColor: service.wallet.transactionColor(data.direction), lineSpacing: 0))
+
+                                Spacer()
+                                if !data.txSuccessful {
+                                    Text("FAILED")
+                                        .fontTemplate(FontTemplate(font: Font.system(size: 12.0), weight: .bold, foregroundColor: style == .shadow ? .white : .red, lineSpacing: 0))
+                                        .background(RoundedRectangle(cornerRadius: 4, style: .circular).foregroundColor(Color.red.opacity(style == .shadow ? 1.0 : 0.15)).frame(width: 56, height: 20))
+                                        .padding(.trailing, 5)
+                                } else if data.direction == .incoming, let fromAddress = data.fromEns == nil ? data.from : data.fromEns {
+                                    Text("from: " + "\("".formatAddress(fromAddress))")
+                                        .fontTemplate(DefaultTemplate.captionPrimary)
+                                } else if data.direction == .outgoing, let toAddress = data.destination {
+                                    Text("to: " + "\("".formatAddress(toAddress))")
+                                        .fontTemplate(DefaultTemplate.captionPrimary)
+                                } else if data.direction == .exchange, let gasFee = data.gasPrice {
+                                    Text("gas: \(gasFee.truncate(places: 4))")
+                                        .fontTemplate(DefaultTemplate.captionPrimary)
+                                }
                             }
                         }
                     }
@@ -81,7 +89,7 @@ struct HistoryListCell: View {
                     .padding(.horizontal)
 
                     if style == .shadow, !isLast {
-                        Divider().padding(.leading, 40)
+                        Divider().padding(.leading, 65)
                     } else if style == .border, !isLast {
                         Rectangle().foregroundColor(DefaultTemplate.borderColor)
                             .frame(height: 1)

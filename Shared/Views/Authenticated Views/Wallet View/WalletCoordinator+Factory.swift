@@ -14,4 +14,8 @@ extension WalletCoordinator {
         WalletView(service: services)
     }
 
+    @ViewBuilder func makeHistory() -> some View {
+        HistoryTransactionsView(service: services)
+    }
+
 }

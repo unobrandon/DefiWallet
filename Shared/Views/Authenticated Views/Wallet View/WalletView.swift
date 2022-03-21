@@ -11,6 +11,8 @@ import SwiftUICharts
 
 struct WalletView: View {
 
+    @EnvironmentObject private var walletRouter: WalletCoordinator.Router
+
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
 

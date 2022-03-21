@@ -15,7 +15,7 @@ struct DiscoverView: View {
 
     @ObservedObject private var store: DiscoverService
 
-    @State var searchText: String = ""
+    @State private var searchText: String = ""
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -29,9 +29,7 @@ struct DiscoverView: View {
             }
         })
         .navigationTitle("Discover")
-        .navigationSearchBar {
-            SearchBar("Search all web3...", text: $searchText)
-        }
+        .navigationSearchBar { SearchBar("Search all web3...", text: $searchText) }
         .navigationSearchBarHiddenWhenScrolling(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

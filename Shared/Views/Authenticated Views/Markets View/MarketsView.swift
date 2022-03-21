@@ -34,9 +34,7 @@ struct MarketsView: View {
             }
         })
         .navigationTitle("Markets")
-        .navigationSearchBar {
-            SearchBar("Search tokens and more...", text: $searchText)
-        }
+        .navigationSearchBar { SearchBar("Search tokens and more...", text: $searchText) }
         .navigationSearchBarHiddenWhenScrolling(searchHide)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing, content: {

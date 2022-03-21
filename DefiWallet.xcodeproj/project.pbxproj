@@ -85,6 +85,8 @@
 		0566AEC627E8399B006B645F /* HistoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC427E8399B006B645F /* HistoryListCell.swift */; };
 		0566AEC827E84711006B645F /* StandardSystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC727E84711006B645F /* StandardSystemImage.swift */; };
 		0566AEC927E84711006B645F /* StandardSystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC727E84711006B645F /* StandardSystemImage.swift */; };
+		0566AECC27E8660C006B645F /* HistoryTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AECB27E8660C006B645F /* HistoryTransactionsView.swift */; };
+		0566AECD27E8660C006B645F /* HistoryTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AECB27E8660C006B645F /* HistoryTransactionsView.swift */; };
 		057806B827B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
 		057806B927B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
 		057806BE27B8432B0008051B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806BD27B8432B0008051B /* Constants.swift */; };
@@ -385,6 +387,7 @@
 		0566AEC127E83792006B645F /* HistorySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySectionView.swift; sourceTree = "<group>"; };
 		0566AEC427E8399B006B645F /* HistoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCell.swift; sourceTree = "<group>"; };
 		0566AEC727E84711006B645F /* StandardSystemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardSystemImage.swift; sourceTree = "<group>"; };
+		0566AECB27E8660C006B645F /* HistoryTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTransactionsView.swift; sourceTree = "<group>"; };
 		057806B727B838E60008051B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		057806BD27B8432B0008051B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		057806D827B870620008051B /* MobileConsants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileConsants.swift; sourceTree = "<group>"; };
@@ -741,6 +744,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		0566AECA27E8656F006B645F /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				0593022F27E061BC006DDFFF /* TransactButtonView.swift */,
+				0566AEC127E83792006B645F /* HistorySectionView.swift */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
 		057806BB27B841FE0008051B /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -857,10 +869,10 @@
 			children = (
 				0578070E27B8F1BC0008051B /* WalletCoordinator.swift */,
 				0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */,
-				0578070B27B8F1370008051B /* WalletView.swift */,
+				0566AECA27E8656F006B645F /* Sections */,
 				0593023627E08031006DDFFF /* WalletNavigationView.swift */,
-				0593022F27E061BC006DDFFF /* TransactButtonView.swift */,
-				0566AEC127E83792006B645F /* HistorySectionView.swift */,
+				0578070B27B8F1370008051B /* WalletView.swift */,
+				0566AECB27E8660C006B645F /* HistoryTransactionsView.swift */,
 				0566AEC427E8399B006B645F /* HistoryListCell.swift */,
 			);
 			path = "Wallet View";
@@ -1513,6 +1525,7 @@
 				053EC29227BE0E3600FBC681 /* InvestService.swift in Sources */,
 				0578073127BB59D30008051B /* MarketsCoordinator.swift in Sources */,
 				05E8589B27C9DA3700B85195 /* CarouselViewTwo.swift in Sources */,
+				0566AECC27E8660C006B645F /* HistoryTransactionsView.swift in Sources */,
 				057806E827B8DF980008051B /* AuthenticationService.swift in Sources */,
 				0566AEC827E84711006B645F /* StandardSystemImage.swift in Sources */,
 				053113FE27E6CFE500368657 /* ScanQRView.swift in Sources */,
@@ -1602,6 +1615,7 @@
 				0593022B27E03A1C006DDFFF /* BackgroundColorView.swift in Sources */,
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
 				0593021127D9C790006DDFFF /* Double+Extenions.swift in Sources */,
+				0566AECD27E8660C006B645F /* HistoryTransactionsView.swift in Sources */,
 				0593025B27E19C98006DDFFF /* LineChart.swift in Sources */,
 				05D1097427C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */,
 				05E8589527C5D7F000B85195 /* GasPrice.swift in Sources */,

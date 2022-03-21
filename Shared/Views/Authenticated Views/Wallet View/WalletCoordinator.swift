@@ -13,6 +13,7 @@ final class WalletCoordinator: NavigationCoordinatable {
     let stack = NavigationStack(initial: \WalletCoordinator.start)
 
     @Root var start = makeStart
+    @Route(.push) var history = makeHistory
 
     let currentUser: CurrentUser
     let services: AuthenticatedServices
