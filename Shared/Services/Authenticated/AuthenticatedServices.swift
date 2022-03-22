@@ -10,8 +10,13 @@ import web3swift
 
 class AuthenticatedServices: ObservableObject {
 
+    // MARK: stored values
+    @Published var themeStyle: AppStyle = .border
+    @Published var currentUser: CurrentUser
+    @Published var macTabStatus: MacTabStatus = .wallet
+
     // MARK: screen services
-    var wallet: WalletService = WalletService()
+    var wallet: WalletService
     var market: MarketsService = MarketsService()
     var discover: DiscoverService = DiscoverService()
     var invest: InvestService = InvestService()
@@ -19,11 +24,6 @@ class AuthenticatedServices: ObservableObject {
 
     // MARK: network delegates
     var ethereum: EthereumService
-
-    // MARK: stored values
-    @Published var themeStyle: AppStyle = .border
-    @Published var currentUser: CurrentUser
-    @Published var macTabStatus: MacTabStatus = .wallet
 
     enum MacTabStatus: String, Equatable {
         case wallet
@@ -36,6 +36,7 @@ class AuthenticatedServices: ObservableObject {
 
     init(currentUser: CurrentUser) {
         self.currentUser = currentUser
+        self.wallet = WalletService(currentUser: currentUser)
         self.ethereum = EthereumService(currentUser: currentUser)
     }
 

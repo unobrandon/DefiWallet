@@ -15,21 +15,30 @@ struct HistorySectionView: View {
     @ObservedObject private var store: WalletService
 
     @State private var limitCells: Int = 5
+    @State private var isLoading: Bool = true
+    @State private var emptyTransactions: Bool = false
 
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
-
     }
 
     var body: some View {
         LazyVStack(alignment: .center, spacing: 0) {
-            if !store.history.isEmpty {
-                SectionHeaderView(title: "History", actionTitle: store.history.count < limitCells ? "" : limitCells == 10 ? "Show less" : "Show more", action: showMoreLess)
-                .padding(.vertical, 10)
-            }
+            SectionHeaderView(title: "History", actionTitle: store.history.isEmpty ? "" : store.history.count < limitCells ? "" : limitCells == 10 ? "Show less" : "Show more", action: showMoreLess)
+            .padding(.vertical, 10)
 
             ListSection(style: service.themeStyle) {
+                if store.history.isEmpty {
+                    LoadingView(title: "loading past transactions...")
+                } else if store.history.isEmpty, !store.isHistoryLoading {
+                    HStack {
+                        Spacer()
+                        Text("empty transactions").fontTemplate(DefaultTemplate.caption)
+                        Spacer()
+                    }.padding(.vertical, 30)
+                }
+
                 ForEach(store.history.prefix(limitCells), id: \.self) { item in
                     HistoryListCell(service: service, data: item, isLast: store.history.count < limitCells ? store.history.last == item ? true : false : false, style: service.themeStyle, action: {
                         walletRouter.route(to: \.historyDetail, item)
@@ -58,4 +67,5 @@ struct HistorySectionView: View {
             withAnimation(.easeOut) { limitCells -= 5 }
         }
     }
+
 }

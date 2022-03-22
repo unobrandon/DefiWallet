@@ -25,7 +25,7 @@ struct TransactionDetailView: View {
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
-                VStack(alignment: .center, spacing: 0) {
+                VStack(alignment: .center, spacing: 5) {
                     ZStack {
                         StandardSystemImage(service.wallet.transactionImage(data.direction),
                                             color: service.wallet.transactionColor(data.direction),
@@ -50,7 +50,7 @@ struct TransactionDetailView: View {
                         .irregularGradient(colors: data.direction == .outgoing ? [Color("alertRed"), .orange] : data.direction == .incoming ? [Color("darkGreen"), .green] : [Color("accentColor"), .teal],
                                            background: data.direction == .outgoing ? Color("alertRed") : data.direction == .incoming ? Color.green : Color("AccentColor"))
 
-                    Text("\(data.timeStamp.getFullElapsedInterval()) ago")
+                    Text(Date(timeIntervalSince1970: Double(data.timeStamp) ?? 0.0).mediumDateFormate())
                         .fontTemplate(DefaultTemplate.body_secondary)
                 }
                 .padding(.vertical, 40)
@@ -73,15 +73,13 @@ struct TransactionDetailView: View {
                     ListInfoView(title: "Hash", info: data.hash.formatAddressExtended(), style: service.themeStyle, isLast: false)
 
                     ListInfoCustomView(title: "Status", style: service.themeStyle, isLast: false) {
-                        BorderedButton(title: data.txSuccessful ? "Successful" : "Failed",
+                        BorderedButton(title: data.txSuccessful ? "Successful" : "FAILED",
                                        systemImage: data.txSuccessful ? "checkmark.circle.fill" : "xmark.octagon.fill",
                                        size: .mini, tint: data.txSuccessful ? Color.green : Color.red, action: {  })
                             .frame(height: 22)
                     }
 
                     ListInfoView(title: "Network", info: data.network.rawValue, style: service.themeStyle, isLast: false)
-
-                    ListInfoView(title: "Timestamp", info: data.timeStamp, style: service.themeStyle, isLast: false)
 
                     ListInfoView(title: "Gas Fee", info: "\(data.gasPrice.truncate(places: 10))" + " " + data.symbol.prefix(8), style: service.themeStyle, isLast: false)
 

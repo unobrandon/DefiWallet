@@ -75,6 +75,7 @@ enum Network: String, Codable {
     case binanceSmartChain = "binance-smart-chain"
     case ethereum = "ethereum"
     case polygon = "polygon"
+    case fantom = "fantom"
 }
 
 // MARK: - SubTransaction

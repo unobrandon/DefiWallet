@@ -83,6 +83,44 @@
 		05583C9A27E965FF00640E75 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583C9827E965FF00640E75 /* SafariView.swift */; };
 		05583C9C27E96C6C00640E75 /* ListInfoCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583C9B27E96C6C00640E75 /* ListInfoCustomView.swift */; };
 		05583C9D27E96C6D00640E75 /* ListInfoCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583C9B27E96C6C00640E75 /* ListInfoCustomView.swift */; };
+		05583C9F27E9974700640E75 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583C9E27E9974700640E75 /* Date+Extensions.swift */; };
+		05583CA027E9974700640E75 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583C9E27E9974700640E75 /* Date+Extensions.swift */; };
+		05583CA327E9A0B100640E75 /* ViewOffsetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CA227E9A0B100640E75 /* ViewOffsetKey.swift */; };
+		05583CA427E9A0B100640E75 /* ViewOffsetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CA227E9A0B100640E75 /* ViewOffsetKey.swift */; };
+		05583CA627E9A0EE00640E75 /* LoadMoreScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CA527E9A0EE00640E75 /* LoadMoreScrollView.swift */; };
+		05583CA727E9A0EE00640E75 /* LoadMoreScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CA527E9A0EE00640E75 /* LoadMoreScrollView.swift */; };
+		05583CA927E9BC5600640E75 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CA827E9BC5600640E75 /* LoadingView.swift */; };
+		05583CAA27E9BC5600640E75 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CA827E9BC5600640E75 /* LoadingView.swift */; };
+		05583CAE27E9BF6600640E75 /* ModularGridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CAD27E9BF6600640E75 /* ModularGridStyle.swift */; };
+		05583CAF27E9BF6600640E75 /* ModularGridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CAD27E9BF6600640E75 /* ModularGridStyle.swift */; };
+		05583CB127E9BFA000640E75 /* StaggeredGridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CB027E9BFA000640E75 /* StaggeredGridStyle.swift */; };
+		05583CB227E9BFA000640E75 /* StaggeredGridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CB027E9BFA000640E75 /* StaggeredGridStyle.swift */; };
+		05583CB627E9BFE000640E75 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CB527E9BFE000640E75 /* Grid.swift */; };
+		05583CB727E9BFE000640E75 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CB527E9BFE000640E75 /* Grid.swift */; };
+		05583CB927E9C01E00640E75 /* Grid+Inits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CB827E9C01D00640E75 /* Grid+Inits.swift */; };
+		05583CBA27E9C01E00640E75 /* Grid+Inits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CB827E9C01D00640E75 /* Grid+Inits.swift */; };
+		05583CBC27E9C04A00640E75 /* GridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CBB27E9C04A00640E75 /* GridItem.swift */; };
+		05583CBD27E9C04A00640E75 /* GridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CBB27E9C04A00640E75 /* GridItem.swift */; };
+		05583CBF27E9C08400640E75 /* LayoutMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CBE27E9C08400640E75 /* LayoutMath.swift */; };
+		05583CC027E9C08400640E75 /* LayoutMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CBE27E9C08400640E75 /* LayoutMath.swift */; };
+		05583CC227E9C0B100640E75 /* Tracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CC127E9C0B100640E75 /* Tracks.swift */; };
+		05583CC327E9C0B100640E75 /* Tracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CC127E9C0B100640E75 /* Tracks.swift */; };
+		05583CC527E9C11400640E75 /* EnvironmentValues+GridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CC427E9C11400640E75 /* EnvironmentValues+GridStyle.swift */; };
+		05583CC627E9C11400640E75 /* EnvironmentValues+GridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CC427E9C11400640E75 /* EnvironmentValues+GridStyle.swift */; };
+		05583CC827E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CC727E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift */; };
+		05583CC927E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CC727E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift */; };
+		05583CCB27E9C15400640E75 /* GridPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CCA27E9C15400640E75 /* GridPreferences.swift */; };
+		05583CCC27E9C15400640E75 /* GridPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CCA27E9C15400640E75 /* GridPreferences.swift */; };
+		05583CCE27E9C17F00640E75 /* GridPreferencesKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CCD27E9C17F00640E75 /* GridPreferencesKey.swift */; };
+		05583CCF27E9C17F00640E75 /* GridPreferencesKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CCD27E9C17F00640E75 /* GridPreferencesKey.swift */; };
+		05583CD127E9C19500640E75 /* GridPreferencesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CD027E9C19500640E75 /* GridPreferencesModifier.swift */; };
+		05583CD227E9C19500640E75 /* GridPreferencesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CD027E9C19500640E75 /* GridPreferencesModifier.swift */; };
+		05583CD427E9C1D100640E75 /* GridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CD327E9C1D100640E75 /* GridStyle.swift */; };
+		05583CD527E9C1D100640E75 /* GridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CD327E9C1D100640E75 /* GridStyle.swift */; };
+		05583CD727E9C1F800640E75 /* GridStyleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CD627E9C1F800640E75 /* GridStyleKey.swift */; };
+		05583CD827E9C1F800640E75 /* GridStyleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CD627E9C1F800640E75 /* GridStyleKey.swift */; };
+		05583CDA27E9C20E00640E75 /* View+GridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CD927E9C20E00640E75 /* View+GridStyle.swift */; };
+		05583CDB27E9C20E00640E75 /* View+GridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CD927E9C20E00640E75 /* View+GridStyle.swift */; };
 		0566AEC227E83792006B645F /* HistorySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC127E83792006B645F /* HistorySectionView.swift */; };
 		0566AEC327E83792006B645F /* HistorySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC127E83792006B645F /* HistorySectionView.swift */; };
 		0566AEC527E8399B006B645F /* HistoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC427E8399B006B645F /* HistoryListCell.swift */; };
@@ -167,8 +205,8 @@
 		058C786C27D09E5900EB91CA /* CompletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C786A27D09E5900EB91CA /* CompletedView.swift */; };
 		0593020D27D9900A006DDFFF /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020C27D9900A006DDFFF /* AccountBalance.swift */; };
 		0593020E27D9900A006DDFFF /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020C27D9900A006DDFFF /* AccountBalance.swift */; };
-		0593021027D9C790006DDFFF /* Double+Extenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020F27D9C790006DDFFF /* Double+Extenions.swift */; };
-		0593021127D9C790006DDFFF /* Double+Extenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020F27D9C790006DDFFF /* Double+Extenions.swift */; };
+		0593021027D9C790006DDFFF /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020F27D9C790006DDFFF /* Double+Extensions.swift */; };
+		0593021127D9C790006DDFFF /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593020F27D9C790006DDFFF /* Double+Extensions.swift */; };
 		0593021327D9E33E006DDFFF /* AccountNft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021227D9E33E006DDFFF /* AccountNft.swift */; };
 		0593021427D9E33E006DDFFF /* AccountNft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021227D9E33E006DDFFF /* AccountNft.swift */; };
 		0593021627DEFA95006DDFFF /* CompleteBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593021527DEFA95006DDFFF /* CompleteBalance.swift */; };
@@ -394,6 +432,25 @@
 		0550300C27B82EF0005EE87C /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		05583C9827E965FF00640E75 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		05583C9B27E96C6C00640E75 /* ListInfoCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoCustomView.swift; sourceTree = "<group>"; };
+		05583C9E27E9974700640E75 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		05583CA227E9A0B100640E75 /* ViewOffsetKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOffsetKey.swift; sourceTree = "<group>"; };
+		05583CA527E9A0EE00640E75 /* LoadMoreScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreScrollView.swift; sourceTree = "<group>"; };
+		05583CA827E9BC5600640E75 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		05583CAD27E9BF6600640E75 /* ModularGridStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularGridStyle.swift; sourceTree = "<group>"; };
+		05583CB027E9BFA000640E75 /* StaggeredGridStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredGridStyle.swift; sourceTree = "<group>"; };
+		05583CB527E9BFE000640E75 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		05583CB827E9C01D00640E75 /* Grid+Inits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grid+Inits.swift"; sourceTree = "<group>"; };
+		05583CBB27E9C04A00640E75 /* GridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridItem.swift; sourceTree = "<group>"; };
+		05583CBE27E9C08400640E75 /* LayoutMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutMath.swift; sourceTree = "<group>"; };
+		05583CC127E9C0B100640E75 /* Tracks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracks.swift; sourceTree = "<group>"; };
+		05583CC427E9C11400640E75 /* EnvironmentValues+GridStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+GridStyle.swift"; sourceTree = "<group>"; };
+		05583CC727E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridItemBoundsPreferencesKey.swift; sourceTree = "<group>"; };
+		05583CCA27E9C15400640E75 /* GridPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPreferences.swift; sourceTree = "<group>"; };
+		05583CCD27E9C17F00640E75 /* GridPreferencesKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPreferencesKey.swift; sourceTree = "<group>"; };
+		05583CD027E9C19500640E75 /* GridPreferencesModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPreferencesModifier.swift; sourceTree = "<group>"; };
+		05583CD327E9C1D100640E75 /* GridStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStyle.swift; sourceTree = "<group>"; };
+		05583CD627E9C1F800640E75 /* GridStyleKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStyleKey.swift; sourceTree = "<group>"; };
+		05583CD927E9C20E00640E75 /* View+GridStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+GridStyle.swift"; sourceTree = "<group>"; };
 		0566AEC127E83792006B645F /* HistorySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySectionView.swift; sourceTree = "<group>"; };
 		0566AEC427E8399B006B645F /* HistoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCell.swift; sourceTree = "<group>"; };
 		0566AEC727E84711006B645F /* StandardSystemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardSystemImage.swift; sourceTree = "<group>"; };
@@ -444,7 +501,7 @@
 		058C786727D0831700EB91CA /* AlertBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBanner.swift; sourceTree = "<group>"; };
 		058C786A27D09E5900EB91CA /* CompletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedView.swift; sourceTree = "<group>"; };
 		0593020C27D9900A006DDFFF /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
-		0593020F27D9C790006DDFFF /* Double+Extenions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extenions.swift"; sourceTree = "<group>"; };
+		0593020F27D9C790006DDFFF /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		0593021227D9E33E006DDFFF /* AccountNft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNft.swift; sourceTree = "<group>"; };
 		0593021527DEFA95006DDFFF /* CompleteBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteBalance.swift; sourceTree = "<group>"; };
 		0593021827DFCB3D006DDFFF /* ProfileHeaderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderButton.swift; sourceTree = "<group>"; };
@@ -644,6 +701,7 @@
 				05E5F85127D361250090290C /* ConfettiView */,
 				053113DD27E6C5F000368657 /* SlideOverCard */,
 				053113ED27E6CEA800368657 /* CarBode */,
+				05583CAB27E9BF0E00640E75 /* Grid */,
 				053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */,
 				05583C9827E965FF00640E75 /* SafariView.swift */,
 			);
@@ -758,6 +816,61 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		05583CA127E9A09200640E75 /* ScrollViews */ = {
+			isa = PBXGroup;
+			children = (
+				05583CA227E9A0B100640E75 /* ViewOffsetKey.swift */,
+				05583CA527E9A0EE00640E75 /* LoadMoreScrollView.swift */,
+			);
+			path = ScrollViews;
+			sourceTree = "<group>";
+		};
+		05583CAB27E9BF0E00640E75 /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				05583CB527E9BFE000640E75 /* Grid.swift */,
+				05583CB827E9C01D00640E75 /* Grid+Inits.swift */,
+				05583CBB27E9C04A00640E75 /* GridItem.swift */,
+				05583CAC27E9BF4B00640E75 /* Styles */,
+			);
+			path = Grid;
+			sourceTree = "<group>";
+		};
+		05583CAC27E9BF4B00640E75 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				05583CAD27E9BF6600640E75 /* ModularGridStyle.swift */,
+				05583CB027E9BFA000640E75 /* StaggeredGridStyle.swift */,
+				05583CB427E9BFCD00640E75 /* Style */,
+				05583CB327E9BFC500640E75 /* Layout */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		05583CB327E9BFC500640E75 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				05583CBE27E9C08400640E75 /* LayoutMath.swift */,
+				05583CC127E9C0B100640E75 /* Tracks.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		05583CB427E9BFCD00640E75 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				05583CC427E9C11400640E75 /* EnvironmentValues+GridStyle.swift */,
+				05583CC727E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift */,
+				05583CCA27E9C15400640E75 /* GridPreferences.swift */,
+				05583CCD27E9C17F00640E75 /* GridPreferencesKey.swift */,
+				05583CD027E9C19500640E75 /* GridPreferencesModifier.swift */,
+				05583CD327E9C1D100640E75 /* GridStyle.swift */,
+				05583CD627E9C1F800640E75 /* GridStyleKey.swift */,
+				05583CD927E9C20E00640E75 /* View+GridStyle.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
 		0566AECA27E8656F006B645F /* Sections */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,7 +956,8 @@
 				0578075127BB5EF10008051B /* Font+Extensions.swift */,
 				0578077B27BB822C0008051B /* String+Extensions.swift */,
 				05E858C627CB238800B85195 /* Character+Extensions.swift */,
-				0593020F27D9C790006DDFFF /* Double+Extenions.swift */,
+				0593020F27D9C790006DDFFF /* Double+Extensions.swift */,
+				05583C9E27E9974700640E75 /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1152,10 +1266,12 @@
 				0593022727E03342006DDFFF /* Banners */,
 				0593022827E03354006DDFFF /* Headers */,
 				0531141527E7B62500368657 /* SlideOverCards */,
+				05583CA127E9A09200640E75 /* ScrollViews */,
 				05E858CD27CB25C200B85195 /* AlertBadge.swift */,
 				05E858F027CB43BC00B85195 /* LoadingIndicator.swift */,
 				053C7D3E27CDBF600081DCEA /* CheckmarkView.swift */,
 				05E8590427CC198A00B85195 /* TermsView.swift */,
+				05583CA827E9BC5600640E75 /* LoadingView.swift */,
 				05E8590727CC1A8800B85195 /* FooterInformation.swift */,
 				0593022927E03A1C006DDFFF /* BackgroundColorView.swift */,
 			);
@@ -1431,11 +1547,13 @@
 			files = (
 				05E8589427C5D7F000B85195 /* GasPrice.swift in Sources */,
 				057806F327B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */,
+				05583C9F27E9974700640E75 /* Date+Extensions.swift in Sources */,
 				0593025327E19C51006DDFFF /* ChartType.swift in Sources */,
 				05E8590227CC12A400B85195 /* TermsOfServiceButton.swift in Sources */,
 				0578070427B8E8E00008051B /* RoundedButton.swift in Sources */,
 				05E858EE27CB388B00B85195 /* AppTheme.swift in Sources */,
 				05E858E727CB301B00B85195 /* ListStandardButton.swift in Sources */,
+				05583CB127E9BFA000640E75 /* StaggeredGridStyle.swift in Sources */,
 				0578074627BB5E1A0008051B /* FontTemplate.swift in Sources */,
 				053113F227E6CEE400368657 /* BarcodeFrame.swift in Sources */,
 				059F73D527D7166A00B27E80 /* ProfileService.swift in Sources */,
@@ -1467,10 +1585,16 @@
 				05E8590827CC1A8800B85195 /* FooterInformation.swift in Sources */,
 				0578077527BB71410008051B /* IrregularGradient.swift in Sources */,
 				05E858E527CB2D3E00B85195 /* VisualEffectView.swift in Sources */,
+				05583CCE27E9C17F00640E75 /* GridPreferencesKey.swift in Sources */,
+				05583CA627E9A0EE00640E75 /* LoadMoreScrollView.swift in Sources */,
 				058C786527D07E3700EB91CA /* PrivateKeysView.swift in Sources */,
 				051BCF5527BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				0593026327E19D27006DDFFF /* Math.swift in Sources */,
+				05583CD727E9C1F800640E75 /* GridStyleKey.swift in Sources */,
+				05583CB627E9BFE000640E75 /* Grid.swift in Sources */,
+				05583CD427E9C1D100640E75 /* GridStyle.swift in Sources */,
 				05E858B327C9F9F900B85195 /* HapticFeedback.swift in Sources */,
+				05583CDA27E9C20E00640E75 /* View+GridStyle.swift in Sources */,
 				05D1096627C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift in Sources */,
 				0531141A27E7E73700368657 /* ScanQACameraView.swift in Sources */,
 				05583C9927E965FF00640E75 /* SafariView.swift in Sources */,
@@ -1497,12 +1621,15 @@
 				0593026027E19CD6006DDFFF /* LightChart.swift in Sources */,
 				053C7D4527CDD5620081DCEA /* PasswordView.swift in Sources */,
 				0578073727BB59DC0008051B /* DiscoverView.swift in Sources */,
+				05583CCB27E9C15400640E75 /* GridPreferences.swift in Sources */,
 				05E858D827CB264600B85195 /* ClickInteractiveStyle.swift in Sources */,
 				0531140D27E7985300368657 /* RemoteImage.swift in Sources */,
+				05583CAE27E9BF6600640E75 /* ModularGridStyle.swift in Sources */,
 				05E858F527CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */,
 				0593025727E19C7A006DDFFF /* CurvedChart.swift in Sources */,
 				05E8589827C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
 				0578075227BB5EF10008051B /* Font+Extensions.swift in Sources */,
+				05583CBF27E9C08400640E75 /* LayoutMath.swift in Sources */,
 				0531140127E6DD1500368657 /* CloseButton.swift in Sources */,
 				05E5F86327D407A60090290C /* NotificationBanner.swift in Sources */,
 				05E858EB27CB322100B85195 /* ListSection.swift in Sources */,
@@ -1518,6 +1645,7 @@
 				05E5F85727D361980090290C /* RoundedCross.swift in Sources */,
 				0593021C27DFF0E5006DDFFF /* OnboardingHeaderView.swift in Sources */,
 				0578076F27BB6D200008051B /* DefaultTemplate.swift in Sources */,
+				05583CC827E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift in Sources */,
 				0578070C27B8F1370008051B /* WalletView.swift in Sources */,
 				0578074C27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
 				058C786827D0831700EB91CA /* AlertBanner.swift in Sources */,
@@ -1527,7 +1655,7 @@
 				05E858CE27CB25C200B85195 /* AlertBadge.swift in Sources */,
 				0578073227BB59D30008051B /* MarketsCoordinator+Factory.swift in Sources */,
 				05E5F84927D321920090290C /* Shake.swift in Sources */,
-				0593021027D9C790006DDFFF /* Double+Extenions.swift in Sources */,
+				0593021027D9C790006DDFFF /* Double+Extensions.swift in Sources */,
 				0593021627DEFA95006DDFFF /* CompleteBalance.swift in Sources */,
 				0578074127BB5B500008051B /* DiscoverCoordinator+Factory.swift in Sources */,
 				05E858B927CA04D000B85195 /* MainCarouselView.swift in Sources */,
@@ -1545,13 +1673,16 @@
 				051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */,
 				058C785F27D06D5600EB91CA /* HeaderIcon.swift in Sources */,
 				0593020D27D9900A006DDFFF /* AccountBalance.swift in Sources */,
+				05583CA327E9A0B100640E75 /* ViewOffsetKey.swift in Sources */,
 				05E858A027C9F62000B85195 /* ImportWalletView.swift in Sources */,
 				0593021927DFCB3D006DDFFF /* ProfileHeaderButton.swift in Sources */,
 				058C786B27D09E5900EB91CA /* CompletedView.swift in Sources */,
 				053113EF27E6CECA00368657 /* BarcodeData.swift in Sources */,
+				05583CC227E9C0B100640E75 /* Tracks.swift in Sources */,
 				053C7D3B27CD903B0081DCEA /* MovingNumbersView.swift in Sources */,
 				053EC29227BE0E3600FBC681 /* InvestService.swift in Sources */,
 				0578073127BB59D30008051B /* MarketsCoordinator.swift in Sources */,
+				05583CC527E9C11400640E75 /* EnvironmentValues+GridStyle.swift in Sources */,
 				05E8589B27C9DA3700B85195 /* CarouselViewTwo.swift in Sources */,
 				0566AECC27E8660C006B645F /* HistoryTransactionsView.swift in Sources */,
 				057806E827B8DF980008051B /* AuthenticationService.swift in Sources */,
@@ -1560,15 +1691,19 @@
 				057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
 				05E5F85A27D361AF0090290C /* SlimRectangle.swift in Sources */,
 				05E5F84527D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */,
+				05583CB927E9C01E00640E75 /* Grid+Inits.swift in Sources */,
 				0578074927BB5E610008051B /* FontTemplating.swift in Sources */,
 				05E858FB27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,
 				05E858F127CB43BC00B85195 /* LoadingIndicator.swift in Sources */,
 				053113EB27E6C76400368657 /* SlideOverCardView.swift in Sources */,
+				05583CBC27E9C04A00640E75 /* GridItem.swift in Sources */,
 				0566AEC227E83792006B645F /* HistorySectionView.swift in Sources */,
 				0578071527B8F61F0008051B /* ProfileView.swift in Sources */,
+				05583CD127E9C19500640E75 /* GridPreferencesModifier.swift in Sources */,
 				05E858DB27CB27AF00B85195 /* NotificationViewExtension.swift in Sources */,
 				0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */,
 				0593023027E061BC006DDFFF /* TransactButtonView.swift in Sources */,
+				05583CA927E9BC5600640E75 /* LoadingView.swift in Sources */,
 				0578077C27BB822D0008051B /* String+Extensions.swift in Sources */,
 				0593025D27E19CAF006DDFFF /* DataRepresentable.swift in Sources */,
 				05E858FF27CC08F200B85195 /* RoundedInteractiveButton.swift in Sources */,
@@ -1588,6 +1723,7 @@
 				05D1095E27C08D1B008DCC66 /* MacAuthenticatedCoordinator+Factory.swift in Sources */,
 				05E5F84627D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */,
 				0593023827E08031006DDFFF /* WalletNavigationView.swift in Sources */,
+				05583CCF27E9C17F00640E75 /* GridPreferencesKey.swift in Sources */,
 				053113FF27E6CFE500368657 /* ScanQRView.swift in Sources */,
 				05E5F86127D406370090290C /* NotiPermissionsView.swift in Sources */,
 				05E5F87E27D5D0820090290C /* EnsAvatarView.swift in Sources */,
@@ -1597,6 +1733,7 @@
 				05D1095927C08B3E008DCC66 /* MarketsCoordinator.swift in Sources */,
 				05D1094F27C08B3E008DCC66 /* InvestView.swift in Sources */,
 				05D1095027C08B3E008DCC66 /* WalletCoordinator+Factory.swift in Sources */,
+				05583CB227E9BFA000640E75 /* StaggeredGridStyle.swift in Sources */,
 				05D1094E27C08B3E008DCC66 /* DiscoverCoordinator.swift in Sources */,
 				0578078027BB87C80008051B /* Wallet.swift in Sources */,
 				05D1094B27C08B3E008DCC66 /* InvestCoordinator+Factory.swift in Sources */,
@@ -1612,6 +1749,7 @@
 				0593025827E19C7A006DDFFF /* CurvedChart.swift in Sources */,
 				05E858F227CB43BC00B85195 /* LoadingIndicator.swift in Sources */,
 				05E5F85827D361980090290C /* RoundedCross.swift in Sources */,
+				05583CBA27E9C01E00640E75 /* Grid+Inits.swift in Sources */,
 				05D1095327C08B3E008DCC66 /* WalletView.swift in Sources */,
 				05E5F85E27D361CA0090290C /* Triangle.swift in Sources */,
 				053C7D4627CDD5620081DCEA /* PasswordView.swift in Sources */,
@@ -1634,15 +1772,17 @@
 				05D1094927C08B2B008DCC66 /* MainCoordinator+Factory.swift in Sources */,
 				053113EC27E6C76400368657 /* SlideOverCardView.swift in Sources */,
 				057806E927B8DF980008051B /* AuthenticationService.swift in Sources */,
+				05583CBD27E9C04A00640E75 /* GridItem.swift in Sources */,
 				0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */,
 				0593021D27DFF0E5006DDFFF /* OnboardingHeaderView.swift in Sources */,
 				05D1098427C31512008DCC66 /* StorageService.swift in Sources */,
 				053113E627E6C6CC00368657 /* Modifiers.swift in Sources */,
 				05E858F627CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */,
+				05583CA027E9974700640E75 /* Date+Extensions.swift in Sources */,
 				059F73D327D7164700B27E80 /* MarketsService.swift in Sources */,
 				0593022B27E03A1C006DDFFF /* BackgroundColorView.swift in Sources */,
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
-				0593021127D9C790006DDFFF /* Double+Extenions.swift in Sources */,
+				0593021127D9C790006DDFFF /* Double+Extensions.swift in Sources */,
 				0566AECD27E8660C006B645F /* HistoryTransactionsView.swift in Sources */,
 				05583C9A27E965FF00640E75 /* SafariView.swift in Sources */,
 				0593025B27E19C98006DDFFF /* LineChart.swift in Sources */,
@@ -1650,27 +1790,35 @@
 				05E8589527C5D7F000B85195 /* GasPrice.swift in Sources */,
 				0593022627E02D63006DDFFF /* BorderedButton.swift in Sources */,
 				053113F927E6CF3C00368657 /* CBBarcodeView.swift in Sources */,
+				05583CD527E9C1D100640E75 /* GridStyle.swift in Sources */,
 				051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				05E5F84D27D34F570090290C /* BiometryPermissionsView.swift in Sources */,
 				059F73D027D7160D00B27E80 /* DiscoverService.swift in Sources */,
 				0593021A27DFCB3D006DDFFF /* ProfileHeaderButton.swift in Sources */,
+				05583CD227E9C19500640E75 /* GridPreferencesModifier.swift in Sources */,
 				0593021427D9E33E006DDFFF /* AccountNft.swift in Sources */,
 				05D1095827C08B3E008DCC66 /* WelcomeView.swift in Sources */,
+				05583CCC27E9C15400640E75 /* GridPreferences.swift in Sources */,
 				05E858AB27C9F75C00B85195 /* GenerateWalletView.swift in Sources */,
 				05E858A127C9F62000B85195 /* ImportWalletView.swift in Sources */,
+				05583CA427E9A0B100640E75 /* ViewOffsetKey.swift in Sources */,
 				05D1095727C08B3E008DCC66 /* MarketsView.swift in Sources */,
 				05E5F88127D5D8250090290C /* ImagePickerHelper.swift in Sources */,
 				0531140A27E6E39F00368657 /* WalletConnectDelegate.swift in Sources */,
 				05D1094727C08B2B008DCC66 /* UnauthenticatedCoordinator.swift in Sources */,
 				0578075027BB5ED00008051B /* View+Extensions.swift in Sources */,
+				05583CC027E9C08400640E75 /* LayoutMath.swift in Sources */,
 				0531141827E7E63000368657 /* DappProposalView.swift in Sources */,
+				05583CD827E9C1F800640E75 /* GridStyleKey.swift in Sources */,
 				05D1095627C08B3E008DCC66 /* ProfileCoordinator+Factory.swift in Sources */,
 				0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
 				05D1094627C08B2B008DCC66 /* MainCoordinator.swift in Sources */,
 				053113E027E6C61400368657 /* Accessories.swift in Sources */,
 				05D1094527C08B2B008DCC66 /* UnauthenticatedCoordinator+Factory.swift in Sources */,
+				05583CA727E9A0EE00640E75 /* LoadMoreScrollView.swift in Sources */,
 				05E8590627CC198A00B85195 /* TermsView.swift in Sources */,
+				05583CAF27E9BF6600640E75 /* ModularGridStyle.swift in Sources */,
 				0578074A27BB5E610008051B /* FontTemplating.swift in Sources */,
 				05E8589C27C9DA3700B85195 /* CarouselViewTwo.swift in Sources */,
 				053C7D4327CDCFDE0081DCEA /* EnsUsernameView.swift in Sources */,
@@ -1680,7 +1828,10 @@
 				05E8590027CC08F200B85195 /* RoundedInteractiveButton.swift in Sources */,
 				05D1095427C08B3E008DCC66 /* DiscoverView.swift in Sources */,
 				05D1095C27C08D06008DCC66 /* MacAuthenticatedCoordinator.swift in Sources */,
+				05583CB727E9BFE000640E75 /* Grid.swift in Sources */,
 				053EC29327BE0E3600FBC681 /* InvestService.swift in Sources */,
+				05583CAA27E9BC5600640E75 /* LoadingView.swift in Sources */,
+				05583CC327E9C0B100640E75 /* Tracks.swift in Sources */,
 				053113E327E6C65D00368657 /* Manager.swift in Sources */,
 				053113E927E6C72000368657 /* SlideOverCard.swift in Sources */,
 				0578071D27B90A050008051B /* Constants.swift in Sources */,
@@ -1700,6 +1851,7 @@
 				058C786C27D09E5900EB91CA /* CompletedView.swift in Sources */,
 				053113FC27E6CF7100368657 /* CBScanner.swift in Sources */,
 				05E8589927C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
+				05583CC627E9C11400640E75 /* EnvironmentValues+GridStyle.swift in Sources */,
 				053113F627E6CF0800368657 /* CameraPreview.swift in Sources */,
 				0578077627BB71410008051B /* IrregularGradient.swift in Sources */,
 				05D1095527C08B3E008DCC66 /* ProfileView.swift in Sources */,
@@ -1719,9 +1871,11 @@
 				05E858EF27CB388B00B85195 /* AppTheme.swift in Sources */,
 				0593023427E067AE006DDFFF /* TransactButton.swift in Sources */,
 				0578077D27BB822D0008051B /* String+Extensions.swift in Sources */,
+				05583CDB27E9C20E00640E75 /* View+GridStyle.swift in Sources */,
 				05E858C527CB230B00B85195 /* EmptyAvatar.swift in Sources */,
 				05E858FC27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,
 				0566AEC627E8399B006B645F /* HistoryListCell.swift in Sources */,
+				05583CC927E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift in Sources */,
 				0566AED227E8F64B006B645F /* TransactionDetailView.swift in Sources */,
 				058C786927D0831700EB91CA /* AlertBanner.swift in Sources */,
 				05E5F86427D407A60090290C /* NotificationBanner.swift in Sources */,

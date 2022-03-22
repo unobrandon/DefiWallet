@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUIX
 
 struct HistoryTransactionsView: View {
 
@@ -15,6 +14,8 @@ struct HistoryTransactionsView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
 
+    @State var enableLoadMore: Bool = true
+    @State var showIndicator: Bool = false
     @State private var networkFilter: Network?
     @State private var networkSelector: Int = 0
     @State private var directionFilter: Direction?
@@ -29,25 +30,37 @@ struct HistoryTransactionsView: View {
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
-            ScrollView {
-                LazyVStack(alignment: .center, spacing: 0) {
-                    ListSection(style: service.themeStyle) {
-                        ForEach(filterHistory().prefix(limitCells), id: \.self) { item in
-                            HistoryListCell(service: service, data: item,
-                                            isLast: store.history.count < limitCells ? store.history.last == item ? true : false : false,
-                                            style: service.themeStyle, action: {
-                                walletRouter.route(to: \.historyDetail, item)
-                                #if os(iOS)
-                                    HapticFeedback.rigidHapticFeedback()
-                                #endif
-                            })
-                        }
-                    }
-                    .padding(.vertical)
+            LoadMoreScrollView(enableLoadMore: $enableLoadMore, showIndicator: $showIndicator, onLoadMore: {
+                guard limitCells <= filterHistory().count else {
+                    enableLoadMore = false
+                    showIndicator = false
+
+                    return
                 }
-            }
+
+                limitCells += 20
+                showIndicator = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    enableLoadMore = true
+                    showIndicator = false
+                }
+            }, {
+                ListSection(style: service.themeStyle) {
+                    ForEach(filterHistory().prefix(limitCells), id: \.self) { item in
+                        HistoryListCell(service: service, data: item,
+                                        isLast: store.history.count < limitCells ? store.history.last == item ? true : false : false,
+                                        style: service.themeStyle, action: {
+                            walletRouter.route(to: \.historyDetail, item)
+                            #if os(iOS)
+                                HapticFeedback.rigidHapticFeedback()
+                            #endif
+                        })
+                    }
+                }
+            })
+            .padding(.vertical)
         })
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search transactions")
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search transactions")
         .navigationBarTitle("Transactions", displayMode: .large)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -96,7 +109,14 @@ struct HistoryTransactionsView: View {
 
     private func filterHistory() -> [HistoryData] {
         guard searchText.isEmpty else {
-            return self.store.history.filter{ $0.address.contains(searchText) || $0.from.contains(searchText) || $0.destination.contains(searchText) || $0.symbol.contains(searchText) || $0.network.rawValue.contains(searchText) || $0.account.contains(searchText) || $0.hash.contains(searchText) }
+            return self.store.history.filter {
+                $0.address.contains(searchText) ||
+                $0.from.contains(searchText) ||
+                $0.destination.contains(searchText) ||
+                $0.symbol.contains(searchText) ||
+                $0.network.rawValue.contains(searchText) ||
+                $0.account.contains(searchText) ||
+                $0.hash.contains(searchText) }
         }
 
         if let network = networkFilter, directionFilter == nil {

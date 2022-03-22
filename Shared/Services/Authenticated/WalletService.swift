@@ -20,9 +20,14 @@ class WalletService: ObservableObject {
     @Published var wcProposal: WalletConnect.Session.Proposal?
     @Published var wcActiveSessions = [WCSessionInfo]()
 
+    @Published var isHistoryLoading: Bool = false
+
+    var currentUser: CurrentUser
     var walletConnectClient: WalletConnectClient
 
-    init() {
+    init(currentUser: CurrentUser) {
+        self.currentUser = currentUser
+
         print("the wallet connect id: \(Constants.walletConnectProjectId)")
         let metadata = AppMetadata(name: Constants.projectName,
                                    description: "Difi Wallet App", url: "defi.wallet",
@@ -32,6 +37,10 @@ class WalletService: ObservableObject {
         self.walletConnectClient = WalletConnectClient(metadata: metadata, relayer: relayer)
         self.walletConnectClient.delegate = self
         self.reloadActiveSessions()
+
+        self.fetchHistory(currentUser.wallet.address, completion: {
+            self.isHistoryLoading = false
+        })
     }
 
     func connectDapp(uri: String, completion: @escaping (Bool) -> Void) {
@@ -58,7 +67,6 @@ class WalletService: ObservableObject {
     }
 
     func fetchAccountBalance(_ address: String, completion: @escaping () -> Void) {
-
         let url = Constants.backendBaseUrl + "accountBalance" + "?address=\(address)"
 
         AF.request(url, method: .get).responseDecodable(of: AccountBalance.self) { response in
@@ -83,6 +91,7 @@ class WalletService: ObservableObject {
 
         // Good ETH address to test with: 0x660c6f9ff81018d5c13ab769148ec4db4940d01c
         let url = Constants.zapperBaseUrl + "transactions?address=\(address)&addresses%5B%5D=\(address)&" + Constants.zapperApiKey
+        isHistoryLoading = true
 
         AF.request(url, method: .get).responseDecodable(of: TransactionHistory.self) { response in
             switch response.result {
@@ -124,8 +133,8 @@ class WalletService: ObservableObject {
         }
     }
 
-    func getNetworkImage(_ netwrok: Network) -> Image {
-        switch netwrok {
+    func getNetworkImage(_ network: Network) -> Image {
+        switch network {
         case .ethereum:
             return Image("eth_logo")
         case .polygon:
@@ -134,11 +143,13 @@ class WalletService: ObservableObject {
             return Image("binance_logo")
         case .avalanche:
             return Image("avalanche_logo")
+        case .fantom:
+            return Image("fantom_logo")
         }
     }
 
-    func getBlockExplorerName(_ netwrok: Network) -> String {
-        switch netwrok {
+    func getBlockExplorerName(_ network: Network) -> String {
+        switch network {
         case .ethereum:
             return "Etherscan"
         case .polygon:
@@ -147,11 +158,13 @@ class WalletService: ObservableObject {
             return "Bscscan"
         case .avalanche:
             return "Snowtrace"
+        case .fantom:
+            return "Ftmscan"
         }
     }
 
-    func getScannerUrl(_ netwrok: Network) -> String {
-        switch netwrok {
+    func getScannerUrl(_ network: Network) -> String {
+        switch network {
         case .ethereum:
             return "https://etherscan.io/tx/"
         case .polygon:
@@ -160,6 +173,8 @@ class WalletService: ObservableObject {
             return "https://www.bscscan.com/tx/"
         case .avalanche:
             return "https://snowtrace.io/tx/"
+        case .fantom:
+            return "https://ftmscan.com/tx/"
         }
     }
 

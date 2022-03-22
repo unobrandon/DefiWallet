@@ -22,7 +22,7 @@ struct WalletView: View {
         self.service = service
         self.store = service.wallet
 
-        self.fetchHistory()
+        fetchHistory()
     }
 
     var body: some View {
@@ -62,14 +62,10 @@ struct WalletView: View {
                                    enableSend: true,
                                    enableReceive: true,
                                    enableSwap: true,
-                                   actionDeposit: {
-                    print("deposit")
-                }, actionSend: {
-                    print("send")
-                }, actionReceive: {
-                    print("receive")
-                }, actionSwap: {
-                    print("swap")
+                                   actionDeposit: { print("deposit")
+                }, actionSend: { print("send")
+                }, actionReceive: { print("receive")
+                }, actionSwap: { print("swap")
                 }).padding(.top)
 
                 SectionHeaderView(title: "Networks", action: {
@@ -146,10 +142,6 @@ struct WalletView: View {
     }
 
     private func fetchHistory() {
-        store.fetchHistory(service.currentUser.address, completion: {
-            print("done getting history")
-        })
-
         store.fetchAccountBalance(service.currentUser.address, completion: {
             print("completed getting chain overview: \(store.accountBalance.count)")
         })
