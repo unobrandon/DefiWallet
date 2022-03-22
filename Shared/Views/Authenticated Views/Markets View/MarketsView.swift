@@ -21,10 +21,6 @@ struct MarketsView: View {
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.market
-
-        self.store.fetchEthGasPriceTrends(completion: {
-            print("gas")
-        })
     }
 
     var body: some View {

@@ -13,6 +13,10 @@ class MarketsService: ObservableObject {
     @Published var gasPrices = [GasPrice]()
     @Published var ethGasPriceTrends: EthGasPriceTrends?
 
+    init() {
+        self.fetchEthGasPriceTrends(completion: { print("gas is done loading") })
+    }
+
     func sortGas(_ network: Network) -> GasPrice? {
         return self.gasPrices.first(where: { $0.network == network })
     }

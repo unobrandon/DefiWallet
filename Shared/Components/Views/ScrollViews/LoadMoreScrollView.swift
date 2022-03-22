@@ -45,7 +45,6 @@ struct LoadMoreScrollView<Content: View>: View {
             .onPreferenceChange(ViewOffsetKey.self) { offset in
                 guard enableLoadMore, scrollHeight != 0 else { return }
 
-                print("the scroll offset is: \(offset) & height: \(scrollHeight) && screen height: \(MobileConstants.screenHeight)")
                 if offset + MobileConstants.screenHeight >= scrollHeight {
                     enableLoadMore = false
                     onLoadMore()
