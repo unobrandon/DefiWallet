@@ -137,4 +137,35 @@ class WalletService: ObservableObject {
         }
     }
 
+    func getBlockExplorerName(_ netwrok: Network) -> String {
+        switch netwrok {
+        case .ethereum:
+            return "Etherscan"
+        case .polygon:
+            return "Polygonscan"
+        case .binanceSmartChain:
+            return "Bscscan"
+        case .avalanche:
+            return "Snowtrace"
+        }
+    }
+
+    func getScannerUrl(_ netwrok: Network) -> String {
+        switch netwrok {
+        case .ethereum:
+            return "https://etherscan.io/tx/"
+        case .polygon:
+            return "https://polygonscan.com/tx/"
+        case .binanceSmartChain:
+            return "https://www.bscscan.com/tx/"
+        case .avalanche:
+            return "https://snowtrace.io/tx/"
+        }
+    }
+
+    func shareSheet(url: URL) {
+        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
+    }
+
 }

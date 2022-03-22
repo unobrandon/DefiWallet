@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Stinsen
+import SafariServices
 
 extension WalletCoordinator {
 
@@ -16,6 +17,14 @@ extension WalletCoordinator {
 
     @ViewBuilder func makeHistory() -> some View {
         HistoryTransactionsView(service: services)
+    }
+
+    @ViewBuilder func makeHistoryDetail(data: HistoryData) -> some View {
+        TransactionDetailView(data: data, service: services)
+    }
+
+    @ViewBuilder func makeSafari(url: URL) -> some View {
+        SafariView(url: url)
     }
 
 }

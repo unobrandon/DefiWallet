@@ -63,7 +63,7 @@ struct HistoryListCell: View {
 
                             // Lower details
                             HStack(alignment: .center, spacing: 5) {
-                                Text((data.direction == .outgoing ? "-" : "") + "\("".forTrailingZero(temp: Double(data.amount)?.truncate(places: 4) ?? 0.00)) \(data.symbol.prefix(6))")
+                                Text((data.direction == .outgoing ? "-" : "") + "\("".forTrailingZero(temp: Double(data.amount)?.truncate(places: 4) ?? 0.00)) \(data.symbol.prefix(8))")
                                     .fontTemplate(FontTemplate(font: Font.system(size: 14.0), weight: .medium, foregroundColor: service.wallet.transactionColor(data.direction), lineSpacing: 0))
 
                                 Spacer()

@@ -71,10 +71,10 @@ extension String {
         return self.prefix(8) + "..." + self.suffix(8)
     }
 
-    func createDateTime(_ timestamp: String) -> String {
+    func createDateTime() -> String {
         var strDate = "undefined"
 
-        if let unixTime = Double(timestamp) {
+        if let unixTime = Double(self) {
             let date = Date(timeIntervalSince1970: unixTime)
             let dateFormatter = DateFormatter()
             let timezone = TimeZone.current.abbreviation() ?? "CET"

@@ -27,7 +27,7 @@ struct WalletView: View {
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
-            ScrollView {
+            ScrollView(.vertical, showsIndicators: false) {
 
                 HStack(alignment: .center, spacing: 10) {
                     VStack(alignment: .leading, spacing: 0) {

@@ -32,11 +32,14 @@ struct HistorySectionView: View {
             ListSection(style: service.themeStyle) {
                 ForEach(store.history.prefix(limitCells), id: \.self) { item in
                     HistoryListCell(service: service, data: item, isLast: store.history.count < limitCells ? store.history.last == item ? true : false : false, style: service.themeStyle, action: {
-                        print("tapped history")
+                        walletRouter.route(to: \.historyDetail, item)
+                        #if os(iOS)
+                            HapticFeedback.rigidHapticFeedback()
+                        #endif
                     })
 
                     if store.history.last == item || item == store.history[limitCells - 1] {
-                        ListStandardButton(title: "see \(store.history.count - limitCells) more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                        ListStandardButton(title: "show \(store.history.count - limitCells) more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
                             walletRouter.route(to: \.history)
                             #if os(iOS)
                                 HapticFeedback.rigidHapticFeedback()

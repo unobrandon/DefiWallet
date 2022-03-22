@@ -10,6 +10,8 @@ import SwiftUIX
 
 struct HistoryTransactionsView: View {
 
+    @EnvironmentObject private var walletRouter: WalletCoordinator.Router
+
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
 
@@ -18,6 +20,7 @@ struct HistoryTransactionsView: View {
     @State private var directionFilter: Direction?
     @State private var directionSelector: Int = 0
     @State private var limitCells: Int = 20
+    @State private var searchText = ""
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -33,7 +36,10 @@ struct HistoryTransactionsView: View {
                             HistoryListCell(service: service, data: item,
                                             isLast: store.history.count < limitCells ? store.history.last == item ? true : false : false,
                                             style: service.themeStyle, action: {
-                                print("tapped history")
+                                walletRouter.route(to: \.historyDetail, item)
+                                #if os(iOS)
+                                    HapticFeedback.rigidHapticFeedback()
+                                #endif
                             })
                         }
                     }
@@ -41,6 +47,7 @@ struct HistoryTransactionsView: View {
                 }
             }
         })
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search transactions")
         .navigationBarTitle("Transactions", displayMode: .large)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -88,9 +95,9 @@ struct HistoryTransactionsView: View {
     }
 
     private func filterHistory() -> [HistoryData] {
-//        guard searchText.isEmpty else {
-//            return self.store.history.filter({ $0.address == searchText })
-//        }
+        guard searchText.isEmpty else {
+            return self.store.history.filter{ $0.address.contains(searchText) || $0.from.contains(searchText) || $0.destination.contains(searchText) || $0.symbol.contains(searchText) || $0.network.rawValue.contains(searchText) || $0.account.contains(searchText) || $0.hash.contains(searchText) }
+        }
 
         if let network = networkFilter, directionFilter == nil {
             return self.store.history.filter({ $0.network == network })

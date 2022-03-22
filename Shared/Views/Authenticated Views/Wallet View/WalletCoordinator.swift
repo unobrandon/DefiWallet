@@ -14,6 +14,8 @@ final class WalletCoordinator: NavigationCoordinatable {
 
     @Root var start = makeStart
     @Route(.push) var history = makeHistory
+    @Route(.push) var historyDetail = makeHistoryDetail
+    @Route(.modal) var safari = makeSafari
 
     let currentUser: CurrentUser
     let services: AuthenticatedServices
