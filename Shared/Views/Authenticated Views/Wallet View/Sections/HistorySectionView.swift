@@ -30,7 +30,7 @@ struct HistorySectionView: View {
 
             ListSection(style: service.themeStyle) {
                 if store.history.isEmpty {
-                    LoadingView(title: "loading past transactions...")
+                    LoadingView(title: "loading transactions...")
                 } else if store.history.isEmpty, !store.isHistoryLoading {
                     HStack {
                         Spacer()

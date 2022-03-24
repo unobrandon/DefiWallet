@@ -42,7 +42,7 @@ struct TransactButtonView: View {
             if enableDeposit {
                 Spacer()
 
-                TransactButton(title: "Deposit", systemImage: Constants.currencyCircleImage, size: 46, style: style, action: {
+                TransactButton(title: "Deposit", systemImage: Constants.currencyCircleImage, size: 50, style: style, action: {
                     actionDeposit()
                 })
             }
@@ -50,7 +50,7 @@ struct TransactButtonView: View {
             if enableSend {
                 Spacer()
 
-                TransactButton(title: "Send", systemImage: "paperplane.fill", size: 46, style: style, action: {
+                TransactButton(title: "Send", systemImage: "paperplane.fill", size: 50, style: style, action: {
                     actionSend()
                 })
             }
@@ -58,7 +58,7 @@ struct TransactButtonView: View {
             if enableReceive {
                 Spacer()
 
-                TransactButton(title: "Receive", systemImage: "arrow.down.circle", size: 46, style: style, action: {
+                TransactButton(title: "Receive", systemImage: "arrow.down.circle", size: 50, style: style, action: {
                     actionReceive()
                 })
             }
@@ -66,7 +66,7 @@ struct TransactButtonView: View {
             if enableSwap {
                 Spacer()
 
-                TransactButton(title: "Swap", systemImage: "arrow.left.arrow.right", size: 46, style: style, action: {
+                TransactButton(title: "Swap", systemImage: "arrow.left.arrow.right", size: 50, style: style, action: {
                     actionSwap()
                 })
             }

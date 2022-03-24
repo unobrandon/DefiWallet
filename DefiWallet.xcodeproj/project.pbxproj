@@ -121,6 +121,12 @@
 		05583CD827E9C1F800640E75 /* GridStyleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CD627E9C1F800640E75 /* GridStyleKey.swift */; };
 		05583CDA27E9C20E00640E75 /* View+GridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CD927E9C20E00640E75 /* View+GridStyle.swift */; };
 		05583CDB27E9C20E00640E75 /* View+GridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CD927E9C20E00640E75 /* View+GridStyle.swift */; };
+		05583CDD27EC00BB00640E75 /* NetworkSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CDC27EC00BA00640E75 /* NetworkSectionView.swift */; };
+		05583CDE27EC00BB00640E75 /* NetworkSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CDC27EC00BA00640E75 /* NetworkSectionView.swift */; };
+		05583CE027EC01D800640E75 /* BalanceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CDF27EC01D800640E75 /* BalanceSectionView.swift */; };
+		05583CE127EC01D800640E75 /* BalanceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CDF27EC01D800640E75 /* BalanceSectionView.swift */; };
+		05583CE627EC10DF00640E75 /* NetworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CE527EC10DF00640E75 /* NetworkCell.swift */; };
+		05583CE727EC10DF00640E75 /* NetworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583CE527EC10DF00640E75 /* NetworkCell.swift */; };
 		0566AEC227E83792006B645F /* HistorySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC127E83792006B645F /* HistorySectionView.swift */; };
 		0566AEC327E83792006B645F /* HistorySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC127E83792006B645F /* HistorySectionView.swift */; };
 		0566AEC527E8399B006B645F /* HistoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC427E8399B006B645F /* HistoryListCell.swift */; };
@@ -451,6 +457,9 @@
 		05583CD327E9C1D100640E75 /* GridStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStyle.swift; sourceTree = "<group>"; };
 		05583CD627E9C1F800640E75 /* GridStyleKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStyleKey.swift; sourceTree = "<group>"; };
 		05583CD927E9C20E00640E75 /* View+GridStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+GridStyle.swift"; sourceTree = "<group>"; };
+		05583CDC27EC00BA00640E75 /* NetworkSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSectionView.swift; sourceTree = "<group>"; };
+		05583CDF27EC01D800640E75 /* BalanceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceSectionView.swift; sourceTree = "<group>"; };
+		05583CE527EC10DF00640E75 /* NetworkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCell.swift; sourceTree = "<group>"; };
 		0566AEC127E83792006B645F /* HistorySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySectionView.swift; sourceTree = "<group>"; };
 		0566AEC427E8399B006B645F /* HistoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCell.swift; sourceTree = "<group>"; };
 		0566AEC727E84711006B645F /* StandardSystemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardSystemImage.swift; sourceTree = "<group>"; };
@@ -874,7 +883,9 @@
 		0566AECA27E8656F006B645F /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				05583CDF27EC01D800640E75 /* BalanceSectionView.swift */,
 				0593022F27E061BC006DDFFF /* TransactButtonView.swift */,
+				05583CDC27EC00BA00640E75 /* NetworkSectionView.swift */,
 				0566AEC127E83792006B645F /* HistorySectionView.swift */,
 			);
 			path = Sections;
@@ -891,6 +902,7 @@
 		0566AECF27E8F627006B645F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				05583CE527EC10DF00640E75 /* NetworkCell.swift */,
 				0566AEC427E8399B006B645F /* HistoryListCell.swift */,
 			);
 			path = Cells;
@@ -1013,8 +1025,8 @@
 				0578070E27B8F1BC0008051B /* WalletCoordinator.swift */,
 				0578071127B8F2A30008051B /* WalletCoordinator+Factory.swift */,
 				0566AECE27E8DEFF006B645F /* Navigation View */,
-				0566AECA27E8656F006B645F /* Sections */,
 				0566AECF27E8F627006B645F /* Cells */,
+				0566AECA27E8656F006B645F /* Sections */,
 				0578070B27B8F1370008051B /* WalletView.swift */,
 				0566AECB27E8660C006B645F /* HistoryTransactionsView.swift */,
 				0566AED027E8F64B006B645F /* TransactionDetailView.swift */,
@@ -1567,6 +1579,7 @@
 				053113DF27E6C61400368657 /* Accessories.swift in Sources */,
 				0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */,
 				059F73CF27D7160D00B27E80 /* DiscoverService.swift in Sources */,
+				05583CE627EC10DF00640E75 /* NetworkCell.swift in Sources */,
 				05E858CA27CB240300B85195 /* AppGradients.swift in Sources */,
 				053113E527E6C6CC00368657 /* Modifiers.swift in Sources */,
 				05D1097027C17D49008DCC66 /* ERC20Token.swift in Sources */,
@@ -1580,6 +1593,7 @@
 				0578073327BB59D30008051B /* MarketsView.swift in Sources */,
 				053C7D3F27CDBF600081DCEA /* CheckmarkView.swift in Sources */,
 				051BCF5827BCACB30056E047 /* AuthenticatedServices.swift in Sources */,
+				05583CDD27EC00BB00640E75 /* NetworkSectionView.swift in Sources */,
 				05E5F87D27D5D0820090290C /* EnsAvatarView.swift in Sources */,
 				05E858BD27CA078E00B85195 /* WelcomeCarouselView.swift in Sources */,
 				05E8590827CC1A8800B85195 /* FooterInformation.swift in Sources */,
@@ -1702,6 +1716,7 @@
 				05583CD127E9C19500640E75 /* GridPreferencesModifier.swift in Sources */,
 				05E858DB27CB27AF00B85195 /* NotificationViewExtension.swift in Sources */,
 				0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */,
+				05583CE027EC01D800640E75 /* BalanceSectionView.swift in Sources */,
 				0593023027E061BC006DDFFF /* TransactButtonView.swift in Sources */,
 				05583CA927E9BC5600640E75 /* LoadingView.swift in Sources */,
 				0578077C27BB822D0008051B /* String+Extensions.swift in Sources */,
@@ -1719,6 +1734,7 @@
 			files = (
 				05E5F85027D351CA0090290C /* BiometryBanner.swift in Sources */,
 				05D1095127C08B3E008DCC66 /* ProfileCoordinator.swift in Sources */,
+				05583CE727EC10DF00640E75 /* NetworkCell.swift in Sources */,
 				05E858BB27CA069400B85195 /* MainCarouselView.swift in Sources */,
 				05D1095E27C08D1B008DCC66 /* MacAuthenticatedCoordinator+Factory.swift in Sources */,
 				05E5F84627D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */,
@@ -1771,6 +1787,7 @@
 				05E5F84327D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */,
 				05D1094927C08B2B008DCC66 /* MainCoordinator+Factory.swift in Sources */,
 				053113EC27E6C76400368657 /* SlideOverCardView.swift in Sources */,
+				05583CDE27EC00BB00640E75 /* NetworkSectionView.swift in Sources */,
 				057806E927B8DF980008051B /* AuthenticationService.swift in Sources */,
 				05583CBD27E9C04A00640E75 /* GridItem.swift in Sources */,
 				0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */,
@@ -1853,6 +1870,7 @@
 				05E8589927C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
 				05583CC627E9C11400640E75 /* EnvironmentValues+GridStyle.swift in Sources */,
 				053113F627E6CF0800368657 /* CameraPreview.swift in Sources */,
+				05583CE127EC01D800640E75 /* BalanceSectionView.swift in Sources */,
 				0578077627BB71410008051B /* IrregularGradient.swift in Sources */,
 				05D1095527C08B3E008DCC66 /* ProfileView.swift in Sources */,
 				0593026427E19D27006DDFFF /* Math.swift in Sources */,
