@@ -18,6 +18,7 @@ struct CurrentUser: Codable, Equatable {
     let username: String?
     let avatar: String?
     let miniAvatar: String?
+    let currency: String
     let wallet: Wallet
 
 }

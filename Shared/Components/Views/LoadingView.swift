@@ -19,9 +19,12 @@ struct LoadingView: View {
     var body: some View {
         VStack(spacing: 10) {
             ActivityIndicator().animated(true).style(.regular)
+
             HStack {
                 Spacer()
-                Text(title).fontTemplate(DefaultTemplate.caption)
+                if title != "" {
+                    Text(title).fontTemplate(DefaultTemplate.caption)
+                }
                 Spacer()
             }
         }.padding(.vertical)

@@ -27,11 +27,12 @@ struct NetworkSectionView: View {
             .padding(.vertical, 10)
 
             VStack(alignment: .center, spacing: 0) {
-                ForEach(store.completeBalance, id:\.self) { balance in
-                    NetworkCell(network: balance, service: service)
+                Grid(store.completeBalance, id:\.self) { network in
+                    NetworkCell(network: network, service: service)
+//                    NetworkVerticalCell(network: network, service: service)
                 }
             }
         }
-//        .gridStyle(StaggeredGridStyle(.vertical, tracks: 1, spacing: 0))
+//        .gridStyle(StaggeredGridStyle(.vertical, tracks: 2, spacing: 0))
     }
 }

@@ -60,7 +60,7 @@ struct HistoryTransactionsView: View {
             })
             .padding(.vertical)
         })
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search transactions")
+        .searchable(text: $searchText, prompt: "Search transactions")
         .navigationBarTitle("Transactions", displayMode: .large)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

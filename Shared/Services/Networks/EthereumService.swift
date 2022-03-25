@@ -7,6 +7,7 @@
 
 import SwiftUI
 import web3swift
+import BigInt
 
 class EthereumService: ObservableObject {
 
@@ -45,7 +46,7 @@ class EthereumService: ObservableObject {
             }
         }
 
-        connectWebsocket()
+        connectWebsocket(currentUser: currentUser)
     }
 
     deinit {
@@ -54,7 +55,7 @@ class EthereumService: ObservableObject {
         socketProvider?.disconnectSocket()
     }
 
-    private func connectWebsocket() {
+    private func connectWebsocket(currentUser: CurrentUser) {
         self.ethNetworkStatus = .connecting
         // Moralis node uses (socketUrl, delegate: self)
         socketProvider = WebsocketProvider(Constants.moralisBaseWssUrl + Constants.ethNodeWssUrl, delegate: self)

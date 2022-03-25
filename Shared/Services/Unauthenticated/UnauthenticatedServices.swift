@@ -116,6 +116,7 @@ class UnauthenticatedServices: ObservableObject {
                                   username: nil,
                                   avatar: nil,
                                   miniAvatar: nil,
+                                  currency: "usd",
                                   wallet: unauthenticatedWallet)
 
         AuthenticationService.shared.authStatus = .authenticated(newUser)

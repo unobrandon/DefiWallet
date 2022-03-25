@@ -28,7 +28,6 @@ class WalletService: ObservableObject {
     init(currentUser: CurrentUser) {
         self.currentUser = currentUser
 
-        print("the wallet connect id: \(Constants.walletConnectProjectId)")
         let metadata = AppMetadata(name: Constants.projectName,
                                    description: "Difi Wallet App", url: "defi.wallet",
                                    icons: [Constants.walletConnectMetadataIcon])
@@ -149,12 +148,12 @@ class WalletService: ObservableObject {
     }
 
     func getNetworkColor(_ network: String) -> Color {
-        if network == "ethereum" { return Color("ethereum") }
-        else if network == "polygon" { return Color("polygon") }
-        else if network == "bsc" { return Color("binance") }
-        else if network == "avalanche" { return Color("avalanche") }
-        else if network == "fantom" { return Color("fantom") }
-        else { return Color.primary }
+        if network == "eth" { return Color("ethereum")
+        } else if network == "polygon" { return Color("polygon")
+        } else if network == "bsc" { return Color("binance")
+        } else if network == "avalanche" { return Color("avalanche")
+        } else if network == "fantom" { return Color("fantom")
+        } else { return Color.primary }
     }
 
     func getBlockExplorerName(_ network: Network) -> String {

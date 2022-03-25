@@ -18,18 +18,28 @@ struct MarketsView: View {
     @State var searchText: String = ""
     @State var searchHide: Bool = true
 
+    @State var gridViews: [AnyView]
+
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.market
+        self.gridViews = [
+            AnyView(TopCoinsSectionView(service: service))
+        ]
+
+        self.fetchTopCoins()
     }
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
-                Text("hello market view")
+                Grid(gridViews.indices, id:\.self) { index in
+                    gridViews[index]
+                }
             }
         })
         .navigationTitle("Markets")
+        .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))
         .navigationSearchBar { SearchBar("Search tokens and more...", text: $searchText) }
         .navigationSearchBarHiddenWhenScrolling(searchHide)
         .toolbar {
@@ -66,6 +76,13 @@ struct MarketsView: View {
                 })
             })
         }
+    }
+
+    private func fetchTopCoins() {
+        store.fetchCoinsByMarketCap(currency: service.currentUser.currency, completion: {
+            print("completed getting CoinsByMarketCap: \(service.currentUser.currency)")
+            store.isMarketCapLoading = false
+        })
     }
 
 }
