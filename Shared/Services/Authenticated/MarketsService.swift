@@ -67,18 +67,20 @@ class MarketsService: ObservableObject {
     func fetchCoinsByMarketCap(currency: String, perPage: Int? = 25, page: Int? = 1, completion: @escaping () -> Void) {
         self.isMarketCapLoading = true
 
-//        let url = Constants.backendBaseUrl + "topCoinsByMarketCap" + "?currency=" + currency + "&perPage=\(perPage ?? 25)" + "&page=\(page ?? 1)"
-        let urlDirect = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=" + currency + "&order=market_cap_desc&per_page=\(perPage ?? 25)" + "&page=\(page ?? 1)" + "&sparkline=false"
+        let url = Constants.backendBaseUrl + "topCoinsByMarketCap" + "?currency=" + currency + "&perPage=\(perPage ?? 25)" + "&page=\(page ?? 1)"
+//        let urlDirect = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=" + currency + "&order=market_cap_desc&per_page=\(perPage ?? 25)" + "&page=\(page ?? 1)" + "&sparkline=false"
 
-        AF.request(urlDirect, method: .get).responseDecodable(of: [CoinMarketCap].self) { response in
+        AF.request(url, method: .get).responseDecodable(of: CoinsByMarketCap.self) { response in
             switch response.result {
             case .success(let marketCapToken):
                 print("coin market cap: \(marketCapToken)")
 
-                if page == 1 {
-                    self.coinsByMarketCap = marketCapToken
-                } else {
-                    self.coinsByMarketCap += marketCapToken
+                if let list = marketCapToken.marketCap {
+                    if page == 1 {
+                        self.coinsByMarketCap = list
+                    } else {
+                        self.coinsByMarketCap += list
+                    }
                 }
 
                 completion()

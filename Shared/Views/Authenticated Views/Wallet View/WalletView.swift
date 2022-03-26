@@ -27,7 +27,7 @@ struct WalletView: View {
             AnyView(HistorySectionView(service: service))
         ]
 
-        fetchHistory()
+        fetchNetworksBalances()
     }
 
     var body: some View {
@@ -68,7 +68,7 @@ struct WalletView: View {
         }
     }
 
-    private func fetchHistory() {
+    private func fetchNetworksBalances() {
         store.fetchAccountBalance(service.currentUser.address, completion: {
             print("completed getting chain overview: \(store.accountBalance.count)")
         })

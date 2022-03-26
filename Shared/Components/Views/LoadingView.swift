@@ -17,16 +17,16 @@ struct LoadingView: View {
     }
 
     var body: some View {
-        VStack(spacing: 10) {
-            ActivityIndicator().animated(true).style(.regular)
+        HStack {
+            Spacer()
+            VStack(spacing: 10) {
+                ActivityIndicator().animated(true).style(.regular)
 
-            HStack {
-                Spacer()
                 if title != "" {
                     Text(title).fontTemplate(DefaultTemplate.caption)
                 }
-                Spacer()
             }
+            Spacer()
         }.padding(.vertical)
     }
 

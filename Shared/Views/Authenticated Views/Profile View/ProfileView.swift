@@ -127,7 +127,7 @@ struct ProfileView: View {
                                 isPresented: $showSheet,
                                 titleVisibility: .visible) {
                 Button("Logout", role: .destructive) {
-                    store.logout()
+                    store.logout(service.currentUser.sessionToken)
                 }
             } message: { Text("Are you sure you want to log out?") }
         })

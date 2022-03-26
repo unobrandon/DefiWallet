@@ -73,10 +73,10 @@ struct HistoryListCell: View {
                                         .background(RoundedRectangle(cornerRadius: 4, style: .circular).foregroundColor(Color.red.opacity(style == .shadow ? 1.0 : 0.15)).frame(width: 56, height: 20))
                                         .padding(.trailing, 5)
                                 } else if data.direction == .incoming, let fromAddress = data.fromEns == nil ? data.from : data.fromEns {
-                                    Text("from: " + "\("".formatAddress(fromAddress))")
+                                    Text("from: " + "\(fromAddress.formatAddress())")
                                         .fontTemplate(DefaultTemplate.captionPrimary)
                                 } else if data.direction == .outgoing, let toAddress = data.destination {
-                                    Text("to: " + "\("".formatAddress(toAddress))")
+                                    Text("to: " + "\(toAddress.formatAddress())")
                                         .fontTemplate(DefaultTemplate.captionPrimary)
                                 } else if data.direction == .exchange, let gasFee = data.gasPrice {
                                     Text("gas: \(gasFee.truncate(places: 4))")

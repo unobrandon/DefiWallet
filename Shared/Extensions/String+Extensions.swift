@@ -47,14 +47,6 @@ extension String {
         }
     }
 
-    func formatAddress(_ address: String) -> String {
-        guard !address.contains(".eth") else {
-           return address
-        }
-
-        return address.prefix(4) + "..." + address.suffix(4)
-    }
-
     func formatAddress() -> String {
         guard !self.contains(".eth") else {
            return self

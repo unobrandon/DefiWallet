@@ -14,8 +14,11 @@ class UnauthenticatedServices: ObservableObject {
 
     @Published var unauthenticatedWallet: Wallet = Wallet(address: "", data: Data(), name: "", isHD: true)
     @Published var password: String = ""
+    @Published var prefCurrency: String = "usd"
     @Published var secretPhrase: [String] = []
     @Published var hasEnsName: Bool = false
+
+    var registeredUser: RegisteredUser?
 
     init() { }
 
@@ -107,16 +110,21 @@ class UnauthenticatedServices: ObservableObject {
     }
 
     func getStarted() {
-        let newUser = CurrentUser(id: UUID().uuidString,
+        guard let user = registeredUser else { return }
+
+        let newUser = CurrentUser(objectId: user.objectId,
+                                  sessionToken: user.sessionToken,
                                   address: unauthenticatedWallet.address,
                                   mediumAddress: unauthenticatedWallet.address.formatAddressExtended(),
                                   shortAddress: unauthenticatedWallet.address.formatAddress(),
                                   secretPhrase: secretPhrase,
                                   password: password,
-                                  username: nil,
+                                  username: user.username,
                                   avatar: nil,
                                   miniAvatar: nil,
-                                  currency: "usd",
+                                  currency: user.currency,
+                                  createdAt: user.createdAt,
+                                  updatedAt: user.updatedAt,
                                   wallet: unauthenticatedWallet)
 
         AuthenticationService.shared.authStatus = .authenticated(newUser)
@@ -131,40 +139,41 @@ class UnauthenticatedServices: ObservableObject {
         return true
     }
 
-    func registerUser(username: String, password: String, address: String, completion: ((Bool) -> Void)?) {
+    func registerUser(username: String, password: String, address: String, currency: String, completion: ((Bool) -> Void)?) {
         DispatchQueue.global(qos: .userInteractive).async {
-            let backendUrl: String = "createNewUser?username=\(username)&password=\(password)&address=\(address)"
+            let backendUrl: String = "createNewUser?username=\(username)&password=\(password)&address=\(address)&currency=\(currency)"
 
-            AF.request(Constants.backendBaseUrl + backendUrl, method: .get).response { response in
-                debugPrint("Response: \(response.result)")
+            AF.request(Constants.backendBaseUrl + backendUrl, method: .get).responseDecodable(of: RegisteredUser.self) { response in
+                switch response.result {
+                case .success(let newUser):
+                    print("success reregistering: \(newUser)")
+                    self.registeredUser = newUser
 
-                DispatchQueue.main.async {
-                    switch response.result {
-                    case .success(let success):
-                        print("success reregistering: \(String(describing: success.debugDescription))")
-                        let endpoint = "https://speedy-nodes-nyc.moralis.io/" + "b8a2c97baf6d1f1c575ebd0e/eth/mainnet"
-
-                        guard let url = URL(string: endpoint), let web3Http = Web3HttpProvider(url) else {
-                            completion?(false)
-                            return
-                        }
-
-                        let web = web3(provider: web3Http)
-                        if let ens = ENS(web3: web) {
-                            do {
-                                let name = try ens.getAddress(forNode: address)
-                                print("found wallet with ENS name: \(name)")
-
-                                completion?(true)
-                            } catch {
-                                completion?(false)
-                            }
-                        }
-                    case .failure(let error):
-                        print("error loading register: \(error)")
-                        completion?(false)
-                    }
+                    completion?(true)
+                case .failure(let error):
+                    print("error loading register: \(error)")
+                    completion?(false)
                 }
+            }
+        }
+    }
+
+    func checkEnsUsername(address: String, completion: ((Bool) -> Void)?) {
+        let endpoint = "https://speedy-nodes-nyc.moralis.io/" + "b8a2c97baf6d1f1c575ebd0e/eth/mainnet"
+        guard let url = URL(string: endpoint), let web3Http = Web3HttpProvider(url) else {
+            completion?(false)
+            return
+        }
+
+        let web = web3(provider: web3Http)
+        if let ens = ENS(web3: web) {
+            do {
+                let name = try ens.getAddress(forNode: address)
+                print("found wallet with ENS name: \(name)")
+
+                completion?(true)
+            } catch {
+                completion?(false)
             }
         }
     }

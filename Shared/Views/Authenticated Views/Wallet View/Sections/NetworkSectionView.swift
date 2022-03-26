@@ -27,7 +27,7 @@ struct NetworkSectionView: View {
             .padding(.vertical, 10)
 
             VStack(alignment: .center, spacing: 0) {
-                Grid(store.completeBalance, id:\.self) { network in
+                ForEach(store.completeBalance, id:\.self) { network in
                     NetworkCell(network: network, service: service)
 //                    NetworkVerticalCell(network: network, service: service)
                 }

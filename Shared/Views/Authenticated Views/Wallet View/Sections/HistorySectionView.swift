@@ -14,7 +14,7 @@ struct HistorySectionView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
 
-    @State private var limitCells: Int = 5
+    @State private var limitCells: Int = 4
     @State private var isLoading: Bool = true
     @State private var emptyTransactions: Bool = false
 
@@ -29,8 +29,8 @@ struct HistorySectionView: View {
             .padding(.vertical, 10)
 
             ListSection(style: service.themeStyle) {
-                if store.history.isEmpty {
-                    LoadingView(title: "loading transactions...")
+                if store.history.isEmpty, store.isHistoryLoading {
+                    LoadingView(title: "")
                 } else if store.history.isEmpty, !store.isHistoryLoading {
                     HStack {
                         Spacer()

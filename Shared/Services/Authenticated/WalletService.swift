@@ -92,7 +92,7 @@ class WalletService: ObservableObject {
         let url = Constants.zapperBaseUrl + "transactions?address=\(address)&addresses%5B%5D=\(address)&" + Constants.zapperApiKey
         isHistoryLoading = true
 
-        AF.request(url, method: .get).responseDecodable(of: TransactionHistory.self) { response in
+        AF.request(url, method: .get).responseDecodable(of: TransactionHistory.self, emptyResponseCodes: [200]) { response in
             switch response.result {
             case .success(let history):
                 if let historyData = history.data {

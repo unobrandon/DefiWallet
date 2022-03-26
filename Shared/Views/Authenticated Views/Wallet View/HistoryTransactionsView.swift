@@ -61,7 +61,7 @@ struct HistoryTransactionsView: View {
             .padding(.vertical)
         })
         .searchable(text: $searchText, prompt: "Search transactions")
-        .navigationBarTitle("Transactions", displayMode: .large)
+        .navigationBarTitle("Transactions", displayMode: .automatic)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {

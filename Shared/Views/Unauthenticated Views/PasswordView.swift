@@ -16,6 +16,7 @@ struct PasswordView: View {
 
     @State var disablePrimaryAction: Bool = true
     @State var isLoading: Bool = false
+    @State var registerError: Bool = false
     @State var passwordText: String = ""
 
     init(services: UnauthenticatedServices) {
@@ -53,6 +54,12 @@ struct PasswordView: View {
                 if isLoading {
                     LoadingIndicator(size: 30).padding(.bottom, 30)
                 } else {
+                    if registerError {
+                        Text("error occurred, please try again")
+                            .fontTemplate(DefaultTemplate.captionError)
+                            .padding(.bottom)
+                    }
+
                     RoundedInteractiveButton("Set Password", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
                         setPassword()
                     })
@@ -66,30 +73,36 @@ struct PasswordView: View {
         self.disablePrimaryAction = true
         self.isLoading = true
 
-        store.registerUser(username: store.unauthenticatedWallet.address,
+        store.registerUser(username: store.unauthenticatedWallet.address.formatAddress(),
                            password: passwordText,
                            address: store.unauthenticatedWallet.address,
-                           completion: { hasENS in
+                           currency: store.prefCurrency,
+                           completion: { result in
+            self.registerError = !result
             self.store.password = passwordText
-            self.store.hasEnsName = hasENS
             self.isLoading = false
             self.disablePrimaryAction = false
+
+            guard result else {
+                HapticFeedback.errorHapticFeedback()
+                return
+            }
 
             let context = LAContext()
             if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil),                     !UserDefaults.standard.bool(forKey: "biometryEnabled") {
                 unauthenticatedRouter.route(to: \.biometry)
             } else {
-                if hasENS {
-                    store.checkNotificationPermission(completion: { isEnabled in
-                        if isEnabled {
-                            unauthenticatedRouter.route(to: \.completed)
-                        } else {
-                            unauthenticatedRouter.route(to: \.notifications)
-                        }
-                    })
-                } else {
+//                if hasENS {
+//                    store.checkNotificationPermission(completion: { isEnabled in
+//                        if isEnabled {
+//                            unauthenticatedRouter.route(to: \.completed)
+//                        } else {
+//                            unauthenticatedRouter.route(to: \.notifications)
+//                        }
+//                    })
+//                } else {
                     unauthenticatedRouter.route(to: \.ensUsername)
-                }
+//                }
             }
         })
     }
