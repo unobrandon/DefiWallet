@@ -24,13 +24,20 @@ struct NetworkSectionView: View {
             SectionHeaderView(title: "Networks", action: {
                 print("see more")
             })
-            .padding(.vertical, 10)
+            .padding(.vertical, 5)
 
-            VStack(alignment: .center, spacing: 0) {
-                ForEach(store.completeBalance, id:\.self) { network in
-                    NetworkCell(network: network, service: service)
-//                    NetworkVerticalCell(network: network, service: service)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .center, spacing: 0) {
+                    ForEach(store.completeBalance, id:\.self) { network in
+    //                    NetworkCell(network: network, service: service)
+                        NetworkVerticalCell(network: network, service: service, action: {
+                            
+                        })
+                        .frame(minWidth: 220, maxWidth: 280)
+                        .padding(.leading, store.completeBalance.first == network ? 20 : 0)
+                    }
                 }
+                .padding(.bottom, service.themeStyle == .shadow ? 20 : 0)
             }
         }
 //        .gridStyle(StaggeredGridStyle(.vertical, tracks: 2, spacing: 0))

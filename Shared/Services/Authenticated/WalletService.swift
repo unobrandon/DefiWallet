@@ -159,15 +159,15 @@ class WalletService: ObservableObject {
     func getBlockExplorerName(_ network: Network) -> String {
         switch network {
         case .ethereum:
-            return "Etherscan"
+            return "Etherscan.io"
         case .polygon:
-            return "Polygonscan"
+            return "Polygonscan.com"
         case .binanceSmartChain:
-            return "Bscscan"
+            return "Bscscan.com"
         case .avalanche:
-            return "Snowtrace"
+            return "Snowtrace.io"
         case .fantom:
-            return "Ftmscan"
+            return "Ftmscan.com"
         }
     }
 

@@ -21,7 +21,7 @@ struct ProminentRoundedLabel: View {
 
     var body: some View {
         Text(text)
-            .fontTemplate(FontTemplate(font: Font.system(size: 14.0), weight: .semibold, foregroundColor: color, lineSpacing: 0))
+            .fontTemplate(FontTemplate(font: Font.system(size: 14.0), weight: .semibold, foregroundColor: style == .shadow ? .white : color, lineSpacing: 0))
             .padding(.vertical, 3)
             .padding(.horizontal, 6)
             .background(RoundedRectangle(cornerRadius: 5, style: .circular)

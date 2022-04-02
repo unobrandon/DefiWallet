@@ -107,7 +107,7 @@ struct TransactionDetailView: View {
                         #endif
                     })
 
-                    ListStandardButton(title: "Share Transaction", systemImage: "square.and.arrow.up", isLast: true, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Share transaction", systemImage: "square.and.arrow.up", isLast: true, style: service.themeStyle, action: {
                         guard let url = URL(string: store.getScannerUrl(data.network) + data.hash) else {
                             #if os(iOS)
                             HapticFeedback.errorHapticFeedback()

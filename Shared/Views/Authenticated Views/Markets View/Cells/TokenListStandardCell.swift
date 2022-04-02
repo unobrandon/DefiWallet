@@ -30,12 +30,14 @@ struct TokenListStandardCell: View {
                 self.actionTap()
             }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
-                    HStack(alignment: .top, spacing: 10) {
+                    HStack(alignment: .top, spacing: 5) {
                         Text("\(data.marketCapRank ?? 0)")
                             .fontTemplate(DefaultTemplate.caption_semibold)
 
                         RemoteImage(imageUrl: data.image ?? "", size: 36)
-                            .padding(.trailing, 5)
+                            .clipShape(Circle())
+                            .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1))
+                            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
 
                         VStack(alignment: .leading, spacing: 0) {
                             Text(data.name ?? "").fontTemplate(DefaultTemplate.gasPriceFont)
@@ -44,8 +46,8 @@ struct TokenListStandardCell: View {
 
                         Spacer()
                         VStack(alignment: .trailing, spacing: 0) {
-                            HStack(alignment: .center, spacing: 10) {
-                                Text("$\("".forTrailingZero(temp: data.currentPrice?.truncate(places: 4) ?? 0.00))").fontTemplate(DefaultTemplate.gasPriceFont)
+                            HStack(alignment: .top, spacing: 10) {
+                                Text("$\("".forTrailingZero(temp: data.currentPrice?.truncate(places: 4) ?? 0.00))").fontTemplate(DefaultTemplate.bodyMedium)
 
                                 Image(systemName: "chevron.right")
                                     .resizable()
@@ -55,7 +57,8 @@ struct TokenListStandardCell: View {
                                     .foregroundColor(.secondary)
                             }
 
-                            ProminentRoundedLabel(text: (data.priceChangePercentage24H ?? 0 >= 0 ? "+" : "") + "\("".forTrailingZero(temp: data.priceChangePercentage24H?.truncate(places: 2) ?? 0.00))%",
+                            ProminentRoundedLabel(text: (data.priceChangePercentage24H ?? 0 >= 0 ? "+" : "") +
+                                                  "\("".forTrailingZero(temp: data.priceChangePercentage24H?.truncate(places: 2) ?? 0.00))%",
                                                   color: data.priceChangePercentage24H ?? 0 >= 0 ? .green : .red,
                                                   style: service.themeStyle)
                         }
@@ -89,4 +92,5 @@ struct TokenListStandardCell: View {
 
         action()
     }
+
 }

@@ -32,7 +32,7 @@ struct WalletNavigationView: View {
                         ZStack(alignment: .center) {
                             ForEach(sessions.prefix(3).indices, id: \.self) { session in
                                 RemoteImage(imageUrl: sessions[session].iconURL, size: 36)
-                                    .overlay(Circle().foregroundColor(.clear).overlay(Circle().stroke(Color("baseBackground_bordered"), lineWidth: 4)))
+                                    .overlay(Circle().foregroundColor(.clear).overlay(Circle().strokeBorder(Color("baseBackground_bordered"), lineWidth: 4)))
                                     .padding(.leading, CGFloat(25 * session))
                             }
                         }
@@ -42,7 +42,7 @@ struct WalletNavigationView: View {
                 }
 
                 Circle()
-                    .stroke(Color("baseBackground_bordered"), lineWidth: 2)
+                    .strokeBorder(Color("baseBackground_bordered"), lineWidth: 2)
                     .frame(width: 10, height: 10, alignment: .center)
                     .background(Circle().foregroundColor(service.ethereum.ethNetworkStatus == .connected ? .green : service.ethereum.ethNetworkStatus == .connecting ? .orange : .red))
                     .offset(x: 12, y: 12)
