@@ -13,6 +13,8 @@ final class MarketsCoordinator: NavigationCoordinatable {
     let stack = NavigationStack(initial: \MarketsCoordinator.start)
 
     @Root var start = makeStart
+    @Route(.push) var trendingDetail = makeTrendingDetail
+    @Route(.push) var marketCapRank = makeMarketCapRank
 
     let currentUser: CurrentUser
     let services: AuthenticatedServices
@@ -23,7 +25,7 @@ final class MarketsCoordinator: NavigationCoordinatable {
     }
 
     deinit {
-        print("de-init ProfleCoordinator")
+        print("de-init Markets Coordinator")
     }
 
 }

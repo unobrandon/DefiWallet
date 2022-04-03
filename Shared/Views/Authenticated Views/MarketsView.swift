@@ -24,15 +24,17 @@ struct MarketsView: View {
         self.service = service
         self.store = service.market
         self.gridViews = [
+            AnyView(TrendingSectionView(service: service)),
             AnyView(TopCoinsSectionView(service: service))
         ]
 
+        self.fetchTrending()
         self.fetchTopCoins()
     }
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
-            ScrollView {
+            ScrollView(.vertical, showsIndicators: false) {
                 Grid(gridViews.indices, id:\.self) { index in
                     gridViews[index]
                 }
@@ -78,9 +80,14 @@ struct MarketsView: View {
         }
     }
 
+    private func fetchTrending() {
+        store.fetchTrending(completion: {
+            store.isTrendingLoading = false
+        })
+    }
+
     private func fetchTopCoins() {
         store.fetchCoinsByMarketCap(currency: service.currentUser.currency, completion: {
-            print("completed getting CoinsByMarketCap: \(service.currentUser.currency)")
             store.isMarketCapLoading = false
         })
     }

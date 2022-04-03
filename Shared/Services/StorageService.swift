@@ -19,7 +19,10 @@ class StorageService {
     let memoryConfig: MemoryConfig
 
     var dataStorage: Storage<String, Data>?
-    var historyStorage: Cache.Storage<String, TransactionHistory>?
+    var balanceStorage: Cache.Storage<String, [CompleteBalance]>?
+    var historyStorage: Cache.Storage<String, [HistoryData]>?
+    var trendingStorage: Cache.Storage<String, [TrendingCoin]>?
+    var marketCapStorage: Cache.Storage<String, [CoinMarketCap]>?
 
     init() {
         self.memoryConfig = MemoryConfig(expiry: .date(storageExpiry), countLimit: 50, totalCostLimit: 0)
@@ -28,6 +31,42 @@ class StorageService {
             self.dataStorage = try Storage<String, Data>(diskConfig: diskConfig, memoryConfig: memoryConfig, transformer: TransformerFactory.forData())
         } catch {
             print("error getting data storage")
+        }
+
+        // balance
+        do {
+            self.balanceStorage = try Storage(diskConfig: diskConfig,
+                                              memoryConfig: memoryConfig,
+                                              transformer: TransformerFactory.forCodable(ofType: [CompleteBalance].self))
+        } catch {
+            print(error)
+        }
+
+        // history
+        do {
+            self.historyStorage = try Storage(diskConfig: diskConfig,
+                                              memoryConfig: memoryConfig,
+                                              transformer: TransformerFactory.forCodable(ofType: [HistoryData].self))
+        } catch {
+            print(error)
+        }
+
+        // trending
+        do {
+            self.trendingStorage = try Storage(diskConfig: diskConfig,
+                                              memoryConfig: memoryConfig,
+                                              transformer: TransformerFactory.forCodable(ofType: [TrendingCoin].self))
+        } catch {
+            print("error getting trending storage \(error.localizedDescription)")
+        }
+
+        // market cap
+        do {
+            self.marketCapStorage = try Storage(diskConfig: diskConfig,
+                                              memoryConfig: memoryConfig,
+                                              transformer: TransformerFactory.forCodable(ofType: [CoinMarketCap].self))
+        } catch {
+            print("error getting trending storage \(error.localizedDescription)")
         }
 
         /*
@@ -50,28 +89,7 @@ class StorageService {
                                          protectionType: .complete)
         }
 
-        // history
-        do {
-            self.historyStorage = try Storage(diskConfig: diskConfig,
-                                              memoryConfig: memoryConfig,
-                                              transformer: TransformerFactory.forCodable(ofType: TransactionHistory.self))
-        } catch {
-            print(error)
-        }
         */
-    }
-
-    func getHistory() {
-        guard let history = historyStorage else { return }
-
-        history.async.object(forKey: "history") { result in
-            switch result {
-            case .value(let user):
-                print(user.data ?? "")
-            case .error(let error):
-                print(error)
-            }
-        }
     }
 
 }

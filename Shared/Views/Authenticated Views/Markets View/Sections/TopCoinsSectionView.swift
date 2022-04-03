@@ -15,8 +15,6 @@ struct TopCoinsSectionView: View {
     @ObservedObject private var store: MarketsService
 
     @State private var limitCells: Int = 5
-    @State private var isLoading: Bool = true
-    @State private var emptyTransactions: Bool = false
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -28,10 +26,10 @@ struct TopCoinsSectionView: View {
             SectionHeaderView(title: "Market Cap",
                               actionTitle: store.coinsByMarketCap.isEmpty ? "" : store.coinsByMarketCap.count < limitCells ? "" : limitCells == 10 ? "Show less" : "Show more",
                               action: showMoreLess)
-            .padding(.vertical, 10)
+            .padding(.vertical, 5)
 
             ListSection(style: service.themeStyle) {
-                if store.coinsByMarketCap.isEmpty {
+                if store.isMarketCapLoading {
                     LoadingView(title: "")
                 } else if store.coinsByMarketCap.isEmpty, !store.isMarketCapLoading {
                     HStack {
@@ -45,7 +43,7 @@ struct TopCoinsSectionView: View {
                     TokenListStandardCell(service: service, data: item,
                                           isLast: store.coinsByMarketCap.count < limitCells ? store.coinsByMarketCap.last == item ? true : false : false,
                                           style: service.themeStyle, action: {
-//                        walletRouter.route(to: \.historyDetail, item)
+//                        marketRouter.route(to: \.historyDetail, item)
 
                         #if os(iOS)
                             HapticFeedback.rigidHapticFeedback()
@@ -54,7 +52,7 @@ struct TopCoinsSectionView: View {
 
                     if store.coinsByMarketCap.last == item || item == store.coinsByMarketCap[limitCells - 1] {
                         ListStandardButton(title: "view more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
-//                            walletRouter.route(to: \.history)
+                            marketRouter.route(to: \.marketCapRank)
 
                             #if os(iOS)
                                 HapticFeedback.rigidHapticFeedback()

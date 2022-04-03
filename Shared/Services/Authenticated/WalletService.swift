@@ -68,12 +68,35 @@ class WalletService: ObservableObject {
     func fetchAccountBalance(_ address: String, completion: @escaping () -> Void) {
         let url = Constants.backendBaseUrl + "accountBalance" + "?address=\(address)"
 
+        if let storage = StorageService.shared.balanceStorage {
+            storage.async.object(forKey: "balanceList") { result in
+                switch result {
+                case .value(let balance):
+                    self.completeBalance = balance
+                case .error(let error):
+                    print("error getting local balance: \(error.localizedDescription)")
+                }
+            }
+        }
+
         AF.request(url, method: .get).responseDecodable(of: AccountBalance.self) { response in
             switch response.result {
             case .success(let accountBalance):
                 if let balance = accountBalance.completeBalance {
                     self.completeBalance = balance
                     print("account balance is: \(self.completeBalance.count)")
+
+                    if let storage = StorageService.shared.balanceStorage {
+                        storage.async.setObject(balance, forKey: "balanceList") { result in
+                            switch result {
+                            case .value(let val):
+                                print("saved balance successfully: \(val)")
+
+                            case .error(let error):
+                                print("error saving balance locally: \(error)")
+                            }
+                        }
+                    }
                 }
 
                 completion()
@@ -92,12 +115,35 @@ class WalletService: ObservableObject {
         let url = Constants.zapperBaseUrl + "transactions?address=\(address)&addresses%5B%5D=\(address)&" + Constants.zapperApiKey
         isHistoryLoading = true
 
+        if let storage = StorageService.shared.historyStorage {
+            storage.async.object(forKey: "historyList") { result in
+                switch result {
+                case .value(let history):
+                    self.history = history
+                case .error(let error):
+                    print("error getting local history: \(error.localizedDescription)")
+                }
+            }
+        }
+
         AF.request(url, method: .get).responseDecodable(of: TransactionHistory.self, emptyResponseCodes: [200]) { response in
             switch response.result {
             case .success(let history):
-                if let historyData = history.data {
-                    self.history = historyData
-                    print("history count is: \(self.history.count)")
+                if let history = history.data {
+                    self.history = history
+                    print("history count is: \(history.count)")
+
+                    if let storage = StorageService.shared.historyStorage {
+                        storage.async.setObject(history, forKey: "historyList") { result in
+                            switch result {
+                            case .value(let val):
+                                print("saved history successfully: \(val)")
+
+                            case .error(let error):
+                                print("error saving history locally: \(error)")
+                            }
+                        }
+                    }
                 }
 
                 completion()

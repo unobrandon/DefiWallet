@@ -61,10 +61,12 @@ struct HistorySectionView: View {
     }
 
     private func showMoreLess() {
-        if limitCells == 5 {
-            withAnimation(.easeOut) { limitCells += 5 }
-        } else if limitCells == 10 {
-            withAnimation(.easeOut) { limitCells -= 5 }
+        let baseLimit = 4
+
+        if limitCells == baseLimit {
+            withAnimation(.easeOut) { limitCells = baseLimit }
+        } else if limitCells == (baseLimit * 2) {
+            withAnimation(.easeOut) { limitCells = (baseLimit * 2) }
         }
     }
 

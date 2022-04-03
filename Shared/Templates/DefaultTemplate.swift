@@ -31,8 +31,12 @@ struct DefaultTemplate {
     static let subheadingLight = FontTemplate(font: Font.custom("Poppins-Light", size: 18), weight: .light, foregroundColor: .primary, lineSpacing: 2)
 
     static let gasPriceFont = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 16), weight: .semibold, foregroundColor: .primary, lineSpacing: 0)
-
     static let primaryButton = FontTemplate(font: Font.custom("Poppins-Medium", size: 16), weight: .medium, foregroundColor: .white, lineSpacing: 0)
+
+    static let sectionHeader = FontTemplate(font: Font.custom("Poppins-Medium", size: 16), weight: .medium, foregroundColor: .primary, lineSpacing: 0)
+    static let sectionHeader_bold = FontTemplate(font: Font.custom("Poppins-Medium", size: 16), weight: .bold, foregroundColor: .primary, lineSpacing: 0)
+    static let sectionHeader_semibold = FontTemplate(font: Font.custom("Poppins-Medium", size: 16), weight: .semibold, foregroundColor: .primary, lineSpacing: 0)
+    static let sectionHeader_secondary = FontTemplate(font: Font.custom("Poppins-Medium", size: 16), weight: .medium, foregroundColor: .secondary, lineSpacing: 0)
 
     static let body = FontTemplate(font: Font.system(size: 14.0), weight: .regular, foregroundColor: .primary, lineSpacing: 1)
     static let bodyBold = FontTemplate(font: Font.system(size: 14.0), weight: .bold, foregroundColor: .primary, lineSpacing: 1)
@@ -47,6 +51,7 @@ struct DefaultTemplate {
 
     static let bodySemibold_accent_standard = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 14), weight: .semibold, foregroundColor: Color("AccentColor"), lineSpacing: 1)
     static let bodyMedium_accent_standard = FontTemplate(font: Font.custom("Poppins-Medium", size: 14), weight: .medium, foregroundColor: Color("AccentColor"), lineSpacing: 1)
+    static let bodyRegular_accent_standard = FontTemplate(font: Font.custom("Poppins-Medium", size: 14), weight: .regular, foregroundColor: Color("AccentColor"), lineSpacing: 1)
 
     static let body_secondary = FontTemplate(font: Font.custom("Poppins-Regular", size: 14), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)
 
