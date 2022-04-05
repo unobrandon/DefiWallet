@@ -34,7 +34,7 @@ struct TrendingTokenStandardCell: View {
                         Text("\((data.score ?? -1) + 1)")
                             .fontTemplate(DefaultTemplate.caption_semibold)
 
-                        RemoteImage(imageUrl: data.small ?? "", size: 36)
+                        RemoteImage(data.small ?? "", size: 36)
                             .clipShape(Circle())
                             .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1))
                             .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)

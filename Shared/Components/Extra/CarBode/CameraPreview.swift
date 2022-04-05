@@ -262,7 +262,7 @@ extension CameraPreview: AVCaptureMetadataOutputObjectsDelegate {
     func foundBarcode(_ barcode: BarcodeData) {
         let now = Date()
 
-        //When scan on difference barcode scanner will ignore the delay time
+        // When scan on difference barcode scanner will ignore the delay time
         if lastScannedBarcode?.value != barcode.value {
             lastTime = now
             onFound?(barcode)
@@ -278,9 +278,7 @@ extension CameraPreview: AVCaptureMetadataOutputObjectsDelegate {
 extension CameraPreview {
 
     func convertToViewCoordinate(point: CGPoint) -> CGPoint {
-
         let orientation = getVideoOrientation()
-
         var pointX: CGFloat = 0
         var pointY: CGFloat = 0
 
@@ -343,7 +341,8 @@ extension CameraPreview {
     }
 
     func drawFrame(corners: [CGPoint], lineWidth: CGFloat = 1,
-                   lineColor: UIColor = UIColor.red, fillColor: UIColor = UIColor.clear) -> Void {
+                   lineColor: UIColor = UIColor.red,
+                   fillColor: UIColor = UIColor.clear) -> Void {
 
         removeFrameTimer?.invalidate()
         removeFrameTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(removeBarcodeFrame), userInfo: nil, repeats: false)

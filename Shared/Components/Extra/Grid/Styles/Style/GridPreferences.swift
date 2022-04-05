@@ -19,7 +19,7 @@ public struct GridPreferences: Equatable {
             self.bounds = bounds
         }
     }
-    
+
     public var items: [Item]
     public var size: CGSize
 
@@ -29,9 +29,7 @@ public struct GridPreferences: Equatable {
     }
 
     subscript(id: AnyHashable) -> Item? {
-        get {
-            items.first(where: { $0.id == id })
-        }
+        items.first(where: { $0.id == id })
     }
 
     mutating func merge(with preferences: GridPreferences) {

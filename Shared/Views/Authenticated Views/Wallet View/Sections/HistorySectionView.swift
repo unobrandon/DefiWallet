@@ -17,10 +17,12 @@ struct HistorySectionView: View {
     @State private var limitCells: Int = 4
     @State private var isLoading: Bool = true
     @State private var emptyTransactions: Bool = false
+    private let filter: Network?
 
-    init(service: AuthenticatedServices) {
+    init(service: AuthenticatedServices, network: Network? = nil, filterString: String? = nil) {
         self.service = service
         self.store = service.wallet
+        self.filter = network
     }
 
     var body: some View {
@@ -39,7 +41,7 @@ struct HistorySectionView: View {
                     }.padding(.vertical, 30)
                 }
 
-                ForEach(store.history.prefix(limitCells), id: \.self) { item in
+                ForEach(filterHistory(filter).prefix(limitCells), id: \.self) { item in
                     HistoryListCell(service: service, data: item, isLast: store.history.count < limitCells ? store.history.last == item ? true : false : false, style: service.themeStyle, action: {
                         walletRouter.route(to: \.historyDetail, item)
                         #if os(iOS)
@@ -47,9 +49,9 @@ struct HistorySectionView: View {
                         #endif
                     })
 
-                    if store.history.last == item || item == store.history[limitCells - 1] {
-                        ListStandardButton(title: "show \(store.history.count - limitCells) more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
-                            walletRouter.route(to: \.history)
+                    if filterHistory(filter).last == item || item == filterHistory(filter)[limitCells - 1] {
+                        ListStandardButton(title: "show \(filterHistory(filter).count - limitCells) more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                            walletRouter.route(to: \.history, filter)
                             #if os(iOS)
                                 HapticFeedback.rigidHapticFeedback()
                             #endif
@@ -61,12 +63,18 @@ struct HistorySectionView: View {
     }
 
     private func showMoreLess() {
-        let baseLimit = 4
+        walletRouter.route(to: \.history, filter)
 
-        if limitCells == baseLimit {
-            withAnimation(.easeOut) { limitCells = baseLimit }
-        } else if limitCells == (baseLimit * 2) {
-            withAnimation(.easeOut) { limitCells = (baseLimit * 2) }
+        #if os(iOS)
+            HapticFeedback.rigidHapticFeedback()
+        #endif
+    }
+
+    private func filterHistory(_ filter: Network? = nil) -> [HistoryData] {
+        if let filter = filter {
+            return self.store.history.filter({ $0.network == filter })
+        } else {
+            return self.store.history
         }
     }
 

@@ -46,7 +46,9 @@ struct DefaultTemplate {
     static let body_standard = FontTemplate(font: Font.custom("Poppins-Regular", size: 14), weight: .regular, foregroundColor: .primary, lineSpacing: 1)
     static let bodyBold_standard = FontTemplate(font: Font.custom("Poppins-Bold", size: 14), weight: .bold, foregroundColor: .primary, lineSpacing: 1)
     static let bodySemibold_standard = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 14), weight: .semibold, foregroundColor: .primary, lineSpacing: 1)
+    static let bodySemibold_secondary = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 14), weight: .semibold, foregroundColor: .secondary, lineSpacing: 1)
     static let bodyMedium_standard = FontTemplate(font: Font.custom("Poppins-Medium", size: 14), weight: .medium, foregroundColor: .primary, lineSpacing: 1)
+    static let bodyMedium_secondary = FontTemplate(font: Font.custom("Poppins-Medium", size: 14), weight: .medium, foregroundColor: .secondary, lineSpacing: 1)
     static let bodyRegular_standard = FontTemplate(font: Font.custom("Poppins-Regular", size: 14), weight: .medium, foregroundColor: .primary, lineSpacing: 1)
 
     static let bodySemibold_accent_standard = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 14), weight: .semibold, foregroundColor: Color("AccentColor"), lineSpacing: 1)

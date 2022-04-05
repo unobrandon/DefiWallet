@@ -29,7 +29,7 @@ struct NetworkVerticalCell: View {
             Button(action: {
                 self.actionTap()
             }, label: {
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 2.5) {
                     HStack(alignment: .center) {
                         Image((network.network == "bsc" ? "binance" : network.network ?? "") + "_logo")
                             .resizable()
@@ -40,6 +40,14 @@ struct NetworkVerticalCell: View {
                             .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
 
                         Spacer()
+                        LightChartView(data: [2, 17, 9, 23, 10, 8],
+                                       type: .curved,
+                                       visualType: .filled(color: store.getNetworkColor(network.network ?? ""), lineWidth: 3),
+                                       offset: 0.2,
+                                       currentValueLineType: .none)
+                            .frame(width: 60, height: 24, alignment: .center)
+                            .padding(.bottom, 10)
+
                         Image(systemName: "chevron.right")
                             .resizable()
                             .font(Font.title.weight(.semibold))
@@ -47,40 +55,38 @@ struct NetworkVerticalCell: View {
                             .frame(width: 6, height: 12, alignment: .center)
                             .foregroundColor(.secondary)
                     }
+                    .padding(.bottom, 5)
 
                     Text(network.network == "eth" ? "Ethereum" : network.network == "bsc" ? "Binanace" : network.network?.capitalized ?? "").fontTemplate(DefaultTemplate.subheadingSemiBold)
 
+                    Text("$16.23").fontTemplate(DefaultTemplate.gasPriceFont)
+
+                    Spacer()
                     if let native = network.nativeBalance,
                        let balance = Double(native),
                        let formatted = (balance / Constants.eighteenDecimal),
                        let roundedValue = formatted.truncate(places: 4),
                        let networkFormatted = network.network?.formatNetwork() {
                         HStack(alignment: .center, spacing: 2) {
-                            Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.gasPriceFont)
+                            Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.caption_semibold)
 
-                            Text(networkFormatted.capitalized).fontTemplate(DefaultTemplate.body_standard)
+                            Text(networkFormatted.uppercased()).fontTemplate(DefaultTemplate.caption)
                         }
                     }
 
-                    Spacer()
-                    LightChartView(data: [2, 17, 9, 23, 10, 8],
-                                   type: .curved,
-                                   visualType: .filled(color: store.getNetworkColor(network.network ?? ""), lineWidth: 3),
-                                   offset: 0.2,
-                                   currentValueLineType: .none)
-                            .frame(height: 40, alignment: .center)
-
                     HStack(alignment: .bottom) {
                         VStack(alignment: .leading, spacing: 2) {
+                            // Tokens section
                             if let tokenCount = network.tokenBalance?.count, tokenCount != 0 {
                                 Text("+\(tokenCount) tokens")
                                     .fontTemplate(DefaultTemplate.caption)
                             }
 
+                            // Collectables section
                             if let nfts = network.nfts, let nftCount = nfts.result?.count, nftCount != 0 {
-                                if let tokenCount = network.tokenBalance?.count, tokenCount != 0 {
-                                    Divider().padding(.vertical, 5)
-                                }
+//                                if let tokenCount = network.tokenBalance?.count, tokenCount != 0 {
+//                                    Divider().padding(.vertical, 1.5)
+//                                }
 
                                 Text("+\(nftCount) collectables")
                                     .fontTemplate(DefaultTemplate.caption)
@@ -94,7 +100,6 @@ struct NetworkVerticalCell: View {
                 .padding(.vertical, 10)
             }).buttonStyle(DefaultInteractiveStyle(style: service.themeStyle))
         }
-        .padding(.horizontal, 10)
     }
 
     private func actionTap() {

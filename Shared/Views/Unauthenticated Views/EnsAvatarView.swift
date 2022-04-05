@@ -15,8 +15,8 @@ struct EnsAvatarView: View {
 
     @State var disablePrimaryAction: Bool = true
     @State var showImagePicker: Bool = false
-    @State private var image: Image? = nil
-    @State private var inputImage: UIImage? = nil
+    @State private var image: Image?
+    @State private var inputImage: UIImage?
     @State private var avatarProgress: Double = 0.0
 
     init(services: UnauthenticatedServices) {

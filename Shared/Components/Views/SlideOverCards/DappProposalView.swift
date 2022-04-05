@@ -35,7 +35,7 @@ struct DappProposalView: View {
         } else if !doneSuccess, let proposal = store.wcProposal?.proposer {
             VStack(alignment: .center, spacing: 10) {
                 if let imageUrl = proposal.icons?.first {
-                    RemoteImage(imageUrl: imageUrl, size: 80)
+                    RemoteImage(imageUrl, size: 80)
                         .cornerRadius(10)
                 }
 

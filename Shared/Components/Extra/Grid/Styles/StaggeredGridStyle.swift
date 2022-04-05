@@ -73,10 +73,10 @@ public struct StaggeredGridStyle: GridStyle {
                 let itemSizeHeight = axis == .vertical ? preference.bounds.size.height : itemSize.height
                 let width = axis == .vertical ? itemSizeWidth * CGFloat(indexMin) + CGFloat(indexMin) * spacing : tracksLengths[indexMin]
                 let height = axis == .vertical ? tracksLengths[indexMin] : itemSizeHeight * CGFloat(indexMin) + CGFloat(indexMin) * spacing
-        
+
                 let origin = CGPoint(x: width, y: height)
                 tracksLengths[indexMin] += (axis == .vertical ? itemSizeHeight : itemSizeWidth) + spacing
-                
+
                 newPreferences.merge(with:
                     GridPreferences(items: [GridPreferences.Item(
                         id: preference.id,

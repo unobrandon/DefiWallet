@@ -27,15 +27,14 @@ struct TermsOfServiceButton: View {
 
                 Button(action: {
                     self.actionTap()
-                }) {
+                }, label: {
                     Text("Terms of Service & Privacy Policy.")
                         .font(.system(size: 12))
                         .font(.footnote)
                         .foregroundColor(Color.blue)
                         .lineLimit(1)
                         .multilineTextAlignment(.center)
-                    }
-                    .buttonStyle(ClickInteractiveStyle(0.99))
+                }).buttonStyle(ClickInteractiveStyle(0.99))
             }.padding(.horizontal)
     }
 

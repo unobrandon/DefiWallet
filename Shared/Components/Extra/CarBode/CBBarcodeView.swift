@@ -11,7 +11,7 @@ import SwiftUI
 public struct CBBarcodeView: UIViewRepresentable {
 
     public typealias UIViewType = BarcodeView
-    public typealias OnBarcodeGenerated = (UIImage)->Void
+    public typealias OnBarcodeGenerated = (UIImage) -> Void
 
     public enum BarcodeType: String {
         case qrCode = "CIQRCodeGenerator"

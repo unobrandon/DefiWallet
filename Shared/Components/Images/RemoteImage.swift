@@ -12,10 +12,12 @@ struct RemoteImage: View {
 
     private let imageUrl: String
     private let size: CGFloat
+    private var fullSize: CGSize?
 
-    init(imageUrl: String, size: CGFloat) {
-        self.imageUrl = imageUrl
+    init(_ url: String, size: CGFloat, fullSize: CGSize? = nil) {
+        self.imageUrl = url
         self.size = size
+        self.fullSize = fullSize
     }
 
     var body: some View {
@@ -25,7 +27,7 @@ struct RemoteImage: View {
             .indicator(.activity) // Activity Indicator
             .transition(.fade(duration: 0.35)) // Fade Transition with duration
             .scaledToFill()
-            .frame(width: size, height: size, alignment: .center)
+            .frame(width: fullSize?.width ?? size, height: fullSize?.height ?? size, alignment: .center)
     }
 
 }

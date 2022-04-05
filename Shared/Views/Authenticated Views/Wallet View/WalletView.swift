@@ -24,7 +24,7 @@ struct WalletView: View {
         self.store = service.wallet
         self.gridViews = [
             AnyView(NetworkSectionView(service: service)),
-            AnyView(HistorySectionView(service: service))
+            AnyView(HistorySectionView(service: service, network: nil))
         ]
 
         fetchNetworksBalances()

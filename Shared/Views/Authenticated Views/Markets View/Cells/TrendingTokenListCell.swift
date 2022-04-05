@@ -26,7 +26,7 @@ struct TrendingTokenListCell: View {
                 Text("\((data.score ?? -1) + 1)")
                     .fontTemplate(DefaultTemplate.caption_semibold)
 
-                RemoteImage(imageUrl: data.thumb ?? "", size: 20)
+                RemoteImage(data.thumb ?? "", size: 20)
                     .clipShape(Circle())
                     .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1.0))
                     .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 4, x: 0, y: 2)

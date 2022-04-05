@@ -65,11 +65,11 @@ struct TopCoinsSectionView: View {
     }
 
     private func showMoreLess() {
-        if limitCells == 5 {
-            withAnimation(.easeOut) { limitCells += 5 }
-        } else if limitCells == 10 {
-            withAnimation(.easeOut) { limitCells -= 5 }
-        }
+        marketRouter.route(to: \.marketCapRank)
+
+        #if os(iOS)
+            HapticFeedback.rigidHapticFeedback()
+        #endif
     }
 
 }

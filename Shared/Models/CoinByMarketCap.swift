@@ -35,7 +35,7 @@ struct CoinMarketCap: Codable, Hashable {
     let athDate: String?
     let atl, atlChangePercentage: Double?
     let atlDate: String?
-    let roi: Roi?
+    let roi: RoiModel?
     let lastUpdated: String?
 
     enum CodingKeys: String, CodingKey {
@@ -65,14 +65,14 @@ struct CoinMarketCap: Codable, Hashable {
     }
 }
 
-struct Roi: Codable {
+struct RoiModel: Codable {
     let times: Double?
     let currency: Currency?
     let percentage: Double?
 }
 
 enum Currency: String, Codable {
-    case btc = "btc"
-    case eth = "eth"
-    case usd = "usd"
+    case btc
+    case eth
+    case usd
 }

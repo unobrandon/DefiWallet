@@ -62,7 +62,8 @@ class EthereumService: ObservableObject {
         // InfuraWebsocketProvider(Constants.infuraBaseWssUrl + Constants.infuraProjectId,
         // delegate: self, projectId: Constants.infuraProjectId, keystoreManager: keystoreManager)
 
-        socketProvider?.network = .Mainnet
+        // FIX ME: Come back to this and change from .Ropsten -> .Mainnet
+        socketProvider?.network = .Ropsten
         socketProvider?.connectSocket()
 
         if let provider = socketProvider {

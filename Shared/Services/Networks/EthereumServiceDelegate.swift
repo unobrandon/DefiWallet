@@ -21,6 +21,7 @@ extension EthereumService: Web3SocketDelegate {
 
     func gotError(error: Error) {
         print("received eth error: \(error)")
+        self.ethNetworkStatus = .error
     }
 
 }

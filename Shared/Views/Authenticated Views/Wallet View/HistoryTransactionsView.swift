@@ -23,7 +23,8 @@ struct HistoryTransactionsView: View {
     @State private var limitCells: Int = 20
     @State private var searchText = ""
 
-    init(service: AuthenticatedServices) {
+    init(filtered: Network? = nil, service: AuthenticatedServices) {
+        self.networkFilter = filtered
         self.service = service
         self.store = service.wallet
     }
@@ -60,8 +61,8 @@ struct HistoryTransactionsView: View {
             })
             .padding(.vertical)
         })
-        .searchable(text: $searchText, prompt: "Search transactions")
-        .navigationBarTitle("Transactions", displayMode: .automatic)
+//        .searchable(text: $searchText, prompt: "Search transactions")
+        .navigationBarTitle("Transactions", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {

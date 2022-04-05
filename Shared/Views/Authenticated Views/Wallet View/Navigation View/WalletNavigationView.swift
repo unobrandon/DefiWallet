@@ -31,7 +31,7 @@ struct WalletNavigationView: View {
                     } label: {
                         ZStack(alignment: .center) {
                             ForEach(sessions.prefix(3).indices, id: \.self) { session in
-                                RemoteImage(imageUrl: sessions[session].iconURL, size: 36)
+                                RemoteImage(sessions[session].iconURL, size: 36)
                                     .overlay(Circle().foregroundColor(.clear).overlay(Circle().strokeBorder(Color("baseBackground_bordered"), lineWidth: 4)))
                                     .padding(.leading, CGFloat(25 * session))
                             }

@@ -14,9 +14,9 @@ public struct BarcodeFrame {
 
     public func draw(lineWidth: CGFloat = 1, lineColor: UIColor = UIColor.red, fillColor: UIColor = UIColor.clear) {
 
-        let view = cameraPreviewView as! CameraPreview
+        let view = cameraPreviewView as? CameraPreview
 
-        view.drawFrame(corners: corners,
+        view?.drawFrame(corners: corners,
             lineWidth: lineWidth,
             lineColor: lineColor,
             fillColor: fillColor)

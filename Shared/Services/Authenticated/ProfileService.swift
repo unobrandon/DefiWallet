@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class ProfileService: ObservableObject {
-    
+
     func logout(_ sessionToken: String) {
         let url = Constants.backendBaseUrl + "logOut" + "?sessionToken=\(sessionToken)"
 
