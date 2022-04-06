@@ -40,14 +40,14 @@ struct StickyHeaderView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: size.width, height: height > 0 ? height : 0,alignment: .top)
-                    .overlay(content: { backgroundOverlayView().animation(.none) })
+                    .overlay(content: { backgroundOverlayView() })
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(style == .shadow ? 0.25 : 0.0), radius: 12, x: 0, y: 15)
                     .offset(y: -minY)
             } else if let remoteImage = remoteImage {
                 RemoteImage(remoteImage, size: size.width,
                             fullSize: CGSize(width: size.width, height: height > 0 ? height : 0))
-                    .overlay(content: { backgroundOverlayView().animation(.none) })
+                    .overlay(content: { backgroundOverlayView() })
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(style == .shadow ? 0.25 : 0.0), radius: 12, x: 0, y: 15)
                     .offset(y: -minY)
@@ -55,7 +55,7 @@ struct StickyHeaderView: View {
                 RoundedRectangle(cornerRadius: 20)
                     .irregularGradient(colors: [.orange, .red, .yellow, .orange, .red, .yellow], backgroundColor: .pink, speed: 4)
                     .frame(width: size.width, height: height > 0 ? height : 0,alignment: .top)
-                    .overlay(content: { backgroundOverlayView().animation(.none) })
+                    .overlay(content: { backgroundOverlayView() })
                     .shadow(color: Color.black.opacity(style == .shadow ? 0.25 : 0.0), radius: 12, x: 0, y: 15)
                     .offset(y: -minY)
             }
@@ -66,7 +66,7 @@ struct StickyHeaderView: View {
     @ViewBuilder
     func backgroundOverlayView() -> some View {
         ZStack(alignment: .bottom) {
-            LinearGradient(colors: [.clear, .systemBackground.opacity(0.85)], startPoint: .top, endPoint: .bottom).cornerRadius(20)
+            LinearGradient(colors: [.clear, .systemBackground.opacity(0.90)], startPoint: .top, endPoint: .bottom).cornerRadius(20)
 
             VStack(alignment: .leading, spacing: 10) {
                 if let localTitleImage = localTitleImage {
@@ -87,7 +87,7 @@ struct StickyHeaderView: View {
                 Text(title).fontTemplate(DefaultTemplate.titleSemiBold)
                 Text(subtitle).fontTemplate(DefaultTemplate.bodyMedium)
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 30)
             .padding(.bottom)
             .frame(maxWidth: .infinity, alignment: .leading)
         }

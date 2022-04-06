@@ -26,7 +26,8 @@ struct NetworkDetailView: View {
         self.store = service.wallet
 
         self.gridViews = [
-            AnyView(NetworkSectionView(service: service)),
+            AnyView(OverviewSectionView(completeBalance: data, service: service)),
+            AnyView(TokensSectionView(data: data, service: service)),
             AnyView(HistorySectionView(service: service, network: network))
         ]
     }
@@ -39,18 +40,7 @@ struct NetworkDetailView: View {
                                  style: service.themeStyle, localTitleImage: (network.network == "bsc" ? "binance" : network.network ?? "") + "_logo",
                                  localImage: "gradientBg3")
 
-                LazyVStack(pinnedViews: [.sectionHeaders]) {
-                    Section {
-                        Grid(gridViews.indices, id: \.self) { gridViews[$0] }
-                    } header: {
-                        PinnedHeaderView(currentType: $currentTab, sections: ["All", "Tokens", "Collectables"], style: service.themeStyle, action: {
-                            print("tapped new section")
-                        })
-                        .offset(y: headerOffsets.1 > 0 ? 0 : -headerOffsets.1 / 8)
-                        .modifier(PinnedHeaderOffsetModifier(offset: $headerOffsets.0, returnFromStart: false))
-                        .modifier(PinnedHeaderOffsetModifier(offset: $headerOffsets.1))
-                    }
-                }
+                Grid(gridViews.indices, id: \.self) { gridViews[$0] }
             }
         })
         .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))

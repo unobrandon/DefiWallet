@@ -56,3 +56,18 @@ struct PinnedHeaderView: View {
         .background(VisualEffectBlurView(blurStyle: .systemThinMaterial))
     }
 }
+
+// MARK: How to use
+
+//    LazyVStack(pinnedViews: [.sectionHeaders]) {
+//        Section {
+//            Grid(gridViews.indices, id: \.self) { gridViews[$0] }
+//        } header: {
+//            PinnedHeaderView(currentType: $currentTab, sections: ["All", "Tokens", "Collectables"], style: service.themeStyle, action: {
+//                print("tapped new section")
+//            })
+//            .offset(y: headerOffsets.1 > 0 ? 0 : -headerOffsets.1 / 8)
+//            .modifier(PinnedHeaderOffsetModifier(offset: $headerOffsets.0, returnFromStart: false))
+//            .modifier(PinnedHeaderOffsetModifier(offset: $headerOffsets.1))
+//        }
+//    }

@@ -30,38 +30,44 @@ struct NetworkVerticalCell: View {
                 self.actionTap()
             }, label: {
                 VStack(alignment: .leading, spacing: 2.5) {
-                    HStack(alignment: .center) {
+                    HStack(alignment: .top) {
                         Image((network.network == "bsc" ? "binance" : network.network ?? "") + "_logo")
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 42, height: 42, alignment: .center)
+                            .frame(width: 38, height: 38, alignment: .center)
                             .clipShape(Circle())
                             .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(service.themeStyle == .border ? 1.0 : 0.0), lineWidth: 1))
                             .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
 
                         Spacer()
-                        LightChartView(data: [2, 17, 9, 23, 10, 8],
-                                       type: .curved,
-                                       visualType: .filled(color: store.getNetworkColor(network.network ?? ""), lineWidth: 3),
-                                       offset: 0.2,
-                                       currentValueLineType: .none)
-                            .frame(width: 60, height: 24, alignment: .center)
-                            .padding(.bottom, 10)
+                        HStack(alignment: .center, spacing: 10) {
+                            if let num = Double(store.getNetworkTotal(network)) {
+                                HStack(alignment: .center, spacing: 2.5) {
+                                    Text("$").fontTemplate(DefaultTemplate.gasPriceFont)
 
-                        Image(systemName: "chevron.right")
-                            .resizable()
-                            .font(Font.title.weight(.semibold))
-                            .scaledToFit()
-                            .frame(width: 6, height: 12, alignment: .center)
-                            .foregroundColor(.secondary)
+                                    MovingNumbersView(number: num,
+                                                      numberOfDecimalPlaces: 2,
+                                                      fixedWidth: nil,
+                                                      showComma: true) { str in
+                                        Text(str).fontTemplate(DefaultTemplate.gasPriceFont)
+                                    }
+                                }.mask(AppGradients.movingNumbersMask)
+                            }
+
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .font(Font.title.weight(.semibold))
+                                .scaledToFit()
+                                .frame(width: 6, height: 12, alignment: .center)
+                                .foregroundColor(.secondary)
+                        }
                     }
                     .padding(.bottom, 5)
 
-                    Text(network.network == "eth" ? "Ethereum" : network.network == "bsc" ? "Binanace" : network.network?.capitalized ?? "").fontTemplate(DefaultTemplate.subheadingSemiBold)
+                    Text(network.network == "eth" ? "Ethereum" : network.network == "bsc" ? "Binanace" : network.network?.capitalized ?? "")
+                        .fontTemplate(DefaultTemplate.subheadingSemiBold)
+                        .padding(.bottom, 2)
 
-                    Text("$16.23").fontTemplate(DefaultTemplate.gasPriceFont)
-
-                    Spacer()
                     if let native = network.nativeBalance,
                        let balance = Double(native),
                        let formatted = (balance / Constants.eighteenDecimal),
@@ -74,6 +80,15 @@ struct NetworkVerticalCell: View {
                         }
                     }
 
+                    Spacer()
+                    LightChartView(data: [2, 17, 9, 23, 10, 8],
+                                   type: .curved,
+                                   visualType: .filled(color: store.getNetworkColor(network.network ?? ""), lineWidth: 3),
+                                   offset: 0.2,
+                                   currentValueLineType: .none)
+                        .frame(height: 28, alignment: .center)
+
+                    Spacer()
                     HStack(alignment: .bottom) {
                         VStack(alignment: .leading, spacing: 2) {
                             // Tokens section

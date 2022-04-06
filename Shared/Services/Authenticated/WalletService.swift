@@ -232,6 +232,20 @@ class WalletService: ObservableObject {
         }
     }
 
+    // Remove this. Not good logic.
+    func getNetworkTotal(_ completeBalance: CompleteBalance) -> String {
+        guard let tokens = completeBalance.tokenBalance else { return "0.00" }
+        var total: Double = 0.00
+
+        for token in tokens {
+            if let usdTotal = token.usdTotal, let balance = Double(usdTotal) {
+                total += balance
+            }
+        }
+
+        return "\(total)"
+    }
+
     func shareSheet(url: URL) {
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)

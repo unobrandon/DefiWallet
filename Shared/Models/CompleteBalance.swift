@@ -26,41 +26,23 @@ struct CompleteBalance: Codable, Hashable {
 }
 
 // MARK: - TokenBalance
-struct TokenBalance: Codable {
+struct TokenBalance: Codable, Hashable {
+
+    static func == (lhs: TokenBalance, rhs: TokenBalance) -> Bool {
+        return lhs.tokenAddress == rhs.tokenAddress && lhs.name == rhs.name
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(tokenAddress)
+        hasher.combine(name)
+    }
+
     let tokenAddress, name, symbol, decimals: String?
-    let logo, thumbnail: JSONNull?
+    let logo, thumbnail: String?
     let balance, usd, usdTotal: String?
 
     enum CodingKeys: String, CodingKey {
         case tokenAddress = "token_address"
         case name, symbol, logo, thumbnail, decimals, balance, usd, usdTotal
     }
-}
-
-// MARK: - Encode/decode helpers
-
-class JSONNull: Codable, Hashable {
-
-    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
-        return true
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        // No-op
-    }
-
-    public init() {}
-
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if !container.decodeNil() {
-            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encodeNil()
-    }
-
 }

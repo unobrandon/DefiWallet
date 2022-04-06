@@ -41,13 +41,13 @@ struct TokenListStandardCell: View {
 
                         VStack(alignment: .leading, spacing: 0) {
                             Text(data.name ?? "").fontTemplate(DefaultTemplate.gasPriceFont)
-                            Text(data.symbol ?? "").fontTemplate(DefaultTemplate.body_secondary)
-                        }
+                            Text(data.symbol ?? "").fontTemplate(DefaultTemplate.body_secondary).offset(y: -1.5)
+                        }.padding(.leading, 2.5)
 
                         Spacer()
-                        VStack(alignment: .trailing, spacing: 0) {
+                        VStack(alignment: .trailing, spacing: 5) {
                             HStack(alignment: .top, spacing: 10) {
-                                Text("$\("".forTrailingZero(temp: data.currentPrice?.truncate(places: 4) ?? 0.00))").fontTemplate(DefaultTemplate.bodyMedium)
+                                Text("$\("".forTrailingZero(temp: data.currentPrice?.truncate(places: 4) ?? 0.00))").fontTemplate(DefaultTemplate.bodySemibold)
 
                                 Image(systemName: "chevron.right")
                                     .resizable()
