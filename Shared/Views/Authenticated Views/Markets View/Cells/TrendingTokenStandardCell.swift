@@ -46,7 +46,7 @@ struct TrendingTokenStandardCell: View {
 
                         Spacer()
                         VStack(alignment: .trailing, spacing: 0) {
-                            HStack(alignment: .top, spacing: 10) {
+                            HStack(alignment: .center, spacing: 10) {
                                 Text("#\(data.marketCapRank ?? 0)").fontTemplate(DefaultTemplate.bodyMedium)
 
                                 Image(systemName: "chevron.right")

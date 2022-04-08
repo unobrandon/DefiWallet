@@ -15,8 +15,10 @@ struct TrendingSectionView: View {
     @ObservedObject private var store: MarketsService
 
     @State private var limitCells: Int = 4
+    @Binding var isTrendingLoading: Bool
 
-    init(service: AuthenticatedServices) {
+    init(isLoading: Binding<Bool>, service: AuthenticatedServices) {
+        self._isTrendingLoading = isLoading
         self.service = service
         self.store = service.market
     }
@@ -29,9 +31,9 @@ struct TrendingSectionView: View {
                 VStack(alignment: .center, spacing: 0) {
                     ListTitleView(title: "🔥 Trending", actionText: "See all", style: service.themeStyle)
 
-                    if store.isTrendingLoading {
+                    if store.trendingCoins.isEmpty, isTrendingLoading {
                         LoadingView(title: "")
-                    } else if store.trendingCoins.isEmpty, !store.isTrendingLoading {
+                    } else if store.trendingCoins.isEmpty, !isTrendingLoading {
                         HStack {
                             Spacer()
                             Text("error loading trending").fontTemplate(DefaultTemplate.caption)

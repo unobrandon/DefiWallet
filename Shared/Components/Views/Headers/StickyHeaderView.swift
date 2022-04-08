@@ -42,21 +42,21 @@ struct StickyHeaderView: View {
                     .frame(width: size.width, height: height > 0 ? height : 0,alignment: .top)
                     .overlay(content: { backgroundOverlayView() })
                     .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(style == .shadow ? 0.25 : 0.0), radius: 12, x: 0, y: 15)
+                    .shadow(color: Color.black.opacity(style == .shadow ? 0.15 : 0.0), radius: 15, x: 0, y: 10)
                     .offset(y: -minY)
             } else if let remoteImage = remoteImage {
                 RemoteImage(remoteImage, size: size.width,
                             fullSize: CGSize(width: size.width, height: height > 0 ? height : 0))
                     .overlay(content: { backgroundOverlayView() })
                     .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(style == .shadow ? 0.25 : 0.0), radius: 12, x: 0, y: 15)
+                    .shadow(color: Color.black.opacity(style == .shadow ? 0.15 : 0.0), radius: 15, x: 0, y: 10)
                     .offset(y: -minY)
             } else {
                 RoundedRectangle(cornerRadius: 20)
                     .irregularGradient(colors: [.orange, .red, .yellow, .orange, .red, .yellow], backgroundColor: .pink, speed: 4)
                     .frame(width: size.width, height: height > 0 ? height : 0,alignment: .top)
                     .overlay(content: { backgroundOverlayView() })
-                    .shadow(color: Color.black.opacity(style == .shadow ? 0.25 : 0.0), radius: 12, x: 0, y: 15)
+                    .shadow(color: Color.black.opacity(style == .shadow ? 0.15 : 0.0), radius: 15, x: 0, y: 10)
                     .offset(y: -minY)
             }
         }

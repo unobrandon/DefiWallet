@@ -14,12 +14,13 @@ struct HistorySectionView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
 
-    @State private var limitCells: Int = 4
-    @State private var isLoading: Bool = true
-    @State private var emptyTransactions: Bool = false
+    @Binding private var isLoading: Bool
     private let filter: Network?
 
-    init(service: AuthenticatedServices, network: Network? = nil, filterString: String? = nil) {
+    @State private var limitCells: Int = 4
+
+    init(isLoading: Binding<Bool>, service: AuthenticatedServices, network: Network? = nil, filterString: String? = nil) {
+        self._isLoading = isLoading
         self.service = service
         self.store = service.wallet
         self.filter = network
@@ -31,9 +32,9 @@ struct HistorySectionView: View {
             .padding(.vertical, 5)
 
             ListSection(style: service.themeStyle) {
-                if store.history.isEmpty, store.isHistoryLoading {
+                if store.history.isEmpty, isLoading {
                     LoadingView(title: "")
-                } else if store.history.isEmpty, !store.isHistoryLoading {
+                } else if store.history.isEmpty, !isLoading {
                     HStack {
                         Spacer()
                         Text("empty transactions").fontTemplate(DefaultTemplate.caption)

@@ -73,7 +73,7 @@ struct PasswordView: View {
         self.disablePrimaryAction = true
         self.isLoading = true
 
-        store.registerUser(username: store.unauthenticatedWallet.address.formatAddress(),
+        store.registerUser(username: store.unauthenticatedWallet.address,
                            password: passwordText,
                            address: store.unauthenticatedWallet.address,
                            currency: store.prefCurrency,

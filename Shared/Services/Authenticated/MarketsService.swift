@@ -13,15 +13,11 @@ class MarketsService: ObservableObject {
 
     @Published var gasPrices = [GasPrice]()
     @Published var ethGasPriceTrends: EthGasPriceTrends?
+    @Published var tokenCategories = [TokenCategory]()
     @Published var coinsByMarketCap = [CoinMarketCap]()
     @Published var trendingCoins = [TrendingCoin]()
 
-    @Published var isTrendingLoading: Bool = false
-    @Published var isMarketCapLoading: Bool = false
-
-    init() {
-//        self.fetchEthGasPriceTrends(completion: { print("gas is done loading") })
-    }
+    init() {  }
 
     func sortGas(_ network: Network) -> GasPrice? {
         return self.gasPrices.first(where: { $0.network == network })
@@ -44,13 +40,26 @@ class MarketsService: ObservableObject {
 
                 completion()
             case .failure(let error):
-                print("error featching gas price: \(error)")
+                print("error fetching gas price: \(error)")
                 completion()
             }
         }
     }
 
     func fetchEthGasPriceTrends(completion: @escaping () -> Void) {
+        if let storage = StorageService.shared.gasPriceTrends {
+            storage.async.object(forKey: "gasPriceTrends") { result in
+                switch result {
+                case .value(let trends):
+                    print("got eth gas price trends")
+                    DispatchQueue.main.async {
+                        self.ethGasPriceTrends = trends
+                    }
+                case .error(let error):
+                    print("error getting eth gas price trends: \(error.localizedDescription)")
+                }
+            }
+        }
 
         let url = Constants.backendBaseUrl + "ethGasTrend"
 
@@ -61,15 +70,45 @@ class MarketsService: ObservableObject {
 
                 completion()
             case .failure(let error):
-                print("error featching gas price: \(error)")
+                print("error fetching gas price: \(error)")
+                completion()
+            }
+        }
+    }
+
+    func fetchTokenCategories(completion: @escaping () -> Void) {
+        if let storage = StorageService.shared.tokenCategories {
+            storage.async.object(forKey: "tokenCategories") { result in
+                switch result {
+                case .value(let categories):
+                    print("got categories!! \(categories)")
+
+                    DispatchQueue.main.async {
+                        self.tokenCategories = categories
+                    }
+                case .error(let error):
+                    print("error getting tokenCategories: \(error.localizedDescription)")
+                }
+            }
+        }
+
+        let url = Constants.backendBaseUrl + "topCategories"
+
+        AF.request(url, method: .get).responseDecodable(of: [TokenCategory].self) { response in
+            switch response.result {
+            case .success(let categories):
+                self.tokenCategories = categories
+                print("got categories network!! \(categories.count)")
+
+                completion()
+            case .failure(let error):
+                print("error getting tokenCategories network: \(error)")
                 completion()
             }
         }
     }
 
     func fetchCoinsByMarketCap(currency: String, perPage: Int? = 25, page: Int? = 1, completion: @escaping () -> Void) {
-        self.isMarketCapLoading = true
-
         if let storage = StorageService.shared.marketCapStorage {
             storage.async.object(forKey: "marketCapList") { result in
                 switch result {
@@ -84,20 +123,20 @@ class MarketsService: ObservableObject {
             }
         }
 
-//        let url = Constants.backendBaseUrl + "topCoinsByMarketCap" + "?currency=" + currency + "&perPage=\(perPage ?? 25)" + "&page=\(page ?? 1)"
-        let urlDirect = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=" + currency + "&order=market_cap_desc&per_page=\(perPage ?? 25)" + "&page=\(page ?? 1)" + "&sparkline=false"
+        let url = Constants.backendBaseUrl + "topCoinsByMarketCap" + "?currency=" + currency + "&perPage=\(perPage ?? 25)" + "&page=\(page ?? 1)"
+//        let urlDirect = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=" + currency + "&order=market_cap_desc&per_page=\(perPage ?? 25)" + "&page=\(page ?? 1)" + "&sparkline=false"
 
-        AF.request(urlDirect, method: .get).responseDecodable(of: CoinsByMarketCap.self) { response in
+        AF.request(url, method: .get).responseDecodable(of: CoinsByMarketCap.self) { response in
             switch response.result {
             case .success(let marketCapToken):
                 if let list = marketCapToken.marketCap {
                     print("coin market cap success: \(list.count)")
-                    self.coinsByMarketCap = list
-//                    if page == 1 {
-//                        self.coinsByMarketCap = list
-//                    } else {
-//                        self.coinsByMarketCap += list
-//                    }
+
+                    if page == 1 {
+                        self.coinsByMarketCap = list
+                    } else {
+                        self.coinsByMarketCap += list
+                    }
 
                     if let storage = StorageService.shared.marketCapStorage {
                         storage.async.setObject(list, forKey: "marketCapList") { _ in }
@@ -115,8 +154,6 @@ class MarketsService: ObservableObject {
     }
 
     func fetchTrending(completion: @escaping () -> Void) {
-        self.isTrendingLoading = true
-
         if let storage = StorageService.shared.trendingStorage {
             storage.async.object(forKey: "trendingList") { result in
                 switch result {

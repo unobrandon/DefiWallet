@@ -46,8 +46,19 @@ struct TokenListStandardCell: View {
 
                         Spacer()
                         VStack(alignment: .trailing, spacing: 5) {
-                            HStack(alignment: .top, spacing: 10) {
-                                Text("$\("".forTrailingZero(temp: data.currentPrice?.truncate(places: 4) ?? 0.00))").fontTemplate(DefaultTemplate.bodySemibold)
+                            HStack(alignment: .center, spacing: 10) {
+                                HStack(alignment: .center, spacing: 1) {
+                                    if let num = Double("".forTrailingZero(temp: data.currentPrice?.truncate(places: 4) ?? 0.00)) {
+                                        Text("$").fontTemplate(DefaultTemplate.bodyBold)
+
+                                        MovingNumbersView(number: num,
+                                                          numberOfDecimalPlaces: 2,
+                                                          fixedWidth: nil,
+                                                          showComma: true) { str in
+                                            Text(str).fontTemplate(DefaultTemplate.bodyMedium)
+                                        }
+                                    }
+                                }.mask(AppGradients.movingNumbersMask)
 
                                 Image(systemName: "chevron.right")
                                     .resizable()
@@ -61,6 +72,8 @@ struct TokenListStandardCell: View {
                                                   "\("".forTrailingZero(temp: data.priceChangePercentage24H?.truncate(places: 2) ?? 0.00))%",
                                                   color: data.priceChangePercentage24H ?? 0 >= 0 ? .green : .red,
                                                   style: service.themeStyle)
+                                .padding(.trailing, 12)
+
                         }
                     }
                     .padding(.vertical, 10)

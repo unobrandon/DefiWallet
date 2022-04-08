@@ -16,7 +16,10 @@ struct NetworkSectionView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
 
-    init(service: AuthenticatedServices) {
+    @Binding private var isLoading: Bool
+
+    init(isLoading: Binding<Bool>, service: AuthenticatedServices) {
+        self._isLoading = isLoading
         self.service = service
         self.store = service.wallet
     }
@@ -27,6 +30,10 @@ struct NetworkSectionView: View {
                 print("see more")
             })
             .padding(.vertical, 5)
+
+            if isLoading, store.completeBalance.isEmpty {
+                LoadingView(title: "")
+            }
 
             ScrollView(MobileConstants.deviceType == .phone ? .horizontal : .vertical, showsIndicators: false) {
                 HStack(alignment: .center, spacing: 10) {

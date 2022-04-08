@@ -17,17 +17,17 @@ struct WalletView: View {
     @ObservedObject private var store: WalletService
 
     @State private var showSheet = false
-    @State var gridViews: [AnyView]
+    @State var gridViews: [AnyView] = []
+
+    @State var isBalanceLoading: Bool = false
+    @State var isHistoryLoading: Bool = false
 
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
-        self.gridViews = [
-            AnyView(NetworkSectionView(service: service)),
-            AnyView(HistorySectionView(service: service, network: nil))
-        ]
 
         fetchNetworksBalances()
+        fetchHistory()
     }
 
     var body: some View {
@@ -42,6 +42,12 @@ struct WalletView: View {
         })
         .navigationBarTitle("", displayMode: .inline)
         .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))
+        .onAppear {
+            self.gridViews = [
+                AnyView(NetworkSectionView(isLoading: self.$isBalanceLoading, service: service)),
+                AnyView(HistorySectionView(isLoading: self.$isHistoryLoading, service: service, network: nil))
+            ]
+        }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 WalletNavigationView(service: service).offset(y: -2.5)
@@ -69,8 +75,19 @@ struct WalletView: View {
     }
 
     private func fetchNetworksBalances() {
+        isBalanceLoading = true
+
         store.fetchAccountBalance(service.currentUser.address, completion: {
             print("completed getting chain overview: \(store.accountBalance.count)")
+            isBalanceLoading = false
+        })
+    }
+
+    private func fetchHistory() {
+        isHistoryLoading = true
+
+        store.fetchHistory(store.currentUser.wallet.address, completion: {
+            isHistoryLoading = false
         })
     }
 

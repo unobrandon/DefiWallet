@@ -18,18 +18,19 @@ struct MarketsView: View {
     @State var searchText: String = ""
     @State var searchHide: Bool = true
 
-    @State var gridViews: [AnyView]
+    @State var gridViews: [AnyView] = []
+
+    @State var isMarketCapLoading: Bool = false
+    @State var isCategoriesLoading: Bool = false
+    @State var isTrendingLoading: Bool = false
 
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.market
-        self.gridViews = [
-            AnyView(TrendingSectionView(service: service)),
-            AnyView(TopCoinsSectionView(service: service))
-        ]
 
+        self.fetchGasTrends()
+        self.fetchTokenCategories()
         self.fetchTrending()
-        self.fetchTopCoins()
     }
 
     var body: some View {
@@ -44,6 +45,13 @@ struct MarketsView: View {
         .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))
         .navigationSearchBar { SearchBar("Search tokens and more...", text: $searchText) }
         .navigationSearchBarHiddenWhenScrolling(searchHide)
+        .onAppear {
+            self.gridViews = [
+                AnyView(CategoriesSectionView(service: service)),
+                AnyView(TrendingSectionView(isLoading: $isTrendingLoading, service: service)),
+                AnyView(TopCoinsSectionView(isLoading: $isMarketCapLoading, service: service))
+            ]
+        }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing, content: {
                 Button(action: {
@@ -80,15 +88,26 @@ struct MarketsView: View {
         }
     }
 
-    private func fetchTrending() {
-        store.fetchTrending(completion: {
-            store.isTrendingLoading = false
+    private func fetchGasTrends() {
+        store.fetchEthGasPriceTrends(completion: {
+            print("gas is done loading")
         })
     }
 
-    private func fetchTopCoins() {
-        store.fetchCoinsByMarketCap(currency: service.currentUser.currency, completion: {
-            store.isMarketCapLoading = false
+    private func fetchTokenCategories() {
+        isCategoriesLoading = true
+
+        store.fetchTokenCategories(completion: {
+            print("categories is done loading")
+            isCategoriesLoading = true
+        })
+    }
+
+    private func fetchTrending() {
+        isTrendingLoading = true
+
+        store.fetchTrending(completion: {
+            isTrendingLoading = false
         })
     }
 

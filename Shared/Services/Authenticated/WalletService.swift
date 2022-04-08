@@ -20,8 +20,6 @@ class WalletService: ObservableObject {
     @Published var wcProposal: WalletConnect.Session.Proposal?
     @Published var wcActiveSessions = [WCSessionInfo]()
 
-    @Published var isHistoryLoading: Bool = false
-
     var currentUser: CurrentUser
     var walletConnectClient: WalletConnectClient
 
@@ -36,10 +34,6 @@ class WalletService: ObservableObject {
         self.walletConnectClient = WalletConnectClient(metadata: metadata, relayer: relayer)
         self.walletConnectClient.delegate = self
         self.reloadActiveSessions()
-
-        self.fetchHistory(currentUser.wallet.address, completion: {
-            self.isHistoryLoading = false
-        })
     }
 
     func connectDapp(uri: String, completion: @escaping (Bool) -> Void) {
@@ -113,7 +107,6 @@ class WalletService: ObservableObject {
 
         // Good ETH address to test with: 0x660c6f9ff81018d5c13ab769148ec4db4940d01c
         let url = Constants.zapperBaseUrl + "transactions?address=\(address)&addresses%5B%5D=\(address)&" + Constants.zapperApiKey
-        isHistoryLoading = true
 
         if let storage = StorageService.shared.historyStorage {
             storage.async.object(forKey: "historyList") { result in

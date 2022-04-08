@@ -14,11 +14,15 @@ struct TopCoinsSectionView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: MarketsService
 
-    @State private var limitCells: Int = 5
+    @State private var limitCells: Int = 10
+    @Binding var isMarketCapLoading: Bool
 
-    init(service: AuthenticatedServices) {
+    init(isLoading: Binding<Bool>, service: AuthenticatedServices) {
+        self._isMarketCapLoading = isLoading
         self.service = service
         self.store = service.market
+
+        fetchTopCoins()
     }
 
     var body: some View {
@@ -26,12 +30,12 @@ struct TopCoinsSectionView: View {
             SectionHeaderView(title: "Market Cap",
                               actionTitle: store.coinsByMarketCap.isEmpty ? "" : store.coinsByMarketCap.count < limitCells ? "" : limitCells == 10 ? "Show less" : "Show more",
                               action: showMoreLess)
-            .padding(.vertical, 5)
+            .padding(.bottom, 5)
 
             ListSection(style: service.themeStyle) {
-                if store.isMarketCapLoading {
+                if store.coinsByMarketCap.isEmpty, isMarketCapLoading {
                     LoadingView(title: "")
-                } else if store.coinsByMarketCap.isEmpty, !store.isMarketCapLoading {
+                } else if store.coinsByMarketCap.isEmpty, !isMarketCapLoading {
                     HStack {
                         Spacer()
                         Text("error loading data").fontTemplate(DefaultTemplate.caption)
@@ -70,6 +74,12 @@ struct TopCoinsSectionView: View {
         #if os(iOS)
             HapticFeedback.rigidHapticFeedback()
         #endif
+    }
+
+    private func fetchTopCoins() {
+        store.fetchCoinsByMarketCap(currency: service.currentUser.currency, completion: {
+            isMarketCapLoading = false
+        })
     }
 
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TrendingDetailView: View {
+struct TrendingView: View {
 
     @EnvironmentObject private var marketRouter: MarketsCoordinator.Router
 

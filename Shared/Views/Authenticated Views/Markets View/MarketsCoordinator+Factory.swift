@@ -15,7 +15,11 @@ extension MarketsCoordinator {
     }
 
     @ViewBuilder func makeTrendingDetail() -> some View {
-        TrendingDetailView(service: services)
+        TrendingView(service: services)
+    }
+
+    @ViewBuilder func makeCategories() -> some View {
+        CategoriesView(service: services)
     }
 
     @ViewBuilder func makeMarketCapRank() -> some View {

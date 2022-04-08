@@ -22,6 +22,8 @@ class StorageService {
     var balanceStorage: Cache.Storage<String, [CompleteBalance]>?
     var historyStorage: Cache.Storage<String, [HistoryData]>?
     var trendingStorage: Cache.Storage<String, [TrendingCoin]>?
+    var gasPriceTrends: Cache.Storage<String, EthGasPriceTrends>?
+    var tokenCategories: Cache.Storage<String, [TokenCategory]>?
     var marketCapStorage: Cache.Storage<String, [CoinMarketCap]>?
 
     init() {
@@ -58,6 +60,15 @@ class StorageService {
                                               transformer: TransformerFactory.forCodable(ofType: [TrendingCoin].self))
         } catch {
             print("error getting trending storage \(error.localizedDescription)")
+        }
+
+        // gas price trends
+        do {
+            self.gasPriceTrends = try Storage(diskConfig: diskConfig,
+                                              memoryConfig: memoryConfig,
+                                              transformer: TransformerFactory.forCodable(ofType: EthGasPriceTrends.self))
+        } catch {
+            print("error getting gas price trends storage \(error.localizedDescription)")
         }
 
         // market cap

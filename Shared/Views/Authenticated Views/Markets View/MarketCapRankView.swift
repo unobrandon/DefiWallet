@@ -42,7 +42,7 @@ struct MarketCapRankView: View {
 
                 limitCells += 25
                 showIndicator = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     enableLoadMore = true
                     showIndicator = false
                 }
@@ -63,7 +63,7 @@ struct MarketCapRankView: View {
             })
             .padding(.vertical)
         })
-        .navigationBarTitle("Market Cap", displayMode: .automatic)
+        .navigationBarTitle("Market Cap", displayMode: .inline)
     }
 
 }
