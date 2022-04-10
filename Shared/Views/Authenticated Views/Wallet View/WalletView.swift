@@ -45,6 +45,7 @@ struct WalletView: View {
         .onAppear {
             self.gridViews = [
                 AnyView(NetworkSectionView(isLoading: self.$isBalanceLoading, service: service)),
+                AnyView(CollectablesSectionView(isLoading: self.$isBalanceLoading, service: service)),
                 AnyView(HistorySectionView(isLoading: self.$isHistoryLoading, service: service, network: nil))
             ]
         }

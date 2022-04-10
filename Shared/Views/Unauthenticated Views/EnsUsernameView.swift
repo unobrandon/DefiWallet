@@ -58,11 +58,10 @@ struct EnsUsernameView: View {
                     store.checkNotificationPermission(completion: { isEnabled in
                         if isEnabled {
                             unauthenticatedRouter.route(to: \.completed)
-                        } else {
+                        } else if !isEnabled {
                             unauthenticatedRouter.route(to: \.notifications)
                         }
                     })
-                    unauthenticatedRouter.route(to: \.notifications)
 
                     #if os(iOS)
                         HapticFeedback.lightHapticFeedback()

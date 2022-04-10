@@ -63,6 +63,47 @@ extension String {
         return self.prefix(8) + "..." + self.suffix(8)
     }
 
+    func formatLargeNumber(_ number: Int, size: ControlSize? = .small) -> String {
+        let num = abs(Double(number))
+        let sign = (number < 0) ? "-" : ""
+
+        switch num {
+        case 1_000_000_000_000...:
+            var formatted = num / 1_000_000_000_000
+            formatted = formatted.reduceScale(to: 1)
+            let amount = size == .small ? "T" : size == .large ? " trillion" : " Tril"
+
+            return "\(sign)\(formatted)\(amount)"
+
+        case 1_000_000_000...:
+            var formatted = num / 1_000_000_000
+            formatted = formatted.reduceScale(to: 1)
+            let amount = size == .small ? "B" : size == .large ? " Billion" : " Bil"
+
+            return "\(sign)\(formatted)\(amount)"
+
+        case 1_000_000...:
+            var formatted = num / 1_000_000
+            formatted = formatted.reduceScale(to: 1)
+            let amount = size == .small ? "M" : size == .large ? " Million" : " Mil"
+
+            return "\(sign)\(formatted)\(amount)"
+
+        case 1_000...:
+            var formatted = num / 1_000
+            formatted = formatted.reduceScale(to: 1)
+            let amount = size == .small ? "K" : size == .large ? " Thousand" : " Thsnd"
+
+            return "\(sign)\(formatted)\(amount)"
+
+        case 0...:
+            return "\(number)"
+
+        default:
+            return "\(sign)\(number)"
+        }
+    }
+
     func createDateTime() -> String {
         var strDate = "undefined"
 

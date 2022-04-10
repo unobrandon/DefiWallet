@@ -103,6 +103,20 @@ class WalletService: ObservableObject {
         }
     }
 
+    func setNfts(completion: @escaping () -> Void) {
+        /*
+        let encoder = JSONEncoder()
+
+        do {
+            let jsonString = try encoder.encode()
+
+            UserDefaults.standard.setValue(jsonString, forKey: "currentUser")
+        } catch {
+            authStatus = .unauthenticated
+        }
+         */
+    }
+
     func fetchHistory(_ address: String, completion: @escaping () -> Void) {
 
         // Good ETH address to test with: 0x660c6f9ff81018d5c13ab769148ec4db4940d01c

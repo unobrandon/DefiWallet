@@ -16,7 +16,6 @@ struct CategoriesView: View {
 
     @State var enableLoadMore: Bool = true
     @State var showIndicator: Bool = false
-    @State private var page: Int = 1
     @State private var limitCells: Int = 10
 
     init(service: AuthenticatedServices) {
@@ -26,26 +25,23 @@ struct CategoriesView: View {
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
-//            LoadMoreScrollView(enableLoadMore: $enableLoadMore, showIndicator: $showIndicator, onLoadMore: {
-//                guard limitCells <= store.tokenCategories.prefix(limitCells).count else {
-//                    enableLoadMore = false
-//                    showIndicator = true
-//                    page += 1
-//
-//                    return
-//                }
-//
-//                limitCells += 10
-//                showIndicator = true
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                    enableLoadMore = true
-//                    showIndicator = false
-//                }
-//            }, {
-            ScrollView(showsIndicators: true) {
-                VStack(alignment: .center, spacing: 10) {
-                    ForEach(store.tokenCategories.indices, id: \.self) { index in
-                        ListSection(style: service.themeStyle) {
+            LoadMoreScrollView(enableLoadMore: $enableLoadMore, showIndicator: $showIndicator, onLoadMore: {
+                guard limitCells <= store.tokenCategories.count else {
+                    enableLoadMore = false
+                    showIndicator = false
+
+                    return
+                }
+
+                limitCells += 10
+                showIndicator = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    enableLoadMore = true
+                    showIndicator = false
+                }
+            }, {
+                ForEach(store.tokenCategories.prefix(limitCells).indices, id: \.self) { index in
+                    ListSection(style: service.themeStyle) {
                             CategoryCell(service: service,
                                          data: store.tokenCategories[index],
                                          index: index,
@@ -54,13 +50,11 @@ struct CategoriesView: View {
                                 print("categories details")
     //                            marketRouter.route(to: \.historyDetail, item)
                             })
-                        }
                     }
                 }
-            }
-            .padding(.vertical)
+            })
         })
-        .navigationBarTitle("Top Categories", displayMode: .inline)
+        .navigationBarTitle("Categories", displayMode: .inline)
     }
 
 }

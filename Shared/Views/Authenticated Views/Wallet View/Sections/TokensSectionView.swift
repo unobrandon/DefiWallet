@@ -40,9 +40,9 @@ struct TokensSectionView: View {
                 } else if tokens.isEmpty, !isLoading {
                     HStack {
                         Spacer()
-                        Text("no tokens found").fontTemplate(DefaultTemplate.caption)
+                        Text("empty tokens").fontTemplate(DefaultTemplate.caption)
                         Spacer()
-                    }.padding(.vertical, 30)
+                    }.padding(.vertical)
                 }
 
                 ForEach(tokens.prefix(limitCells), id: \.self) { item in

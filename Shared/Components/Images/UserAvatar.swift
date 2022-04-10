@@ -29,7 +29,7 @@ struct UserAvatar: View {
                 .shadow(color: Color.black.opacity(style == .shadow ? 0.175 : 0.0),
                         radius: size > 40 ? (size / 7) : size < 25 ? 3 : 5, x: 0, y: size > 40 ? (size / 8) : size < 25 ? 3 : 5)
         } else {
-            EmptyAvatar(username: user.username, size: size, style: style)
+            EmptyAvatar(username: user.username == user.address ? "" : user.username, size: size, style: style)
         }
     }
 

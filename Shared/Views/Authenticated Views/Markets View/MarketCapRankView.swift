@@ -27,22 +27,26 @@ struct MarketCapRankView: View {
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             LoadMoreScrollView(enableLoadMore: $enableLoadMore, showIndicator: $showIndicator, onLoadMore: {
-                guard limitCells <= store.coinsByMarketCap.prefix(limitCells).count else {
+                guard limitCells <= store.coinsByMarketCap.count else {
                     enableLoadMore = false
                     showIndicator = true
                     page += 1
 
                     store.fetchCoinsByMarketCap(currency: service.currentUser.currency, page: page, completion: {
-                        enableLoadMore = false
-                        showIndicator = true
+                        showIndicator = false
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            enableLoadMore = true
+                        }
                     })
 
                     return
                 }
 
                 limitCells += 25
-                showIndicator = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                showIndicator = false
+                enableLoadMore = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     enableLoadMore = true
                     showIndicator = false
                 }

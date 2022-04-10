@@ -117,7 +117,7 @@ struct EnsAvatarView: View {
         store.checkNotificationPermission(completion: { isEnabled in
             if isEnabled {
                 unauthenticatedRouter.route(to: \.completed)
-            } else {
+            } else if !isEnabled {
                 unauthenticatedRouter.route(to: \.notifications)
             }
         })

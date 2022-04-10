@@ -17,7 +17,7 @@ struct HistorySectionView: View {
     @Binding private var isLoading: Bool
     private let filter: Network?
 
-    @State private var limitCells: Int = 4
+    @State private var limitCells: Int = 5
 
     init(isLoading: Binding<Bool>, service: AuthenticatedServices, network: Network? = nil, filterString: String? = nil) {
         self._isLoading = isLoading

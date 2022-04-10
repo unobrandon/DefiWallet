@@ -28,6 +28,7 @@ struct MarketsView: View {
         self.service = service
         self.store = service.market
 
+        self.fetchGlobalData()
         self.fetchGasTrends()
         self.fetchTokenCategories()
         self.fetchTrending()
@@ -47,12 +48,20 @@ struct MarketsView: View {
         .navigationSearchBarHiddenWhenScrolling(searchHide)
         .onAppear {
             self.gridViews = [
-                AnyView(CategoriesSectionView(service: service)),
+                AnyView(TopSectionView(service: service)),
                 AnyView(TrendingSectionView(isLoading: $isTrendingLoading, service: service)),
                 AnyView(TopCoinsSectionView(isLoading: $isMarketCapLoading, service: service))
             ]
         }
         .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                if let data = store.globalMarketData {
+                    GlobalDataNavSection(data: data, service: service, action: {
+                        print("tapped global data")
+                    }).offset(y: -2.5)
+                }
+            }
+
             ToolbarItem(placement: .navigationBarTrailing, content: {
                 Button(action: {
                     self.store.fetchEthGasPriceTrends(completion: {
@@ -86,6 +95,12 @@ struct MarketsView: View {
                 })
             })
         }
+    }
+
+    private func fetchGlobalData() {
+        store.fetchGlobalMarketData(completion: {
+            print("gas is done loading")
+        })
     }
 
     private func fetchGasTrends() {

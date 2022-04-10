@@ -23,6 +23,7 @@ class StorageService {
     var historyStorage: Cache.Storage<String, [HistoryData]>?
     var trendingStorage: Cache.Storage<String, [TrendingCoin]>?
     var gasPriceTrends: Cache.Storage<String, EthGasPriceTrends>?
+    var globalMarketData: Cache.Storage<String, GlobalMarketData>?
     var tokenCategories: Cache.Storage<String, [TokenCategory]>?
     var marketCapStorage: Cache.Storage<String, [CoinMarketCap]>?
 

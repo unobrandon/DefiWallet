@@ -28,7 +28,7 @@ struct TopCoinsSectionView: View {
     var body: some View {
         LazyVStack(alignment: .center, spacing: 0) {
             SectionHeaderView(title: "Market Cap",
-                              actionTitle: store.coinsByMarketCap.isEmpty ? "" : store.coinsByMarketCap.count < limitCells ? "" : limitCells == 10 ? "Show less" : "Show more",
+                              actionTitle: store.coinsByMarketCap.isEmpty ? "" : "Show more",
                               action: showMoreLess)
             .padding(.bottom, 5)
 

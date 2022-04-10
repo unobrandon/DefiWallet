@@ -254,16 +254,16 @@ class UnauthenticatedServices: ObservableObject {
         }
     }
 
-    func checkNotificationPermission(completion: ((Bool) -> Void)?) {
+    func checkNotificationPermission(completion: @escaping ((Bool) -> Void)) {
         UNUserNotificationCenter.current().getNotificationSettings(completionHandler: { (settings) in
             if settings.authorizationStatus == .notDetermined {
-                completion?(false)
+                completion(false)
             } else if settings.authorizationStatus == .denied {
-                completion?(false)
+                completion(false)
             } else if settings.authorizationStatus == .authorized {
-                completion?(true)
+                completion(true)
             } else {
-                completion?(false)
+                completion(false)
             }
         })
     }

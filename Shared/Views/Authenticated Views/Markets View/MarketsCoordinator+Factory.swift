@@ -10,19 +10,19 @@ import Stinsen
 
 extension MarketsCoordinator {
 
-    @ViewBuilder func makeStart() -> some View {
+    func makeStart() -> some View {
         MarketsView(service: services)
     }
 
-    @ViewBuilder func makeTrendingDetail() -> some View {
+    func makeTrendingDetail() -> some View {
         TrendingView(service: services)
     }
 
-    @ViewBuilder func makeCategories() -> some View {
+    func makeCategories() -> some View {
         CategoriesView(service: services)
     }
 
-    @ViewBuilder func makeMarketCapRank() -> some View {
+    func makeMarketCapRank() -> some View {
         MarketCapRankView(service: services)
     }
 

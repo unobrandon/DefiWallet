@@ -28,6 +28,7 @@ struct RemoteImage: View {
             .transition(.fade(duration: 0.35)) // Fade Transition with duration
             .scaledToFill()
             .frame(width: fullSize?.width ?? size, height: fullSize?.height ?? size, alignment: .center)
+            .background(Color("baseBackground"))
     }
 
 }

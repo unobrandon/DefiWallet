@@ -72,7 +72,7 @@ struct WalletNavigationView: View {
                     }
                 }, label: {
                     HStack(alignment: .center, spacing: 5) {
-                        Text(service.currentUser.username ?? service.currentUser.shortAddress)
+                        Text(service.currentUser.username == service.currentUser.address ? service.currentUser.shortAddress : service.currentUser.username ?? service.currentUser.shortAddress)
                             .fontTemplate(FontTemplate(font: Font.custom("LabMono-Regular", size: 12), weight: .regular, foregroundColor: .secondary, lineSpacing: 0))
 
                         Image(systemName: hasCopiedAddress ? "checkmark" : "doc.on.doc")

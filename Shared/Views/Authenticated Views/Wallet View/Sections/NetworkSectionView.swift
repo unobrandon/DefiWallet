@@ -9,8 +9,6 @@ import SwiftUI
 
 struct NetworkSectionView: View {
 
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
     @EnvironmentObject private var walletRouter: WalletCoordinator.Router
 
     @ObservedObject private var service: AuthenticatedServices

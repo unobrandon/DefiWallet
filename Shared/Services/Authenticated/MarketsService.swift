@@ -13,6 +13,7 @@ class MarketsService: ObservableObject {
 
     @Published var gasPrices = [GasPrice]()
     @Published var ethGasPriceTrends: EthGasPriceTrends?
+    @Published var globalMarketData: GlobalMarketData?
     @Published var tokenCategories = [TokenCategory]()
     @Published var coinsByMarketCap = [CoinMarketCap]()
     @Published var trendingCoins = [TrendingCoin]()
@@ -46,6 +47,43 @@ class MarketsService: ObservableObject {
         }
     }
 
+    func fetchGlobalMarketData(completion: @escaping () -> Void) {
+        if let storage = StorageService.shared.gasPriceTrends {
+            storage.async.object(forKey: "globalMarketData") { result in
+                switch result {
+                case .value(let trends):
+                    print("got global market data locally")
+                    DispatchQueue.main.async {
+                        self.ethGasPriceTrends = trends
+                    }
+                case .error(let error):
+                    print("error getting global market data locally: \(error.localizedDescription)")
+                }
+            }
+        }
+
+        let url = Constants.backendBaseUrl + "global"
+
+        AF.request(url, method: .get).responseDecodable(of: GlobalMarketData.self) { response in
+            switch response.result {
+            case .success(let global):
+                DispatchQueue.main.async {
+                    self.globalMarketData = global
+                }
+                print("done getting global market data: \(global)")
+
+                if let storage = StorageService.shared.globalMarketData {
+                    storage.async.setObject(global, forKey: "globalMarketData") { _ in }
+                }
+
+                completion()
+            case .failure(let error):
+                print("error fetching global market data: \(error)")
+                completion()
+            }
+        }
+    }
+
     func fetchEthGasPriceTrends(completion: @escaping () -> Void) {
         if let storage = StorageService.shared.gasPriceTrends {
             storage.async.object(forKey: "gasPriceTrends") { result in
@@ -61,12 +99,19 @@ class MarketsService: ObservableObject {
             }
         }
 
-        let url = Constants.backendBaseUrl + "ethGasTrend"
+        //let url = Constants.backendBaseUrl + "ethGasTrend"
+        let url = "https://api.zapper.fi/v1/gas-price/trend?network=ethereum&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241"
 
         AF.request(url, method: .get).responseDecodable(of: EthGasPriceTrends.self) { response in
             switch response.result {
             case .success(let ethGasPriceTrends):
-                self.ethGasPriceTrends = ethGasPriceTrends
+                DispatchQueue.main.async {
+                    self.ethGasPriceTrends = ethGasPriceTrends
+                }
+
+                if let storage = StorageService.shared.gasPriceTrends {
+                    storage.async.setObject(ethGasPriceTrends, forKey: "gasPriceTrends") { _ in }
+                }
 
                 completion()
             case .failure(let error):
@@ -97,8 +142,14 @@ class MarketsService: ObservableObject {
         AF.request(url, method: .get).responseDecodable(of: [TokenCategory].self) { response in
             switch response.result {
             case .success(let categories):
-                self.tokenCategories = categories
+                DispatchQueue.main.async {
+                    self.tokenCategories = categories
+                }
                 print("got categories network!! \(categories.count)")
+
+                if let storage = StorageService.shared.tokenCategories {
+                    storage.async.setObject(categories, forKey: "tokenCategories") { _ in }
+                }
 
                 completion()
             case .failure(let error):
