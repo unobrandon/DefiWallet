@@ -41,8 +41,8 @@ struct NetworkDetailView: View {
             }
         })
         .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: backButton)
+//        .navigationBarBackButtonHidden(true)
+//        .navigationBarItems(leading: backButton)
         .onAppear {
             self.gridViews = [
                 AnyView(OverviewSectionView(completeBalance: balance, service: service)),

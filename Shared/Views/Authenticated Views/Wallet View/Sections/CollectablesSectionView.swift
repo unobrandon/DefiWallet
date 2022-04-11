@@ -37,7 +37,7 @@ struct CollectablesSectionView: View {
                 LoadingView(title: "")
             }
 
-            Grid(store.accountNfts, id:\.self) { nftResult in
+            Grid(store.accountNfts.prefix(limitCells), id:\.self) { nftResult in
                 CollectableCell(service: service, data: nftResult, style: service.themeStyle, action: {
                     print("collectable tapped")
                 })

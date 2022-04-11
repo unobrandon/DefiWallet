@@ -34,7 +34,6 @@ struct Nfts: Codable {
 // MARK: - NftResult
 struct NftResult: Codable, Hashable {
 
-    
     static func == (lhs: NftResult, rhs: NftResult) -> Bool {
         return lhs.tokenAddress == rhs.tokenAddress && lhs.tokenID == rhs.tokenID
     }

@@ -36,7 +36,7 @@ struct CollectableCell: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .circular))
-                                .padding([.top, .horizontal], 10)
+                                .padding([.top, .horizontal], 7.5)
                                 .padding(.bottom, 5)
                         } else if let image = uriResponce.image {
                             WebImage(url: URL(string: image))
@@ -47,7 +47,7 @@ struct CollectableCell: View {
                                 .scaledToFit()
                                 .background(Color(!(uriResponce.backgroundColor?.isEmpty ?? true) ? uriResponce.backgroundColor ?? "baseBackground" : "baseBackground"))
                                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .circular))
-                                .padding([.top, .horizontal], 10)
+                                .padding([.top, .horizontal], 7.5)
                                 .padding(.bottom, 5)
                         } else if let imageUrl = uriResponce.image_url {
                             WebImage(url: URL(string: imageUrl))
@@ -58,7 +58,7 @@ struct CollectableCell: View {
                                 .scaledToFit()
                                 .background(Color(!(uriResponce.backgroundColor?.isEmpty ?? true) ? uriResponce.backgroundColor ?? "baseBackground" : "baseBackground"))
                                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .circular))
-                                .padding([.top, .horizontal], 10)
+                                .padding([.top, .horizontal], 7.5)
                                 .padding(.bottom, 5)
                         }
 

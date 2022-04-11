@@ -13,7 +13,7 @@ struct BalanceSectionView: View {
 
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
-    
+
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet

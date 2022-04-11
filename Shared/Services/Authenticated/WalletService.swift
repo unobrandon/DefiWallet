@@ -168,7 +168,7 @@ class WalletService: ObservableObject {
                 switch result {
                 case .value(let nftUri):
                     print("my nft uri is: \(nftUri)")
-//                    response(nftUri)
+                    response(nftUri)
                 case .error(_ ):
                     print("error")
                 }
