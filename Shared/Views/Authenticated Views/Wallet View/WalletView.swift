@@ -78,9 +78,19 @@ struct WalletView: View {
     private func fetchNetworksBalances() {
         isBalanceLoading = true
 
-        store.fetchAccountBalance(service.currentUser.address, completion: {
-            print("completed getting chain overview: \(store.accountBalance.count)")
+        store.fetchAccountBalance(service.currentUser.address, completion: { completeBal in
             isBalanceLoading = false
+
+            if let bal = completeBal {
+                store.setAccountCollectables(bal, completion: { result in
+                    DispatchQueue.main.async {
+                        store.accountNfts = result
+                        print("completed getting chain overview: \(store.accountBalance.count) && nfts: \(store.accountNfts.count)")
+                    }
+                })
+            } else {
+                print("failed getting complete balance")
+            }
         })
     }
 

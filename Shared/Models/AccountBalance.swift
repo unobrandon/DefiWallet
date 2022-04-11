@@ -13,6 +13,8 @@ import Alamofire
 
 // MARK: - AccountBalance
 struct AccountBalance: Codable {
+
     let error: [String]?
     let completeBalance: [CompleteBalance]?
+
 }

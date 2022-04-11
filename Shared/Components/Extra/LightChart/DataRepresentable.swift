@@ -43,14 +43,12 @@ extension DataRepresentable {
     }
 
     private func sameValues(in vector: [Double]) -> Bool {
-        guard let prev = vector.first else {
-            return true
-        }
+        guard let prev = vector.first else { return true }
+
         for value in vector {
-            if value != prev {
-                return false
-            }
+            if value != prev { return false }
         }
+
         return true
     }
 }

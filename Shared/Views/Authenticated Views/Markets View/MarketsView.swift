@@ -71,7 +71,7 @@ struct MarketsView: View {
                     HStack(alignment: .center, spacing: 10) {
                         if let gas = store.ethGasPriceTrends,
                            let trends = gas.trend,
-                           let standard = gas.current?.standard {
+                           let _ = gas.current?.standard {
                             LightChartView(data: trends[0...6].map({ $0.baseFee ?? 0 }).reversed(),
                                            type: .curved,
                                            visualType: .filled(color: .purple, lineWidth: 3),
@@ -79,11 +79,11 @@ struct MarketsView: View {
                                            currentValueLineType: .none)
                                     .frame(width: 50, height: 28, alignment: .center)
 
-                            MovingNumbersView(number: Double(standard.baseFeePerGas ?? 0), numberOfDecimalPlaces: 0, fixedWidth: 22, showComma: false) { gas in
-                                Text(gas)
-                                    .fontTemplate(DefaultTemplate.gasPriceFont)
-                            }
-                            .mask(AppGradients.movingNumbersMask)
+//                            MovingNumbersView(number: Double(standard.baseFeePerGas ?? 0), numberOfDecimalPlaces: 0, fixedWidth: 22, showComma: false) { gas in
+//                                Text(gas)
+//                                    .fontTemplate(DefaultTemplate.gasPriceFont)
+//                            }
+//                            .mask(AppGradients.movingNumbersMask)
 
                             Image(systemName: "fuelpump.fill")
                                 .resizable()

@@ -25,10 +25,10 @@ struct NetworkVerticalCell: View {
     }
 
     var body: some View {
-        ListSection(hasPadding: false, style: service.themeStyle) {
-            Button(action: {
-                self.actionTap()
-            }, label: {
+        Button(action: {
+            self.actionTap()
+        }, label: {
+            ListSection(hasPadding: false, style: service.themeStyle) {
                 VStack(alignment: .leading, spacing: 2.5) {
                     HStack(alignment: .top) {
                         Image((network.network == "bsc" ? "binance" : network.network ?? "") + "_logo")
@@ -113,8 +113,8 @@ struct NetworkVerticalCell: View {
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 10)
-            }).buttonStyle(DefaultInteractiveStyle(style: service.themeStyle))
-        }
+            }
+        }).buttonStyle(ClickInteractiveStyle(0.98))
     }
 
     private func actionTap() {

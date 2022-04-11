@@ -99,7 +99,7 @@ class MarketsService: ObservableObject {
             }
         }
 
-        //let url = Constants.backendBaseUrl + "ethGasTrend"
+        // let url = Constants.backendBaseUrl + "ethGasTrend"
         let url = "https://api.zapper.fi/v1/gas-price/trend?network=ethereum&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241"
 
         AF.request(url, method: .get).responseDecodable(of: EthGasPriceTrends.self) { response in

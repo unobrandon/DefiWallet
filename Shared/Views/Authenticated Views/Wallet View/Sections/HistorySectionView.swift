@@ -19,7 +19,7 @@ struct HistorySectionView: View {
 
     @State private var limitCells: Int = 5
 
-    init(isLoading: Binding<Bool>, service: AuthenticatedServices, network: Network? = nil, filterString: String? = nil) {
+    init(isLoading: Binding<Bool>, service: AuthenticatedServices, network: Network? = nil) {
         self._isLoading = isLoading
         self.service = service
         self.store = service.wallet
@@ -28,7 +28,7 @@ struct HistorySectionView: View {
 
     var body: some View {
         LazyVStack(alignment: .center, spacing: 0) {
-            SectionHeaderView(title: "History", actionTitle: store.history.isEmpty ? "" : store.history.count < limitCells ? "" : limitCells == 10 ? "Show less" : "Show more", action: showMoreLess)
+            SectionHeaderView(title: "History", actionTitle: store.history.isEmpty ? "" : "Show all", action: showMoreLess)
             .padding(.vertical, 5)
 
             ListSection(style: service.themeStyle) {

@@ -9,8 +9,10 @@ import Foundation
 
 // MARK: - AccountNft
 struct AccountNft: Codable {
+
     let network: String?
     let nfts: Nfts?
+
 }
 
 // MARK: - Nfts
@@ -29,8 +31,18 @@ struct Nfts: Codable {
 
 }
 
-// MARK: - Result
-struct NftResult: Codable {
+// MARK: - NftResult
+struct NftResult: Codable, Hashable {
+
+    
+    static func == (lhs: NftResult, rhs: NftResult) -> Bool {
+        return lhs.tokenAddress == rhs.tokenAddress && lhs.tokenID == rhs.tokenID
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(tokenAddress)
+        hasher.combine(tokenID)
+    }
 
     let tokenAddress, tokenID, blockNumberMinted, ownerOf: String?
     let blockNumber, amount, contractType, name: String?

@@ -15,7 +15,7 @@ class WalletService: ObservableObject {
 
     @Published var accountBalance = [AccountBalance]()
     @Published var completeBalance = [CompleteBalance]()
-    @Published var accountNfts = [AccountNft]()
+    @Published var accountNfts = [NftResult]()
     @Published var history = [HistoryData]()
     @Published var wcProposal: WalletConnect.Session.Proposal?
     @Published var wcActiveSessions = [WCSessionInfo]()
@@ -59,7 +59,7 @@ class WalletService: ObservableObject {
         print("visit dapp's website: \(link)")
     }
 
-    func fetchAccountBalance(_ address: String, completion: @escaping () -> Void) {
+    func fetchAccountBalance(_ address: String, completion: @escaping ([CompleteBalance]?) -> Void) {
         let url = Constants.backendBaseUrl + "accountBalance" + "?address=\(address)"
 
         if let storage = StorageService.shared.balanceStorage {
@@ -73,7 +73,7 @@ class WalletService: ObservableObject {
             }
         }
 
-        AF.request(url, method: .get).responseDecodable(of: AccountBalance.self) { response in
+        AF.request(url, method: .get).responseDecodable(of: AccountBalance.self) { [self] response in
             switch response.result {
             case .success(let accountBalance):
                 if let balance = accountBalance.completeBalance {
@@ -81,40 +81,125 @@ class WalletService: ObservableObject {
                     print("account balance is: \(self.completeBalance.count)")
 
                     if let storage = StorageService.shared.balanceStorage {
-                        storage.async.setObject(balance, forKey: "balanceList") { result in
-                            switch result {
-                            case .value(let val):
-                                print("saved balance successfully: \(val)")
-
-                            case .error(let error):
-                                print("error saving balance locally: \(error)")
-                            }
+                        storage.async.setObject(balance, forKey: "balanceList") { _ in
+                            completion(balance)
                         }
                     }
                 }
 
-                completion()
-
             case .failure(let error):
                 print("error loading balance: \(error)")
 
-                completion()
+                completion(!self.completeBalance.isEmpty ? self.completeBalance : nil)
             }
         }
     }
 
-    func setNfts(completion: @escaping () -> Void) {
-        /*
-        let encoder = JSONEncoder()
+    func setAccountCollectables(_ completeBalance: [CompleteBalance], completion: @escaping ([NftResult]) -> Void) {
+        var result: [NftResult] = []
+
+        for networkBalance in completeBalance {
+            guard let nftResult = networkBalance.nfts?.result else { continue }
+
+            for nft in nftResult {
+//                var myNft = nft
+//                if let networkString = networkBalance.network {
+//                    myNft.network = networkString
+//                }
+
+                result.append(nft)
+            }
+        }
+
+        print("called set colletavles")
+
+        completion(result)
+    }
+
+    func decodeNftMetadata(_ metadata: String, completion: @escaping (NftURIResponse?) -> Void) {
+        let decoder = JSONDecoder()
 
         do {
-            let jsonString = try encoder.encode()
+            let uriResponse = try decoder.decode(NftURIResponse.self, from: metadata.data(using: .utf8) ?? Data())
 
-            UserDefaults.standard.setValue(jsonString, forKey: "currentUser")
+            var requestUrl = ""
+
+            if let image_url = uriResponse.image_url {
+                if image_url.contains("ipfs://") {
+                    let hash = image_url.replacingOccurrences(of: "ipfs://", with: "")
+                    let completeHash = hash.replacingOccurrences(of: "image", with: "")
+                    requestUrl = Constants.backendBaseUrl + "getIpfsDoc?hash=" + completeHash
+
+                    AF.request(requestUrl, method: .get).responseDecodable(of: NftURIResponse.self, emptyResponseCodes: [200]) { result in
+                        switch result.result {
+                        case .success(let nftUri):
+                            completion(nftUri)
+                            print("my downloded nft uri is: \(nftUri)")
+
+                            if let storage = StorageService.shared.nftUriResponse {
+                                storage.async.setObject(nftUri, forKey: requestUrl) { _ in }
+                            }
+
+                        case .failure(let error):
+                            print("error downloading loading nft uri: \(error)")
+                        }
+                    }
+
+                } else {
+                    requestUrl = image_url
+                }
+            } else {
+                requestUrl = uriResponse.image ?? ""
+            }
+
+            var result = uriResponse
+            result.image = requestUrl
+
+            completion(result)
         } catch {
-            authStatus = .unauthenticated
+            completion(nil)
         }
-         */
+    }
+
+    func fetchNftUri(_ url: String, response: @escaping (NftURIResponse) -> Void) {
+
+        if let storage = StorageService.shared.nftUriResponse {
+            storage.async.object(forKey: url) { result in
+                switch result {
+                case .value(let nftUri):
+                    print("my nft uri is: \(nftUri)")
+//                    response(nftUri)
+                case .error(_ ):
+                    print("error")
+                }
+            }
+        }
+
+        var requestUrl = ""
+
+        print("the url requested is: \(url)")
+        if url.contains("ipfs://") {
+            let hash = url.replacingOccurrences(of: "ipfs://", with: "")
+            let completeHash = hash.replacingOccurrences(of: "image", with: "")
+
+            requestUrl = Constants.backendBaseUrl + "getIpfsDoc?hash=" + completeHash
+        } else {
+            requestUrl = url
+        }
+
+        AF.request(requestUrl, method: .get).responseDecodable(of: NftURIResponse.self, emptyResponseCodes: [200]) { result in
+            switch result.result {
+            case .success(let nftUri):
+                response(nftUri)
+
+                if let storage = StorageService.shared.nftUriResponse {
+                    storage.async.setObject(nftUri, forKey: url) { _ in }
+                }
+
+            case .failure(let error):
+                print("error loading nft uri: \(error)")
+            }
+        }
     }
 
     func fetchHistory(_ address: String, completion: @escaping () -> Void) {
@@ -207,6 +292,15 @@ class WalletService: ObservableObject {
         } else if network == "avalanche" { return Color("avalanche")
         } else if network == "fantom" { return Color("fantom")
         } else { return Color.primary }
+    }
+
+    func getNetworkEnum(_ network: String) -> Network {
+        if network == "eth" { return .ethereum
+        } else if network == "polygon" { return .polygon
+        } else if network == "bsc" { return .binanceSmartChain
+        } else if network == "avalanche" { return .avalanche
+        } else if network == "fantom" { return .fantom
+        } else { return .ethereum }
     }
 
     func getBlockExplorerName(_ network: Network) -> String {

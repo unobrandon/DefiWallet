@@ -342,7 +342,7 @@ extension CameraPreview {
 
     func drawFrame(corners: [CGPoint], lineWidth: CGFloat = 1,
                    lineColor: UIColor = UIColor.red,
-                   fillColor: UIColor = UIColor.clear) -> Void {
+                   fillColor: UIColor = UIColor.clear) {
 
         removeFrameTimer?.invalidate()
         removeFrameTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(removeBarcodeFrame), userInfo: nil, repeats: false)
