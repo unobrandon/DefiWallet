@@ -40,7 +40,30 @@ struct NetworkVerticalCell: View {
                             .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
 
                         Spacer()
-                        HStack(alignment: .center, spacing: 10) {
+                        Image(systemName: "chevron.right")
+                            .resizable()
+                            .font(Font.title.weight(.semibold))
+                            .scaledToFit()
+                            .frame(width: 7, height: 14, alignment: .center)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.bottom, 5)
+
+                    Text(network.network == "eth" ? "Ethereum" : network.network == "bsc" ? "Binanace" : network.network?.capitalized ?? "")
+                        .fontTemplate(DefaultTemplate.subheadingSemiBold)
+                        .padding(.bottom, 2)
+
+                    Spacer()
+                    LightChartView(data: [2, 17, 9, 23, 10, 8],
+                                   type: .curved,
+                                   visualType: .filled(color: store.getNetworkColor(network.network ?? ""), lineWidth: 3),
+                                   offset: 0.2,
+                                   currentValueLineType: .none)
+                        .frame(height: 28, alignment: .center)
+
+                    Spacer()
+                    HStack(alignment: .center) {
+                        VStack(alignment: .leading, spacing: 2) {
                             if let num = Double(store.getNetworkTotal(network)) {
                                 HStack(alignment: .center, spacing: 2.5) {
                                     Text("$").fontTemplate(DefaultTemplate.gasPriceFont)
@@ -54,57 +77,34 @@ struct NetworkVerticalCell: View {
                                 }.mask(AppGradients.movingNumbersMask)
                             }
 
-                            Image(systemName: "chevron.right")
-                                .resizable()
-                                .font(Font.title.weight(.semibold))
-                                .scaledToFit()
-                                .frame(width: 6, height: 12, alignment: .center)
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    .padding(.bottom, 5)
+                            if let native = network.nativeBalance,
+                               let balance = Double(native),
+                               let formatted = (balance / Constants.eighteenDecimal),
+                               let roundedValue = formatted.truncate(places: 4),
+                               let networkFormatted = network.network?.formatNetwork() {
+                                HStack(alignment: .center, spacing: 2) {
+                                    Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.caption_semibold)
 
-                    Text(network.network == "eth" ? "Ethereum" : network.network == "bsc" ? "Binanace" : network.network?.capitalized ?? "")
-                        .fontTemplate(DefaultTemplate.subheadingSemiBold)
-                        .padding(.bottom, 2)
-
-                    if let native = network.nativeBalance,
-                       let balance = Double(native),
-                       let formatted = (balance / Constants.eighteenDecimal),
-                       let roundedValue = formatted.truncate(places: 4),
-                       let networkFormatted = network.network?.formatNetwork() {
-                        HStack(alignment: .center, spacing: 2) {
-                            Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.caption_semibold)
-
-                            Text(networkFormatted.uppercased()).fontTemplate(DefaultTemplate.caption)
-                        }
-                    }
-
-                    Spacer()
-                    LightChartView(data: [2, 17, 9, 23, 10, 8],
-                                   type: .curved,
-                                   visualType: .filled(color: store.getNetworkColor(network.network ?? ""), lineWidth: 3),
-                                   offset: 0.2,
-                                   currentValueLineType: .none)
-                        .frame(height: 28, alignment: .center)
-
-                    Spacer()
-                    HStack(alignment: .bottom) {
-                        VStack(alignment: .leading, spacing: 2) {
-                            // Tokens section
-                            if let tokenCount = network.tokenBalance?.count, tokenCount != 0 {
-                                Text("+\(tokenCount) tokens")
-                                    .fontTemplate(DefaultTemplate.caption)
+                                    Text(networkFormatted.uppercased()).fontTemplate(DefaultTemplate.caption)
+                                }
                             }
 
-                            // Collectables section
-                            if let nfts = network.nfts, let nftCount = nfts.result?.count, nftCount != 0 {
-//                                if let tokenCount = network.tokenBalance?.count, tokenCount != 0 {
-//                                    Divider().padding(.vertical, 1.5)
-//                                }
+                            HStack(alignment: .center, spacing: 4) {
+                                // Tokens section
+                                if let tokenCount = network.tokenBalance?.count, tokenCount != 0 {
+                                    Text("\(tokenCount) tokens")
+                                        .fontTemplate(DefaultTemplate.caption)
+                                }
 
-                                Text("+\(nftCount) collectables")
-                                    .fontTemplate(DefaultTemplate.caption)
+                                // Collectables section
+                                if let nfts = network.nfts, let nftCount = nfts.result?.count, nftCount != 0 {
+                                    if let tokenCount = network.tokenBalance?.count, tokenCount != 0 {
+                                        Text("&").fontTemplate(DefaultTemplate.caption)
+                                    }
+
+                                    Text("\(nftCount) nfts")
+                                        .fontTemplate(DefaultTemplate.caption)
+                                }
                             }
                         }
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public class FontTemplate: FontTemplating {
+public struct FontTemplate: FontTemplating {
 
     public init(font: Font,
                 weight: Font.Weight,

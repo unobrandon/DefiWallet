@@ -39,6 +39,10 @@ struct NftURIResponse: Codable, Hashable {
         case backgroundColor = "background_color"
     }
 
+    func isSVG() -> Bool {
+        return self.image?.suffix(3) == "svg" || self.image_url?.suffix(3) == "svg"
+    }
+
 }
 
 // MARK: - Attribute

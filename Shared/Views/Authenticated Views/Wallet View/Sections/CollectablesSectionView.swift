@@ -17,7 +17,7 @@ struct CollectablesSectionView: View {
     @Binding private var isLoading: Bool
     private let filter: Network?
 
-    @State private var limitCells: Int = 5
+    @State private var limitCells: Int = MobileConstants.deviceType == .phone ? 9 : 12
 
     init(isLoading: Binding<Bool>, service: AuthenticatedServices, network: Network? = nil) {
         self._isLoading = isLoading
@@ -38,13 +38,19 @@ struct CollectablesSectionView: View {
             }
 
             Grid(store.accountNfts.prefix(limitCells), id:\.self) { nftResult in
-                CollectableCell(service: service, data: nftResult, style: service.themeStyle, action: {
-                    print("collectable tapped")
-                })
+                if nftResult == store.accountNfts.prefix(limitCells).last {
+                    CollectableSeeAllCell(style: service.themeStyle, action: {
+                        print("collectable see all tapped")
+                    })
+                } else {
+                    CollectableImageCell(service: service, data: nftResult, style: service.themeStyle, action: {
+                        print("collectable tapped")
+                    })
+                }
             }
             .padding(.horizontal)
         }
-        .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 2 : 3, spacing: 5))
+        .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 3 : 4, spacing: 5))
     }
 
 }

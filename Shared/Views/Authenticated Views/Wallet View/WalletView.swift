@@ -21,6 +21,7 @@ struct WalletView: View {
 
     @State var isBalanceLoading: Bool = false
     @State var isHistoryLoading: Bool = false
+    let gridItems: [SwiftUI.GridItem] = MobileConstants.deviceType == .phone ? [SwiftUI.GridItem(.flexible())] : [SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible())]
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -35,8 +36,10 @@ struct WalletView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 BalanceSectionView(service: service)
 
-                Grid(gridViews.indices, id:\.self) { index in
-                    gridViews[index]
+                LazyVGrid(columns: gridItems, alignment: .center, spacing: 0) {
+                    ForEach(gridViews.indices, id:\.self) { index in
+                        gridViews[index]
+                    }
                 }
             }
         })

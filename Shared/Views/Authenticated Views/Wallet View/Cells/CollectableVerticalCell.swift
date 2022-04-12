@@ -8,7 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct CollectableCell: View {
+struct CollectableVerticalCell: View {
 
     @ObservedObject private var service: AuthenticatedServices
 
@@ -16,6 +16,7 @@ struct CollectableCell: View {
     @State private var uriResponce: NftURIResponse?
     private let style: AppStyle
     private let action: () -> Void
+    @State var svgLoadError: Bool = false
 
     init(service: AuthenticatedServices, data: NftResult, style: AppStyle, action: @escaping () -> Void) {
         self.service = service
@@ -29,7 +30,17 @@ struct CollectableCell: View {
             VStack(alignment: .leading, spacing: 0) {
                 if let uriResponce = uriResponce {
                     ListSection(hasPadding: false, style: service.themeStyle) {
-                        if let imageData = uriResponce.imageData,
+                        if uriResponce.isSVG() {
+                            ZStack {
+                                SVGWebView(uriResponce.image ?? uriResponce.image_url ?? "", isAvailable: $svgLoadError)
+                                .aspectRatio(1, contentMode: .fit)
+
+                                if svgLoadError {
+                                    Text("error loading image")                                    .fontTemplate(DefaultTemplate.bodySemibold_nunito)
+                                        .padding()
+                                }
+                            }
+                        } else if let imageData = uriResponce.imageData,
                            let data = imageData.data(using: .utf8),
                             let image = UIImage(data: data) {
                             Image(uiImage: image)
@@ -62,17 +73,21 @@ struct CollectableCell: View {
                                 .padding(.bottom, 5)
                         }
 
-                        VStack(alignment: .leading, spacing: 2.5) {
-                            Text(uriResponce.name ?? "no name")
-                                .fontTemplate(DefaultTemplate.captionPrimary_semibold)
-                                .lineLimit(2)
-                                .padding(.horizontal, 10)
+                        HStack(alignment: .center, spacing: 0) {
+                            VStack(alignment: .leading, spacing: 2.5) {
+                                Text(uriResponce.name ?? "no name")
+                                    .fontTemplate(DefaultTemplate.sectionHeaderBold_nunito)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .lineLimit(2)
 
-                            Text(uriResponce.nftURIResponseDescription ?? "")
-                                .fontTemplate(DefaultTemplate.caption)
-                                .lineLimit(3)
-                                .padding([.bottom, .horizontal], 10)
+                                Text(uriResponce.nftURIResponseDescription ?? "")
+                                    .fontTemplate(DefaultTemplate.caption)
+                                    .lineLimit(3)
+                            }
+                            Spacer()
                         }
+                        .padding(.horizontal, 15)
+                        .padding(.bottom, 10)
                     }
                 }
             }

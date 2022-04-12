@@ -27,7 +27,7 @@ struct HistorySectionView: View {
     }
 
     var body: some View {
-        LazyVStack(alignment: .center, spacing: 0) {
+        VStack(alignment: .center, spacing: 0) {
             SectionHeaderView(title: "History", actionTitle: store.history.isEmpty ? "" : "Show all", action: showMoreLess)
             .padding(.vertical, 5)
 
@@ -45,14 +45,16 @@ struct HistorySectionView: View {
                 ForEach(filterHistory(filter).prefix(limitCells), id: \.self) { item in
                     HistoryListCell(service: service, data: item, isLast: store.history.count < limitCells ? store.history.last == item ? true : false : false, style: service.themeStyle, action: {
                         walletRouter.route(to: \.historyDetail, item)
+
                         #if os(iOS)
                             HapticFeedback.rigidHapticFeedback()
                         #endif
                     })
 
-                    if filterHistory(filter).last == item || item == filterHistory(filter)[limitCells - 1] {
+                    if item == filterHistory(filter)[limitCells - 1] {
                         ListStandardButton(title: "show \(filterHistory(filter).count - limitCells) more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
                             walletRouter.route(to: \.history, filter)
+
                             #if os(iOS)
                                 HapticFeedback.rigidHapticFeedback()
                             #endif

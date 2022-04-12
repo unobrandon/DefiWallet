@@ -310,12 +310,28 @@
 		05CA87182802A48E006FACE0 /* NftUriResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA87162802A48E006FACE0 /* NftUriResponce.swift */; };
 		05CA871A2802A5CF006FACE0 /* CollectablesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA87192802A5CF006FACE0 /* CollectablesSectionView.swift */; };
 		05CA871B2802A5CF006FACE0 /* CollectablesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA87192802A5CF006FACE0 /* CollectablesSectionView.swift */; };
-		05CA871D2803BD14006FACE0 /* CollectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA871C2803BD14006FACE0 /* CollectableCell.swift */; };
-		05CA871E2803BD14006FACE0 /* CollectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA871C2803BD14006FACE0 /* CollectableCell.swift */; };
+		05CA871D2803BD14006FACE0 /* CollectableVerticalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA871C2803BD14006FACE0 /* CollectableVerticalCell.swift */; };
+		05CA871E2803BD14006FACE0 /* CollectableVerticalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA871C2803BD14006FACE0 /* CollectableVerticalCell.swift */; };
 		05CA87202803DD0D006FACE0 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA871F2803DD0D006FACE0 /* Color+Extensions.swift */; };
 		05CA87212803DD0D006FACE0 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA871F2803DD0D006FACE0 /* Color+Extensions.swift */; };
 		05CA872328040EA4006FACE0 /* TokenDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA872228040EA4006FACE0 /* TokenDetailView.swift */; };
 		05CA872428040EA4006FACE0 /* TokenDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA872228040EA4006FACE0 /* TokenDetailView.swift */; };
+		05CA872628052BA4006FACE0 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CA872528052BA4006FACE0 /* Nunito-SemiBold.ttf */; };
+		05CA872728052BA4006FACE0 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CA872528052BA4006FACE0 /* Nunito-SemiBold.ttf */; };
+		05CA872C28052BC7006FACE0 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CA872828052BC7006FACE0 /* Nunito-Medium.ttf */; };
+		05CA872D28052BC7006FACE0 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CA872828052BC7006FACE0 /* Nunito-Medium.ttf */; };
+		05CA872E28052BC7006FACE0 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CA872928052BC7006FACE0 /* Nunito-Regular.ttf */; };
+		05CA872F28052BC7006FACE0 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CA872928052BC7006FACE0 /* Nunito-Regular.ttf */; };
+		05CA873028052BC7006FACE0 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CA872A28052BC7006FACE0 /* Nunito-Bold.ttf */; };
+		05CA873128052BC7006FACE0 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CA872A28052BC7006FACE0 /* Nunito-Bold.ttf */; };
+		05CA873228052BC7006FACE0 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CA872B28052BC7006FACE0 /* Nunito-Light.ttf */; };
+		05CA873328052BC7006FACE0 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CA872B28052BC7006FACE0 /* Nunito-Light.ttf */; };
+		05CA873528053243006FACE0 /* SVGWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA873428053243006FACE0 /* SVGWebView.swift */; };
+		05CA873628053243006FACE0 /* SVGWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA873428053243006FACE0 /* SVGWebView.swift */; };
+		05CA873828053CDD006FACE0 /* CollectableImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA873728053CDD006FACE0 /* CollectableImageCell.swift */; };
+		05CA873928053CDD006FACE0 /* CollectableImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA873728053CDD006FACE0 /* CollectableImageCell.swift */; };
+		05CA873B28055F3C006FACE0 /* CollectableSeeAllCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA873A28055F3C006FACE0 /* CollectableSeeAllCell.swift */; };
+		05CA873C28055F3C006FACE0 /* CollectableSeeAllCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA873A28055F3C006FACE0 /* CollectableSeeAllCell.swift */; };
 		05D1094527C08B2B008DCC66 /* UnauthenticatedCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806F227B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift */; };
 		05D1094627C08B2B008DCC66 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806E127B8DE3E0008051B /* MainCoordinator.swift */; };
 		05D1094727C08B2B008DCC66 /* UnauthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806EF27B8E25F0008051B /* UnauthenticatedCoordinator.swift */; };
@@ -626,9 +642,17 @@
 		05CA8713280247BB006FACE0 /* GlobalDataNavSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataNavSection.swift; sourceTree = "<group>"; };
 		05CA87162802A48E006FACE0 /* NftUriResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NftUriResponce.swift; sourceTree = "<group>"; };
 		05CA87192802A5CF006FACE0 /* CollectablesSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectablesSectionView.swift; sourceTree = "<group>"; };
-		05CA871C2803BD14006FACE0 /* CollectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableCell.swift; sourceTree = "<group>"; };
+		05CA871C2803BD14006FACE0 /* CollectableVerticalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableVerticalCell.swift; sourceTree = "<group>"; };
 		05CA871F2803DD0D006FACE0 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		05CA872228040EA4006FACE0 /* TokenDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailView.swift; sourceTree = "<group>"; };
+		05CA872528052BA4006FACE0 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
+		05CA872828052BC7006FACE0 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
+		05CA872928052BC7006FACE0 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
+		05CA872A28052BC7006FACE0 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		05CA872B28052BC7006FACE0 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
+		05CA873428053243006FACE0 /* SVGWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGWebView.swift; sourceTree = "<group>"; };
+		05CA873728053CDD006FACE0 /* CollectableImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableImageCell.swift; sourceTree = "<group>"; };
+		05CA873A28055F3C006FACE0 /* CollectableSeeAllCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableSeeAllCell.swift; sourceTree = "<group>"; };
 		05D1095B27C08D06008DCC66 /* MacAuthenticatedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAuthenticatedCoordinator.swift; sourceTree = "<group>"; };
 		05D1095D27C08D1B008DCC66 /* MacAuthenticatedCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MacAuthenticatedCoordinator+Factory.swift"; sourceTree = "<group>"; };
 		05D1096427C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AuthenticatedCoordinator+Factory.swift"; sourceTree = "<group>"; };
@@ -810,7 +834,6 @@
 		053C7D3927CD8FC20081DCEA /* Extra */ = {
 			isa = PBXGroup;
 			children = (
-				05E5F86627D452360090290C /* Fonts */,
 				05E5F84727D321860090290C /* Animations */,
 				0578077127BB71250008051B /* IrregularGradients */,
 				0593025127E19C39006DDFFF /* LightChart */,
@@ -820,6 +843,7 @@
 				05583CAB27E9BF0E00640E75 /* Grid */,
 				053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */,
 				05583C9827E965FF00640E75 /* SafariView.swift */,
+				05CA873428053243006FACE0 /* SVGWebView.swift */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -1039,7 +1063,9 @@
 				05583CE827ED305F00640E75 /* NetworkVerticalCell.swift */,
 				0566AEC427E8399B006B645F /* HistoryListCell.swift */,
 				05C884D727FD47EB005E2455 /* TokenBalanceCell.swift */,
-				05CA871C2803BD14006FACE0 /* CollectableCell.swift */,
+				05CA873728053CDD006FACE0 /* CollectableImageCell.swift */,
+				05CA873A28055F3C006FACE0 /* CollectableSeeAllCell.swift */,
+				05CA871C2803BD14006FACE0 /* CollectableVerticalCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1228,6 +1254,7 @@
 		0578074427BB5DEF0008051B /* Font Template */ = {
 			isa = PBXGroup;
 			children = (
+				05E5F86627D452360090290C /* Fonts */,
 				0578074527BB5E1A0008051B /* FontTemplate.swift */,
 				0578074827BB5E610008051B /* FontTemplating.swift */,
 				0578074B27BB5E860008051B /* FontTemplateModifier.swift */,
@@ -1429,6 +1456,11 @@
 		05E5F86627D452360090290C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				05CA872B28052BC7006FACE0 /* Nunito-Light.ttf */,
+				05CA872928052BC7006FACE0 /* Nunito-Regular.ttf */,
+				05CA872828052BC7006FACE0 /* Nunito-Medium.ttf */,
+				05CA872528052BA4006FACE0 /* Nunito-SemiBold.ttf */,
+				05CA872A28052BC7006FACE0 /* Nunito-Bold.ttf */,
 				05E5F87927D45F0C0090290C /* LabMono-Regular.otf */,
 				05E5F86B27D4529C0090290C /* Poppins-Light.ttf */,
 				05E5F86727D4529C0090290C /* Poppins-Regular.ttf */,
@@ -1657,9 +1689,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05CA872E28052BC7006FACE0 /* Nunito-Regular.ttf in Resources */,
+				05CA872628052BA4006FACE0 /* Nunito-SemiBold.ttf in Resources */,
 				057806B827B838E60008051B /* Colors.xcassets in Resources */,
 				05E5F87527D4529C0090290C /* Poppins-Light.ttf in Resources */,
 				05D1098627C3537D008DCC66 /* ProdPrivateKeys.xcconfig in Resources */,
+				05CA872C28052BC7006FACE0 /* Nunito-Medium.ttf in Resources */,
+				05CA873028052BC7006FACE0 /* Nunito-Bold.ttf in Resources */,
 				05D1098927C36EFF008DCC66 /* DevPrivateKeys.xcconfig in Resources */,
 				05E5F86F27D4529C0090290C /* Poppins-ExtraBold.ttf in Resources */,
 				05E5F86D27D4529C0090290C /* Poppins-Regular.ttf in Resources */,
@@ -1668,6 +1704,7 @@
 				05E5F87327D4529C0090290C /* Poppins-SemiBold.ttf in Resources */,
 				05E5F87A27D45F0D0090290C /* LabMono-Regular.otf in Resources */,
 				057806DC27B8B8B20008051B /* Preview Assets.xcassets in Resources */,
+				05CA873228052BC7006FACE0 /* Nunito-Light.ttf in Resources */,
 				0548B86327B4C959000478B8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1676,9 +1713,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05CA872F28052BC7006FACE0 /* Nunito-Regular.ttf in Resources */,
+				05CA872728052BA4006FACE0 /* Nunito-SemiBold.ttf in Resources */,
 				057806B927B838E60008051B /* Colors.xcassets in Resources */,
 				05E5F87627D4529C0090290C /* Poppins-Light.ttf in Resources */,
 				05D1098727C3537D008DCC66 /* ProdPrivateKeys.xcconfig in Resources */,
+				05CA872D28052BC7006FACE0 /* Nunito-Medium.ttf in Resources */,
+				05CA873128052BC7006FACE0 /* Nunito-Bold.ttf in Resources */,
 				05D1098A27C36EFF008DCC66 /* DevPrivateKeys.xcconfig in Resources */,
 				05E5F87027D4529C0090290C /* Poppins-ExtraBold.ttf in Resources */,
 				05E5F86E27D4529C0090290C /* Poppins-Regular.ttf in Resources */,
@@ -1687,6 +1728,7 @@
 				05E5F87427D4529C0090290C /* Poppins-SemiBold.ttf in Resources */,
 				05E5F87B27D45F0D0090290C /* LabMono-Regular.otf in Resources */,
 				0548B87A27B4C9A8000478B8 /* Preview Assets.xcassets in Resources */,
+				05CA873328052BC7006FACE0 /* Nunito-Light.ttf in Resources */,
 				0548B87727B4C9A8000478B8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1827,10 +1869,12 @@
 				0593023327E067AE006DDFFF /* TransactButton.swift in Sources */,
 				05E858F827CB5A3200B85195 /* TextFieldSingleList.swift in Sources */,
 				05F8EE2728000B53003BBC23 /* TopSectionView.swift in Sources */,
+				05CA873B28055F3C006FACE0 /* CollectableSeeAllCell.swift in Sources */,
 				0593026027E19CD6006DDFFF /* LightChart.swift in Sources */,
 				053C7D4527CDD5620081DCEA /* PasswordView.swift in Sources */,
 				0578073727BB59DC0008051B /* DiscoverView.swift in Sources */,
 				05583CCB27E9C15400640E75 /* GridPreferences.swift in Sources */,
+				05CA873828053CDD006FACE0 /* CollectableImageCell.swift in Sources */,
 				05E858D827CB264600B85195 /* ClickInteractiveStyle.swift in Sources */,
 				0531140D27E7985300368657 /* RemoteImage.swift in Sources */,
 				05583CAE27E9BF6600640E75 /* ModularGridStyle.swift in Sources */,
@@ -1847,7 +1891,7 @@
 				0578073F27BB5B470008051B /* InvestView.swift in Sources */,
 				05A6AABE27F980A800824C76 /* MarketCapRankView.swift in Sources */,
 				0578071B27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */,
-				05CA871D2803BD14006FACE0 /* CollectableCell.swift in Sources */,
+				05CA871D2803BD14006FACE0 /* CollectableVerticalCell.swift in Sources */,
 				053113E827E6C72000368657 /* SlideOverCard.swift in Sources */,
 				05583C9C27E96C6C00640E75 /* ListInfoCustomView.swift in Sources */,
 				05A6AAAB27F93C0600824C76 /* TrendingSectionView.swift in Sources */,
@@ -1913,6 +1957,7 @@
 				05A6AAB527F95AFA00824C76 /* TrendingTokenListCell.swift in Sources */,
 				0566AEC827E84711006B645F /* StandardSystemImage.swift in Sources */,
 				05CA872328040EA4006FACE0 /* TokenDetailView.swift in Sources */,
+				05CA873528053243006FACE0 /* SVGWebView.swift in Sources */,
 				053113FE27E6CFE500368657 /* ScanQRView.swift in Sources */,
 				057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
 				05E5F85A27D361AF0090290C /* SlimRectangle.swift in Sources */,
@@ -2035,6 +2080,7 @@
 				05D1097427C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */,
 				05E8589527C5D7F000B85195 /* GasPrice.swift in Sources */,
 				0593022627E02D63006DDFFF /* BorderedButton.swift in Sources */,
+				05CA873928053CDD006FACE0 /* CollectableImageCell.swift in Sources */,
 				053113F927E6CF3C00368657 /* CBBarcodeView.swift in Sources */,
 				05583CD527E9C1D100640E75 /* GridStyle.swift in Sources */,
 				051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */,
@@ -2076,6 +2122,7 @@
 				0578077027BB6D200008051B /* DefaultTemplate.swift in Sources */,
 				05CA87212803DD0D006FACE0 /* Color+Extensions.swift in Sources */,
 				05E5F84A27D321920090290C /* Shake.swift in Sources */,
+				05CA873C28055F3C006FACE0 /* CollectableSeeAllCell.swift in Sources */,
 				0578074D27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
 				05E8590027CC08F200B85195 /* RoundedInteractiveButton.swift in Sources */,
 				05D1095427C08B3E008DCC66 /* DiscoverView.swift in Sources */,
@@ -2109,7 +2156,7 @@
 				053113FC27E6CF7100368657 /* CBScanner.swift in Sources */,
 				05E8589927C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
 				05583CC627E9C11400640E75 /* EnvironmentValues+GridStyle.swift in Sources */,
-				05CA871E2803BD14006FACE0 /* CollectableCell.swift in Sources */,
+				05CA871E2803BD14006FACE0 /* CollectableVerticalCell.swift in Sources */,
 				053113F627E6CF0800368657 /* CameraPreview.swift in Sources */,
 				05583CE127EC01D800640E75 /* BalanceSectionView.swift in Sources */,
 				0578077627BB71410008051B /* IrregularGradient.swift in Sources */,
@@ -2125,6 +2172,7 @@
 				0593021727DEFA95006DDFFF /* CompleteBalance.swift in Sources */,
 				053113F327E6CEE400368657 /* BarcodeFrame.swift in Sources */,
 				05E858CB27CB240300B85195 /* AppGradients.swift in Sources */,
+				05CA873628053243006FACE0 /* SVGWebView.swift in Sources */,
 				05E858DC27CB27E400B85195 /* AlertBadge.swift in Sources */,
 				0593022327E02B7E006DDFFF /* BorderlessButton.swift in Sources */,
 				0566AEC327E83792006B645F /* HistorySectionView.swift in Sources */,
