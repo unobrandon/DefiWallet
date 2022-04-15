@@ -7,6 +7,8 @@
 
 import Foundation
 import web3swift
+import SocketIO
+import WalletConnect
 
 class AuthenticatedServices: ObservableObject {
 
@@ -35,8 +37,15 @@ class AuthenticatedServices: ObservableObject {
     }
 
     init(currentUser: CurrentUser) {
+        let manager = SocketManager(socketURL: URL(string: Constants.zerionWssUrl)!,
+                                    config: [.log(false), .extraHeaders(["Origin": "https://localhost:3000"]), .forceWebsockets(true), .connectParams( ["api_token": Constants.zerionApiKey]), .version(.two), .secure(true)])
+        let metadata = AppMetadata(name: Constants.projectName,
+                                   description: "Difi Wallet App",
+                                   url: "defi.wallet",
+                                   icons: [Constants.walletConnectMetadataIcon])
+
         self.currentUser = currentUser
-        self.wallet = WalletService(currentUser: currentUser)
+        self.wallet = WalletService(currentUser: currentUser, socketManager: manager, wcMetadata: metadata)
         self.ethereum = EthereumService(currentUser: currentUser)
     }
 

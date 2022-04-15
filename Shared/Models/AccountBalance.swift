@@ -18,3 +18,22 @@ struct AccountBalance: Codable {
     let completeBalance: [CompleteBalance]?
 
 }
+
+struct AccountPortfolio: Codable, Hashable {
+
+    static func == (lhs: AccountPortfolio, rhs: AccountPortfolio) -> Bool {
+        return lhs.absoluteChange24h == rhs.absoluteChange24h && lhs.relativeChange24h == rhs.relativeChange24h
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(absoluteChange24h)
+        hasher.combine(relativeChange24h)
+    }
+
+    let arbitrumAssetsValue, assetsValue, auroraAssetsValue: Double?
+    let avalancheAssetsValue, borrowedValue, bscAssetsValue, depositedValue: Double?
+    let ethereumAssetsValue, fantomAssetsValue, lockedValue, loopringAssetsValue: Double?
+    let nftFloorPriceValue, nftLastPriceValue, optimismAssetsValue, polygonAssetsValue: Double?
+    let solanaAssetsValue, stakedValue, totalValue, xdaiAssetsValue: Double?
+    let absoluteChange24h, relativeChange24h: String?
+}

@@ -9,54 +9,62 @@ import SwiftUI
 import Alamofire
 import WalletConnect
 import Relayer
+import SocketIO
 
 class WalletService: ObservableObject {
-    // Wallet view functions go here
 
+    @Published var accountPortfolio: AccountPortfolio?
+    @Published var accountChart: [String : Double]?
     @Published var accountBalance = [AccountBalance]()
     @Published var completeBalance = [CompleteBalance]()
     @Published var accountNfts = [NftResult]()
     @Published var history = [HistoryData]()
     @Published var wcProposal: WalletConnect.Session.Proposal?
     @Published var wcActiveSessions = [WCSessionInfo]()
+    @Published var networkStatus: NetworkStatus {
+        didSet {
+            switch networkStatus {
+            case .offline:
+                print("offline network status")
+            case .connected:
+                print("connected network status")
+            case .connecting:
+                print("connecting status")
+            case .reconnecting:
+                print("re-connecting status")
+            case .unknown:
+                print("unknown network status")
+            }
+        }
+    }
+
+    let relayer = Relayer(relayHost: "relay.walletconnect.com", projectId: Constants.walletConnectProjectId)
 
     var currentUser: CurrentUser
+    var socketManager: SocketManager
     var walletConnectClient: WalletConnectClient
+    var addressSocket: SocketIOClient
 
-    init(currentUser: CurrentUser) {
+    let portfolioRefreshInterval: Double = 30
+    let chartRefreshInterval: Double = 20
+    var chartSocketTimer: Timer?
+
+    init(currentUser: CurrentUser, socketManager: SocketManager, wcMetadata: AppMetadata) {
+        self.networkStatus = .connecting
+
+        self.socketManager = socketManager
         self.currentUser = currentUser
+        self.addressSocket = socketManager.socket(forNamespace: "/address")
 
-        let metadata = AppMetadata(name: Constants.projectName,
-                                   description: "Difi Wallet App", url: "defi.wallet",
-                                   icons: [Constants.walletConnectMetadataIcon])
-        let relayer = Relayer(relayHost: "relay.walletconnect.com", projectId: Constants.walletConnectProjectId)
-
-        self.walletConnectClient = WalletConnectClient(metadata: metadata, relayer: relayer)
+        self.walletConnectClient = WalletConnectClient(metadata: wcMetadata, relayer: relayer)
         self.walletConnectClient.delegate = self
-        self.reloadActiveSessions()
+
+        self.reloadWcSessions()
+        self.connectAccountData()
     }
 
-    func connectDapp(uri: String, completion: @escaping (Bool) -> Void) {
-        do {
-            try self.walletConnectClient.pair(uri: uri)
-
-            DispatchQueue.main.async { completion(true) }
-        } catch {
-            DispatchQueue.main.async { completion(false) }
-        }
-    }
-
-    func disconnectDapp(sessionTopic: String) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.walletConnectClient.disconnect(topic: sessionTopic, reason: Reason(code: 0, message: "User disconnected from \(Constants.projectName)"))
-
-            self.reloadActiveSessions()
-            HapticFeedback.successHapticFeedback()
-        }
-    }
-
-    func viewDappWebsite(link: String) {
-        print("visit dapp's website: \(link)")
+    deinit {
+        print("deinit wallet service!")
     }
 
     func fetchAccountBalance(_ address: String, completion: @escaping ([CompleteBalance]?) -> Void) {
@@ -110,8 +118,6 @@ class WalletService: ObservableObject {
                 result.append(nft)
             }
         }
-
-        print("called set colletavles")
 
         completion(result)
     }

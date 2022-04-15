@@ -15,3 +15,11 @@ enum FilterHistory: Equatable {
     case avalanche
     case fantom
 }
+
+enum NetworkStatus: Equatable {
+    case connected
+    case connecting
+    case reconnecting
+    case offline
+    case unknown
+}

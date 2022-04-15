@@ -44,7 +44,7 @@ struct WalletNavigationView: View {
                 Circle()
                     .strokeBorder(Color("baseBackground_bordered"), lineWidth: 2)
                     .frame(width: 10, height: 10, alignment: .center)
-                    .background(Circle().foregroundColor(service.ethereum.ethNetworkStatus == .connected ? .green : service.ethereum.ethNetworkStatus == .connecting ? .orange : .red))
+                    .background(Circle().foregroundColor(service.ethereum.connectionStatus == .connected ? .green : service.ethereum.connectionStatus == .connecting ? .orange : .red))
                     .offset(x: 12, y: 12)
             }
 
@@ -86,14 +86,12 @@ struct WalletNavigationView: View {
             }
         }
         .padding(.trailing)
-        .onReceive(service.ethereum.$ethNetworkStatus, perform: { status in
+        .onReceive(store.$networkStatus, perform: { status in
             switch status {
-            case .error:
-                connectionStatus = "error"
-            case .undefined:
-                connectionStatus = "undefined error"
             case .connecting:
                 connectionStatus = "connecting..."
+            case .reconnecting:
+                connectionStatus = "re-connecting..."
             case .connected:
                 connectionStatus = "connected"
 
@@ -102,8 +100,10 @@ struct WalletNavigationView: View {
                         connectionStatus = "Welcome"
                     }
                 }
-            case .disconnected:
-                connectionStatus = "disconnected"
+            case .offline:
+                connectionStatus = "offline"
+            case .unknown:
+                connectionStatus = "major issue"
             }
             })
     }

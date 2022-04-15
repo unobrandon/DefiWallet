@@ -14,6 +14,8 @@ struct BalanceSectionView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
 
+    @State var chart: [Double] = []
+
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
@@ -29,7 +31,7 @@ struct BalanceSectionView: View {
                     HStack(alignment: .center, spacing: 0) {
                         Text("$").fontTemplate(DefaultTemplate.titleBold)
 
-                        MovingNumbersView(number: 18.93,
+                        MovingNumbersView(number: store.accountPortfolio?.totalValue ?? 0.00,
                                           numberOfDecimalPlaces: 2,
                                           fixedWidth: 260,
                                           showComma: true) { str in
@@ -40,7 +42,7 @@ struct BalanceSectionView: View {
                 Spacer()
             }
 
-            LineChart(data: [90,99,78,111,70,60,77],
+            LineChart(data: store.accountChart?.map({ $0.value }) ?? [0, 7, 10, 8, 2],
                       frame: CGRect(x: 20, y: 0, width: MobileConstants.screenWidth - 40, height: 160),
                       visualType: ChartVisualType.filled(color: Color("AccentColor"), lineWidth: 3), offset: 0,
                       currentValueLineType: CurrentValueLineType.dash(color: .secondary, lineWidth: 2, dash: [8]))
@@ -49,6 +51,13 @@ struct BalanceSectionView: View {
         }
         .padding(.horizontal)
         .padding(.top)
+        .onAppear {
+            chart.removeAll()
+
+            if let items = store.accountChart {
+                chart = items.map({ $0.1 })
+            }
+        }
 
         TransactButtonView(style: service.themeStyle,
                            enableDeposit: false,

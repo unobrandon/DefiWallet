@@ -209,8 +209,6 @@
 		0578075027BB5ED00008051B /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578074E27BB5ED00008051B /* View+Extensions.swift */; };
 		0578075227BB5EF10008051B /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075127BB5EF10008051B /* Font+Extensions.swift */; };
 		0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075127BB5EF10008051B /* Font+Extensions.swift */; };
-		0578075627BB60160008051B /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075527BB60160008051B /* NetworkingService.swift */; };
-		0578075727BB60160008051B /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578075527BB60160008051B /* NetworkingService.swift */; };
 		0578076F27BB6D200008051B /* DefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076E27BB6D200008051B /* DefaultTemplate.swift */; };
 		0578077027BB6D200008051B /* DefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578076E27BB6D200008051B /* DefaultTemplate.swift */; };
 		0578077527BB71410008051B /* IrregularGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077227BB71410008051B /* IrregularGradient.swift */; };
@@ -464,6 +462,9 @@
 		05E8590627CC198A00B85195 /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8590427CC198A00B85195 /* TermsView.swift */; };
 		05E8590827CC1A8800B85195 /* FooterInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8590727CC1A8800B85195 /* FooterInformation.swift */; };
 		05E8590927CC1A8800B85195 /* FooterInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8590727CC1A8800B85195 /* FooterInformation.swift */; };
+		05F7B58228088072005A94C8 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 05F7B58128088072005A94C8 /* SocketIO */; };
+		05F7B58428090518005A94C8 /* WalletService+AddressSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F7B58328090518005A94C8 /* WalletService+AddressSocket.swift */; };
+		05F7B58528090518005A94C8 /* WalletService+AddressSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F7B58328090518005A94C8 /* WalletService+AddressSocket.swift */; };
 		05F8EE1E27FFFBD0003BBC23 /* TokenCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F8EE1D27FFFBD0003BBC23 /* TokenCategory.swift */; };
 		05F8EE1F27FFFBD0003BBC23 /* TokenCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F8EE1D27FFFBD0003BBC23 /* TokenCategory.swift */; };
 		05F8EE212800042B003BBC23 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F8EE202800042B003BBC23 /* CategoriesView.swift */; };
@@ -591,7 +592,6 @@
 		0578074B27BB5E860008051B /* FontTemplateModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTemplateModifier.swift; sourceTree = "<group>"; };
 		0578074E27BB5ED00008051B /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		0578075127BB5EF10008051B /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
-		0578075527BB60160008051B /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		0578076E27BB6D200008051B /* DefaultTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTemplate.swift; sourceTree = "<group>"; };
 		0578077227BB71410008051B /* IrregularGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IrregularGradient.swift; sourceTree = "<group>"; };
 		0578077427BB71410008051B /* Blob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
@@ -714,6 +714,7 @@
 		05E8590127CC12A400B85195 /* TermsOfServiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceButton.swift; sourceTree = "<group>"; };
 		05E8590427CC198A00B85195 /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
 		05E8590727CC1A8800B85195 /* FooterInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterInformation.swift; sourceTree = "<group>"; };
+		05F7B58328090518005A94C8 /* WalletService+AddressSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletService+AddressSocket.swift"; sourceTree = "<group>"; };
 		05F8EE1D27FFFBD0003BBC23 /* TokenCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCategory.swift; sourceTree = "<group>"; };
 		05F8EE202800042B003BBC23 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		05F8EE23280004C5003BBC23 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -730,6 +731,7 @@
 				053EC29527BE0FE600FBC681 /* RealmSwift in Frameworks */,
 				057806C227B85E700008051B /* Stinsen in Frameworks */,
 				057806C527B85EBD0008051B /* Alamofire in Frameworks */,
+				05F7B58228088072005A94C8 /* SocketIO in Frameworks */,
 				057806C827B85F9F0008051B /* web3swift in Frameworks */,
 				0531140527E6E33900368657 /* WalletConnect in Frameworks */,
 				057806D127B862480008051B /* SwiftUICharts in Frameworks */,
@@ -773,6 +775,7 @@
 			children = (
 				051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */,
 				051BCF5C27BCAE150056E047 /* WalletService.swift */,
+				05F7B58328090518005A94C8 /* WalletService+AddressSocket.swift */,
 				0531140827E6E39F00368657 /* WalletConnectDelegate.swift */,
 				059F73D127D7164700B27E80 /* MarketsService.swift */,
 				059F73CE27D7160D00B27E80 /* DiscoverService.swift */,
@@ -1152,7 +1155,6 @@
 				05E858BE27CA0F0C00B85195 /* Networks */,
 				051BCF5B27BCAD3C0056E047 /* Unauthenticated */,
 				051BCF5A27BCAD200056E047 /* Authenticated */,
-				0578075427BB5FFB0008051B /* Device Networking */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1260,14 +1262,6 @@
 				0578074B27BB5E860008051B /* FontTemplateModifier.swift */,
 			);
 			path = "Font Template";
-			sourceTree = "<group>";
-		};
-		0578075427BB5FFB0008051B /* Device Networking */ = {
-			isa = PBXGroup;
-			children = (
-				0578075527BB60160008051B /* NetworkingService.swift */,
-			);
-			path = "Device Networking";
 			sourceTree = "<group>";
 		};
 		0578076727BB651C0008051B /* Templates */ = {
@@ -1597,6 +1591,7 @@
 				05D1097E27C1DDC9008DCC66 /* Cache */,
 				0531140427E6E33900368657 /* WalletConnect */,
 				0531141027E7A25D00368657 /* SDWebImageSwiftUI */,
+				05F7B58128088072005A94C8 /* SocketIO */,
 			);
 			productName = DefiWallet;
 			productReference = 0548B85B27B4C957000478B8 /* DefiWallet.app */;
@@ -1673,6 +1668,7 @@
 				05D1097D27C1DDC9008DCC66 /* XCRemoteSwiftPackageReference "Cache" */,
 				0531140327E6E33900368657 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */,
 				0531140F27E7A25C00368657 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				05F7B58028088071005A94C8 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = 0548B85C27B4C957000478B8 /* Products */;
 			projectDirPath = "";
@@ -1792,10 +1788,10 @@
 				0578074627BB5E1A0008051B /* FontTemplate.swift in Sources */,
 				053113F227E6CEE400368657 /* BarcodeFrame.swift in Sources */,
 				059F73D527D7166A00B27E80 /* ProfileService.swift in Sources */,
-				0578075627BB60160008051B /* NetworkingService.swift in Sources */,
 				0593023727E08031006DDFFF /* WalletNavigationView.swift in Sources */,
 				057806D927B870620008051B /* MobileConsants.swift in Sources */,
 				0593025A27E19C98006DDFFF /* LineChart.swift in Sources */,
+				05F7B58428090518005A94C8 /* WalletService+AddressSocket.swift in Sources */,
 				05E858C427CB230B00B85195 /* EmptyAvatar.swift in Sources */,
 				050225C027FC18FB0004D910 /* GlobalEnums.swift in Sources */,
 				0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */,
@@ -2012,6 +2008,7 @@
 				05D1095027C08B3E008DCC66 /* WalletCoordinator+Factory.swift in Sources */,
 				05583CB227E9BFA000640E75 /* StaggeredGridStyle.swift in Sources */,
 				05D1094E27C08B3E008DCC66 /* DiscoverCoordinator.swift in Sources */,
+				05F7B58528090518005A94C8 /* WalletService+AddressSocket.swift in Sources */,
 				0578078027BB87C80008051B /* Wallet.swift in Sources */,
 				05D1094B27C08B3E008DCC66 /* InvestCoordinator+Factory.swift in Sources */,
 				053C7D4027CDBF600081DCEA /* CheckmarkView.swift in Sources */,
@@ -2163,7 +2160,6 @@
 				05D1095527C08B3E008DCC66 /* ProfileView.swift in Sources */,
 				0593026427E19D27006DDFFF /* Math.swift in Sources */,
 				059F73D627D7166A00B27E80 /* ProfileService.swift in Sources */,
-				0578075727BB60160008051B /* NetworkingService.swift in Sources */,
 				0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
 				05E858F927CB5A3200B85195 /* TextFieldSingleList.swift in Sources */,
@@ -2824,6 +2820,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		05F7B58028088071005A94C8 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2936,6 +2940,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 05D1097D27C1DDC9008DCC66 /* XCRemoteSwiftPackageReference "Cache" */;
 			productName = Cache;
+		};
+		05F7B58128088072005A94C8 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05F7B58028088071005A94C8 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

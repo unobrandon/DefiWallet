@@ -12,7 +12,7 @@ extension EthereumService: Web3SocketDelegate {
 
     func socketConnected(_ headers: [String : String]) {
         print("websocket connected!!!: \(headers)")
-        self.ethNetworkStatus = .connected
+        self.connectionStatus = .connected
     }
 
     func received(message: Any) {
@@ -21,7 +21,7 @@ extension EthereumService: Web3SocketDelegate {
 
     func gotError(error: Error) {
         print("received eth error: \(error)")
-        self.ethNetworkStatus = .error
+        self.connectionStatus = .error
     }
 
 }

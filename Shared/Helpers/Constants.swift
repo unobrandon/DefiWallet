@@ -13,6 +13,7 @@ public struct Constants {
     static let moralisBaseWssUrl = "wss://speedy-nodes-nyc.moralis.io/"
     static let infuraBaseWssUrl = "wss://mainnet.infura.io/ws/v3/"
     static let zapperBaseUrl = "https://api.zapper.fi/v1/"
+    static let zerionWssUrl = "wss://api-v4.zerion.io"
     static let backendBaseUrl = "https://defiwallet-backend.herokuapp.com/"
     static let walletConnectMetadataIcon = "https://ucarecdn.com/12bb9755-e63c-46ad-b118-3a44703a5d8f/C1F62A2EBB0145DA9D837855713C5A93.jpeg"
     // "https://iconstore.co/assets/img/set/cover/zodiac-signs-cover.png"
@@ -82,6 +83,9 @@ public struct Constants {
     }
     static var walletConnectProjectId: String {
         return Bundle.main.infoDictionary?["WALLET_CONNECT_PROJECT_ID"] as? String ?? ""
+    }
+    static var zerionApiKey: String {
+        return Bundle.main.infoDictionary?["ZERION_API_KEY"] as? String ?? ""
     }
 
     // MARK: Ethereum

@@ -46,12 +46,12 @@ extension WalletService: WalletConnectClientDelegate {
 
     func didSettle(session: Session) {
         print("did settle: \(session)")
-        reloadActiveSessions()
+        reloadWcSessions()
     }
 
     func didDelete(sessionTopic: String, reason: Reason) {
         print("did delete session topic: \(sessionTopic) \nfor reason: \(reason)")
-        reloadActiveSessions()
+        reloadWcSessions()
 
         #if(ios)
         showNotiHUD(image: "wifi.slash", color: Color("AccentColor"), title: "Dapp disconnected", subtitle: reason.message)
@@ -78,13 +78,36 @@ extension WalletService: WalletConnectClientDelegate {
         }
     }
 
-    func reloadActiveSessions() {
+    func reloadWcSessions() {
         let settledSessions = walletConnectClient.getSettledSessions()
         let activeSessions = getActiveSessionItem(for: settledSessions)
 
         DispatchQueue.main.async {
             self.wcActiveSessions = activeSessions
         }
+    }
+
+    func connectDapp(uri: String, completion: @escaping (Bool) -> Void) {
+        do {
+            try self.walletConnectClient.pair(uri: uri)
+
+            DispatchQueue.main.async { completion(true) }
+        } catch {
+            DispatchQueue.main.async { completion(false) }
+        }
+    }
+
+    func disconnectDapp(sessionTopic: String) {
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.walletConnectClient.disconnect(topic: sessionTopic, reason: Reason(code: 0, message: "User disconnected from \(Constants.projectName)"))
+
+            self.reloadWcSessions()
+            HapticFeedback.successHapticFeedback()
+        }
+    }
+
+    func viewDappWebsite(link: String) {
+        print("visit dapp's website: \(link)")
     }
 
 }

@@ -37,20 +37,19 @@ struct WalletView: View {
                 BalanceSectionView(service: service)
 
                 LazyVGrid(columns: gridItems, alignment: .center, spacing: 0) {
-                    ForEach(gridViews.indices, id:\.self) { index in
-                        gridViews[index]
-                    }
+                    NetworkSectionView(isLoading: self.$isBalanceLoading, service: service)
+                    CollectablesSectionView(isLoading: self.$isBalanceLoading, service: service)
+                    HistorySectionView(isLoading: self.$isHistoryLoading, service: service, network: nil)
                 }
             }
         })
         .navigationBarTitle("", displayMode: .inline)
         .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))
         .onAppear {
-            self.gridViews = [
-                AnyView(NetworkSectionView(isLoading: self.$isBalanceLoading, service: service)),
-                AnyView(CollectablesSectionView(isLoading: self.$isBalanceLoading, service: service)),
-                AnyView(HistorySectionView(isLoading: self.$isHistoryLoading, service: service, network: nil))
-            ]
+            print("view did appear 11")
+        }
+        .onDisappear {
+            print("view did disappear")
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

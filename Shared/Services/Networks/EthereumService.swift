@@ -8,6 +8,7 @@
 import SwiftUI
 import web3swift
 import BigInt
+import SocketIO
 
 class EthereumService: ObservableObject {
 
@@ -19,7 +20,14 @@ class EthereumService: ObservableObject {
     var hdKeystore: BIP32Keystore?
     var keystoreManager: KeystoreManager?
 
-    @Published var ethNetworkStatus: EthNetworkStatus = .undefined
+    var manager = SocketManager(socketURL: URL(string: "wss://api-v4.zerion.io")!,
+                                config: [.log(false), .extraHeaders(["Origin": "https://localhost:3000"]), .forceWebsockets(true), .connectParams( ["api_token": "Demo.ukEVQp6L5vfgxcz4sBke7XvS873GMYHy"]), .version(.two), .secure(true)])
+
+    var socket: SocketIOClient
+    var assetsSocket: SocketIOClient
+    var gasSocket: SocketIOClient
+
+    @Published var connectionStatus: EthNetworkStatus = .undefined
 
     enum EthNetworkStatus: String {
         case error
@@ -46,7 +54,11 @@ class EthereumService: ObservableObject {
             }
         }
 
-        connectWebsocket(currentUser: currentUser)
+        self.socket = manager.defaultSocket
+        self.assetsSocket = manager.socket(forNamespace: "/assets")
+        self.gasSocket = manager.socket(forNamespace: "/gas")
+
+//        self.connectWebsocket(currentUser: currentUser)
     }
 
     deinit {
@@ -56,7 +68,18 @@ class EthereumService: ObservableObject {
     }
 
     private func connectWebsocket(currentUser: CurrentUser) {
-        self.ethNetworkStatus = .connecting
+        self.assetsSocket.connect()
+        self.gasSocket.connect()
+
+        assetsSocket.on(clientEvent: .connect) { _, _ in
+            self.fetchAssetsSocket()
+        }
+
+        gasSocket.on(clientEvent: .connect) { _, _ in
+            self.fetchGasSocket()
+        }
+
+        self.connectionStatus = .connecting
         // Moralis node uses (socketUrl, delegate: self)
         socketProvider = WebsocketProvider(Constants.moralisBaseWssUrl + Constants.ethNodeWssUrl, delegate: self)
         // InfuraWebsocketProvider(Constants.infuraBaseWssUrl + Constants.infuraProjectId,
@@ -68,6 +91,57 @@ class EthereumService: ObservableObject {
 
         if let provider = socketProvider {
             web3Service = web3(provider: provider)
+        }
+    }
+
+    private func fetchAssetsSocket() {
+        print("calling assets explore-sections")
+
+//        assetsSocket.connect(withPayload: ["address": "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9", "currency": "usd"])
+
+//        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            self.assetsSocket.emit("get", ["scope": ["categories", "info"], "payload": ["category_id": "top-losers"]])
+//        }
+
+        assetsSocket.on("received assets categories") { data, ack in
+            print("received assets categories")
+
+            DispatchQueue.main.async {
+                if let array = data as? [[String: AnyObject]], let firstDict = array.first {
+                    let asset = firstDict["payload"]! as! [String: AnyObject]
+                    print("received assets categories value is: \(asset)")
+                }
+            }
+        }
+
+        assetsSocket.on("received assets info") { data, ack in
+            print("received assets info")
+
+            DispatchQueue.main.async {
+                if let array = data as? [[String: AnyObject]], let firstDict = array.first {
+                    let asset = firstDict["payload"]! as! [String: AnyObject]
+                    print("received category info value is: \(asset)")
+                }
+            }
+        }
+    }
+
+    private func fetchGasSocket() {
+        print("calling fetch gas")
+
+//        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            self.gasSocket.emit("get", ["scope": ["price"], "payload": ["body parameter": "value"]])
+//        }
+
+        gasSocket.on("received gas price") { data, ack in
+            print("received a new gas price")
+
+            DispatchQueue.main.async {
+                if let array = data as? [[String: AnyObject]], let firstDict = array.first {
+                    let gasAsset = firstDict["payload"]!["price"]! as! [String: AnyObject]
+                    print("the gas value is: \(gasAsset)")
+                }
+            }
         }
     }
 

@@ -43,6 +43,8 @@
 	<string>$(ZAPPER_API_KEY)</string>
 	<key>WALLET_CONNECT_PROJECT_ID</key>
 	<string>$(WALLET_CONNECT_PROJECT_ID)</string>
+	<key>ZERION_API_KEY</key>
+	<string>$(ZERION_API_KEY)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>UIAppFonts</key>

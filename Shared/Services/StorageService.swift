@@ -22,6 +22,7 @@ class StorageService {
     var balanceStorage: Cache.Storage<String, [CompleteBalance]>?
     var nftUriResponse: Cache.Storage<String, NftURIResponse>?
     var historyStorage: Cache.Storage<String, [HistoryData]>?
+    var portfolioStorage: Cache.Storage<String, AccountPortfolio>?
     var trendingStorage: Cache.Storage<String, [TrendingCoin]>?
     var gasPriceTrends: Cache.Storage<String, EthGasPriceTrends>?
     var globalMarketData: Cache.Storage<String, GlobalMarketData>?
@@ -53,6 +54,15 @@ class StorageService {
                                               transformer: TransformerFactory.forCodable(ofType: [HistoryData].self))
         } catch {
             print(error)
+        }
+
+        // portfolio
+        do {
+            self.portfolioStorage = try Storage(diskConfig: diskConfig,
+                                              memoryConfig: memoryConfig,
+                                              transformer: TransformerFactory.forCodable(ofType: AccountPortfolio.self))
+        } catch {
+            print("error getting Portfolio storage \(error.localizedDescription)")
         }
 
         // trending
