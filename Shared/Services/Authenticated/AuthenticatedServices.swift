@@ -19,7 +19,7 @@ class AuthenticatedServices: ObservableObject {
 
     // MARK: screen services
     var wallet: WalletService
-    var market: MarketsService = MarketsService()
+    var market: MarketsService
     var discover: DiscoverService = DiscoverService()
     var invest: InvestService = InvestService()
     var profile: ProfileService = ProfileService()
@@ -46,6 +46,7 @@ class AuthenticatedServices: ObservableObject {
 
         self.currentUser = currentUser
         self.wallet = WalletService(currentUser: currentUser, socketManager: manager, wcMetadata: metadata)
+        self.market = MarketsService(socketManager: manager)
         self.ethereum = EthereumService(currentUser: currentUser)
     }
 

@@ -63,35 +63,8 @@ struct MarketsView: View {
             }
 
             ToolbarItem(placement: .navigationBarTrailing, content: {
-                Button(action: {
-                    self.store.fetchEthGasPriceTrends(completion: {
-                        print("gas reloaded")
-                    })
-                }, label: {
-                    HStack(alignment: .center, spacing: 10) {
-                        if let gas = store.ethGasPriceTrends,
-                           let trends = gas.trend,
-                           let _ = gas.current?.standard {
-                            LightChartView(data: trends[0...6].map({ $0.baseFee ?? 0 }).reversed(),
-                                           type: .curved,
-                                           visualType: .filled(color: .purple, lineWidth: 3),
-                                           offset: 0.2,
-                                           currentValueLineType: .none)
-                                    .frame(width: 50, height: 28, alignment: .center)
-
-//                            MovingNumbersView(number: Double(standard.baseFeePerGas ?? 0), numberOfDecimalPlaces: 0, fixedWidth: 22, showComma: false) { gas in
-//                                Text(gas)
-//                                    .fontTemplate(DefaultTemplate.gasPriceFont)
-//                            }
-//                            .mask(AppGradients.movingNumbersMask)
-
-                            Image(systemName: "fuelpump.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 16, height: 18, alignment: .center)
-                                .foregroundColor(.primary)
-                        }
-                    }
+                GasPriceNavSection(service: service, action: {
+                    print("tapped gas prices")
                 })
             })
         }

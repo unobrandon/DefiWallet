@@ -11,7 +11,7 @@ struct GlobalDataNavSection: View {
 
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: MarketsService
-    var data: GlobalMarketData
+    @State var data: GlobalMarketData
     var action: () -> Void
 
     init(data: GlobalMarketData, service: AuthenticatedServices, action: @escaping () -> Void) {

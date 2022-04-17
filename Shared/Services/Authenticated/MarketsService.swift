@@ -8,17 +8,77 @@
 import SwiftUI
 import Alamofire
 import Cache
+import SocketIO
 
 class MarketsService: ObservableObject {
 
     @Published var gasPrices = [GasPrice]()
+    @Published var gasSocketPrices: GasSocketPrice?
     @Published var ethGasPriceTrends: EthGasPriceTrends?
     @Published var globalMarketData: GlobalMarketData?
     @Published var tokenCategories = [TokenCategory]()
     @Published var coinsByMarketCap = [CoinMarketCap]()
     @Published var trendingCoins = [TrendingCoin]()
 
-    init() {  }
+    var socketManager: SocketManager
+    var gasSocket: SocketIOClient
+    var gasSocketTimer: Timer?
+
+    let gasRefreshInterval: Double = 10
+
+    init(socketManager: SocketManager) {
+        self.socketManager = socketManager
+        self.gasSocket = socketManager.socket(forNamespace: "/gas")
+
+        connectGasSocket()
+    }
+
+    private func connectGasSocket() {
+        gasSocket.connect()
+
+        gasSocket.on(clientEvent: .connect) { _, _ in
+            self.fetchGasSocket()
+        }
+
+        gasSocket.on(clientEvent: .disconnect) { _, _ in
+            self.stopGasTimer()
+        }
+    }
+
+    func disconnectAccountSocket() {
+        gasSocket.disconnect()
+        gasSocket.removeAllHandlers()
+    }
+
+    func stopGasTimer() {
+        guard let timer = gasSocketTimer else { return }
+        timer.invalidate()
+    }
+
+    private func fetchGasSocket() {
+
+        self.gasSocketTimer = Timer.scheduledTimer(withTimeInterval: gasRefreshInterval, repeats: true) { _ in
+            self.gasSocket.emit("get", ["scope": ["price"], "payload": ["body parameter": "value"]])
+        }
+
+        gasSocket.on("received gas price") { data, _ in
+            guard let array = data as? [[String: AnyObject]],
+                  let firstDict = array.first,
+                  let payload = firstDict["payload"],
+                  let prices = payload["price"] as? [String: AnyObject] else { return }
+
+            guard let source = prices["source"] as? String,
+                  let datetime = prices["datetime"] as? String,
+                  let fast = prices["fast"] as? Double,
+                  let standard = prices["standard"] as? Double,
+                  let slow = prices["slow"] as? Double else { return }
+
+            print("the standard gas is: \(standard)")
+            DispatchQueue.main.async {
+                self.gasSocketPrices = GasSocketPrice(source: source, datetime: datetime, rapid: prices["rapid"] as? Double, fast: fast, standard: standard, slow: slow)
+            }
+        }
+    }
 
     func sortGas(_ network: Network) -> GasPrice? {
         return self.gasPrices.first(where: { $0.network == network })

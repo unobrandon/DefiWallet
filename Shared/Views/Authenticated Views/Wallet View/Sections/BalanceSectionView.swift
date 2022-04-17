@@ -25,24 +25,34 @@ struct BalanceSectionView: View {
         VStack(alignment: .center, spacing: 0) {
             HStack(alignment: .center, spacing: 10) {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Total Balance:")
-                        .fontTemplate(DefaultTemplate.body_secondary)
+                    HStack(alignment: .center, spacing: 5) {
+                        Text("Total Balance")
+                            .fontTemplate(DefaultTemplate.body_secondary)
+
+                        if let change = store.accountPortfolio?.relativeChange24h {
+                            ProminentRoundedLabel(text: (change >= 0 ? "+" : "") +
+                                                  "\("".forTrailingZero(temp: change.truncate(places: 2)))%",
+                                                  color: change >= 0 ? .green : .red,
+                                                  style: service.themeStyle)
+                        }
+                    }
 
                     HStack(alignment: .center, spacing: 0) {
-                        Text("$").fontTemplate(DefaultTemplate.titleBold)
+                        Text("$").fontTemplate(DefaultTemplate.titleSemiBold)
 
                         MovingNumbersView(number: store.accountPortfolio?.totalValue ?? 0.00,
                                           numberOfDecimalPlaces: 2,
                                           fixedWidth: 260,
+                                          animationDuration: 0.4,
                                           showComma: true) { str in
-                            Text(str).fontTemplate(DefaultTemplate.titleBold)
+                            Text(str).fontTemplate(DefaultTemplate.titleSemiBold)
                         }
                     }.mask(AppGradients.movingNumbersMask)
                 }
                 Spacer()
             }
 
-            LineChart(data: store.accountChart?.map({ $0.value }) ?? [0, 7, 10, 8, 2],
+            LineChart(data: [0, 7, 10, 8, 2],
                       frame: CGRect(x: 20, y: 0, width: MobileConstants.screenWidth - 40, height: 160),
                       visualType: ChartVisualType.filled(color: Color("AccentColor"), lineWidth: 3), offset: 0,
                       currentValueLineType: CurrentValueLineType.dash(color: .secondary, lineWidth: 2, dash: [8]))
@@ -54,9 +64,9 @@ struct BalanceSectionView: View {
         .onAppear {
             chart.removeAll()
 
-            if let items = store.accountChart {
-                chart = items.map({ $0.1 })
-            }
+//            if let items = store.accountChart {
+//                chart = items.map({ $0.1 })
+//            }
         }
 
         TransactButtonView(style: service.themeStyle,

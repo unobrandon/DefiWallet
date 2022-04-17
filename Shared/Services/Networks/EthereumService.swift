@@ -25,7 +25,6 @@ class EthereumService: ObservableObject {
 
     var socket: SocketIOClient
     var assetsSocket: SocketIOClient
-    var gasSocket: SocketIOClient
 
     @Published var connectionStatus: EthNetworkStatus = .undefined
 
@@ -56,7 +55,6 @@ class EthereumService: ObservableObject {
 
         self.socket = manager.defaultSocket
         self.assetsSocket = manager.socket(forNamespace: "/assets")
-        self.gasSocket = manager.socket(forNamespace: "/gas")
 
 //        self.connectWebsocket(currentUser: currentUser)
     }
@@ -69,14 +67,9 @@ class EthereumService: ObservableObject {
 
     private func connectWebsocket(currentUser: CurrentUser) {
         self.assetsSocket.connect()
-        self.gasSocket.connect()
 
         assetsSocket.on(clientEvent: .connect) { _, _ in
             self.fetchAssetsSocket()
-        }
-
-        gasSocket.on(clientEvent: .connect) { _, _ in
-            self.fetchGasSocket()
         }
 
         self.connectionStatus = .connecting
@@ -114,32 +107,13 @@ class EthereumService: ObservableObject {
             }
         }
 
-        assetsSocket.on("received assets info") { data, ack in
+        assetsSocket.on("received assets info") { data, _ in
             print("received assets info")
 
             DispatchQueue.main.async {
                 if let array = data as? [[String: AnyObject]], let firstDict = array.first {
                     let asset = firstDict["payload"]! as! [String: AnyObject]
                     print("received category info value is: \(asset)")
-                }
-            }
-        }
-    }
-
-    private func fetchGasSocket() {
-        print("calling fetch gas")
-
-//        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            self.gasSocket.emit("get", ["scope": ["price"], "payload": ["body parameter": "value"]])
-//        }
-
-        gasSocket.on("received gas price") { data, ack in
-            print("received a new gas price")
-
-            DispatchQueue.main.async {
-                if let array = data as? [[String: AnyObject]], let firstDict = array.first {
-                    let gasAsset = firstDict["payload"]!["price"]! as! [String: AnyObject]
-                    print("the gas value is: \(gasAsset)")
                 }
             }
         }

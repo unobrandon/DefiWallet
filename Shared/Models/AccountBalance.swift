@@ -35,5 +35,5 @@ struct AccountPortfolio: Codable, Hashable {
     let ethereumAssetsValue, fantomAssetsValue, lockedValue, loopringAssetsValue: Double?
     let nftFloorPriceValue, nftLastPriceValue, optimismAssetsValue, polygonAssetsValue: Double?
     let solanaAssetsValue, stakedValue, totalValue, xdaiAssetsValue: Double?
-    let absoluteChange24h, relativeChange24h: String?
+    let absoluteChange24h, relativeChange24h: Double?
 }

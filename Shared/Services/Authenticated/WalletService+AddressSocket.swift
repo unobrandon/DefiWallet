@@ -54,7 +54,7 @@ extension WalletService {
     }
 
     func loadAddressRequest() {
-        let topics = ["assets", "transactions"]
+        let topics = ["charts", "assets", "transactions", "polygon-assets", "staked-assets"]
 
         addressSocket.emit("get", ["scope": topics, "payload": ["address": currentUser.address, "currency": currentUser.currency]])
 
@@ -65,7 +65,7 @@ extension WalletService {
                       let payload = firstDict["payload"],
                       let assets = payload["portfolio"] as? [String: AnyObject] else { return }
 
-                let absoluteChange24h = assets["absolute_change_24h"] as? String
+                let absoluteChange24h = assets["absolute_change_24h"] as? Double
                 let arbitrumAssetsValue = assets["arbitrum_assets_value"] as? Double
                 let assetsValue = assets["assets_value"] as? Double
                 let auroraAssetsValue = assets["aurora_assets_value"] as? Double
@@ -81,7 +81,7 @@ extension WalletService {
                 let nftLastPriceValue = assets["nft_last_price_value"] as? Double
                 let optimismAssetsValue = assets["optimism_assets_value"] as? Double
                 let polygonAssetsValue = assets["polygon_assets_value"] as? Double
-                let relativeChange24h = assets["relative_change_24h"] as? String
+                let relativeChange24h = assets["relative_change_24h"] as? Double
                 let solanaAssetsValue = assets["solana_assets_value"] as? Double
                 let stakedValue = assets["staked_value"] as? Double
                 let totalValue = assets["total_value"] as? Double
@@ -115,7 +115,7 @@ extension WalletService {
                     storage.async.setObject(portfolio, forKey: "portfolio") { _ in }
                 }
 
-                print("the account value is: \(String(describing: totalValue)) & now: \(String(describing: self.accountPortfolio?.totalValue))")
+                print("the account value is: \(String(describing: totalValue)) & now: \(String(describing: self.accountPortfolio?.relativeChange24h))")
             }
         }
 
@@ -126,8 +126,16 @@ extension WalletService {
                       let payload = firstDict["payload"],
                       let charts = payload["charts"] as? [String : AnyObject] else { return }
 
-                self.accountChart = charts["others"] as? [String : Double]
-                print("the chart new is: \(String(describing: charts["others"])) &&more \(self.accountChart)")
+                self.accountChart = charts
+//                print("the chart now is: \(String(describing: charts)) &&more \(self.accountChart)")
+                if let loop = self.accountChart {
+                    print("the found point is: \(String(describing: loop.values.first))")
+                    if let firstObj = loop.values.first as? [[Int : AnyObject]] {
+                        for pointz in firstObj {
+                            print("a point is: \(pointz)")
+                        }
+                    }
+                }
             }
         }
 
@@ -141,10 +149,33 @@ extension WalletService {
                 print("the transactions value is: \(assets)")
             }
         }
+
+        self.addressSocket.on("received address polygon-assets") { data, _ in
+            DispatchQueue.main.async {
+                guard let array = data as? [[String: AnyObject]],
+                      let firstDict = array.first,
+                      let payload = firstDict["payload"],
+                      let assets = payload["polygon-assets"] as? [String: AnyObject] else { return }
+
+                print("the polygon-assets value is: \(assets)")
+            }
+        }
+
+        self.addressSocket.on("received address staked-assets") { data, _ in
+            DispatchQueue.main.async {
+                guard let array = data as? [[String: AnyObject]],
+                      let firstDict = array.first,
+                      let payload = firstDict["payload"],
+                      let assets = payload["staked-assets"] as? [String: AnyObject] else { return }
+
+                print("the staked-assets value is: \(assets)")
+            }
+        }
+
     }
 
     func emitChartRequest() {
-        self.chartSocketTimer = Timer.scheduledTimer(withTimeInterval: chartRefreshInterval, repeats: false) { _ in
+        self.chartSocketTimer = Timer.scheduledTimer(withTimeInterval: chartRefreshInterval, repeats: true) { _ in
             self.addressSocket.emit("get", ["scope": ["charts"], "payload": ["address": self.currentUser.address, "currency": self.currentUser.currency]])
         }
     }

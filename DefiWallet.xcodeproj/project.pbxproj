@@ -290,6 +290,8 @@
 		05A6AABC27F9627800824C76 /* TrendingTokenStandardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A6AABA27F9627800824C76 /* TrendingTokenStandardCell.swift */; };
 		05A6AABE27F980A800824C76 /* MarketCapRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A6AABD27F980A800824C76 /* MarketCapRankView.swift */; };
 		05A6AABF27F980A800824C76 /* MarketCapRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A6AABD27F980A800824C76 /* MarketCapRankView.swift */; };
+		05BDC5B6280BCE3000851E16 /* GasPriceNavSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5B5280BCE3000851E16 /* GasPriceNavSection.swift */; };
+		05BDC5B7280BCE3000851E16 /* GasPriceNavSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5B5280BCE3000851E16 /* GasPriceNavSection.swift */; };
 		05C884CB27FD0E00005E2455 /* OverviewSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */; };
 		05C884CC27FD0E00005E2455 /* OverviewSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */; };
 		05C884CE27FD1D33005E2455 /* RingProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C884CD27FD1D33005E2455 /* RingProgressModel.swift */; };
@@ -633,6 +635,7 @@
 		05A6AABA27F9627800824C76 /* TrendingTokenStandardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingTokenStandardCell.swift; sourceTree = "<group>"; };
 		05A6AABD27F980A800824C76 /* MarketCapRankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCapRankView.swift; sourceTree = "<group>"; };
 		05B6F35A27B617E500ECF820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05BDC5B5280BCE3000851E16 /* GasPriceNavSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasPriceNavSection.swift; sourceTree = "<group>"; };
 		05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewSectionView.swift; sourceTree = "<group>"; };
 		05C884CD27FD1D33005E2455 /* RingProgressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingProgressModel.swift; sourceTree = "<group>"; };
 		05C884D127FD1D96005E2455 /* AnimatedRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedRingView.swift; sourceTree = "<group>"; };
@@ -1367,6 +1370,7 @@
 			isa = PBXGroup;
 			children = (
 				05CA8713280247BB006FACE0 /* GlobalDataNavSection.swift */,
+				05BDC5B5280BCE3000851E16 /* GasPriceNavSection.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1790,6 +1794,7 @@
 				059F73D527D7166A00B27E80 /* ProfileService.swift in Sources */,
 				0593023727E08031006DDFFF /* WalletNavigationView.swift in Sources */,
 				057806D927B870620008051B /* MobileConsants.swift in Sources */,
+				05BDC5B6280BCE3000851E16 /* GasPriceNavSection.swift in Sources */,
 				0593025A27E19C98006DDFFF /* LineChart.swift in Sources */,
 				05F7B58428090518005A94C8 /* WalletService+AddressSocket.swift in Sources */,
 				05E858C427CB230B00B85195 /* EmptyAvatar.swift in Sources */,
@@ -2177,6 +2182,7 @@
 				0578077D27BB822D0008051B /* String+Extensions.swift in Sources */,
 				05583CDB27E9C20E00640E75 /* View+GridStyle.swift in Sources */,
 				05583CF527ED6CA700640E75 /* TokenListStandardCell.swift in Sources */,
+				05BDC5B7280BCE3000851E16 /* GasPriceNavSection.swift in Sources */,
 				05583CF227ED6A5100640E75 /* TopCoinsSectionView.swift in Sources */,
 				05E858C527CB230B00B85195 /* EmptyAvatar.swift in Sources */,
 				05E858FC27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,

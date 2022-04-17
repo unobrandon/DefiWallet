@@ -39,3 +39,15 @@ struct EthGasTrend: Codable {
     let date: String?
     let baseFee: Double?
 }
+
+// MARK: - Socket Eth Gas Prices
+struct GasSocketPrice: Codable, Equatable {
+
+    let source: String
+    let datetime: String
+    let rapid: Double?
+    let fast: Double
+    let standard: Double
+    let slow: Double
+
+}

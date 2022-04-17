@@ -14,7 +14,7 @@ import SocketIO
 class WalletService: ObservableObject {
 
     @Published var accountPortfolio: AccountPortfolio?
-    @Published var accountChart: [String : Double]?
+    @Published var accountChart: [String : AnyObject]?
     @Published var accountBalance = [AccountBalance]()
     @Published var completeBalance = [CompleteBalance]()
     @Published var accountNfts = [NftResult]()
