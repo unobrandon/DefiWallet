@@ -68,9 +68,9 @@ public struct LineChart: View {
             return AnyView(ZStack {
                 linePathGradient(points: points)
                     .fill(LinearGradient(
-                        gradient: .init(colors: [color.opacity(0.2), color.opacity(0.02)]),
+                        gradient: .init(colors: [color.opacity(0.2), color.opacity(0.0)]),
                         startPoint: .init(x: 0.5, y: 1),
-                        endPoint: .init(x: 0.5, y: 0)
+                        endPoint: .init(x: 0.5, y: 0.2)
                     ))
                 linePath(points: points)
                     .stroke(color, style: StrokeStyle(lineWidth: lineWidth, lineJoin: .round))

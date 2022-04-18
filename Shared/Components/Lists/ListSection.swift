@@ -36,7 +36,7 @@ struct ListSection<Content: View>: View {
                 .background(style == .shadow ? Color("baseButton") : Color.clear)
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                 .shadow(color: Color.black.opacity(style == .shadow ? 0.15 : 0.0), radius: 15, x: 0, y: 8)
-                .overlay(RoundedRectangle(cornerRadius: 15, style: .circular).strokeBorder(DefaultTemplate.borderColor.opacity(style == .border ? 1.0 : 0.0), lineWidth: 2))
+                .overlay(RoundedRectangle(cornerRadius: 15, style: .circular).strokeBorder(DefaultTemplate.borderColor.opacity(style == .border ? 1.0 : 0.0), lineWidth: 1.5))
                 .padding(.bottom, 5)
                 .padding(.horizontal, 2)
         }

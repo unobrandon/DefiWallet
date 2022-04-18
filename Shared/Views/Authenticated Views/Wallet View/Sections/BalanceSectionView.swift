@@ -50,7 +50,7 @@ struct BalanceSectionView: View {
                     // stride(from: 1, to: store.accountChart.count - 1, by: 4).map({ store.accountChart[$0].amount })
                     LineChart(data: store.accountChart.map({ $0.amount }),
                               frame: CGRect(x: 20, y: 0, width: MobileConstants.screenWidth - 40, height: 140),
-                              visualType: ChartVisualType.filled(color: Color("AccentColor"), lineWidth: 2), offset: 0,
+                              visualType: ChartVisualType.filled(color: store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red, lineWidth: 2), offset: 0,
                               currentValueLineType: CurrentValueLineType.dash(color: .secondary, lineWidth: 0, dash: [8]))
                         .frame(height: 140)
                         .padding(.top)
@@ -58,23 +58,23 @@ struct BalanceSectionView: View {
 
                     if !store.accountChart.isEmpty {
                         HStack(spacing: 5) {
-                            BorderedSelectedButton(title: "1H", systemImage: nil, size: .mini, tint: store.chartType == "h" ? Color("AccentColor") : nil, action: {
+                            BorderedSelectedButton(title: "1H", systemImage: nil, size: .mini, tint: store.chartType == "h" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
                                 store.emitSingleChartRequest("h")
                             })
 
-                            BorderedSelectedButton(title: "1D", systemImage: nil, size: .mini, tint: store.chartType == "d" ? Color("AccentColor") : nil, action: {
+                            BorderedSelectedButton(title: "1D", systemImage: nil, size: .mini, tint: store.chartType == "d" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
                                 store.emitSingleChartRequest("d")
                             })
 
-                            BorderedSelectedButton(title: "1W", systemImage: nil, size: .mini, tint: store.chartType == "w" ? Color("AccentColor") : nil, action: {
+                            BorderedSelectedButton(title: "1W", systemImage: nil, size: .mini, tint: store.chartType == "w" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
                                 store.emitSingleChartRequest("w")
                             })
 
-                            BorderedSelectedButton(title: "1M", systemImage: nil, size: .mini, tint: store.chartType == "m" ? Color("AccentColor") : nil, action: {
+                            BorderedSelectedButton(title: "1M", systemImage: nil, size: .mini, tint: store.chartType == "m" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
                                 store.emitSingleChartRequest("m")
                             })
 
-                            BorderedSelectedButton(title: "1Y", systemImage: nil, size: .mini, tint: store.chartType == "y" ? Color("AccentColor") : nil, action: {
+                            BorderedSelectedButton(title: "1Y", systemImage: nil, size: .mini, tint: store.chartType == "y" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
                                 store.emitSingleChartRequest("y")
                             })
                         }
