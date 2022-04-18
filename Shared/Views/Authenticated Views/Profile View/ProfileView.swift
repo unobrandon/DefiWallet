@@ -31,6 +31,9 @@ struct ProfileView: View {
                     })
                 }
 
+                ListSection(title: nil, style: service.themeStyle) {
+                }
+
                 ListSection(title: "General", style: service.themeStyle) {
                     ListStandardButton(title: "ENS Domain", systemImage: "person", isLast: false, style: service.themeStyle, action: {
                         print("Currency")

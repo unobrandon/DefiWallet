@@ -44,14 +44,18 @@ public struct LineChart: View {
 
     public var body: some View {
         ZStack {
-            chart
-                .rotationEffect(.degrees(180), anchor: .center)
-                .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                .drawingGroup()
-            line
-                .rotationEffect(.degrees(180), anchor: .center)
-                .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                .drawingGroup()
+            if !data.isEmpty {
+                chart
+                    .rotationEffect(.degrees(180), anchor: .center)
+                    .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+                    .drawingGroup()
+                line
+                    .rotationEffect(.degrees(180), anchor: .center)
+                    .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+                    .drawingGroup()
+            } else {
+                LoadingView(title: "loading chart")
+            }
         }
     }
 

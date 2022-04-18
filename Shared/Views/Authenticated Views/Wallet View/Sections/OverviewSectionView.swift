@@ -15,7 +15,6 @@ struct OverviewSectionView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
     private let completeBalance: CompleteBalance
-    @State private var networkTotal: String
 
     private var rings: [RingProgressModel]
 
@@ -23,7 +22,6 @@ struct OverviewSectionView: View {
         self.service = service
         self.store = service.wallet
         self.completeBalance = completeBalance
-        self.networkTotal = service.wallet.getNetworkTotal(completeBalance)
 
         let totalAssets: Double = Double((completeBalance.tokenBalance?.count ?? 0) + (completeBalance.nfts?.result?.count ?? 0))
         let tokenProgress: Double = Double((completeBalance.tokenBalance?.count ?? 0)) / totalAssets
@@ -62,7 +60,7 @@ struct OverviewSectionView: View {
                     HStack(alignment: .center, spacing: 5) {
                         Text("$").fontTemplate(DefaultTemplate.titleSemiBold)
 
-                        if let num = Double(networkTotal) {
+                        if let num = service.wallet.getNetworkTotal(completeBalance) {
                             MovingNumbersView(number: num,
                                               numberOfDecimalPlaces: 2,
                                               fixedWidth: nil,
@@ -91,7 +89,7 @@ struct OverviewSectionView: View {
 
                         Spacer()
                         HStack(alignment: .center, spacing: 2.5) {
-                            if let num = Double(networkTotal) {
+                            if let num = service.wallet.getNetworkTotal(completeBalance) {
                                 Text("$").fontTemplate(DefaultTemplate.gasPriceFont)
 
                                 MovingNumbersView(number: num,

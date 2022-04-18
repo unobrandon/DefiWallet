@@ -28,15 +28,13 @@ struct ScanQRView: View {
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
 
-            Text(foundLink ? "Do you want to connect and give the following Dapp access to your wallet's info?" : "Scan any address or WalletConnect Dapp's QR code to connect your wallet. Learn more here.")
+            Text(foundLink ? "Do you want to connect and give the following Dapp access to your wallet's info?" : "Scan any address or WalletConnect Dapp's QR code to connect your wallet.")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .lineLimit(3)
-                .frame(height: 48)
                 .padding(.horizontal)
 
-            Spacer()
             if !foundLink {
                 ScanQACameraView(foundLink: $foundLink, service: service)
             } else {

@@ -27,7 +27,7 @@ struct GlobalDataNavSection: View {
                 Image(systemName: "globe.americas")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 26, height: 26, alignment: .center)
+                    .frame(width: 25, height: 25, alignment: .center)
                     .font(Font.title.weight(.medium))
                     .padding(.trailing, 5)
 

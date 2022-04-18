@@ -23,6 +23,8 @@ struct MarketsView: View {
     @State var isMarketCapLoading: Bool = false
     @State var isCategoriesLoading: Bool = false
     @State var isTrendingLoading: Bool = false
+    @State var showGasSheet: Bool = false
+    @State var showGlobalSheet: Bool = false
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -47,24 +49,40 @@ struct MarketsView: View {
         .navigationSearchBar { SearchBar("Search tokens and more...", text: $searchText) }
         .navigationSearchBarHiddenWhenScrolling(searchHide)
         .onAppear {
+            print("markets view did appear")
             self.gridViews = [
                 AnyView(TopSectionView(service: service)),
                 AnyView(TrendingSectionView(isLoading: $isTrendingLoading, service: service)),
                 AnyView(TopCoinsSectionView(isLoading: $isMarketCapLoading, service: service))
             ]
         }
+        .onDisappear {
+            print("markets view did disappear")
+        }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 if let data = store.globalMarketData {
                     GlobalDataNavSection(data: data, service: service, action: {
-                        print("tapped global data")
+                        #if os(iOS)
+                            HapticFeedback.rigidHapticFeedback()
+                        #endif
+
+                        SOCManager.present(isPresented: $showGlobalSheet) {
+                            GlobalMarketView(service: service)
+                        }
                     }).offset(y: -2.5)
                 }
             }
 
             ToolbarItem(placement: .navigationBarTrailing, content: {
                 GasPriceNavSection(service: service, action: {
-                    print("tapped gas prices")
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
+
+                    SOCManager.present(isPresented: $showGasSheet) {
+                        GlobalGasView(service: service)
+                    }
                 })
             })
         }

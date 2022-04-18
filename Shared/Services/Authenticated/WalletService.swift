@@ -14,7 +14,7 @@ import SocketIO
 class WalletService: ObservableObject {
 
     @Published var accountPortfolio: AccountPortfolio?
-    @Published var accountChart: [String : AnyObject]?
+    @Published var accountChart = [ChartValue]()
     @Published var accountBalance = [AccountBalance]()
     @Published var completeBalance = [CompleteBalance]()
     @Published var accountNfts = [NftResult]()
@@ -46,7 +46,8 @@ class WalletService: ObservableObject {
     var addressSocket: SocketIOClient
 
     let portfolioRefreshInterval: Double = 30
-    let chartRefreshInterval: Double = 20
+    let chartRefreshInterval: Double = 60
+    var chartType: String = UserDefaults.standard.string(forKey: "chartType") ?? "d"
     var chartSocketTimer: Timer?
 
     init(currentUser: CurrentUser, socketManager: SocketManager, wcMetadata: AppMetadata) {
@@ -340,17 +341,22 @@ class WalletService: ObservableObject {
     }
 
     // Remove this. Not good logic.
-    func getNetworkTotal(_ completeBalance: CompleteBalance) -> String {
-        guard let tokens = completeBalance.tokenBalance else { return "0.00" }
-        var total: Double = 0.00
-
-        for token in tokens {
-            if let usdTotal = token.usdTotal, let balance = Double(usdTotal) {
-                total += balance
-            }
+    func getNetworkTotal(_ completeBalance: CompleteBalance) -> Double? {
+        if completeBalance.network == "eth" {
+            return accountPortfolio?.ethereumAssetsValue
+        } else if completeBalance.network == "bsc" {
+            return accountPortfolio?.bscAssetsValue
+        } else if completeBalance.network == "polygon" {
+            return accountPortfolio?.polygonAssetsValue
+        } else if completeBalance.network == "avalanche" {
+            return accountPortfolio?.avalancheAssetsValue
+        } else if completeBalance.network == "fantom" {
+            return accountPortfolio?.fantomAssetsValue
+        } else if completeBalance.network == "solana" {
+            return accountPortfolio?.solanaAssetsValue
+        } else {
+            return 0.00
         }
-
-        return "\(total)"
     }
 
     func shareSheet(url: URL) {

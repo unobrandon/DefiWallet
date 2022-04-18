@@ -37,3 +37,10 @@ struct AccountPortfolio: Codable, Hashable {
     let solanaAssetsValue, stakedValue, totalValue, xdaiAssetsValue: Double?
     let absoluteChange24h, relativeChange24h: Double?
 }
+
+struct ChartValue: Codable {
+
+    let timestamp: Int
+    let amount: Double
+
+}

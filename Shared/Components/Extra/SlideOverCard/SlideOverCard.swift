@@ -90,8 +90,10 @@ public struct SlideOverCard<Content: View>: View {
                 Button(action: dismiss) {
                     SOCExitButton()
                 }.frame(width: 32, height: 32)
+                .padding(.trailing, 5)
             }
         }.padding(20)
+        .padding(.top, 10)
         .background(RoundedRectangle(cornerRadius: 38.5, style: .continuous)
                         .fill(Color(.systemGray6)))
         .clipShape(RoundedRectangle(cornerRadius: 38.5, style: .continuous))

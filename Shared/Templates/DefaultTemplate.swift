@@ -59,6 +59,7 @@ struct DefaultTemplate {
 
     static let bodyBold_nunito = FontTemplate(font: Font.custom("Nunito-Bold", size: 14), weight: .bold, foregroundColor: .primary, lineSpacing: 0)
     static let bodySemibold_nunito = FontTemplate(font: Font.custom("Nunito-SemiBold", size: 14), weight: .semibold, foregroundColor: .primary, lineSpacing: 0)
+    static let bodySemibold_nunito_secondary = FontTemplate(font: Font.custom("Nunito-SemiBold", size: 14), weight: .semibold, foregroundColor: .secondary, lineSpacing: 0)
 
     static let body_secondary = FontTemplate(font: Font.custom("Poppins-Regular", size: 14), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)
 

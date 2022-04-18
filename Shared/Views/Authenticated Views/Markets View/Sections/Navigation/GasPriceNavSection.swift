@@ -40,7 +40,7 @@ struct GasPriceNavSection: View {
                 if let gas = store.gasSocketPrices?.standard,
                    let formatedGas = gas / 1000000000 {
                     MovingNumbersView(number: formatedGas, numberOfDecimalPlaces: 0,  fixedWidth: 20, animationDuration: 0.5, showComma: false) { gas in
-                        Text(gas).fontTemplate(DefaultTemplate.subheadingSemiBold)
+                        Text(gas).fontTemplate(DefaultTemplate.gasPriceFont)
                     }
                     .mask(AppGradients.movingNumbersMask)
                     .padding(.trailing, 2.5)

@@ -1,13 +1,13 @@
 //
-//  BorderedButton.swift
+//  BorderedSelectedButton.swift
 //  DefiWallet
 //
-//  Created by Brandon Shaw on 3/14/22.
+//  Created by Brandon Shaw on 4/17/22.
 //
 
 import SwiftUI
 
-struct BorderedButton: View {
+struct BorderedSelectedButton: View {
 
     private let title: String
     private var systemImage: String?
@@ -30,16 +30,16 @@ struct BorderedButton: View {
             if let systemImage = systemImage {
                 Label(title, systemImage: systemImage)
             } else if buttonSize == .mini {
-                Text(title).fontTemplate(FontTemplate(font: Font.system(size: 11.0, design: .monospaced), weight: .semibold, foregroundColor: tint ?? .primary, lineSpacing: 0))
+                Text(title).fontTemplate(FontTemplate(font: Font.system(size: 11.0, design: .monospaced), weight: .bold, foregroundColor: tint ?? .gray.opacity(0.2), lineSpacing: 0))
             } else {
                 Text(title)
             }
         })
-        .buttonStyle(.bordered)
-        .controlSize(buttonSize ?? .small)
-        .buttonBorderShape(.roundedRectangle)
-        .tint(tint)
-        .buttonStyle(ClickInteractiveStyle(0.99))
+        .padding(.vertical, 4)
+        .padding(.horizontal, 10)
+        .background(tint?.opacity(0.1) ?? .gray.opacity(0.05))
+        .cornerRadius(5)
+        .buttonStyle(ClickInteractiveStyle(0.98))
     }
 
     private func actionTap() {

@@ -27,7 +27,7 @@ struct NetworkSectionView: View {
             SectionHeaderView(title: "Networks", action: {
                 print("see more")
             })
-            .padding(.vertical, 5)
+            .padding(.bottom, 5)
 
             if isLoading, store.completeBalance.isEmpty {
                 LoadingView(title: "")

@@ -46,6 +46,11 @@ struct ScanQACameraView: View {
 
                     print("have received incoming link!: \(String(describing: $0.value))")
                 }
+                #if os(macOS)
+                .frame(height: 400, alignment: .center)
+                #elseif os(iOS)
+                .frame(minHeight: MobileConstants.screenWidth - 80, maxHeight: MobileConstants.screenWidth - 40, alignment: .center)
+                #endif
                 .modifier(Shake(animatableData: CGFloat(attempts)))
                 .foregroundColor(Color("baseBackground"))
                 .cornerRadius(20)

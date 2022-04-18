@@ -292,6 +292,14 @@
 		05A6AABF27F980A800824C76 /* MarketCapRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A6AABD27F980A800824C76 /* MarketCapRankView.swift */; };
 		05BDC5B6280BCE3000851E16 /* GasPriceNavSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5B5280BCE3000851E16 /* GasPriceNavSection.swift */; };
 		05BDC5B7280BCE3000851E16 /* GasPriceNavSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5B5280BCE3000851E16 /* GasPriceNavSection.swift */; };
+		05BDC5B9280D06B500851E16 /* BorderedSelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5B8280D06B500851E16 /* BorderedSelectedButton.swift */; };
+		05BDC5BA280D06B500851E16 /* BorderedSelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5B8280D06B500851E16 /* BorderedSelectedButton.swift */; };
+		05BDC5BC280D116D00851E16 /* GlobalGasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5BB280D116D00851E16 /* GlobalGasView.swift */; };
+		05BDC5BD280D116D00851E16 /* GlobalGasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5BB280D116D00851E16 /* GlobalGasView.swift */; };
+		05BDC5BF280D1B9200851E16 /* ListInfoSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5BE280D1B9200851E16 /* ListInfoSmallView.swift */; };
+		05BDC5C0280D1B9200851E16 /* ListInfoSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5BE280D1B9200851E16 /* ListInfoSmallView.swift */; };
+		05BDC5C2280D2AB600851E16 /* GlobalMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5C1280D2AB600851E16 /* GlobalMarketView.swift */; };
+		05BDC5C3280D2AB600851E16 /* GlobalMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5C1280D2AB600851E16 /* GlobalMarketView.swift */; };
 		05C884CB27FD0E00005E2455 /* OverviewSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */; };
 		05C884CC27FD0E00005E2455 /* OverviewSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */; };
 		05C884CE27FD1D33005E2455 /* RingProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C884CD27FD1D33005E2455 /* RingProgressModel.swift */; };
@@ -636,6 +644,10 @@
 		05A6AABD27F980A800824C76 /* MarketCapRankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCapRankView.swift; sourceTree = "<group>"; };
 		05B6F35A27B617E500ECF820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05BDC5B5280BCE3000851E16 /* GasPriceNavSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasPriceNavSection.swift; sourceTree = "<group>"; };
+		05BDC5B8280D06B500851E16 /* BorderedSelectedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedSelectedButton.swift; sourceTree = "<group>"; };
+		05BDC5BB280D116D00851E16 /* GlobalGasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalGasView.swift; sourceTree = "<group>"; };
+		05BDC5BE280D1B9200851E16 /* ListInfoSmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoSmallView.swift; sourceTree = "<group>"; };
+		05BDC5C1280D2AB600851E16 /* GlobalMarketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalMarketView.swift; sourceTree = "<group>"; };
 		05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewSectionView.swift; sourceTree = "<group>"; };
 		05C884CD27FD1D33005E2455 /* RingProgressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingProgressModel.swift; sourceTree = "<group>"; };
 		05C884D127FD1D96005E2455 /* AnimatedRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedRingView.swift; sourceTree = "<group>"; };
@@ -833,6 +845,8 @@
 				053113FD27E6CFE500368657 /* ScanQRView.swift */,
 				0531141927E7E73700368657 /* ScanQACameraView.swift */,
 				0531141627E7E63000368657 /* DappProposalView.swift */,
+				05BDC5BB280D116D00851E16 /* GlobalGasView.swift */,
+				05BDC5C1280D2AB600851E16 /* GlobalMarketView.swift */,
 			);
 			path = SlideOverCards;
 			sourceTree = "<group>";
@@ -1187,6 +1201,7 @@
 				05E858FE27CC08F200B85195 /* RoundedInteractiveButton.swift */,
 				0593022127E02B7E006DDFFF /* BorderlessButton.swift */,
 				0593022427E02D63006DDFFF /* BorderedButton.swift */,
+				05BDC5B8280D06B500851E16 /* BorderedSelectedButton.swift */,
 				0593023227E067AE006DDFFF /* TransactButton.swift */,
 				0593021827DFCB3D006DDFFF /* ProfileHeaderButton.swift */,
 				0531140027E6DD1500368657 /* CloseButton.swift */,
@@ -1551,6 +1566,7 @@
 				05E858EA27CB322100B85195 /* ListSection.swift */,
 				05A6AAB027F958EF00824C76 /* ListTitleView.swift */,
 				0566AED327E9610D006B645F /* ListInfoView.swift */,
+				05BDC5BE280D1B9200851E16 /* ListInfoSmallView.swift */,
 				05583C9B27E96C6C00640E75 /* ListInfoCustomView.swift */,
 			);
 			path = Lists;
@@ -1838,6 +1854,7 @@
 				05583CB627E9BFE000640E75 /* Grid.swift in Sources */,
 				05583CD427E9C1D100640E75 /* GridStyle.swift in Sources */,
 				05E858B327C9F9F900B85195 /* HapticFeedback.swift in Sources */,
+				05BDC5C2280D2AB600851E16 /* GlobalMarketView.swift in Sources */,
 				05CA87102802415D006FACE0 /* GlobalMarketData.swift in Sources */,
 				05583CFA27ED7EB800640E75 /* ProminentRoundedLabel.swift in Sources */,
 				05583CDA27E9C20E00640E75 /* View+GridStyle.swift in Sources */,
@@ -1866,6 +1883,7 @@
 				05F8EE212800042B003BBC23 /* CategoriesView.swift in Sources */,
 				0593022527E02D63006DDFFF /* BorderedButton.swift in Sources */,
 				053113F527E6CF0800368657 /* CameraPreview.swift in Sources */,
+				05BDC5B9280D06B500851E16 /* BorderedSelectedButton.swift in Sources */,
 				0578073627BB59DC0008051B /* DiscoverCoordinator.swift in Sources */,
 				0593023327E067AE006DDFFF /* TransactButton.swift in Sources */,
 				05E858F827CB5A3200B85195 /* TextFieldSingleList.swift in Sources */,
@@ -1903,6 +1921,7 @@
 				053113E227E6C65D00368657 /* Manager.swift in Sources */,
 				05C884CE27FD1D33005E2455 /* RingProgressModel.swift in Sources */,
 				05E5F85727D361980090290C /* RoundedCross.swift in Sources */,
+				05BDC5BC280D116D00851E16 /* GlobalGasView.swift in Sources */,
 				0593021C27DFF0E5006DDFFF /* OnboardingHeaderView.swift in Sources */,
 				0578076F27BB6D200008051B /* DefaultTemplate.swift in Sources */,
 				05583CC827E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift in Sources */,
@@ -1935,6 +1954,7 @@
 				0531141D27E7EE1B00368657 /* WCSessionInfo.swift in Sources */,
 				05E5F85327D3614A0090290C /* ConfettiSwiftUI.swift in Sources */,
 				051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */,
+				05BDC5BF280D1B9200851E16 /* ListInfoSmallView.swift in Sources */,
 				058C785F27D06D5600EB91CA /* HeaderIcon.swift in Sources */,
 				0593020D27D9900A006DDFFF /* AccountBalance.swift in Sources */,
 				05CA87202803DD0D006FACE0 /* Color+Extensions.swift in Sources */,
@@ -1993,6 +2013,7 @@
 			files = (
 				05E5F85027D351CA0090290C /* BiometryBanner.swift in Sources */,
 				05D1095127C08B3E008DCC66 /* ProfileCoordinator.swift in Sources */,
+				05BDC5BA280D06B500851E16 /* BorderedSelectedButton.swift in Sources */,
 				05583CE727EC10DF00640E75 /* NetworkCell.swift in Sources */,
 				05E858BB27CA069400B85195 /* MainCarouselView.swift in Sources */,
 				05D1095E27C08D1B008DCC66 /* MacAuthenticatedCoordinator+Factory.swift in Sources */,
@@ -2075,6 +2096,7 @@
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
 				0593021127D9C790006DDFFF /* Double+Extensions.swift in Sources */,
 				050225B727FC095F0004D910 /* PinnedHeaderView.swift in Sources */,
+				05BDC5BD280D116D00851E16 /* GlobalGasView.swift in Sources */,
 				0566AECD27E8660C006B645F /* HistoryTransactionsView.swift in Sources */,
 				05583C9A27E965FF00640E75 /* SafariView.swift in Sources */,
 				05A6AABF27F980A800824C76 /* MarketCapRankView.swift in Sources */,
@@ -2196,7 +2218,9 @@
 				05583CED27ED5CA100640E75 /* CoinByMarketCap.swift in Sources */,
 				0578074727BB5E1A0008051B /* FontTemplate.swift in Sources */,
 				05583C9D27E96C6D00640E75 /* ListInfoCustomView.swift in Sources */,
+				05BDC5C3280D2AB600851E16 /* GlobalMarketView.swift in Sources */,
 				05D1094D27C08B3E008DCC66 /* WalletCoordinator.swift in Sources */,
+				05BDC5C0280D1B9200851E16 /* ListInfoSmallView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

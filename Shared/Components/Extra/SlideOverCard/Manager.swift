@@ -24,7 +24,7 @@ public struct SOCManager {
         controller.overrideUserInterfaceStyle = style
 
         UIApplication.shared.windows.first?.rootViewController?.present(controller, animated: false)
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             withAnimation {
                 isPresented.wrappedValue = true
             }
@@ -36,7 +36,7 @@ public struct SOCManager {
         withAnimation {
             isPresented.wrappedValue = false
         }
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: false)
         }
     }

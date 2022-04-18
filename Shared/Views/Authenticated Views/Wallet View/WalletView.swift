@@ -45,12 +45,6 @@ struct WalletView: View {
         })
         .navigationBarTitle("", displayMode: .inline)
         .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))
-        .onAppear {
-            print("view did appear 11")
-        }
-        .onDisappear {
-            print("view did disappear")
-        }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 WalletNavigationView(service: service).offset(y: -2.5)
@@ -59,14 +53,17 @@ struct WalletView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(alignment: .center, spacing: 10) {
                     Button {
-                        HapticFeedback.rigidHapticFeedback()
+                        #if os(iOS)
+                            HapticFeedback.rigidHapticFeedback()
+                        #endif
+
                         SOCManager.present(isPresented: $showSheet) {
                             ScanQRView(showSheet: $showSheet, service: service)
-                            #if os(macOS)
-                            .frame(height: 400, alignment: .center)
-                            #elseif os(iOS)
-                            .frame(minHeight: MobileConstants.screenHeight / 2.5, maxHeight: MobileConstants.screenHeight / 1.7, alignment: .center)
-                            #endif
+//                            #if os(macOS)
+//                            .frame(height: 400, alignment: .center)
+//                            #elseif os(iOS)
+//                            .frame(minHeight: MobileConstants.screenHeight / 2.5, maxHeight: MobileConstants.screenHeight / 1.7, alignment: .center)
+//                            #endif
                         }
                     } label: {
                         Image(systemName: "qrcode.viewfinder")

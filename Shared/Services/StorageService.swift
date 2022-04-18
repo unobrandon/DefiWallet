@@ -23,6 +23,7 @@ class StorageService {
     var nftUriResponse: Cache.Storage<String, NftURIResponse>?
     var historyStorage: Cache.Storage<String, [HistoryData]>?
     var portfolioStorage: Cache.Storage<String, AccountPortfolio>?
+    var chartStorage: Cache.Storage<String, [ChartValue]>?
     var trendingStorage: Cache.Storage<String, [TrendingCoin]>?
     var gasPriceTrends: Cache.Storage<String, EthGasPriceTrends>?
     var globalMarketData: Cache.Storage<String, GlobalMarketData>?

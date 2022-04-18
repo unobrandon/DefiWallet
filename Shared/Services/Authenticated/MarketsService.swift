@@ -25,6 +25,7 @@ class MarketsService: ObservableObject {
     var gasSocketTimer: Timer?
 
     let gasRefreshInterval: Double = 10
+    var gasChartLimit: Int = 24
 
     init(socketManager: SocketManager) {
         self.socketManager = socketManager
@@ -108,13 +109,13 @@ class MarketsService: ObservableObject {
     }
 
     func fetchGlobalMarketData(completion: @escaping () -> Void) {
-        if let storage = StorageService.shared.gasPriceTrends {
+        if let storage = StorageService.shared.globalMarketData {
             storage.async.object(forKey: "globalMarketData") { result in
                 switch result {
-                case .value(let trends):
+                case .value(let global):
                     print("got global market data locally")
                     DispatchQueue.main.async {
-                        self.ethGasPriceTrends = trends
+                        self.globalMarketData = global
                     }
                 case .error(let error):
                     print("error getting global market data locally: \(error.localizedDescription)")

@@ -23,3 +23,8 @@ enum NetworkStatus: Equatable {
     case offline
     case unknown
 }
+
+enum JSONError : Error {
+    case notArray
+    case notNSDictionary
+}

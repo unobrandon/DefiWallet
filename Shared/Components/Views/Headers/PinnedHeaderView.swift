@@ -28,7 +28,7 @@ struct PinnedHeaderView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 25) {
                 ForEach(sections, id: \.self) { type in
-                    VStack(spacing: 7.5) {
+                    VStack(spacing: 5) {
                         Text(type).fontTemplate(FontTemplate(font: Font.custom("Poppins-Medium", size: 16), weight: .semibold, foregroundColor: currentType == type ? .primary : .secondary, lineSpacing: 0))
 
                         ZStack {
@@ -39,21 +39,19 @@ struct PinnedHeaderView: View {
                             } else {
                                 RoundedRectangle(cornerRadius: 4, style: .continuous).fill(.clear)
                             }
-                        }.frame(height: 4)
+                        }.frame(height: 2)
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        action()
                         withAnimation(.easeInOut) {
                             currentType = type
                         }
+                        action()
                     }
                 }
             }
-            .padding(.horizontal)
             .padding(.vertical, 5)
         }
-        .background(VisualEffectBlurView(blurStyle: .systemThinMaterial))
     }
 }
 

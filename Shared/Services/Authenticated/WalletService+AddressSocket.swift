@@ -7,6 +7,7 @@
 
 import Foundation
 import SocketIO
+import SwiftUI
 
 extension WalletService {
 
@@ -24,10 +25,27 @@ extension WalletService {
             }
         }
 
+        if let storage = StorageService.shared.chartStorage {
+            let type = UserDefaults.standard.string(forKey: "chartType") ?? self.chartType
+            self.chartType = type
+
+            storage.async.object(forKey: "portfolioChart\(type)") { result in
+                switch result {
+                case .value(let chart):
+                    DispatchQueue.main.async {
+                        self.accountChart = chart
+                    }
+                case .error(let error):
+                    print("error getting local chart: \(error.localizedDescription)")
+                }
+            }
+        }
+
         addressSocket.connect(withPayload: ["address": currentUser.address, "currency": currentUser.currency])
 
         addressSocket.on(clientEvent: .connect) { _, _ in
-            self.loadAddressRequest()
+            self.setSockets()
+            self.emitInitRequest()
             self.emitChartRequest()
             self.emitPortfolioRequest()
             self.networkStatus = .connected
@@ -53,10 +71,7 @@ extension WalletService {
         timer.invalidate()
     }
 
-    func loadAddressRequest() {
-        let topics = ["charts", "assets", "transactions", "polygon-assets", "staked-assets"]
-
-        addressSocket.emit("get", ["scope": topics, "payload": ["address": currentUser.address, "currency": currentUser.currency]])
+    func setSockets() {
 
         self.addressSocket.on("received address portfolio") { data, _ in
             DispatchQueue.main.async {
@@ -126,15 +141,25 @@ extension WalletService {
                       let payload = firstDict["payload"],
                       let charts = payload["charts"] as? [String : AnyObject] else { return }
 
-                self.accountChart = charts
-//                print("the chart now is: \(String(describing: charts)) &&more \(self.accountChart)")
-                if let loop = self.accountChart {
-                    print("the found point is: \(String(describing: loop.values.first))")
-                    if let firstObj = loop.values.first as? [[Int : AnyObject]] {
-                        for pointz in firstObj {
-                            print("a point is: \(pointz)")
+                self.accountChart.removeAll()
+
+                for main in charts {
+                    if let loopData = main.value as? [AnyObject] {
+                        for chartTuple in loopData {
+                            let tupleMirror = Mirror(reflecting: chartTuple)
+                            let tupleElements = tupleMirror.children.map({ $0.value })
+
+                            if let time = tupleElements.first as? Int,
+                               let value = tupleElements.last as? Double {
+                                self.accountChart.insert(ChartValue(timestamp: time, amount: value), at: 0)
+                            }
                         }
                     }
+                }
+
+                if !self.accountChart.isEmpty, let storage = StorageService.shared.chartStorage {
+                    let type = UserDefaults.standard.string(forKey: "chartType") ?? self.chartType
+                    storage.async.setObject(self.accountChart, forKey: "portfolioChart\(type)") { _ in }
                 }
             }
         }
@@ -143,10 +168,9 @@ extension WalletService {
             DispatchQueue.main.async {
                 guard let array = data as? [[String: AnyObject]],
                       let firstDict = array.first,
-                      let payload = firstDict["payload"],
-                      let assets = payload["transactions"] as? [String: AnyObject] else { return }
+                      let payload = firstDict["payload"] else { return }
 
-                print("the transactions value is: \(assets)")
+                print("the transactions value is: \(payload)")
             }
         }
 
@@ -165,19 +189,48 @@ extension WalletService {
             DispatchQueue.main.async {
                 guard let array = data as? [[String: AnyObject]],
                       let firstDict = array.first,
-                      let payload = firstDict["payload"],
-                      let assets = payload["staked-assets"] as? [String: AnyObject] else { return }
+                      let payload = firstDict["payload"] else { return }
 
-                print("the staked-assets value is: \(assets)")
+                print("the staked-assets value is: \(payload)")
             }
         }
 
     }
 
+    func emitInitRequest() {
+        let topics = ["charts", "assets", "transactions", "polygon-assets", "staked-assets"]
+
+        addressSocket.emit("get", ["scope": topics, "payload": ["address": currentUser.address, "currency": currentUser.currency]])
+    }
+
     func emitChartRequest() {
         self.chartSocketTimer = Timer.scheduledTimer(withTimeInterval: chartRefreshInterval, repeats: true) { _ in
-            self.addressSocket.emit("get", ["scope": ["charts"], "payload": ["address": self.currentUser.address, "currency": self.currentUser.currency]])
+            self.addressSocket.emit("get", ["scope": ["charts"], "payload": ["address": self.currentUser.address, "currency": self.currentUser.currency, "charts_type": UserDefaults.standard.string(forKey: "chartType") ?? self.chartType]])
         }
+    }
+
+    func emitSingleChartRequest(_ type: String? = "d") {
+        self.chartType = type ?? "d"
+        UserDefaults.standard.setValue(self.chartType, forKey: "chartType")
+
+        #if os(iOS)
+            HapticFeedback.rigidHapticFeedback()
+        #endif
+
+        if let storage = StorageService.shared.chartStorage {
+            storage.async.object(forKey: "portfolioChart\(self.chartType)") { result in
+                switch result {
+                case .value(let chart):
+                    DispatchQueue.main.async {
+                        self.accountChart = chart
+                    }
+                case .error(let error):
+                    print("error getting local chart: \(error.localizedDescription)")
+                }
+            }
+        }
+
+        self.addressSocket.emit("get", ["scope": ["charts"], "payload": ["address": self.currentUser.address, "currency": self.currentUser.currency, "charts_type": type ?? chartType]])
     }
 
     func emitPortfolioRequest() {
