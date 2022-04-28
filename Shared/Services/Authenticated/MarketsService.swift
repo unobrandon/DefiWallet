@@ -221,6 +221,7 @@ class MarketsService: ObservableObject {
     }
 
     func fetchCoinsByMarketCap(currency: String, perPage: Int? = 25, page: Int? = 1, completion: @escaping () -> Void) {
+
         if let storage = StorageService.shared.marketCapStorage {
             storage.async.object(forKey: "marketCapList") { result in
                 switch result {
@@ -235,24 +236,45 @@ class MarketsService: ObservableObject {
             }
         }
 
-        let url = Constants.backendBaseUrl + "topCoinsByMarketCap" + "?currency=" + currency + "&perPage=\(perPage ?? 25)" + "&page=\(page ?? 1)"
-//        let urlDirect = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=" + currency + "&order=market_cap_desc&per_page=\(perPage ?? 25)" + "&page=\(page ?? 1)" + "&sparkline=false"
+        func listCountriesAndCurrencies() {
+            let localeIds = Locale.availableIdentifiers
+            var countryCurrency = [String: String]()
+            for localeId in localeIds {
+                let locale = Locale(identifier: localeId)
 
-        AF.request(url, method: .get).responseDecodable(of: CoinsByMarketCap.self) { response in
+                if let country = locale.regionCode {
+                    if let currency = locale.currencySymbol {
+                        countryCurrency[country] = currency
+                    }
+                }
+            }
+
+            let sorted = countryCurrency.keys.sorted()
+            for country in sorted {
+                let currency = countryCurrency[country]!
+
+                print("country: \(country), currency: \(currency)")
+            }
+        }
+
+        listCountriesAndCurrencies()
+
+//        let url = Constants.backendBaseUrl + "topCoinsByMarketCap" + "?currency=" + currency + "&perPage=\(perPage ?? 25)" + "&page=\(page ?? 1)"
+        let url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=" + currency + "&order=market_cap_desc&per_page=\(perPage ?? 25)" + "&page=\(page ?? 1)" + "&sparkline=true&price_change_percentage=24h"
+
+        AF.request(url, method: .get).responseDecodable(of: [CoinMarketCap].self) { response in
             switch response.result {
             case .success(let marketCapToken):
-                if let list = marketCapToken.marketCap {
-                    print("coin market cap success: \(list.count)")
+                print("coin market cap success: \(marketCapToken.count)")
 
-                    if page == 1 {
-                        self.coinsByMarketCap = list
-                    } else {
-                        self.coinsByMarketCap += list
-                    }
+                if page == 1 {
+                    self.coinsByMarketCap = marketCapToken
+                } else {
+                    self.coinsByMarketCap += marketCapToken
+                }
 
-                    if let storage = StorageService.shared.marketCapStorage {
-                        storage.async.setObject(list, forKey: "marketCapList") { _ in }
-                    }
+                if let storage = StorageService.shared.marketCapStorage {
+                    storage.async.setObject(marketCapToken, forKey: "marketCapList") { _ in }
                 }
 
                 completion()

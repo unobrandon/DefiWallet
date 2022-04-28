@@ -22,18 +22,18 @@ struct GlobalGasView: View {
     var body: some View {
         VStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 5) {
-//                HStack(alignment: .center, spacing: 10) {
-//                    Image(systemName: "fuelpump.circle")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 32, height: 32, alignment: .center)
-//                        .foregroundColor(.primary)
+                HStack(alignment: .center, spacing: 20) {
+                    Image(systemName: "fuelpump.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 30, alignment: .center)
+                        .foregroundColor(.primary)
 
-                Text("Gas Price")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-//                }
+                    Text("Gas Price")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                }
 
                 Text("The gas price is a general reference for the transaction fees on the desired network.")
                     .font(.subheadline)

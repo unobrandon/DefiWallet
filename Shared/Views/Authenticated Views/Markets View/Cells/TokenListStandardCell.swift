@@ -30,26 +30,41 @@ struct TokenListStandardCell: View {
                 self.actionTap()
             }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
-                    HStack(alignment: .top, spacing: 5) {
-                        Text("\(data.marketCapRank ?? 0)")
-                            .fontTemplate(DefaultTemplate.caption_semibold)
+                    HStack(alignment: .center, spacing: 0) {
+                        HStack(alignment: .top, spacing: 5) {
+                            Text("\(data.marketCapRank ?? 0)")
+                                .fontTemplate(DefaultTemplate.caption_semibold)
+                                .offset(y: -1.5)
 
-                        RemoteImage(data.image ?? "", size: 36)
-                            .clipShape(Circle())
-                            .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1))
-                            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
+                            RemoteImage(data.image ?? "", size: 36)
+                                .clipShape(Circle())
+                                .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1))
+                                .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
 
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text(data.name ?? "").fontTemplate(DefaultTemplate.gasPriceFont)
-                            Text(data.symbol ?? "").fontTemplate(DefaultTemplate.body_secondary).offset(y: -1.5)
-                        }.padding(.leading, 2.5)
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text(data.name ?? "").fontTemplate(DefaultTemplate.gasPriceFont)
+                                Text(data.symbol ?? "").fontTemplate(DefaultTemplate.body_secondary).offset(y: -1.5)
+                            }.padding(.leading, 2.5)
 
+                        }
                         Spacer()
+
+                        if let chart = data.priceGraph?.price {
+                            // stride(from: 1, to: store.accountChart.count - 1, by: 4).map({ store.accountChart[$0].amount })
+                            LightChartView(data: stride(from: 0, to: chart.count, by: 12).map({ chart[$0] }).reversed(),
+                                           type: .curved,
+                                           visualType: .filled(color: data.priceChangePercentage24H ?? 0.0 >= 0.0 ? .green : .red, lineWidth: 2.5),
+                                           offset: 0.2,
+                                           currentValueLineType: .none)
+                                    .frame(width: 56, height: 32, alignment: .center)
+                                    .padding(.trailing, 10)
+                        }
+
                         VStack(alignment: .trailing, spacing: 5) {
                             HStack(alignment: .center, spacing: 10) {
                                 HStack(alignment: .center, spacing: 1) {
                                     if let num = Double("".forTrailingZero(temp: data.currentPrice?.truncate(places: 4) ?? 0.00)) {
-                                        Text("$").fontTemplate(DefaultTemplate.bodyBold)
+                                        Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.bodyBold)
 
                                         MovingNumbersView(number: num,
                                                           numberOfDecimalPlaces: 2,

@@ -25,7 +25,7 @@ struct TransactButton: View {
     }
 
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
+        VStack(alignment: .center, spacing: 0) {
             Button(action: {
                 action()
 
@@ -44,6 +44,7 @@ struct TransactButton: View {
                             radius: size > 40 ? (size / 7) : size < 25 ? 3 : 5, x: 0, y: size > 40 ? (size / 8) : size < 25 ? 3 : 5)
             })
             .buttonStyle(ClickInteractiveStyle(0.933))
+            .padding(.bottom, 20)
 
             Text(title)
                 .fontTemplate(DefaultTemplate.bodyMedium_accent_standard)

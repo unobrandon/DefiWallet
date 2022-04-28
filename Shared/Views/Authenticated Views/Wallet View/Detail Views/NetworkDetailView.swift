@@ -44,6 +44,10 @@ struct NetworkDetailView: View {
 //        .navigationBarBackButtonHidden(true)
 //        .navigationBarItems(leading: backButton)
         .onAppear {
+            DispatchQueue.main.async {
+                Tool.hiddenTabBar()
+            }
+
             self.gridViews = [
                 AnyView(OverviewSectionView(completeBalance: balance, service: service)),
                 AnyView(TokensSectionView(data: balance, service: service)),

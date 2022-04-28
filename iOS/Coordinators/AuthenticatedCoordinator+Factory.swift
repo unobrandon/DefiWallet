@@ -24,8 +24,11 @@ extension AuthenticatedCoordinator {
     }
 
     @ViewBuilder func makeMarketsTab(isActive: Bool) -> some View {
-        Image(systemName: "chart.bar" + (isActive ? ".fill" : ""))
-        Text("Markets")
+        VStack {
+            Image(systemName: "chart.bar" + (isActive ? ".fill" : ""))
+            Text("Markets")
+        }
+        .irregularGradient(colors: [.orange, .red, .orange, .yellow, .orange, .red], backgroundColor: .orange, speed: 5)
     }
 
     func makeDiscover() -> NavigationViewCoordinator<DiscoverCoordinator> {

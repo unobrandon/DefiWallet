@@ -12,35 +12,6 @@ import SwiftUI
 extension WalletService {
 
     func connectAccountData() {
-        if let storage = StorageService.shared.portfolioStorage {
-            storage.async.object(forKey: "portfolio") { result in
-                switch result {
-                case .value(let portfolio):
-                    DispatchQueue.main.async {
-                        self.accountPortfolio = portfolio
-                    }
-                case .error(let error):
-                    print("error getting local portfolio: \(error.localizedDescription)")
-                }
-            }
-        }
-
-        if let storage = StorageService.shared.chartStorage {
-            let type = UserDefaults.standard.string(forKey: "chartType") ?? self.chartType
-            self.chartType = type
-
-            storage.async.object(forKey: "portfolioChart\(type)") { result in
-                switch result {
-                case .value(let chart):
-                    DispatchQueue.main.async {
-                        self.accountChart = chart
-                    }
-                case .error(let error):
-                    print("error getting local chart: \(error.localizedDescription)")
-                }
-            }
-        }
-
         addressSocket.connect(withPayload: ["address": currentUser.address, "currency": currentUser.currency])
 
         addressSocket.on(clientEvent: .connect) { _, _ in
@@ -72,7 +43,6 @@ extension WalletService {
     }
 
     func setSockets() {
-
         self.addressSocket.on("received address portfolio") { data, _ in
             DispatchQueue.main.async {
                 guard let array = data as? [[String: AnyObject]],

@@ -37,6 +37,7 @@ struct CoinMarketCap: Codable, Hashable {
     let atlDate: String?
     let roi: RoiModel?
     let lastUpdated: String?
+    var priceGraph: GraphModel?
 
     enum CodingKeys: String, CodingKey {
         case id, symbol, name, image
@@ -62,6 +63,7 @@ struct CoinMarketCap: Codable, Hashable {
         case atlDate = "atl_date"
         case roi
         case lastUpdated = "last_updated"
+        case priceGraph = "sparkline_in_7d"
     }
 }
 
@@ -69,6 +71,14 @@ struct RoiModel: Codable {
     let times: Double?
     let currency: Currency?
     let percentage: Double?
+}
+
+struct GraphModel: Codable {
+
+    var price: [Double]
+    enum CodingKeys: String, CodingKey {
+        case price
+    }
 }
 
 enum Currency: String, Codable {

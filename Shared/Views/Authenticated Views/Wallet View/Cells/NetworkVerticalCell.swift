@@ -66,7 +66,7 @@ struct NetworkVerticalCell: View {
                         VStack(alignment: .leading, spacing: 2) {
                             if let num = store.getNetworkTotal(network) {
                                 HStack(alignment: .center, spacing: 0) {
-                                    Text("$").fontTemplate(DefaultTemplate.gasPriceFont)
+                                    Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.gasPriceFont)
 
                                     MovingNumbersView(number: num,
                                                       numberOfDecimalPlaces: 2,

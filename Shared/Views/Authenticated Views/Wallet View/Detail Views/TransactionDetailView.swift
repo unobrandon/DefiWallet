@@ -125,6 +125,11 @@ struct TransactionDetailView: View {
             }
         })
         .navigationBarTitle("Details", displayMode: .inline)
+        .onAppear {
+            DispatchQueue.main.async {
+                Tool.hiddenTabBar()
+            }
+        }
     }
 
 }

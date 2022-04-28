@@ -41,7 +41,7 @@ struct HistoryTransactionsView: View {
 
                 limitCells += 20
                 showIndicator = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     enableLoadMore = true
                     showIndicator = false
                 }
@@ -62,6 +62,11 @@ struct HistoryTransactionsView: View {
             .padding(.vertical)
         })
 //        .searchable(text: $searchText, prompt: "Search transactions")
+        .onAppear {
+            DispatchQueue.main.async {
+                Tool.hiddenTabBar()
+            }
+        }
         .navigationBarTitle("Transactions", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

@@ -39,6 +39,7 @@ struct NetworkSectionView: View {
     //                    NetworkCell(network: network, service: service)
                         NetworkVerticalCell(network: network, service: service, action: {
                             walletRouter.route(to: \.networkDetail, network)
+
                             #if os(iOS)
                                 HapticFeedback.rigidHapticFeedback()
                             #endif

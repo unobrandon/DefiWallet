@@ -59,17 +59,17 @@ struct WalletView: View {
 
                         SOCManager.present(isPresented: $showSheet) {
                             ScanQRView(showSheet: $showSheet, service: service)
-//                            #if os(macOS)
-//                            .frame(height: 400, alignment: .center)
-//                            #elseif os(iOS)
-//                            .frame(minHeight: MobileConstants.screenHeight / 2.5, maxHeight: MobileConstants.screenHeight / 1.7, alignment: .center)
-//                            #endif
                         }
                     } label: {
                         Image(systemName: "qrcode.viewfinder")
                     }
                     .foregroundColor(Color.primary)
                 }
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.async {
+                Tool.showTabBar()
             }
         }
     }

@@ -32,13 +32,15 @@ struct MarketCapRankView: View {
                     showIndicator = true
                     page += 1
 
-                    store.fetchCoinsByMarketCap(currency: service.currentUser.currency, page: page, completion: {
-                        showIndicator = false
+                    DispatchQueue.main.async {
+                        store.fetchCoinsByMarketCap(currency: service.currentUser.currency, page: page, completion: {
+                            showIndicator = false
 
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                            enableLoadMore = true
-                        }
-                    })
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                enableLoadMore = true
+                            }
+                        })
+                    }
 
                     return
                 }
@@ -68,6 +70,11 @@ struct MarketCapRankView: View {
             .padding(.vertical)
         })
         .navigationBarTitle("Market Cap", displayMode: .inline)
+        .onAppear {
+            DispatchQueue.main.async {
+                Tool.hiddenTabBar()
+            }
+        }
     }
 
 }

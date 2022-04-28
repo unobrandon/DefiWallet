@@ -39,6 +39,11 @@ struct TrendingView: View {
             .padding(.vertical)
         })
         .navigationBarTitle("🔥 Trending", displayMode: .inline)
+        .onAppear {
+            DispatchQueue.main.async {
+                Tool.hiddenTabBar()
+            }
+        }
     }
 
 }

@@ -60,6 +60,7 @@ class WalletService: ObservableObject {
         self.walletConnectClient = WalletConnectClient(metadata: wcMetadata, relayer: relayer)
         self.walletConnectClient.delegate = self
 
+        self.loadStoredData()
         self.reloadWcSessions()
         self.connectAccountData()
     }
@@ -68,9 +69,7 @@ class WalletService: ObservableObject {
         print("deinit wallet service!")
     }
 
-    func fetchAccountBalance(_ address: String, completion: @escaping ([CompleteBalance]?) -> Void) {
-        let url = Constants.backendBaseUrl + "accountBalance" + "?address=\(address)"
-
+    func loadStoredData() {
         if let storage = StorageService.shared.balanceStorage {
             storage.async.object(forKey: "balanceList") { result in
                 switch result {
@@ -81,6 +80,51 @@ class WalletService: ObservableObject {
                 }
             }
         }
+
+        if let storage = StorageService.shared.historyStorage {
+            storage.async.object(forKey: "historyList") { result in
+                switch result {
+                case .value(let history):
+                    self.history = history
+                case .error(let error):
+                    print("error getting local history: \(error.localizedDescription)")
+                }
+            }
+        }
+
+        if let storage = StorageService.shared.portfolioStorage {
+            storage.async.object(forKey: "portfolio") { result in
+                switch result {
+                case .value(let portfolio):
+                    DispatchQueue.main.async {
+                        self.accountPortfolio = portfolio
+                    }
+                case .error(let error):
+                    print("error getting local portfolio: \(error.localizedDescription)")
+                }
+            }
+        }
+
+        if let storage = StorageService.shared.chartStorage {
+            let type = UserDefaults.standard.string(forKey: "chartType") ?? self.chartType
+            self.chartType = type
+
+            storage.async.object(forKey: "portfolioChart\(type)") { result in
+                switch result {
+                case .value(let chart):
+                    DispatchQueue.main.async {
+                        self.accountChart = chart
+                    }
+                case .error(let error):
+                    print("error getting local chart: \(error.localizedDescription)")
+                }
+            }
+        }
+
+    }
+
+    func fetchAccountBalance(_ address: String, completion: @escaping ([CompleteBalance]?) -> Void) {
+        let url = Constants.backendBaseUrl + "accountBalance" + "?address=\(address)"
 
         AF.request(url, method: .get).responseDecodable(of: AccountBalance.self) { [self] response in
             switch response.result {
@@ -169,14 +213,13 @@ class WalletService: ObservableObject {
     }
 
     func fetchNftUri(_ url: String, response: @escaping (NftURIResponse) -> Void) {
-
         if let storage = StorageService.shared.nftUriResponse {
             storage.async.object(forKey: url) { result in
                 switch result {
                 case .value(let nftUri):
                     print("my nft uri is: \(nftUri)")
                     response(nftUri)
-                case .error(_ ):
+                case .error:
                     print("error")
                 }
             }
@@ -213,17 +256,6 @@ class WalletService: ObservableObject {
 
         // Good ETH address to test with: 0x660c6f9ff81018d5c13ab769148ec4db4940d01c
         let url = Constants.zapperBaseUrl + "transactions?address=\(address)&addresses%5B%5D=\(address)&" + Constants.zapperApiKey
-
-        if let storage = StorageService.shared.historyStorage {
-            storage.async.object(forKey: "historyList") { result in
-                switch result {
-                case .value(let history):
-                    self.history = history
-                case .error(let error):
-                    print("error getting local history: \(error.localizedDescription)")
-                }
-            }
-        }
 
         AF.request(url, method: .get).responseDecodable(of: TransactionHistory.self, emptyResponseCodes: [200]) { response in
             switch response.result {
@@ -308,6 +340,15 @@ class WalletService: ObservableObject {
         } else if network == "avalanche" { return .avalanche
         } else if network == "fantom" { return .fantom
         } else { return .ethereum }
+    }
+
+    func getChartDuration(_ timePeriod: String) -> String {
+        if timePeriod == "h" { return "last hour"
+        } else if timePeriod == "d" { return "last 24 hours"
+        } else if timePeriod == "w" { return "last 7 days"
+        } else if timePeriod == "m" { return "last 30 days"
+        } else if timePeriod == "y" { return "last 12 months"
+        } else { return "" }
     }
 
     func getBlockExplorerName(_ network: Network) -> String {

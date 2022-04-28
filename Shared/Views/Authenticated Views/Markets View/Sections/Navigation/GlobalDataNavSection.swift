@@ -33,7 +33,7 @@ struct GlobalDataNavSection: View {
 
                 VStack(alignment: .leading, spacing: 0) {
                     if let num = Int(data.totalMarketCap?[service.currentUser.currency] ?? 0.0) {
-                        Text("$\("".formatLargeNumber(num, size: .regular))").fontTemplate(DefaultTemplate.bodyMedium)
+                        Text(Locale.current.currencySymbol ?? "" + "\("".formatLargeNumber(num, size: .regular))").fontTemplate(DefaultTemplate.bodyMedium)
                             .offset(y: 1)
                     }
 

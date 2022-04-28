@@ -11,8 +11,9 @@ import Stinsen
 
 struct MarketsView: View {
 
-    @ObservedObject private var service: AuthenticatedServices
+    @EnvironmentObject private var marketRouter: MarketsCoordinator.Router
 
+    @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: MarketsService
 
     @State var searchText: String = ""
@@ -44,12 +45,16 @@ struct MarketsView: View {
                 }
             }
         })
-        .navigationTitle("Markets")
+        .navigationBarTitle("Markets", displayMode: .large)
         .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))
         .navigationSearchBar { SearchBar("Search tokens and more...", text: $searchText) }
         .navigationSearchBarHiddenWhenScrolling(searchHide)
         .onAppear {
             print("markets view did appear")
+            DispatchQueue.main.async {
+                Tool.showTabBar()
+            }
+
             self.gridViews = [
                 AnyView(TopSectionView(service: service)),
                 AnyView(TrendingSectionView(isLoading: $isTrendingLoading, service: service)),

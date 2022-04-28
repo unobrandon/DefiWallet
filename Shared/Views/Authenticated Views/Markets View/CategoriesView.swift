@@ -55,6 +55,11 @@ struct CategoriesView: View {
             })
         })
         .navigationBarTitle("Categories", displayMode: .inline)
+        .onAppear {
+            DispatchQueue.main.async {
+                Tool.hiddenTabBar()
+            }
+        }
     }
 
 }

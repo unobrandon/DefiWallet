@@ -15,6 +15,14 @@ extension WalletCoordinator {
         WalletView(service: services)
     }
 
+    @ViewBuilder func makeSendTo() -> some View {
+        SendToView(service: services)
+    }
+
+    @ViewBuilder func makeSendToDetail(address: String) -> some View {
+        SendToDetailView(address: address, service: services)
+    }
+
     @ViewBuilder func makeNetworkDetail(data: CompleteBalance) -> some View {
         NetworkDetailView(data: data, network: formateNetwork(data.network), service: services)
     }

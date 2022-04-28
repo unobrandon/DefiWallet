@@ -21,4 +21,13 @@ extension Double {
         return originalDecimal
     }
 
+    func convertToCurrency() -> String {
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .currency
+        formatter.locale = Locale.current
+
+        return formatter.string(from: .init(value: self)) ?? ""
+    }
+
 }

@@ -36,7 +36,7 @@ struct BalanceSectionView: View {
                     }
 
                     HStack(alignment: .center, spacing: 0) {
-                        Text("$").fontTemplate(DefaultTemplate.titleSemiBold)
+                        Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.titleSemiBold)
 
                         MovingNumbersView(number: store.accountPortfolio?.totalValue ?? 0.00,
                                           numberOfDecimalPlaces: 2,
@@ -48,35 +48,42 @@ struct BalanceSectionView: View {
                     }.mask(AppGradients.movingNumbersMask)
 
                     // stride(from: 1, to: store.accountChart.count - 1, by: 4).map({ store.accountChart[$0].amount })
-                    LineChart(data: store.accountChart.map({ $0.amount }),
-                              frame: CGRect(x: 20, y: 0, width: MobileConstants.screenWidth - 40, height: 140),
-                              visualType: ChartVisualType.filled(color: store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red, lineWidth: 2), offset: 0,
-                              currentValueLineType: CurrentValueLineType.dash(color: .secondary, lineWidth: 0, dash: [8]))
+                    CustomLineChart(data: store.accountChart.map({ $0.amount }), profit: store.accountPortfolio?.relativeChange24h ?? 0 >= 0)
+//                    LineChart(data: store.accountChart.map({ $0.amount }),
+//                              frame: CGRect(x: 20, y: 0, width: MobileConstants.screenWidth - 40, height: 140),
+//                              visualType: ChartVisualType.filled(color: store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red, lineWidth: 2), offset: 0,
+//                              currentValueLineType: CurrentValueLineType.dash(color: .secondary, lineWidth: 0, dash: [8]))
                         .frame(height: 140)
                         .padding(.top)
                         .padding(.bottom, 10)
 
                     if !store.accountChart.isEmpty {
-                        HStack(spacing: 5) {
-                            BorderedSelectedButton(title: "1H", systemImage: nil, size: .mini, tint: store.chartType == "h" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
-                                store.emitSingleChartRequest("h")
-                            })
+                        VStack(alignment: .leading) {
+                            Text(store.getChartDuration(store.chartType))
+                                .fontTemplate(DefaultTemplate.caption)
+                                .padding(.leading, 10)
 
-                            BorderedSelectedButton(title: "1D", systemImage: nil, size: .mini, tint: store.chartType == "d" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
-                                store.emitSingleChartRequest("d")
-                            })
+                            HStack(spacing: 5) {
+                                BorderedSelectedButton(title: "1H", systemImage: nil, size: .mini, tint: store.chartType == "h" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
+                                    store.emitSingleChartRequest("h")
+                                })
 
-                            BorderedSelectedButton(title: "1W", systemImage: nil, size: .mini, tint: store.chartType == "w" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
-                                store.emitSingleChartRequest("w")
-                            })
+                                BorderedSelectedButton(title: "1D", systemImage: nil, size: .mini, tint: store.chartType == "d" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
+                                    store.emitSingleChartRequest("d")
+                                })
 
-                            BorderedSelectedButton(title: "1M", systemImage: nil, size: .mini, tint: store.chartType == "m" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
-                                store.emitSingleChartRequest("m")
-                            })
+                                BorderedSelectedButton(title: "1W", systemImage: nil, size: .mini, tint: store.chartType == "w" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
+                                    store.emitSingleChartRequest("w")
+                                })
 
-                            BorderedSelectedButton(title: "1Y", systemImage: nil, size: .mini, tint: store.chartType == "y" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
-                                store.emitSingleChartRequest("y")
-                            })
+                                BorderedSelectedButton(title: "1M", systemImage: nil, size: .mini, tint: store.chartType == "m" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
+                                    store.emitSingleChartRequest("m")
+                                })
+
+                                BorderedSelectedButton(title: "1Y", systemImage: nil, size: .mini, tint: store.chartType == "y" ? store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red : nil, action: {
+                                    store.emitSingleChartRequest("y")
+                                })
+                            }
                         }
                         .padding(.bottom)
                     }
@@ -89,12 +96,17 @@ struct BalanceSectionView: View {
         .padding(.top)
 
         TransactButtonView(style: service.themeStyle,
-                           enableDeposit: false,
+                           enableDeposit: true,
                            enableSend: true,
-                           enableReceive: true,
+                           enableReceive: false,
                            enableSwap: true,
                            actionDeposit: { print("deposit")
-        }, actionSend: { print("send")
+        }, actionSend: {
+            walletRouter.route(to: \.sendTo)
+
+            #if os(iOS)
+                HapticFeedback.rigidHapticFeedback()
+            #endif
         }, actionReceive: { print("receive")
         }, actionSwap: { print("swap")
         }).padding(.top)

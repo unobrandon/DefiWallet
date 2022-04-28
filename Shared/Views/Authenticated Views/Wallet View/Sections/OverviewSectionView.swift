@@ -58,7 +58,7 @@ struct OverviewSectionView: View {
                         .fontTemplate(DefaultTemplate.body_secondary)
 
                     HStack(alignment: .center, spacing: 5) {
-                        Text("$").fontTemplate(DefaultTemplate.titleSemiBold)
+                        Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.titleSemiBold)
 
                         if let num = service.wallet.getNetworkTotal(completeBalance) {
                             MovingNumbersView(number: num,
@@ -90,7 +90,7 @@ struct OverviewSectionView: View {
                         Spacer()
                         HStack(alignment: .center, spacing: 2.5) {
                             if let num = service.wallet.getNetworkTotal(completeBalance) {
-                                Text("$").fontTemplate(DefaultTemplate.gasPriceFont)
+                                Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.gasPriceFont)
 
                                 MovingNumbersView(number: num,
                                                   numberOfDecimalPlaces: 2,
