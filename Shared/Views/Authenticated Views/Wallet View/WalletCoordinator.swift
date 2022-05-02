@@ -13,7 +13,7 @@ final class WalletCoordinator: NavigationCoordinatable {
     let stack = NavigationStack(initial: \WalletCoordinator.start)
 
     @Root var start = makeStart
-    @Route(.modal) var sendTo = makeSendTo
+    @Route(.push) var sendTo = makeSendTo
     @Route(.push) var sendToDetail = makeSendToDetail
     @Route(.push) var networkDetail = makeNetworkDetail
     @Route(.push) var history = makeHistory

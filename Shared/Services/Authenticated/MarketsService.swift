@@ -18,6 +18,7 @@ class MarketsService: ObservableObject {
     @Published var globalMarketData: GlobalMarketData?
     @Published var tokenCategories = [TokenCategory]()
     @Published var coinsByMarketCap = [CoinMarketCap]()
+    @Published var tokenCategoryList = [CoinMarketCap]()
     @Published var trendingCoins = [TrendingCoin]()
 
     var socketManager: SocketManager
@@ -198,7 +199,8 @@ class MarketsService: ObservableObject {
             }
         }
 
-        let url = Constants.backendBaseUrl + "topCategories"
+//        let url = Constants.backendBaseUrl + "topCategories"
+        let url = "https://api.coingecko.com/api/v3/coins/categories"
 
         AF.request(url, method: .get).responseDecodable(of: [TokenCategory].self) { response in
             switch response.result {
@@ -216,6 +218,45 @@ class MarketsService: ObservableObject {
             case .failure(let error):
                 print("error getting tokenCategories network: \(error)")
                 completion()
+            }
+        }
+    }
+
+    func fetchCategoryDetails(categoryId: String, currency: String, page: Int? = 1) {
+
+        if let storage = StorageService.shared.marketCapStorage {
+            storage.async.object(forKey: "categoryList\(categoryId)\(page ?? 1)") { result in
+                switch result {
+                case .value(let list):
+                    print("got local category List")
+                    DispatchQueue.main.async {
+                        self.tokenCategoryList = list
+                    }
+                case .error(let error):
+                    print("error getting local category List: \(error.localizedDescription)")
+                    self.tokenCategoryList.removeAll()
+                }
+            }
+        }
+
+        let baseUrl = "https://api.coingecko.com/api/v3/coins/markets"
+        let filteredSection = "?vs_currency=" + currency + "&category=" + categoryId
+        let lastSection = "&order=market_cap_desc&per_page=50&page=\(page ?? 1)&sparkline=true"
+
+        AF.request(baseUrl + filteredSection + lastSection, method: .get).responseDecodable(of: [CoinMarketCap].self) { response in
+            switch response.result {
+            case .success(let categories):
+                DispatchQueue.main.async {
+                    self.tokenCategoryList = categories
+                }
+                print("got categories tokens!! \(categories.count)")
+
+                if let storage = StorageService.shared.marketCapStorage {
+                    storage.async.setObject(categories, forKey: "categoryList\(categoryId)\(page ?? 1)") { _ in }
+                }
+
+            case .failure(let error):
+                print("error getting token categories list: \(error)")
             }
         }
     }

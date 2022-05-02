@@ -17,6 +17,10 @@
 		0500E4E5281F6D4C001A4FAB /* AppLyfeCycleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4E3281F6D4C001A4FAB /* AppLyfeCycleModifier.swift */; };
 		0500E4E7281F6D7D001A4FAB /* View+ReceiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4E6281F6D7D001A4FAB /* View+ReceiveTimer.swift */; };
 		0500E4E8281F6D7D001A4FAB /* View+ReceiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4E6281F6D7D001A4FAB /* View+ReceiveTimer.swift */; };
+		0500E4EB281FA059001A4FAB /* NewsBlogSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4EA281FA059001A4FAB /* NewsBlogSection.swift */; };
+		0500E4EC281FA059001A4FAB /* NewsBlogSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4EA281FA059001A4FAB /* NewsBlogSection.swift */; };
+		0500E4EE281FB647001A4FAB /* CategoriesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4ED281FB647001A4FAB /* CategoriesDetailView.swift */; };
+		0500E4EF281FB647001A4FAB /* CategoriesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4ED281FB647001A4FAB /* CategoriesDetailView.swift */; };
 		050225B327FC09450004D910 /* NetworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050225B227FC09450004D910 /* NetworkDetailView.swift */; };
 		050225B427FC09450004D910 /* NetworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050225B227FC09450004D910 /* NetworkDetailView.swift */; };
 		050225B627FC095F0004D910 /* PinnedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050225B527FC095F0004D910 /* PinnedHeaderView.swift */; };
@@ -513,6 +517,8 @@
 		0500E4DE281F6CD3001A4FAB /* ACarouselViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACarouselViewModel.swift; sourceTree = "<group>"; };
 		0500E4E3281F6D4C001A4FAB /* AppLyfeCycleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLyfeCycleModifier.swift; sourceTree = "<group>"; };
 		0500E4E6281F6D7D001A4FAB /* View+ReceiveTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ReceiveTimer.swift"; sourceTree = "<group>"; };
+		0500E4EA281FA059001A4FAB /* NewsBlogSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsBlogSection.swift; sourceTree = "<group>"; };
+		0500E4ED281FB647001A4FAB /* CategoriesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDetailView.swift; sourceTree = "<group>"; };
 		050225B227FC09450004D910 /* NetworkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDetailView.swift; sourceTree = "<group>"; };
 		050225B527FC095F0004D910 /* PinnedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedHeaderView.swift; sourceTree = "<group>"; };
 		050225B927FC09E90004D910 /* PinnedHeaderOffsetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedHeaderOffsetModifier.swift; sourceTree = "<group>"; };
@@ -820,6 +826,14 @@
 				0500E4E6281F6D7D001A4FAB /* View+ReceiveTimer.swift */,
 			);
 			path = ACarousel;
+			sourceTree = "<group>";
+		};
+		0500E4E9281FA03F001A4FAB /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				0500E4EA281FA059001A4FAB /* NewsBlogSection.swift */,
+			);
+			path = Sections;
 			sourceTree = "<group>";
 		};
 		050225B827FC09BA0004D910 /* Modifiers */ = {
@@ -1312,6 +1326,7 @@
 				05583CEF27ED6A3200640E75 /* Cells */,
 				0578073027BB59D30008051B /* MarketsView.swift */,
 				05F8EE202800042B003BBC23 /* CategoriesView.swift */,
+				0500E4ED281FB647001A4FAB /* CategoriesDetailView.swift */,
 				05A6AAB727F9614F00824C76 /* TrendingView.swift */,
 				05A6AABD27F980A800824C76 /* MarketCapRankView.swift */,
 			);
@@ -1324,6 +1339,7 @@
 				0578073427BB59DC0008051B /* DiscoverCoordinator.swift */,
 				0578074027BB5B4F0008051B /* DiscoverCoordinator+Factory.swift */,
 				0578073527BB59DC0008051B /* DiscoverView.swift */,
+				0500E4E9281FA03F001A4FAB /* Sections */,
 			);
 			path = "Discover View";
 			sourceTree = "<group>";
@@ -1940,6 +1956,7 @@
 				0566AEC527E8399B006B645F /* HistoryListCell.swift in Sources */,
 				0566AED427E9610D006B645F /* ListInfoView.swift in Sources */,
 				05E8590527CC198A00B85195 /* TermsView.swift in Sources */,
+				0500E4EE281FB647001A4FAB /* CategoriesDetailView.swift in Sources */,
 				0578077F27BB87C80008051B /* Wallet.swift in Sources */,
 				057806E527B8DF240008051B /* CurrentUser.swift in Sources */,
 				0578071827B8F6980008051B /* ProfileCoordinator.swift in Sources */,
@@ -2013,6 +2030,7 @@
 				05E5F84927D321920090290C /* Shake.swift in Sources */,
 				0593021027D9C790006DDFFF /* Double+Extensions.swift in Sources */,
 				0593021627DEFA95006DDFFF /* CompleteBalance.swift in Sources */,
+				0500E4EB281FA059001A4FAB /* NewsBlogSection.swift in Sources */,
 				0578074127BB5B500008051B /* DiscoverCoordinator+Factory.swift in Sources */,
 				05E858B927CA04D000B85195 /* MainCarouselView.swift in Sources */,
 				0593021327D9E33E006DDFFF /* AccountNft.swift in Sources */,
@@ -2136,6 +2154,7 @@
 				0593025827E19C7A006DDFFF /* CurvedChart.swift in Sources */,
 				05E858F227CB43BC00B85195 /* LoadingIndicator.swift in Sources */,
 				05E5F85827D361980090290C /* RoundedCross.swift in Sources */,
+				0500E4EC281FA059001A4FAB /* NewsBlogSection.swift in Sources */,
 				05583CBA27E9C01E00640E75 /* Grid+Inits.swift in Sources */,
 				05CA8715280247BB006FACE0 /* GlobalDataNavSection.swift in Sources */,
 				05D1095327C08B3E008DCC66 /* WalletView.swift in Sources */,
@@ -2178,6 +2197,7 @@
 				05A6AAAF27F93D4100824C76 /* TrendingCoin.swift in Sources */,
 				059F73D327D7164700B27E80 /* MarketsService.swift in Sources */,
 				05A6AAB227F958EF00824C76 /* ListTitleView.swift in Sources */,
+				0500E4EF281FB647001A4FAB /* CategoriesDetailView.swift in Sources */,
 				0593022B27E03A1C006DDFFF /* BackgroundColorView.swift in Sources */,
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
 				0593021127D9C790006DDFFF /* Double+Extensions.swift in Sources */,

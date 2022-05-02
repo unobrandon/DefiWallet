@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUIX
-import Stinsen
 
 struct DiscoverView: View {
 
@@ -17,6 +15,7 @@ struct DiscoverView: View {
 
     @State private var searchText: String = ""
     @State private var placeholderItems: [String] = ["welcomeCarouselThree", "gradientBg1", "gradientBg2", "gradientBg3"]
+    @State var loadingLearn: Bool = false
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -36,21 +35,15 @@ struct DiscoverView: View {
                         .shadow(color: .black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 12, x: 0, y: 6)
                         .offset(y: -10)
                 }.frame(height: 200)
+
+                Text("Here will be: \n- List of exchanges -> details (https://api.coingecko.com/api/v3/exchanges/) \n- List of market indexes (https://api.coingecko.com/api/v3/indexes) \n- List of btc & eth public company's treasury (https://api.coingecko.com/api/v3/companies/public_treasury/bitcoin)")
+                    .fontTemplate(DefaultTemplate.caption)
+
+                NewsBlogSection(isLoading: $loadingLearn, service: service)
             }
         })
-        .navigationTitle("Discover")
-        .navigationSearchBar { SearchBar("Search all web3...", text: $searchText) }
-        .navigationSearchBarHiddenWhenScrolling(true)
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                Button {
-//                    print("search")
-//                } label: {
-//                    Image(systemName: "magnifyingglass")
-//                }
-//                .foregroundColor(Color.primary)
-//            }
-//        }
+        .navigationBarTitle("Discover", displayMode: .large)
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search all web3...")
     }
 
 }

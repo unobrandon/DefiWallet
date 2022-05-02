@@ -35,7 +35,9 @@ struct DefaultTemplate {
 
     static let sectionHeader = FontTemplate(font: Font.custom("Nunito-Medium", size: 16), weight: .medium, foregroundColor: .primary, lineSpacing: 0)
     static let sectionHeader_bold = FontTemplate(font: Font.custom("Nunito-Bold", size: 16), weight: .bold, foregroundColor: .primary, lineSpacing: 0)
+    static let sectionHeader_bold_white = FontTemplate(font: Font.custom("Nunito-Bold", size: 16), weight: .bold, foregroundColor: .white, lineSpacing: 0)
     static let sectionHeader_semibold = FontTemplate(font: Font.custom("Nunito-Semibold", size: 16), weight: .semibold, foregroundColor: .primary, lineSpacing: 0)
+    static let sectionHeader_semibold_white = FontTemplate(font: Font.custom("Nunito-Semibold", size: 16), weight: .semibold, foregroundColor: .white, lineSpacing: 0)
     static let sectionHeader_secondary = FontTemplate(font: Font.custom("Poppins-Medium", size: 16), weight: .medium, foregroundColor: .secondary, lineSpacing: 0)
 
     static let sectionHeaderBold_nunito = FontTemplate(font: Font.custom("Nunito-Bold", size: 16), weight: .bold, foregroundColor: .primary, lineSpacing: 0)
@@ -61,6 +63,7 @@ struct DefaultTemplate {
     static let bodySemibold_nunito = FontTemplate(font: Font.custom("Nunito-SemiBold", size: 14), weight: .semibold, foregroundColor: .primary, lineSpacing: 0)
     static let bodySemibold_nunito_secondary = FontTemplate(font: Font.custom("Nunito-SemiBold", size: 14), weight: .semibold, foregroundColor: .secondary, lineSpacing: 0)
 
+    static let body_secondary_semibold = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 14), weight: .semibold, foregroundColor: .secondary, lineSpacing: 1)
     static let body_secondary = FontTemplate(font: Font.custom("Poppins-Regular", size: 14), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)
 
     static let bodyMono = FontTemplate(font: Font.custom("LabMono-Regular", size: 14), weight: .regular, foregroundColor: .primary, lineSpacing: 1)

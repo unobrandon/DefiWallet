@@ -14,6 +14,7 @@ struct CategoriesView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: MarketsService
 
+    @State private var searchText: String = ""
     @State var enableLoadMore: Bool = true
     @State var showIndicator: Bool = false
     @State private var limitCells: Int = 10
@@ -41,20 +42,26 @@ struct CategoriesView: View {
                 }
             }, {
                 ForEach(store.tokenCategories.prefix(limitCells).indices, id: \.self) { index in
-                    ListSection(style: service.themeStyle) {
+                    ListSection(hasPadding: false, style: service.themeStyle) {
                             CategoryCell(service: service,
                                          data: store.tokenCategories[index],
                                          index: index,
                                          isLast: false,
                                          style: service.themeStyle, action: {
-                                print("categories details")
-    //                            marketRouter.route(to: \.historyDetail, item)
+                                marketRouter.route(to: \.categoryDetailView, store.tokenCategories[index])
+
+                                #if os(iOS)
+                                    HapticFeedback.rigidHapticFeedback()
+                                #endif
                             })
                     }
+                    .padding(.horizontal)
+                    .padding(.bottom, 5)
                 }
             })
         })
         .navigationBarTitle("Categories", displayMode: .inline)
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search categories...")
         .onAppear {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()

@@ -30,23 +30,28 @@ struct TokenListStandardCell: View {
                 self.actionTap()
             }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
-                    HStack(alignment: .center, spacing: 0) {
-                        HStack(alignment: .top, spacing: 5) {
-                            Text("\(data.marketCapRank ?? 0)")
-                                .fontTemplate(DefaultTemplate.caption_semibold)
-                                .offset(y: -1.5)
+                    HStack(alignment: .center, spacing: 5) {
+                        RemoteImage(data.image ?? "", size: 36)
+                            .clipShape(Circle())
+                            .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1))
+                            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
 
-                            RemoteImage(data.image ?? "", size: 36)
-                                .clipShape(Circle())
-                                .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1))
-                                .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
+                        VStack(alignment: .leading, spacing: 0) {
+                            if let name = data.name {
+                                Text(name).fontTemplate(DefaultTemplate.gasPriceFont)
+                            }
 
-                            VStack(alignment: .leading, spacing: 0) {
-                                Text(data.name ?? "").fontTemplate(DefaultTemplate.gasPriceFont)
-                                Text(data.symbol ?? "").fontTemplate(DefaultTemplate.body_secondary).offset(y: -1.5)
-                            }.padding(.leading, 2.5)
+                            HStack(alignment: .center, spacing: 5) {
+                                if let rank = data.marketCapRank {
+                                    Text("#\(rank)").fontTemplate(DefaultTemplate.body_secondary_semibold).offset(y: -1.5)
+                                }
 
-                        }
+                                if let symbol = data.symbol?.uppercased() {
+                                    Text(symbol).fontTemplate(DefaultTemplate.body_secondary).offset(y: -1.5)
+                                }
+                            }
+                        }.padding(.leading, 2.5)
+
                         Spacer()
 
                         if let chart = data.priceGraph?.price {
