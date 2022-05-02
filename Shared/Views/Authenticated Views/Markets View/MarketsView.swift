@@ -47,8 +47,9 @@ struct MarketsView: View {
         })
         .navigationBarTitle("Markets", displayMode: .large)
         .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))
-        .navigationSearchBar { SearchBar("Search tokens and more...", text: $searchText) }
-        .navigationSearchBarHiddenWhenScrolling(searchHide)
+//        .navigationSearchBar { SearchBar("Search tokens and more...", text: $searchText) }
+//        .navigationSearchBarHiddenWhenScrolling(searchHide)
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search tokens and more...")
         .onAppear {
             print("markets view did appear")
             DispatchQueue.main.async {

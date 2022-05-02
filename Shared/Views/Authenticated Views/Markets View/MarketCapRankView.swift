@@ -59,6 +59,7 @@ struct MarketCapRankView: View {
                                               isLast: store.coinsByMarketCap.count < limitCells ? store.coinsByMarketCap.last == item ? true : false : false,
                                               style: service.themeStyle, action: {
     //                        walletRouter.route(to: \.historyDetail, item)
+                            print("the item is: \(item)")
 
                             #if os(iOS)
                                 HapticFeedback.rigidHapticFeedback()

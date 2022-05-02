@@ -51,7 +51,7 @@ struct TokenListStandardCell: View {
 
                         if let chart = data.priceGraph?.price {
                             // stride(from: 1, to: store.accountChart.count - 1, by: 4).map({ store.accountChart[$0].amount })
-                            LightChartView(data: stride(from: 0, to: chart.count, by: 12).map({ chart[$0] }).reversed(),
+                            LightChartView(data: stride(from: 0, to: chart.count, by: 8).map({ chart[$0] }).reversed(),
                                            type: .curved,
                                            visualType: .filled(color: data.priceChangePercentage24H ?? 0.0 >= 0.0 ? .green : .red, lineWidth: 2.5),
                                            offset: 0.2,

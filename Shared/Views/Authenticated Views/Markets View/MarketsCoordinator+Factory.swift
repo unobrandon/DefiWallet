@@ -26,4 +26,8 @@ extension MarketsCoordinator {
         MarketCapRankView(service: services)
     }
 
+    @ViewBuilder func makeTokenDetail(address: String) -> some View {
+        TokenDetailView(address: address, service: services)
+    }
+
 }

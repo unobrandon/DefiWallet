@@ -18,6 +18,7 @@ struct SendToView: View {
     @State private var prevAddress: [String] = []
     @State var enableLoadMore: Bool = true
     @State var showIndicator: Bool = false
+    @State var showSheet: Bool = false
     @State private var limitCells: Int = 25
     @State private var searchText = ""
 
@@ -44,29 +45,44 @@ struct SendToView: View {
                         .fontTemplate(DefaultTemplate.caption)
                         .multilineTextAlignment(.center)
                         .padding(.vertical)
-                } else if searchText.isEmpty {
+                } else if searchText.isEmpty, !prevAddress.isEmpty {
                     ListSection(title: "Recents", style: service.themeStyle) {
-                        ForEach(prevAddress.prefix(limitCells).indices, id: \.self) { item in
-                            ListStandardButton(title: prevAddress[item], isLast: false, style: service.themeStyle, action: {
-                                print("selected \(prevAddress[item].formatAddressExtended())")
-                                walletRouter.route(to: \.sendToDetail, prevAddress[item])
-
-                                #if os(iOS)
-                                    HapticFeedback.rigidHapticFeedback()
-                                #endif
-                            })
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(alignment: .center, spacing: 0) {
+                                ForEach(prevAddress.prefix(limitCells).indices, id: \.self) { item in
+                                    recentAddressCell(prevAddress[item])
+                                }
+                            }.padding(.horizontal)
                         }
                     }
                     .padding(.vertical)
                 }
             })
         })
-        .navigationBarTitle("Send To", displayMode: .inline)
+        .navigationBarTitle("Send To", displayMode: .large)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search public address (0x) or ENS...")
         .onAppear {
             fetchPreviousAddress()
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                HStack(alignment: .center, spacing: 10) {
+                    Button {
+                        #if os(iOS)
+                            HapticFeedback.rigidHapticFeedback()
+                        #endif
+
+                        SOCManager.present(isPresented: $showSheet) {
+                            ScanQRView(showSheet: $showSheet, service: service)
+                        }
+                    } label: {
+                        Image(systemName: "qrcode.viewfinder")
+                    }
+                    .foregroundColor(Color.primary)
+                }
             }
         }
     }
@@ -77,9 +93,28 @@ struct SendToView: View {
             if let toEthNameService = item.destinationEns, !prevAddress.contains(toEthNameService) {
                 prevAddress.append(toEthNameService)
             } else if !prevAddress.contains(item.destination) {
-                prevAddress.append(item.destination.formatAddressExtended())
+                prevAddress.append(item.destination)
             }
         }
+    }
+
+    @ViewBuilder func recentAddressCell(_ address: String) -> some View {
+        Button(action: {
+            walletRouter.route(to: \.sendToDetail, address)
+
+            #if os(iOS)
+                HapticFeedback.rigidHapticFeedback()
+            #endif
+        }, label: {
+            VStack(alignment: .center, spacing: 10) {
+                EmptyAvatar(username: address, size: 42, style: service.themeStyle)
+                Text(address.formatAddress()).fontTemplate(DefaultTemplate.captionPrimary)
+            }
+            .padding(.vertical)
+            .padding(.horizontal, 5)
+            .contentShape(Rectangle())
+        })
+        .buttonStyle(ClickInteractiveStyle(0.96))
     }
 
 }

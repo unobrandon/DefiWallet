@@ -32,7 +32,7 @@ struct EmptyAvatar: View {
                             .clipShape(Circle())
 
                         Text(firstLetters(name: username))
-                            .font(.system(size: size <= 28 ? 12 : size >= 60 ? 26 : size / 2.33))
+//                            .font(.system(size: size <= 28 ? 12 : size >= 60 ? 26 : size / 2.33))
                             .fontWeight(.semibold)
                             .irregularGradient(colors: [.orange, .red, .orange, .yellow, .orange, .red], backgroundColor: .orange, speed: 5)
                     }
@@ -60,6 +60,7 @@ struct EmptyAvatar: View {
 
     private func firstLetters(name: String) -> String {
         guard !name.isEmpty else { return "?" }
+        guard !name.contains("0x") else { return "\(name.suffix(2))" }
 
         var stringNeed: String = ""
 

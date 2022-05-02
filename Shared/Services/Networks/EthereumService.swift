@@ -56,7 +56,7 @@ class EthereumService: ObservableObject {
         self.socket = manager.defaultSocket
         self.assetsSocket = manager.socket(forNamespace: "/assets")
 
-//        self.connectWebsocket(currentUser: currentUser)
+        self.connectWebsocket(currentUser: currentUser)
     }
 
     deinit {
@@ -91,9 +91,9 @@ class EthereumService: ObservableObject {
         print("calling assets explore-sections")
 
 //        assetsSocket.connect(withPayload: ["address": "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9", "currency": "usd"])
-
+        
 //        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            self.assetsSocket.emit("get", ["scope": ["categories", "info"], "payload": ["category_id": "top-losers"]])
+        self.assetsSocket.emit("get", ["scope": ["categories", "full-info", "info"], "payload": ["asset_code": "0x73ee6d7e6b203125add89320e9f343d65ec7c39a", "currency": "usd", "category_id": "top-gainers"]])
 //        }
 
         assetsSocket.on("received assets categories") { data, ack in
@@ -107,13 +107,24 @@ class EthereumService: ObservableObject {
             }
         }
 
-        assetsSocket.on("received assets info") { data, _ in
-            print("received assets info")
+        assetsSocket.on("received assets full-info") { data, _ in
+            print("received assets full-info")
 
             DispatchQueue.main.async {
                 if let array = data as? [[String: AnyObject]], let firstDict = array.first {
                     let asset = firstDict["payload"]! as! [String: AnyObject]
-                    print("received category info value is: \(asset)")
+                    print("received assets full-info value is: \(asset)")
+                }
+            }
+        }
+
+        assetsSocket.on("received assets info") { data, _ in
+            print("received asset / category info")
+
+            DispatchQueue.main.async {
+                if let array = data as? [[String: AnyObject]], let firstDict = array.first {
+                    let asset = firstDict["payload"]! as! [String: AnyObject]
+                    print("received assets category info value is: \(asset)")
                 }
             }
         }

@@ -16,6 +16,13 @@ struct HistorySectionView: View {
 
     @Binding private var isLoading: Bool
     private let filter: Network?
+    private var data: [HistoryData] {
+        if let filter = filter {
+            return self.store.history.filter({ $0.network == filter })
+        } else {
+            return self.store.history
+        }
+    }
 
     @State private var limitCells: Int = 5
 
@@ -42,7 +49,7 @@ struct HistorySectionView: View {
                     }.padding(.vertical, 30)
                 }
 
-                ForEach(filterHistory(filter).prefix(limitCells), id: \.self) { item in
+                ForEach(data.prefix(limitCells), id: \.self) { item in
                     HistoryListCell(service: service, data: item, isLast: store.history.count < limitCells ? store.history.last == item ? true : false : false, style: service.themeStyle, action: {
                         walletRouter.route(to: \.historyDetail, item)
 
@@ -51,8 +58,8 @@ struct HistorySectionView: View {
                         #endif
                     })
 
-                    if item == filterHistory(filter)[limitCells - 1] {
-                        ListStandardButton(title: "show \(filterHistory(filter).count - limitCells) more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                    if item == data[limitCells - 1] {
+                        ListStandardButton(title: "show \(data.count - limitCells) more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
                             walletRouter.route(to: \.history, filter)
 
                             #if os(iOS)

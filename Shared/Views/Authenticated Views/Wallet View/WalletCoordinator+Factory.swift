@@ -27,15 +27,6 @@ extension WalletCoordinator {
         NetworkDetailView(data: data, network: formateNetwork(data.network), service: services)
     }
 
-    private func formateNetwork(_ txt: String? = nil) -> Network? {
-        if txt == "eth" { return .ethereum
-        } else if txt == "polygon" { return .polygon
-        } else if txt == "bsc" { return .binanceSmartChain
-        } else if txt == "avalanche" { return .avalanche
-        } else if txt == "fantom" { return .fantom
-        } else { return nil }
-    }
-
     @ViewBuilder func makeHistory(network: Network? = nil) -> some View {
         HistoryTransactionsView(filtered: network, service: services)
     }
@@ -44,8 +35,21 @@ extension WalletCoordinator {
         TransactionDetailView(data: data, service: services)
     }
 
+    @ViewBuilder func makeTokenDetail(address: String) -> some View {
+        TokenDetailView(address: address, service: services)
+    }
+
     @ViewBuilder func makeSafari(url: URL) -> some View {
         SafariView(url: url)
+    }
+
+    private func formateNetwork(_ txt: String? = nil) -> Network? {
+        if txt == "eth" { return .ethereum
+        } else if txt == "polygon" { return .polygon
+        } else if txt == "bsc" { return .binanceSmartChain
+        } else if txt == "avalanche" { return .avalanche
+        } else if txt == "fantom" { return .fantom
+        } else { return nil }
     }
 
 }

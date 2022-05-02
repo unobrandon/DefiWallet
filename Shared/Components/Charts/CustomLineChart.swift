@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 struct CustomLineChart: View {
 
@@ -30,20 +31,14 @@ struct CustomLineChart: View {
             let minPoint = data.min() ?? 0
 
             let points = data.enumerated().compactMap { item -> CGPoint in
-                // getting progress and multiplyinh with height...
-                // Its Showing From 0
-                // Making to show from minimum Amount
                 let progress = (item.element - minPoint) / (maxPoint - minPoint)
-                let pathHeight = progress * (height - 50)
+                let pathHeight = progress * (height - 25)
                 let pathWidth = width * CGFloat(item.offset)
 
-                // Since we need peak to top not bottom...
                 return CGPoint(x: pathWidth, y: -pathHeight + height)
             }
 
             ZStack {
-                // Converting plot as points....
-                // Path....
                 AnimatedGraphPath(progress: graphProgress, points: points)
                     .fill(LinearGradient(colors: [
                         profit ? Color.green : Color.red,
@@ -53,7 +48,6 @@ struct CustomLineChart: View {
                 // Path Background Coloring...
                 fillBG()
                     .clipShape(Path { path in
-                            // drawing the points..
                             path.move(to: CGPoint(x: 0, y: 0))
                             path.addLines(points)
                             path.addLine(to: CGPoint(x: proxy.size.width, y: height))
@@ -62,48 +56,33 @@ struct CustomLineChart: View {
                     .opacity(graphProgress)
             }
             .overlay(
-                // Drag Indiccator...
-                VStack(spacing: 0) {
+                // Drag Indicator...
+                VStack(spacing: 25) {
                     Text(currentPlot)
-                        .font(.caption.bold())
-                        .foregroundColor(.white)
-                        .padding(.vertical,6)
-                        .frame(width: 100)
-                        .background(Color("AccentColor"),in: Capsule())
+                        .fontTemplate(DefaultTemplate.captionPrimary_semibold)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                        .background(BlurEffectView(style: .systemUltraThinMaterial)
+                                        .clipShape(RoundedRectangle(cornerRadius: 5)))
+                        .shadow(color: Color.black.opacity(0.15), radius: 8, x: 0, y: 2)
                         .offset(x: translation < 10 ? 30 : 0)
                         .offset(x: translation > (proxy.size.width - 60) ? -30 : 0)
 
-                    Rectangle()
-                        .fill(Color("AccentColor"))
-                        .frame(width: 1,height: 40)
-                        .padding(.top)
-
-                    Circle()
-                        .fill(Color("AccentColor"))
-                        .frame(width: 22, height: 22)
-                        .overlay(Circle()
-                                .fill(.white)
-                                .frame(width: 10, height: 10))
-
-                    Rectangle()
-                        .fill(Color("Gradient1"))
-                        .frame(width: 1,height: 50)
+                    BlurEffectView(style: .systemUltraThinMaterial)
+                        .frame(width: 20, height: 20)
+                        .clipShape(Circle())
+                        .overlay(Circle().fill(Color("AccentColor")).frame(width: 12, height: 12))
+                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 3)
                 }
-                // Fixed Frame..
-                // For Gesture Calculation...
-                    .frame(width: 80, height: 170)
-                // 170 / 2 = 85 - 15 => circle ring size...
-                    .offset(y: 70)
-                    .offset(offset)
-                    .opacity(showPlot ? 1 : 0),
-                alignment: .bottomLeading
-            )
+                .frame(width: 80, height: 55)
+                .offset(offset)
+                .opacity(showPlot ? 1 : 0)
+                , alignment: .bottomLeading)
             .contentShape(Rectangle())
             .gesture(DragGesture().onChanged({ value in
                 withAnimation { showPlot = true }
 
                 let translation = value.location.x
-                // Getting index...
                 let index = max(min(Int((translation / width).rounded() + 1), data.count - 1), 0)
 
                 currentPlot = data[index].convertToCurrency()
@@ -119,16 +98,17 @@ struct CustomLineChart: View {
         }
         .background(
             VStack(alignment: .trailing) {
-                let max = data.max() ?? 0
-                let min = data.min() ?? 0
-
-                Text(max.convertToCurrency())
-                    .fontTemplate(DefaultTemplate.caption_semibold)
+                if let max = data.max() {
+                    Text(max.convertToCurrency())
+                        .fontTemplate(DefaultTemplate.caption_semibold)
+                }
 
                 Spacer()
-                Text(min.convertToCurrency())
-                    .fontTemplate(DefaultTemplate.caption_semibold)
-                    .offset(y: 10)
+                if let min = data.min() {
+                    Text(min.convertToCurrency())
+                        .fontTemplate(DefaultTemplate.caption_semibold)
+                        .offset(y: 20)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
         )
@@ -144,7 +124,7 @@ struct CustomLineChart: View {
             }
         }
         .onChange(of: data) { _ in
-            // MARK: ReAnimating When ever Plot Data Updates
+            // MARK: Re-animating when ever plot data updates
             graphProgress = 0
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 withAnimation(.easeInOut(duration: 1.2)) {

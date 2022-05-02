@@ -22,7 +22,7 @@ struct GlobalGasView: View {
     var body: some View {
         VStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 5) {
-                HStack(alignment: .center, spacing: 20) {
+                HStack(alignment: .center, spacing: 10) {
                     Image(systemName: "fuelpump.fill")
                         .resizable()
                         .scaledToFit()

@@ -16,6 +16,7 @@ final class MarketsCoordinator: NavigationCoordinatable {
     @Route(.push) var trendingDetail = makeTrendingDetail
     @Route(.push) var categoriesView = makeCategories
     @Route(.push) var marketCapRank = makeMarketCapRank
+    @Route(.push) var tokenDetail = makeTokenDetail
 
     let currentUser: CurrentUser
     let services: AuthenticatedServices

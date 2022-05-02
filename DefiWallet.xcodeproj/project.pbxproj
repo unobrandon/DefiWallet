@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0500E4DB281F6C59001A4FAB /* ACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4DA281F6C59001A4FAB /* ACarousel.swift */; };
+		0500E4DD281F6C99001A4FAB /* ACarouselAutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4DC281F6C99001A4FAB /* ACarouselAutoScroll.swift */; };
+		0500E4DF281F6CD3001A4FAB /* ACarouselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4DE281F6CD3001A4FAB /* ACarouselViewModel.swift */; };
+		0500E4E0281F6CDA001A4FAB /* ACarouselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4DE281F6CD3001A4FAB /* ACarouselViewModel.swift */; };
+		0500E4E1281F6CDA001A4FAB /* ACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4DA281F6C59001A4FAB /* ACarousel.swift */; };
+		0500E4E2281F6CDA001A4FAB /* ACarouselAutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4DC281F6C99001A4FAB /* ACarouselAutoScroll.swift */; };
+		0500E4E4281F6D4C001A4FAB /* AppLyfeCycleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4E3281F6D4C001A4FAB /* AppLyfeCycleModifier.swift */; };
+		0500E4E5281F6D4C001A4FAB /* AppLyfeCycleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4E3281F6D4C001A4FAB /* AppLyfeCycleModifier.swift */; };
+		0500E4E7281F6D7D001A4FAB /* View+ReceiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4E6281F6D7D001A4FAB /* View+ReceiveTimer.swift */; };
+		0500E4E8281F6D7D001A4FAB /* View+ReceiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4E6281F6D7D001A4FAB /* View+ReceiveTimer.swift */; };
 		050225B327FC09450004D910 /* NetworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050225B227FC09450004D910 /* NetworkDetailView.swift */; };
 		050225B427FC09450004D910 /* NetworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050225B227FC09450004D910 /* NetworkDetailView.swift */; };
 		050225B627FC095F0004D910 /* PinnedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050225B527FC095F0004D910 /* PinnedHeaderView.swift */; };
@@ -167,6 +177,8 @@
 		0566AED227E8F64B006B645F /* TransactionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AED027E8F64B006B645F /* TransactionDetailView.swift */; };
 		0566AED427E9610D006B645F /* ListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AED327E9610D006B645F /* ListInfoView.swift */; };
 		0566AED527E9610D006B645F /* ListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AED327E9610D006B645F /* ListInfoView.swift */; };
+		0567C19F281CDEBE00184935 /* ChartOptionSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567C19E281CDEBE00184935 /* ChartOptionSegmentView.swift */; };
+		0567C1A0281CDEBE00184935 /* ChartOptionSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567C19E281CDEBE00184935 /* ChartOptionSegmentView.swift */; };
 		057806B827B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
 		057806B927B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
 		057806BE27B8432B0008051B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806BD27B8432B0008051B /* Constants.swift */; };
@@ -480,6 +492,8 @@
 		05E8590627CC198A00B85195 /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8590427CC198A00B85195 /* TermsView.swift */; };
 		05E8590827CC1A8800B85195 /* FooterInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8590727CC1A8800B85195 /* FooterInformation.swift */; };
 		05E8590927CC1A8800B85195 /* FooterInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8590727CC1A8800B85195 /* FooterInformation.swift */; };
+		05EE4431281C8E1500D4189F /* BlockAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE4430281C8E1500D4189F /* BlockAvatar.swift */; };
+		05EE4432281C8E1500D4189F /* BlockAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE4430281C8E1500D4189F /* BlockAvatar.swift */; };
 		05F7B58228088072005A94C8 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 05F7B58128088072005A94C8 /* SocketIO */; };
 		05F7B58428090518005A94C8 /* WalletService+AddressSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F7B58328090518005A94C8 /* WalletService+AddressSocket.swift */; };
 		05F7B58528090518005A94C8 /* WalletService+AddressSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F7B58328090518005A94C8 /* WalletService+AddressSocket.swift */; };
@@ -494,6 +508,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0500E4DA281F6C59001A4FAB /* ACarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACarousel.swift; sourceTree = "<group>"; };
+		0500E4DC281F6C99001A4FAB /* ACarouselAutoScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACarouselAutoScroll.swift; sourceTree = "<group>"; };
+		0500E4DE281F6CD3001A4FAB /* ACarouselViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACarouselViewModel.swift; sourceTree = "<group>"; };
+		0500E4E3281F6D4C001A4FAB /* AppLyfeCycleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLyfeCycleModifier.swift; sourceTree = "<group>"; };
+		0500E4E6281F6D7D001A4FAB /* View+ReceiveTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ReceiveTimer.swift"; sourceTree = "<group>"; };
 		050225B227FC09450004D910 /* NetworkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDetailView.swift; sourceTree = "<group>"; };
 		050225B527FC095F0004D910 /* PinnedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedHeaderView.swift; sourceTree = "<group>"; };
 		050225B927FC09E90004D910 /* PinnedHeaderOffsetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedHeaderOffsetModifier.swift; sourceTree = "<group>"; };
@@ -581,6 +600,7 @@
 		0566AECB27E8660C006B645F /* HistoryTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTransactionsView.swift; sourceTree = "<group>"; };
 		0566AED027E8F64B006B645F /* TransactionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailView.swift; sourceTree = "<group>"; };
 		0566AED327E9610D006B645F /* ListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoView.swift; sourceTree = "<group>"; };
+		0567C19E281CDEBE00184935 /* ChartOptionSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartOptionSegmentView.swift; sourceTree = "<group>"; };
 		057806B727B838E60008051B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		057806BD27B8432B0008051B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		057806D827B870620008051B /* MobileConsants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileConsants.swift; sourceTree = "<group>"; };
@@ -741,6 +761,7 @@
 		05E8590127CC12A400B85195 /* TermsOfServiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceButton.swift; sourceTree = "<group>"; };
 		05E8590427CC198A00B85195 /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
 		05E8590727CC1A8800B85195 /* FooterInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterInformation.swift; sourceTree = "<group>"; };
+		05EE4430281C8E1500D4189F /* BlockAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockAvatar.swift; sourceTree = "<group>"; };
 		05F7B58328090518005A94C8 /* WalletService+AddressSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletService+AddressSocket.swift"; sourceTree = "<group>"; };
 		05F8EE1D27FFFBD0003BBC23 /* TokenCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCategory.swift; sourceTree = "<group>"; };
 		05F8EE202800042B003BBC23 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
@@ -789,6 +810,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0500E4D9281F6C41001A4FAB /* ACarousel */ = {
+			isa = PBXGroup;
+			children = (
+				0500E4DA281F6C59001A4FAB /* ACarousel.swift */,
+				0500E4DC281F6C99001A4FAB /* ACarouselAutoScroll.swift */,
+				0500E4DE281F6CD3001A4FAB /* ACarouselViewModel.swift */,
+				0500E4E3281F6D4C001A4FAB /* AppLyfeCycleModifier.swift */,
+				0500E4E6281F6D7D001A4FAB /* View+ReceiveTimer.swift */,
+			);
+			path = ACarousel;
+			sourceTree = "<group>";
+		};
 		050225B827FC09BA0004D910 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -884,6 +917,7 @@
 				053113DD27E6C5F000368657 /* SlideOverCard */,
 				053113ED27E6CEA800368657 /* CarBode */,
 				05583CAB27E9BF0E00640E75 /* Grid */,
+				0500E4D9281F6C41001A4FAB /* ACarousel */,
 				053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */,
 				05583C9827E965FF00640E75 /* SafariView.swift */,
 				05CA873428053243006FACE0 /* SVGWebView.swift */,
@@ -1327,6 +1361,7 @@
 		058C785D27D06D2300EB91CA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				05EE442F281C8DD900D4189F /* Blockies */,
 				0531140C27E7985300368657 /* RemoteImage.swift */,
 				058C785E27D06D5600EB91CA /* HeaderIcon.swift */,
 				0593022C27E03F45006DDFFF /* UserAvatar.swift */,
@@ -1401,6 +1436,7 @@
 			children = (
 				05C884D127FD1D96005E2455 /* AnimatedRingView.swift */,
 				050397D5280F08A100F9806F /* CustomLineChart.swift */,
+				0567C19E281CDEBE00184935 /* ChartOptionSegmentView.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -1605,6 +1641,14 @@
 				05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */,
 			);
 			path = "Text Fields";
+			sourceTree = "<group>";
+		};
+		05EE442F281C8DD900D4189F /* Blockies */ = {
+			isa = PBXGroup;
+			children = (
+				05EE4430281C8E1500D4189F /* BlockAvatar.swift */,
+			);
+			path = Blockies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1857,6 +1901,7 @@
 				0531141727E7E63000368657 /* DappProposalView.swift in Sources */,
 				05E5F88027D5D4190090290C /* ImagePickerHelper.swift in Sources */,
 				059F73D227D7164700B27E80 /* MarketsService.swift in Sources */,
+				0567C19F281CDEBE00184935 /* ChartOptionSegmentView.swift in Sources */,
 				05D1097327C18462008DCC66 /* EthereumServiceDelegate.swift in Sources */,
 				0578073327BB59D30008051B /* MarketsView.swift in Sources */,
 				053C7D3F27CDBF600081DCEA /* CheckmarkView.swift in Sources */,
@@ -1882,9 +1927,11 @@
 				05BDC5C2280D2AB600851E16 /* GlobalMarketView.swift in Sources */,
 				05CA87102802415D006FACE0 /* GlobalMarketData.swift in Sources */,
 				05583CFA27ED7EB800640E75 /* ProminentRoundedLabel.swift in Sources */,
+				0500E4E4281F6D4C001A4FAB /* AppLyfeCycleModifier.swift in Sources */,
 				05583CDA27E9C20E00640E75 /* View+GridStyle.swift in Sources */,
 				05D1096627C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift in Sources */,
 				05A6AAB127F958EF00824C76 /* ListTitleView.swift in Sources */,
+				0500E4E7281F6D7D001A4FAB /* View+ReceiveTimer.swift in Sources */,
 				0531141A27E7E73700368657 /* ScanQACameraView.swift in Sources */,
 				05583C9927E965FF00640E75 /* SafariView.swift in Sources */,
 				057806EB27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */,
@@ -1896,6 +1943,8 @@
 				0578077F27BB87C80008051B /* Wallet.swift in Sources */,
 				057806E527B8DF240008051B /* CurrentUser.swift in Sources */,
 				0578071827B8F6980008051B /* ProfileCoordinator.swift in Sources */,
+				0500E4DF281F6CD3001A4FAB /* ACarouselViewModel.swift in Sources */,
+				0500E4DD281F6C99001A4FAB /* ACarouselAutoScroll.swift in Sources */,
 				050225BA27FC09E90004D910 /* PinnedHeaderOffsetModifier.swift in Sources */,
 				05E5F84C27D34F570090290C /* BiometryPermissionsView.swift in Sources */,
 				057806FC27B8E56B0008051B /* WelcomeView.swift in Sources */,
@@ -1915,6 +1964,7 @@
 				05F8EE2728000B53003BBC23 /* TopSectionView.swift in Sources */,
 				05CA873B28055F3C006FACE0 /* CollectableSeeAllCell.swift in Sources */,
 				0593026027E19CD6006DDFFF /* LightChart.swift in Sources */,
+				0500E4DB281F6C59001A4FAB /* ACarousel.swift in Sources */,
 				053C7D4527CDD5620081DCEA /* PasswordView.swift in Sources */,
 				0578073727BB59DC0008051B /* DiscoverView.swift in Sources */,
 				05583CCB27E9C15400640E75 /* GridPreferences.swift in Sources */,
@@ -2003,6 +2053,7 @@
 				0566AECC27E8660C006B645F /* HistoryTransactionsView.swift in Sources */,
 				057806E827B8DF980008051B /* AuthenticationService.swift in Sources */,
 				05A6AAB527F95AFA00824C76 /* TrendingTokenListCell.swift in Sources */,
+				05EE4431281C8E1500D4189F /* BlockAvatar.swift in Sources */,
 				0566AEC827E84711006B645F /* StandardSystemImage.swift in Sources */,
 				05CA872328040EA4006FACE0 /* TokenDetailView.swift in Sources */,
 				05CA873528053243006FACE0 /* SVGWebView.swift in Sources */,
@@ -2048,6 +2099,7 @@
 				05E5F84627D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */,
 				0593023827E08031006DDFFF /* WalletNavigationView.swift in Sources */,
 				05583CCF27E9C17F00640E75 /* GridPreferencesKey.swift in Sources */,
+				0500E4E5281F6D4C001A4FAB /* AppLyfeCycleModifier.swift in Sources */,
 				053113FF27E6CFE500368657 /* ScanQRView.swift in Sources */,
 				05E5F86127D406370090290C /* NotiPermissionsView.swift in Sources */,
 				05E5F87E27D5D0820090290C /* EnsAvatarView.swift in Sources */,
@@ -2066,6 +2118,7 @@
 				0578078027BB87C80008051B /* Wallet.swift in Sources */,
 				05D1094B27C08B3E008DCC66 /* InvestCoordinator+Factory.swift in Sources */,
 				053C7D4027CDBF600081DCEA /* CheckmarkView.swift in Sources */,
+				0500E4E8281F6D7D001A4FAB /* View+ReceiveTimer.swift in Sources */,
 				05C884D927FD47EB005E2455 /* TokenBalanceCell.swift in Sources */,
 				05D1094C27C08B3E008DCC66 /* InvestCoordinator.swift in Sources */,
 				0539414E281A2C9200CFAA53 /* Locale+Extensions.swift in Sources */,
@@ -2079,6 +2132,7 @@
 				05D1094A27C08B3E008DCC66 /* MarketsCoordinator+Factory.swift in Sources */,
 				053113F027E6CECA00368657 /* BarcodeData.swift in Sources */,
 				05E858D727CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */,
+				0567C1A0281CDEBE00184935 /* ChartOptionSegmentView.swift in Sources */,
 				0593025827E19C7A006DDFFF /* CurvedChart.swift in Sources */,
 				05E858F227CB43BC00B85195 /* LoadingIndicator.swift in Sources */,
 				05E5F85827D361980090290C /* RoundedCross.swift in Sources */,
@@ -2120,6 +2174,7 @@
 				05E858F627CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */,
 				05583CA027E9974700640E75 /* Date+Extensions.swift in Sources */,
 				05C884D327FD1D96005E2455 /* AnimatedRingView.swift in Sources */,
+				0500E4E0281F6CDA001A4FAB /* ACarouselViewModel.swift in Sources */,
 				05A6AAAF27F93D4100824C76 /* TrendingCoin.swift in Sources */,
 				059F73D327D7164700B27E80 /* MarketsService.swift in Sources */,
 				05A6AAB227F958EF00824C76 /* ListTitleView.swift in Sources */,
@@ -2127,6 +2182,7 @@
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
 				0593021127D9C790006DDFFF /* Double+Extensions.swift in Sources */,
 				050225B727FC095F0004D910 /* PinnedHeaderView.swift in Sources */,
+				0500E4E2281F6CDA001A4FAB /* ACarouselAutoScroll.swift in Sources */,
 				05BDC5BD280D116D00851E16 /* GlobalGasView.swift in Sources */,
 				0566AECD27E8660C006B645F /* HistoryTransactionsView.swift in Sources */,
 				05583C9A27E965FF00640E75 /* SafariView.swift in Sources */,
@@ -2137,10 +2193,12 @@
 				0593022627E02D63006DDFFF /* BorderedButton.swift in Sources */,
 				05CA873928053CDD006FACE0 /* CollectableImageCell.swift in Sources */,
 				053113F927E6CF3C00368657 /* CBBarcodeView.swift in Sources */,
+				05EE4432281C8E1500D4189F /* BlockAvatar.swift in Sources */,
 				05583CD527E9C1D100640E75 /* GridStyle.swift in Sources */,
 				051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				05E5F84D27D34F570090290C /* BiometryPermissionsView.swift in Sources */,
+				0500E4E1281F6CDA001A4FAB /* ACarousel.swift in Sources */,
 				059F73D027D7160D00B27E80 /* DiscoverService.swift in Sources */,
 				0593021A27DFCB3D006DDFFF /* ProfileHeaderButton.swift in Sources */,
 				05583CD227E9C19500640E75 /* GridPreferencesModifier.swift in Sources */,

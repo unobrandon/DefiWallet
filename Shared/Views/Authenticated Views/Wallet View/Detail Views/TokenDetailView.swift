@@ -12,21 +12,13 @@ struct TokenDetailView: View {
     @EnvironmentObject private var walletRouter: WalletCoordinator.Router
 
     @ObservedObject private var service: AuthenticatedServices
-    @ObservedObject private var store: WalletService
-    private let balance: CompleteBalance
-    private let network: Network?
+    @ObservedObject private var walletStore: WalletService
+    private let address: String
 
-    @State private var headerOffsets: (CGFloat, CGFloat) = (0, 0)
-    @State private var currentTab: String = "All"
-    @State private var showSheet = false
-    @State var isHistoryLoading = false
-    @State private var gridViews: [AnyView] = []
-
-    init(data: CompleteBalance, network: Network? = nil, service: AuthenticatedServices) {
-        self.balance = data
-        self.network = network
+    init(address: String, service: AuthenticatedServices) {
+        self.address = address
         self.service = service
-        self.store = service.wallet
+        self.walletStore = service.wallet
     }
 
     var body: some View {
