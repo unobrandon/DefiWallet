@@ -47,68 +47,48 @@ struct NetworkVerticalCell: View {
                             .frame(width: 7, height: 14, alignment: .center)
                             .foregroundColor(.secondary)
                     }
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 2)
 
                     Text(network.network == "eth" ? "Ethereum" : network.network == "bsc" ? "Binanace" : network.network?.capitalized ?? "")
                         .fontTemplate(DefaultTemplate.subheadingSemiBold)
-                        .padding(.bottom, 2)
 
-                    Spacer()
-                    LightChartView(data: [2, 17, 9, 23, 10, 8],
-                                   type: .curved,
-                                   visualType: .filled(color: store.getNetworkColor(network.network ?? ""), lineWidth: 3),
-                                   offset: 0.2,
-                                   currentValueLineType: .none)
-                        .frame(height: 28, alignment: .center)
+                    HStack(alignment: .center, spacing: 0) {
+                        Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.bodySemibold_Nunito)
 
-                    Spacer()
-                    HStack(alignment: .center) {
-                        VStack(alignment: .leading, spacing: 2) {
-                            if let num = store.getNetworkTotal(network) {
-                                HStack(alignment: .center, spacing: 0) {
-                                    Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.gasPriceFont)
-
-                                    MovingNumbersView(number: num,
-                                                      numberOfDecimalPlaces: 2,
-                                                      fixedWidth: nil,
-                                                      showComma: true) { str in
-                                        Text(str).fontTemplate(DefaultTemplate.gasPriceFont)
-                                    }
-                                }.mask(AppGradients.movingNumbersMask)
-                            }
-
-                            if let native = network.nativeBalance,
-                               let balance = Double(native),
-                               let formatted = (balance / Constants.eighteenDecimal),
-                               let roundedValue = formatted.truncate(places: 4),
-                               let networkFormatted = network.network?.formatNetwork() {
-                                HStack(alignment: .center, spacing: 2) {
-                                    Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.caption_semibold)
-
-                                    Text(networkFormatted.uppercased()).fontTemplate(DefaultTemplate.caption)
-                                }
-                            }
-
-                            HStack(alignment: .center, spacing: 4) {
-                                // Tokens section
-                                if let tokenCount = network.tokenBalance?.count, tokenCount != 0 {
-                                    Text("\(tokenCount) tokens")
-                                        .fontTemplate(DefaultTemplate.caption)
-                                }
-
-                                // Collectables section
-                                if let nfts = network.nfts, let nftCount = nfts.result?.count, nftCount != 0 {
-                                    if let tokenCount = network.tokenBalance?.count, tokenCount != 0 {
-                                        Text("&").fontTemplate(DefaultTemplate.caption)
-                                    }
-
-                                    Text("\(nftCount) nfts")
-                                        .fontTemplate(DefaultTemplate.caption)
-                                }
-                            }
+                        MovingNumbersView(number: store.getNetworkTotal(network) ?? 0.00,
+                                          numberOfDecimalPlaces: 2,
+                                          fixedWidth: nil,
+                                          showComma: true) { str in
+                            Text(str).fontTemplate(DefaultTemplate.bodySemibold_Nunito)
                         }
+                    }.mask(AppGradients.movingNumbersMask)
 
-                        Spacer()
+                    if let native = network.nativeBalance,
+                       let balance = Double(native),
+                       let formatted = (balance / Constants.eighteenDecimal),
+                       let roundedValue = formatted.truncate(places: 4),
+                       let networkFormatted = network.network?.formatNetwork() {
+                        HStack(alignment: .center, spacing: 2) {
+                            Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.caption_semibold)
+
+                            Text(networkFormatted.uppercased()).fontTemplate(DefaultTemplate.caption)
+                        }
+                    }
+
+                    HStack(alignment: .center, spacing: 4) {
+                        // Tokens section
+                        Text("\(network.tokenBalance?.count ?? 0) tokens")
+                            .fontTemplate(DefaultTemplate.caption)
+
+                        // Collectables section
+                        if let nfts = network.nfts, let nftCount = nfts.result?.count, nftCount != 0 {
+                            if let tokenCount = network.tokenBalance?.count, tokenCount != 0 {
+                                Text("&").fontTemplate(DefaultTemplate.caption)
+                            }
+
+                            Text("\(nftCount) nfts")
+                                .fontTemplate(DefaultTemplate.caption)
+                        }
                     }
                 }
                 .padding(.horizontal)

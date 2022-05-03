@@ -1,5 +1,5 @@
 //
-//  TransactionDetailView.swift
+//  HistoryDetailView.swift
 //  DefiWallet
 //
 //  Created by Brandon Shaw on 3/21/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TransactionDetailView: View {
+struct HistoryDetailView: View {
 
     @EnvironmentObject private var walletRouter: WalletCoordinator.Router
 

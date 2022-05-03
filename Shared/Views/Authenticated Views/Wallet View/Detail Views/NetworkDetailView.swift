@@ -41,8 +41,6 @@ struct NetworkDetailView: View {
             }
         })
         .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))
-//        .navigationBarBackButtonHidden(true)
-//        .navigationBarItems(leading: backButton)
         .onAppear {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()

@@ -26,7 +26,16 @@ struct TrendingView: View {
                     ForEach(store.trendingCoins, id: \.self) { item in
                         if let item = item.item {
                             TrendingTokenStandardCell(service: service, data: item, isLast: store.trendingCoins.last?.item == item ? true : false, style: service.themeStyle, action: {
-//                                marketRouter.route(to: \.historyDetail, item)
+                                guard let id = item.id else {
+                                    #if os(iOS)
+                                        HapticFeedback.errorHapticFeedback()
+                                    #endif
+
+                                    return
+                                }
+
+                                marketRouter.route(to: \.tokenExternalDetail, id)
+
                                 print("open \(item.name ?? "")")
                                 #if os(iOS)
                                     HapticFeedback.rigidHapticFeedback()

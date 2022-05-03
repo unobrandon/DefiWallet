@@ -175,10 +175,10 @@
 		0566AEC627E8399B006B645F /* HistoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC427E8399B006B645F /* HistoryListCell.swift */; };
 		0566AEC827E84711006B645F /* StandardSystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC727E84711006B645F /* StandardSystemImage.swift */; };
 		0566AEC927E84711006B645F /* StandardSystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC727E84711006B645F /* StandardSystemImage.swift */; };
-		0566AECC27E8660C006B645F /* HistoryTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AECB27E8660C006B645F /* HistoryTransactionsView.swift */; };
-		0566AECD27E8660C006B645F /* HistoryTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AECB27E8660C006B645F /* HistoryTransactionsView.swift */; };
-		0566AED127E8F64B006B645F /* TransactionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AED027E8F64B006B645F /* TransactionDetailView.swift */; };
-		0566AED227E8F64B006B645F /* TransactionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AED027E8F64B006B645F /* TransactionDetailView.swift */; };
+		0566AECC27E8660C006B645F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AECB27E8660C006B645F /* HistoryView.swift */; };
+		0566AECD27E8660C006B645F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AECB27E8660C006B645F /* HistoryView.swift */; };
+		0566AED127E8F64B006B645F /* HistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AED027E8F64B006B645F /* HistoryDetailView.swift */; };
+		0566AED227E8F64B006B645F /* HistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AED027E8F64B006B645F /* HistoryDetailView.swift */; };
 		0566AED427E9610D006B645F /* ListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AED327E9610D006B645F /* ListInfoView.swift */; };
 		0566AED527E9610D006B645F /* ListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AED327E9610D006B645F /* ListInfoView.swift */; };
 		0567C19F281CDEBE00184935 /* ChartOptionSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567C19E281CDEBE00184935 /* ChartOptionSegmentView.swift */; };
@@ -603,8 +603,8 @@
 		0566AEC127E83792006B645F /* HistorySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySectionView.swift; sourceTree = "<group>"; };
 		0566AEC427E8399B006B645F /* HistoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCell.swift; sourceTree = "<group>"; };
 		0566AEC727E84711006B645F /* StandardSystemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardSystemImage.swift; sourceTree = "<group>"; };
-		0566AECB27E8660C006B645F /* HistoryTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTransactionsView.swift; sourceTree = "<group>"; };
-		0566AED027E8F64B006B645F /* TransactionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailView.swift; sourceTree = "<group>"; };
+		0566AECB27E8660C006B645F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		0566AED027E8F64B006B645F /* HistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailView.swift; sourceTree = "<group>"; };
 		0566AED327E9610D006B645F /* ListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoView.swift; sourceTree = "<group>"; };
 		0567C19E281CDEBE00184935 /* ChartOptionSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartOptionSegmentView.swift; sourceTree = "<group>"; };
 		057806B727B838E60008051B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -915,7 +915,7 @@
 			children = (
 				05394153281A60E000CFAA53 /* SendToDetailView.swift */,
 				050225B227FC09450004D910 /* NetworkDetailView.swift */,
-				0566AED027E8F64B006B645F /* TransactionDetailView.swift */,
+				0566AED027E8F64B006B645F /* HistoryDetailView.swift */,
 				05CA872228040EA4006FACE0 /* TokenDetailView.swift */,
 			);
 			path = "Detail Views";
@@ -1290,7 +1290,7 @@
 				0566AECA27E8656F006B645F /* Sections */,
 				0566AECF27E8F627006B645F /* Cells */,
 				0578070B27B8F1370008051B /* WalletView.swift */,
-				0566AECB27E8660C006B645F /* HistoryTransactionsView.swift */,
+				0566AECB27E8660C006B645F /* HistoryView.swift */,
 				05394150281A41B900CFAA53 /* SendToView.swift */,
 				0539414F281A419E00CFAA53 /* Detail Views */,
 			);
@@ -1911,7 +1911,7 @@
 				053113E527E6C6CC00368657 /* Modifiers.swift in Sources */,
 				05D1097027C17D49008DCC66 /* ERC20Token.swift in Sources */,
 				05A6AAB827F9614F00824C76 /* TrendingView.swift in Sources */,
-				0566AED127E8F64B006B645F /* TransactionDetailView.swift in Sources */,
+				0566AED127E8F64B006B645F /* HistoryDetailView.swift in Sources */,
 				053C7D4227CDCFDE0081DCEA /* EnsUsernameView.swift in Sources */,
 				057806E227B8DE3E0008051B /* MainCoordinator.swift in Sources */,
 				0531141727E7E63000368657 /* DappProposalView.swift in Sources */,
@@ -2068,7 +2068,7 @@
 				0578073127BB59D30008051B /* MarketsCoordinator.swift in Sources */,
 				05583CC527E9C11400640E75 /* EnvironmentValues+GridStyle.swift in Sources */,
 				05E8589B27C9DA3700B85195 /* CarouselViewTwo.swift in Sources */,
-				0566AECC27E8660C006B645F /* HistoryTransactionsView.swift in Sources */,
+				0566AECC27E8660C006B645F /* HistoryView.swift in Sources */,
 				057806E827B8DF980008051B /* AuthenticationService.swift in Sources */,
 				05A6AAB527F95AFA00824C76 /* TrendingTokenListCell.swift in Sources */,
 				05EE4431281C8E1500D4189F /* BlockAvatar.swift in Sources */,
@@ -2204,7 +2204,7 @@
 				050225B727FC095F0004D910 /* PinnedHeaderView.swift in Sources */,
 				0500E4E2281F6CDA001A4FAB /* ACarouselAutoScroll.swift in Sources */,
 				05BDC5BD280D116D00851E16 /* GlobalGasView.swift in Sources */,
-				0566AECD27E8660C006B645F /* HistoryTransactionsView.swift in Sources */,
+				0566AECD27E8660C006B645F /* HistoryView.swift in Sources */,
 				05583C9A27E965FF00640E75 /* SafariView.swift in Sources */,
 				05A6AABF27F980A800824C76 /* MarketCapRankView.swift in Sources */,
 				0593025B27E19C98006DDFFF /* LineChart.swift in Sources */,
@@ -2321,7 +2321,7 @@
 				0566AEC627E8399B006B645F /* HistoryListCell.swift in Sources */,
 				05583CC927E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift in Sources */,
 				05F8EE1F27FFFBD0003BBC23 /* TokenCategory.swift in Sources */,
-				0566AED227E8F64B006B645F /* TransactionDetailView.swift in Sources */,
+				0566AED227E8F64B006B645F /* HistoryDetailView.swift in Sources */,
 				058C786927D0831700EB91CA /* AlertBanner.swift in Sources */,
 				05E5F86427D407A60090290C /* NotificationBanner.swift in Sources */,
 				05E858E827CB301B00B85195 /* ListStandardButton.swift in Sources */,

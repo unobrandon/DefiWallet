@@ -113,7 +113,7 @@ struct CategoriesDetailView: View {
                 }
             })
         })
-        .navigationBarTitle(category.name ?? "Category List", displayMode: .automatic)
+        .navigationBarTitle(category.name ?? "Category List", displayMode: .large)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search tokens...")
         .onAppear {
             DispatchQueue.main.async {

@@ -44,7 +44,7 @@ struct NetworkSectionView: View {
                                 HapticFeedback.rigidHapticFeedback()
                             #endif
                         })
-                        .frame(width: 160, height: 210)
+                        .frame(width: 160, height: 150)
                         .padding(.leading, store.completeBalance.first == network ? 20 : 0)
                     }
                     .padding(.bottom, service.themeStyle == .shadow ? 20 : 0)

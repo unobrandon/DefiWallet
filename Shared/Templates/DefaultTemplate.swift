@@ -24,9 +24,11 @@ struct DefaultTemplate {
     static let headingLight = FontTemplate(font: Font.custom("Poppins-Light", size: 24), weight: .light, foregroundColor: .primary, lineSpacing: 2)
 
     static let subheadingExtraBold = FontTemplate(font: Font.custom("Poppins-ExtraBold", size: 18), weight: .bold, foregroundColor: .primary, lineSpacing: 2)
-    static let subheadingBold = FontTemplate(font: Font.custom("Poppins-Bold", size: 18), weight: .bold, foregroundColor: .primary, lineSpacing: 2)
+    static let subheadingBold = FontTemplate(font: Font.custom("Nunito-Bold", size: 18), weight: .bold, foregroundColor: .primary, lineSpacing: 2)
+    static let subheadingBold_black = FontTemplate(font: Font.custom("Nunito-Bold", size: 18), weight: .bold, foregroundColor: .black, lineSpacing: 2)
     static let subheadingSemiBold = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 18), weight: .semibold, foregroundColor: .primary, lineSpacing: 2)
     static let subheadingMedium = FontTemplate(font: Font.custom("Poppins-Medium", size: 18), weight: .medium, foregroundColor: .primary, lineSpacing: 2)
+    static let subheadingMedium_black = FontTemplate(font: Font.custom("Nunito-Medium", size: 18), weight: .medium, foregroundColor: .black, lineSpacing: 2)
     static let subheadingRegular = FontTemplate(font: Font.custom("Poppins-Regular", size: 18), weight: .regular, foregroundColor: .primary, lineSpacing: 2)
     static let subheadingLight = FontTemplate(font: Font.custom("Poppins-Light", size: 18), weight: .light, foregroundColor: .primary, lineSpacing: 2)
 
@@ -51,6 +53,7 @@ struct DefaultTemplate {
     static let bodyBold_standard = FontTemplate(font: Font.custom("Poppins-Bold", size: 14), weight: .bold, foregroundColor: .primary, lineSpacing: 1)
     static let bodySemibold_standard = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 14), weight: .semibold, foregroundColor: .primary, lineSpacing: 1)
     static let bodySemibold_secondary = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 14), weight: .semibold, foregroundColor: .secondary, lineSpacing: 1)
+    static let bodySemibold_Nunito = FontTemplate(font: Font.custom("Nunito-Semibold", size: 14), weight: .semibold, foregroundColor: .primary, lineSpacing: 0)
     static let bodyMedium_standard = FontTemplate(font: Font.custom("Poppins-Medium", size: 14), weight: .medium, foregroundColor: .primary, lineSpacing: 1)
     static let bodyMedium_secondary = FontTemplate(font: Font.custom("Poppins-Medium", size: 14), weight: .medium, foregroundColor: .secondary, lineSpacing: 1)
     static let bodyRegular_standard = FontTemplate(font: Font.custom("Poppins-Regular", size: 14), weight: .medium, foregroundColor: .primary, lineSpacing: 1)

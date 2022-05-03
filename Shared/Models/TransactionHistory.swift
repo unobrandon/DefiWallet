@@ -5,20 +5,6 @@
 //  Created by Brandon Shaw on 2/15/22.
 //
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let accountBalance = try? newJSONDecoder().decode(AccountBalance.self, from: jsonData)
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseAccountBalance { response in
-//     if let accountBalance = response.result.value {
-//       ...
-//     }
-//   }
-
 import Foundation
 import Alamofire
 

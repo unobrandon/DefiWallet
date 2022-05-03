@@ -47,13 +47,9 @@ struct SendToView: View {
                         .padding(.vertical)
                 } else if searchText.isEmpty, !prevAddress.isEmpty {
                     ListSection(title: "Recents", style: service.themeStyle) {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(alignment: .center, spacing: 0) {
-                                ForEach(prevAddress.prefix(limitCells).indices, id: \.self) { item in
-                                    recentAddressCell(prevAddress[item])
-                                }
-                            }.padding(.horizontal)
-                        }
+                        ForEach(prevAddress.prefix(limitCells).indices, id: \.self) { item in
+                            recentAddressCell(prevAddress[item])
+                        }.padding(.vertical, 5)
                     }
                     .padding(.vertical)
                 }
@@ -106,15 +102,39 @@ struct SendToView: View {
                 HapticFeedback.rigidHapticFeedback()
             #endif
         }, label: {
-            VStack(alignment: .center, spacing: 10) {
-                EmptyAvatar(username: address, size: 42, style: service.themeStyle)
-                Text(address.formatAddress()).fontTemplate(DefaultTemplate.captionPrimary)
+            VStack(alignment: .center, spacing: 5) {
+                HStack(alignment: .center, spacing: 10) {
+                    if let blockAvatar = BlockAvatar(seed: address, size: 8, scale: 3).createImage() {
+                        Image(image: blockAvatar)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 28, height: 28, alignment: .center)
+                            .clipShape(Circle())
+                            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.175 : 0.0),
+                                    radius: 5, x: 0, y: 3)
+                    }
+
+                    Text(address.formatAddressExtended()).fontTemplate(DefaultTemplate.bodySemibold_nunito)
+
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .font(Font.title.weight(.bold))
+                        .scaledToFit()
+                        .frame(width: 7, height: 15, alignment: .center)
+                        .foregroundColor(.secondary)
+                }.padding(.horizontal)
+                .padding(.vertical, 5)
+
+                if service.themeStyle == .shadow {
+                    Divider().padding(.leading, 50)
+                } else if service.themeStyle == .border {
+                    Rectangle().foregroundColor(DefaultTemplate.borderColor)
+                        .frame(height: 1)
+                }
             }
-            .padding(.vertical)
-            .padding(.horizontal, 5)
-            .contentShape(Rectangle())
         })
-        .buttonStyle(ClickInteractiveStyle(0.96))
+        .buttonStyle(DefaultInteractiveStyle(style: service.themeStyle))
     }
 
 }

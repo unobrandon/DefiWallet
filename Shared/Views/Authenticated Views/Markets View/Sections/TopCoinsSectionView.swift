@@ -26,7 +26,7 @@ struct TopCoinsSectionView: View {
     }
 
     var body: some View {
-        LazyVStack(alignment: .center, spacing: 0) {
+        VStack(alignment: .center, spacing: 0) {
             SectionHeaderView(title: "Market Cap",
                               actionTitle: store.coinsByMarketCap.isEmpty ? "" : "Show all",
                               action: showMoreLess)
@@ -43,28 +43,35 @@ struct TopCoinsSectionView: View {
                     }.padding(.vertical, 30)
                 }
 
-                ForEach(store.coinsByMarketCap.prefix(limitCells), id: \.self) { item in
-                    TokenListStandardCell(service: service, data: item,
-                                          isLast: store.coinsByMarketCap.count < limitCells ? store.coinsByMarketCap.last == item ? true : false : false,
-                                          style: service.themeStyle, action: {
-//                        marketRouter.route(to: \.tokenDetail, item.)
-
-                        #if os(iOS)
-                            HapticFeedback.rigidHapticFeedback()
-                        #endif
-                    })
-
-                    if store.coinsByMarketCap.last == item || item == store.coinsByMarketCap[limitCells - 1] {
-                        ListStandardButton(title: "view more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
-                            marketRouter.route(to: \.marketCapRank)
+                LazyVStack(alignment: .center, spacing: 0) {
+                    ForEach(store.coinsByMarketCap.prefix(limitCells), id: \.self) { item in
+                        TokenListStandardCell(service: service, data: item,
+                                              isLast: store.coinsByMarketCap.count < limitCells ? store.coinsByMarketCap.last == item ? true : false : false,
+                                              style: service.themeStyle, action: {
+                            marketRouter.route(to: \.tokenDetail, item)
 
                             #if os(iOS)
                                 HapticFeedback.rigidHapticFeedback()
                             #endif
                         })
+
+                        if store.coinsByMarketCap.last == item || item == store.coinsByMarketCap[limitCells - 1] {
+                            ListStandardButton(title: "view more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                                marketRouter.route(to: \.marketCapRank)
+
+                                #if os(iOS)
+                                    HapticFeedback.rigidHapticFeedback()
+                                #endif
+                            })
+                        }
                     }
                 }
             }
+            .padding(.bottom)
+
+            FooterInformation()
+                .padding(.vertical)
+                .padding(.bottom, 40)
         }
     }
 

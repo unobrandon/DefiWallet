@@ -13,20 +13,28 @@ struct TokenDetailView: View {
 
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var walletStore: WalletService
-    private let address: String
+    @State private var tokenDetail: CoinMarketCap?
+    @State private var externalId: String?
 
-    init(address: String, service: AuthenticatedServices) {
-        self.address = address
+    init(tokenDetail: CoinMarketCap?, externalId: String?, service: AuthenticatedServices) {
         self.service = service
+        self.externalId = externalId
+        self.tokenDetail = tokenDetail
         self.walletStore = service.wallet
     }
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView(.vertical, showsIndicators: false) {
-                Text("hello")
+                Text(externalId ?? "hello")
             }
         })
+        .navigationBarTitle(tokenDetail?.name ?? "Details", displayMode: .inline)
+        .onAppear {
+            DispatchQueue.main.async {
+                Tool.hiddenTabBar()
+            }
+        }
     }
 
 }

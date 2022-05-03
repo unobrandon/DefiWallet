@@ -169,4 +169,20 @@ extension String {
         return json
     }
 
+    func listCountriesAndCurrencies() throws -> [String: String] {
+        let localeIds = Locale.availableIdentifiers
+        var countryCurrency = [String: String]()
+        for localeId in localeIds {
+            let locale = Locale(identifier: localeId)
+
+            if let country = locale.regionCode {
+                if let currency = locale.currencySymbol {
+                    countryCurrency[country] = currency
+                }
+            }
+        }
+
+        return countryCurrency
+    }
+
 }

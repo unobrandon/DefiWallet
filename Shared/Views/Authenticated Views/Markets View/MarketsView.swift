@@ -21,7 +21,7 @@ struct MarketsView: View {
 
     @State var gridViews: [AnyView] = []
 
-    @State var isMarketCapLoading: Bool = false
+    @State var isMarketCapLoading: Bool = true
     @State var isCategoriesLoading: Bool = false
     @State var isTrendingLoading: Bool = false
     @State var showGasSheet: Bool = false
@@ -51,19 +51,14 @@ struct MarketsView: View {
 //        .navigationSearchBarHiddenWhenScrolling(searchHide)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search tokens and more...")
         .onAppear {
-            print("markets view did appear")
             DispatchQueue.main.async {
                 Tool.showTabBar()
             }
 
             self.gridViews = [
                 AnyView(TopSectionView(service: service)),
-                AnyView(TrendingSectionView(isLoading: $isTrendingLoading, service: service)),
                 AnyView(TopCoinsSectionView(isLoading: $isMarketCapLoading, service: service))
             ]
-        }
-        .onDisappear {
-            print("markets view did disappear")
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

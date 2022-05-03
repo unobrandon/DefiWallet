@@ -60,7 +60,7 @@ struct CategoriesView: View {
                 }
             })
         })
-        .navigationBarTitle("Categories", displayMode: .inline)
+        .navigationBarTitle("Top Categories", displayMode: .inline)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search categories...")
         .onAppear {
             DispatchQueue.main.async {

@@ -124,7 +124,8 @@ class MarketsService: ObservableObject {
             }
         }
 
-        let url = Constants.backendBaseUrl + "global"
+        // let url = Constants.backendBaseUrl + "global"
+        let url = "https://api.coingecko.com/api/v3/global"
 
         AF.request(url, method: .get).responseDecodable(of: GlobalMarketData.self) { response in
             switch response.result {
@@ -276,29 +277,6 @@ class MarketsService: ObservableObject {
                 }
             }
         }
-
-        func listCountriesAndCurrencies() {
-            let localeIds = Locale.availableIdentifiers
-            var countryCurrency = [String: String]()
-            for localeId in localeIds {
-                let locale = Locale(identifier: localeId)
-
-                if let country = locale.regionCode {
-                    if let currency = locale.currencySymbol {
-                        countryCurrency[country] = currency
-                    }
-                }
-            }
-
-            let sorted = countryCurrency.keys.sorted()
-            for country in sorted {
-                let currency = countryCurrency[country]!
-
-                print("country: \(country), currency: \(currency)")
-            }
-        }
-
-        listCountriesAndCurrencies()
 
 //        let url = Constants.backendBaseUrl + "topCoinsByMarketCap" + "?currency=" + currency + "&perPage=\(perPage ?? 25)" + "&page=\(page ?? 1)"
         let url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=" + currency + "&order=market_cap_desc&per_page=\(perPage ?? 25)" + "&page=\(page ?? 1)" + "&sparkline=true&price_change_percentage=24h"

@@ -21,40 +21,86 @@ struct TopSectionView: View {
     }
 
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
-            HStack(alignment: .center, spacing: 20) {
-                ListStandardButton(title: "Top Categories", systemImage: "list.number", isLast: false, style: service.themeStyle, action: {
-                    print("Currency")
+        VStack(alignment: .center, spacing: 5) {
+            // MARK: Top Categories / Exchanges
+            HStack(alignment: .center, spacing: 5) {
+                Button(action: {
+                    print("Top Categories")
                     marketRouter.route(to: \.categoriesView)
-                })
-                .background(Color("ethereum"))
+                }, label: {
+                    HStack(alignment: .center, spacing: 0) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Image(systemName: "list.number")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 18, height: 18, alignment: .center)
+                                .font(Font.title.weight(.light))
+                                .foregroundColor(.black)
 
-                ListStandardButton(title: "New Tokens", systemImage: "newspaper", isLast: false, style: service.themeStyle, action: {
-                    print("New Tokens")
-                    marketRouter.route(to: \.categoriesView)
+                            Text("Top Categories")
+                                .fontTemplate(DefaultTemplate.subheadingMedium_black)
+                        }
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
+                    .frame(maxWidth: 240)
+                    .background(RoundedRectangle(cornerRadius: 10, style: .circular).foregroundColor(Color("softPurple")))
+                    .shadow(color: .black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 12, x: 0, y: 6)
                 })
-                .background(Color("polygon"))
+                .buttonStyle(ClickInteractiveStyle(0.975))
+
+                Button(action: {
+                    print("Exchanges")
+                    marketRouter.route(to: \.categoriesView)
+                }, label: {
+                    HStack(alignment: .center, spacing: 0) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Image(systemName: "arrow.2.squarepath")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 18, height: 18, alignment: .center)
+                                .font(Font.title.weight(.light))
+                                .foregroundColor(.black)
+
+                            Text("Top Exchanges")
+                                .fontTemplate(DefaultTemplate.subheadingMedium_black)
+                        }
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
+                    .frame(maxWidth: 240)
+                    .background(RoundedRectangle(cornerRadius: 10, style: .circular).foregroundColor(Color("softOrange")))
+                    .shadow(color: .black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 12, x: 0, y: 6)
+                })
+                .buttonStyle(ClickInteractiveStyle(0.975))
             }
 
-            HStack(alignment: .center, spacing: 10) {
+            // MARK: Top Gainer / Top Losers
+            HStack(alignment: .center, spacing: 5) {
                 Button(action: {
                     print("Top Gainers")
                     marketRouter.route(to: \.categoriesView)
                 }, label: {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Image(systemName: "chart.line.uptrend.xyaxis")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 22, height: 20, alignment: .center)
-                            .font(Font.title.weight(.medium))
-                            .foregroundColor(.white)
+                    HStack(alignment: .center, spacing: 0) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Image(systemName: "chart.line.uptrend.xyaxis")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 18, height: 18, alignment: .center)
+                                .font(Font.title.weight(.light))
+                                .foregroundColor(.black)
 
-                        Text("Top Gainers")
-                            .fontTemplate(DefaultTemplate.sectionHeader_bold_white)
+                            Text("Top Gainers")
+                                .fontTemplate(DefaultTemplate.subheadingMedium_black)
+                        }
+                        Spacer()
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
                     .frame(maxWidth: 240)
-                    .background(RoundedRectangle(cornerRadius: 15, style: .circular).foregroundColor(Color("grassGreen")))
+                    .background(RoundedRectangle(cornerRadius: 10, style: .circular).foregroundColor(Color("softGreen")))
                     .shadow(color: .black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 12, x: 0, y: 6)
                 })
                 .buttonStyle(ClickInteractiveStyle(0.975))
@@ -63,20 +109,24 @@ struct TopSectionView: View {
                     print("Top Losers")
                     marketRouter.route(to: \.categoriesView)
                 }, label: {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Image(systemName: "arrow.down.forward")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 18, height: 18, alignment: .center)
-                            .font(Font.title.weight(.medium))
-                            .foregroundColor(.white)
+                    HStack(alignment: .center, spacing: 0) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Image(systemName: "arrow.down.forward")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 14, height: 14, alignment: .center)
+                                .font(Font.title.weight(.light))
+                                .foregroundColor(.black)
 
-                        Text("Top Losers")
-                            .fontTemplate(DefaultTemplate.sectionHeader_bold_white)
+                            Text("Top Losers")
+                                .fontTemplate(DefaultTemplate.subheadingMedium_black)
+                        }
+                        Spacer()
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
                     .frame(maxWidth: 240)
-                    .background(RoundedRectangle(cornerRadius: 15, style: .circular).foregroundColor(Color("alertRed")))
+                    .background(RoundedRectangle(cornerRadius: 10, style: .circular).foregroundColor(Color("softRed")))
                     .shadow(color: .black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 12, x: 0, y: 6)
                 })
                 .buttonStyle(ClickInteractiveStyle(0.975))

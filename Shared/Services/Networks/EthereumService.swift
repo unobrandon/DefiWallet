@@ -91,9 +91,9 @@ class EthereumService: ObservableObject {
         print("calling assets explore-sections")
 
 //        assetsSocket.connect(withPayload: ["address": "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9", "currency": "usd"])
-        
+
 //        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-        self.assetsSocket.emit("get", ["scope": ["categories", "full-info", "info"], "payload": ["asset_code": "0x73ee6d7e6b203125add89320e9f343d65ec7c39a", "currency": "usd", "category_id": "top-gainers"]])
+        self.assetsSocket.emit("get", ["scope": ["categories", "full-info", "info"], "payload": ["asset_code": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2", "currency": "usd", "category_id": "top-gainers"]])
 //        }
 
         assetsSocket.on("received assets categories") { data, ack in

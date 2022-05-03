@@ -35,11 +35,11 @@ struct OverviewSectionView: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 5) {
-            VStack(alignment: .leading, spacing: 5) {
-                balanceSection
-                mainnetSection
-            }.frame(height: 210)
-
+//            VStack(alignment: .leading, spacing: 5) {
+                
+//                mainnetSection
+//            }.frame(height: 210)
+            balanceSection
             breakdownSection
         }
         .padding(.top)
@@ -49,31 +49,29 @@ struct OverviewSectionView: View {
     // MARK: - Balance Section
     @ViewBuilder
     private var balanceSection: some View {
-        ListSection(hasPadding: false, style: service.themeStyle) {
-            Button(action: {
-                print("maybe spin the numbers here")
-            }, label: {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Network Balance:")
-                        .fontTemplate(DefaultTemplate.body_secondary)
+        Button(action: {
+            print("maybe spin the numbers here")
+        }, label: {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Network Balance:")
+                    .fontTemplate(DefaultTemplate.body_secondary)
 
-                    HStack(alignment: .center, spacing: 5) {
-                        Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.titleSemiBold)
+                HStack(alignment: .center, spacing: 5) {
+                    Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.titleSemiBold)
 
-                        if let num = service.wallet.getNetworkTotal(completeBalance) {
-                            MovingNumbersView(number: num,
-                                              numberOfDecimalPlaces: 2,
-                                              fixedWidth: nil,
-                                              showComma: true) { str in
-                                Text(str).fontTemplate(DefaultTemplate.titleSemiBold)
-                            }
+                    if let num = service.wallet.getNetworkTotal(completeBalance) {
+                        MovingNumbersView(number: num,
+                                          numberOfDecimalPlaces: 2,
+                                          fixedWidth: nil,
+                                          showComma: true) { str in
+                            Text(str).fontTemplate(DefaultTemplate.titleSemiBold)
                         }
+                    }
 
-                        Spacer()
-                    }.mask(AppGradients.movingNumbersMask)
-                }.padding()
-            }).buttonStyle(DefaultInteractiveStyle(style: service.themeStyle))
-        }
+                    Spacer()
+                }.mask(AppGradients.movingNumbersMask)
+            }
+        }).buttonStyle(DefaultInteractiveStyle(style: service.themeStyle))
     }
 
     // MARK: - Mainnet Section
@@ -123,7 +121,7 @@ struct OverviewSectionView: View {
     // MARK: - Breakdown Section
     @ViewBuilder
     private var  breakdownSection: some View {
-        ListSection(hasPadding: false, style: service.themeStyle) {
+//        ListSection(hasPadding: false, style: service.themeStyle) {
             Button(action: {
                 print("percentage here")
             }, label: {
@@ -149,7 +147,7 @@ struct OverviewSectionView: View {
                 .frame(height: 210)
             })
             .buttonStyle(DefaultInteractiveStyle(style: service.themeStyle))
-        }
+//        }
     }
 
 }
