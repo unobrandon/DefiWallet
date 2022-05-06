@@ -34,6 +34,10 @@ struct TokenDetailView: View {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()
             }
+
+//            if let id = externalId {
+            service.market.emitFullInfoAssetSocket("0x0f5d2fb29fb7d3cfee444a200298f468908cc942", currency: service.currentUser.currency)
+//            }
         }
     }
 

@@ -66,11 +66,6 @@ class EthereumService: ObservableObject {
     }
 
     private func connectWebsocket(currentUser: CurrentUser) {
-        self.assetsSocket.connect()
-
-        assetsSocket.on(clientEvent: .connect) { _, _ in
-            self.fetchAssetsSocket()
-        }
 
         self.connectionStatus = .connecting
         // Moralis node uses (socketUrl, delegate: self)
@@ -84,49 +79,6 @@ class EthereumService: ObservableObject {
 
         if let provider = socketProvider {
             web3Service = web3(provider: provider)
-        }
-    }
-
-    private func fetchAssetsSocket() {
-        print("calling assets explore-sections")
-
-//        assetsSocket.connect(withPayload: ["address": "0x41914acD93d82b59BD7935F44f9b44Ff8381FCB9", "currency": "usd"])
-
-//        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-        self.assetsSocket.emit("get", ["scope": ["categories", "full-info", "info"], "payload": ["asset_code": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2", "currency": "usd", "category_id": "top-gainers"]])
-//        }
-
-        assetsSocket.on("received assets categories") { data, ack in
-            print("received assets categories")
-
-            DispatchQueue.main.async {
-                if let array = data as? [[String: AnyObject]], let firstDict = array.first {
-                    let asset = firstDict["payload"]! as! [String: AnyObject]
-                    print("received assets categories value is: \(asset)")
-                }
-            }
-        }
-
-        assetsSocket.on("received assets full-info") { data, _ in
-            print("received assets full-info")
-
-            DispatchQueue.main.async {
-                if let array = data as? [[String: AnyObject]], let firstDict = array.first {
-                    let asset = firstDict["payload"]! as! [String: AnyObject]
-                    print("received assets full-info value is: \(asset)")
-                }
-            }
-        }
-
-        assetsSocket.on("received assets info") { data, _ in
-            print("received asset / category info")
-
-            DispatchQueue.main.async {
-                if let array = data as? [[String: AnyObject]], let firstDict = array.first {
-                    let asset = firstDict["payload"]! as! [String: AnyObject]
-                    print("received assets category info value is: \(asset)")
-                }
-            }
         }
     }
 

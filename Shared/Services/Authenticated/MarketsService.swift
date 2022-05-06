@@ -23,6 +23,7 @@ class MarketsService: ObservableObject {
 
     var socketManager: SocketManager
     var gasSocket: SocketIOClient
+    var assetSocket: SocketIOClient
     var gasSocketTimer: Timer?
 
     let gasRefreshInterval: Double = 10
@@ -31,12 +32,14 @@ class MarketsService: ObservableObject {
     init(socketManager: SocketManager) {
         self.socketManager = socketManager
         self.gasSocket = socketManager.socket(forNamespace: "/gas")
+        self.assetSocket = socketManager.socket(forNamespace: "/assets")
 
-        connectGasSocket()
+        connectSockets()
     }
 
-    private func connectGasSocket() {
+    private func connectSockets() {
         gasSocket.connect()
+        assetSocket.connect()
 
         gasSocket.on(clientEvent: .connect) { _, _ in
             self.fetchGasSocket()
@@ -44,6 +47,10 @@ class MarketsService: ObservableObject {
 
         gasSocket.on(clientEvent: .disconnect) { _, _ in
             self.stopGasTimer()
+        }
+
+        assetSocket.on(clientEvent: .connect) { _, _ in
+            self.fetchAssetsSocket()
         }
     }
 
@@ -80,6 +87,48 @@ class MarketsService: ObservableObject {
                 self.gasSocketPrices = GasSocketPrice(source: source, datetime: datetime, rapid: prices["rapid"] as? Double, fast: fast, standard: standard, slow: slow)
             }
         }
+    }
+
+    private func fetchAssetsSocket() {
+
+        assetSocket.on("received assets categories") { data, ack in
+            DispatchQueue.main.async {
+                if let array = data as? [[String: AnyObject]], let firstDict = array.first {
+                    let asset = firstDict["payload"]! as! [String: AnyObject]
+                    print("received assets categories value is: \(asset)")
+                }
+            }
+        }
+
+        assetSocket.on("received assets full-info") { data, _ in
+            guard let array = data as? [[String: AnyObject]],
+                  let firstDict = array.first,
+                  let payload = firstDict["payload"] as? [String: AnyObject],
+                  let fullInfo = payload["full-info"] as? [String: AnyObject],
+                  let asset = fullInfo["asset"] as? [String: AnyObject] else { return }
+
+//            guard let assetCode = asset["asset_code"] as? String,
+//                  let decimals = asset["decimals"] as? Int,
+//                  let iconUrl = asset["icon_url"] as? String,
+//                  let isDisplayable = asset["is_displayable"] as? Int,
+//                  let isVerified = asset["is_verified"] as? Int,
+//                  let tokenName = asset["name"] as? String,
+//                  let symbol = asset["symbol"] as? String,
+//                  let circulatingSupply = payload["circulating_supply"] as? Double,
+//                  let description = payload["description"] as? String else { return }
+
+            DispatchQueue.main.async {
+//                if let array = data as? [[String: AnyObject]], let firstDict = array.first {
+//                    let payloaddd = firstDict["payload"]! as! [String: AnyObject]
+                print("that payload: \(asset)! && received assets full-info value is: \(asset["name"]) \n\(fullInfo["description"])")
+//                }
+            }
+        }
+
+    }
+
+    func emitFullInfoAssetSocket(_ assetCode: String, currency: String) {
+        assetSocket.emit("get", ["scope": ["full-info"], "payload": ["asset_code": assetCode, "currency": currency]])
     }
 
     func sortGas(_ network: Network) -> GasPrice? {
@@ -124,8 +173,8 @@ class MarketsService: ObservableObject {
             }
         }
 
-        // let url = Constants.backendBaseUrl + "global"
-        let url = "https://api.coingecko.com/api/v3/global"
+         let url = Constants.backendBaseUrl + "global"
+//        let url = "https://api.coingecko.com/api/v3/global"
 
         AF.request(url, method: .get).responseDecodable(of: GlobalMarketData.self) { response in
             switch response.result {
