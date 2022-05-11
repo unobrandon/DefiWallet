@@ -22,7 +22,6 @@ struct MarketsView: View {
     @State var gridViews: [AnyView] = []
 
     @State var isMarketCapLoading: Bool = true
-    @State var isCategoriesLoading: Bool = false
     @State var isTrendingLoading: Bool = false
     @State var showGasSheet: Bool = false
     @State var showGlobalSheet: Bool = false
@@ -33,7 +32,6 @@ struct MarketsView: View {
 
         self.fetchGlobalData()
         self.fetchGasTrends()
-        self.fetchTokenCategories()
         self.fetchTrending()
     }
 
@@ -98,15 +96,6 @@ struct MarketsView: View {
     private func fetchGasTrends() {
         store.fetchEthGasPriceTrends(completion: {
             print("gas is done loading")
-        })
-    }
-
-    private func fetchTokenCategories() {
-        isCategoriesLoading = true
-
-        store.fetchTokenCategories(completion: {
-            print("categories is done loading")
-            isCategoriesLoading = true
         })
     }
 

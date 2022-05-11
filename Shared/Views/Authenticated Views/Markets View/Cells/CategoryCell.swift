@@ -27,21 +27,40 @@ struct CategoryCell: View {
     }
 
     var body: some View {
-        ZStack(alignment: .center) {
+        VStack(alignment: .center, spacing: 0) {
             Button(action: {
                 self.actionTap()
             }, label: {
-                VStack(alignment: .leading, spacing: 0) {
-                    HStack(alignment: .top, spacing: 0) {
+                HStack(alignment: .top, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 2.5) {
                         Text(data.name ?? "").fontTemplate(DefaultTemplate.gasPriceFont)
 
-                        Spacer()
+                        if let num = Int(data.marketCap ?? 0), num != 0 {
+                            Text("\(Locale.current.currencySymbol ?? "")\("".formatLargeNumber(num, size: .large)) market cap")
+                                .fontTemplate(DefaultTemplate.caption_semibold)
+                        }
+
+                        if let content = data.content, !content.isEmpty {
+                            Text(content)
+                                .fontTemplate(DefaultTemplate.caption)
+                                .lineLimit(2)
+                        }
+                    }
+
+                    Spacer()
+                    VStack(alignment: .trailing, spacing: 10) {
                         HStack(alignment: .center, spacing: 0) {
-                            ProminentRoundedLabel(text: (data.marketCapChange24H ?? 0 >= 0 ? "+" : "") +
-                                                  "\("".forTrailingZero(temp: data.marketCapChange24H?.truncate(places: 2) ?? 0.00))%",
-                                                  color: data.marketCapChange24H ?? 0 >= 0 ? .green : .red,
-                                                  style: service.themeStyle)
-                                .padding(.trailing, 10)
+                            HStack(alignment: .center, spacing: -8) {
+                                if let top3_Coins = data.top3_Coins?.prefix(3) {
+                                    ForEach(top3_Coins.indices, id: \.self) { index in
+                                        RemoteImage(top3_Coins[index], size: 22)
+                                            .clipShape(Circle())
+                                            .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1))
+                                            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
+                                            .zIndex(index == 0 ? 3 : index == 1 ? 2 : 1)
+                                    }
+                                }
+                            }.padding(.trailing, 10)
 
                             Image(systemName: "chevron.right")
                                 .resizable()
@@ -50,30 +69,12 @@ struct CategoryCell: View {
                                 .frame(width: 7, height: 12, alignment: .center)
                                 .foregroundColor(.secondary)
                         }
-                    }
 
-                    if let num = Int(data.marketCap ?? 0) {
-                        Text("#\(index + 1) market cap \(Locale.current.currencySymbol ?? "")\("".formatLargeNumber(num, size: .large))")
-                            .fontTemplate(DefaultTemplate.caption_semibold)
-                    }
-
-                    HStack(alignment: .center, spacing: -8) {
-                        if let top3_Coins = data.top3_Coins?.prefix(3) {
-                            ForEach(top3_Coins.indices, id: \.self) { index in
-                                RemoteImage(top3_Coins[index], size: 22)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1))
-                                    .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
-                                    .zIndex(index == 0 ? 3 : index == 1 ? 2 : 1)
-                            }.padding(.top, 5)
-                        }
-                    }
-
-                    if let content = data.content, !content.isEmpty {
-                        Text(content)
-                            .fontTemplate(DefaultTemplate.caption)
-                            .lineLimit(2)
-                            .padding(.top, 5)
+                        ProminentRoundedLabel(text: (data.marketCapChange24H ?? 0 >= 0 ? "+" : "") +
+                                              "\("".forTrailingZero(temp: data.marketCapChange24H?.truncate(places: 2) ?? 0.00))%",
+                                              color: data.marketCapChange24H ?? 0 >= 0 ? .green : .red,
+                                              style: service.themeStyle)
+                            .padding(.trailing)
                     }
                 }
                 .padding(.horizontal)
@@ -83,6 +84,12 @@ struct CategoryCell: View {
             .buttonStyle(DefaultInteractiveStyle(style: self.style))
             .frame(minWidth: 100, maxWidth: .infinity)
 
+            if style == .shadow, !isLast {
+                Divider().padding(.leading, 20)
+            } else if style == .border, !isLast {
+                Rectangle().foregroundColor(DefaultTemplate.borderColor)
+                    .frame(height: 1)
+            }
         }.simultaneousGesture(TapGesture().onEnded {
             #if os(iOS)
                 HapticFeedback.rigidHapticFeedback()

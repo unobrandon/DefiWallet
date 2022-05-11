@@ -8,6 +8,8 @@
 import SwiftUI
 import SwiftUIX
 
+// MARK: Do not use! The view interacts weird with the tab bar.
+
 struct LoadMoreScrollView<Content: View>: View {
 
     @State private var scrollHeight: CGFloat = 0

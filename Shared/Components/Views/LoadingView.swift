@@ -12,14 +12,14 @@ struct LoadingView: View {
 
     private let title: String
 
-    init(title: String) {
-        self.title = title
+    init(title: String? = "") {
+        self.title = title ?? ""
     }
 
     var body: some View {
         HStack {
             Spacer()
-            VStack(spacing: 10) {
+            VStack(spacing: 5) {
                 ActivityIndicator().animated(true).style(.regular)
 
                 if title != "" {

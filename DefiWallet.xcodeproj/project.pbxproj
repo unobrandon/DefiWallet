@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05002E68282B71380010AF39 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05002E67282B71380010AF39 /* Footer.swift */; };
+		05002E6A282B715D0010AF39 /* FooterKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05002E69282B715D0010AF39 /* FooterKey.swift */; };
+		05002E6C282B71800010AF39 /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05002E6B282B71800010AF39 /* Refresh.swift */; };
+		05002E6E282B71A10010AF39 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05002E6D282B71A10010AF39 /* Header.swift */; };
+		05002E70282B71B90010AF39 /* HeaderKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05002E6F282B71B90010AF39 /* HeaderKey.swift */; };
+		05002E72282B71DA0010AF39 /* List+Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05002E71282B71DA0010AF39 /* List+Refresh.swift */; };
+		05002E74282B71F70010AF39 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05002E73282B71F70010AF39 /* Modifier.swift */; };
+		05002E76282B72250010AF39 /* RefreshUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05002E75282B72250010AF39 /* RefreshUtilities.swift */; };
+		05002E78282B84830010AF39 /* ViewMoreText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05002E77282B84830010AF39 /* ViewMoreText.swift */; };
+		05002E79282B84830010AF39 /* ViewMoreText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05002E77282B84830010AF39 /* ViewMoreText.swift */; };
 		0500E4DB281F6C59001A4FAB /* ACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4DA281F6C59001A4FAB /* ACarousel.swift */; };
 		0500E4DD281F6C99001A4FAB /* ACarouselAutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4DC281F6C99001A4FAB /* ACarouselAutoScroll.swift */; };
 		0500E4DF281F6CD3001A4FAB /* ACarouselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500E4DE281F6CD3001A4FAB /* ACarouselViewModel.swift */; };
@@ -512,6 +522,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05002E67282B71380010AF39 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
+		05002E69282B715D0010AF39 /* FooterKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterKey.swift; sourceTree = "<group>"; };
+		05002E6B282B71800010AF39 /* Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
+		05002E6D282B71A10010AF39 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		05002E6F282B71B90010AF39 /* HeaderKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderKey.swift; sourceTree = "<group>"; };
+		05002E71282B71DA0010AF39 /* List+Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Refresh.swift"; sourceTree = "<group>"; };
+		05002E73282B71F70010AF39 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
+		05002E75282B72250010AF39 /* RefreshUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshUtilities.swift; sourceTree = "<group>"; };
+		05002E77282B84830010AF39 /* ViewMoreText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMoreText.swift; sourceTree = "<group>"; };
 		0500E4DA281F6C59001A4FAB /* ACarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACarousel.swift; sourceTree = "<group>"; };
 		0500E4DC281F6C99001A4FAB /* ACarouselAutoScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACarouselAutoScroll.swift; sourceTree = "<group>"; };
 		0500E4DE281F6CD3001A4FAB /* ACarouselViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACarouselViewModel.swift; sourceTree = "<group>"; };
@@ -816,6 +835,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05002E66282B70BD0010AF39 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				05002E67282B71380010AF39 /* Footer.swift */,
+				05002E69282B715D0010AF39 /* FooterKey.swift */,
+				05002E6D282B71A10010AF39 /* Header.swift */,
+				05002E6F282B71B90010AF39 /* HeaderKey.swift */,
+				05002E71282B71DA0010AF39 /* List+Refresh.swift */,
+				05002E73282B71F70010AF39 /* Modifier.swift */,
+				05002E6B282B71800010AF39 /* Refresh.swift */,
+				05002E75282B72250010AF39 /* RefreshUtilities.swift */,
+			);
+			path = Refresh;
+			sourceTree = "<group>";
+		};
 		0500E4D9281F6C41001A4FAB /* ACarousel */ = {
 			isa = PBXGroup;
 			children = (
@@ -932,6 +966,7 @@
 				053113ED27E6CEA800368657 /* CarBode */,
 				05583CAB27E9BF0E00640E75 /* Grid */,
 				0500E4D9281F6C41001A4FAB /* ACarousel */,
+				05002E66282B70BD0010AF39 /* Refresh */,
 				053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */,
 				05583C9827E965FF00640E75 /* SafariView.swift */,
 				05CA873428053243006FACE0 /* SVGWebView.swift */,
@@ -1584,6 +1619,7 @@
 				053C7D3E27CDBF600081DCEA /* CheckmarkView.swift */,
 				05E8590427CC198A00B85195 /* TermsView.swift */,
 				05583CA827E9BC5600640E75 /* LoadingView.swift */,
+				05002E77282B84830010AF39 /* ViewMoreText.swift */,
 				05E8590727CC1A8800B85195 /* FooterInformation.swift */,
 				0593022927E03A1C006DDFFF /* BackgroundColorView.swift */,
 			);
@@ -1934,6 +1970,7 @@
 				05583CA627E9A0EE00640E75 /* LoadMoreScrollView.swift in Sources */,
 				05583CEC27ED5CA100640E75 /* CoinByMarketCap.swift in Sources */,
 				058C786527D07E3700EB91CA /* PrivateKeysView.swift in Sources */,
+				05002E72282B71DA0010AF39 /* List+Refresh.swift in Sources */,
 				051BCF5527BC970A0056E047 /* TransactionHistory.swift in Sources */,
 				0593026327E19D27006DDFFF /* Math.swift in Sources */,
 				05583CD727E9C1F800640E75 /* GridStyleKey.swift in Sources */,
@@ -1993,6 +2030,7 @@
 				05E858F527CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */,
 				0593025727E19C7A006DDFFF /* CurvedChart.swift in Sources */,
 				05E8589827C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
+				05002E6E282B71A10010AF39 /* Header.swift in Sources */,
 				05394151281A41B900CFAA53 /* SendToView.swift in Sources */,
 				0578075227BB5EF10008051B /* Font+Extensions.swift in Sources */,
 				05C884CB27FD0E00005E2455 /* OverviewSectionView.swift in Sources */,
@@ -2014,6 +2052,7 @@
 				0531140927E6E39F00368657 /* WalletConnectDelegate.swift in Sources */,
 				053113E227E6C65D00368657 /* Manager.swift in Sources */,
 				05C884CE27FD1D33005E2455 /* RingProgressModel.swift in Sources */,
+				05002E68282B71380010AF39 /* Footer.swift in Sources */,
 				05E5F85727D361980090290C /* RoundedCross.swift in Sources */,
 				05BDC5BC280D116D00851E16 /* GlobalGasView.swift in Sources */,
 				0593021C27DFF0E5006DDFFF /* OnboardingHeaderView.swift in Sources */,
@@ -2028,9 +2067,11 @@
 				05E858CE27CB25C200B85195 /* AlertBadge.swift in Sources */,
 				0578073227BB59D30008051B /* MarketsCoordinator+Factory.swift in Sources */,
 				05E5F84927D321920090290C /* Shake.swift in Sources */,
+				05002E74282B71F70010AF39 /* Modifier.swift in Sources */,
 				0593021027D9C790006DDFFF /* Double+Extensions.swift in Sources */,
 				0593021627DEFA95006DDFFF /* CompleteBalance.swift in Sources */,
 				0500E4EB281FA059001A4FAB /* NewsBlogSection.swift in Sources */,
+				05002E76282B72250010AF39 /* RefreshUtilities.swift in Sources */,
 				0578074127BB5B500008051B /* DiscoverCoordinator+Factory.swift in Sources */,
 				05E858B927CA04D000B85195 /* MainCarouselView.swift in Sources */,
 				0593021327D9E33E006DDFFF /* AccountNft.swift in Sources */,
@@ -2059,6 +2100,7 @@
 				0593021927DFCB3D006DDFFF /* ProfileHeaderButton.swift in Sources */,
 				058C786B27D09E5900EB91CA /* CompletedView.swift in Sources */,
 				053113EF27E6CECA00368657 /* BarcodeData.swift in Sources */,
+				05002E78282B84830010AF39 /* ViewMoreText.swift in Sources */,
 				05583CC227E9C0B100640E75 /* Tracks.swift in Sources */,
 				05C884D827FD47EB005E2455 /* TokenBalanceCell.swift in Sources */,
 				053C7D3B27CD903B0081DCEA /* MovingNumbersView.swift in Sources */,
@@ -2072,6 +2114,7 @@
 				057806E827B8DF980008051B /* AuthenticationService.swift in Sources */,
 				05A6AAB527F95AFA00824C76 /* TrendingTokenListCell.swift in Sources */,
 				05EE4431281C8E1500D4189F /* BlockAvatar.swift in Sources */,
+				05002E6A282B715D0010AF39 /* FooterKey.swift in Sources */,
 				0566AEC827E84711006B645F /* StandardSystemImage.swift in Sources */,
 				05CA872328040EA4006FACE0 /* TokenDetailView.swift in Sources */,
 				05CA873528053243006FACE0 /* SVGWebView.swift in Sources */,
@@ -2084,6 +2127,7 @@
 				05E858FB27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,
 				05E858F127CB43BC00B85195 /* LoadingIndicator.swift in Sources */,
 				053113EB27E6C76400368657 /* SlideOverCardView.swift in Sources */,
+				05002E6C282B71800010AF39 /* Refresh.swift in Sources */,
 				05583CBC27E9C04A00640E75 /* GridItem.swift in Sources */,
 				0566AEC227E83792006B645F /* HistorySectionView.swift in Sources */,
 				0578071527B8F61F0008051B /* ProfileView.swift in Sources */,
@@ -2096,6 +2140,7 @@
 				0578077C27BB822D0008051B /* String+Extensions.swift in Sources */,
 				0593025D27E19CAF006DDFFF /* DataRepresentable.swift in Sources */,
 				05E858FF27CC08F200B85195 /* RoundedInteractiveButton.swift in Sources */,
+				05002E70282B71B90010AF39 /* HeaderKey.swift in Sources */,
 				0578077927BB71410008051B /* Blob.swift in Sources */,
 				0593022227E02B7E006DDFFF /* BorderlessButton.swift in Sources */,
 				05394154281A60E000CFAA53 /* SendToDetailView.swift in Sources */,
@@ -2300,6 +2345,7 @@
 				0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
 				05E858F927CB5A3200B85195 /* TextFieldSingleList.swift in Sources */,
+				05002E79282B84830010AF39 /* ViewMoreText.swift in Sources */,
 				050225B427FC09450004D910 /* NetworkDetailView.swift in Sources */,
 				05D1096E27C15D80008DCC66 /* EthereumService.swift in Sources */,
 				0593021727DEFA95006DDFFF /* CompleteBalance.swift in Sources */,
@@ -2474,6 +2520,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2508,6 +2555,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2667,6 +2715,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2788,6 +2837,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

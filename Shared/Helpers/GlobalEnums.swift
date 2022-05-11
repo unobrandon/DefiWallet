@@ -16,6 +16,13 @@ enum FilterHistory: Equatable {
     case fantom
 }
 
+enum FilterCategories: String, Equatable {
+    case name = "name_asc"
+    case gainers = "market_cap_change_24h_desc"
+    case losers = "market_cap_change_24h_asc"
+    case marketCap = "market_cap_desc"
+}
+
 enum NetworkStatus: Equatable {
     case connected
     case connecting

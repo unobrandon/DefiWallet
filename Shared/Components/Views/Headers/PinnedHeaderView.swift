@@ -15,9 +15,9 @@ struct PinnedHeaderView: View {
 
     private let sections: [String]
     private let style: AppStyle
-    var action: () -> Void
+    var action: (String) -> Void
 
-    init(currentType: Binding<String>, sections: [String], style: AppStyle, action: @escaping () -> Void) {
+    init(currentType: Binding<String>, sections: [String], style: AppStyle, action: @escaping (String) -> Void) {
         self._currentType = currentType
         self.sections = sections
         self.style = style
@@ -46,12 +46,14 @@ struct PinnedHeaderView: View {
                         withAnimation(.easeInOut) {
                             currentType = type
                         }
-                        action()
+                        action(type)
                     }
                 }
             }
-            .padding(.vertical, 5)
+            .padding(.vertical, 10)
+            .padding(.horizontal)
         }
+        .background(BlurEffectView(style: .systemMaterial))
     }
 }
 

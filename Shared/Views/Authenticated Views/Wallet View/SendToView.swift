@@ -16,7 +16,7 @@ struct SendToView: View {
     @ObservedObject private var store: WalletService
 
     @State private var prevAddress: [String] = []
-    @State var enableLoadMore: Bool = true
+    @State private var noMore: Bool = false
     @State var showIndicator: Bool = false
     @State var showSheet: Bool = false
     @State private var limitCells: Int = 25
@@ -29,19 +29,9 @@ struct SendToView: View {
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
-            LoadMoreScrollView(enableLoadMore: $enableLoadMore, showIndicator: $showIndicator, onLoadMore: {
-                limitCells += 25
-                showIndicator = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    showIndicator = false
-
-                    if limitCells < prevAddress.count {
-                        enableLoadMore = true
-                    }
-                }
-            }, {
+            ScrollView {
                 if prevAddress.isEmpty, searchText.isEmpty {
-                    Text("no recent transactions \n search any public address or ENS name")
+                    Text("no recent address \n search any public address or ENS name")
                         .fontTemplate(DefaultTemplate.caption)
                         .multilineTextAlignment(.center)
                         .padding(.vertical)
@@ -53,7 +43,27 @@ struct SendToView: View {
                     }
                     .padding(.vertical)
                 }
-            })
+
+                RefreshFooter(refreshing: $showIndicator, action: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        limitCells += 25
+                        withAnimation(.easeInOut) {
+                            showIndicator = false
+                            noMore = prevAddress.count <= limitCells
+                        }
+                    }
+                }, label: {
+                    if searchText.isEmpty, !prevAddress.isEmpty {
+                        if noMore {
+                            FooterInformation()
+                        } else {
+                            LoadingView(title: "loading more...")
+                        }
+                    }
+                })
+                .noMore(noMore)
+                .preload(offset: 50)
+            }.enableRefresh()
         })
         .navigationBarTitle("Send To", displayMode: .large)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search public address (0x) or ENS...")
@@ -126,11 +136,13 @@ struct SendToView: View {
                 }.padding(.horizontal)
                 .padding(.vertical, 5)
 
-                if service.themeStyle == .shadow {
-                    Divider().padding(.leading, 50)
-                } else if service.themeStyle == .border {
-                    Rectangle().foregroundColor(DefaultTemplate.borderColor)
-                        .frame(height: 1)
+                if address != prevAddress.prefix(limitCells).last {
+                    if service.themeStyle == .shadow {
+                        Divider().padding(.leading, 50)
+                    } else if service.themeStyle == .border {
+                        Rectangle().foregroundColor(DefaultTemplate.borderColor)
+                            .frame(height: 1)
+                    }
                 }
             }
         })

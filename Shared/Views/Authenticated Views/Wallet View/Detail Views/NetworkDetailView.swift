@@ -16,8 +16,6 @@ struct NetworkDetailView: View {
     private let balance: CompleteBalance
     private let network: Network?
 
-    @State private var headerOffsets: (CGFloat, CGFloat) = (0, 0)
-    @State private var currentTab: String = "All"
     @State private var showSheet = false
     @State var isHistoryLoading = false
     @State private var gridViews: [AnyView] = []

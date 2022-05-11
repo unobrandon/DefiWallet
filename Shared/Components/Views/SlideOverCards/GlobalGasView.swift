@@ -42,8 +42,8 @@ struct GlobalGasView: View {
                     .lineLimit(3)
                     .padding(.bottom, 10)
 
-                PinnedHeaderView(currentType: $currentTab, sections: ["Ethereum", "Polygon", "Bitcoin", "Binance", "Avalanche", "Fantom"], style: service.themeStyle, action: {
-                    print("tapped new section")
+                PinnedHeaderView(currentType: $currentTab, sections: ["Ethereum", "Polygon", "Bitcoin", "Binance", "Avalanche", "Fantom"], style: service.themeStyle, action: { newSection in
+                    print("tapped new section \(newSection)")
 
                     #if os(iOS)
                         HapticFeedback.rigidHapticFeedback()

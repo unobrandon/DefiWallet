@@ -131,6 +131,29 @@ struct TopSectionView: View {
                 })
                 .buttonStyle(ClickInteractiveStyle(0.975))
             }
+
+            ListSection(style: service.themeStyle) {
+                ListStandardButton(title: "Recently Added", systemImage: "safari", isLast: false, style: service.themeStyle, action: {
+                    print("Recently Added")
+                })
+
+                ListStandardButton(title: "Public Treasury", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {
+                    print("Public Market Treasury")
+                })
+
+                ListStandardButton(title: "Rate Us", systemImage: "star", isLast: false, style: service.themeStyle, action: {
+                    print("Rate")
+                })
+
+                ListStandardButton(title: "Discord", systemImage: "lock", isLast: false, style: service.themeStyle, action: {
+                    print("Discord")
+                })
+
+                ListStandardButton(title: "Twitter", systemImage: "lock", isLast: true, style: service.themeStyle, action: {
+                    print("Twitter")
+                })
+            }
+
         }
         .padding([.horizontal, .bottom])
     }

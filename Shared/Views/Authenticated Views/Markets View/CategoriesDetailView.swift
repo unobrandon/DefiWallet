@@ -15,10 +15,8 @@ struct CategoriesDetailView: View {
     let category: TokenCategory
 
     @State private var searchText: String = ""
-    @State var enableLoadMore: Bool = true
+    @State private var noMore: Bool = false
     @State var showIndicator: Bool = false
-    @State private var expanded: Bool = false
-    @State private var truncated: Bool = false
     @State private var limitCells: Int = 25
 
     init(category: TokenCategory, service: AuthenticatedServices) {
@@ -31,21 +29,7 @@ struct CategoriesDetailView: View {
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
-            LoadMoreScrollView(enableLoadMore: $enableLoadMore, showIndicator: $showIndicator, onLoadMore: {
-                guard limitCells <= store.tokenCategories.count else {
-                    enableLoadMore = false
-                    showIndicator = false
-
-                    return
-                }
-
-                limitCells += 25
-                showIndicator = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                    enableLoadMore = true
-                    showIndicator = false
-                }
-            }, {
+            ScrollView {
                 HStack {
                     VStack(alignment: .leading, spacing: 2.5) {
                         if let numCap = category.marketCap,
@@ -67,34 +51,12 @@ struct CategoriesDetailView: View {
                         }
 
                         if let content = category.content, !content.isEmpty {
-                            Text(content)
-                                .fontTemplate(DefaultTemplate.caption)
-                                .multilineTextAlignment(.leading)
-                                .lineLimit(expanded ? nil : 3)
-                                .background(
-                                    Text(content).lineLimit(3)
-                                        .background(GeometryReader { displayedGeometry in
-                                            ZStack {
-                                                Text(content)
-                                                    .background(GeometryReader { fullGeometry in
-                                                        Color.clear.onAppear {
-                                                            self.truncated = fullGeometry.size.height > displayedGeometry.size.height
-                                                        }
-                                                    })
-                                            }
-                                            .frame(height: .greatestFiniteMagnitude)
-                                        })
-                                        .hidden() // Hide the background
-                                )
-                                .padding(.top, 5)
-                                .padding(.bottom, truncated ? 0 : 5)
-
-                            if truncated { toggleButton.padding(.bottom, 5) }
+                            ViewMoreText(content)
                         }
                     }
                     Spacer()
                 }
-                .padding(.horizontal, 30)
+                .padding(.horizontal, 20)
                 .padding(.vertical, 10)
 
                 ListSection(style: service.themeStyle) {
@@ -102,7 +64,8 @@ struct CategoriesDetailView: View {
                         TokenListStandardCell(service: service, data: store.tokenCategoryList[index],
                                               isLast: false,
                                               style: service.themeStyle, action: {
-    //                        walletRouter.route(to: \.historyDetail, item)
+                            marketRouter.route(to: \.tokenDetail, store.tokenCategoryList[index])
+
                             print("the item is: \(store.tokenCategoryList[index].name ?? "no name")")
 
                             #if os(iOS)
@@ -111,7 +74,25 @@ struct CategoriesDetailView: View {
                         })
                     }
                 }
-            })
+
+                RefreshFooter(refreshing: $showIndicator, action: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        limitCells += 25
+                        withAnimation(.easeInOut) {
+                            showIndicator = false
+                            noMore = store.tokenCategories.count <= limitCells
+                        }
+                    }
+                }, label: {
+                    if noMore {
+                        FooterInformation()
+                    } else {
+                        LoadingView(title: "loading more...")
+                    }
+                })
+                .noMore(noMore)
+                .preload(offset: 50)
+            }.enableRefresh()
         })
         .navigationBarTitle(category.name ?? "Category List", displayMode: .large)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search tokens...")
@@ -123,16 +104,6 @@ struct CategoriesDetailView: View {
             guard let id = category.id else { return }
             service.market.fetchCategoryDetails(categoryId: id, currency: service.currentUser.currency)
         }
-    }
-
-    var toggleButton: some View {
-        Button(action: {
-            withAnimation(.easeOut) {
-                self.expanded.toggle()
-            }
-        }, label: {
-            Text(self.expanded ? "Show less" : "Show more").font(.caption)
-        })
     }
 
 }

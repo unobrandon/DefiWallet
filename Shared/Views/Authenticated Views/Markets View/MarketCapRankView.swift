@@ -14,7 +14,7 @@ struct MarketCapRankView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: MarketsService
 
-    @State var enableLoadMore: Bool = true
+    @State private var noMore: Bool = false
     @State var showIndicator: Bool = false
     @State private var page: Int = 1
     @State private var limitCells: Int = 25
@@ -26,33 +26,7 @@ struct MarketCapRankView: View {
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
-            LoadMoreScrollView(enableLoadMore: $enableLoadMore, showIndicator: $showIndicator, onLoadMore: {
-                guard limitCells <= store.coinsByMarketCap.count else {
-                    enableLoadMore = false
-                    showIndicator = true
-                    page += 1
-
-                    DispatchQueue.main.async {
-                        store.fetchCoinsByMarketCap(currency: service.currentUser.currency, page: page, completion: {
-                            showIndicator = false
-
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                enableLoadMore = true
-                            }
-                        })
-                    }
-
-                    return
-                }
-
-                limitCells += 25
-                showIndicator = false
-                enableLoadMore = false
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    enableLoadMore = true
-                    showIndicator = false
-                }
-            }, {
+            ScrollView {
                 ListSection(style: service.themeStyle) {
                     ForEach(store.coinsByMarketCap.prefix(limitCells), id: \.self) { item in
                         TokenListStandardCell(service: service, data: item,
@@ -66,9 +40,43 @@ struct MarketCapRankView: View {
                             #endif
                         })
                     }
-                }
-            })
-            .padding(.vertical)
+                }.padding(.top)
+
+                RefreshFooter(refreshing: $showIndicator, action: {
+                    guard limitCells <= store.coinsByMarketCap.count else {
+                        page += 1
+
+                        DispatchQueue.main.async {
+                            store.fetchCoinsByMarketCap(currency: service.currentUser.currency, page: page, completion: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    limitCells += 25
+                                    withAnimation(.easeInOut) {
+                                        showIndicator = false
+                                        noMore = store.tokenCategories.count <= limitCells
+                                    }
+                                }
+                            })
+                        }
+
+                        return
+                    }
+
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        limitCells += 25
+                        withAnimation(.easeInOut) {
+                            showIndicator = false
+                        }
+                    }
+                }, label: {
+                    if noMore {
+                        FooterInformation()
+                    } else {
+                        LoadingView(title: "loading tokens...")
+                    }
+                })
+                .noMore(noMore)
+                .preload(offset: 50)
+            }.enableRefresh()
         })
         .navigationBarTitle("Market Cap", displayMode: .inline)
         .onAppear {

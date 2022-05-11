@@ -233,9 +233,9 @@ class MarketsService: ObservableObject {
         }
     }
 
-    func fetchTokenCategories(completion: @escaping () -> Void) {
+    func fetchTokenCategories(filter: FilterCategories, completion: @escaping () -> Void) {
         if let storage = StorageService.shared.tokenCategories {
-            storage.async.object(forKey: "tokenCategories") { result in
+            storage.async.object(forKey: "tokenCategories" + filter.rawValue) { result in
                 switch result {
                 case .value(let categories):
                     print("got categories!! \(categories)")
@@ -250,7 +250,7 @@ class MarketsService: ObservableObject {
         }
 
 //        let url = Constants.backendBaseUrl + "topCategories"
-        let url = "https://api.coingecko.com/api/v3/coins/categories"
+        let url = "https://api.coingecko.com/api/v3/coins/categories?order=" + filter.rawValue
 
         AF.request(url, method: .get).responseDecodable(of: [TokenCategory].self) { response in
             switch response.result {

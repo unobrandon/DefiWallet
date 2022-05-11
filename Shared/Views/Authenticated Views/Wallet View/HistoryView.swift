@@ -14,13 +14,13 @@ struct HistoryView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
 
-    @State var enableLoadMore: Bool = true
+    @State private var noMore: Bool = false
     @State var showIndicator: Bool = false
     @State private var networkFilter: Network?
     @State private var networkSelector: Int = 0
     @State private var directionFilter: Direction?
     @State private var directionSelector: Int = 0
-    @State private var limitCells: Int = 20
+    @State private var limitCells: Int = 25
     @State private var searchText = ""
 
     init(filtered: Network? = nil, service: AuthenticatedServices) {
@@ -31,21 +31,7 @@ struct HistoryView: View {
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
-            LoadMoreScrollView(enableLoadMore: $enableLoadMore, showIndicator: $showIndicator, onLoadMore: {
-                guard limitCells <= filterHistory().count else {
-                    enableLoadMore = false
-                    showIndicator = false
-
-                    return
-                }
-
-                limitCells += 20
-                showIndicator = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    enableLoadMore = true
-                    showIndicator = false
-                }
-            }, {
+            ScrollView {
                 ListSection(style: service.themeStyle) {
                     ForEach(filterHistory().prefix(limitCells), id: \.self) { item in
                         HistoryListCell(service: service, data: item,
@@ -57,9 +43,26 @@ struct HistoryView: View {
                             #endif
                         })
                     }
-                }
-            })
-            .padding(.vertical)
+                }.padding(.top)
+
+                RefreshFooter(refreshing: $showIndicator, action: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        limitCells += 25
+                        withAnimation(.easeInOut) {
+                            showIndicator = false
+                            noMore = filterHistory().count <= limitCells
+                        }
+                    }
+                }, label: {
+                    if noMore {
+                        FooterInformation()
+                    } else {
+                        LoadingView(title: "loading more...")
+                    }
+                })
+                .noMore(noMore)
+                .preload(offset: 50)
+            }.enableRefresh()
         })
 //        .searchable(text: $searchText, prompt: "Search transactions")
         .onAppear {
