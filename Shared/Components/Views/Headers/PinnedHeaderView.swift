@@ -53,7 +53,6 @@ struct PinnedHeaderView: View {
             .padding(.vertical, 10)
             .padding(.horizontal)
         }
-        .background(BlurEffectView(style: .systemMaterial))
     }
 }
 

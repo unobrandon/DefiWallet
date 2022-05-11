@@ -34,7 +34,7 @@ struct CategoriesView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 LazyVStack(pinnedViews: [.sectionHeaders]) {
-                    Section {
+//                    Section {
                         ListSection(hasPadding: false, style: service.themeStyle) {
                             ForEach(store.tokenCategories.prefix(limitCells).indices, id: \.self) { index in
                                 CategoryCell(service: service,
@@ -69,27 +69,44 @@ struct CategoriesView: View {
                         })
                         .noMore(noMore)
                         .preload(offset: 50)
-                    } header: {
-                        PinnedHeaderView(currentType: $currentTab, sections: ["Top Gainers", "Top Losers", "Market Cap", "Name"], style: service.themeStyle, action: { tapped in
-                            if tapped == "Top Gainers" { withAnimation(.easeInOut) { filters = .gainers }
-                            } else if tapped == "Top Losers" { withAnimation(.easeInOut) { filters = .losers }
-                            } else if tapped == "Market Cap" { withAnimation(.easeInOut) { filters = .marketCap }
-                            } else if tapped == "Name" { withAnimation(.easeInOut) { filters = .name }}
-
-                            DispatchQueue.main.async {
-                                fetchTokenCategories()
-                            }
-                        })
-                        .offset(y: headerOffsets.1 > 0 ? 0 : -headerOffsets.1 / 8)
-                        .modifier(PinnedHeaderOffsetModifier(offset: $headerOffsets.0, returnFromStart: false))
-                        .modifier(PinnedHeaderOffsetModifier(offset: $headerOffsets.1))
-                    }
+//                    } header: {
+//                        PinnedHeaderView(currentType: $currentTab, sections: ["Top Gainers", "Top Losers", "Market Cap", "Name"], style: service.themeStyle, action: { tapped in
+//                            if tapped == "Top Gainers" { withAnimation(.easeInOut) { filters = .gainers }
+//                            } else if tapped == "Top Losers" { withAnimation(.easeInOut) { filters = .losers }
+//                            } else if tapped == "Market Cap" { withAnimation(.easeInOut) { filters = .marketCap }
+//                            } else if tapped == "Name" { withAnimation(.easeInOut) { filters = .name }}
+//
+//                            DispatchQueue.main.async {
+//                                fetchTokenCategories()
+//                            }
+//                        })
+//                        .offset(y: headerOffsets.1 > 0 ? 0 : -headerOffsets.1 / 8)
+//                        .modifier(PinnedHeaderOffsetModifier(offset: $headerOffsets.0, returnFromStart: false))
+//                        .modifier(PinnedHeaderOffsetModifier(offset: $headerOffsets.1))
+//                    }
                 }
             }.enableRefresh()
         })
-        .navigationBarTitle("Top Categories", displayMode: .inline)
+        .navigationBarTitle("Categories", displayMode: .large)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search categories...")
         .toolbar {
+//            ToolbarItem(placement: .principal) {
+//                VStack(spacing: 0) {
+//                    Text("Categories").fontTemplate(DefaultTemplate.subheadingBold)
+//
+//                    PinnedHeaderView(currentType: $currentTab, sections: ["Top Gainers", "Top Losers", "Market Cap", "Name"], style: service.themeStyle, action: { tapped in
+//                        if tapped == "Top Gainers" { withAnimation(.easeInOut) { filters = .gainers }
+//                        } else if tapped == "Top Losers" { withAnimation(.easeInOut) { filters = .losers }
+//                        } else if tapped == "Market Cap" { withAnimation(.easeInOut) { filters = .marketCap }
+//                        } else if tapped == "Name" { withAnimation(.easeInOut) { filters = .name }}
+//
+//                        DispatchQueue.main.async {
+//                            fetchTokenCategories()
+//                        }
+//                    })
+//                }
+//            }
+
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
                     Section {
