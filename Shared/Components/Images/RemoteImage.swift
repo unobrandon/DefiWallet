@@ -10,18 +10,18 @@ import SDWebImageSwiftUI
 
 struct RemoteImage: View {
 
-    private let imageUrl: String
+    private let imageUrl: String?
     private let size: CGFloat?
     private var fullSize: CGSize?
 
-    init(_ url: String, size: CGFloat? = nil, fullSize: CGSize? = nil) {
+    init(_ url: String?, size: CGFloat? = nil, fullSize: CGSize? = nil) {
         self.imageUrl = url
         self.size = size
         self.fullSize = fullSize
     }
 
     var body: some View {
-        WebImage(url: URL(string: imageUrl))
+        WebImage(url: URL(string: imageUrl ?? ""))
             .resizable()
             .placeholder { Rectangle().foregroundColor(Color("disabledGray")) }
             .indicator(.activity) // Activity Indicator

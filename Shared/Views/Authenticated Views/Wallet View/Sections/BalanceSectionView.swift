@@ -48,24 +48,27 @@ struct BalanceSectionView: View {
                                 .fontTemplate(DefaultTemplate.caption)
                         }
                     }
+                }
+                Spacer()
+            }
 
-                    // stride(from: 1, to: store.accountChart.count - 1, by: 4).map({ store.accountChart[$0].amount })
-                    CustomLineChart(data: store.accountChart.map({ $0.amount }), profit: store.accountPortfolio?.relativeChange24h ?? 0 >= 0)
+            // stride(from: 1, to: store.accountChart.count - 1, by: 4).map({ store.accountChart[$0].amount })
+            CustomLineChart(data: store.accountChart.map({ $0.amount }), profit: store.accountPortfolio?.relativeChange24h ?? 0 >= 0)
 //                    LineChart(data: store.accountChart.map({ $0.amount }),
 //                              frame: CGRect(x: 20, y: 0, width: MobileConstants.screenWidth - 40, height: 140),
 //                              visualType: ChartVisualType.filled(color: store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red, lineWidth: 2), offset: 0,
 //                              currentValueLineType: CurrentValueLineType.dash(color: .secondary, lineWidth: 0, dash: [8]))
-                        .frame(height: 145)
-                        .padding(.vertical, 10)
+                .frame(height: 145)
+                .padding(.vertical, 10)
 
-                    if !store.accountChart.isEmpty {
-                        ChartOptionSegmentView(service: service, action: { item in
-                            store.emitSingleChartRequest(item)
-                        })
-                        .padding(.vertical, 10)
-                    }
+            if !store.accountChart.isEmpty {
+                HStack(alignment: .center, spacing: 0) {
+                    Spacer()
+                    ChartOptionSegmentView(service: service, action: { item in
+                        store.emitSingleChartRequest(item)
+                    })
+                    .padding(.vertical, 10)
                 }
-                Spacer()
             }
         }
         .padding()

@@ -32,7 +32,8 @@ struct MarketCapRankView: View {
                         TokenListStandardCell(service: service, data: item,
                                               isLast: store.coinsByMarketCap.count < limitCells ? store.coinsByMarketCap.last == item ? true : false : false,
                                               style: service.themeStyle, action: {
-    //                        walletRouter.route(to: \.historyDetail, item)
+                            walletRouter.route(to: \.tokenDetail, item)
+
                             print("the item is: \(item)")
 
                             #if os(iOS)

@@ -43,4 +43,8 @@ struct ChartValue: Codable {
     let timestamp: Int
     let amount: Double
 
+    enum CodingKeys: String, CodingKey {
+        case timestamp
+        case amount
+    }
 }

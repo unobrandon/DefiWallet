@@ -27,8 +27,10 @@ class StorageService {
     var trendingStorage: Cache.Storage<String, [TrendingCoin]>?
     var gasPriceTrends: Cache.Storage<String, EthGasPriceTrends>?
     var globalMarketData: Cache.Storage<String, GlobalMarketData>?
+    var tokenDescriptor: Cache.Storage<String, TokenDescriptor>?
+    var tokenCharts: Cache.Storage<String, [ChartValue]>?
     var tokenCategories: Cache.Storage<String, [TokenCategory]>?
-    var marketCapStorage: Cache.Storage<String, [CoinMarketCap]>?
+    var marketCapStorage: Cache.Storage<String, [TokenDetails]>?
 
     init() {
         self.memoryConfig = MemoryConfig(expiry: .date(storageExpiry), countLimit: 50, totalCostLimit: 0)
@@ -88,7 +90,7 @@ class StorageService {
         do {
             self.marketCapStorage = try Storage(diskConfig: diskConfig,
                                               memoryConfig: memoryConfig,
-                                              transformer: TransformerFactory.forCodable(ofType: [CoinMarketCap].self))
+                                              transformer: TransformerFactory.forCodable(ofType: [TokenDetails].self))
         } catch {
             print("error getting trending storage \(error.localizedDescription)")
         }

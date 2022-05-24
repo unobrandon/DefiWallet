@@ -35,12 +35,16 @@ extension WalletCoordinator {
         HistoryDetailView(data: data, service: services)
     }
 
-    @ViewBuilder func makeTokenDetail(tokenDetail: CoinMarketCap) -> some View {
-        TokenDetailView(tokenDetail: tokenDetail, externalId: nil, service: services)
+    @ViewBuilder func makeTokenDetail(tokenDetail: TokenDetails) -> some View {
+        TokenDetailView(tokenDetail: tokenDetail, tokenDescriptor: nil, externalId: nil, service: services)
     }
 
     @ViewBuilder func makeExternalTokenDetail(externalId: String) -> some View {
-        TokenDetailView(tokenDetail: nil, externalId: externalId, service: services)
+        TokenDetailView(tokenDetail: nil, tokenDescriptor: nil, externalId: externalId, service: services)
+    }
+
+    @ViewBuilder func makeDescriptorTokenDetail(tokenDescriptor: TokenDescriptor) -> some View {
+        TokenDetailView(tokenDetail: nil, tokenDescriptor: tokenDescriptor, externalId: nil, service: services)
     }
 
     @ViewBuilder func makeSafari(url: URL) -> some View {

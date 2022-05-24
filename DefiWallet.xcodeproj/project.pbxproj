@@ -193,6 +193,8 @@
 		0566AED527E9610D006B645F /* ListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AED327E9610D006B645F /* ListInfoView.swift */; };
 		0567C19F281CDEBE00184935 /* ChartOptionSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567C19E281CDEBE00184935 /* ChartOptionSegmentView.swift */; };
 		0567C1A0281CDEBE00184935 /* ChartOptionSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567C19E281CDEBE00184935 /* ChartOptionSegmentView.swift */; };
+		056BD309283C7B040020C6C4 /* TokenDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056BD308283C7B030020C6C4 /* TokenDescriptor.swift */; };
+		056BD30A283C7B040020C6C4 /* TokenDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056BD308283C7B030020C6C4 /* TokenDescriptor.swift */; };
 		057806B827B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
 		057806B927B838E60008051B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057806B727B838E60008051B /* Colors.xcassets */; };
 		057806BE27B8432B0008051B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057806BD27B8432B0008051B /* Constants.swift */; };
@@ -626,6 +628,7 @@
 		0566AED027E8F64B006B645F /* HistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailView.swift; sourceTree = "<group>"; };
 		0566AED327E9610D006B645F /* ListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoView.swift; sourceTree = "<group>"; };
 		0567C19E281CDEBE00184935 /* ChartOptionSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartOptionSegmentView.swift; sourceTree = "<group>"; };
+		056BD308283C7B030020C6C4 /* TokenDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDescriptor.swift; sourceTree = "<group>"; };
 		057806B727B838E60008051B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		057806BD27B8432B0008051B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		057806D827B870620008051B /* MobileConsants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileConsants.swift; sourceTree = "<group>"; };
@@ -1219,6 +1222,7 @@
 				05CA87162802A48E006FACE0 /* NftUriResponce.swift */,
 				051BCF5427BC970A0056E047 /* TransactionHistory.swift */,
 				05583CEB27ED5CA100640E75 /* CoinByMarketCap.swift */,
+				056BD308283C7B030020C6C4 /* TokenDescriptor.swift */,
 				05A6AAAD27F93D4100824C76 /* TrendingCoin.swift */,
 				05C884CD27FD1D33005E2455 /* RingProgressModel.swift */,
 				05F8EE1D27FFFBD0003BBC23 /* TokenCategory.swift */,
@@ -2067,6 +2071,7 @@
 				05E858CE27CB25C200B85195 /* AlertBadge.swift in Sources */,
 				0578073227BB59D30008051B /* MarketsCoordinator+Factory.swift in Sources */,
 				05E5F84927D321920090290C /* Shake.swift in Sources */,
+				056BD309283C7B040020C6C4 /* TokenDescriptor.swift in Sources */,
 				05002E74282B71F70010AF39 /* Modifier.swift in Sources */,
 				0593021027D9C790006DDFFF /* Double+Extensions.swift in Sources */,
 				0593021627DEFA95006DDFFF /* CompleteBalance.swift in Sources */,
@@ -2347,6 +2352,7 @@
 				05E858F927CB5A3200B85195 /* TextFieldSingleList.swift in Sources */,
 				05002E79282B84830010AF39 /* ViewMoreText.swift in Sources */,
 				050225B427FC09450004D910 /* NetworkDetailView.swift in Sources */,
+				056BD30A283C7B040020C6C4 /* TokenDescriptor.swift in Sources */,
 				05D1096E27C15D80008DCC66 /* EthereumService.swift in Sources */,
 				0593021727DEFA95006DDFFF /* CompleteBalance.swift in Sources */,
 				053113F327E6CEE400368657 /* BarcodeFrame.swift in Sources */,
@@ -2440,6 +2446,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = "Debug - Production";
@@ -2690,6 +2697,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = "Debug - Development";

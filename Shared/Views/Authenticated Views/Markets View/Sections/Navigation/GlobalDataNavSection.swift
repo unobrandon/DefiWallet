@@ -27,14 +27,14 @@ struct GlobalDataNavSection: View {
                 Image(systemName: "globe.americas")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 25, height: 25, alignment: .center)
+                    .frame(width: 24, height: 24, alignment: .center)
                     .font(Font.title.weight(.medium))
                     .padding(.trailing, 5)
 
                 VStack(alignment: .leading, spacing: 0) {
                     if let num = Int(data.totalMarketCap?[service.currentUser.currency] ?? 0.0) {
-                        Text(Locale.current.currencySymbol ?? "" + "\("".formatLargeNumber(num, size: .small))").fontTemplate(DefaultTemplate.captionPrimary_semibold)
-                            .offset(y: 1)
+                        Text(Locale.current.currencySymbol ?? "" + "\("".formatLargeNumber(num, size: .small))").fontTemplate(DefaultTemplate.captionPrimary)
+//                            .offset(y: 1)
                     }
 
                     if let percent = data.marketCapChangePercentage24HUsd {

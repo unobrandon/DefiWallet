@@ -17,8 +17,8 @@ class MarketsService: ObservableObject {
     @Published var ethGasPriceTrends: EthGasPriceTrends?
     @Published var globalMarketData: GlobalMarketData?
     @Published var tokenCategories = [TokenCategory]()
-    @Published var coinsByMarketCap = [CoinMarketCap]()
-    @Published var tokenCategoryList = [CoinMarketCap]()
+    @Published var coinsByMarketCap = [TokenDetails]()
+    @Published var tokenCategoryList = [TokenDetails]()
     @Published var trendingCoins = [TrendingCoin]()
 
     var socketManager: SocketManager
@@ -120,7 +120,7 @@ class MarketsService: ObservableObject {
             DispatchQueue.main.async {
 //                if let array = data as? [[String: AnyObject]], let firstDict = array.first {
 //                    let payloaddd = firstDict["payload"]! as! [String: AnyObject]
-                print("that payload: \(asset)! && received assets full-info value is: \(asset["name"]) \n\(fullInfo["description"])")
+                print("that payload: \(asset)! && received assets full-info value is: \(asset["name"]) \n\(fullInfo)")
 //                }
             }
         }
@@ -129,6 +129,7 @@ class MarketsService: ObservableObject {
 
     func emitFullInfoAssetSocket(_ assetCode: String, currency: String) {
         assetSocket.emit("get", ["scope": ["full-info"], "payload": ["asset_code": assetCode, "currency": currency]])
+        print("sent the emit \(assetCode)")
     }
 
     func sortGas(_ network: Network) -> GasPrice? {
@@ -233,24 +234,9 @@ class MarketsService: ObservableObject {
         }
     }
 
-    func fetchTokenCategories(filter: FilterCategories, completion: @escaping () -> Void) {
-        if let storage = StorageService.shared.tokenCategories {
-            storage.async.object(forKey: "tokenCategories" + filter.rawValue) { result in
-                switch result {
-                case .value(let categories):
-                    print("got categories!! \(categories)")
-
-                    DispatchQueue.main.async {
-                        self.tokenCategories = categories
-                    }
-                case .error(let error):
-                    print("error getting tokenCategories: \(error.localizedDescription)")
-                }
-            }
-        }
-
-//        let url = Constants.backendBaseUrl + "topCategories"
-        let url = "https://api.coingecko.com/api/v3/coins/categories?order=" + filter.rawValue
+    func fetchTokenCategories(filter: FilterCategories, limit: Int, skip: Int, completion: @escaping () -> Void) {
+        let url = Constants.backendBaseUrl + "fetchCategories?order=" + filter.rawValue + "&queryLimit=\(limit)" + "&querySkip=\(skip)"
+//        let url = "https://api.coingecko.com/api/v3/coins/categories?order=" + filter.rawValue
 
         AF.request(url, method: .get).responseDecodable(of: [TokenCategory].self) { response in
             switch response.result {
@@ -267,7 +253,22 @@ class MarketsService: ObservableObject {
                 completion()
             case .failure(let error):
                 print("error getting tokenCategories network: \(error)")
-                completion()
+                if let storage = StorageService.shared.tokenCategories {
+                    storage.async.object(forKey: "tokenCategories" + filter.rawValue) { result in
+                        switch result {
+                        case .value(let categories):
+                            print("got categories!! \(categories)")
+
+                            DispatchQueue.main.async {
+                                self.tokenCategories = categories
+                                completion()
+                            }
+                        case .error(let error):
+                            print("error getting tokenCategories: \(error.localizedDescription)")
+                            completion()
+                        }
+                    }
+                }
             }
         }
     }
@@ -293,7 +294,7 @@ class MarketsService: ObservableObject {
         let filteredSection = "?vs_currency=" + currency + "&category=" + categoryId
         let lastSection = "&order=market_cap_desc&per_page=50&page=\(page ?? 1)&sparkline=true"
 
-        AF.request(baseUrl + filteredSection + lastSection, method: .get).responseDecodable(of: [CoinMarketCap].self) { response in
+        AF.request(baseUrl + filteredSection + lastSection, method: .get).responseDecodable(of: [TokenDetails].self) { response in
             switch response.result {
             case .success(let categories):
                 DispatchQueue.main.async {
@@ -330,7 +331,7 @@ class MarketsService: ObservableObject {
 //        let url = Constants.backendBaseUrl + "topCoinsByMarketCap" + "?currency=" + currency + "&perPage=\(perPage ?? 25)" + "&page=\(page ?? 1)"
         let url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=" + currency + "&order=market_cap_desc&per_page=\(perPage ?? 25)" + "&page=\(page ?? 1)" + "&sparkline=true&price_change_percentage=24h"
 
-        AF.request(url, method: .get).responseDecodable(of: [CoinMarketCap].self) { response in
+        AF.request(url, method: .get).responseDecodable(of: [TokenDetails].self) { response in
             switch response.result {
             case .success(let marketCapToken):
                 print("coin market cap success: \(marketCapToken.count)")
@@ -351,6 +352,87 @@ class MarketsService: ObservableObject {
                 print("error loading coin market cap list: \(error)")
 
                 completion()
+            }
+        }
+    }
+
+    func fetchTokenDetails(id: String?, address: String?, completion: @escaping (TokenDescriptor?) -> Void) {
+        guard id != nil || address != nil else {
+            completion(nil)
+            return
+        }
+
+        var url: String {
+            if let id = id {
+                return Constants.backendBaseUrl + "getTokenId?id=" + id
+            } else if let address = address {
+                return Constants.backendBaseUrl + "getTokenByAddress?address=" + address
+            } else { return "" }
+        }
+
+        print("the url to find the token details is: \(url.debugDescription)")
+
+        AF.request(url, method: .get).responseDecodable(of: TokenDescriptor.self) { response in
+            switch response.result {
+            case .success(let token):
+
+                if let storage = StorageService.shared.tokenDescriptor {
+                    storage.async.setObject(token, forKey: "tokenDetails\(id ?? address ?? "")") { _ in }
+                }
+
+                DispatchQueue.main.async {
+                    completion(token)
+                }
+                print("done getting token details data: \(String(describing: token.name))")
+
+            case .failure(let error):
+                print("error fetching global market data: \(error)")
+                if let storage = StorageService.shared.tokenDescriptor {
+                    storage.async.object(forKey: "tokenDetails\(id ?? address ?? "")") { result in
+                        switch result {
+                        case .value(let token):
+                            print("got token details data locally")
+                            completion(token)
+                        case .error(let error):
+                            print("error getting token data locally: \(error.localizedDescription)")
+                            completion(nil)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    func fetchTokenChart(id: String, from: Date, toDate: Date, completion: @escaping ([ChartValue]?) -> Void) {
+        let url = Constants.backendBaseUrl + "getTokenByIdChart?tokenId=" + id + "&from=\(Int(from.timeIntervalSince1970))" + "&to=\(Int(toDate.timeIntervalSince1970))"
+
+        print("the url to find the token chart is: \(url.debugDescription)")
+
+        AF.request(url, method: .get).responseDecodable(of: [ChartValue].self) { response in
+            switch response.result {
+            case .success(let chart):
+                if let storage = StorageService.shared.tokenCharts {
+                    storage.async.setObject(chart, forKey: "tokenCharts\(id)") { _ in }
+                }
+                print("done getting token chart data \(chart)")
+
+                DispatchQueue.main.async {
+                    completion(chart)
+                }
+
+            case .failure(let error):
+                print("error fetching chart data: \(error)")
+                if let storage = StorageService.shared.tokenCharts {
+                    storage.async.object(forKey: "tokenCharts\(id)") { result in
+                        switch result {
+                        case .value(let token):
+                            completion(token)
+                        case .error(let error):
+                            print("error getting token chart locally: \(error.localizedDescription)")
+                            completion(nil)
+                        }
+                    }
+                }
             }
         }
     }

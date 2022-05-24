@@ -85,19 +85,19 @@ struct GlobalGasView: View {
                 }
 
                 ListSection(title: nil, hasPadding: false, style: service.themeStyle) {
-                    ListInfoSmallView(title: "Standard",
+                    ListInfoSmallView(title: "🚶 Standard",
                                       info: "\(store.ethGasPriceTrends?.current?.standard?.baseFeePerGas ?? 0)",
                                       secondaryInfo: "wei",
                                       style: service.themeStyle,
                                       isLast: false)
 
-                    ListInfoSmallView(title: "Fast 🔥",
+                    ListInfoSmallView(title: "🔥 Fast",
                                       info: "\(store.ethGasPriceTrends?.current?.fast?.baseFeePerGas ?? 0)",
                                       secondaryInfo: "wei",
                                       style: service.themeStyle,
                                       isLast: false)
 
-                    ListInfoSmallView(title: "Instant 🚀",
+                    ListInfoSmallView(title: "🚀 Instant",
                                       info: "\(store.ethGasPriceTrends?.current?.instant?.baseFeePerGas ?? 0)",
                                       secondaryInfo: "wei",
                                       style: service.themeStyle,

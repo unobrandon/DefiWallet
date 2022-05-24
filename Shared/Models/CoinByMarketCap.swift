@@ -9,12 +9,12 @@ import Foundation
 
 struct CoinsByMarketCap: Codable {
     let error: [String]?
-    let marketCap: [CoinMarketCap]?
+    let marketCap: [TokenDetails]?
 }
 
-struct CoinMarketCap: Codable, Hashable {
+struct TokenDetails: Codable, Hashable {
 
-    static func == (lhs: CoinMarketCap, rhs: CoinMarketCap) -> Bool {
+    static func == (lhs: TokenDetails, rhs: TokenDetails) -> Bool {
         return lhs.id == rhs.id && lhs.marketCapRank == rhs.marketCapRank
     }
 

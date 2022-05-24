@@ -61,7 +61,6 @@ class WalletService: ObservableObject {
         self.walletConnectClient.delegate = self
 
         self.loadStoredData()
-        self.reloadWcSessions()
         self.connectAccountData()
     }
 

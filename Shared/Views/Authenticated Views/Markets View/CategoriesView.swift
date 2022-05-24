@@ -18,8 +18,8 @@ struct CategoriesView: View {
     @State private var searchText: String = ""
     @State var showIndicator: Bool = false
     @State private var noMore: Bool = false
-    @State private var limitCells: Int = 15
-    @State private var filters: FilterCategories = .gainers
+    @State private var limitCells: Int = 25
+    @State private var filters: FilterCategories = .marketCapDesc
     @State private var headerOffsets: (CGFloat, CGFloat) = (0, 0)
     @State private var currentTab: String = "Top Gainers"
 
@@ -27,6 +27,7 @@ struct CategoriesView: View {
         self.service = service
         self.store = service.market
 
+        service.market.tokenCategories.removeAll()
         self.fetchTokenCategories()
     }
 
@@ -34,125 +35,131 @@ struct CategoriesView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 LazyVStack(pinnedViews: [.sectionHeaders]) {
-//                    Section {
-                        ListSection(hasPadding: false, style: service.themeStyle) {
-                            ForEach(store.tokenCategories.prefix(limitCells).indices, id: \.self) { index in
-                                CategoryCell(service: service,
-                                             data: store.tokenCategories[index],
-                                             index: index,
-                                             isLast: false,
-                                             style: service.themeStyle, action: {
-                                    marketRouter.route(to: \.categoryDetailView, store.tokenCategories[index])
+                    Text("This is a curated list of categories where tokens have shown relevant utility to the category.")
+                        .fontTemplate(DefaultTemplate.bodySemibold)
+                        .multilineTextAlignment(.leading)
+                        .padding(.horizontal)
+                        .padding(.vertical, 10)
 
-                                    #if os(iOS)
-                                        HapticFeedback.rigidHapticFeedback()
-                                    #endif
-                                })
-                            }
+                    ListSection(title: "\(filters == .marketCapAsc ? "smallest market cap" : filters == .marketCapDesc ? "top market cap" : filters == .gainers ? "top 24hr gainers" : filters == .losers ? "top 24hr losers" : filters == .name ? "names A-Z" : "")", hasPadding: false, style: service.themeStyle) {
+                        ForEach(store.tokenCategories.prefix(limitCells).indices, id: \.self) { index in
+                            CategoryCell(service: service,
+                                         data: store.tokenCategories[index],
+                                         index: index,
+                                         isLast: false,
+                                         style: service.themeStyle, action: {
+                                print("the id category going to: \(String(describing: store.tokenCategories[index]))")
+                                marketRouter.route(to: \.categoryDetailView, store.tokenCategories[index])
+
+                                #if os(iOS)
+                                    HapticFeedback.rigidHapticFeedback()
+                                #endif
+                            })
                         }
-                        .padding([.horizontal, .top])
+                    }
+                    .padding(.horizontal)
 
-                        RefreshFooter(refreshing: $showIndicator, action: {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                limitCells += 15
-                                withAnimation(.easeInOut) {
-                                    showIndicator = false
-                                    noMore = store.tokenCategories.count <= limitCells
-                                }
-                            }
-                        }, label: {
-                            if noMore {
-                                FooterInformation()
-                            } else {
-                                LoadingView()
-                            }
-                        })
-                        .noMore(noMore)
-                        .preload(offset: 50)
-//                    } header: {
-//                        PinnedHeaderView(currentType: $currentTab, sections: ["Top Gainers", "Top Losers", "Market Cap", "Name"], style: service.themeStyle, action: { tapped in
-//                            if tapped == "Top Gainers" { withAnimation(.easeInOut) { filters = .gainers }
-//                            } else if tapped == "Top Losers" { withAnimation(.easeInOut) { filters = .losers }
-//                            } else if tapped == "Market Cap" { withAnimation(.easeInOut) { filters = .marketCap }
-//                            } else if tapped == "Name" { withAnimation(.easeInOut) { filters = .name }}
-//
-//                            DispatchQueue.main.async {
-//                                fetchTokenCategories()
-//                            }
-//                        })
-//                        .offset(y: headerOffsets.1 > 0 ? 0 : -headerOffsets.1 / 8)
-//                        .modifier(PinnedHeaderOffsetModifier(offset: $headerOffsets.0, returnFromStart: false))
-//                        .modifier(PinnedHeaderOffsetModifier(offset: $headerOffsets.1))
-//                    }
+                    RefreshFooter(refreshing: $showIndicator, action: {
+                        limitCells += 25
+                        fetchTokenCategories()
+                    }, label: {
+                        if noMore {
+                            FooterInformation()
+                        } else {
+                            LoadingView()
+                        }
+                    })
+                    .noMore(noMore)
+                    .preload(offset: 50)
                 }
             }.enableRefresh()
         })
         .navigationBarTitle("Categories", displayMode: .large)
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search categories...")
-        .toolbar {
-//            ToolbarItem(placement: .principal) {
-//                VStack(spacing: 0) {
-//                    Text("Categories").fontTemplate(DefaultTemplate.subheadingBold)
-//
-//                    PinnedHeaderView(currentType: $currentTab, sections: ["Top Gainers", "Top Losers", "Market Cap", "Name"], style: service.themeStyle, action: { tapped in
-//                        if tapped == "Top Gainers" { withAnimation(.easeInOut) { filters = .gainers }
-//                        } else if tapped == "Top Losers" { withAnimation(.easeInOut) { filters = .losers }
-//                        } else if tapped == "Market Cap" { withAnimation(.easeInOut) { filters = .marketCap }
-//                        } else if tapped == "Name" { withAnimation(.easeInOut) { filters = .name }}
-//
-//                        DispatchQueue.main.async {
-//                            fetchTokenCategories()
-//                        }
-//                    })
-//                }
-//            }
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search categories...", suggestions: {
+            ForEach(store.tokenCategories.indices , id: \.self) { index in
+                CategoryCell(service: service,
+                             data: store.tokenCategories[index],
+                             index: index,
+                             isLast: false,
+                             style: service.themeStyle, action: {
+                    marketRouter.route(to: \.categoryDetailView, store.tokenCategories[index])
 
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
+                })
+            }
+        })
+        .onAppear {
+            DispatchQueue.main.async {
+                Tool.hiddenTabBar()
+            }
+        }
+        .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
                     Section {
                         Button {
+                            store.tokenCategories.removeAll()
                             withAnimation(.easeInOut) { filters = .gainers }
+                            self.limitCells = 25
                             self.fetchTokenCategories()
                         } label: {
                             Label("24hr Gainers", systemImage: filters == .gainers ? "checkmark" : "")
                         }
 
                         Button {
+                            store.tokenCategories.removeAll()
                             withAnimation(.easeInOut) { filters = .losers }
+                            self.limitCells = 25
                             self.fetchTokenCategories()
                         } label: {
                             Label("24hr Losers", systemImage: filters == .losers ? "checkmark" : "")
                         }
 
                         Button {
+                            store.tokenCategories.removeAll()
                             withAnimation(.easeInOut) { filters = .name }
+                            self.limitCells = 25
                             self.fetchTokenCategories()
                         } label: {
                             Label("Name", systemImage: filters == .name ? "checkmark" : "")
                         }
 
                         Button {
-                            withAnimation(.easeInOut) { filters = .marketCap }
+                            store.tokenCategories.removeAll()
+                            withAnimation(.easeInOut) { filters = .marketCapDesc }
+                            self.limitCells = 25
                             self.fetchTokenCategories()
                         } label: {
-                            Label("Market Cap", systemImage: filters == .marketCap ? "checkmark" : "")
+                            Label("Market Cap", systemImage: filters == .marketCapDesc ? "checkmark" : "")
                         }
                     }
                 } label: {
-                    Image(systemName: "slider.horizontal.3")
-                }.foregroundColor(Color.primary)
-            }
-        }
-        .onAppear {
-            DispatchQueue.main.async {
-                Tool.hiddenTabBar()
+                    HStack {
+                        Image(systemName: "list.bullet")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 18, height: 18, alignment: .center)
+                        Text("Sort")
+                    }
+                }
+                .buttonStyle(.borderless)
+                .controlSize(.small)
+                .buttonBorderShape(.roundedRectangle)
+                .buttonStyle(ClickInteractiveStyle(0.99))
             }
         }
     }
 
     private func fetchTokenCategories() {
-        store.fetchTokenCategories(filter: filters, completion: {
-            print("done fetching categories")
+        store.fetchTokenCategories(filter: filters, limit: limitCells, skip: limitCells - 25, completion: {
+            print("done fetching categories: \(store.tokenCategories.count) ** \(limitCells)")
+
+            withAnimation(.easeInOut) {
+                showIndicator = false
+                noMore = store.tokenCategories.count < limitCells
+            }
         })
     }
 

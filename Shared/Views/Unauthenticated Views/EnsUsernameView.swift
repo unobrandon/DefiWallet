@@ -55,13 +55,15 @@ struct EnsUsernameView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    store.checkNotificationPermission(completion: { isEnabled in
-                        if isEnabled {
-                            unauthenticatedRouter.route(to: \.completed)
-                        } else if !isEnabled {
-                            unauthenticatedRouter.route(to: \.notifications)
-                        }
-                    })
+//                    store.checkNotificationPermission(completion: { isEnabled in
+//                        if isEnabled {
+//                            unauthenticatedRouter.route(to: \.completed)
+//                        } else if !isEnabled {
+//                            unauthenticatedRouter.route(to: \.notifications)
+//                        }
+//                    })
+
+                    unauthenticatedRouter.route(to: \.completed)
 
                     #if os(iOS)
                         HapticFeedback.lightHapticFeedback()

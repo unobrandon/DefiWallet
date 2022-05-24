@@ -27,7 +27,7 @@ struct WalletView: View {
         self.service = service
         self.store = service.wallet
 
-        fetchNetworksBalances()
+//        fetchNetworksBalances()
         fetchHistory()
     }
 

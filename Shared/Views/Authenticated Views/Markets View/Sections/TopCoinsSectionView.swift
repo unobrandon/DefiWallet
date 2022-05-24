@@ -84,7 +84,7 @@ struct TopCoinsSectionView: View {
     }
 
     private func fetchTopCoins() {
-        store.fetchCoinsByMarketCap(currency: service.currentUser.currency, completion: {
+        store.fetchCoinsByMarketCap(currency: service.currentUser.currency, perPage: 10, page: 1, completion: {
             isMarketCapLoading = false
         })
     }

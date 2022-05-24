@@ -18,18 +18,17 @@ struct TokenCategory: Codable, Hashable {
         hasher.combine(name)
     }
 
-    let id, name: String?
+    let id, externalId, name, description: String?
     let marketCap, marketCapChange24H: Double?
-    let content: String?
     let top3_Coins: [String]?
     let volume24H: Double?
     let updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, name
+        case id, name, description
+        case externalId = "external_id"
         case marketCap = "market_cap"
         case marketCapChange24H = "market_cap_change_24h"
-        case content
         case top3_Coins = "top_3_coins"
         case volume24H = "volume_24h"
         case updatedAt = "updated_at"
