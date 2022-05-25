@@ -33,6 +33,7 @@ struct DefaultTemplate {
     static let subheadingLight = FontTemplate(font: Font.custom("Poppins-Light", size: 18), weight: .light, foregroundColor: .primary, lineSpacing: 2)
 
     static let gasPriceFont = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 16), weight: .semibold, foregroundColor: .primary, lineSpacing: 0)
+    static let metricFont = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 16), weight: .medium, foregroundColor: .primary, lineSpacing: 0)
     static let primaryButton = FontTemplate(font: Font.custom("Poppins-Medium", size: 16), weight: .medium, foregroundColor: .white, lineSpacing: 0)
 
     static let sectionHeader = FontTemplate(font: Font.custom("Nunito-Medium", size: 16), weight: .medium, foregroundColor: .primary, lineSpacing: 0)

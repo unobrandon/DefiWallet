@@ -120,6 +120,12 @@
 		0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88127B4D04C000478B8 /* MacConstants.swift */; };
 		0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88727B4D28D000478B8 /* TabBarButton.swift */; };
 		0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B88C27B4DFF1000478B8 /* SideNavigationBar.swift */; };
+		054DC824283D761100A1FDA6 /* StackedStatisticLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DC823283D761000A1FDA6 /* StackedStatisticLabel.swift */; };
+		054DC825283D761100A1FDA6 /* StackedStatisticLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DC823283D761000A1FDA6 /* StackedStatisticLabel.swift */; };
+		054DC829283D854500A1FDA6 /* TokenDetailsHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DC828283D854500A1FDA6 /* TokenDetailsHeaderSection.swift */; };
+		054DC82A283D854500A1FDA6 /* TokenDetailsHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DC828283D854500A1FDA6 /* TokenDetailsHeaderSection.swift */; };
+		054DC82C283D860800A1FDA6 /* TokenDetailOverviewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DC82B283D860800A1FDA6 /* TokenDetailOverviewSection.swift */; };
+		054DC82D283D860800A1FDA6 /* TokenDetailOverviewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DC82B283D860800A1FDA6 /* TokenDetailOverviewSection.swift */; };
 		0550300D27B82EF0005EE87C /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550300C27B82EF0005EE87C /* StatusBar.swift */; };
 		05583C9927E965FF00640E75 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583C9827E965FF00640E75 /* SafariView.swift */; };
 		05583C9A27E965FF00640E75 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05583C9827E965FF00640E75 /* SafariView.swift */; };
@@ -591,6 +597,9 @@
 		0548B89627B4E9BF000478B8 /* DefiWalletDevelopment.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DefiWalletDevelopment.xcconfig; sourceTree = "<group>"; };
 		0548B89727B4E9F4000478B8 /* DefiWalletProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DefiWalletProduction.xcconfig; sourceTree = "<group>"; };
 		0548B89827B4EBB9000478B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		054DC823283D761000A1FDA6 /* StackedStatisticLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedStatisticLabel.swift; sourceTree = "<group>"; };
+		054DC828283D854500A1FDA6 /* TokenDetailsHeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailsHeaderSection.swift; sourceTree = "<group>"; };
+		054DC82B283D860800A1FDA6 /* TokenDetailOverviewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailOverviewSection.swift; sourceTree = "<group>"; };
 		0550300C27B82EF0005EE87C /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		05583C9827E965FF00640E75 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		05583C9B27E96C6C00640E75 /* ListInfoCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoCustomView.swift; sourceTree = "<group>"; };
@@ -953,7 +962,7 @@
 				05394153281A60E000CFAA53 /* SendToDetailView.swift */,
 				050225B227FC09450004D910 /* NetworkDetailView.swift */,
 				0566AED027E8F64B006B645F /* HistoryDetailView.swift */,
-				05CA872228040EA4006FACE0 /* TokenDetailView.swift */,
+				054DC826283D851B00A1FDA6 /* Token Detail View */,
 			);
 			path = "Detail Views";
 			sourceTree = "<group>";
@@ -1073,6 +1082,24 @@
 				0548B88727B4D28D000478B8 /* TabBarButton.swift */,
 			);
 			path = "Navigation Bar";
+			sourceTree = "<group>";
+		};
+		054DC826283D851B00A1FDA6 /* Token Detail View */ = {
+			isa = PBXGroup;
+			children = (
+				05CA872228040EA4006FACE0 /* TokenDetailView.swift */,
+				054DC827283D852C00A1FDA6 /* Sections */,
+			);
+			path = "Token Detail View";
+			sourceTree = "<group>";
+		};
+		054DC827283D852C00A1FDA6 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				054DC828283D854500A1FDA6 /* TokenDetailsHeaderSection.swift */,
+				054DC82B283D860800A1FDA6 /* TokenDetailOverviewSection.swift */,
+			);
+			path = Sections;
 			sourceTree = "<group>";
 		};
 		0550300B27B82E9B005EE87C /* Views */ = {
@@ -1453,6 +1480,7 @@
 			children = (
 				0593023A27E18169006DDFFF /* ReversedStandardLabelStyle.swift */,
 				05583CF927ED7EB800640E75 /* ProminentRoundedLabel.swift */,
+				054DC823283D761000A1FDA6 /* StackedStatisticLabel.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -1970,6 +1998,7 @@
 				0578077527BB71410008051B /* IrregularGradient.swift in Sources */,
 				05E858E527CB2D3E00B85195 /* VisualEffectView.swift in Sources */,
 				050225BD27FC0D1D0004D910 /* StickyHeaderView.swift in Sources */,
+				054DC82C283D860800A1FDA6 /* TokenDetailOverviewSection.swift in Sources */,
 				05583CCE27E9C17F00640E75 /* GridPreferencesKey.swift in Sources */,
 				05583CA627E9A0EE00640E75 /* LoadMoreScrollView.swift in Sources */,
 				05583CEC27ED5CA100640E75 /* CoinByMarketCap.swift in Sources */,
@@ -2052,6 +2081,7 @@
 				05A6AAAB27F93C0600824C76 /* TrendingSectionView.swift in Sources */,
 				05E858D627CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */,
 				05CA87172802A48E006FACE0 /* NftUriResponce.swift in Sources */,
+				054DC829283D854500A1FDA6 /* TokenDetailsHeaderSection.swift in Sources */,
 				05E5F86027D406370090290C /* NotiPermissionsView.swift in Sources */,
 				0531140927E6E39F00368657 /* WalletConnectDelegate.swift in Sources */,
 				053113E227E6C65D00368657 /* Manager.swift in Sources */,
@@ -2139,6 +2169,7 @@
 				05583CD127E9C19500640E75 /* GridPreferencesModifier.swift in Sources */,
 				05E858DB27CB27AF00B85195 /* NotificationViewExtension.swift in Sources */,
 				0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */,
+				054DC824283D761100A1FDA6 /* StackedStatisticLabel.swift in Sources */,
 				05583CE027EC01D800640E75 /* BalanceSectionView.swift in Sources */,
 				0593023027E061BC006DDFFF /* TransactButtonView.swift in Sources */,
 				05583CA927E9BC5600640E75 /* LoadingView.swift in Sources */,
@@ -2292,6 +2323,7 @@
 				0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
 				05D1094627C08B2B008DCC66 /* MainCoordinator.swift in Sources */,
 				053113E027E6C61400368657 /* Accessories.swift in Sources */,
+				054DC82D283D860800A1FDA6 /* TokenDetailOverviewSection.swift in Sources */,
 				05583CFB27ED7EB800640E75 /* ProminentRoundedLabel.swift in Sources */,
 				05C884D627FD3BBF005E2455 /* TokensSectionView.swift in Sources */,
 				05D1094527C08B2B008DCC66 /* UnauthenticatedCoordinator+Factory.swift in Sources */,
@@ -2339,6 +2371,7 @@
 				053113FC27E6CF7100368657 /* CBScanner.swift in Sources */,
 				05E8589927C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
 				05583CC627E9C11400640E75 /* EnvironmentValues+GridStyle.swift in Sources */,
+				054DC82A283D854500A1FDA6 /* TokenDetailsHeaderSection.swift in Sources */,
 				05CA871E2803BD14006FACE0 /* CollectableVerticalCell.swift in Sources */,
 				053113F627E6CF0800368657 /* CameraPreview.swift in Sources */,
 				05394155281A60E000CFAA53 /* SendToDetailView.swift in Sources */,
@@ -2381,6 +2414,7 @@
 				0578074727BB5E1A0008051B /* FontTemplate.swift in Sources */,
 				05583C9D27E96C6D00640E75 /* ListInfoCustomView.swift in Sources */,
 				05BDC5C3280D2AB600851E16 /* GlobalMarketView.swift in Sources */,
+				054DC825283D761100A1FDA6 /* StackedStatisticLabel.swift in Sources */,
 				05D1094D27C08B3E008DCC66 /* WalletCoordinator.swift in Sources */,
 				05BDC5C0280D1B9200851E16 /* ListInfoSmallView.swift in Sources */,
 			);

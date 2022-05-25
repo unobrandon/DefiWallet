@@ -50,7 +50,7 @@ struct ViewMoreText: View {
                 self.expanded.toggle()
             }
         }, label: {
-            Text(self.expanded ? "Show less" : "Show more").font(.caption)
+            Text(self.expanded ? "Read less..." : "Read more...").font(.caption)
         })
     }
 
