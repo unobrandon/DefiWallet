@@ -30,6 +30,13 @@ extension Double {
         return formatter.string(from: .init(value: self)) ?? ""
     }
 
+    func formatCommas() -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        return numberFormatter.string(from: NSNumber(value: self)) ?? "\(self)"
+    }
+
     func decimalCount() -> Int {
             if self == Double(Int(self)) {
                 return 0

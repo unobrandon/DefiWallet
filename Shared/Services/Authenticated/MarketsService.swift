@@ -17,6 +17,7 @@ class MarketsService: ObservableObject {
     @Published var ethGasPriceTrends: EthGasPriceTrends?
     @Published var globalMarketData: GlobalMarketData?
     @Published var tokenCategories = [TokenCategory]()
+    @Published var exchanges = [ExchangeModel]()
     @Published var coinsByMarketCap = [TokenDetails]()
     @Published var tokenCategoryList = [TokenDetails]()
     @Published var trendingCoins = [TrendingCoin]()
@@ -308,6 +309,44 @@ class MarketsService: ObservableObject {
 
             case .failure(let error):
                 print("error getting token categories list: \(error)")
+            }
+        }
+    }
+
+    func fetchTopExchanges(limit: Int, skip: Int, completion: @escaping () -> Void) {
+        let url = Constants.backendBaseUrl + "topExchanges?skip=\(skip)" + "&limit=\(limit)"
+
+        AF.request(url, method: .get).responseDecodable(of: [ExchangeModel].self) { response in
+            switch response.result {
+            case .success(let exchanges):
+                DispatchQueue.main.async {
+                    self.exchanges = exchanges
+                }
+                print("got exchanges!! \(exchanges.count)")
+
+                if let storage = StorageService.shared.topExchanges {
+                    storage.async.setObject(exchanges, forKey: "topExchanges") { _ in }
+                }
+
+                completion()
+            case .failure(let error):
+                print("error getting api exchanges: \(error)")
+                if let storage = StorageService.shared.topExchanges {
+                    storage.async.object(forKey: "tokenCategories") { result in
+                        switch result {
+                        case .value(let exchanges):
+                            print("got local exchanges!! \(exchanges)")
+
+                            DispatchQueue.main.async {
+                                self.exchanges = exchanges
+                                completion()
+                            }
+                        case .error(let error):
+                            print("error getting exchanges: \(error.localizedDescription)")
+                            completion()
+                        }
+                    }
+                }
             }
         }
     }

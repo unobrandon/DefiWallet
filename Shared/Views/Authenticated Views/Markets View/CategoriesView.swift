@@ -20,8 +20,6 @@ struct CategoriesView: View {
     @State private var noMore: Bool = false
     @State private var limitCells: Int = 25
     @State private var filters: FilterCategories = .marketCapDesc
-    @State private var headerOffsets: (CGFloat, CGFloat) = (0, 0)
-    @State private var currentTab: String = "Top Gainers"
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -34,7 +32,7 @@ struct CategoriesView: View {
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
-                LazyVStack(pinnedViews: [.sectionHeaders]) {
+                LazyVStack(alignment: .leading) {
                     Text("This is a curated list of categories where tokens have shown relevant utility to the category.")
                         .fontTemplate(DefaultTemplate.bodySemibold)
                         .multilineTextAlignment(.leading)

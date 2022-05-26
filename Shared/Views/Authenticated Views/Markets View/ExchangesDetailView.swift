@@ -1,27 +1,27 @@
 //
-//  CategoriesDetailView.swift
+//  ExchangesDetailView.swift
 //  DefiWallet
 //
-//  Created by Brandon Shaw on 5/2/22.
+//  Created by Brandon Shaw on 5/25/22.
 //
 
 import SwiftUI
 
-struct CategoriesDetailView: View {
+struct ExchangesDetailView: View {
 
     @EnvironmentObject private var marketRouter: MarketsCoordinator.Router
 
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: MarketsService
-    let category: TokenCategory
+    let exchange: ExchangeModel
 
     @State private var searchText: String = ""
     @State private var noMore: Bool = false
     @State var showIndicator: Bool = false
     @State private var limitCells: Int = 25
 
-    init(category: TokenCategory, service: AuthenticatedServices) {
-        self.category = category
+    init(exchange: ExchangeModel, service: AuthenticatedServices) {
+        self.exchange = exchange
         self.service = service
         self.store = service.market
 
@@ -33,25 +33,12 @@ struct CategoriesDetailView: View {
             ScrollView {
                 HStack {
                     VStack(alignment: .leading, spacing: 2.5) {
-                        if let numCap = category.marketCap,
-                           let numVol = category.volume24H {
-                            Text("The \(self.category.name ?? "") market cap is \(Locale.current.currencySymbol ?? "")\("".formatLargeNumber(Int(numCap), size: .large)) with a \(Locale.current.currencySymbol ?? "")\("".formatLargeNumber(Int(numVol), size: .large)) 24 hour volume.")
-                                .fontTemplate(DefaultTemplate.bodySemibold)
-                                .multilineTextAlignment(.leading)
-                                .padding(.bottom, category.description ?? "" != "" ? 0 : 20)
-                        } else if let numCap = category.marketCap {
-                            Text("The \(self.category.name ?? "") market cap is \(Locale.current.currencySymbol ?? "")\("".formatLargeNumber(Int(numCap), size: .large)).")
-                                .fontTemplate(DefaultTemplate.bodySemibold)
-                                .multilineTextAlignment(.leading)
-                                .padding(.bottom, category.description ?? "" != "" ? 0 : 20)
-                        } else if let numVol = category.volume24H {
-                            Text("The \(self.category.name ?? "") 24 hour volume is \(Locale.current.currencySymbol ?? "")\("".formatLargeNumber(Int(numVol), size: .large)).")
-                                .fontTemplate(DefaultTemplate.bodySemibold)
-                                .multilineTextAlignment(.leading)
-                                .padding(.bottom, category.description ?? "" != "" ? 0 : 20)
-                        }
+                        Text("The \(exchange.name ?? "") market cap is 24 hour volume.")
+                            .fontTemplate(DefaultTemplate.bodySemibold)
+                            .multilineTextAlignment(.leading)
+                            .padding(.bottom, exchange.exchangeModelDescription ?? "" != "" ? 0 : 20)
 
-                        if let description = category.description, !description.isEmpty {
+                        if let description = exchange.exchangeModelDescription, !description.isEmpty {
                             ViewMoreText(description)
                         }
                     }
@@ -60,7 +47,7 @@ struct CategoriesDetailView: View {
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
 
-                ListSection(title: "top market cap", style: service.themeStyle) {
+                ListSection(title: "exchange tickers", style: service.themeStyle) {
                     ForEach(store.tokenCategoryList.prefix(limitCells).indices, id: \.self) { index in
                         TokenListStandardCell(service: service, data: store.tokenCategoryList[index],
                                               isLast: false,
@@ -95,15 +82,15 @@ struct CategoriesDetailView: View {
                 .preload(offset: 50)
             }.enableRefresh()
         })
-        .navigationBarTitle(category.name ?? "Category List", displayMode: .large)
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search tokens...")
+        .navigationBarTitle(exchange.name ?? "Exchange Tickers", displayMode: .large)
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search tickers...")
         .onAppear {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()
             }
 
-            guard let id = category.externalId else { return }
-            service.market.fetchCategoryDetails(categoryId: id, currency: service.currentUser.currency)
+            guard let id = exchange.externalID else { return }
+//            service.market.fetchCategoryDetails(categoryId: id, currency: service.currentUser.currency)
         }
     }
 

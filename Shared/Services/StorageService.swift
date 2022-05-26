@@ -30,6 +30,7 @@ class StorageService {
     var tokenDescriptor: Cache.Storage<String, TokenDescriptor>?
     var tokenCharts: Cache.Storage<String, [ChartValue]>?
     var tokenCategories: Cache.Storage<String, [TokenCategory]>?
+    var topExchanges: Cache.Storage<String, [ExchangeModel]>?
     var marketCapStorage: Cache.Storage<String, [TokenDetails]>?
 
     init() {

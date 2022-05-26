@@ -43,6 +43,16 @@
 		050225C127FC18FB0004D910 /* GlobalEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050225BF27FC18FB0004D910 /* GlobalEnums.swift */; };
 		050397D6280F08A100F9806F /* CustomLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050397D5280F08A100F9806F /* CustomLineChart.swift */; };
 		050397D7280F08A100F9806F /* CustomLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050397D5280F08A100F9806F /* CustomLineChart.swift */; };
+		0504A417283F2709000DB947 /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A416283F2709000DB947 /* ExchangeModel.swift */; };
+		0504A418283F2709000DB947 /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A416283F2709000DB947 /* ExchangeModel.swift */; };
+		0504A41A283F27B2000DB947 /* ExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A419283F27B2000DB947 /* ExchangeCell.swift */; };
+		0504A41B283F27B2000DB947 /* ExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A419283F27B2000DB947 /* ExchangeCell.swift */; };
+		0504A41D283F27DC000DB947 /* ExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A41C283F27DC000DB947 /* ExchangeView.swift */; };
+		0504A41E283F27DC000DB947 /* ExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A41C283F27DC000DB947 /* ExchangeView.swift */; };
+		0504A420283F27F3000DB947 /* ExchangesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A41F283F27F3000DB947 /* ExchangesDetailView.swift */; };
+		0504A421283F27F3000DB947 /* ExchangesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A41F283F27F3000DB947 /* ExchangesDetailView.swift */; };
+		0504A423283F287C000DB947 /* TokenDetailInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A422283F287C000DB947 /* TokenDetailInfoSection.swift */; };
+		0504A424283F287C000DB947 /* TokenDetailInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A422283F287C000DB947 /* TokenDetailInfoSection.swift */; };
 		051BCF5527BC970A0056E047 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* TransactionHistory.swift */; };
 		051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* TransactionHistory.swift */; };
 		051BCF5827BCACB30056E047 /* AuthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */; };
@@ -552,6 +562,11 @@
 		050225BC27FC0D1D0004D910 /* StickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
 		050225BF27FC18FB0004D910 /* GlobalEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalEnums.swift; sourceTree = "<group>"; };
 		050397D5280F08A100F9806F /* CustomLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLineChart.swift; sourceTree = "<group>"; };
+		0504A416283F2709000DB947 /* ExchangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeModel.swift; sourceTree = "<group>"; };
+		0504A419283F27B2000DB947 /* ExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCell.swift; sourceTree = "<group>"; };
+		0504A41C283F27DC000DB947 /* ExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeView.swift; sourceTree = "<group>"; };
+		0504A41F283F27F3000DB947 /* ExchangesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesDetailView.swift; sourceTree = "<group>"; };
+		0504A422283F287C000DB947 /* TokenDetailInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailInfoSection.swift; sourceTree = "<group>"; };
 		051BCF5427BC970A0056E047 /* TransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistory.swift; sourceTree = "<group>"; };
 		051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedServices.swift; sourceTree = "<group>"; };
 		051BCF5C27BCAE150056E047 /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
@@ -1098,6 +1113,7 @@
 			children = (
 				054DC828283D854500A1FDA6 /* TokenDetailsHeaderSection.swift */,
 				054DC82B283D860800A1FDA6 /* TokenDetailOverviewSection.swift */,
+				0504A422283F287C000DB947 /* TokenDetailInfoSection.swift */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -1185,6 +1201,7 @@
 				05A6AABA27F9627800824C76 /* TrendingTokenStandardCell.swift */,
 				05583CF327ED6CA700640E75 /* TokenListStandardCell.swift */,
 				05F8EE23280004C5003BBC23 /* CategoryCell.swift */,
+				0504A419283F27B2000DB947 /* ExchangeCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1250,6 +1267,7 @@
 				051BCF5427BC970A0056E047 /* TransactionHistory.swift */,
 				05583CEB27ED5CA100640E75 /* CoinByMarketCap.swift */,
 				056BD308283C7B030020C6C4 /* TokenDescriptor.swift */,
+				0504A416283F2709000DB947 /* ExchangeModel.swift */,
 				05A6AAAD27F93D4100824C76 /* TrendingCoin.swift */,
 				05C884CD27FD1D33005E2455 /* RingProgressModel.swift */,
 				05F8EE1D27FFFBD0003BBC23 /* TokenCategory.swift */,
@@ -1393,6 +1411,8 @@
 				0578073027BB59D30008051B /* MarketsView.swift */,
 				05F8EE202800042B003BBC23 /* CategoriesView.swift */,
 				0500E4ED281FB647001A4FAB /* CategoriesDetailView.swift */,
+				0504A41C283F27DC000DB947 /* ExchangeView.swift */,
+				0504A41F283F27F3000DB947 /* ExchangesDetailView.swift */,
 				05A6AAB727F9614F00824C76 /* TrendingView.swift */,
 				05A6AABD27F980A800824C76 /* MarketCapRankView.swift */,
 			);
@@ -1976,6 +1996,7 @@
 				05583CE627EC10DF00640E75 /* NetworkCell.swift in Sources */,
 				05CA871A2802A5CF006FACE0 /* CollectablesSectionView.swift in Sources */,
 				05E858CA27CB240300B85195 /* AppGradients.swift in Sources */,
+				0504A41D283F27DC000DB947 /* ExchangeView.swift in Sources */,
 				053113E527E6C6CC00368657 /* Modifiers.swift in Sources */,
 				05D1097027C17D49008DCC66 /* ERC20Token.swift in Sources */,
 				05A6AAB827F9614F00824C76 /* TrendingView.swift in Sources */,
@@ -2001,6 +2022,7 @@
 				054DC82C283D860800A1FDA6 /* TokenDetailOverviewSection.swift in Sources */,
 				05583CCE27E9C17F00640E75 /* GridPreferencesKey.swift in Sources */,
 				05583CA627E9A0EE00640E75 /* LoadMoreScrollView.swift in Sources */,
+				0504A417283F2709000DB947 /* ExchangeModel.swift in Sources */,
 				05583CEC27ED5CA100640E75 /* CoinByMarketCap.swift in Sources */,
 				058C786527D07E3700EB91CA /* PrivateKeysView.swift in Sources */,
 				05002E72282B71DA0010AF39 /* List+Refresh.swift in Sources */,
@@ -2015,6 +2037,7 @@
 				05583CFA27ED7EB800640E75 /* ProminentRoundedLabel.swift in Sources */,
 				0500E4E4281F6D4C001A4FAB /* AppLyfeCycleModifier.swift in Sources */,
 				05583CDA27E9C20E00640E75 /* View+GridStyle.swift in Sources */,
+				0504A420283F27F3000DB947 /* ExchangesDetailView.swift in Sources */,
 				05D1096627C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift in Sources */,
 				05A6AAB127F958EF00824C76 /* ListTitleView.swift in Sources */,
 				0500E4E7281F6D7D001A4FAB /* View+ReceiveTimer.swift in Sources */,
@@ -2156,6 +2179,7 @@
 				053113FE27E6CFE500368657 /* ScanQRView.swift in Sources */,
 				057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
 				05E5F85A27D361AF0090290C /* SlimRectangle.swift in Sources */,
+				0504A41A283F27B2000DB947 /* ExchangeCell.swift in Sources */,
 				05E5F84527D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */,
 				05583CB927E9C01E00640E75 /* Grid+Inits.swift in Sources */,
 				0578074927BB5E610008051B /* FontTemplating.swift in Sources */,
@@ -2179,6 +2203,7 @@
 				05002E70282B71B90010AF39 /* HeaderKey.swift in Sources */,
 				0578077927BB71410008051B /* Blob.swift in Sources */,
 				0593022227E02B7E006DDFFF /* BorderlessButton.swift in Sources */,
+				0504A423283F287C000DB947 /* TokenDetailInfoSection.swift in Sources */,
 				05394154281A60E000CFAA53 /* SendToDetailView.swift in Sources */,
 				0578070F27B8F1BC0008051B /* WalletCoordinator.swift in Sources */,
 				05F8EE1E27FFFBD0003BBC23 /* TokenCategory.swift in Sources */,
@@ -2211,6 +2236,7 @@
 				05D1095927C08B3E008DCC66 /* MarketsCoordinator.swift in Sources */,
 				05D1094F27C08B3E008DCC66 /* InvestView.swift in Sources */,
 				05D1095027C08B3E008DCC66 /* WalletCoordinator+Factory.swift in Sources */,
+				0504A41E283F27DC000DB947 /* ExchangeView.swift in Sources */,
 				05583CB227E9BFA000640E75 /* StaggeredGridStyle.swift in Sources */,
 				05D1094E27C08B3E008DCC66 /* DiscoverCoordinator.swift in Sources */,
 				05F7B58528090518005A94C8 /* WalletService+AddressSocket.swift in Sources */,
@@ -2261,6 +2287,7 @@
 				05E858C027CAEFFA00B85195 /* SettingsView.swift in Sources */,
 				05E5F84327D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */,
 				05D1094927C08B2B008DCC66 /* MainCoordinator+Factory.swift in Sources */,
+				0504A418283F2709000DB947 /* ExchangeModel.swift in Sources */,
 				050397D7280F08A100F9806F /* CustomLineChart.swift in Sources */,
 				053113EC27E6C76400368657 /* SlideOverCardView.swift in Sources */,
 				05583CDE27EC00BB00640E75 /* NetworkSectionView.swift in Sources */,
@@ -2310,6 +2337,7 @@
 				05E858AB27C9F75C00B85195 /* GenerateWalletView.swift in Sources */,
 				05E858A127C9F62000B85195 /* ImportWalletView.swift in Sources */,
 				05583CA427E9A0B100640E75 /* ViewOffsetKey.swift in Sources */,
+				0504A41B283F27B2000DB947 /* ExchangeCell.swift in Sources */,
 				05583CEA27ED305F00640E75 /* NetworkVerticalCell.swift in Sources */,
 				05D1095727C08B3E008DCC66 /* MarketsView.swift in Sources */,
 				05E5F88127D5D8250090290C /* ImagePickerHelper.swift in Sources */,
@@ -2372,12 +2400,14 @@
 				05E8589927C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
 				05583CC627E9C11400640E75 /* EnvironmentValues+GridStyle.swift in Sources */,
 				054DC82A283D854500A1FDA6 /* TokenDetailsHeaderSection.swift in Sources */,
+				0504A424283F287C000DB947 /* TokenDetailInfoSection.swift in Sources */,
 				05CA871E2803BD14006FACE0 /* CollectableVerticalCell.swift in Sources */,
 				053113F627E6CF0800368657 /* CameraPreview.swift in Sources */,
 				05394155281A60E000CFAA53 /* SendToDetailView.swift in Sources */,
 				05583CE127EC01D800640E75 /* BalanceSectionView.swift in Sources */,
 				0578077627BB71410008051B /* IrregularGradient.swift in Sources */,
 				05D1095527C08B3E008DCC66 /* ProfileView.swift in Sources */,
+				0504A421283F27F3000DB947 /* ExchangesDetailView.swift in Sources */,
 				0593026427E19D27006DDFFF /* Math.swift in Sources */,
 				059F73D627D7166A00B27E80 /* ProfileService.swift in Sources */,
 				0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */,

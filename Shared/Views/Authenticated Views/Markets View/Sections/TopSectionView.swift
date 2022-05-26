@@ -27,6 +27,10 @@ struct TopSectionView: View {
                 Button(action: {
                     print("Top Categories")
                     marketRouter.route(to: \.categoriesView)
+
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
                 }, label: {
                     HStack(alignment: .center, spacing: 0) {
                         VStack(alignment: .leading, spacing: 5) {
@@ -52,7 +56,11 @@ struct TopSectionView: View {
 
                 Button(action: {
                     print("Exchanges")
-                    marketRouter.route(to: \.categoriesView)
+                    marketRouter.route(to: \.exchangesView)
+
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
                 }, label: {
                     HStack(alignment: .center, spacing: 0) {
                         VStack(alignment: .leading, spacing: 5) {
@@ -82,6 +90,10 @@ struct TopSectionView: View {
                 Button(action: {
                     print("Top Gainers")
                     marketRouter.route(to: \.categoriesView)
+
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
                 }, label: {
                     HStack(alignment: .center, spacing: 0) {
                         VStack(alignment: .leading, spacing: 5) {
@@ -108,6 +120,10 @@ struct TopSectionView: View {
                 Button(action: {
                     print("Top Losers")
                     marketRouter.route(to: \.categoriesView)
+
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
                 }, label: {
                     HStack(alignment: .center, spacing: 0) {
                         VStack(alignment: .leading, spacing: 5) {
