@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CategoriesDetailView: View {
-
     @EnvironmentObject private var marketRouter: MarketsCoordinator.Router
 
     @ObservedObject private var service: AuthenticatedServices

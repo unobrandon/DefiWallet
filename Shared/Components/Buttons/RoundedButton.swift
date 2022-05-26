@@ -14,13 +14,11 @@ struct RoundedButton: View {
     var action: () -> Void
     let style: Style
     let systemImage: String?
-    let removePadding: Bool
 
-    init(_ title: String, style: Style = .primary, systemImage: String?, removePadding: Bool? = nil, action: @escaping () -> Void) {
+    init(_ title: String, style: Style = .primary, systemImage: String?, action: @escaping () -> Void) {
         self.title = title
         self.style = style
         self.systemImage = systemImage ?? nil
-        self.removePadding = removePadding ?? false
         self.action = action
     }
 
@@ -91,7 +89,7 @@ struct RoundedButton: View {
                             .foregroundColor(backgroundColor).frame(height: 49))
             .foregroundColor(foregroundColor)
         })
-        .padding(.horizontal, removePadding ? 0 : 20)
+        .padding(.horizontal)
         .frame(maxWidth: 380)
         .buttonStyle(ClickInteractiveStyle(0.99))
     }

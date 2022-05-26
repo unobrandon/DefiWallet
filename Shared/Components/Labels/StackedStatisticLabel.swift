@@ -27,7 +27,7 @@ struct StackedStatisticLabel: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(title).fontTemplate(FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .secondary, lineSpacing: 1))
+            Text(title).fontTemplate(DefaultTemplate.caption)
 
             if let metric = metric {
                 Text(metric).fontTemplate(DefaultTemplate.metricFont)
@@ -50,7 +50,6 @@ struct StackedStatisticLabel: View {
                let percentColor = percentColor,
                let style = style {
                 ProminentRoundedLabel(text: percent, color: percentColor, style: style)
-                    .padding(.top, 0.5)
             }
 
             Spacer()

@@ -71,28 +71,28 @@ extension String {
         case 1_000_000_000_000...:
             var formatted = num / 1_000_000_000_000
             formatted = formatted.reduceScale(to: 1)
-            let amount = size == .small ? "t" : size == .large ? " trillion" : " tril"
+            let amount = size == .small ? "T" : size == .large ? " trillion" : " tril"
 
             return "\(sign)\(formatted)\(amount)"
 
         case 1_000_000_000...:
             var formatted = num / 1_000_000_000
             formatted = formatted.reduceScale(to: 1)
-            let amount = size == .small ? "b" : size == .large ? " billion" : " bil"
+            let amount = size == .small ? "B" : size == .large ? " billion" : " bil"
 
             return "\(sign)\(formatted)\(amount)"
 
         case 1_000_000...:
             var formatted = num / 1_000_000
             formatted = formatted.reduceScale(to: 1)
-            let amount = size == .small ? "m" : size == .large ? " million" : " mil"
+            let amount = size == .small ? "M" : size == .large ? " million" : " mil"
 
             return "\(sign)\(formatted)\(amount)"
 
         case 1_000...:
             var formatted = num / 1_000
             formatted = formatted.reduceScale(to: 1)
-            let amount = size == .small ? "k" : size == .large ? " thousand" : " thsnd"
+            let amount = size == .small ? "K" : size == .large ? " thousand" : " thsnd"
 
             return "\(sign)\(formatted)\(amount)"
 

@@ -26,14 +26,6 @@ extension MarketsCoordinator {
         CategoriesDetailView(category: category, service: services)
     }
 
-    @ViewBuilder func makeExchanges() -> some View {
-        ExchangesView(service: services)
-    }
-
-    @ViewBuilder func makeExchangesDetail(exchange: ExchangeModel) -> some View {
-        ExchangesDetailView(exchange: exchange, service: services)
-    }
-
     @ViewBuilder func makeMarketCapRank() -> some View {
         MarketCapRankView(service: services)
     }
