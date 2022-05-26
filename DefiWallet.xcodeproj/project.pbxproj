@@ -53,6 +53,8 @@
 		0504A421283F27F3000DB947 /* ExchangesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A41F283F27F3000DB947 /* ExchangesDetailView.swift */; };
 		0504A423283F287C000DB947 /* TokenDetailInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A422283F287C000DB947 /* TokenDetailInfoSection.swift */; };
 		0504A424283F287C000DB947 /* TokenDetailInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A422283F287C000DB947 /* TokenDetailInfoSection.swift */; };
+		0504A426283F68D5000DB947 /* TokenDetailNetworkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A425283F68D5000DB947 /* TokenDetailNetworkSection.swift */; };
+		0504A427283F68D5000DB947 /* TokenDetailNetworkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A425283F68D5000DB947 /* TokenDetailNetworkSection.swift */; };
 		051BCF5527BC970A0056E047 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* TransactionHistory.swift */; };
 		051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* TransactionHistory.swift */; };
 		051BCF5827BCACB30056E047 /* AuthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */; };
@@ -567,6 +569,7 @@
 		0504A41C283F27DC000DB947 /* ExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeView.swift; sourceTree = "<group>"; };
 		0504A41F283F27F3000DB947 /* ExchangesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesDetailView.swift; sourceTree = "<group>"; };
 		0504A422283F287C000DB947 /* TokenDetailInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailInfoSection.swift; sourceTree = "<group>"; };
+		0504A425283F68D5000DB947 /* TokenDetailNetworkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailNetworkSection.swift; sourceTree = "<group>"; };
 		051BCF5427BC970A0056E047 /* TransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistory.swift; sourceTree = "<group>"; };
 		051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedServices.swift; sourceTree = "<group>"; };
 		051BCF5C27BCAE150056E047 /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
@@ -1113,6 +1116,7 @@
 			children = (
 				054DC828283D854500A1FDA6 /* TokenDetailsHeaderSection.swift */,
 				054DC82B283D860800A1FDA6 /* TokenDetailOverviewSection.swift */,
+				0504A425283F68D5000DB947 /* TokenDetailNetworkSection.swift */,
 				0504A422283F287C000DB947 /* TokenDetailInfoSection.swift */,
 			);
 			path = Sections;
@@ -2033,6 +2037,7 @@
 				05583CD427E9C1D100640E75 /* GridStyle.swift in Sources */,
 				05E858B327C9F9F900B85195 /* HapticFeedback.swift in Sources */,
 				05BDC5C2280D2AB600851E16 /* GlobalMarketView.swift in Sources */,
+				0504A426283F68D5000DB947 /* TokenDetailNetworkSection.swift in Sources */,
 				05CA87102802415D006FACE0 /* GlobalMarketData.swift in Sources */,
 				05583CFA27ED7EB800640E75 /* ProminentRoundedLabel.swift in Sources */,
 				0500E4E4281F6D4C001A4FAB /* AppLyfeCycleModifier.swift in Sources */,
@@ -2281,6 +2286,7 @@
 				05E5F85427D3614A0090290C /* ConfettiSwiftUI.swift in Sources */,
 				0548B88227B4D04C000478B8 /* MacConstants.swift in Sources */,
 				0593022E27E03F45006DDFFF /* UserAvatar.swift in Sources */,
+				0504A427283F68D5000DB947 /* TokenDetailNetworkSection.swift in Sources */,
 				0593025E27E19CAF006DDFFF /* DataRepresentable.swift in Sources */,
 				0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */,
 				05C884CC27FD0E00005E2455 /* OverviewSectionView.swift in Sources */,

@@ -320,25 +320,25 @@ class MarketsService: ObservableObject {
             switch response.result {
             case .success(let exchanges):
                 DispatchQueue.main.async {
-                    self.exchanges = exchanges
+                    self.exchanges += exchanges
                 }
                 print("got exchanges!! \(exchanges.count)")
 
                 if let storage = StorageService.shared.topExchanges {
-                    storage.async.setObject(exchanges, forKey: "topExchanges") { _ in }
+                    storage.async.setObject(exchanges, forKey: "topExchanges\(skip)") { _ in }
                 }
 
                 completion()
             case .failure(let error):
                 print("error getting api exchanges: \(error)")
                 if let storage = StorageService.shared.topExchanges {
-                    storage.async.object(forKey: "tokenCategories") { result in
+                    storage.async.object(forKey: "topExchanges\(skip)") { result in
                         switch result {
                         case .value(let exchanges):
                             print("got local exchanges!! \(exchanges)")
 
                             DispatchQueue.main.async {
-                                self.exchanges = exchanges
+                                self.exchanges += exchanges
                                 completion()
                             }
                         case .error(let error):
@@ -401,6 +401,19 @@ class MarketsService: ObservableObject {
             return
         }
 
+        if let storage = StorageService.shared.tokenDescriptor {
+            storage.async.object(forKey: "tokenDetails\(id ?? address ?? "")") { result in
+                switch result {
+                case .value(let token):
+                    print("got token details data locally")
+                    completion(token)
+                case .error(let error):
+                    print("error getting token data locally: \(error.localizedDescription)")
+                    completion(nil)
+                }
+            }
+        }
+
         var url: String {
             if let id = id {
                 return Constants.backendBaseUrl + "getTokenId?id=" + id
@@ -426,18 +439,7 @@ class MarketsService: ObservableObject {
 
             case .failure(let error):
                 print("error fetching global market data: \(error)")
-                if let storage = StorageService.shared.tokenDescriptor {
-                    storage.async.object(forKey: "tokenDetails\(id ?? address ?? "")") { result in
-                        switch result {
-                        case .value(let token):
-                            print("got token details data locally")
-                            completion(token)
-                        case .error(let error):
-                            print("error getting token data locally: \(error.localizedDescription)")
-                            completion(nil)
-                        }
-                    }
-                }
+                completion(nil)
             }
         }
     }

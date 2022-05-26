@@ -10,8 +10,8 @@ import SwiftUI
 extension TokenDetailView {
 
     @ViewBuilder
-        func detailsOverviewSection() -> some View {
-            ListSection(title: "overview", hasPadding: true, style: service.themeStyle) {
+    func detailsOverviewSection() -> some View {
+        ListSection(title: "overview", hasPadding: true, style: service.themeStyle) {
             LazyVGrid(columns: gridItems, alignment: .center, spacing: 5) {
                 if let totalVolume = tokenDetail?.totalVolume {
                     StackedStatisticLabel(title: "Total Volume", metric: "\(Locale.current.currencySymbol ?? "")\("".formatLargeNumber(Int(totalVolume), size: .regular).capitalized)", number: nil)
@@ -32,7 +32,7 @@ extension TokenDetailView {
                 }
 
                 if let fullyDilutedValuation = tokenDetail?.fullyDilutedValuation {
-                    StackedStatisticLabel(title: "Fully Diluted \nValuation", metric: fullyDilutedValuation >= 999999999 ? "\(Locale.current.currencySymbol ?? "")" + "\("".formatLargeNumber(fullyDilutedValuation, size: .regular).capitalized)" : "\(Locale.current.currencySymbol ?? "")" + Double(fullyDilutedValuation).formatCommas())
+                    StackedStatisticLabel(title: "Fully Diluted \nValuation", metric: fullyDilutedValuation >= 99999999 ? "\(Locale.current.currencySymbol ?? "")" + "\("".formatLargeNumber(fullyDilutedValuation, size: .regular).capitalized)" : "\(Locale.current.currencySymbol ?? "")" + Double(fullyDilutedValuation).formatCommas())
                 } else {
                     StackedStatisticLabel(title: "Fully Diluted \nValuation", metric: "?")
                 }
@@ -52,23 +52,24 @@ extension TokenDetailView {
                 }
 
                 if let totalSupply = tokenDetail?.totalSupply {
-                    StackedStatisticLabel(title: "Total Supply", metric: totalSupply >= 999999999 ? "\("".formatLargeNumber(Int(totalSupply), size: .large).capitalized)" : totalSupply.formatCommas())
+                    StackedStatisticLabel(title: "Total Supply", metric: totalSupply >= 99999999 ? "\("".formatLargeNumber(Int(totalSupply), size: .regular).capitalized)" : totalSupply.formatCommas())
                 } else {
                     StackedStatisticLabel(title: "Total Supply", metric: "?")
                 }
 
                 if let circulatingSupply = tokenDetail?.circulatingSupply {
-                    StackedStatisticLabel(title: "Circulating \nSupply", metric: circulatingSupply >= 999999999 ? "\("".formatLargeNumber(Int(circulatingSupply), size: .regular).capitalized)" : circulatingSupply.formatCommas())
+                    StackedStatisticLabel(title: "Circulating", metric: circulatingSupply >= 99999999 ? "\("".formatLargeNumber(Int(circulatingSupply), size: .regular).capitalized)" : circulatingSupply.formatCommas())
                 } else {
-                    StackedStatisticLabel(title: "Circulating \nSupply", metric: "?")
+                    StackedStatisticLabel(title: "Circulating", metric: "?")
                 }
 
                 if let maxSupply = tokenDetail?.maxSupply {
-                    StackedStatisticLabel(title: "Max Supply", metric: maxSupply >= 999999999 ? "\("".formatLargeNumber(Int(maxSupply), size: .regular).capitalized)" : maxSupply.formatCommas())
+                    StackedStatisticLabel(title: "Max Supply", metric: maxSupply >= 99999999 ? "\("".formatLargeNumber(Int(maxSupply), size: .regular).capitalized)" : maxSupply.formatCommas())
                 } else {
                     StackedStatisticLabel(title: "Max Supply", metric: "?")
                 }
             }
+            .padding(5)
         }
     }
 

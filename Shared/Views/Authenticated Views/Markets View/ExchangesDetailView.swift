@@ -89,7 +89,7 @@ struct ExchangesDetailView: View {
                 Tool.hiddenTabBar()
             }
 
-            guard let id = exchange.externalID else { return }
+//            guard let id = exchange.externalID else { return }
 //            service.market.fetchCategoryDetails(categoryId: id, currency: service.currentUser.currency)
         }
     }

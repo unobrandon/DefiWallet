@@ -16,6 +16,7 @@ struct TokenDetailView: View {
     @State var tokenDetail: TokenDetails?
     @State var tokenDescriptor: TokenDescriptor?
     @State var externalId: String?
+    @State var scrollOffset: CGFloat = CGFloat.zero
 
     @State private var tokenChart = [ChartValue]()
 
@@ -37,10 +38,17 @@ struct TokenDetailView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView(.vertical, showsIndicators: false) {
                 detailsHeaderSection()
+                    .background(GeometryReader {
+                        Color.clear.preference(key: ViewOffsetKey.self,
+                            value: -$0.frame(in: .named("tokenDetail-scroll")).origin.y)
+                    })
+                    .onPreferenceChange(ViewOffsetKey.self) {
+                        self.scrollOffset = $0
+                    }
 
                 CustomLineChart(data: tokenDetail?.priceGraph?.price ?? tokenChart.map({ $0.amount }), profit: tokenDetail?.priceChangePercentage24H ?? 0 >= 0)
                     .frame(height: 145)
-                    .padding(.vertical, 10)
+                    .padding(10)
 
                 if !tokenChart.isEmpty || tokenDetail?.priceGraph?.price != nil {
                     HStack(alignment: .center, spacing: 0) {
@@ -48,16 +56,16 @@ struct TokenDetailView: View {
                         ChartOptionSegmentView(service: service, action: { item in
                             walletStore.emitSingleChartRequest(item)
                         })
-                        .padding(.vertical, 10)
+                        .padding(10)
                     }
                 }
 
                 HStack(alignment: .center, spacing: 20) {
-                    RoundedButton("Send", style: .primary, systemImage: "paperplane.fill", removePadding: true, action: {
+                    RoundedButton("Send \(tokenDescriptor?.symbol?.uppercased() ?? tokenDetail?.symbol?.uppercased() ?? "")", style: .primary, systemImage: "paperplane.fill", removePadding: true, action: {
                         print("send token")
                     })
 
-                    RoundedButton("Swap", style: .primary, systemImage: "arrow.left.arrow.right", removePadding: true, action: {
+                    RoundedButton("Swap \(tokenDescriptor?.symbol?.uppercased() ?? tokenDetail?.symbol?.uppercased() ?? "")", style: .primary, systemImage: "arrow.left.arrow.right", removePadding: true, action: {
                         print("send token")
                     })
                 }
@@ -65,12 +73,29 @@ struct TokenDetailView: View {
                 .padding(.vertical)
 
                 detailsOverviewSection()
+                detailsNetworkSection()
                 detailsInfoSection()
 
                 FooterInformation()
-            }
+
+                Spacer()
+            }.coordinateSpace(name: "tokenDetail-scroll")
         })
-        .navigationBarTitle(tokenDescriptor?.name ?? tokenDetail?.name ?? "Details", displayMode: .inline)
+        // .navigationBarTitle("", displayMode: .inline) //tokenDescriptor?.name ?? tokenDetail?.name ?? "Details", displayMode: .inline)
+        .navigationBarTitle {
+            if self.scrollOffset > 48 {
+                HStack(alignment: .center, spacing: 10) {
+                    if let imageSmall = tokenDescriptor?.imageSmall ?? tokenDetail?.image {
+                        RemoteImage(imageSmall, size: 28)
+                            .clipShape(Circle())
+                    }
+
+                    Text(tokenDescriptor?.name ?? tokenDetail?.name ?? "Details")
+                        .fontTemplate(DefaultTemplate.sectionHeader_bold)
+                }
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
         .onDisappear() {
             self.tokenDescriptor = nil
             self.tokenDetail = nil
@@ -84,7 +109,9 @@ struct TokenDetailView: View {
             print("the token details are: \(String(describing: tokenDetail?.id ?? externalId))")
             service.market.fetchTokenDetails(id: tokenDetail?.id ?? externalId, address: externalId, completion: { tokenDescriptor in
                 // Do your logic to get the token market data
-                self.tokenDescriptor = tokenDescriptor
+                if tokenDescriptor != nil {
+                    self.tokenDescriptor = tokenDescriptor
+                }
 
                 var address: String? {
                     if let eth = tokenDescriptor?.ethAddress { return eth
@@ -109,7 +136,6 @@ struct TokenDetailView: View {
                     })
                 }
             })
-
         }
     }
 

@@ -31,8 +31,8 @@ struct ExchangesView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text("A digital currency exchange (DCE), is a business that allows customers to trade crypto for other assets, such as conventional fiat or other cryptocurrency's.")
+                    VStack(alignment: .leading, spacing: 2.5) {
+                        Text("A digital currency exchange (DCE), allows customers to trade crypto for other assets, such as traditional fiat or other cryptocurrency's.")
                             .fontTemplate(DefaultTemplate.bodySemibold)
                             .multilineTextAlignment(.leading)
 
@@ -87,10 +87,9 @@ struct ExchangesView: View {
     private func fetchExchanges() {
         store.fetchTopExchanges(limit: limitCells, skip: limitCells - 25, completion: {
             print("done fetching exchanges: \(store.exchanges.count) ** \(limitCells)")
-
             withAnimation(.easeInOut) {
                 showIndicator = false
-                noMore = store.tokenCategories.count < limitCells
+                noMore = store.exchanges.count < limitCells - 25
             }
         })
     }

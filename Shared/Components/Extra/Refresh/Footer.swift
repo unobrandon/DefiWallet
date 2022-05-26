@@ -32,7 +32,7 @@ extension Refresh {
 
 @available(iOS 13.0, *)
 extension Refresh.Footer {
-    
+
     public func noMore(_ noMore: Bool) -> Self {
         var view = self
         view.noMore = noMore

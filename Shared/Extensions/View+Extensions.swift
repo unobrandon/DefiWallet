@@ -35,6 +35,12 @@ extension View {
         return self.modifier(HiddenTabBar())
     }
 
+    func navigationBarTitle<Content>(@ViewBuilder content: () -> Content) -> some View where Content : View {
+        self.toolbar {
+            ToolbarItem(placement: .principal, content: content)
+        }
+    }
+
 }
 
 extension UIView {

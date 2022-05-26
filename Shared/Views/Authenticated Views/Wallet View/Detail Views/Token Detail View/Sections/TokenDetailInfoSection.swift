@@ -29,7 +29,22 @@ extension TokenDetailView {
                 }
             }
 
-            if let country = tokenDescriptor?.countryOrigin {
+            if let twitter = tokenDescriptor?.twitterHandle?.lowercased(), !twitter.isEmpty {
+                BorderedButton(title: "@\(twitter)", systemImage: "bookmark.circle", size: .small, tint: Color("AccentColor"), action: {
+                    print("tap twitter")
+                })
+                .padding(.horizontal)
+                .padding(.vertical, 10)
+
+                if service.themeStyle == .shadow {
+                    Divider().padding(.leading)
+                } else if service.themeStyle == .border {
+                    Rectangle().foregroundColor(DefaultTemplate.borderColor)
+                        .frame(height: 1)
+                }
+            }
+
+            if let country = tokenDescriptor?.countryOrigin, !country.isEmpty {
                 ListInfoSmallView(title: "Country", info: country, secondaryInfo: nil, style: service.themeStyle, isLast: false)
             }
 
