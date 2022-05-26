@@ -31,11 +31,15 @@ struct ExchangesView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    Text("Digital currency exchange (DCE), is a business that allows customers to trade crypto for other assets, such as conventional fiat money or other digital currencies. An exchange can be a market maker that typically takes the bid–ask spreads as a transaction commission for is service or, as a matching platform, simply charges fees.")
-                        .fontTemplate(DefaultTemplate.bodySemibold)
-                        .multilineTextAlignment(.leading)
-                        .padding(.vertical, 10)
-                        .padding(.horizontal)
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("A digital currency exchange (DCE), is a business that allows customers to trade crypto for other assets, such as conventional fiat or other cryptocurrency's.")
+                            .fontTemplate(DefaultTemplate.bodySemibold)
+                            .multilineTextAlignment(.leading)
+
+                        ViewMoreText("Exchanges may accept credit card payments, wire transfers or other forms of payment in exchange for digital currencies or cryptocurrencies. \n\nAn exchange can be a market maker that typically takes the bid–ask spreads as a transaction commission for is service or, as a matching platform, simply charges fees.\n\nSome brokerages which also focus on other assets such as stocks, like Robinhood and eToro, let users purchase but not withdraw cryptocurrencies to cryptocurrency wallets. Dedicated cryptocurrency exchanges such as Binance and Coinbase do allow cryptocurrency withdrawals, however.")
+                    }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
 
                     ListSection(title: "Top Exchanges", hasPadding: false, style: service.themeStyle) {
                         ForEach(store.exchanges.prefix(limitCells).indices, id: \.self) { index in
