@@ -31,7 +31,7 @@ struct ExchangesView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    Text("This is a list of top exchanges where tokens are swappable.")
+                    Text("Digital currency exchange (DCE), is a business that allows customers to trade crypto for other assets, such as conventional fiat money or other digital currencies. An exchange can be a market maker that typically takes the bid–ask spreads as a transaction commission for is service or, as a matching platform, simply charges fees.")
                         .fontTemplate(DefaultTemplate.bodySemibold)
                         .multilineTextAlignment(.leading)
                         .padding(.vertical, 10)
