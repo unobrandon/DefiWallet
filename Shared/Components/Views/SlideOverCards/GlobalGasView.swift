@@ -42,48 +42,17 @@ struct GlobalGasView: View {
                     .lineLimit(3)
                     .padding(.bottom, 10)
 
-                PinnedHeaderView(currentType: $currentTab, sections: ["Ethereum", "Polygon", "Bitcoin", "Binance", "Avalanche", "Fantom"], style: service.themeStyle, action: { newSection in
-                    print("tapped new section \(newSection)")
-
-                    #if os(iOS)
-                        HapticFeedback.rigidHapticFeedback()
-                    #endif
-                })
-                .padding(.bottom, 10)
-            }
+                HStack {
+                    Spacer()
+                    NetworkDropdownButton(size: 46, style: service.themeStyle, action: { network in
+                        print("selected new network! \(network)")
+                        currentTab = network
+                    })
+                    .padding(.top)
+                }
+            }.padding(.bottom)
 
             VStack(alignment: .leading, spacing: 10) {
-                if currentTab == "Ethereum" {
-                    if let gas = store.ethGasPriceTrends,
-                       let trends = gas.trend {
-                        LightChartView(data: trends.prefix(store.gasChartLimit).map({ $0.baseFee ?? 0 }).reversed(),
-                                       type: .curved,
-                                       visualType: .filled(color: .purple, lineWidth: 2.5),
-                                       offset: 0.2,
-                                       currentValueLineType: .none)
-                                .frame(height: 80, alignment: .center)
-
-                        HStack(spacing: 5) {
-                            BorderedSelectedButton(title: "12H", systemImage: nil, size: .mini, tint: store.gasChartLimit == 12 ? Color("AccentColor") : nil, action: {
-                                store.gasChartLimit = 12
-                            })
-
-                            BorderedSelectedButton(title: "24H", systemImage: nil, size: .mini, tint: store.gasChartLimit == 24 ? Color("AccentColor") : nil, action: {
-                                store.gasChartLimit = 24
-                            })
-
-                            BorderedSelectedButton(title: "3D", systemImage: nil, size: .mini, tint: store.gasChartLimit == 72 ? Color("AccentColor") : nil, action: {
-                                store.gasChartLimit = 72
-                            })
-
-                            BorderedSelectedButton(title: "7D", systemImage: nil, size: .mini, tint: store.gasChartLimit == trends.count - 1 ? Color("AccentColor") : nil, action: {
-                                store.gasChartLimit = trends.count - 1
-                            })
-                        }
-                        .padding(.bottom)
-                    }
-                }
-
                 ListSection(title: nil, hasPadding: false, style: service.themeStyle) {
                     ListInfoSmallView(title: "🚶 Standard",
                                       info: "\(store.ethGasPriceTrends?.current?.standard?.baseFeePerGas ?? 0)",
@@ -102,6 +71,48 @@ struct GlobalGasView: View {
                                       secondaryInfo: "wei",
                                       style: service.themeStyle,
                                       isLast: true)
+                }
+
+                if let gas = store.ethGasPriceTrends,
+                   let trends = gas.trend {
+                    ZStack(alignment: .center) {
+                        VStack(alignment: .trailing, spacing: 10) {
+                            LightChartView(data: trends.prefix(store.gasChartLimit).map({ $0.baseFee ?? 0 }).reversed(),
+                                           type: .curved,
+                                           visualType: .filled(color: .purple, lineWidth: 2.5),
+                                           offset: 0.2,
+                                           currentValueLineType: .none)
+                                    .frame(height: 80, alignment: .center)
+                                    .blur(radius: CGFloat(currentTab != "Ethereum" ? 10 : 0))
+
+                            HStack(spacing: 5) {
+                                BorderedSelectedButton(title: "12H", systemImage: nil, size: .mini, tint: store.gasChartLimit == 12 ? Color("AccentColor") : nil, action: {
+                                    store.gasChartLimit = 12
+                                })
+
+                                BorderedSelectedButton(title: "24H", systemImage: nil, size: .mini, tint: store.gasChartLimit == 24 ? Color("AccentColor") : nil, action: {
+                                    store.gasChartLimit = 24
+                                })
+
+                                BorderedSelectedButton(title: "3D", systemImage: nil, size: .mini, tint: store.gasChartLimit == 72 ? Color("AccentColor") : nil, action: {
+                                    store.gasChartLimit = 72
+                                })
+
+                                BorderedSelectedButton(title: "7D", systemImage: nil, size: .mini, tint: store.gasChartLimit == trends.count - 1 ? Color("AccentColor") : nil, action: {
+                                    store.gasChartLimit = trends.count - 1
+                                })
+                            }
+                            .padding(.bottom)
+                            .blur(radius: CGFloat(currentTab != "Ethereum" ? 10 : 0))
+                        }
+
+                        Text("Gas trends are only on Ethereum. \nMore networks are coming soon.")
+                            .fontTemplate(DefaultTemplate.bodyMedium)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                            .opacity(currentTab == "Ethereum" ? 0 : 1)
+                    }
+                    .padding(.top)
                 }
             }
         }
