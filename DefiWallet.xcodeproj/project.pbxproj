@@ -354,6 +354,10 @@
 		05BDC5C0280D1B9200851E16 /* ListInfoSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5BE280D1B9200851E16 /* ListInfoSmallView.swift */; };
 		05BDC5C2280D2AB600851E16 /* GlobalMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5C1280D2AB600851E16 /* GlobalMarketView.swift */; };
 		05BDC5C3280D2AB600851E16 /* GlobalMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5C1280D2AB600851E16 /* GlobalMarketView.swift */; };
+		05C10E0028459D250050D2D5 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C10DFF28459D250050D2D5 /* Array+Extensions.swift */; };
+		05C10E0128459D250050D2D5 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C10DFF28459D250050D2D5 /* Array+Extensions.swift */; };
+		05C10E032845B1310050D2D5 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C10E022845B1310050D2D5 /* Int+Extensions.swift */; };
+		05C10E042845B1310050D2D5 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C10E022845B1310050D2D5 /* Int+Extensions.swift */; };
 		05C884CB27FD0E00005E2455 /* OverviewSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */; };
 		05C884CC27FD0E00005E2455 /* OverviewSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */; };
 		05C884CE27FD1D33005E2455 /* RingProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C884CD27FD1D33005E2455 /* RingProgressModel.swift */; };
@@ -735,6 +739,8 @@
 		05BDC5BB280D116D00851E16 /* GlobalGasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalGasView.swift; sourceTree = "<group>"; };
 		05BDC5BE280D1B9200851E16 /* ListInfoSmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoSmallView.swift; sourceTree = "<group>"; };
 		05BDC5C1280D2AB600851E16 /* GlobalMarketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalMarketView.swift; sourceTree = "<group>"; };
+		05C10DFF28459D250050D2D5 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		05C10E022845B1310050D2D5 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewSectionView.swift; sourceTree = "<group>"; };
 		05C884CD27FD1D33005E2455 /* RingProgressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingProgressModel.swift; sourceTree = "<group>"; };
 		05C884D127FD1D96005E2455 /* AnimatedRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedRingView.swift; sourceTree = "<group>"; };
@@ -1318,7 +1324,9 @@
 				05E858C627CB238800B85195 /* Character+Extensions.swift */,
 				05CA871F2803DD0D006FACE0 /* Color+Extensions.swift */,
 				0593020F27D9C790006DDFFF /* Double+Extensions.swift */,
+				05C10E022845B1310050D2D5 /* Int+Extensions.swift */,
 				05583C9E27E9974700640E75 /* Date+Extensions.swift */,
+				05C10DFF28459D250050D2D5 /* Array+Extensions.swift */,
 				0539414C281A2C9200CFAA53 /* Locale+Extensions.swift */,
 			);
 			path = Extensions;
@@ -1974,6 +1982,7 @@
 				050225B327FC09450004D910 /* NetworkDetailView.swift in Sources */,
 				05E8589427C5D7F000B85195 /* GasPrice.swift in Sources */,
 				057806F327B8E2A80008051B /* UnauthenticatedCoordinator+Factory.swift in Sources */,
+				05C10E0028459D250050D2D5 /* Array+Extensions.swift in Sources */,
 				05583C9F27E9974700640E75 /* Date+Extensions.swift in Sources */,
 				0593025327E19C51006DDFFF /* ChartType.swift in Sources */,
 				0539414D281A2C9200CFAA53 /* Locale+Extensions.swift in Sources */,
@@ -2117,6 +2126,7 @@
 				05002E68282B71380010AF39 /* Footer.swift in Sources */,
 				05E5F85727D361980090290C /* RoundedCross.swift in Sources */,
 				05BDC5BC280D116D00851E16 /* GlobalGasView.swift in Sources */,
+				05C10E032845B1310050D2D5 /* Int+Extensions.swift in Sources */,
 				0593021C27DFF0E5006DDFFF /* OnboardingHeaderView.swift in Sources */,
 				0578076F27BB6D200008051B /* DefaultTemplate.swift in Sources */,
 				05583CC827E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift in Sources */,
@@ -2245,6 +2255,7 @@
 				05583CB227E9BFA000640E75 /* StaggeredGridStyle.swift in Sources */,
 				05D1094E27C08B3E008DCC66 /* DiscoverCoordinator.swift in Sources */,
 				05F7B58528090518005A94C8 /* WalletService+AddressSocket.swift in Sources */,
+				05C10E0128459D250050D2D5 /* Array+Extensions.swift in Sources */,
 				0578078027BB87C80008051B /* Wallet.swift in Sources */,
 				05D1094B27C08B3E008DCC66 /* InvestCoordinator+Factory.swift in Sources */,
 				053C7D4027CDBF600081DCEA /* CheckmarkView.swift in Sources */,
@@ -2375,6 +2386,7 @@
 				0578074D27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
 				05E8590027CC08F200B85195 /* RoundedInteractiveButton.swift in Sources */,
 				05D1095427C08B3E008DCC66 /* DiscoverView.swift in Sources */,
+				05C10E042845B1310050D2D5 /* Int+Extensions.swift in Sources */,
 				05CA87182802A48E006FACE0 /* NftUriResponce.swift in Sources */,
 				05A6AABC27F9627800824C76 /* TrendingTokenStandardCell.swift in Sources */,
 				05CA871B2802A5CF006FACE0 /* CollectablesSectionView.swift in Sources */,

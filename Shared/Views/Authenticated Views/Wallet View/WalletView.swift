@@ -38,7 +38,7 @@ struct WalletView: View {
 
                 LazyVGrid(columns: gridItems, alignment: .center, spacing: 0) {
                     NetworkSectionView(isLoading: self.$isBalanceLoading, service: service)
-//                    CollectablesSectionView(isLoading: self.$isBalanceLoading, service: service)
+                    CollectablesSectionView(isLoading: self.$isBalanceLoading, service: service)
                     HistorySectionView(isLoading: self.$isHistoryLoading, service: service, network: nil)
                 }
             }

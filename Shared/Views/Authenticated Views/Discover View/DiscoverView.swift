@@ -36,7 +36,7 @@ struct DiscoverView: View {
                         .offset(y: -10)
                 }.frame(height: 200)
 
-                Text("Here will be: \n- List of exchanges -> details (https://api.coingecko.com/api/v3/exchanges/) \n- List of market indexes (https://api.coingecko.com/api/v3/indexes) \n- List of btc & eth public company's treasury (https://api.coingecko.com/api/v3/companies/public_treasury/bitcoin)")
+                Text("Here will be: \n- ")
                     .fontTemplate(DefaultTemplate.caption)
 
                 NewsBlogSection(isLoading: $loadingLearn, service: service)

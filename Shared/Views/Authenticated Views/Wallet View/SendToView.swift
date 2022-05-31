@@ -39,9 +39,8 @@ struct SendToView: View {
                     ListSection(title: "Recents", style: service.themeStyle) {
                         ForEach(prevAddress.prefix(limitCells).indices, id: \.self) { item in
                             recentAddressCell(prevAddress[item])
-                        }.padding(.vertical, 5)
+                        }
                     }
-                    .padding(.vertical)
                 }
 
                 RefreshFooter(refreshing: $showIndicator, action: {
@@ -112,7 +111,7 @@ struct SendToView: View {
                 HapticFeedback.rigidHapticFeedback()
             #endif
         }, label: {
-            VStack(alignment: .center, spacing: 5) {
+            VStack(alignment: .center, spacing: 0) {
                 HStack(alignment: .center, spacing: 10) {
                     if let blockAvatar = BlockAvatar(seed: address, size: 8, scale: 3).createImage() {
                         Image(image: blockAvatar)
@@ -134,7 +133,7 @@ struct SendToView: View {
                         .frame(width: 7, height: 15, alignment: .center)
                         .foregroundColor(.secondary)
                 }.padding(.horizontal)
-                .padding(.vertical, 5)
+                .padding(.vertical, 10)
 
                 if address != prevAddress.prefix(limitCells).last {
                     if service.themeStyle == .shadow {

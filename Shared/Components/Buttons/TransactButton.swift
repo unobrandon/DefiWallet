@@ -25,32 +25,32 @@ struct TransactButton: View {
     }
 
     var body: some View {
-        VStack(alignment: .center, spacing: 0) {
-            Button(action: {
-                action()
+        Button(action: {
+            action()
 
-                #if os(iOS)
-                    HapticFeedback.rigidHapticFeedback()
-                #endif
-            }, label: {
+            #if os(iOS)
+                HapticFeedback.rigidHapticFeedback()
+            #endif
+        }, label: {
+            HStack(alignment: .center, spacing: 10) {
                 Image(systemName: systemImage)
                     .resizable()
                     .sizeToFit()
-                    .frame(width: size * 0.5, height: size * 0.5, alignment: .center)
-                    .foregroundColor(style == .shadow ? Color.white : Color("AccentColor"))
-                    .background(RoundedRectangle(cornerRadius: 10, style: .circular)
-                                    .foregroundColor(Color("AccentColor").opacity(style == .shadow ? 1.0 : 0.15)).frame(width: size * 1.4, height: size))
-                    .shadow(color: Color("AccentColor").opacity(style == .shadow ? 0.175 : 0.0),
-                            radius: size > 40 ? (size / 7) : size < 25 ? 3 : 5, x: 0, y: size > 40 ? (size / 8) : size < 25 ? 3 : 5)
-            })
-            .buttonStyle(ClickInteractiveStyle(0.933))
-            .padding(.bottom, 20)
+                    .frame(height: size * 0.5, alignment: .center)
 
-            Text(title)
-                .fontTemplate(DefaultTemplate.bodyMedium_accent_standard)
-                .lineLimit(1)
-                .frame(width: size * 1.4)
-        }
+                Text(title)
+                    .fontTemplate(FontTemplate(font: Font.custom("Poppins-Medium", size: 16), weight: .medium, foregroundColor: style == .shadow ? Color.white : Color("AccentColor"), lineSpacing: 1))
+                    .lineLimit(1)
+            }
+            .foregroundColor(style == .shadow ? Color.white : Color("AccentColor"))
+            .frame(maxWidth: .infinity)
+            .background(RoundedRectangle(cornerRadius: 10, style: .circular)
+                .foregroundColor(Color("AccentColor").opacity(style == .shadow ? 1.0 : 0.15)).frame(height: size).frame(maxWidth: .infinity))
+            .shadow(color: Color("AccentColor").opacity(style == .shadow ? 0.175 : 0.0),
+                    radius: size > 40 ? (size / 7) : size < 25 ? 3 : 5, x: 0, y: size > 40 ? (size / 8) : size < 25 ? 3 : 5)
+        })
+        .buttonStyle(ClickInteractiveStyle(0.95))
+        .padding(.bottom, 20)
     }
 
 }

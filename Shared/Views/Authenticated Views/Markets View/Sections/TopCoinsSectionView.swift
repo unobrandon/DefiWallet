@@ -69,6 +69,16 @@ struct TopCoinsSectionView: View {
             }
             .padding(.bottom)
 
+            ListSection(hasPadding: true, style: service.themeStyle) {
+                ListStandardButton(title: "Recently Added", systemImage: "safari", isLast: false, style: service.themeStyle, action: {
+                    print("Recently Added")
+                })
+
+                ListStandardButton(title: "Public Treasury", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {
+                    print("Public Market Treasury")
+                })
+            }
+
             FooterInformation()
                 .padding(.vertical)
                 .padding(.bottom, 40)

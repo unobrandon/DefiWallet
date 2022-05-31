@@ -38,6 +38,7 @@ struct TokenDetails: Codable, Hashable {
     let roi: RoiModel?
     let lastUpdated: String?
     var priceGraph: GraphModel?
+    var tokenDescriptor: TokenDescriptor?
 
     enum CodingKeys: String, CodingKey {
         case id, symbol, name, image
@@ -64,6 +65,7 @@ struct TokenDetails: Codable, Hashable {
         case roi
         case lastUpdated = "last_updated"
         case priceGraph = "sparkline_in_7d"
+        case tokenDescriptor
     }
 }
 

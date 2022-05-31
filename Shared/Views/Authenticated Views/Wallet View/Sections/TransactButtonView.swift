@@ -38,7 +38,7 @@ struct TransactButtonView: View {
     }
 
     var body: some View {
-        HStack(alignment: .center, spacing: 0) {
+        HStack(alignment: .center, spacing: 5) {
             if enableDeposit {
                 Spacer()
 

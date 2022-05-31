@@ -67,14 +67,14 @@ struct BalanceSectionView: View {
                     ChartOptionSegmentView(service: service, action: { item in
                         store.emitSingleChartRequest(item)
                     })
-                    .padding(.vertical, 10)
+                    .padding([.vertical, .top], 10)
                 }
             }
         }
         .padding()
 
         TransactButtonView(style: service.themeStyle,
-                           enableDeposit: true,
+                           enableDeposit: false,
                            enableSend: true,
                            enableReceive: false,
                            enableSwap: true,
@@ -88,6 +88,7 @@ struct BalanceSectionView: View {
         }, actionReceive: { print("receive")
         }, actionSwap: { print("swap")
         }).padding(.top)
+        .padding(.horizontal, 10)
     }
 
 }

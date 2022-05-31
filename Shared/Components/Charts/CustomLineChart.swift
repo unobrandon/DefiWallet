@@ -32,8 +32,12 @@ struct CustomLineChart: View {
 
             let points = data.enumerated().compactMap { item -> CGPoint in
                 let progress = (item.element - minPoint) / (maxPoint - minPoint)
-                let pathHeight = progress * (height - 25)
+                let pathHeight = progress * (height - 10)
                 let pathWidth = width * CGFloat(item.offset)
+
+                guard graphProgress != 0 else {
+                    return CGPoint(x: pathWidth, y: 125.0)
+                }
 
                 return CGPoint(x: pathWidth, y: -pathHeight + height)
             }
@@ -80,6 +84,8 @@ struct CustomLineChart: View {
                 , alignment: .bottomLeading)
             .contentShape(Rectangle())
             .gesture(DragGesture().onChanged({ value in
+                guard graphProgress == 0 else { return }
+
                 withAnimation { showPlot = true }
 
                 let translation = value.location.x
@@ -95,24 +101,31 @@ struct CustomLineChart: View {
             }).updating($isDrag, body: { _, out, _ in
                 out = true
             }))
-        }
-        .background(
-            VStack(alignment: .trailing) {
-                if let max = data.max() {
-                    Text(max.convertToCurrency())
-                        .fontTemplate(DefaultTemplate.caption_semibold)
-                }
+            .onLongPressGesture(minimumDuration: 15.0, pressing: { pressing in
+                showPlot = !pressing
 
-                Spacer()
-                if let min = data.min() {
-                    Text(min.convertToCurrency())
-                        .fontTemplate(DefaultTemplate.caption_semibold)
-                        .offset(y: 20)
+                #if os(iOS)
+                    HapticFeedback.rigidHapticFeedback()
+                #endif
+            }, perform: {  })
+            .background(
+                VStack(alignment: .trailing, spacing: 5) {
+                    if let max = data.max() {
+                        Text(max.convertToCurrency())
+                            .fontTemplate(DefaultTemplate.caption_semibold)
+                            .offset(y: -10)
+                    }
+
+                    Spacer()
+                    if let min = data.min() {
+                        Text(min.convertToCurrency())
+                            .fontTemplate(DefaultTemplate.caption_semibold)
+                            .offset(y: 20)
+                    }
                 }
-            }
-            .frame(maxWidth: .infinity, alignment: .trailing)
-        )
-        .padding(.horizontal, 10)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+            )
+        }
         .onChange(of: isDrag) { _ in
             if !isDrag { showPlot = false }
         }
@@ -140,7 +153,8 @@ struct CustomLineChart: View {
         LinearGradient(colors: [
             color.opacity(0.3),
             color.opacity(0.2),
-            color.opacity(0.1)] + Array(repeating: color.opacity(0.1), count: 4) + Array(repeating: Color.clear, count: 2), startPoint: .top, endPoint: .bottom)
+            color.opacity(0.15),
+            color.opacity(0.00)], startPoint: .top, endPoint: .bottom)
     }
 
 }
@@ -150,11 +164,6 @@ struct AnimatedGraphPath: Shape {
 
     var progress: CGFloat
     var points: [CGPoint]
-
-    var animatableData: CGFloat {
-        get { return progress }
-        set { progress = newValue }
-    }
 
     func path(in rect: CGRect) -> Path {
         Path { path in

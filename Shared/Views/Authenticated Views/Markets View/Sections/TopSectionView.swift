@@ -147,17 +147,6 @@ struct TopSectionView: View {
                 })
                 .buttonStyle(ClickInteractiveStyle(0.975))
             }
-
-            ListSection(hasPadding: false, style: service.themeStyle) {
-                ListStandardButton(title: "Recently Added", systemImage: "safari", isLast: false, style: service.themeStyle, action: {
-                    print("Recently Added")
-                })
-
-                ListStandardButton(title: "Public Treasury", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {
-                    print("Public Market Treasury")
-                })
-            }
-
         }
         .padding([.horizontal, .bottom])
     }

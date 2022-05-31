@@ -48,7 +48,7 @@ struct TokenDetailView: View {
 
                 CustomLineChart(data: tokenDetail?.priceGraph?.price ?? tokenChart.map({ $0.amount }), profit: tokenDetail?.priceChangePercentage24H ?? 0 >= 0)
                     .frame(height: 145)
-                    .padding(10)
+                    .padding()
 
                 if !tokenChart.isEmpty || tokenDetail?.priceGraph?.price != nil {
                     HStack(alignment: .center, spacing: 0) {
@@ -56,16 +56,17 @@ struct TokenDetailView: View {
                         ChartOptionSegmentView(service: service, action: { item in
                             walletStore.emitSingleChartRequest(item)
                         })
+                        .padding(.top, 10)
                         .padding(10)
                     }
                 }
 
                 HStack(alignment: .center, spacing: 20) {
-                    RoundedButton("Send \(tokenDescriptor?.symbol?.uppercased() ?? tokenDetail?.symbol?.uppercased() ?? "")", style: .primary, systemImage: "paperplane.fill", removePadding: true, action: {
+                    TransactButton(title: "Send \(tokenDescriptor?.symbol?.uppercased() ?? tokenDetail?.symbol?.uppercased() ?? "")", systemImage: "paperplane.fill", size: 50, style: service.themeStyle, action: {
                         print("send token")
                     })
 
-                    RoundedButton("Swap \(tokenDescriptor?.symbol?.uppercased() ?? tokenDetail?.symbol?.uppercased() ?? "")", style: .primary, systemImage: "arrow.left.arrow.right", removePadding: true, action: {
+                    TransactButton(title: "Swap \(tokenDescriptor?.symbol?.uppercased() ?? tokenDetail?.symbol?.uppercased() ?? "")", systemImage: "arrow.left.arrow.right", size: 50, style: service.themeStyle, action: {
                         print("send token")
                     })
                 }

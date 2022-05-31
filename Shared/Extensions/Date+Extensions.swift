@@ -25,4 +25,8 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 
+    func millisecondsSince1970() -> Int {
+        return Int((self.timeIntervalSince1970 * 1000.0).rounded())
+    }
+
 }
