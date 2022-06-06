@@ -32,9 +32,12 @@ struct GlobalDataNavSection: View {
                     .padding(.trailing, 5)
 
                 VStack(alignment: .leading, spacing: 0) {
-                    if let num = Int(data.totalMarketCap?[service.currentUser.currency] ?? 0.0) {
-                        Text(Locale.current.currencySymbol ?? "" + "\("".formatLargeNumber(num, size: .small))").fontTemplate(DefaultTemplate.captionPrimary)
-//                            .offset(y: 1)
+                    if let num = data.totalMarketCap?[service.currentUser.currency] {
+                        HStack(alignment: .center, spacing: 0) {
+                            Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.bodyBold)
+
+                            Text("".formatLargeDoubleNumber(num, size: .regular)).fontTemplate(DefaultTemplate.bodyBold)
+                        }
                     }
 
                     if let percent = data.marketCapChangePercentage24HUsd {

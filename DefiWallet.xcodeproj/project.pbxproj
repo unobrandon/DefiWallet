@@ -55,6 +55,10 @@
 		0504A424283F287C000DB947 /* TokenDetailInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A422283F287C000DB947 /* TokenDetailInfoSection.swift */; };
 		0504A426283F68D5000DB947 /* TokenDetailNetworkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A425283F68D5000DB947 /* TokenDetailNetworkSection.swift */; };
 		0504A427283F68D5000DB947 /* TokenDetailNetworkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504A425283F68D5000DB947 /* TokenDetailNetworkSection.swift */; };
+		0507BB15284DCC8700D1A965 /* TopGainersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507BB14284DCC8700D1A965 /* TopGainersView.swift */; };
+		0507BB16284DCC8700D1A965 /* TopGainersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507BB14284DCC8700D1A965 /* TopGainersView.swift */; };
+		0507BB18284DD27100D1A965 /* TopLosersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507BB17284DD27100D1A965 /* TopLosersView.swift */; };
+		0507BB19284DD27100D1A965 /* TopLosersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507BB17284DD27100D1A965 /* TopLosersView.swift */; };
 		051BCF5527BC970A0056E047 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* TransactionHistory.swift */; };
 		051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* TransactionHistory.swift */; };
 		051BCF5827BCACB30056E047 /* AuthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */; };
@@ -576,6 +580,8 @@
 		0504A41F283F27F3000DB947 /* ExchangesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesDetailView.swift; sourceTree = "<group>"; };
 		0504A422283F287C000DB947 /* TokenDetailInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailInfoSection.swift; sourceTree = "<group>"; };
 		0504A425283F68D5000DB947 /* TokenDetailNetworkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailNetworkSection.swift; sourceTree = "<group>"; };
+		0507BB14284DCC8700D1A965 /* TopGainersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopGainersView.swift; sourceTree = "<group>"; };
+		0507BB17284DD27100D1A965 /* TopLosersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopLosersView.swift; sourceTree = "<group>"; };
 		051BCF5427BC970A0056E047 /* TransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistory.swift; sourceTree = "<group>"; };
 		051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedServices.swift; sourceTree = "<group>"; };
 		051BCF5C27BCAE150056E047 /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
@@ -1431,6 +1437,8 @@
 				0504A41F283F27F3000DB947 /* ExchangesDetailView.swift */,
 				05A6AAB727F9614F00824C76 /* TrendingView.swift */,
 				05A6AABD27F980A800824C76 /* MarketCapRankView.swift */,
+				0507BB14284DCC8700D1A965 /* TopGainersView.swift */,
+				0507BB17284DD27100D1A965 /* TopLosersView.swift */,
 			);
 			path = "Markets View";
 			sourceTree = "<group>";
@@ -2015,6 +2023,7 @@
 				05CA871A2802A5CF006FACE0 /* CollectablesSectionView.swift in Sources */,
 				05E858CA27CB240300B85195 /* AppGradients.swift in Sources */,
 				0504A41D283F27DC000DB947 /* ExchangeView.swift in Sources */,
+				0507BB18284DD27100D1A965 /* TopLosersView.swift in Sources */,
 				053113E527E6C6CC00368657 /* Modifiers.swift in Sources */,
 				05D1097027C17D49008DCC66 /* ERC20Token.swift in Sources */,
 				05A6AAB827F9614F00824C76 /* TrendingView.swift in Sources */,
@@ -2153,6 +2162,7 @@
 				0578074127BB5B500008051B /* DiscoverCoordinator+Factory.swift in Sources */,
 				05E858B927CA04D000B85195 /* MainCarouselView.swift in Sources */,
 				0593021327D9E33E006DDFFF /* AccountNft.swift in Sources */,
+				0507BB15284DCC8700D1A965 /* TopGainersView.swift in Sources */,
 				05E5F84227D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */,
 				05D1096727C0C241008DCC66 /* AuthenticatedCoordinator.swift in Sources */,
 				05583CF127ED6A5100640E75 /* TopCoinsSectionView.swift in Sources */,
@@ -2420,6 +2430,7 @@
 				05E8590927CC1A8800B85195 /* FooterInformation.swift in Sources */,
 				058C786C27D09E5900EB91CA /* CompletedView.swift in Sources */,
 				05C884CF27FD1D33005E2455 /* RingProgressModel.swift in Sources */,
+				0507BB19284DD27100D1A965 /* TopLosersView.swift in Sources */,
 				053113FC27E6CF7100368657 /* CBScanner.swift in Sources */,
 				05E8589927C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
 				05583CC627E9C11400640E75 /* EnvironmentValues+GridStyle.swift in Sources */,
@@ -2446,6 +2457,7 @@
 				05E858CB27CB240300B85195 /* AppGradients.swift in Sources */,
 				05CA873628053243006FACE0 /* SVGWebView.swift in Sources */,
 				05E858DC27CB27E400B85195 /* AlertBadge.swift in Sources */,
+				0507BB16284DCC8700D1A965 /* TopGainersView.swift in Sources */,
 				0593022327E02B7E006DDFFF /* BorderlessButton.swift in Sources */,
 				0566AEC327E83792006B645F /* HistorySectionView.swift in Sources */,
 				05E858EF27CB388B00B85195 /* AppTheme.swift in Sources */,

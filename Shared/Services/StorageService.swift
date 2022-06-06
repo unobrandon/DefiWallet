@@ -32,6 +32,7 @@ class StorageService {
     var tokenCategories: Cache.Storage<String, [TokenCategory]>?
     var topExchanges: Cache.Storage<String, [ExchangeModel]>?
     var marketCapStorage: Cache.Storage<String, [TokenDetails]>?
+    var topGainersOrLosers: Cache.Storage<String, [TokenDetails]>?
 
     init() {
         self.memoryConfig = MemoryConfig(expiry: .date(storageExpiry), countLimit: 50, totalCostLimit: 0)

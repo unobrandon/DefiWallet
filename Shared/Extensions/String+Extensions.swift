@@ -104,6 +104,47 @@ extension String {
         }
     }
 
+    func formatLargeDoubleNumber(_ number: Double, size: ControlSize? = .small) -> String {
+        let num = abs(number)
+        let sign = (number < 0) ? "-" : ""
+
+        switch num {
+        case 1_000_000_000_000...:
+            var formatted = num / 1_000_000_000_000
+            formatted = formatted.reduceScale(to: 1)
+            let amount = size == .small ? "t" : size == .large ? " trillion" : " tril"
+
+            return "\(sign)\(formatted)\(amount)"
+
+        case 1_000_000_000...:
+            var formatted = num / 1_000_000_000
+            formatted = formatted.reduceScale(to: 1)
+            let amount = size == .small ? "b" : size == .large ? " billion" : " bil"
+
+            return "\(sign)\(formatted)\(amount)"
+
+        case 1_000_000...:
+            var formatted = num / 1_000_000
+            formatted = formatted.reduceScale(to: 1)
+            let amount = size == .small ? "m" : size == .large ? " million" : " mil"
+
+            return "\(sign)\(formatted)\(amount)"
+
+        case 1_000...:
+            var formatted = num / 1_000
+            formatted = formatted.reduceScale(to: 1)
+            let amount = size == .small ? "k" : size == .large ? " thousand" : " thsnd"
+
+            return "\(sign)\(formatted)\(amount)"
+
+        case 0...:
+            return "\(number)"
+
+        default:
+            return "\(sign)\(number)"
+        }
+    }
+
     func createDateTime() -> String {
         var strDate = "undefined"
 

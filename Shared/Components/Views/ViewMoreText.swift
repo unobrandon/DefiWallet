@@ -14,10 +14,12 @@ struct ViewMoreText: View {
 
     private let text: String
     private var isCaption: Bool = true
+    private var lineLimit: Int? = 3
 
-    init(_ text: String, isCaption: Bool? = nil) {
+    init(_ text: String, isCaption: Bool? = nil, lineLimit: Int? = 0) {
         self.text = text
         self.isCaption = isCaption ?? true
+        self.lineLimit = lineLimit ?? 3
     }
 
     var body: some View {

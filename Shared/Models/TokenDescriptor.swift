@@ -20,8 +20,7 @@ struct TokenDescriptor: Codable, Hashable {
 
     let allAddress: AllAddress?
     let projectURL, blockchainURL: [String]?
-    let officialForumURL, discordURL, blogURL, githubURL: [String]?
-    let bitbucketURL: [String]?
+    let officialForumURL, discordURL, blogURL, githubURL, bitbucketURL: [String]?
     let externalID, symbol, name, hashingAlgorithm: String?
     let tokenDescription, ethAddress, xdaiAddress, fantomAddress, avaxAddress, solanaAddress, moonriverAddress, moonbeamAddress, publicNotice: String?
     let twitterHandle, facebookUsername, telegramChannelID: String?

@@ -89,7 +89,7 @@ struct TopSectionView: View {
             HStack(alignment: .center, spacing: 5) {
                 Button(action: {
                     print("Top Gainers")
-                    marketRouter.route(to: \.categoriesView)
+                    marketRouter.route(to: \.topGainers)
 
                     #if os(iOS)
                         HapticFeedback.rigidHapticFeedback()
@@ -119,7 +119,7 @@ struct TopSectionView: View {
 
                 Button(action: {
                     print("Top Losers")
-                    marketRouter.route(to: \.categoriesView)
+                    marketRouter.route(to: \.topLosers)
 
                     #if os(iOS)
                         HapticFeedback.rigidHapticFeedback()

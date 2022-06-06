@@ -38,6 +38,14 @@ extension MarketsCoordinator {
         MarketCapRankView(service: services)
     }
 
+    @ViewBuilder func makeTopGainers() -> some View {
+        TopGainersView(service: services)
+    }
+
+    @ViewBuilder func makeTopLosers() -> some View {
+        TopLosersView(service: services)
+    }
+
     @ViewBuilder func makeTokenDetail(tokenDetail: TokenDetails) -> some View {
         TokenDetailView(tokenDetail: tokenDetail, tokenDescriptor: nil, externalId: nil, service: services)
     }

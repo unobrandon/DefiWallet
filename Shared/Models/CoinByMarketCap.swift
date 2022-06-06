@@ -23,25 +23,47 @@ struct TokenDetails: Codable, Hashable {
         hasher.combine(marketCapRank)
     }
 
-    let id, symbol, name: String?
-    let image: String?
+    let id, symbol, name, tokenDescription, createdAt: String?
+    let image, imageLarge: String?
+    let hashingAlgorithm, telegramChannelID, twitterHandle, facebookUsername: String?
+    let discordURL, blockchainURL, projectURL: [String]?
+    let githubURL, officialForumURL, bitbucketURL: [String]?
     let currentPrice: Double?
-    let marketCap, marketCapRank: Int?
+    let marketCap, marketCapRank, overallRank: Int?
     let fullyDilutedValuation: Int?
     let totalVolume, high24H, low24H, priceChange24H: Double?
     let priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
     let totalSupply, maxSupply: Double?
     let ath, athChangePercentage: Double?
-    let athDate: String?
+    let athDate, genesisDate, countryOrigin: String?
     let atl, atlChangePercentage: Double?
-    let atlDate: String?
+    let atlDate, subredditURL: String?
+    let lastUpdated, publicNotice: String?
     let roi: RoiModel?
-    let lastUpdated: String?
+    let allAddress: AllAddress?
     var priceGraph: GraphModel?
     var tokenDescriptor: TokenDescriptor?
 
     enum CodingKeys: String, CodingKey {
-        case id, symbol, name, image
+        case id, symbol, name, image, createdAt
+        case imageLarge = "image_large"
+        case tokenDescription = "description"
+        case overallRank = "overall_rank"
+        case hashingAlgorithm = "hashing_algorithm"
+        case allAddress = "all_address"
+        case genesisDate = "genesis_date"
+        case countryOrigin = "country_origin"
+        case discordURL = "discord_url"
+        case blockchainURL = "blockchain_url"
+        case projectURL = "project_url"
+        case telegramChannelID = "telegram_channel_id"
+        case twitterHandle = "twitter_handle"
+        case facebookUsername = "facebook_username"
+        case githubURL = "github_url"
+        case officialForumURL = "official_forum_url"
+        case subredditURL = "subreddit_url"
+        case bitbucketURL = "bitbucket_url"
+        case publicNotice = "public_notice"
         case currentPrice = "current_price"
         case marketCap = "market_cap"
         case marketCapRank = "market_cap_rank"
@@ -56,13 +78,11 @@ struct TokenDetails: Codable, Hashable {
         case circulatingSupply = "circulating_supply"
         case totalSupply = "total_supply"
         case maxSupply = "max_supply"
-        case ath
+        case ath, atl, roi
         case athChangePercentage = "ath_change_percentage"
         case athDate = "ath_date"
-        case atl
         case atlChangePercentage = "atl_change_percentage"
         case atlDate = "atl_date"
-        case roi
         case lastUpdated = "last_updated"
         case priceGraph = "sparkline_in_7d"
         case tokenDescriptor

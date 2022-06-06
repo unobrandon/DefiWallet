@@ -16,7 +16,7 @@ extension TokenDetailView {
         ListSection(title: "More Info", hasPadding: true, style: service.themeStyle) {
             if let description = tokenDescriptor?.tokenDescription, !description.isEmpty {
                 VStack(alignment: .leading) {
-                    ViewMoreText(description, isCaption: false)
+                    ViewMoreText(description, isCaption: false, lineLimit: 5)
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 10)

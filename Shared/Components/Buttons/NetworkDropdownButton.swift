@@ -9,15 +9,13 @@ import SwiftUI
 
 struct NetworkDropdownButton: View {
 
-    private let size: Double
     private var style: AppStyle
     private let action: (String) -> Void
 
     @State var selectedNetwork: String = "Ethereum"
     @State var network: Network = .ethereum
 
-    init(size: Double, style: AppStyle, action: @escaping (String) -> Void) {
-        self.size = size
+    init(style: AppStyle, action: @escaping (String) -> Void) {
         self.style = style
         self.action = action
     }
@@ -74,10 +72,11 @@ struct NetworkDropdownButton: View {
                 #endif
             }, label: { Text("Fantom") })
         } label: {
-            HStack(alignment: .center, spacing: 10) {
-                getNetworkImage(network)                    .resizable()
+            HStack(alignment: .center, spacing: 7.5) {
+                getNetworkImage(network)
+                    .resizable()
                     .sizeToFit()
-                    .frame(height: size * 0.5, alignment: .center)
+                    .frame(height: 20, alignment: .center)
 
                 Text(selectedNetwork)
                     .fontTemplate(FontTemplate(font: Font.custom("Poppins-Medium", size: 14), weight: .medium, foregroundColor: Color.primary, lineSpacing: 1))
@@ -86,14 +85,15 @@ struct NetworkDropdownButton: View {
                 Image(systemName: "chevron.down")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 16, height: 8)
+                    .frame(width: 15, height: 8)
                     .foregroundColor(Color.secondary)
                     .padding(.leading)
             }
-            .padding(.horizontal)
-            .background(RoundedRectangle(cornerRadius: 10, style: .circular).strokeBorder(DefaultTemplate.borderColor.opacity(style == .border ? 1.0 : 0.0), lineWidth: 1.5).frame(height: size).background(style == .shadow ? Color("baseButton") : Color.clear).cornerRadius(10))
+            .padding(.horizontal, 10)
+            .background(RoundedRectangle(cornerRadius: 10, style: .circular)
+                            .strokeBorder(DefaultTemplate.borderColor.opacity(style == .border ? 1.0 : 0.0), lineWidth: 1.5).frame(height: 40).background(style == .shadow ? Color("baseButton") : Color.clear).cornerRadius(10))
             .shadow(color: Color.black.opacity(style == .shadow ? 0.175 : 0.0),
-                    radius: size > 40 ? (size / 7) : size < 25 ? 3 : 5, x: 0, y: size > 40 ? (size / 8) : size < 25 ? 3 : 5)
+                    radius: 6)
         }
         .buttonStyle(ClickInteractiveStyle(0.95))
     }
