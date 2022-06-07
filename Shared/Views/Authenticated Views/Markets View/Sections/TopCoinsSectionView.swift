@@ -72,6 +72,7 @@ struct TopCoinsSectionView: View {
             ListSection(hasPadding: true, style: service.themeStyle) {
                 ListStandardButton(title: "Recently Added", systemImage: "safari", isLast: false, style: service.themeStyle, action: {
                     print("Recently Added")
+                    marketRouter.route(to: \.recentlyAdded)
                 })
 
                 ListStandardButton(title: "Public Treasury", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {

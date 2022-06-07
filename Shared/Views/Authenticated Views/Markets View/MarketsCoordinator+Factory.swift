@@ -46,6 +46,10 @@ extension MarketsCoordinator {
         TopLosersView(service: services)
     }
 
+    @ViewBuilder func makeRecentlyAdded() -> some View {
+        RecentlyAddedView(service: services)
+    }
+
     @ViewBuilder func makeTokenDetail(tokenDetail: TokenDetails) -> some View {
         TokenDetailView(tokenDetail: tokenDetail, tokenDescriptor: nil, externalId: nil, service: services)
     }

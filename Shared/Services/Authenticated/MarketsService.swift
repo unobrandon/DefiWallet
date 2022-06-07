@@ -21,6 +21,7 @@ class MarketsService: ObservableObject {
     @Published var coinsByMarketCap = [TokenDetails]()
     @Published var coinsByGains = [TokenDetails]()
     @Published var coinsByLosers = [TokenDetails]()
+    @Published var recentlyAddedTokens = [TokenDetails]()
     @Published var tokenCategoryList = [TokenDetails]()
     @Published var trendingCoins = [TrendingCoin]()
 
@@ -398,7 +399,7 @@ class MarketsService: ObservableObject {
     }
 
     func fetchTopGainers(currency: String, completion: @escaping () -> Void) {
-        let url = Constants.backendBaseUrl + "topCoinsByGainsOrLoss?currency=\(currency)" + "&gainOrLoss=gain"
+        let url = Constants.backendBaseUrl + "topCoinsByGainsOrLoss?currency=\(currency)" + "&gainOrLoss=gains"
 
         AF.request(url, method: .get).responseDecodable(of: [TokenDetails].self) { response in
             switch response.result {
@@ -456,11 +457,49 @@ class MarketsService: ObservableObject {
                 if let storage = StorageService.shared.topGainersOrLosers {
                     storage.async.object(forKey: "topLosers") { result in
                         switch result {
-                        case .value(let gainers):
-                            print("got local losers!! \(gainers)")
+                        case .value(let losers):
+                            print("got local losers!! \(losers)")
 
                             DispatchQueue.main.async {
-                                self.coinsByGains += gainers
+                                self.coinsByLosers += losers
+                                completion()
+                            }
+                        case .error(let error):
+                            print("error getting losers: \(error.localizedDescription)")
+                            completion()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    func fetchRecentlyAdded(completion: @escaping () -> Void) {
+        let url = Constants.backendBaseUrl + "recentlyAddedTokens"
+
+        AF.request(url, method: .get).responseDecodable(of: [TokenDetails].self) { response in
+            switch response.result {
+            case .success(let recent):
+                DispatchQueue.main.async {
+                    self.recentlyAddedTokens = recent
+                }
+                print("got recently added!! \(recent.count)")
+
+                if let storage = StorageService.shared.topGainersOrLosers {
+                    storage.async.setObject(recent, forKey: "recentlyAdded") { _ in }
+                }
+
+                completion()
+            case .failure(let error):
+                print("error getting api top losers: \(error)")
+                if let storage = StorageService.shared.topGainersOrLosers {
+                    storage.async.object(forKey: "recentlyAdded") { result in
+                        switch result {
+                        case .value(let recent):
+                            print("got recently added!! \(recent)")
+
+                            DispatchQueue.main.async {
+                                self.recentlyAddedTokens = recent
                                 completion()
                             }
                         case .error(let error):

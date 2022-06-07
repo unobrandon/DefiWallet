@@ -59,6 +59,8 @@
 		0507BB16284DCC8700D1A965 /* TopGainersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507BB14284DCC8700D1A965 /* TopGainersView.swift */; };
 		0507BB18284DD27100D1A965 /* TopLosersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507BB17284DD27100D1A965 /* TopLosersView.swift */; };
 		0507BB19284DD27100D1A965 /* TopLosersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507BB17284DD27100D1A965 /* TopLosersView.swift */; };
+		0507BB1B284F141E00D1A965 /* RecentlyAddedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507BB1A284F141E00D1A965 /* RecentlyAddedView.swift */; };
+		0507BB1C284F141E00D1A965 /* RecentlyAddedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507BB1A284F141E00D1A965 /* RecentlyAddedView.swift */; };
 		051BCF5527BC970A0056E047 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* TransactionHistory.swift */; };
 		051BCF5627BC970A0056E047 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* TransactionHistory.swift */; };
 		051BCF5827BCACB30056E047 /* AuthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */; };
@@ -582,6 +584,7 @@
 		0504A425283F68D5000DB947 /* TokenDetailNetworkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailNetworkSection.swift; sourceTree = "<group>"; };
 		0507BB14284DCC8700D1A965 /* TopGainersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopGainersView.swift; sourceTree = "<group>"; };
 		0507BB17284DD27100D1A965 /* TopLosersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopLosersView.swift; sourceTree = "<group>"; };
+		0507BB1A284F141E00D1A965 /* RecentlyAddedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyAddedView.swift; sourceTree = "<group>"; };
 		051BCF5427BC970A0056E047 /* TransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistory.swift; sourceTree = "<group>"; };
 		051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedServices.swift; sourceTree = "<group>"; };
 		051BCF5C27BCAE150056E047 /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
@@ -1439,6 +1442,7 @@
 				05A6AABD27F980A800824C76 /* MarketCapRankView.swift */,
 				0507BB14284DCC8700D1A965 /* TopGainersView.swift */,
 				0507BB17284DD27100D1A965 /* TopLosersView.swift */,
+				0507BB1A284F141E00D1A965 /* RecentlyAddedView.swift */,
 			);
 			path = "Markets View";
 			sourceTree = "<group>";
@@ -2202,6 +2206,7 @@
 				057806E827B8DF980008051B /* AuthenticationService.swift in Sources */,
 				05A6AAB527F95AFA00824C76 /* TrendingTokenListCell.swift in Sources */,
 				05EE4431281C8E1500D4189F /* BlockAvatar.swift in Sources */,
+				0507BB1B284F141E00D1A965 /* RecentlyAddedView.swift in Sources */,
 				05002E6A282B715D0010AF39 /* FooterKey.swift in Sources */,
 				0566AEC827E84711006B645F /* StandardSystemImage.swift in Sources */,
 				05CA872328040EA4006FACE0 /* TokenDetailView.swift in Sources */,
@@ -2473,6 +2478,7 @@
 				05583CC927E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift in Sources */,
 				05F8EE1F27FFFBD0003BBC23 /* TokenCategory.swift in Sources */,
 				0566AED227E8F64B006B645F /* HistoryDetailView.swift in Sources */,
+				0507BB1C284F141E00D1A965 /* RecentlyAddedView.swift in Sources */,
 				058C786927D0831700EB91CA /* AlertBanner.swift in Sources */,
 				05E5F86427D407A60090290C /* NotificationBanner.swift in Sources */,
 				05E858E827CB301B00B85195 /* ListStandardButton.swift in Sources */,
