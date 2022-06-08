@@ -49,7 +49,7 @@ struct StackedStatisticLabel: View {
             if let percent = percent,
                let percentColor = percentColor,
                let style = style {
-                ProminentRoundedLabel(text: percent, color: percentColor, style: style)
+                ProminentRoundedLabel(text: percent, color: percentColor, fontSize: 12.0, style: style)
                     .padding(.top, 0.5)
             }
 

@@ -18,13 +18,13 @@ extension View {
                                              background: @autoclosure @escaping () -> Background,
                                              shouldAnimate: Binding<Bool> = .constant(true),
                                              speed: Double = 10) -> some View { self
-            .overlay(IrregularGradient(colors: colors, background: background(), speed: speed, shouldAnimate: shouldAnimate))
-            .mask(self)
+                                                 .overlay(IrregularGradient(colors: colors, background: background(), speed: speed, shouldAnimate: shouldAnimate))
+                                                 .mask(self)
     }
 
     func irregularGradient(colors: [Color], backgroundColor: Color = .clear, shouldAnimate: Binding<Bool> = .constant(true), speed: Double = 10) -> some View { self
-            .overlay(IrregularGradient(colors: colors, backgroundColor: backgroundColor, speed: speed, shouldAnimate: shouldAnimate))
-            .mask(self)
+        .overlay(IrregularGradient(colors: colors, backgroundColor: backgroundColor, speed: speed, shouldAnimate: shouldAnimate))
+        .mask(self)
     }
 
     func showTabBar() -> some View {
@@ -39,6 +39,21 @@ extension View {
         self.toolbar {
             ToolbarItem(placement: .principal, content: content)
         }
+    }
+
+    func measureSize(perform action: @escaping (CGSize) -> Void) -> some View {
+        self.modifier(MeasureSizeModifier())
+            .onPreferenceChange(SizePreferenceKey.self, perform: action)
+    }
+
+    func animationObserver<Value: VectorArithmetic>(for value: Value, onChange: ((Value) -> Void)? = nil,
+                                                    onComplete: (() -> Void)? = nil) -> some View {
+        self.modifier(AnimationObserverModifier(for: value, onChange: onChange, onComplete: onComplete))
+    }
+
+    func marquee(duration: TimeInterval, direction: Marquee.Direction = .rightToLeft,
+                 autoreverse: Bool = false) -> some View {
+        self.modifier(Marquee(duration: duration, direction: direction, autoreverse: autoreverse))
     }
 
 }
@@ -93,6 +108,59 @@ struct HiddenTabBar: ViewModifier {
     func body(content: Content) -> some View {
         return content.padding(.zero).onAppear {
             Tool.hiddenTabBar()
+        }
+    }
+
+}
+
+struct SizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
+        value = nextValue()
+    }
+}
+
+struct MeasureSizeModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content.background(GeometryReader { geometry in
+            Color.clear.preference(key: SizePreferenceKey.self,
+                                   value: geometry.size)
+        })
+    }
+}
+
+public struct AnimationObserverModifier<Value: VectorArithmetic>: AnimatableModifier {
+
+    private let observedValue: Value
+    private let onChange: ((Value) -> Void)?
+    private let onComplete: (() -> Void)?
+
+    public var animatableData: Value {
+        didSet {
+            notifyProgress()
+        }
+    }
+
+    public init(for observedValue: Value,
+                onChange: ((Value) -> Void)?,
+                onComplete: (() -> Void)?) {
+        self.observedValue = observedValue
+        self.onChange = onChange
+        self.onComplete = onComplete
+        animatableData = observedValue
+    }
+
+    public func body(content: Content) -> some View {
+        content
+    }
+
+    private func notifyProgress() {
+        DispatchQueue.main.async {
+            onChange?(animatableData)
+            if animatableData == observedValue {
+                onComplete?()
+            }
         }
     }
 

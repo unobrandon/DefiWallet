@@ -50,6 +50,10 @@ extension MarketsCoordinator {
         RecentlyAddedView(service: services)
     }
 
+    @ViewBuilder func makePublicTreasury() -> some View {
+        PublicTreasuryView(service: services)
+    }
+
     @ViewBuilder func makeTokenDetail(tokenDetail: TokenDetails) -> some View {
         TokenDetailView(tokenDetail: tokenDetail, tokenDescriptor: nil, externalId: nil, service: services)
     }

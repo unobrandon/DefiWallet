@@ -37,9 +37,10 @@ struct TokenBalance: Codable, Hashable {
         hasher.combine(name)
     }
 
-    let tokenAddress, name, symbol, decimals: String?
+    let tokenAddress, name, symbol: String?
     let logo, thumbnail: String?
     let balance, usd, usdTotal: String?
+    let decimals: Int?
 
     enum CodingKeys: String, CodingKey {
         case tokenAddress = "token_address"

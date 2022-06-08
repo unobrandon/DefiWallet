@@ -7,6 +7,8 @@
 
 import SwiftUI
 import SwiftUIX
+import Combine
+import Alamofire
 
 struct CategoriesView: View {
 
@@ -15,11 +17,10 @@ struct CategoriesView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: MarketsService
 
-    @State private var searchText: String = ""
+    @State var searchText: String = ""
     @State var showIndicator: Bool = false
     @State private var noMore: Bool = false
     @State private var limitCells: Int = 25
-    @State private var filters: FilterCategories = .marketCapDesc
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -33,13 +34,15 @@ struct CategoriesView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    Text("This is a curated list of categories where tokens have shown relevant utility to the category.")
-                        .fontTemplate(DefaultTemplate.bodySemibold)
-                        .multilineTextAlignment(.leading)
-                        .padding(.horizontal)
-                        .padding(.vertical, 10)
+                    if searchText.isEmpty {
+                        Text("This is a curated list of categories where tokens have shown relevant utility to the category.")
+                            .fontTemplate(DefaultTemplate.bodySemibold)
+                            .multilineTextAlignment(.leading)
+                            .padding(.horizontal)
+                            .padding(.vertical, 10)
+                    }
 
-                    ListSection(title: "\(filters == .marketCapAsc ? "smallest market cap" : filters == .marketCapDesc ? "top market cap" : filters == .gainers ? "top 24hr gainers" : filters == .losers ? "top 24hr losers" : filters == .name ? "names A-Z" : "")", hasPadding: false, style: service.themeStyle) {
+                    ListSection(title: !searchText.isEmpty ? "searched categories" : "\(store.categoriesFilters == .marketCapAsc ? "smallest market cap" : store.categoriesFilters == .marketCapDesc ? "top market cap" : store.categoriesFilters == .gainers ? "top 24hr gainers" : store.categoriesFilters == .losers ? "top 24hr losers" : store.categoriesFilters == .name ? "names A-Z" : "")", hasPadding: false, style: service.themeStyle) {
                         ForEach(store.tokenCategories.prefix(limitCells).indices, id: \.self) { index in
                             CategoryCell(service: service,
                                          data: store.tokenCategories[index],
@@ -56,13 +59,14 @@ struct CategoriesView: View {
                         }
                     }
                     .padding(.horizontal)
+                    .padding(.top, searchText.isEmpty ? 0 : 20)
 
                     RefreshFooter(refreshing: $showIndicator, action: {
                         limitCells += 25
                         fetchTokenCategories()
                     }, label: {
                         if noMore {
-                            FooterInformation()
+                            FooterInformation().padding(.vertical)
                         } else {
                             LoadingView()
                         }
@@ -73,20 +77,24 @@ struct CategoriesView: View {
             }.enableRefresh()
         })
         .navigationBarTitle("Categories", displayMode: .large)
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search categories...", suggestions: {
-            ForEach(store.tokenCategories.indices , id: \.self) { index in
-                CategoryCell(service: service,
-                             data: store.tokenCategories[index],
-                             index: index,
-                             isLast: false,
-                             style: service.themeStyle, action: {
-                    marketRouter.route(to: \.categoryDetailView, store.tokenCategories[index])
-
-                    #if os(iOS)
-                        HapticFeedback.rigidHapticFeedback()
-                    #endif
-                })
-            }
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search categories...")
+//        , suggestions: {
+//            ForEach(store.tokenCategories.indices , id: \.self) { index in
+//                CategoryCell(service: service,
+//                             data: store.tokenCategories[index],
+//                             index: index,
+//                             isLast: false,
+//                             style: service.themeStyle, action: {
+//                    marketRouter.route(to: \.categoryDetailView, store.tokenCategories[index])
+//
+//                    #if os(iOS)
+//                        HapticFeedback.rigidHapticFeedback()
+//                    #endif
+//                })
+//            }
+//        })
+        .onChange(of: searchText, perform: { text in
+            store.searchCategoriesText = text
         })
         .onAppear {
             DispatchQueue.main.async {
@@ -99,38 +107,38 @@ struct CategoriesView: View {
                     Section {
                         Button {
                             store.tokenCategories.removeAll()
-                            withAnimation(.easeInOut) { filters = .gainers }
+                            withAnimation(.easeInOut) { store.categoriesFilters = .gainers }
                             self.limitCells = 25
                             self.fetchTokenCategories()
                         } label: {
-                            Label("24hr Gainers", systemImage: filters == .gainers ? "checkmark" : "")
+                            Label("24hr Gainers", systemImage: store.categoriesFilters == .gainers ? "checkmark" : "")
                         }
 
                         Button {
                             store.tokenCategories.removeAll()
-                            withAnimation(.easeInOut) { filters = .losers }
+                            withAnimation(.easeInOut) { store.categoriesFilters = .losers }
                             self.limitCells = 25
                             self.fetchTokenCategories()
                         } label: {
-                            Label("24hr Losers", systemImage: filters == .losers ? "checkmark" : "")
+                            Label("24hr Losers", systemImage: store.categoriesFilters == .losers ? "checkmark" : "")
                         }
 
                         Button {
                             store.tokenCategories.removeAll()
-                            withAnimation(.easeInOut) { filters = .name }
+                            withAnimation(.easeInOut) { store.categoriesFilters = .name }
                             self.limitCells = 25
                             self.fetchTokenCategories()
                         } label: {
-                            Label("Name", systemImage: filters == .name ? "checkmark" : "")
+                            Label("Name", systemImage: store.categoriesFilters == .name ? "checkmark" : "")
                         }
 
                         Button {
                             store.tokenCategories.removeAll()
-                            withAnimation(.easeInOut) { filters = .marketCapDesc }
+                            withAnimation(.easeInOut) { store.categoriesFilters = .marketCapDesc }
                             self.limitCells = 25
                             self.fetchTokenCategories()
                         } label: {
-                            Label("Market Cap", systemImage: filters == .marketCapDesc ? "checkmark" : "")
+                            Label("Market Cap", systemImage: store.categoriesFilters == .marketCapDesc ? "checkmark" : "")
                         }
                     }
                 } label: {
@@ -151,7 +159,7 @@ struct CategoriesView: View {
     }
 
     private func fetchTokenCategories() {
-        store.fetchTokenCategories(filter: filters, limit: limitCells, skip: limitCells - 25, completion: {
+        store.fetchTokenCategories(filter: store.categoriesFilters, limit: limitCells, skip: limitCells - 25, completion: {
             print("done fetching categories: \(store.tokenCategories.count) ** \(limitCells)")
 
             withAnimation(.easeInOut) {

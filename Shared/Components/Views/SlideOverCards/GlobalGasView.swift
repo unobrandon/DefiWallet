@@ -43,12 +43,12 @@ struct GlobalGasView: View {
                     .padding(.bottom, 10)
 
                 HStack {
-                    Spacer()
                     NetworkDropdownButton(style: service.themeStyle, action: { network in
                         print("selected new network! \(network)")
                         currentTab = network
                     })
                     .padding(.top)
+                    Spacer()
                 }
             }.padding(.bottom)
 

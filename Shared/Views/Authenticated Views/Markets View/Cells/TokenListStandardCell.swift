@@ -56,13 +56,13 @@ struct TokenListStandardCell: View {
 
                         if let chart = data.priceGraph?.price, data.name?.count ?? 0 <= 15 {
                             // stride(from: 1, to: store.accountChart.count - 1, by: 4).map({ store.accountChart[$0].amount })
-                            LightChartView(data: stride(from: 0, to: chart.count, by: 8).map({ chart[$0] }),
+                            LightChartView(data: stride(from: 0, to: chart.count, by: 4).map({ chart[$0] }),
                                            type: .curved,
-                                           visualType: .outline(color: data.priceChangePercentage24H ?? 0.0 >= 0.0 ? .green : .red, lineWidth: 2.5),
+                                           visualType: .outline(color: data.priceChangePercentage24H ?? 0.0 >= 0.0 ? .green : .red, lineWidth: 1.8),
                                            offset: 0.2,
                                            currentValueLineType: .none)
-                                    .frame(width: 56, height: 32, alignment: .center)
-                                    .padding(.trailing, 5)
+                                    .frame(width: 50, height: 30, alignment: .center)
+                                    .padding(.trailing, 2.5)
                         }
 
                         VStack(alignment: .trailing, spacing: 2.5) {
@@ -91,6 +91,7 @@ struct TokenListStandardCell: View {
                             ProminentRoundedLabel(text: (data.priceChangePercentage24H ?? 0 >= 0 ? "+" : "") +
                                                   "\("".forTrailingZero(temp: data.priceChangePercentage24H?.truncate(places: 2) ?? 0.00))%",
                                                   color: data.priceChangePercentage24H ?? 0 >= 0 ? .green : .red,
+                                                  fontSize: 13.0,
                                                   style: service.themeStyle)
                                 .padding(.trailing, 12)
 

@@ -22,6 +22,30 @@ struct TopSectionView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 20) {
+                    ForEach(store.trendingCoins, id: \.self) { data in
+                        if let data = data.item {
+                            TrendingTokenListCell(service: service, data: data, style: service.themeStyle, action: { item in
+                                print("selected the item: \(item.name ?? "")")
+                            })
+                        }
+                    }
+                }.marquee(duration: 30, direction: .rightToLeft)
+            }
+            .overlay(content: {
+                HStack {
+                    let color = Color("baseBackground")
+                    LinearGradient(colors: [color, color.opacity(0.75), color.opacity(0.5), color.opacity(0.01)], startPoint: .leading, endPoint: .trailing)
+                        .frame(width: 25)
+
+                    Spacer()
+                    LinearGradient(colors: [color, color.opacity(0.75), color.opacity(0.5), color.opacity(0.01)].reversed(), startPoint: .leading, endPoint: .trailing)
+                        .frame(width: 25)
+                }
+            })
+            .padding(.bottom, 10)
+
             // MARK: Top Categories / Exchanges
             HStack(alignment: .center, spacing: 5) {
                 Button(action: {

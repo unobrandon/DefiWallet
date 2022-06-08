@@ -39,7 +39,7 @@ struct TopLosersView: View {
                 .padding(.vertical, 10)
                 .padding(.horizontal)
 
-                ListSection(style: service.themeStyle) {
+                ListSection(title: "By 24hr Market Cap Change", style: service.themeStyle) {
                     ForEach(store.coinsByLosers.prefix(limitCells), id: \.self) { item in
                         TokenListStandardCell(service: service, data: item,
                                               isLast: store.coinsByLosers.count < limitCells ? store.coinsByLosers.last == item ? true : false : false,

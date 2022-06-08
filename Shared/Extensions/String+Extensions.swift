@@ -63,35 +63,35 @@ extension String {
         return self.prefix(8) + "..." + self.suffix(8)
     }
 
-    func formatLargeNumber(_ number: Int, size: ControlSize? = .small) -> String {
+    func formatLargeNumber(_ number: Int, size: ControlSize? = .small, scale: Int? = 1) -> String {
         let num = abs(Double(number))
         let sign = (number < 0) ? "-" : ""
 
         switch num {
         case 1_000_000_000_000...:
             var formatted = num / 1_000_000_000_000
-            formatted = formatted.reduceScale(to: 1)
+            formatted = formatted.reduceScale(to: scale ?? 1)
             let amount = size == .small ? "t" : size == .large ? " trillion" : " tril"
 
             return "\(sign)\(formatted)\(amount)"
 
         case 1_000_000_000...:
             var formatted = num / 1_000_000_000
-            formatted = formatted.reduceScale(to: 1)
+            formatted = formatted.reduceScale(to: scale ?? 1)
             let amount = size == .small ? "b" : size == .large ? " billion" : " bil"
 
             return "\(sign)\(formatted)\(amount)"
 
         case 1_000_000...:
             var formatted = num / 1_000_000
-            formatted = formatted.reduceScale(to: 1)
+            formatted = formatted.reduceScale(to: scale ?? 1)
             let amount = size == .small ? "m" : size == .large ? " million" : " mil"
 
             return "\(sign)\(formatted)\(amount)"
 
         case 1_000...:
             var formatted = num / 1_000
-            formatted = formatted.reduceScale(to: 1)
+            formatted = formatted.reduceScale(to: scale ?? 1)
             let amount = size == .small ? "k" : size == .large ? " thousand" : " thsnd"
 
             return "\(sign)\(formatted)\(amount)"
@@ -104,35 +104,35 @@ extension String {
         }
     }
 
-    func formatLargeDoubleNumber(_ number: Double, size: ControlSize? = .small) -> String {
+    func formatLargeDoubleNumber(_ number: Double, size: ControlSize? = .small, scale: Int? = 1) -> String {
         let num = abs(number)
         let sign = (number < 0) ? "-" : ""
 
         switch num {
         case 1_000_000_000_000...:
             var formatted = num / 1_000_000_000_000
-            formatted = formatted.reduceScale(to: 1)
+            formatted = formatted.reduceScale(to: scale ?? 1)
             let amount = size == .small ? "t" : size == .large ? " trillion" : " tril"
 
             return "\(sign)\(formatted)\(amount)"
 
         case 1_000_000_000...:
             var formatted = num / 1_000_000_000
-            formatted = formatted.reduceScale(to: 1)
+            formatted = formatted.reduceScale(to: scale ?? 1)
             let amount = size == .small ? "b" : size == .large ? " billion" : " bil"
 
             return "\(sign)\(formatted)\(amount)"
 
         case 1_000_000...:
             var formatted = num / 1_000_000
-            formatted = formatted.reduceScale(to: 1)
+            formatted = formatted.reduceScale(to: scale ?? 1)
             let amount = size == .small ? "m" : size == .large ? " million" : " mil"
 
             return "\(sign)\(formatted)\(amount)"
 
         case 1_000...:
             var formatted = num / 1_000
-            formatted = formatted.reduceScale(to: 1)
+            formatted = formatted.reduceScale(to: scale ?? 1)
             let amount = size == .small ? "k" : size == .large ? " thousand" : " thsnd"
 
             return "\(sign)\(formatted)\(amount)"
