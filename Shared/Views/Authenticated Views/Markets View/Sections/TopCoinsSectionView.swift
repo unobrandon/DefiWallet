@@ -21,8 +21,6 @@ struct TopCoinsSectionView: View {
         self._isMarketCapLoading = isLoading
         self.service = service
         self.store = service.market
-
-        fetchTopCoins()
     }
 
     var body: some View {
@@ -84,6 +82,9 @@ struct TopCoinsSectionView: View {
             FooterInformation()
                 .padding(.vertical)
                 .padding(.bottom, 40)
+        }
+        .onAppear {
+            fetchTopCoins()
         }
     }
 

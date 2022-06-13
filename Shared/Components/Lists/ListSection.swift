@@ -29,6 +29,7 @@ struct ListSection<Content: View>: View {
                     .fontWeight(.regular)
                     .textCase(.uppercase)
                     .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
             }
 

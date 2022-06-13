@@ -16,14 +16,12 @@ extension WalletService {
 
         addressSocket.on(clientEvent: .connect) { _, _ in
             self.setSockets()
-            self.emitInitRequest()
-            self.emitChartRequest()
-            self.emitPortfolioRequest()
+            self.emitAccountRequest()
             self.networkStatus = .connected
         }
 
         addressSocket.on(clientEvent: .disconnect) { _, _ in
-            self.stopChartTimer()
+            self.stopAccountTimer()
             self.networkStatus = .offline
         }
 
@@ -37,9 +35,20 @@ extension WalletService {
         addressSocket.removeAllHandlers()
     }
 
-    func stopChartTimer() {
-        guard let timer = chartSocketTimer else { return }
+    func stopAccountTimer() {
+        guard let timer = accountSocketTimer else { return }
         timer.invalidate()
+    }
+
+    func startAccountTimer() {
+        self.accountSocketTimer = Timer.scheduledTimer(withTimeInterval: portfolioRefreshInterval, repeats: true) { _ in
+            self.emitAccountRequest()
+        }
+    }
+
+    func emitAccountRequest() {
+        self.addressSocket.emit("get", ["scope": ["portfolio", "charts", "staked-assets"],
+                                        "payload": ["address": self.currentUser.address, "currency": self.currentUser.currency, "charts_type": UserDefaults.standard.string(forKey: "chartType") ?? self.chartType]])
     }
 
     func setSockets() {
@@ -167,18 +176,6 @@ extension WalletService {
 
     }
 
-    func emitInitRequest() {
-        let topics = ["charts", "assets", "transactions", "polygon-assets", "staked-assets"]
-
-        addressSocket.emit("get", ["scope": topics, "payload": ["address": currentUser.address, "currency": currentUser.currency]])
-    }
-
-    func emitChartRequest() {
-        self.chartSocketTimer = Timer.scheduledTimer(withTimeInterval: chartRefreshInterval, repeats: true) { _ in
-            self.addressSocket.emit("get", ["scope": ["charts"], "payload": ["address": self.currentUser.address, "currency": self.currentUser.currency, "charts_type": UserDefaults.standard.string(forKey: "chartType") ?? self.chartType]])
-        }
-    }
-
     func emitSingleChartRequest(_ type: String? = "d") {
         self.chartType = type ?? "d"
         UserDefaults.standard.setValue(self.chartType, forKey: "chartType")
@@ -201,12 +198,6 @@ extension WalletService {
         }
 
         self.addressSocket.emit("get", ["scope": ["charts"], "payload": ["address": self.currentUser.address, "currency": self.currentUser.currency, "charts_type": type ?? chartType]])
-    }
-
-    func emitPortfolioRequest() {
-        self.chartSocketTimer = Timer.scheduledTimer(withTimeInterval: portfolioRefreshInterval, repeats: true) { _ in
-            self.addressSocket.emit("get", ["scope": ["portfolio"], "payload": ["address": self.currentUser.address, "currency": self.currentUser.currency]])
-        }
     }
 
 }

@@ -15,11 +15,10 @@ class WalletService: ObservableObject {
 
     @Published var accountPortfolio: AccountPortfolio?
     @Published var accountChart = [ChartValue]()
-    @Published var accountBalance = [AccountBalance]()
     @Published var completeBalance = [CompleteBalance]()
     @Published var accountNfts = [NftResult]()
     @Published var history = [HistoryData]()
-    @Published var wcProposal: WalletConnect.Session.Proposal?
+//    @Published var wcProposal: WalletConnect.Session.Proposal?
     @Published var wcActiveSessions = [WCSessionInfo]()
     @Published var networkStatus: NetworkStatus {
         didSet {
@@ -38,27 +37,26 @@ class WalletService: ObservableObject {
         }
     }
 
-    let relayer = Relayer(relayHost: "relay.walletconnect.com", projectId: Constants.walletConnectProjectId)
+//    let relayer = Relayer(relayHost: "relay.walletconnect.com", projectId: Constants.walletConnectProjectId)
 
     var currentUser: CurrentUser
     var socketManager: SocketManager
-    var walletConnectClient: WalletConnectClient
+//    var walletConnectClient: WalletConnectClient
     var addressSocket: SocketIOClient
 
-    let portfolioRefreshInterval: Double = 30
-    let chartRefreshInterval: Double = 60
+    let portfolioRefreshInterval: Double = 15
     var chartType: String = UserDefaults.standard.string(forKey: "chartType") ?? "d"
-    var chartSocketTimer: Timer?
+    var accountSocketTimer: Timer?
 
     init(currentUser: CurrentUser, socketManager: SocketManager, wcMetadata: AppMetadata) {
         self.networkStatus = .connecting
+        self.currentUser = currentUser
 
         self.socketManager = socketManager
-        self.currentUser = currentUser
         self.addressSocket = socketManager.socket(forNamespace: "/address")
 
-        self.walletConnectClient = WalletConnectClient(metadata: wcMetadata, relayer: relayer)
-        self.walletConnectClient.delegate = self
+//        self.walletConnectClient = WalletConnectClient(metadata: wcMetadata, relayer: relayer)
+//        self.walletConnectClient.delegate = self
 
         self.loadStoredData()
         self.connectAccountData()

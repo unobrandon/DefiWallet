@@ -14,7 +14,8 @@ extension MarketsService {
         assetSocket.connect()
 
         gasSocket.on(clientEvent: .connect) { _, _ in
-            self.fetchGasSocket()
+            self.setGasSocket()
+            self.emitGasRequest()
         }
 
         gasSocket.on(clientEvent: .disconnect) { _, _ in
@@ -26,7 +27,7 @@ extension MarketsService {
         }
     }
 
-    private func disconnectAccountSocket() {
+    private func disconnectGasSocket() {
         gasSocket.disconnect()
         gasSocket.removeAllHandlers()
     }
@@ -36,12 +37,22 @@ extension MarketsService {
         timer.invalidate()
     }
 
-    private func fetchGasSocket() {
-
+    func startGasTimer() {
         self.gasSocketTimer = Timer.scheduledTimer(withTimeInterval: gasRefreshInterval, repeats: true) { _ in
-            self.gasSocket.emit("get", ["scope": ["price"], "payload": ["body parameter": "value"]])
+            self.emitGasRequest()
         }
+    }
 
+    private func emitGasRequest() {
+        self.gasSocket.emit("get", ["scope": ["price"], "payload": ["body parameter": "value"]])
+    }
+
+    func emitFullInfoAssetSocket(_ assetCode: String, currency: String) {
+        assetSocket.emit("get", ["scope": ["full-info", "charts", "prices"], "payload": ["asset_code": assetCode, "currency": currency]])
+        print("sent the emit \(assetCode)")
+    }
+
+    private func setGasSocket() {
         gasSocket.on("received gas price") { data, _ in
             guard let array = data as? [[String: AnyObject]],
                   let firstDict = array.first,
@@ -63,11 +74,20 @@ extension MarketsService {
 
     private func fetchAssetsSocket() {
 
-        assetSocket.on("received assets categories") { data, _ in
+        assetSocket.on("received assets charts") { data, _ in
             DispatchQueue.main.async {
                 if let array = data as? [[String: AnyObject]], let firstDict = array.first {
                     let asset = firstDict["payload"] as? [String: AnyObject]
-                    print("received assets categories value is: \(String(describing: asset))")
+                    print("received assets charts value is: \(String(describing: asset))")
+                }
+            }
+        }
+
+        assetSocket.on("received assets prices") { data, _ in
+            DispatchQueue.main.async {
+                if let array = data as? [[String: AnyObject]], let firstDict = array.first {
+                    let asset = firstDict["payload"] as? [String: AnyObject]
+                    print("received assets prices value is: \(String(describing: asset))")
                 }
             }
         }
@@ -97,11 +117,6 @@ extension MarketsService {
             }
         }
 
-    }
-
-    func emitFullInfoAssetSocket(_ assetCode: String, currency: String) {
-        assetSocket.emit("get", ["scope": ["full-info"], "payload": ["asset_code": assetCode, "currency": currency]])
-        print("sent the emit \(assetCode)")
     }
 
 }

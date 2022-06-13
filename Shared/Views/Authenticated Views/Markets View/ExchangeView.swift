@@ -24,7 +24,6 @@ struct ExchangesView: View {
         self.store = service.market
 
         service.market.tokenCategories.removeAll()
-        self.fetchExchanges()
     }
 
     var body: some View {
@@ -81,6 +80,10 @@ struct ExchangesView: View {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()
             }
+
+            guard service.market.tokenCategories.isEmpty else { return }
+
+            self.fetchExchanges()
         }
     }
 

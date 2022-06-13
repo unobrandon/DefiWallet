@@ -27,7 +27,7 @@ struct PublicTreasuryView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("A curated list of public companies Bitcoin or Ethereum holdings.")
+                    Text("A curated list of public companies that are holding large amounts of Bitcoin or Ethereum.")
                         .fontTemplate(DefaultTemplate.bodySemibold)
                         .multilineTextAlignment(.leading)
 

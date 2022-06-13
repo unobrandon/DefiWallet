@@ -28,21 +28,21 @@ struct ScanQACameraView: View {
                 CBScanner(supportBarcode: .constant([.qr, .code128]), torchLightIsOn: self.$torchIsOn, scanInterval: .constant(0.5)) {
                     guard !self.foundLink else { return }
 
-                    store.connectDapp(uri: $0.value, completion: { success in
-                        if success, store.wcProposal?.proposer.name != nil {
-                            HapticFeedback.successHapticFeedback()
-                            self.foundLink = true
-                            self.sessionExpired = false
-                        } else {
-                            guard !success, !sessionExpired else {
-                                self.sessionExpired = true
-
-                                return
-                            }
-
-                            self.attempts += 1
-                        }
-                    })
+//                    store.connectDapp(uri: $0.value, completion: { success in
+//                        if success, store.wcProposal?.proposer.name != nil {
+//                            HapticFeedback.successHapticFeedback()
+//                            self.foundLink = true
+//                            self.sessionExpired = false
+//                        } else {
+//                            guard !success, !sessionExpired else {
+//                                self.sessionExpired = true
+//
+//                                return
+//                            }
+//
+//                            self.attempts += 1
+//                        }
+//                    })
 
                     print("have received incoming link!: \(String(describing: $0.value))")
                 }

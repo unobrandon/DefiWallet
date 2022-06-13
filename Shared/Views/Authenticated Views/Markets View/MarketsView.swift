@@ -29,10 +29,6 @@ struct MarketsView: View {
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.market
-
-        self.fetchGlobalData()
-        self.fetchGasTrends()
-        self.fetchTrending()
     }
 
     var body: some View {
@@ -58,6 +54,14 @@ struct MarketsView: View {
 //                AnyView(TrendingSectionView(isLoading: $isTrendingLoading, service: service)),
                 AnyView(TopCoinsSectionView(isLoading: $isMarketCapLoading, service: service))
             ]
+
+            store.startGasTimer()
+            self.fetchGlobalData()
+            self.fetchGasTrends()
+            self.fetchTrending()
+        }
+        .onDisappear {
+            store.stopGasTimer()
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

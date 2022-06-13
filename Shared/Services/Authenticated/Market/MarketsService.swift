@@ -19,6 +19,7 @@ class MarketsService: ObservableObject {
     @Published var globalMarketData: GlobalMarketData?
     @Published var tokenCategories = [TokenCategory]()
     @Published var exchanges = [ExchangeModel]()
+    @Published var exchangeDetails: ExchangeDetails?
     @Published var coinsByMarketCap = [TokenDetails]()
     @Published var coinsByGains = [TokenDetails]()
     @Published var coinsByLosers = [TokenDetails]()
@@ -64,116 +65,14 @@ class MarketsService: ObservableObject {
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .sink(receiveValue: { str in
                 guard !str.isEmpty else {
-                    self.fetchTokenCategories(filter: self.categoriesFilters, limit: 25, skip: 0, completion: {   })
+//                    self.fetchTokenCategories(filter: self.categoriesFilters, limit: 25, skip: 0, completion: {   })
                     return
                 }
 
-                self.searchTokenCategories(text: str, limit: 10, skip: 0)
+//                self.searchTokenCategories(text: str, limit: 10, skip: 0)
             })
 
         connectSockets()
-    }
-
-    func sortGas(_ network: Network) -> GasPrice? {
-        return self.gasPrices.first(where: { $0.network == network })
-    }
-
-    func fetchGasPrice(_ network: Network, completion: @escaping () -> Void) {
-
-        let url = Constants.backendBaseUrl + "gas" + "?network=\(network.rawValue)"
-
-        AF.request(url, method: .get).responseDecodable(of: GasPrice.self) { response in
-            switch response.result {
-            case .success(let gasPrice):
-                if let gasIndex = self.gasPrices.firstIndex(where: { $0.network == gasPrice.network }) {
-                    self.gasPrices[gasIndex] = gasPrice
-                } else {
-                    self.gasPrices.append(gasPrice)
-                }
-
-                print("done getting gas price for \(network): \(gasPrice)")
-
-                completion()
-            case .failure(let error):
-                print("error fetching gas price: \(error)")
-                completion()
-            }
-        }
-    }
-
-    func fetchGlobalMarketData(completion: @escaping () -> Void) {
-        if let storage = StorageService.shared.globalMarketData {
-            storage.async.object(forKey: "globalMarketData") { result in
-                switch result {
-                case .value(let global):
-                    print("got global market data locally")
-                    DispatchQueue.main.async {
-                        self.globalMarketData = global
-                    }
-                case .error(let error):
-                    print("error getting global market data locally: \(error.localizedDescription)")
-                }
-            }
-        }
-
-         let url = Constants.backendBaseUrl + "global"
-//        let url = "https://api.coingecko.com/api/v3/global"
-
-        AF.request(url, method: .get).responseDecodable(of: GlobalMarketData.self) { response in
-            switch response.result {
-            case .success(let global):
-                DispatchQueue.main.async {
-                    self.globalMarketData = global
-                }
-                print("done getting global market data: \(global)")
-
-                if let storage = StorageService.shared.globalMarketData {
-                    storage.async.setObject(global, forKey: "globalMarketData") { _ in }
-                }
-
-                completion()
-            case .failure(let error):
-                print("error fetching global market data: \(error)")
-                completion()
-            }
-        }
-    }
-
-    func fetchEthGasPriceTrends(completion: @escaping () -> Void) {
-        if let storage = StorageService.shared.gasPriceTrends {
-            storage.async.object(forKey: "gasPriceTrends") { result in
-                switch result {
-                case .value(let trends):
-                    print("got eth gas price trends")
-                    DispatchQueue.main.async {
-                        self.ethGasPriceTrends = trends
-                    }
-                case .error(let error):
-                    print("error getting eth gas price trends: \(error.localizedDescription)")
-                }
-            }
-        }
-
-        // let url = Constants.backendBaseUrl + "ethGasTrend"
-        let url = "https://api.zapper.fi/v1/gas-price/trend?network=ethereum&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241"
-
-        AF.request(url, method: .get).responseDecodable(of: EthGasPriceTrends.self) { response in
-            switch response.result {
-            case .success(let ethGasPriceTrends):
-                DispatchQueue.main.async {
-                    self.ethGasPriceTrends = ethGasPriceTrends
-                }
-
-                if let storage = StorageService.shared.gasPriceTrends {
-                    storage.async.setObject(ethGasPriceTrends, forKey: "gasPriceTrends") { _ in }
-                }
-
-                completion()
-            case .failure(let error):
-                print("error fetching gas price: \(error)")
-                completion()
-            }
-        }
     }
 
     func fetchTokenCategories(filter: FilterCategories, limit: Int, skip: Int, completion: @escaping () -> Void) {
@@ -186,11 +85,9 @@ class MarketsService: ObservableObject {
 
                     DispatchQueue.main.async {
                         self.tokenCategories = categories
-                        completion()
                     }
                 case .error(let error):
                     print("error getting tokenCategories: \(error.localizedDescription)")
-                    completion()
                 }
             }
         }
@@ -207,7 +104,7 @@ class MarketsService: ObservableObject {
                 print("got categories network!! \(categories.count)")
 
                 if let storage = StorageService.shared.tokenCategories {
-                    storage.async.setObject(categories, forKey: "tokenCategories") { _ in }
+                    storage.async.setObject(categories, forKey: "tokenCategories"  + filter.rawValue) { _ in }
                 }
 
                 completion()
@@ -276,6 +173,21 @@ class MarketsService: ObservableObject {
     func fetchTopExchanges(limit: Int, skip: Int, completion: @escaping () -> Void) {
         let url = Constants.backendBaseUrl + "topExchanges?skip=\(skip)" + "&limit=\(limit)"
 
+        if let storage = StorageService.shared.topExchanges {
+            storage.async.object(forKey: "topExchanges\(skip)") { result in
+                switch result {
+                case .value(let exchanges):
+                    print("got local exchanges!! \(exchanges)")
+
+                    DispatchQueue.main.async {
+                        self.exchanges += exchanges
+                    }
+                case .error(let error):
+                    print("error getting exchanges: \(error.localizedDescription)")
+                }
+            }
+        }
+
         AF.request(url, method: .get).responseDecodable(of: [ExchangeModel].self) { response in
             switch response.result {
             case .success(let exchanges):
@@ -291,22 +203,48 @@ class MarketsService: ObservableObject {
                 completion()
             case .failure(let error):
                 print("error getting api exchanges: \(error)")
-                if let storage = StorageService.shared.topExchanges {
-                    storage.async.object(forKey: "topExchanges\(skip)") { result in
-                        switch result {
-                        case .value(let exchanges):
-                            print("got local exchanges!! \(exchanges)")
+            }
+        }
+    }
 
-                            DispatchQueue.main.async {
-                                self.exchanges += exchanges
-                                completion()
-                            }
-                        case .error(let error):
-                            print("error getting exchanges: \(error.localizedDescription)")
-                            completion()
-                        }
+    func fetchExchangeDetails(_ exchangeId: String, chartDays: Int, page: Int) {
+        guard exchangeDetails?.tickers?.first?.market?.identifier != exchangeId else {
+            print("exchange details are the same no need to get new detail model")
+
+            return
+        }
+
+        exchangeDetails = nil
+
+        if let storage = StorageService.shared.exchangeDetails {
+            storage.async.object(forKey: "exchangeDetails\(exchangeId)\(page)") { result in
+                switch result {
+                case .value(let list):
+                    DispatchQueue.main.async {
+                        self.exchangeDetails = list
                     }
+                case .error(let error):
+                    print("error getting local exchangeDetail List: \(error.localizedDescription)")
                 }
+            }
+        }
+
+        let url = Constants.backendBaseUrl + "fetchExchangeDetails?exchangeId=\(exchangeId)&days=\(chartDays)&page=\(page)"
+
+        AF.request(url, method: .get).responseDecodable(of: ExchangeDetails.self) { response in
+            switch response.result {
+            case .success(let exchangeDetails):
+                DispatchQueue.main.async {
+                    self.exchangeDetails = exchangeDetails
+                }
+                print("got exchange details ticker count: \(String(describing: exchangeDetails.tickers?.count))")
+
+                if let storage = StorageService.shared.exchangeDetails {
+                    storage.async.setObject(exchangeDetails, forKey: "exchangeDetails\(exchangeId)\(page)") { _ in }
+                }
+
+            case .failure(let error):
+                print("error getting exchange details ticker list: \(error)")
             }
         }
     }
@@ -597,7 +535,9 @@ class MarketsService: ObservableObject {
                 switch result {
                 case .value(let list):
                     print("got local trending tokens")
-                    self.trendingCoins = list
+                    DispatchQueue.main.async {
+                        self.trendingCoins = list
+                    }
                 case .error(let error):
                     print("error getting local trending tokens: \(error.localizedDescription)")
                 }

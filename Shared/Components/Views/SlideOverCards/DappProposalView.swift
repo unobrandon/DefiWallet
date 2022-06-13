@@ -23,6 +23,7 @@ struct DappProposalView: View {
     }
 
     var body: some View {
+        /*
         if doneSuccess {
             CheckmarkView(size: 50, color: .green).padding(10)
 
@@ -110,6 +111,8 @@ struct DappProposalView: View {
                 }
             }
         }
+         */
+        Text("hello")
     }
 
 }

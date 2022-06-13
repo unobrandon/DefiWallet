@@ -23,7 +23,6 @@ struct TopLosersView: View {
         self.store = service.market
 
         store.coinsByLosers.removeAll()
-        self.fetchTopLosers()
     }
 
     var body: some View {
@@ -79,15 +78,19 @@ struct TopLosersView: View {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()
             }
+
+            self.fetchTopLosers()
         }
     }
 
     private func fetchTopLosers() {
+        guard store.coinsByLosers.isEmpty else { return }
+
         store.fetchTopLosers(currency: service.currentUser.currency, completion: {
-            print("done fetching top losers: \(store.exchanges.count) ** \(limitCells)")
+            print("done fetching top losers: \(store.coinsByLosers.count) ** \(limitCells)")
             withAnimation(.easeInOut) {
                 showIndicator = false
-                noMore = store.exchanges.count < limitCells - 25
+                noMore = store.coinsByLosers.count < limitCells - 25
             }
         })
     }

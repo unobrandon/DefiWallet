@@ -6,7 +6,7 @@
       "location" : "https://github.com/Alamofire/Alamofire.git",
       "state" : {
         "branch" : "master",
-        "revision" : "bbac4d93605034b1dcfb1fcb32bd8d8e38751783"
+        "revision" : "51d67100121d586c9d15ec0227de96442af4dd6d"
       }
     },
     {
@@ -68,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core",
       "state" : {
-        "revision" : "472d325a2e844fcb48c400db74e6b9646f92ca93",
-        "version" : "11.15.0"
+        "revision" : "fd48276f88f3d55dbdcdc9e8cbf32541811d5865",
+        "version" : "12.1.0"
       }
     },
     {
@@ -78,7 +78,7 @@
       "location" : "https://github.com/realm/realm-swift.git",
       "state" : {
         "branch" : "master",
-        "revision" : "3a7dee88f5731b11c746fe222141ad8d1597bb9e"
+        "revision" : "d02407e9cc22758aa8d20f0a5dd172598bdf9212"
       }
     },
     {
@@ -203,8 +203,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/skywinder/web3swift",
       "state" : {
-        "revision" : "53b3c3699660cbde8ab22673c819cbda62c739b7",
-        "version" : "2.6.4"
+        "revision" : "e269630c161df72b18ab10511382feb91d65d965",
+        "version" : "2.6.5"
       }
     },
     {

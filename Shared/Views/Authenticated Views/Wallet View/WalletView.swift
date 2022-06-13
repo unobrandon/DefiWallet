@@ -26,9 +26,6 @@ struct WalletView: View {
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
-
-        fetchNetworksBalances()
-        fetchHistory()
     }
 
     var body: some View {
@@ -71,6 +68,13 @@ struct WalletView: View {
             DispatchQueue.main.async {
                 Tool.showTabBar()
             }
+
+//          fetchNetworksBalances()
+//          fetchHistory()
+            store.emitAccountRequest()
+        }
+        .onDisappear {
+            store.stopAccountTimer()
         }
     }
 
@@ -84,7 +88,7 @@ struct WalletView: View {
                 store.setAccountCollectables(bal, completion: { result in
                     DispatchQueue.main.async {
                         store.accountNfts = result
-                        print("completed getting chain overview: \(store.accountBalance.count) && nfts: \(store.accountNfts.count)")
+                        print("completed getting chain overview: nfts: \(store.accountNfts.count)")
                     }
                 })
             } else {

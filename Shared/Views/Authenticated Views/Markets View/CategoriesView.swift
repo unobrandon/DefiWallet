@@ -27,7 +27,6 @@ struct CategoriesView: View {
         self.store = service.market
 
         service.market.tokenCategories.removeAll()
-        self.fetchTokenCategories()
     }
 
     var body: some View {
@@ -78,21 +77,6 @@ struct CategoriesView: View {
         })
         .navigationBarTitle("Categories", displayMode: .large)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search categories...")
-//        , suggestions: {
-//            ForEach(store.tokenCategories.indices , id: \.self) { index in
-//                CategoryCell(service: service,
-//                             data: store.tokenCategories[index],
-//                             index: index,
-//                             isLast: false,
-//                             style: service.themeStyle, action: {
-//                    marketRouter.route(to: \.categoryDetailView, store.tokenCategories[index])
-//
-//                    #if os(iOS)
-//                        HapticFeedback.rigidHapticFeedback()
-//                    #endif
-//                })
-//            }
-//        })
         .onChange(of: searchText, perform: { text in
             store.searchCategoriesText = text
         })
@@ -100,29 +84,15 @@ struct CategoriesView: View {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()
             }
+
+            guard service.market.tokenCategories.isEmpty else { return }
+
+            self.fetchTokenCategories()
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
                     Section {
-                        Button {
-                            store.tokenCategories.removeAll()
-                            withAnimation(.easeInOut) { store.categoriesFilters = .gainers }
-                            self.limitCells = 25
-                            self.fetchTokenCategories()
-                        } label: {
-                            Label("24hr Gainers", systemImage: store.categoriesFilters == .gainers ? "checkmark" : "")
-                        }
-
-                        Button {
-                            store.tokenCategories.removeAll()
-                            withAnimation(.easeInOut) { store.categoriesFilters = .losers }
-                            self.limitCells = 25
-                            self.fetchTokenCategories()
-                        } label: {
-                            Label("24hr Losers", systemImage: store.categoriesFilters == .losers ? "checkmark" : "")
-                        }
-
                         Button {
                             store.tokenCategories.removeAll()
                             withAnimation(.easeInOut) { store.categoriesFilters = .name }
@@ -139,6 +109,24 @@ struct CategoriesView: View {
                             self.fetchTokenCategories()
                         } label: {
                             Label("Market Cap", systemImage: store.categoriesFilters == .marketCapDesc ? "checkmark" : "")
+                        }
+
+                        Button {
+                            store.tokenCategories.removeAll()
+                            withAnimation(.easeInOut) { store.categoriesFilters = .gainers }
+                            self.limitCells = 25
+                            self.fetchTokenCategories()
+                        } label: {
+                            Label("24hr Gainers", systemImage: store.categoriesFilters == .gainers ? "checkmark" : "")
+                        }
+
+                        Button {
+                            store.tokenCategories.removeAll()
+                            withAnimation(.easeInOut) { store.categoriesFilters = .losers }
+                            self.limitCells = 25
+                            self.fetchTokenCategories()
+                        } label: {
+                            Label("24hr Losers", systemImage: store.categoriesFilters == .losers ? "checkmark" : "")
                         }
                     }
                 } label: {

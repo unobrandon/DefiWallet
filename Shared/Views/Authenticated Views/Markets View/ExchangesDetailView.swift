@@ -31,9 +31,14 @@ struct ExchangesDetailView: View {
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
+
+                CustomLineChart(data: store.exchangeDetails?.chartValue ?? [], profit: true)
+                    .frame(height: 120)
+                    .padding()
+
                 HStack {
                     VStack(alignment: .leading, spacing: 2.5) {
-                        Text("The \(exchange.name ?? "") market cap is 24 hour volume.")
+                        Text("The \(exchange.name ?? "") 24 hour trade volume is \("".formatLargeDoubleNumber(exchange.tradeVolume24HBtc ?? 0.00, size: .large, scale: 3)) BTC.")
                             .fontTemplate(DefaultTemplate.bodySemibold)
                             .multilineTextAlignment(.leading)
                             .padding(.bottom, exchange.exchangeModelDescription ?? "" != "" ? 0 : 20)
@@ -48,18 +53,23 @@ struct ExchangesDetailView: View {
                 .padding(.vertical, 10)
 
                 ListSection(title: "exchange tickers", style: service.themeStyle) {
-                    ForEach(store.tokenCategoryList.prefix(limitCells).indices, id: \.self) { index in
-                        TokenListStandardCell(service: service, data: store.tokenCategoryList[index],
-                                              isLast: false,
-                                              style: service.themeStyle, action: {
-                            marketRouter.route(to: \.tokenDetail, store.tokenCategoryList[index])
+                    ForEach(store.exchangeDetails?.tickers?.prefix(limitCells) ?? [], id: \.self) { ticker in
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(ticker.base ?? "").fontTemplate(DefaultTemplate.bodyMedium)
+                            Text(ticker.target ?? "").fontTemplate(DefaultTemplate.bodyMedium)
+                        }
 
-                            print("the item is: \(store.tokenCategoryList[index].name ?? "no name")")
-
-                            #if os(iOS)
-                                HapticFeedback.rigidHapticFeedback()
-                            #endif
-                        })
+//                        TokenListStandardCell(service: service, data: store.tokenCategoryList[index],
+//                                              isLast: false,
+//                                              style: service.themeStyle, action: {
+//                            marketRouter.route(to: \.tokenDetail, store.tokenCategoryList[index])
+//
+//                            print("the item is: \(store.tokenCategoryList[index].name ?? "no name")")
+//
+//                            #if os(iOS)
+//                                HapticFeedback.rigidHapticFeedback()
+//                            #endif
+//                        })
                     }
                 }
 
@@ -89,8 +99,9 @@ struct ExchangesDetailView: View {
                 Tool.hiddenTabBar()
             }
 
-//            guard let id = exchange.externalID else { return }
+            guard let id = exchange.externalID else { return }
 //            service.market.fetchCategoryDetails(categoryId: id, currency: service.currentUser.currency)
+            store.fetchExchangeDetails(id, chartDays: 7, page: 1)
         }
     }
 

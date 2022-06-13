@@ -16,7 +16,7 @@ struct ViewMoreText: View {
     private var isCaption: Bool = true
     private var lineLimit: Int? = 3
 
-    init(_ text: String, isCaption: Bool? = nil, lineLimit: Int? = 0) {
+    init(_ text: String, isCaption: Bool? = nil, lineLimit: Int? = 3) {
         self.text = text
         self.isCaption = isCaption ?? true
         self.lineLimit = lineLimit ?? 3
@@ -24,27 +24,34 @@ struct ViewMoreText: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(text)
-                .fontTemplate(isCaption ? DefaultTemplate.caption : DefaultTemplate.body)
-                .multilineTextAlignment(.leading)
-                .lineLimit(expanded ? nil : 3)
-                .background(
-                    Text(text).lineLimit(3)
-                        .background(GeometryReader { displayedGeometry in
-                            ZStack {
-                                Text(text)
-                                    .background(GeometryReader { fullGeometry in
-                                        Color.clear.onAppear {
-                                            self.truncated = fullGeometry.size.height > displayedGeometry.size.height
-                                        }
-                                    })
-                            }
-                            .frame(height: .greatestFiniteMagnitude)
-                        })
-                        .hidden() // Hide the background
-                )
-                .padding(.top, 5)
-                .padding(.bottom, truncated ? 2.5 : 5)
+            Button(action: {
+                withAnimation(.easeOut) {
+                    self.expanded.toggle()
+                }
+            }, label: {
+                Text(text)
+                    .fontTemplate(isCaption ? DefaultTemplate.caption : DefaultTemplate.body)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(expanded ? nil : lineLimit)
+                    .background(
+                        Text(text).lineLimit(lineLimit)
+                            .background(GeometryReader { displayedGeometry in
+                                ZStack {
+                                    Text(text)
+                                        .background(GeometryReader { fullGeometry in
+                                            Color.clear.onAppear {
+                                                self.truncated = fullGeometry.size.height > displayedGeometry.size.height
+                                            }
+                                        })
+                                }
+                                .frame(height: .greatestFiniteMagnitude)
+                            })
+                            .hidden() // Hide the background
+                    )
+                    .padding(.top, 5)
+                    .padding(.bottom, truncated ? 2 : 5)
+            })
+            .disabled(!truncated)
 
             if truncated { toggleButton.padding(.bottom, 5) }
         }

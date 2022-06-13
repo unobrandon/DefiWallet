@@ -9,6 +9,7 @@ import Foundation
 
 // MARK: - PublicTreasury
 struct PublicTreasury: Codable {
+
     let totalHoldings, totalValueUsd, marketCapDominance: Double?
     let companies: [Company]?
 
@@ -18,6 +19,7 @@ struct PublicTreasury: Codable {
         case marketCapDominance = "market_cap_dominance"
         case companies
     }
+
 }
 
 // MARK: - Company

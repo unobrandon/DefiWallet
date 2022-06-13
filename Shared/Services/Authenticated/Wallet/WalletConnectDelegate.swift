@@ -11,13 +11,41 @@ import web3swift
 
 extension WalletService: WalletConnectClientDelegate {
 
+    func connectDapp(uri: String, completion: @escaping (Bool) -> Void) {
+//        do {
+//            try self.walletConnectClient.pair(uri: uri)
+//
+//            DispatchQueue.main.async { completion(true) }
+//        } catch {
+//            DispatchQueue.main.async { completion(false) }
+//        }
+    }
+
+    func disconnectDapp(sessionTopic: String) {
+//        DispatchQueue.global(qos: .userInteractive).async {
+//            self.walletConnectClient.disconnect(topic: sessionTopic, reason: Reason(code: 0, message: "User disconnected from \(Constants.projectName)"))
+//
+//            self.reloadWcSessions()
+//            HapticFeedback.successHapticFeedback()
+//        }
+    }
+
+    func reloadWcSessions() {
+//        let settledSessions = walletConnectClient.getSettledSessions()
+//        let activeSessions = getActiveSessionItem(for: settledSessions)
+//
+//        DispatchQueue.main.async {
+//            self.wcActiveSessions = activeSessions
+//        }
+    }
+
     func didUpdate(sessionTopic: String, accounts: Set<Account>) {
         print("did update session topic: \(sessionTopic) \n and the accounts: \(accounts)")
     }
 
     func didReceive(sessionProposal: Session.Proposal) {
         print("received session proposal: \(sessionProposal)")
-        self.wcProposal = sessionProposal
+//        self.wcProposal = sessionProposal
     }
 
     func didReceive(sessionRequest: Request) {
@@ -75,34 +103,6 @@ extension WalletService: WalletConnectClientDelegate {
                 topic: session.topic,
                 chains: Array(session.permissions.blockchains),
                 methods: Array(session.permissions.methods), pendingRequests: [])
-        }
-    }
-
-    func reloadWcSessions() {
-        let settledSessions = walletConnectClient.getSettledSessions()
-        let activeSessions = getActiveSessionItem(for: settledSessions)
-
-        DispatchQueue.main.async {
-            self.wcActiveSessions = activeSessions
-        }
-    }
-
-    func connectDapp(uri: String, completion: @escaping (Bool) -> Void) {
-        do {
-            try self.walletConnectClient.pair(uri: uri)
-
-            DispatchQueue.main.async { completion(true) }
-        } catch {
-            DispatchQueue.main.async { completion(false) }
-        }
-    }
-
-    func disconnectDapp(sessionTopic: String) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.walletConnectClient.disconnect(topic: sessionTopic, reason: Reason(code: 0, message: "User disconnected from \(Constants.projectName)"))
-
-            self.reloadWcSessions()
-            HapticFeedback.successHapticFeedback()
         }
     }
 

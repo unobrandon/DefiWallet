@@ -108,6 +108,34 @@ struct TokenDetailView: View {
             }
 
             print("the token details are: \(String(describing: tokenDetail?.id ?? externalId))")
+            walletStore.completeBalance.forEach({ bal in
+                bal.tokenBalance?.forEach({ token in
+                    if tokenDetail?.allAddress?.ethereum == token.tokenAddress {
+                        print("HAVE THIS ETH TOKEN!!!")
+                    }
+
+                    if tokenDetail?.allAddress?.binance == token.tokenAddress {
+                        print("HAVE THIS BINANCE TOKEN!!!")
+                    }
+
+                    if tokenDetail?.allAddress?.avalanche == token.tokenAddress {
+                        print("HAVE THIS Avalanche TOKEN!!!")
+                    }
+
+                    if tokenDetail?.allAddress?.polygon_pos == token.tokenAddress {
+                        print("HAVE THIS polygon TOKEN!!!")
+                    }
+
+                    if tokenDetail?.allAddress?.fantom == token.tokenAddress {
+                        print("HAVE THIS fantom TOKEN!!!")
+                    }
+
+                    if tokenDetail?.allAddress?.solana == token.tokenAddress {
+                        print("HAVE THIS solana TOKEN!!!")
+                    }
+                })
+            })
+
             service.market.fetchTokenDetails(id: tokenDetail?.id ?? externalId, address: externalId, completion: { tokenDescriptor in
                 // Do your logic to get the token market data
                 if tokenDescriptor != nil {
