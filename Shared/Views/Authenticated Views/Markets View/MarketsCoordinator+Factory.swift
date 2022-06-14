@@ -34,6 +34,10 @@ extension MarketsCoordinator {
         ExchangesDetailView(exchange: exchange, service: services)
     }
 
+    @ViewBuilder func makeExchangeTickerSafari(url: URL) -> some View {
+        SafariView(url: url)
+    }
+
     @ViewBuilder func makeMarketCapRank() -> some View {
         MarketCapRankView(service: services)
     }

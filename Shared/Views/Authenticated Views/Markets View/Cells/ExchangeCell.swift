@@ -12,14 +12,12 @@ struct ExchangeCell: View {
     @ObservedObject private var service: AuthenticatedServices
 
     private let data: ExchangeModel
-    private let index: Int
     private var isLast: Bool
     private let style: AppStyle
     private let action: () -> Void
 
-    init(service: AuthenticatedServices, data: ExchangeModel, index: Int, isLast: Bool, style: AppStyle, action: @escaping () -> Void) {
+    init(service: AuthenticatedServices, data: ExchangeModel, isLast: Bool, style: AppStyle, action: @escaping () -> Void) {
         self.service = service
-        self.index = index
         self.data = data
         self.isLast = isLast
         self.style = style
@@ -68,16 +66,12 @@ struct ExchangeCell: View {
                 Rectangle().foregroundColor(DefaultTemplate.borderColor)
                     .frame(height: 1)
             }
-        }.simultaneousGesture(TapGesture().onEnded {
-            #if os(iOS)
-                HapticFeedback.rigidHapticFeedback()
-            #endif
-        })
+        }
     }
 
     private func actionTap() {
         #if os(iOS)
-            HapticFeedback.lightHapticFeedback()
+            HapticFeedback.rigidHapticFeedback()
         #endif
 
         action()

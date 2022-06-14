@@ -53,7 +53,7 @@ class MarketsService: ObservableObject {
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .sink(receiveValue: { str in
                 guard !str.isEmpty else {
-                    self.fetchTokenCategories(filter: self.categoriesFilters, limit: 25, skip: 0, completion: {   })
+//                    self.fetchTokenCategories(filter: self.categoriesFilters, limit: 25, skip: 0, completion: {   })
                     return
                 }
 

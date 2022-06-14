@@ -40,18 +40,13 @@ struct ExchangesView: View {
                     .padding(.vertical, 10)
                     .padding(.horizontal)
 
-                    ListSection(title: "Top Exchanges", hasPadding: false, style: service.themeStyle) {
-                        ForEach(store.exchanges.prefix(limitCells).indices, id: \.self) { index in
+                    ListSection(title: "By 24hr Trade Volume", hasPadding: false, style: service.themeStyle) {
+                        ForEach(store.exchanges.prefix(limitCells), id: \.self) { exchange in
                             ExchangeCell(service: service,
-                                         data: store.exchanges[index],
-                                         index: index,
+                                         data: exchange,
                                          isLast: false,
                                          style: service.themeStyle, action: {
-                                marketRouter.route(to: \.exchangeDetailView, store.exchanges[index])
-
-                                #if os(iOS)
-                                    HapticFeedback.rigidHapticFeedback()
-                                #endif
+                                marketRouter.route(to: \.exchangeDetailView, exchange)
                             })
                         }
                     }

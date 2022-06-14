@@ -67,27 +67,17 @@ class WalletService: ObservableObject {
     }
 
     func loadStoredData() {
-        if let storage = StorageService.shared.balanceStorage {
-            storage.async.object(forKey: "balanceList") { result in
-                switch result {
-                case .value(let balance):
-                    self.completeBalance = balance
-                case .error(let error):
-                    print("error getting local balance: \(error.localizedDescription)")
-                }
-            }
-        }
 
-        if let storage = StorageService.shared.historyStorage {
-            storage.async.object(forKey: "historyList") { result in
-                switch result {
-                case .value(let history):
-                    self.history = history
-                case .error(let error):
-                    print("error getting local history: \(error.localizedDescription)")
-                }
-            }
-        }
+//        if let storage = StorageService.shared.historyStorage {
+//            storage.async.object(forKey: "historyList") { result in
+//                switch result {
+//                case .value(let history):
+//                    self.history = history
+//                case .error(let error):
+//                    print("error getting local history: \(error.localizedDescription)")
+//                }
+//            }
+//        }
 
         if let storage = StorageService.shared.portfolioStorage {
             storage.async.object(forKey: "portfolio") { result in
@@ -121,19 +111,29 @@ class WalletService: ObservableObject {
     }
 
     func fetchAccountBalance(_ address: String, completion: @escaping ([CompleteBalance]?) -> Void) {
+
+        if let storage = StorageService.shared.balanceStorage {
+            storage.async.object(forKey: "balanceList") { result in
+                switch result {
+                case .value(let balance):
+                    self.completeBalance = balance
+                case .error(let error):
+                    print("error getting local balance: \(error.localizedDescription)")
+                }
+            }
+        }
+
         let url = Constants.backendBaseUrl + "accountBalance" + "?address=\(address)"
 
-        AF.request(url, method: .get).responseDecodable(of: AccountBalance.self) { [self] response in
+        AF.request(url, method: .get).responseDecodable(of: [CompleteBalance].self) { [self] response in
             switch response.result {
             case .success(let accountBalance):
-                if let balance = accountBalance.completeBalance {
-                    self.completeBalance = balance
-                    print("account balance is: \(self.completeBalance.count)")
+                self.completeBalance = accountBalance
+                print("account balance is: \(self.completeBalance.count)")
 
-                    if let storage = StorageService.shared.balanceStorage {
-                        storage.async.setObject(balance, forKey: "balanceList") { _ in
-                            completion(balance)
-                        }
+                if let storage = StorageService.shared.balanceStorage {
+                    storage.async.setObject(accountBalance, forKey: "balanceList") { _ in
+                        completion(self.completeBalance)
                     }
                 }
 
@@ -254,7 +254,7 @@ class WalletService: ObservableObject {
         // Good ETH address to test with: 0x660c6f9ff81018d5c13ab769148ec4db4940d01c
         let url = Constants.zapperBaseUrl + "transactions?address=\(address)&addresses%5B%5D=\(address)&" + Constants.zapperApiKey
 
-        AF.request(url, method: .get).responseDecodable(of: TransactionHistory.self, emptyResponseCodes: [200]) { response in
+        AF.request(url, method: .get).responseDecodable(of: ZapperTransactionHistory.self, emptyResponseCodes: [200]) { response in
             switch response.result {
             case .success(let history):
                 if let history = history.data {

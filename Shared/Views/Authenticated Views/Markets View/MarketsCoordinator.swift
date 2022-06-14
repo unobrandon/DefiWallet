@@ -21,6 +21,7 @@ final class MarketsCoordinator: NavigationCoordinatable {
     @Route(.push) var topGainers = makeTopGainers
     @Route(.push) var topLosers = makeTopLosers
     @Route(.push) var exchangeDetailView = makeExchangesDetail
+    @Route(.modal) var tickerSafariView = makeExchangeTickerSafari
     @Route(.push) var tokenDetail = makeTokenDetail
     @Route(.push) var publicTreasury = makePublicTreasury
     @Route(.push) var recentlyAdded = makeRecentlyAdded

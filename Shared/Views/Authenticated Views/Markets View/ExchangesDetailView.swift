@@ -46,6 +46,10 @@ struct ExchangesDetailView: View {
                         if let description = exchange.exchangeModelDescription, !description.isEmpty {
                             ViewMoreText(description)
                         }
+
+                        if let videoId = exchange.ytVideoId, !videoId.isEmpty {
+                            YTVideoView(videoId: videoId).frame(width: 160, height: 150, alignment: .center)
+                        }
                     }
                     Spacer()
                 }
@@ -54,22 +58,11 @@ struct ExchangesDetailView: View {
 
                 ListSection(title: "exchange tickers", style: service.themeStyle) {
                     ForEach(store.exchangeDetails?.tickers?.prefix(limitCells) ?? [], id: \.self) { ticker in
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text(ticker.base ?? "").fontTemplate(DefaultTemplate.bodyMedium)
-                            Text(ticker.target ?? "").fontTemplate(DefaultTemplate.bodyMedium)
-                        }
+                        ExchangePairCell(service: service, data: ticker, isLast: false, style: service.themeStyle, action: {
+                            guard let urlString = ticker.tradeURL, let url = URL(string: urlString) else { return }
 
-//                        TokenListStandardCell(service: service, data: store.tokenCategoryList[index],
-//                                              isLast: false,
-//                                              style: service.themeStyle, action: {
-//                            marketRouter.route(to: \.tokenDetail, store.tokenCategoryList[index])
-//
-//                            print("the item is: \(store.tokenCategoryList[index].name ?? "no name")")
-//
-//                            #if os(iOS)
-//                                HapticFeedback.rigidHapticFeedback()
-//                            #endif
-//                        })
+                            marketRouter.route(to: \.tickerSafariView, url)
+                        })
                     }
                 }
 

@@ -23,6 +23,7 @@ struct ExchangeModel: Codable, Hashable {
     let country: String?
     let url: String?
     let image: String?
+    let ytVideoId: String?
     let hasTradingIncentive: Bool?
     let trustScore, trustScoreRank: Int?
     let tradeVolume24HBtc, tradeVolume24HBtcNormalized: Double?
@@ -34,6 +35,7 @@ struct ExchangeModel: Codable, Hashable {
         case exchangeModelDescription = "description"
         case yearEstablished = "year_established"
         case country, url, image
+        case ytVideoId = "yt_video_id"
         case hasTradingIncentive = "has_trading_incentive"
         case trustScore = "trust_score"
         case trustScoreRank = "trust_score_rank"

@@ -99,7 +99,7 @@ struct NetworkVerticalCell: View {
 
     private func actionTap() {
         #if os(iOS)
-            HapticFeedback.lightHapticFeedback()
+            HapticFeedback.rigidHapticFeedback()
         #endif
 
         action()

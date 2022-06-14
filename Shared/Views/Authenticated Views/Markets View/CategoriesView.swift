@@ -33,13 +33,11 @@ struct CategoriesView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    if searchText.isEmpty {
-                        Text("This is a curated list of categories where tokens have shown relevant utility to the category.")
-                            .fontTemplate(DefaultTemplate.bodySemibold)
-                            .multilineTextAlignment(.leading)
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                    }
+                    Text("This is a curated list of categories where tokens have shown relevant utility to the category.")
+                        .fontTemplate(DefaultTemplate.bodySemibold)
+                        .multilineTextAlignment(.leading)
+                        .padding(.horizontal)
+                        .padding(.vertical, 10)
 
                     ListSection(title: !searchText.isEmpty ? "searched categories" : "\(store.categoriesFilters == .marketCapAsc ? "smallest market cap" : store.categoriesFilters == .marketCapDesc ? "top market cap" : store.categoriesFilters == .gainers ? "top 24hr gainers" : store.categoriesFilters == .losers ? "top 24hr losers" : store.categoriesFilters == .name ? "names A-Z" : "")", hasPadding: false, style: service.themeStyle) {
                         ForEach(store.tokenCategories.prefix(limitCells).indices, id: \.self) { index in
@@ -50,10 +48,6 @@ struct CategoriesView: View {
                                          style: service.themeStyle, action: {
                                 print("the id category going to: \(String(describing: store.tokenCategories[index]))")
                                 marketRouter.route(to: \.categoryDetailView, store.tokenCategories[index])
-
-                                #if os(iOS)
-                                    HapticFeedback.rigidHapticFeedback()
-                                #endif
                             })
                         }
                     }

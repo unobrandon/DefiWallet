@@ -1,5 +1,5 @@
 //
-//  TransactionHistory.swift
+//  ZapperTransactionHistory.swift
 //  DefiWallet
 //
 //  Created by Brandon Shaw on 2/15/22.
@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 // MARK: - TransactionHistory
-struct TransactionHistory: Codable {
+struct ZapperTransactionHistory: Codable {
     let error: [String]?
     let data: [HistoryData]?
 }

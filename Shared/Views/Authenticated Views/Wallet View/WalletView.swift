@@ -26,6 +26,8 @@ struct WalletView: View {
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
+
+        fetchNetworksBalances()
     }
 
     var body: some View {
@@ -69,8 +71,6 @@ struct WalletView: View {
                 Tool.showTabBar()
             }
 
-//          fetchNetworksBalances()
-//          fetchHistory()
             store.emitAccountRequest()
         }
         .onDisappear {
@@ -80,9 +80,11 @@ struct WalletView: View {
 
     private func fetchNetworksBalances() {
         isBalanceLoading = true
+        isHistoryLoading = true
 
         store.fetchAccountBalance(service.currentUser.address, completion: { completeBal in
             isBalanceLoading = false
+            isHistoryLoading = false
 
             if let bal = completeBal {
                 store.setAccountCollectables(bal, completion: { result in
@@ -94,14 +96,6 @@ struct WalletView: View {
             } else {
                 print("failed getting complete balance")
             }
-        })
-    }
-
-    private func fetchHistory() {
-        isHistoryLoading = true
-
-        store.fetchHistory(store.currentUser.wallet.address, completion: {
-            isHistoryLoading = false
         })
     }
 

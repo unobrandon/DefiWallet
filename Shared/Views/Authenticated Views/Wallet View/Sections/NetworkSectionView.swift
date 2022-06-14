@@ -39,12 +39,8 @@ struct NetworkSectionView: View {
     //                    NetworkCell(network: network, service: service)
                         NetworkVerticalCell(network: network, service: service, action: {
                             walletRouter.route(to: \.networkDetail, network)
-
-                            #if os(iOS)
-                                HapticFeedback.rigidHapticFeedback()
-                            #endif
                         })
-                        .frame(width: 160, height: 150)
+                        .frame(width: 150, height: 190)
                         .padding(.leading, store.completeBalance.first == network ? 20 : 0)
                     }
                     .padding(.bottom, service.themeStyle == .shadow ? 20 : 0)

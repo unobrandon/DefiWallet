@@ -90,16 +90,12 @@ struct CategoryCell: View {
                 Rectangle().foregroundColor(DefaultTemplate.borderColor)
                     .frame(height: 1)
             }
-        }.simultaneousGesture(TapGesture().onEnded {
-            #if os(iOS)
-                HapticFeedback.rigidHapticFeedback()
-            #endif
-        })
+        }
     }
 
     private func actionTap() {
         #if os(iOS)
-            HapticFeedback.lightHapticFeedback()
+            HapticFeedback.rigidHapticFeedback()
         #endif
 
         action()
