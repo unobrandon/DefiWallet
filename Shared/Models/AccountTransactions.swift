@@ -36,8 +36,9 @@ struct TransactionResult: Codable, Hashable {
         hasher.combine(blockHash)
     }
 
-    let hash, nonce, transactionIndex: String?
-    let fromAddress: String?
+    let hash, nonce: String?
+    let fromAddress, network: String?
+    let direction: TransactionDirection?
     let toAddress, value, gas, gasPrice: String?
     let input, receiptCumulativeGasUsed, receiptGasUsed: String?
     let receiptStatus, blockTimestamp, blockNumber, blockHash: String?
@@ -45,12 +46,11 @@ struct TransactionResult: Codable, Hashable {
 
     enum CodingKeys: String, CodingKey {
         case hash, nonce
-        case transactionIndex = "transaction_index"
         case fromAddress = "from_address"
         case toAddress = "to_address"
         case value, gas
         case gasPrice = "gas_price"
-        case input
+        case input, network, direction
         case receiptCumulativeGasUsed = "receipt_cumulative_gas_used"
         case receiptGasUsed = "receipt_gas_used"
         case receiptStatus = "receipt_status"
@@ -59,5 +59,13 @@ struct TransactionResult: Codable, Hashable {
         case blockHash = "block_hash"
         case transferIndex = "transfer_index"
     }
+
+}
+
+enum TransactionDirection: String, Codable {
+
+    case sent
+    case received
+    case swap
 
 }

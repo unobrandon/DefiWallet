@@ -68,16 +68,16 @@ class WalletService: ObservableObject {
 
     func loadStoredData() {
 
-//        if let storage = StorageService.shared.historyStorage {
-//            storage.async.object(forKey: "historyList") { result in
-//                switch result {
-//                case .value(let history):
-//                    self.history = history
-//                case .error(let error):
-//                    print("error getting local history: \(error.localizedDescription)")
-//                }
-//            }
-//        }
+        if let storage = StorageService.shared.historyStorage {
+            storage.async.object(forKey: "historyList") { result in
+                switch result {
+                case .value(let history):
+                    self.history = history
+                case .error(let error):
+                    print("error getting local history: \(error.localizedDescription)")
+                }
+            }
+        }
 
         if let storage = StorageService.shared.portfolioStorage {
             storage.async.object(forKey: "portfolio") { result in
@@ -295,6 +295,17 @@ class WalletService: ObservableObject {
         }
     }
 
+    func transactionDirectionImage(_ direction: TransactionDirection) -> String {
+        switch direction {
+        case .received:
+            return "arrow.down"
+        case .sent:
+            return "paperplane.fill"
+        case .swap:
+            return "arrow.left.arrow.right"
+        }
+    }
+
     func transactionColor(_ direction: Direction) -> Color {
         switch direction {
         case .incoming:
@@ -302,6 +313,17 @@ class WalletService: ObservableObject {
         case .outgoing:
             return Color.red
         case .exchange:
+            return Color.blue
+        }
+    }
+
+    func transactionDirectionColor(_ direction: TransactionDirection) -> Color {
+        switch direction {
+        case .received:
+            return Color.green
+        case .sent:
+            return Color.red
+        case .swap:
             return Color.blue
         }
     }
@@ -318,6 +340,22 @@ class WalletService: ObservableObject {
             return Image("avalanche_logo")
         case .fantom:
             return Image("fantom_logo")
+        }
+    }
+
+    func getNetworkTransactImage(_ network: String) -> Image {
+        if network == "eth" {
+            return Image("eth_logo")
+        } else if network == "polygon" {
+            return Image("polygon_logo")
+        } else if network == "bsc" {
+            return Image("binance_logo")
+        } else if network == "avalanche" {
+            return Image("avalanche_logo")
+        } else if network == "fantom" {
+            return Image("fantom_logo")
+        } else {
+            return Image("")
         }
     }
 

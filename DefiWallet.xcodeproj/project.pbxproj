@@ -467,6 +467,8 @@
 		05D1098727C3537D008DCC66 /* ProdPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098527C3537C008DCC66 /* ProdPrivateKeys.xcconfig */; };
 		05D1098927C36EFF008DCC66 /* DevPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */; };
 		05D1098A27C36EFF008DCC66 /* DevPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */; };
+		05D40F882858600A002BDA0F /* TransactionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F872858600A002BDA0F /* TransactionListCell.swift */; };
+		05D40F892858600A002BDA0F /* TransactionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F872858600A002BDA0F /* TransactionListCell.swift */; };
 		05E5F84227D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */; };
 		05E5F84327D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */; };
 		05E5F84527D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */; };
@@ -817,6 +819,7 @@
 		05D1098227C31511008DCC66 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		05D1098527C3537C008DCC66 /* ProdPrivateKeys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ProdPrivateKeys.xcconfig; sourceTree = "<group>"; };
 		05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DevPrivateKeys.xcconfig; sourceTree = "<group>"; };
+		05D40F872858600A002BDA0F /* TransactionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListCell.swift; sourceTree = "<group>"; };
 		05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRoundedInteractiveStyle.swift; sourceTree = "<group>"; };
 		05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewInteractiveBordered.swift; sourceTree = "<group>"; };
 		05E5F84827D321920090290C /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
@@ -1312,6 +1315,7 @@
 				05583CE527EC10DF00640E75 /* NetworkCell.swift */,
 				05583CE827ED305F00640E75 /* NetworkVerticalCell.swift */,
 				0566AEC427E8399B006B645F /* HistoryListCell.swift */,
+				05D40F872858600A002BDA0F /* TransactionListCell.swift */,
 				05C884D727FD47EB005E2455 /* TokenBalanceCell.swift */,
 				05CA873728053CDD006FACE0 /* CollectableImageCell.swift */,
 				05CA873A28055F3C006FACE0 /* CollectableSeeAllCell.swift */,
@@ -2296,6 +2300,7 @@
 				0566AEC227E83792006B645F /* HistorySectionView.swift in Sources */,
 				0578071527B8F61F0008051B /* ProfileView.swift in Sources */,
 				05583CD127E9C19500640E75 /* GridPreferencesModifier.swift in Sources */,
+				05D40F882858600A002BDA0F /* TransactionListCell.swift in Sources */,
 				05E858DB27CB27AF00B85195 /* NotificationViewExtension.swift in Sources */,
 				0578073D27BB5B1A0008051B /* InvestCoordinator.swift in Sources */,
 				054DC824283D761100A1FDA6 /* StackedStatisticLabel.swift in Sources */,
@@ -2498,6 +2503,7 @@
 				0578071D27B90A050008051B /* Constants.swift in Sources */,
 				0507BB1F28502C0300D1A965 /* PublicTreasury.swift in Sources */,
 				05E858C827CB238800B85195 /* Character+Extensions.swift in Sources */,
+				05D40F892858600A002BDA0F /* TransactionListCell.swift in Sources */,
 				053C7D3C27CD903B0081DCEA /* MovingNumbersView.swift in Sources */,
 				0593023127E061BC006DDFFF /* TransactButtonView.swift in Sources */,
 				0531141B27E7E73700368657 /* ScanQACameraView.swift in Sources */,
