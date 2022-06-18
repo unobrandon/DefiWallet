@@ -43,19 +43,22 @@ struct SendToDetailView: View {
                         .fontTemplate(DefaultTemplate.captionError)
                         .padding(.bottom)
                 }
-
-                RoundedInteractiveButton("Approve", isDisabled: $disablePrimaryAction, style: .primary, systemImage: "paperplane.fill", action: {
-                    print("send token to address:")
-                })
-                .padding([.horizontal, .bottom])
             }
         })
-        .navigationBarTitle("To: " + sendAddress.formatAddress(), displayMode: .inline)
+        .navigationBarTitle("to: " + sendAddress.formatAddress(), displayMode: .inline)
         .onAppear {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()
             }
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .bottomBar) {
+                RoundedInteractiveButton("Approve", isDisabled: $disablePrimaryAction, style: .primary, systemImage: "paperplane.fill", action: {
+                    print("send token to address:")
+                })
+            }
+        }
+
     }
 
 }

@@ -27,7 +27,7 @@ struct CollectableImageCell: View {
 
     var body: some View {
         Button(action: { action() }, label: {
-            VStack {
+            VStack(alignment: .leading, spacing: 5) {
                 if let uriResponce = uriResponce {
                     if uriResponce.isSVG() {
                         ZStack {
@@ -58,21 +58,38 @@ struct CollectableImageCell: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
                     }
                 } else {
-                    WebImage(url: URL(string: data.metadata?.imagePreview ?? data.metadata?.imageUrl ?? data.metadata?.image ?? ""))
-                        .resizable()
-                        .placeholder { Rectangle() }
-                        .indicator(.activity)
-                        .scaledToFill()
-                        .aspectRatio(contentMode: .fill)
-                        .transition(.fade(duration: 0.35))
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
-                }
+                    ZStack(alignment: .topLeading) {
+                        ZStack(alignment: .bottomLeading) {
+                            WebImage(url: URL(string: data.metadata?.imagePreview ?? data.metadata?.imageUrl ?? data.metadata?.image ?? ""))
+                                .resizable()
+                                .placeholder { Rectangle() }
+                                .indicator(.activity)
+                                .scaledToFill()
+                                .aspectRatio(contentMode: .fill)
+                                .transition(.fade(duration: 0.35))
+                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
 
-                Text(data.metadata?.name ?? data.name ?? "")
-                    .fontTemplate(DefaultTemplate.body)
+                            Rectangle().fill(AppGradients.backgroundFadeLight)
+                                .frame(height: 40)
+                                .frame(maxWidth: .infinity, alignment: .center)
+
+                            Text(data.metadata?.name ?? data.name ?? "")
+                                .fontTemplate(DefaultTemplate.captionPrimary_semibold)
+                                .lineLimit(3)
+                                .padding(5)
+                        }
+
+                        service.wallet.getNetworkTransactImage(data.network ?? "")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 18, height: 18, alignment: .center)
+                            .clipShape(Circle())
+                            .padding(5)
+                    }.padding(.bottom, 5)
+                }
             }
         }).buttonStyle(ClickInteractiveStyle(0.98))
-        .onAppear {
+//        .onAppear {
 //            if let metadata = data.metadata {
 //                self.service.wallet.decodeNftMetadata(metadata, completion: { responce in
 //                    self.uriResponce = responce
@@ -84,7 +101,7 @@ struct CollectableImageCell: View {
 //                    print("the web nft uri is: \(uriResponce)")
 //                })
 //            }
-        }
+//        }
     }
 
 }

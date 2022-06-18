@@ -18,22 +18,21 @@ struct CollectableSeeAllCell: View {
     }
 
     var body: some View {
-        GeometryReader { geo in
-            Button(action: { action() }, label: {
-                ListSection(hasPadding: false, style: style) {
-                    VStack(alignment: .center, spacing: 10) {
-                        Image(systemName: "arrow.right.circle")
-                            .resizable()
-                            .font(Font.title.weight(.regular))
-                            .scaledToFit()
-                            .frame(width: 24, height: 24, alignment: .center)
-                            .foregroundColor(.secondary)
+        Button(action: { action() }, label: {
+            ListSection(hasPadding: false, style: style) {
+                VStack(alignment: .center, spacing: 10) {
+                    Image(systemName: "arrow.right.circle")
+                        .resizable()
+                        .font(Font.title.weight(.regular))
+                        .scaledToFit()
+                        .frame(width: 24, height: 24, alignment: .center)
+                        .foregroundColor(.secondary)
 
-                        Text("see all").fontTemplate(DefaultTemplate.bodySemibold_nunito_secondary)
-                    }.frame(maxWidth: .infinity, maxHeight: geo.size.width, alignment: .center)
-                }
-            }).buttonStyle(ClickInteractiveStyle(0.99))
-        }
+                    Text("see all").fontTemplate(DefaultTemplate.bodySemibold_nunito_secondary)
+                }.frame(maxWidth: .infinity, alignment: .center)
+                .padding(.vertical)
+            }
+        }).buttonStyle(ClickInteractiveStyle(0.99))
     }
 
 }

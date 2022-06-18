@@ -32,7 +32,7 @@ struct Nfts: Codable {
 }
 
 // MARK: - NftResult
-struct NftResult: Codable, Hashable {
+struct NftResult: Identifiable, Codable, Hashable {
 
     static func == (lhs: NftResult, rhs: NftResult) -> Bool {
         return lhs.tokenAddress == rhs.tokenAddress && lhs.tokenID == rhs.tokenID
@@ -43,6 +43,7 @@ struct NftResult: Codable, Hashable {
         hasher.combine(tokenID)
     }
 
+    var id = UUID().uuidString
     let tokenAddress, tokenID, blockNumberMinted, ownerOf: String?
     let blockNumber, amount, contractType, name: String?
     let symbol, network: String?

@@ -473,6 +473,10 @@
 		05D40F8C285CFFB2002BDA0F /* InvestmentsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F8A285CFFB2002BDA0F /* InvestmentsSectionView.swift */; };
 		05D40F8E285D0173002BDA0F /* WalletService+CompoundSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F8D285D0173002BDA0F /* WalletService+CompoundSocket.swift */; };
 		05D40F8F285D0173002BDA0F /* WalletService+CompoundSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F8D285D0173002BDA0F /* WalletService+CompoundSocket.swift */; };
+		05D40F91285D9A98002BDA0F /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F90285D9A98002BDA0F /* StaggeredGrid.swift */; };
+		05D40F92285D9A98002BDA0F /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F90285D9A98002BDA0F /* StaggeredGrid.swift */; };
+		05D40F94285DA6E7002BDA0F /* SwapTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F93285DA6E7002BDA0F /* SwapTokenView.swift */; };
+		05D40F95285DA6E7002BDA0F /* SwapTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F93285DA6E7002BDA0F /* SwapTokenView.swift */; };
 		05E5F84227D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */; };
 		05E5F84327D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */; };
 		05E5F84527D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */; };
@@ -826,6 +830,8 @@
 		05D40F872858600A002BDA0F /* TransactionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListCell.swift; sourceTree = "<group>"; };
 		05D40F8A285CFFB2002BDA0F /* InvestmentsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsSectionView.swift; sourceTree = "<group>"; };
 		05D40F8D285D0173002BDA0F /* WalletService+CompoundSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletService+CompoundSocket.swift"; sourceTree = "<group>"; };
+		05D40F90285D9A98002BDA0F /* StaggeredGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredGrid.swift; sourceTree = "<group>"; };
+		05D40F93285DA6E7002BDA0F /* SwapTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapTokenView.swift; sourceTree = "<group>"; };
 		05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRoundedInteractiveStyle.swift; sourceTree = "<group>"; };
 		05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewInteractiveBordered.swift; sourceTree = "<group>"; };
 		05E5F84827D321920090290C /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
@@ -1056,6 +1062,7 @@
 				0500E4D9281F6C41001A4FAB /* ACarousel */,
 				05002E66282B70BD0010AF39 /* Refresh */,
 				053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */,
+				05D40F90285D9A98002BDA0F /* StaggeredGrid.swift */,
 				05583C9827E965FF00640E75 /* SafariView.swift */,
 				0500307128581079000C5DFF /* YTVideoView.swift */,
 				05CA873428053243006FACE0 /* SVGWebView.swift */,
@@ -1472,6 +1479,7 @@
 				0578070B27B8F1370008051B /* WalletView.swift */,
 				0566AECB27E8660C006B645F /* HistoryView.swift */,
 				05394150281A41B900CFAA53 /* SendToView.swift */,
+				05D40F93285DA6E7002BDA0F /* SwapTokenView.swift */,
 				0539414F281A419E00CFAA53 /* Detail Views */,
 			);
 			path = "Wallet View";
@@ -2132,6 +2140,7 @@
 				05583CEC27ED5CA100640E75 /* CoinByMarketCap.swift in Sources */,
 				058C786527D07E3700EB91CA /* PrivateKeysView.swift in Sources */,
 				05002E72282B71DA0010AF39 /* List+Refresh.swift in Sources */,
+				05D40F94285DA6E7002BDA0F /* SwapTokenView.swift in Sources */,
 				051BCF5527BC970A0056E047 /* ZapperTransactionHistory.swift in Sources */,
 				055FFDED2856D10500D8EA06 /* MarketsService+GlobalGas.swift in Sources */,
 				0593026327E19D27006DDFFF /* Math.swift in Sources */,
@@ -2173,6 +2182,7 @@
 				0593022D27E03F45006DDFFF /* UserAvatar.swift in Sources */,
 				057806BE27B8432B0008051B /* Constants.swift in Sources */,
 				05E858C727CB238800B85195 /* Character+Extensions.swift in Sources */,
+				05D40F91285D9A98002BDA0F /* StaggeredGrid.swift in Sources */,
 				05F8EE212800042B003BBC23 /* CategoriesView.swift in Sources */,
 				0593022527E02D63006DDFFF /* BorderedButton.swift in Sources */,
 				053113F527E6CF0800368657 /* CameraPreview.swift in Sources */,
@@ -2441,6 +2451,7 @@
 				0500E4E2281F6CDA001A4FAB /* ACarouselAutoScroll.swift in Sources */,
 				05BDC5BD280D116D00851E16 /* GlobalGasView.swift in Sources */,
 				0566AECD27E8660C006B645F /* HistoryView.swift in Sources */,
+				05D40F92285D9A98002BDA0F /* StaggeredGrid.swift in Sources */,
 				05583C9A27E965FF00640E75 /* SafariView.swift in Sources */,
 				05A6AABF27F980A800824C76 /* MarketCapRankView.swift in Sources */,
 				0593025B27E19C98006DDFFF /* LineChart.swift in Sources */,
@@ -2499,6 +2510,7 @@
 				05CA873C28055F3C006FACE0 /* CollectableSeeAllCell.swift in Sources */,
 				0578074D27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
 				05E8590027CC08F200B85195 /* RoundedInteractiveButton.swift in Sources */,
+				05D40F95285DA6E7002BDA0F /* SwapTokenView.swift in Sources */,
 				05D1095427C08B3E008DCC66 /* DiscoverView.swift in Sources */,
 				05C10E042845B1310050D2D5 /* Int+Extensions.swift in Sources */,
 				05CA87182802A48E006FACE0 /* NftUriResponce.swift in Sources */,

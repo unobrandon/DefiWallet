@@ -29,6 +29,11 @@ struct AppGradients {
                                                                  .init(color: Color("baseBackground"), location: 1)]),
                                                startPoint: .top, endPoint: .bottom)
 
+    static let backgroundFadeLight = LinearGradient(gradient:
+                                                Gradient(stops: [.init(color: Color("baseBackground").opacity(0), location: 0),
+                                                                 .init(color: Color("baseBackground").opacity(0.8), location: 1)]),
+                                               startPoint: .top, endPoint: .bottom)
+
     static let backgroundFadeReversed = LinearGradient(gradient:
                                                 Gradient(stops: [.init(color: Color("baseBackground").opacity(0), location: 0),
                                                                  .init(color: Color("baseBackground"), location: 1)]),
