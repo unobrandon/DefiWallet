@@ -87,13 +87,13 @@ struct NetworkDropdownButton: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 15, height: 8)
                     .foregroundColor(Color.secondary)
-                    .padding(.leading)
+                    .padding(.leading, 10)
             }
             .padding(.horizontal, 10)
-            .background(RoundedRectangle(cornerRadius: 10, style: .circular)
-                            .strokeBorder(DefaultTemplate.borderColor.opacity(style == .border ? 1.0 : 0.0), lineWidth: 1.5).frame(height: 40).background(style == .shadow ? Color("baseButton") : Color.clear).cornerRadius(10))
-            .shadow(color: Color.black.opacity(style == .shadow ? 0.175 : 0.0),
-                    radius: 6)
+//            .background(RoundedRectangle(cornerRadius: 10, style: .circular)
+//                            .strokeBorder(DefaultTemplate.borderColor.opacity(style == .border ? 1.0 : 0.0), lineWidth: 1.5).frame(height: 40).background(style == .shadow ? Color("baseButton") : Color.clear).cornerRadius(10))
+//            .shadow(color: Color.black.opacity(style == .shadow ? 0.175 : 0.0),
+//                    radius: 6)
         }
         .buttonStyle(ClickInteractiveStyle(0.95))
     }

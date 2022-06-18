@@ -40,10 +40,13 @@ struct WalletView: View {
                     CollectablesSectionView(isLoading: self.$isBalanceLoading, service: service)
                     HistorySectionView(isLoading: self.$isHistoryLoading, service: service, network: nil)
                 }
+
+                FooterInformation()
+                    .padding(.vertical)
+                    .padding(.bottom, 40)
             }
         })
         .navigationBarTitle("", displayMode: .inline)
-        .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 WalletNavigationView(service: service).offset(y: -2.5)
@@ -82,20 +85,9 @@ struct WalletView: View {
         isBalanceLoading = true
         isHistoryLoading = true
 
-        store.fetchAccountBalance(service.currentUser.address, completion: { completeBal in
+        store.fetchAccountBalance(service.currentUser.address, completion: { _ in
             isBalanceLoading = false
             isHistoryLoading = false
-
-            if let bal = completeBal {
-                store.setAccountCollectables(bal, completion: { result in
-                    DispatchQueue.main.async {
-                        store.accountNfts = result
-                        print("completed getting chain overview: nfts: \(store.accountNfts.count)")
-                    }
-                })
-            } else {
-                print("failed getting complete balance")
-            }
         })
     }
 

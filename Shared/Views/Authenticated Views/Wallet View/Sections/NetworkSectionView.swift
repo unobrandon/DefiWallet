@@ -40,11 +40,10 @@ struct NetworkSectionView: View {
                         NetworkVerticalCell(network: network, service: service, action: {
                             walletRouter.route(to: \.networkDetail, network)
                         })
-                        .frame(width: 150, height: 190)
-                        .padding(.leading, store.completeBalance.first == network ? 20 : 0)
+                        .frame(width: 140)
                     }
-                    .padding(.bottom, service.themeStyle == .shadow ? 20 : 0)
-                }
+                }.padding(.horizontal)
+                .padding(.bottom, service.themeStyle == .shadow ? 20 : 0)
             }
         }
 //        .gridStyle(StaggeredGridStyle(MobileConstants.deviceType == .phone ? .horizontal : .vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 5))

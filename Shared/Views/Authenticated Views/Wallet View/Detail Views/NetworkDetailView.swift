@@ -14,13 +14,13 @@ struct NetworkDetailView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
     private let balance: CompleteBalance
-    private let network: Network?
+    private let network: String?
 
     @State private var showSheet = false
     @State var isHistoryLoading = false
     @State private var gridViews: [AnyView] = []
 
-    init(data: CompleteBalance, network: Network? = nil, service: AuthenticatedServices) {
+    init(data: CompleteBalance, network: String? = nil, service: AuthenticatedServices) {
         self.balance = data
         self.network = network
         self.service = service

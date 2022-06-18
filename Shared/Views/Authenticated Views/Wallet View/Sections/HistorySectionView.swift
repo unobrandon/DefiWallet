@@ -15,7 +15,7 @@ struct HistorySectionView: View {
     @ObservedObject private var store: WalletService
 
     @Binding private var isLoading: Bool
-    private let filter: Network?
+    private let filter: String?
     private var data: [TransactionResult] {
         var transactions: [TransactionResult] = []
 
@@ -30,14 +30,14 @@ struct HistorySectionView: View {
             }
         }
 
-//        transactions.sorted(by: { $0.blockTimestamp ?? "" < $1.blockTimestamp ?? "" })
+//        transactions.sorted(by: { $0.blockTimestamp ?? 0 < $1.blockTimestamp ?? 0 })
 
         return transactions
     }
 
     @State private var limitCells: Int = 5
 
-    init(isLoading: Binding<Bool>, service: AuthenticatedServices, network: Network? = nil) {
+    init(isLoading: Binding<Bool>, service: AuthenticatedServices, network: String? = "") {
         self._isLoading = isLoading
         self.service = service
         self.store = service.wallet
@@ -60,23 +60,15 @@ struct HistorySectionView: View {
                     }.padding(.vertical, 30)
                 }
 
-                ForEach(data.prefix(limitCells), id: \.self) { item in
+                let transactionData = data.sorted(by: { $0.blockTimestamp ?? 0 > $1.blockTimestamp ?? 0 })
+                ForEach(transactionData.prefix(limitCells), id: \.self) { item in
                     TransactionListCell(service: service, data: item, isLast: false, style: service.themeStyle, action: {
-                        #if os(iOS)
-                            HapticFeedback.rigidHapticFeedback()
-                        #endif
-                    })
-//
-//                    HistoryListCell(service: service, data: item, isLast: store.history.count < limitCells ? store.history.last == item ? true : false : false, style: service.themeStyle, action: {
-//                        walletRouter.route(to: \.historyDetail, item)
-//
-//                        #if os(iOS)
-//                            HapticFeedback.rigidHapticFeedback()
-//                        #endif
-//                    })
+                        walletRouter.route(to: \.historyDetail, item)
 
-                    if item == data[limitCells - 1] {
-                        ListStandardButton(title: "show \(data.count - limitCells) more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                    })
+
+                    if item == transactionData[limitCells - 1] {
+                        ListStandardButton(title: "view \(data.count - limitCells) more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
                             walletRouter.route(to: \.history, filter)
 
                             #if os(iOS)

@@ -14,16 +14,17 @@ struct HistoryView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
 
+    @State private var data: [TransactionResult] = []
     @State private var noMore: Bool = false
     @State var showIndicator: Bool = false
-    @State private var networkFilter: Network?
+    @State private var networkFilter: String?
     @State private var networkSelector: Int = 0
-    @State private var directionFilter: Direction?
+    @State private var directionFilter: TransactionDirection?
     @State private var directionSelector: Int = 0
     @State private var limitCells: Int = 25
     @State private var searchText = ""
 
-    init(filtered: Network? = nil, service: AuthenticatedServices) {
+    init(filtered: String? = "", service: AuthenticatedServices) {
         self.networkFilter = filtered
         self.service = service
         self.store = service.wallet
@@ -33,14 +34,10 @@ struct HistoryView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 ListSection(style: service.themeStyle) {
-                    ForEach(filterHistory().prefix(limitCells), id: \.self) { item in
-                        HistoryListCell(service: service, data: item,
-                                        isLast: store.history.count < limitCells ? store.history.last == item ? true : false : false,
-                                        style: service.themeStyle, action: {
+                    ForEach(filterHistory().sorted(by: { $0.blockTimestamp ?? 0 > $1.blockTimestamp ?? 0 }).prefix(limitCells), id: \.self) { item in
+                        TransactionListCell(service: service, data: item, isLast: false, style: service.themeStyle, action: {
                             walletRouter.route(to: \.historyDetail, item)
-                            #if os(iOS)
-                                HapticFeedback.rigidHapticFeedback()
-                            #endif
+
                         })
                     }
                 }.padding(.top)
@@ -64,13 +61,22 @@ struct HistoryView: View {
                 .preload(offset: 50)
             }.enableRefresh()
         })
-//        .searchable(text: $searchText, prompt: "Search transactions")
+        .searchable(text: $searchText, prompt: "Search transactions")
         .onAppear {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()
             }
+
+            for network in self.store.completeBalance {
+                guard let transact = network.transactions,
+                      let result = transact.result else { return }
+
+                for item in result {
+                    data.append(item)
+                }
+            }
         }
-        .navigationBarTitle("Transactions", displayMode: .inline)
+        .navigationBarTitle("Transactions", displayMode: .large)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
@@ -84,58 +90,65 @@ struct HistoryView: View {
                     }
 
                     Section {
-                        Button { withAnimation(.easeInOut) { networkFilter = .ethereum }} label: {
-                            Label("Ethereum", systemImage: networkFilter == .ethereum ? "checkmark" : "")
+                        Button { withAnimation(.easeInOut) { networkFilter = "eth" }} label: {
+                            Label("Ethereum", systemImage: networkFilter == "eth" ? "checkmark" : "")
                         }
-                        Button { withAnimation(.easeInOut) { networkFilter = .polygon }} label: {
-                            Label("Polygon", systemImage: networkFilter == .polygon ? "checkmark" : "")
+                        Button { withAnimation(.easeInOut) { networkFilter = "polygon" }} label: {
+                            Label("Polygon", systemImage: networkFilter == "polygon" ? "checkmark" : "")
                         }
-                        Button { withAnimation(.easeInOut) { networkFilter = .binanceSmartChain }} label: {
-                            Label("Binance Smart Chain", systemImage: networkFilter == .binanceSmartChain ? "checkmark" : "")
+                        Button { withAnimation(.easeInOut) { networkFilter = "bsc" }} label: {
+                            Label("Binance Smart Chain", systemImage: networkFilter == "bsc" ? "checkmark" : "")
                         }
-                        Button { withAnimation(.easeInOut) { networkFilter = .avalanche }} label: {
-                            Label("Avalanche", systemImage: networkFilter == .avalanche ? "checkmark" : "")
+                        Button { withAnimation(.easeInOut) { networkFilter = "avalanche" }} label: {
+                            Label("Avalanche", systemImage: networkFilter == "avalanche" ? "checkmark" : "")
                         }
                     }
 
                     Section {
-                        Button { withAnimation(.easeInOut) { directionFilter = .outgoing }} label: {
-                            Label("Sent", systemImage: directionFilter == .outgoing ? "checkmark" : "")
+                        Button { withAnimation(.easeInOut) { directionFilter = .sent }} label: {
+                            Label("Sent", systemImage: directionFilter == .sent ? "checkmark" : "")
                         }
-                        Button { withAnimation(.easeInOut) { directionFilter = .incoming }} label: {
-                            Label("Received", systemImage: directionFilter == .incoming ? "checkmark" : "")
+                        Button { withAnimation(.easeInOut) { directionFilter = .received }} label: {
+                            Label("Received", systemImage: directionFilter == .received ? "checkmark" : "")
                         }
-                        Button { withAnimation(.easeInOut) { directionFilter = .exchange }} label: {
-                            Label("Exchanged", systemImage: directionFilter == .exchange ? "checkmark" : "")
+                        Button { withAnimation(.easeInOut) { directionFilter = .swap }} label: {
+                            Label("Swapped", systemImage: directionFilter == .swap ? "checkmark" : "")
                         }
                     }
                 } label: {
-                    Image(systemName: "slider.horizontal.3")
-                }.foregroundColor(Color.primary)
+                    HStack {
+                        Image(systemName: "list.bullet")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 18, height: 18, alignment: .center)
+                        Text("Sort")
+                    }
+                }
+                .buttonStyle(.borderless)
+                .controlSize(.small)
+                .buttonBorderShape(.roundedRectangle)
+                .buttonStyle(ClickInteractiveStyle(0.99))
             }
         }
     }
 
-    private func filterHistory() -> [HistoryData] {
+    private func filterHistory() -> [TransactionResult] {
         guard searchText.isEmpty else {
-            return self.store.history.filter {
-                $0.address.contains(searchText) ||
-                $0.from.contains(searchText) ||
-                $0.destination.contains(searchText) ||
-                $0.symbol.contains(searchText) ||
-                $0.network.rawValue.contains(searchText) ||
-                $0.account.contains(searchText) ||
-                $0.hash.contains(searchText) }
+            return data.filter {
+                $0.toAddress?.contains(searchText) ?? false ||
+                $0.fromAddress?.contains(searchText) ?? false ||
+                $0.network?.contains(searchText) ?? false ||
+                $0.blockHash?.contains(searchText) ?? false }
         }
 
         if let network = networkFilter, directionFilter == nil {
-            return self.store.history.filter({ $0.network == network })
+            return data.filter({ $0.network == network })
         } else if let direction = directionFilter, networkFilter == nil {
-            return self.store.history.filter({ $0.direction == direction })
+            return data.filter({ $0.direction == direction })
         } else if let network = networkFilter, let direction = directionFilter {
-            return self.store.history.filter({ $0.network == network && $0.direction == direction })
+            return data.filter({ $0.network == network && $0.direction == direction })
         } else {
-            return self.store.history
+            return data
         }
     }
 

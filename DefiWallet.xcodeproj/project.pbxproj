@@ -469,6 +469,10 @@
 		05D1098A27C36EFF008DCC66 /* DevPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */; };
 		05D40F882858600A002BDA0F /* TransactionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F872858600A002BDA0F /* TransactionListCell.swift */; };
 		05D40F892858600A002BDA0F /* TransactionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F872858600A002BDA0F /* TransactionListCell.swift */; };
+		05D40F8B285CFFB2002BDA0F /* InvestmentsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F8A285CFFB2002BDA0F /* InvestmentsSectionView.swift */; };
+		05D40F8C285CFFB2002BDA0F /* InvestmentsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F8A285CFFB2002BDA0F /* InvestmentsSectionView.swift */; };
+		05D40F8E285D0173002BDA0F /* WalletService+CompoundSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F8D285D0173002BDA0F /* WalletService+CompoundSocket.swift */; };
+		05D40F8F285D0173002BDA0F /* WalletService+CompoundSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F8D285D0173002BDA0F /* WalletService+CompoundSocket.swift */; };
 		05E5F84227D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */; };
 		05E5F84327D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */; };
 		05E5F84527D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */; };
@@ -820,6 +824,8 @@
 		05D1098527C3537C008DCC66 /* ProdPrivateKeys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ProdPrivateKeys.xcconfig; sourceTree = "<group>"; };
 		05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DevPrivateKeys.xcconfig; sourceTree = "<group>"; };
 		05D40F872858600A002BDA0F /* TransactionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListCell.swift; sourceTree = "<group>"; };
+		05D40F8A285CFFB2002BDA0F /* InvestmentsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsSectionView.swift; sourceTree = "<group>"; };
+		05D40F8D285D0173002BDA0F /* WalletService+CompoundSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletService+CompoundSocket.swift"; sourceTree = "<group>"; };
 		05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRoundedInteractiveStyle.swift; sourceTree = "<group>"; };
 		05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewInteractiveBordered.swift; sourceTree = "<group>"; };
 		05E5F84827D321920090290C /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
@@ -1271,6 +1277,7 @@
 			children = (
 				051BCF5C27BCAE150056E047 /* WalletService.swift */,
 				05F7B58328090518005A94C8 /* WalletService+AddressSocket.swift */,
+				05D40F8D285D0173002BDA0F /* WalletService+CompoundSocket.swift */,
 				0531140827E6E39F00368657 /* WalletConnectDelegate.swift */,
 			);
 			path = Wallet;
@@ -1293,6 +1300,7 @@
 				05583CDF27EC01D800640E75 /* BalanceSectionView.swift */,
 				0593022F27E061BC006DDFFF /* TransactButtonView.swift */,
 				05583CDC27EC00BA00640E75 /* NetworkSectionView.swift */,
+				05D40F8A285CFFB2002BDA0F /* InvestmentsSectionView.swift */,
 				05CA87192802A5CF006FACE0 /* CollectablesSectionView.swift */,
 				0566AEC127E83792006B645F /* HistorySectionView.swift */,
 				05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */,
@@ -2286,6 +2294,7 @@
 				05CA873528053243006FACE0 /* SVGWebView.swift in Sources */,
 				053113FE27E6CFE500368657 /* ScanQRView.swift in Sources */,
 				057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
+				05D40F8B285CFFB2002BDA0F /* InvestmentsSectionView.swift in Sources */,
 				05E5F85A27D361AF0090290C /* SlimRectangle.swift in Sources */,
 				0504A41A283F27B2000DB947 /* ExchangeCell.swift in Sources */,
 				0507BB2128502D7300D1A965 /* PublicTreasuryView.swift in Sources */,
@@ -2298,6 +2307,7 @@
 				05002E6C282B71800010AF39 /* Refresh.swift in Sources */,
 				05583CBC27E9C04A00640E75 /* GridItem.swift in Sources */,
 				0566AEC227E83792006B645F /* HistorySectionView.swift in Sources */,
+				05D40F8E285D0173002BDA0F /* WalletService+CompoundSocket.swift in Sources */,
 				0578071527B8F61F0008051B /* ProfileView.swift in Sources */,
 				05583CD127E9C19500640E75 /* GridPreferencesModifier.swift in Sources */,
 				05D40F882858600A002BDA0F /* TransactionListCell.swift in Sources */,
@@ -2389,6 +2399,7 @@
 				058C786027D06D5600EB91CA /* HeaderIcon.swift in Sources */,
 				05A6AAB927F9614F00824C76 /* TrendingView.swift in Sources */,
 				0593022027E029CE006DDFFF /* SectionHeaderView.swift in Sources */,
+				05D40F8C285CFFB2002BDA0F /* InvestmentsSectionView.swift in Sources */,
 				0593025427E19C51006DDFFF /* ChartType.swift in Sources */,
 				05A6AAAC27F93C0600824C76 /* TrendingSectionView.swift in Sources */,
 				05D1097127C17D49008DCC66 /* ERC20Token.swift in Sources */,
@@ -2546,6 +2557,7 @@
 				05D1096E27C15D80008DCC66 /* EthereumService.swift in Sources */,
 				0593021727DEFA95006DDFFF /* CompleteBalance.swift in Sources */,
 				053113F327E6CEE400368657 /* BarcodeFrame.swift in Sources */,
+				05D40F8F285D0173002BDA0F /* WalletService+CompoundSocket.swift in Sources */,
 				05E858CB27CB240300B85195 /* AppGradients.swift in Sources */,
 				05CA873628053243006FACE0 /* SVGWebView.swift in Sources */,
 				05E858DC27CB27E400B85195 /* AlertBadge.swift in Sources */,

@@ -75,21 +75,13 @@ struct NetworkVerticalCell: View {
                         }
                     }
 
-                    HStack(alignment: .center, spacing: 4) {
-                        // Tokens section
-                        Text("\(network.tokenBalance?.count ?? 0) tokens")
-                            .fontTemplate(DefaultTemplate.caption)
+                    // Tokens section
+                    Text("\(network.tokenBalance?.count ?? 0) tokens")
+                        .fontTemplate(DefaultTemplate.caption)
 
-                        // Collectables section
-                        if let nfts = network.nfts, let nftCount = nfts.result?.count, nftCount != 0 {
-                            if let tokenCount = network.tokenBalance?.count, tokenCount != 0 {
-                                Text("&").fontTemplate(DefaultTemplate.caption)
-                            }
-
-                            Text("\(nftCount) nfts")
-                                .fontTemplate(DefaultTemplate.caption)
-                        }
-                    }
+                    // Collectables section
+                    Text("\(network.nfts?.allNfts?.count ?? 0) nfts")
+                        .fontTemplate(DefaultTemplate.caption)
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 10)

@@ -59,7 +59,7 @@ struct NetworkCell: View {
                                     .fontTemplate(DefaultTemplate.caption)
                             }
 
-                            if let nfts = network.nfts, let nftCount = nfts.result?.count, nftCount != 0 {
+                            if let nfts = network.nfts, let nftCount = nfts.allNfts?.count, nftCount != 0 {
                                 Text("+\(nftCount) collectables")
                                     .fontTemplate(DefaultTemplate.caption)
                             }

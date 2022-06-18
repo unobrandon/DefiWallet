@@ -16,8 +16,25 @@ struct CollectablesSectionView: View {
 
     @Binding private var isLoading: Bool
     private let filter: Network?
+    private var data: [NftResult] {
+        var nfts: [NftResult] = []
+
+        for network in self.store.completeBalance {
+            guard let nft = network.nfts,
+                  let result = nft.allNfts else {
+                return []
+            }
+
+            for item in result {
+                nfts.append(item)
+            }
+        }
+
+        return nfts
+    }
 
     @State private var limitCells: Int = MobileConstants.deviceType == .phone ? 9 : 12
+    let gridItems: [SwiftUI.GridItem] = MobileConstants.deviceType == .phone ? [SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible())] : [SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible())]
 
     init(isLoading: Binding<Bool>, service: AuthenticatedServices, network: Network? = nil) {
         self._isLoading = isLoading
@@ -37,20 +54,21 @@ struct CollectablesSectionView: View {
                 LoadingView(title: "")
             }
 
-            Grid(store.accountNfts.prefix(limitCells), id:\.self) { nftResult in
-                if nftResult == store.accountNfts.prefix(limitCells).last {
-                    CollectableSeeAllCell(style: service.themeStyle, action: {
-                        print("collectable see all tapped")
-                    })
-                } else {
-                    CollectableImageCell(service: service, data: nftResult, style: service.themeStyle, action: {
-                        print("collectable tapped")
-                    })
+            LazyVGrid(columns: gridItems, alignment: .center, spacing: 5) {
+                ForEach(data.prefix(limitCells), id: \.self) { nftResult in
+                    if nftResult == data.prefix(limitCells).last {
+                        CollectableSeeAllCell(style: service.themeStyle, action: {
+                            print("collectable see all tapped")
+                        })
+                    } else {
+                        CollectableImageCell(service: service, data: nftResult, style: service.themeStyle, action: {
+                            print("collectable tapped")
+                        })
+                    }
                 }
             }
             .padding(.horizontal)
         }
-        .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 3 : 4, spacing: 5))
     }
 
 }

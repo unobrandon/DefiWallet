@@ -29,7 +29,7 @@ struct CollectableSeeAllCell: View {
                             .frame(width: 24, height: 24, alignment: .center)
                             .foregroundColor(.secondary)
 
-                        Text("see all")                                    .fontTemplate(DefaultTemplate.bodySemibold_nunito_secondary)
+                        Text("see all").fontTemplate(DefaultTemplate.bodySemibold_nunito_secondary)
                     }.frame(maxWidth: .infinity, maxHeight: geo.size.width, alignment: .center)
                 }
             }).buttonStyle(ClickInteractiveStyle(0.99))

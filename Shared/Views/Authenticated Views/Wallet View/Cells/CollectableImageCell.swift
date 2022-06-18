@@ -26,13 +26,13 @@ struct CollectableImageCell: View {
     }
 
     var body: some View {
-        ZStack {
-            Button(action: { action() }, label: {
+        Button(action: { action() }, label: {
+            VStack {
                 if let uriResponce = uriResponce {
                     if uriResponce.isSVG() {
                         ZStack {
                             SVGWebView(uriResponce.image ?? uriResponce.image_url ?? "", isAvailable: $svgLoadError)
-                            .aspectRatio(1, contentMode: .fit)
+                            .aspectRatio(1, contentMode: .fill)
 
                             if svgLoadError {
                                 Text("error loading image")                                    .fontTemplate(DefaultTemplate.bodySemibold_nunito)
@@ -44,34 +44,46 @@ struct CollectableImageCell: View {
                         let image = UIImage(data: data) {
                         Image(uiImage: image)
                             .resizable()
-                            .scaledToFit()
-                            .aspectRatio(contentMode: .fit)
+                            .scaledToFill()
+                            .aspectRatio(contentMode: .fill)
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
                     } else if uriResponce.image != nil || uriResponce.image_url != nil {
                         WebImage(url: URL(string: uriResponce.image ?? uriResponce.image_url ?? ""))
                             .resizable()
                             .placeholder { Rectangle().foregroundColor(Color(UIColor.hexStringToUIColor(hex: uriResponce.backgroundColor ?? ""))) }
                             .indicator(.activity)
-                            .scaledToFit()
-                            .aspectRatio(contentMode: .fit)
+                            .scaledToFill()
+                            .aspectRatio(contentMode: .fill)
                             .transition(.fade(duration: 0.35))
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
                     }
+                } else {
+                    WebImage(url: URL(string: data.metadata?.imagePreview ?? data.metadata?.imageUrl ?? data.metadata?.image ?? ""))
+                        .resizable()
+                        .placeholder { Rectangle() }
+                        .indicator(.activity)
+                        .scaledToFill()
+                        .aspectRatio(contentMode: .fill)
+                        .transition(.fade(duration: 0.35))
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
                 }
-            }).buttonStyle(ClickInteractiveStyle(0.98))
-        }
-        .onAppear {
-            if let metadata = data.metadata {
-                self.service.wallet.decodeNftMetadata(metadata, completion: { responce in
-                    self.uriResponce = responce
-                    print("the metadata nft uri is: \(String(describing: responce))")
-                })
-            } else if let url = data.tokenURI {
-                service.wallet.fetchNftUri(url, response: { uriResponce in
-                    self.uriResponce = uriResponce
-                    print("the web nft uri is: \(uriResponce)")
-                })
+
+                Text(data.metadata?.name ?? data.name ?? "")
+                    .fontTemplate(DefaultTemplate.body)
             }
+        }).buttonStyle(ClickInteractiveStyle(0.98))
+        .onAppear {
+//            if let metadata = data.metadata {
+//                self.service.wallet.decodeNftMetadata(metadata, completion: { responce in
+//                    self.uriResponce = responce
+//                    print("the metadata nft uri is: \(String(describing: responce))")
+//                })
+//            } else if let url = data.tokenURI {
+//                service.wallet.fetchNftUri(url, response: { uriResponce in
+//                    self.uriResponce = uriResponce
+//                    print("the web nft uri is: \(uriResponce)")
+//                })
+//            }
         }
     }
 

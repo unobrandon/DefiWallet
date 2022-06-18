@@ -41,8 +41,9 @@ struct TransactionResult: Codable, Hashable {
     let direction: TransactionDirection?
     let toAddress, value, gas, gasPrice: String?
     let input, receiptCumulativeGasUsed, receiptGasUsed: String?
-    let receiptStatus, blockTimestamp, blockNumber, blockHash: String?
+    let receiptStatus, blockNumber, blockHash: String?
     let transferIndex: [Int]?
+    let blockTimestamp: Int?
 
     enum CodingKeys: String, CodingKey {
         case hash, nonce

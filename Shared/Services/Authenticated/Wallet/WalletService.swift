@@ -43,10 +43,12 @@ class WalletService: ObservableObject {
     var socketManager: SocketManager
 //    var walletConnectClient: WalletConnectClient
     var addressSocket: SocketIOClient
+    var compoundSocket: SocketIOClient
 
     let portfolioRefreshInterval: Double = 15
     var chartType: String = UserDefaults.standard.string(forKey: "chartType") ?? "d"
     var accountSocketTimer: Timer?
+    var compoundSocketTimer: Timer?
 
     init(currentUser: CurrentUser, socketManager: SocketManager, wcMetadata: AppMetadata) {
         self.networkStatus = .connecting
@@ -54,12 +56,14 @@ class WalletService: ObservableObject {
 
         self.socketManager = socketManager
         self.addressSocket = socketManager.socket(forNamespace: "/address")
+        self.compoundSocket = socketManager.socket(forNamespace: "/compound")
 
 //        self.walletConnectClient = WalletConnectClient(metadata: wcMetadata, relayer: relayer)
 //        self.walletConnectClient.delegate = self
 
         self.loadStoredData()
         self.connectAccountData()
+        self.connectCompoundData()
     }
 
     deinit {
@@ -143,25 +147,6 @@ class WalletService: ObservableObject {
                 completion(!self.completeBalance.isEmpty ? self.completeBalance : nil)
             }
         }
-    }
-
-    func setAccountCollectables(_ completeBalance: [CompleteBalance], completion: @escaping ([NftResult]) -> Void) {
-        var result: [NftResult] = []
-
-        for networkBalance in completeBalance {
-            guard let nftResult = networkBalance.nfts?.result else { continue }
-
-            for nft in nftResult {
-//                var myNft = nft
-//                if let networkString = networkBalance.network {
-//                    myNft.network = networkString
-//                }
-
-                result.append(nft)
-            }
-        }
-
-        completion(result)
     }
 
     func decodeNftMetadata(_ metadata: String, completion: @escaping (NftURIResponse?) -> Void) {
@@ -386,33 +371,35 @@ class WalletService: ObservableObject {
         } else { return "" }
     }
 
-    func getBlockExplorerName(_ network: Network) -> String {
-        switch network {
-        case .ethereum:
+    func getBlockExplorerName(_ network: String) -> String {
+        if network == "eth" {
             return "Etherscan.io"
-        case .polygon:
+        } else if network == "polygon" {
             return "Polygonscan.com"
-        case .binanceSmartChain:
+        } else if network == "bsc" {
             return "Bscscan.com"
-        case .avalanche:
+        } else if network == "avalanche" {
             return "Snowtrace.io"
-        case .fantom:
+        } else if network == "fantom" {
             return "Ftmscan.com"
+        } else {
+            return ""
         }
     }
 
-    func getScannerUrl(_ network: Network) -> String {
-        switch network {
-        case .ethereum:
+    func getScannerUrl(_ network: String) -> String {
+        if network == "eth" {
             return "https://etherscan.io/tx/"
-        case .polygon:
+        } else if network == "polygon" {
             return "https://polygonscan.com/tx/"
-        case .binanceSmartChain:
+        } else if network == "bsc" {
             return "https://www.bscscan.com/tx/"
-        case .avalanche:
+        } else if network == "avalanche" {
             return "https://snowtrace.io/tx/"
-        case .fantom:
+        } else if network == "fantom" {
             return "https://ftmscan.com/tx/"
+        } else {
+            return ""
         }
     }
 

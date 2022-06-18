@@ -20,13 +20,13 @@ struct Nfts: Codable {
 
     let total, page, pageSize: Int?
     let cursor: String?
-    let result: [NftResult]?
+    let allNfts: [NftResult]?
     let status: String?
 
     enum CodingKeys: String, CodingKey {
         case total, page
         case pageSize = "page_size"
-        case cursor, result, status
+        case cursor, allNfts, status
     }
 
 }
@@ -45,9 +45,9 @@ struct NftResult: Codable, Hashable {
 
     let tokenAddress, tokenID, blockNumberMinted, ownerOf: String?
     let blockNumber, amount, contractType, name: String?
-    let symbol: String?
+    let symbol, network: String?
     let tokenURI: String?
-    let metadata: String?
+    let metadata: NftMetadata?
     let syncedAt: String?
     let isValid, syncing, frozen: Int?
 
@@ -57,7 +57,7 @@ struct NftResult: Codable, Hashable {
         case blockNumberMinted = "block_number_minted"
         case ownerOf = "owner_of"
         case blockNumber = "block_number"
-        case amount
+        case amount, network
         case contractType = "contract_type"
         case name, symbol
         case tokenURI = "token_uri"
@@ -65,6 +65,33 @@ struct NftResult: Codable, Hashable {
         case syncedAt = "synced_at"
         case isValid = "is_valid"
         case syncing, frozen
+    }
+
+}
+
+// MARK: - NftMetadata
+struct NftMetadata: Codable, Hashable {
+
+    static func == (lhs: NftMetadata, rhs: NftMetadata) -> Bool {
+        return lhs.name == rhs.name && lhs.image == rhs.image
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(image)
+    }
+
+    let name, image, imagePreview, description, externalUrl: String?
+    let isNormalized: Bool?
+    let imageUrl: String?
+
+    enum CodingKeys: String, CodingKey {
+        case description
+        case name, image
+        case externalUrl = "external_url"
+        case imagePreview = "image_preview"
+        case isNormalized = "is_normalized"
+        case imageUrl = "image_url"
     }
 
 }

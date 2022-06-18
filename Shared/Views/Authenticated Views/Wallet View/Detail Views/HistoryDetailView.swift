@@ -14,9 +14,9 @@ struct HistoryDetailView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
 
-    private let data: HistoryData
+    private let data: TransactionResult
 
-    init(data: HistoryData, service: AuthenticatedServices) {
+    init(data: TransactionResult, service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
         self.data = data
@@ -27,11 +27,11 @@ struct HistoryDetailView: View {
             ScrollView {
                 VStack(alignment: .center, spacing: 5) {
                     ZStack {
-                        StandardSystemImage(service.wallet.transactionImage(data.direction),
-                                            color: service.wallet.transactionColor(data.direction),
+                        StandardSystemImage(service.wallet.transactionDirectionImage(data.direction ?? .received),
+                                            color: service.wallet.transactionDirectionColor(data.direction ?? .received),
                                             size: 64, cornerRadius: 32, style: service.themeStyle)
 
-                        service.wallet.getNetworkImage(data.network)
+                        service.wallet.getNetworkTransactImage(data.network ?? "")
                             .resizable()
                             .scaledToFill()
                             .frame(width: 24, height: 24, alignment: .center)
@@ -40,52 +40,48 @@ struct HistoryDetailView: View {
                             .offset(x: -22, y: 22)
                     }
 
-                    Text(data.direction == .incoming ? "Received" : data.direction == .outgoing ? "Sent" : "Exchanged").fontTemplate(DefaultTemplate.headingSemiBold)
+                    Text(data.direction?.rawValue.capitalized ?? "").fontTemplate(DefaultTemplate.headingSemiBold)
                         .padding(.top, 30)
 
-                    Text((data.direction == .outgoing ? "-" : "") + "\("".forTrailingZero(temp: Double(data.amount)?.truncate(places: 8) ?? 0.00)) \(data.symbol.prefix(8))")
+                    Text((data.direction == .sent ? "-" : "") + "\("".forTrailingZero(temp: Double(data.value ?? "0")?.truncate(places: 8) ?? 0.00))")
                         .fontTemplate(FontTemplate(font: Font.custom("Poppins-SemiBold", size: 36),
                                                    weight: .semibold,
-                                                   foregroundColor: data.direction == .outgoing ? .red : data.direction == .outgoing ? .green : .blue, lineSpacing: 0))
-                        .irregularGradient(colors: data.direction == .outgoing ? [Color("alertRed"), .orange] : data.direction == .incoming ? [Color("darkGreen"), .green] : [Color("accentColor"), .teal],
-                                           background: data.direction == .outgoing ? Color("alertRed") : data.direction == .incoming ? Color.green : Color("AccentColor"))
+                                                   foregroundColor: data.direction == .sent ? .red : data.direction == .sent ? .green : .blue, lineSpacing: 0))
+                        .irregularGradient(colors: data.direction == .sent ? [Color("alertRed"), .orange] : data.direction == .received ? [Color("darkGreen"), .green] : [Color("accentColor"), .teal],
+                                           background: data.direction == .sent ? Color("alertRed") : data.direction == .received ? Color.green : Color("AccentColor"))
 
-                    Text(Date(timeIntervalSince1970: Double(data.timeStamp) ?? 0.0).mediumDateFormate())
+                    Text(Date(timeIntervalSince1970: Double(data.blockTimestamp ?? 0 / 1000)).mediumDateFormate())
                         .fontTemplate(DefaultTemplate.body_secondary)
                 }
                 .padding(.vertical, 40)
 
                 ListSection(style: service.themeStyle) {
-                    if let fromEthNameService = data.fromEns {
-                        ListInfoView(title: "From", info: fromEthNameService, style: service.themeStyle, isLast: false)
-                    } else {
-                        ListInfoView(title: "From", info: data.from.formatAddressExtended(), style: service.themeStyle, isLast: false)
+                    if let fromEthNameService = data.fromAddress {
+                        ListInfoView(title: "From", info: fromEthNameService.formatAddressExtended(), style: service.themeStyle, isLast: false)
                     }
 
-                    if let toEthNameService = data.destinationEns {
-                        ListInfoView(title: "To", info: toEthNameService, style: service.themeStyle, isLast: true)
-                    } else {
-                        ListInfoView(title: "To", info: data.destination.formatAddressExtended(), style: service.themeStyle, isLast: true)
+                    if let toEthNameService = data.toAddress {
+                        ListInfoView(title: "To", info: toEthNameService.formatAddressExtended(), style: service.themeStyle, isLast: true)
                     }
                 }
 
                 ListSection(title: "Details", style: service.themeStyle) {
-                    ListInfoView(title: "Hash", info: data.hash.formatAddressExtended(), style: service.themeStyle, isLast: false)
+                    ListInfoView(title: "Hash", info: data.hash?.formatAddressExtended() ?? "", style: service.themeStyle, isLast: false)
 
                     ListInfoCustomView(title: "Status", style: service.themeStyle, isLast: false) {
-                        BorderedButton(title: data.txSuccessful ? "Successful" : "FAILED",
-                                       systemImage: data.txSuccessful ? "checkmark.circle.fill" : "xmark.octagon.fill",
-                                       size: .mini, tint: data.txSuccessful ? Color.green : Color.red, action: {  })
+                        BorderedButton(title: data.receiptStatus == "1" ? "Successful" : "FAILED",
+                                       systemImage: data.receiptStatus == "1" ? "checkmark.circle.fill" : "xmark.octagon.fill",
+                                       size: .mini, tint: data.receiptStatus == "1" ? Color.green : Color.red, action: {  })
                             .frame(height: 22)
                     }
 
-                    ListInfoView(title: "Network", info: data.network.rawValue, style: service.themeStyle, isLast: false)
+                    ListInfoView(title: "Network", info: data.network ?? "", style: service.themeStyle, isLast: false)
 
-                    ListInfoView(title: "Gas Fee", info: "\(data.gasPrice.truncate(places: 10))" + " " + data.symbol.prefix(8), style: service.themeStyle, isLast: false)
+                    ListInfoView(title: "Gas Price", info: (data.gasPrice ?? "") + " gwei", style: service.themeStyle, isLast: false)
 
-                    ListInfoView(title: "Gas Limit", info: "\(data.gasLimit.truncate(places: 10))" + " " + data.symbol.prefix(8), style: service.themeStyle, isLast: false)
+                    ListInfoView(title: "Gas Fee", info: (data.gas ?? "") + " gwei", style: service.themeStyle, isLast: false)
 
-                    ListInfoView(title: "Block", info: "\(data.blockNumber)", style: service.themeStyle, isLast: false)
+                    ListInfoView(title: "Block", info: data.blockNumber ?? "", style: service.themeStyle, isLast: false)
 
                     if let nonce = data.nonce {
                         ListInfoView(title: "Nonce", info: nonce, style: service.themeStyle, isLast: true)
@@ -93,8 +89,8 @@ struct HistoryDetailView: View {
                 }
 
                 ListSection(title: "More", style: service.themeStyle) {
-                    ListStandardButton(title: "View on \(store.getBlockExplorerName(data.network))", systemImage: "safari", isLast: false, style: service.themeStyle, action: {
-                        guard let url = URL(string: store.getScannerUrl(data.network) + data.hash) else {
+                    ListStandardButton(title: "View on \(store.getBlockExplorerName(data.network ?? ""))", systemImage: "safari", isLast: false, style: service.themeStyle, action: {
+                        guard let url = URL(string: store.getScannerUrl(data.network ?? "") + (data.blockHash ?? "")) else {
                             #if os(iOS)
                             HapticFeedback.errorHapticFeedback()
                             #endif
@@ -108,14 +104,14 @@ struct HistoryDetailView: View {
                     })
 
                     ListStandardButton(title: "Share transaction", systemImage: "square.and.arrow.up", isLast: true, style: service.themeStyle, action: {
-                        guard let url = URL(string: store.getScannerUrl(data.network) + data.hash) else {
+                        guard let shareUrl = URL(string: store.getScannerUrl(data.network ?? "") + (data.hash ?? "")) else {
                             #if os(iOS)
                             HapticFeedback.errorHapticFeedback()
                             #endif
                             return
                         }
 
-                        store.shareSheet(url: url)
+                        store.shareSheet(url: shareUrl)
                         #if os(iOS)
                             HapticFeedback.rigidHapticFeedback()
                         #endif

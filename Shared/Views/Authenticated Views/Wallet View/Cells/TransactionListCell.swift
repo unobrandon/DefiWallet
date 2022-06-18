@@ -56,7 +56,8 @@ struct TransactionListCell: View {
 
                                 Spacer()
                                 if let timestamp = data.blockTimestamp {
-                                    Text("\(timestamp.getFullElapsedInterval())").fontTemplate(DefaultTemplate.caption)
+                                    Text(timestamp.getElapsedInterval())
+                                        .fontTemplate(DefaultTemplate.caption)
                                 }
 
                                 Image(systemName: "chevron.right")
@@ -106,16 +107,12 @@ struct TransactionListCell: View {
             .buttonStyle(DefaultInteractiveStyle(style: self.style))
             .frame(minWidth: 100, maxWidth: .infinity)
 
-        }.simultaneousGesture(TapGesture().onEnded {
-            #if os(iOS)
-                HapticFeedback.rigidHapticFeedback()
-            #endif
-        })
+        }
     }
 
     private func actionTap() {
         #if os(iOS)
-            HapticFeedback.lightHapticFeedback()
+            HapticFeedback.rigidHapticFeedback()
         #endif
 
         action()

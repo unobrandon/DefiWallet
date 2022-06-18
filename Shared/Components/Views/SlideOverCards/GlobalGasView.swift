@@ -41,18 +41,18 @@ struct GlobalGasView: View {
                     .multilineTextAlignment(.leading)
                     .lineLimit(3)
                     .padding(.bottom, 10)
+            }.padding(.bottom)
 
+            VStack(alignment: .leading, spacing: 10) {
                 HStack {
+                    Spacer()
                     NetworkDropdownButton(style: service.themeStyle, action: { network in
                         print("selected new network! \(network)")
                         currentTab = network
                     })
-                    .padding(.top)
-                    Spacer()
                 }
-            }.padding(.bottom)
+                .padding(.bottom, 5)
 
-            VStack(alignment: .leading, spacing: 10) {
                 ListSection(title: nil, hasPadding: false, style: service.themeStyle) {
                     ListInfoSmallView(title: "🚶 Standard",
                                       info: "\(store.ethGasPriceTrends?.current?.standard?.baseFeePerGas ?? 0)",

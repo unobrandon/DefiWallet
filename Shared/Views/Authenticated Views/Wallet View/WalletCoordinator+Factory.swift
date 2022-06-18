@@ -24,14 +24,14 @@ extension WalletCoordinator {
     }
 
     @ViewBuilder func makeNetworkDetail(data: CompleteBalance) -> some View {
-        NetworkDetailView(data: data, network: formateNetwork(data.network), service: services)
+        NetworkDetailView(data: data, network: data.network, service: services)
     }
 
-    @ViewBuilder func makeHistory(network: Network? = nil) -> some View {
+    @ViewBuilder func makeHistory(network: String? = nil) -> some View {
         HistoryView(filtered: network, service: services)
     }
 
-    @ViewBuilder func makeHistoryDetail(data: HistoryData) -> some View {
+    @ViewBuilder func makeHistoryDetail(data: TransactionResult) -> some View {
         HistoryDetailView(data: data, service: services)
     }
 

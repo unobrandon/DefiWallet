@@ -94,17 +94,17 @@ struct CollectableVerticalCell: View {
         })
         .buttonStyle(ClickInteractiveStyle(0.98))
         .onAppear {
-            if let metadata = data.metadata {
-                self.service.wallet.decodeNftMetadata(metadata, completion: { responce in
-                    self.uriResponce = responce
-                    print("the metadata nft uri is: \(String(describing: responce))")
-                })
-            } else if let url = data.tokenURI {
-                service.wallet.fetchNftUri(url, response: { uriResponce in
-                    self.uriResponce = uriResponce
-                    print("the web nft uri is: \(uriResponce)")
-                })
-            }
+//            if let metadata = data.metadata {
+//                self.service.wallet.decodeNftMetadata(metadata, completion: { responce in
+//                    self.uriResponce = responce
+//                    print("the metadata nft uri is: \(String(describing: responce))")
+//                })
+//            } else if let url = data.tokenURI {
+//                service.wallet.fetchNftUri(url, response: { uriResponce in
+//                    self.uriResponce = uriResponce
+//                    print("the web nft uri is: \(uriResponce)")
+//                })
+//            }
         }
     }
 
