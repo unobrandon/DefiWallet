@@ -114,7 +114,7 @@ class WalletService: ObservableObject {
 
     }
 
-    func fetchAccountBalance(_ address: String, completion: @escaping ([CompleteBalance]?) -> Void) {
+    func fetchAccountBalance(_ address: String, _ currency: String, completion: @escaping ([CompleteBalance]?) -> Void) {
 
         if let storage = StorageService.shared.balanceStorage {
             storage.async.object(forKey: "balanceList") { result in
@@ -127,7 +127,7 @@ class WalletService: ObservableObject {
             }
         }
 
-        let url = Constants.backendBaseUrl + "accountBalance" + "?address=\(address)"
+        let url = Constants.backendBaseUrl + "accountBalance" + "?address=\(address)" + "&currency=\(currency)"
 
         AF.request(url, method: .get).responseDecodable(of: [CompleteBalance].self) { [self] response in
             switch response.result {

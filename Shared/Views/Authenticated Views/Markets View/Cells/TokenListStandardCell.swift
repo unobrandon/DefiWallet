@@ -37,19 +37,19 @@ struct TokenListStandardCell: View {
                             .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
 
                         VStack(alignment: .leading, spacing: 0) {
-                            if let name = data.name {
-                                Text(name).fontTemplate(DefaultTemplate.gasPriceFont)
-                            }
+                            Text(data.name ?? "no name")
+                                .fontTemplate(DefaultTemplate.gasPriceFont)
+                                .lineLimit(2)
 
                             HStack(alignment: .center, spacing: 4) {
                                 if let rank = data.marketCapRank {
-                                    Text("#\(rank)").fontTemplate(DefaultTemplate.body_secondary).offset(y: -1.5)
+                                    Text("#\(rank)").fontTemplate(DefaultTemplate.body_secondary)
                                 }
 
                                 if let symbol = data.symbol?.uppercased() {
-                                    Text(symbol).fontTemplate(DefaultTemplate.body_secondary).offset(y: -1.5)
+                                    Text(symbol).fontTemplate(DefaultTemplate.body_secondary)
                                 }
-                            }
+                            }.offset(y: -1.5)
                         }.padding(.leading, 2.5)
 
                         Spacer()

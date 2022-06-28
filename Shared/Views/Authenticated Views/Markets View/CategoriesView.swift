@@ -39,7 +39,7 @@ struct CategoriesView: View {
                         .padding(.horizontal)
                         .padding(.vertical, 10)
 
-                    ListSection(title: !searchText.isEmpty ? "searched categories" : "\(store.categoriesFilters == .marketCapAsc ? "smallest market cap" : store.categoriesFilters == .marketCapDesc ? "top market cap" : store.categoriesFilters == .gainers ? "top 24hr gainers" : store.categoriesFilters == .losers ? "top 24hr losers" : store.categoriesFilters == .name ? "names A-Z" : "")", hasPadding: false, style: service.themeStyle) {
+                    ListSection(title: !searchText.isEmpty ? "searched categories" : "\(store.categoriesFilters == .marketCapAsc ? "by lowest market cap" : store.categoriesFilters == .marketCapDesc ? "by top market cap" : store.categoriesFilters == .gainers ? "by 24hr gainers" : store.categoriesFilters == .losers ? "by 24hr losers" : store.categoriesFilters == .name ? "names A-Z" : "")", hasPadding: false, style: service.themeStyle) {
                         ForEach(store.tokenCategories.prefix(limitCells).indices, id: \.self) { index in
                             CategoryCell(service: service,
                                          data: store.tokenCategories[index],

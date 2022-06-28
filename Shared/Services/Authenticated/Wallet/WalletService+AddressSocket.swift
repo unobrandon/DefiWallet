@@ -14,9 +14,9 @@ extension WalletService {
     func connectAccountData() {
         addressSocket.connect(withPayload: ["address": currentUser.address, "currency": currentUser.currency])
         compoundSocket.connect(withPayload: ["address": currentUser.address, "currency": currentUser.currency])
+        setSockets()
 
         addressSocket.on(clientEvent: .connect) { _, _ in
-            self.setSockets()
             self.emitAccountRequest()
             self.networkStatus = .connected
         }

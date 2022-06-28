@@ -67,13 +67,9 @@ struct HistorySectionView: View {
 
                     })
 
-                    if item == transactionData[limitCells - 1] {
-                        ListStandardButton(title: "view \(data.count - limitCells) more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                    if item == transactionData.prefix(limitCells).last {
+                        ListStandardButton(title: data.count - limitCells != 0 ? "show \(data.count - limitCells) more..." : "show all...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
                             walletRouter.route(to: \.history, filter)
-
-                            #if os(iOS)
-                                HapticFeedback.rigidHapticFeedback()
-                            #endif
                         })
                     }
                 }

@@ -98,23 +98,17 @@ struct HistoryDetailView: View {
                         }
 
                         walletRouter.route(to: \.safari, url)
-                        #if os(iOS)
-                            HapticFeedback.rigidHapticFeedback()
-                        #endif
                     })
 
                     ListStandardButton(title: "Share transaction", systemImage: "square.and.arrow.up", isLast: true, style: service.themeStyle, action: {
                         guard let shareUrl = URL(string: store.getScannerUrl(data.network ?? "") + (data.hash ?? "")) else {
                             #if os(iOS)
-                            HapticFeedback.errorHapticFeedback()
+                                HapticFeedback.errorHapticFeedback()
                             #endif
                             return
                         }
 
                         store.shareSheet(url: shareUrl)
-                        #if os(iOS)
-                            HapticFeedback.rigidHapticFeedback()
-                        #endif
                     })
                 }
                 .padding(.bottom)

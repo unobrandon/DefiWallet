@@ -23,13 +23,13 @@ struct OverviewSectionView: View {
         self.store = service.wallet
         self.completeBalance = completeBalance
 
-        let totalAssets: Double = Double((completeBalance.tokenBalance?.count ?? 0) + (completeBalance.nfts?.allNfts?.count ?? 0))
-        let tokenProgress: Double = Double((completeBalance.tokenBalance?.count ?? 0)) / totalAssets
+        let totalAssets: Double = Double((completeBalance.tokens?.count ?? 0) + (completeBalance.nfts?.allNfts?.count ?? 0))
+        let tokenProgress: Double = Double((completeBalance.tokens?.count ?? 0)) / totalAssets
         let collectProgress: Double = Double((completeBalance.nfts?.allNfts?.count ?? 0)) / totalAssets
 
         self.rings = [
             RingProgressModel(progress: collectProgress, value: "\(completeBalance.nfts?.allNfts?.count ?? 0) NFTs", keyIcon: "infinity", keyColor: Color.purple),
-            RingProgressModel(progress: tokenProgress, value: "\(completeBalance.tokenBalance?.count ?? 0) tokens", keyIcon: "bitcoinsign.circle", keyColor: service.wallet.getNetworkColor(completeBalance.network ?? ""))
+            RingProgressModel(progress: tokenProgress, value: "\(completeBalance.tokens?.count ?? 0) tokens", keyIcon: "bitcoinsign.circle", keyColor: service.wallet.getNetworkColor(completeBalance.network ?? ""))
         ]
     }
 

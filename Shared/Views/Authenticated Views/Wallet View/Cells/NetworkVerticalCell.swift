@@ -64,9 +64,7 @@ struct NetworkVerticalCell: View {
                     }.mask(AppGradients.movingNumbersMask)
 
                     if let native = network.nativeBalance,
-                       let balance = Double(native),
-                       let formatted = (balance / Constants.eighteenDecimal),
-                       let roundedValue = formatted.truncate(places: 4),
+                       let roundedValue = native.truncate(places: 4),
                        let networkFormatted = network.network?.formatNetwork() {
                         HStack(alignment: .center, spacing: 2) {
                             Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.caption_semibold)
@@ -76,7 +74,7 @@ struct NetworkVerticalCell: View {
                     }
 
                     // Tokens section
-                    Text("\(network.tokenBalance?.count ?? 0) tokens")
+                    Text("\(network.tokens?.count ?? 0) tokens")
                         .fontTemplate(DefaultTemplate.caption)
 
                     // Collectables section

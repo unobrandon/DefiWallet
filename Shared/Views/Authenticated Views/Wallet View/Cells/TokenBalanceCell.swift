@@ -11,16 +11,14 @@ struct TokenBalanceCell: View {
 
     @ObservedObject private var service: AuthenticatedServices
 
-    private let data: TokenBalance
-    private let network: String
+    private let data: TokenModel
     private var isLast: Bool
     private let style: AppStyle
     private let action: () -> Void
 
-    init(service: AuthenticatedServices, data: TokenBalance, network: String, isLast: Bool, style: AppStyle, action: @escaping () -> Void) {
+    init(service: AuthenticatedServices, data: TokenModel, isLast: Bool, style: AppStyle, action: @escaping () -> Void) {
         self.service = service
         self.data = data
-        self.network = network
         self.isLast = isLast
         self.style = style
         self.action = action
@@ -32,31 +30,47 @@ struct TokenBalanceCell: View {
                 self.actionTap()
             }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
-                    HStack(alignment: .center, spacing: 10) {
+                    HStack(alignment: .top, spacing: 2.5) {
                         ZStack {
-                            RemoteImage(data.thumbnail ?? data.logo ?? "", size: 42)
+                            RemoteImage(data.imageSmall ?? data.image ?? "", size: 42)
                                 .clipShape(Circle())
                                 .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
                                 .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
 
-                            Image((network == "bsc" ? "binance" : network) + "_logo")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 18, height: 18, alignment: .center)
-                                .clipShape(Circle())
-                                .overlay(Circle().foregroundColor(.clear).overlay(Circle().stroke(Color("baseBackground_bordered"), lineWidth: 2.5)))
-                                .offset(x: -15, y: 15)
+                            if let net = data.network {
+                                Image((net == "bsc" ? "binance" : net) + "_logo")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 18, height: 18, alignment: .center)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().foregroundColor(.clear).overlay(Circle().stroke(Color("baseBackground_bordered"), lineWidth: 2.5)))
+                                    .offset(x: -15, y: 15)
+                            }
                         }
+                        .padding(.trailing, 7.5)
 
                         VStack(alignment: .leading, spacing: 0) {
-                            // Upper details
-                            HStack(alignment: .center, spacing: 10) {
+                            HStack(alignment: .center, spacing: 2.5) {
                                 Text(data.name ?? "no name")
-                                    .fontTemplate(DefaultTemplate.subheadingMedium)
-                                    .lineLimit(1)
+                                    .fontTemplate(DefaultTemplate.gasPriceFont)
+                                    .lineLimit(2)
 
-                                Spacer()
-                                Text("$\(data.usdTotal ?? "0.00")").fontTemplate(DefaultTemplate.gasPriceFont)
+                                if let rank = data.marketCapRank {
+                                    Text("#\(rank)").fontTemplate(DefaultTemplate.body_secondary_semibold)
+                                }
+                            }
+
+                            ProminentRoundedLabel(text: (data.priceChangePercentage24H ?? 0 >= 0 ? "+" : "") +
+                                                  "\("".forTrailingZero(temp: data.priceChangePercentage24H?.truncate(places: 2) ?? 0.00))%",
+                                                  color: data.priceChangePercentage24H ?? 0 >= 0 ? .green : .red,
+                                                  fontSize: 13.0,
+                                                  style: service.themeStyle).offset(y: -1.5)
+                        }
+
+                        Spacer()
+                        VStack(alignment: .trailing, spacing: 0) {
+                            HStack(alignment: .center, spacing: 10) {
+                                Text("\(data.totalBalance?.convertToCurrency() ?? "$0.00")").fontTemplate(DefaultTemplate.gasPriceFont)
 
                                 Image(systemName: "chevron.right")
                                     .resizable()
@@ -66,23 +80,13 @@ struct TokenBalanceCell: View {
                                     .foregroundColor(.secondary)
                             }
 
-                            // Lower details
-                            HStack(alignment: .center, spacing: 10) {
-                                if let native = data.balance,
-                                   let balance = Double(native),
-                                   let formatted = (balance / Constants.eighteenDecimal),
-                                   let roundedValue = formatted.truncate(places: 3) {
-                                    HStack(alignment: .center, spacing: 2) {
-                                        Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.caption_semibold)
+                            if let native = data.nativeBalance,
+                               let roundedValue = native.truncate(places: 3) {
+                                HStack(alignment: .center, spacing: 2) {
+                                    Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.body_secondary_semibold)
 
-                                        Text(data.symbol ?? "").fontTemplate(DefaultTemplate.caption)
-                                    }
-                                }
-
-                                Spacer()
-                                ProminentRoundedLabel(text: "2.41%",
-                                                      color: .green,
-                                                      style: service.themeStyle)
+                                    Text(data.symbol?.uppercased() ?? "").fontTemplate(DefaultTemplate.body_secondary)
+                                }.padding(.trailing, 12)
                             }
                         }
                     }
@@ -101,16 +105,12 @@ struct TokenBalanceCell: View {
             .buttonStyle(DefaultInteractiveStyle(style: self.style))
             .frame(minWidth: 100, maxWidth: .infinity)
 
-        }.simultaneousGesture(TapGesture().onEnded {
-            #if os(iOS)
-                HapticFeedback.rigidHapticFeedback()
-            #endif
-        })
+        }
     }
 
     private func actionTap() {
         #if os(iOS)
-            HapticFeedback.lightHapticFeedback()
+            HapticFeedback.rigidHapticFeedback()
         #endif
 
         action()

@@ -477,6 +477,8 @@
 		05D40F92285D9A98002BDA0F /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F90285D9A98002BDA0F /* StaggeredGrid.swift */; };
 		05D40F94285DA6E7002BDA0F /* SwapTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F93285DA6E7002BDA0F /* SwapTokenView.swift */; };
 		05D40F95285DA6E7002BDA0F /* SwapTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F93285DA6E7002BDA0F /* SwapTokenView.swift */; };
+		05D40F97286ADC1F002BDA0F /* TokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F96286ADC1F002BDA0F /* TokensView.swift */; };
+		05D40F98286ADC20002BDA0F /* TokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F96286ADC1F002BDA0F /* TokensView.swift */; };
 		05E5F84227D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */; };
 		05E5F84327D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */; };
 		05E5F84527D31CBC0090290C /* TextViewInteractiveBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */; };
@@ -832,6 +834,7 @@
 		05D40F8D285D0173002BDA0F /* WalletService+CompoundSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletService+CompoundSocket.swift"; sourceTree = "<group>"; };
 		05D40F90285D9A98002BDA0F /* StaggeredGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredGrid.swift; sourceTree = "<group>"; };
 		05D40F93285DA6E7002BDA0F /* SwapTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapTokenView.swift; sourceTree = "<group>"; };
+		05D40F96286ADC1F002BDA0F /* TokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensView.swift; sourceTree = "<group>"; };
 		05E5F84127D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRoundedInteractiveStyle.swift; sourceTree = "<group>"; };
 		05E5F84427D31CBC0090290C /* TextViewInteractiveBordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewInteractiveBordered.swift; sourceTree = "<group>"; };
 		05E5F84827D321920090290C /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
@@ -1307,11 +1310,11 @@
 				05583CDF27EC01D800640E75 /* BalanceSectionView.swift */,
 				0593022F27E061BC006DDFFF /* TransactButtonView.swift */,
 				05583CDC27EC00BA00640E75 /* NetworkSectionView.swift */,
+				05C884D427FD3BBF005E2455 /* TokensSectionView.swift */,
 				05D40F8A285CFFB2002BDA0F /* InvestmentsSectionView.swift */,
 				05CA87192802A5CF006FACE0 /* CollectablesSectionView.swift */,
 				0566AEC127E83792006B645F /* HistorySectionView.swift */,
 				05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */,
-				05C884D427FD3BBF005E2455 /* TokensSectionView.swift */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -1477,6 +1480,7 @@
 				0566AECA27E8656F006B645F /* Sections */,
 				0566AECF27E8F627006B645F /* Cells */,
 				0578070B27B8F1370008051B /* WalletView.swift */,
+				05D40F96286ADC1F002BDA0F /* TokensView.swift */,
 				0566AECB27E8660C006B645F /* HistoryView.swift */,
 				05394150281A41B900CFAA53 /* SendToView.swift */,
 				05D40F93285DA6E7002BDA0F /* SwapTokenView.swift */,
@@ -2221,6 +2225,7 @@
 				0578071B27B8F6D50008051B /* ProfileCoordinator+Factory.swift in Sources */,
 				05CA871D2803BD14006FACE0 /* CollectableVerticalCell.swift in Sources */,
 				053113E827E6C72000368657 /* SlideOverCard.swift in Sources */,
+				05D40F97286ADC1F002BDA0F /* TokensView.swift in Sources */,
 				05583C9C27E96C6C00640E75 /* ListInfoCustomView.swift in Sources */,
 				05A6AAAB27F93C0600824C76 /* TrendingSectionView.swift in Sources */,
 				05E858D627CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */,
@@ -2411,6 +2416,7 @@
 				0593022027E029CE006DDFFF /* SectionHeaderView.swift in Sources */,
 				05D40F8C285CFFB2002BDA0F /* InvestmentsSectionView.swift in Sources */,
 				0593025427E19C51006DDFFF /* ChartType.swift in Sources */,
+				05D40F98286ADC20002BDA0F /* TokensView.swift in Sources */,
 				05A6AAAC27F93C0600824C76 /* TrendingSectionView.swift in Sources */,
 				05D1097127C17D49008DCC66 /* ERC20Token.swift in Sources */,
 				05E858D927CB264600B85195 /* ClickInteractiveStyle.swift in Sources */,

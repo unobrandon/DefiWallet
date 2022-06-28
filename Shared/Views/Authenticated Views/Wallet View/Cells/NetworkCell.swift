@@ -54,7 +54,7 @@ struct NetworkCell: View {
 
                     HStack(alignment: .top) {
                         VStack(alignment: .leading, spacing: 2) {
-                            if let tokenCount = network.tokenBalance?.count, tokenCount != 0 {
+                            if let tokenCount = network.tokens?.count, tokenCount != 0 {
                                 Text("+\(tokenCount) tokens")
                                     .fontTemplate(DefaultTemplate.caption)
                             }
@@ -67,9 +67,7 @@ struct NetworkCell: View {
 
                         Spacer()
                         if let native = network.nativeBalance,
-                           let balance = Double(native),
-                           let formatted = (balance / Constants.eighteenDecimal),
-                           let roundedValue = formatted.truncate(places: 4),
+                           let roundedValue = native.truncate(places: 4),
                            let networkFormated = network.network?.formatNetwork() {
                             HStack(alignment: .center, spacing: 2) {
                                 Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.bodyBold)

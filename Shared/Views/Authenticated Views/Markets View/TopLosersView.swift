@@ -43,13 +43,9 @@ struct TopLosersView: View {
                         TokenListStandardCell(service: service, data: item,
                                               isLast: store.coinsByLosers.count < limitCells ? store.coinsByLosers.last == item ? true : false : false,
                                               style: service.themeStyle, action: {
-                            walletRouter.route(to: \.tokenDetail, item)
+//                            walletRouter.route(to: \.tokenDetail, item)
 
                             print("the item is: \(item)")
-
-                            #if os(iOS)
-                                HapticFeedback.rigidHapticFeedback()
-                            #endif
                         })
                     }
                 }.padding(.top)

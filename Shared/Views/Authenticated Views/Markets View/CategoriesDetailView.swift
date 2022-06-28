@@ -65,7 +65,7 @@ struct CategoriesDetailView: View {
                         TokenListStandardCell(service: service, data: store.tokenCategoryList[index],
                                               isLast: false,
                                               style: service.themeStyle, action: {
-                            marketRouter.route(to: \.tokenDetail, store.tokenCategoryList[index])
+//                            marketRouter.route(to: \.tokenDetail, store.tokenCategoryList[index])
                             print("the item is: \(store.tokenCategoryList[index].name ?? "no name")")
                         })
                     }

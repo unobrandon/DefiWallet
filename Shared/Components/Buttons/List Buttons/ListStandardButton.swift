@@ -102,16 +102,12 @@ struct ListStandardButton: View {
             .buttonStyle(DefaultInteractiveStyle(style: self.style))
             .frame(minWidth: 100, maxWidth: .infinity)
 
-        }.simultaneousGesture(TapGesture().onEnded {
-            #if os(iOS)
-                HapticFeedback.rigidHapticFeedback()
-            #endif
-        })
+        }
     }
 
     private func actionTap() {
         #if os(iOS)
-            HapticFeedback.lightHapticFeedback()
+            HapticFeedback.rigidHapticFeedback()
         #endif
 
         action()

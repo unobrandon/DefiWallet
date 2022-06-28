@@ -37,6 +37,7 @@ struct WalletView: View {
 
                 LazyVGrid(columns: gridItems, alignment: .center, spacing: 0) {
                     NetworkSectionView(isLoading: self.$isBalanceLoading, service: service)
+                    TokensSectionView(service: service)
                     CollectablesSectionView(isLoading: self.$isBalanceLoading, service: service)
                     HistorySectionView(isLoading: self.$isHistoryLoading, service: service, network: nil)
                 }
@@ -85,7 +86,7 @@ struct WalletView: View {
         isBalanceLoading = true
         isHistoryLoading = true
 
-        store.fetchAccountBalance(service.currentUser.address, completion: { _ in
+        store.fetchAccountBalance(service.currentUser.address, service.currentUser.currency, completion: { _ in
             isBalanceLoading = false
             isHistoryLoading = false
         })

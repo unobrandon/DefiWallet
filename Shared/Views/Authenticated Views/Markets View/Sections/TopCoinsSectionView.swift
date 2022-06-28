@@ -46,20 +46,12 @@ struct TopCoinsSectionView: View {
                         TokenListStandardCell(service: service, data: item,
                                               isLast: store.coinsByMarketCap.count < limitCells ? store.coinsByMarketCap.last == item ? true : false : false,
                                               style: service.themeStyle, action: {
-                            marketRouter.route(to: \.tokenDetail, item)
-
-                            #if os(iOS)
-                                HapticFeedback.rigidHapticFeedback()
-                            #endif
+//                            marketRouter.route(to: \.tokenDetail, item)
                         })
 
                         if store.coinsByMarketCap.last == item || item == store.coinsByMarketCap[limitCells - 1] {
-                            ListStandardButton(title: "view more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                            ListStandardButton(title: "view all...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
                                 marketRouter.route(to: \.marketCapRank)
-
-                                #if os(iOS)
-                                    HapticFeedback.rigidHapticFeedback()
-                                #endif
                             })
                         }
                     }

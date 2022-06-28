@@ -46,7 +46,7 @@ struct NetworkDetailView: View {
 
             self.gridViews = [
                 AnyView(OverviewSectionView(completeBalance: balance, service: service)),
-                AnyView(TokensSectionView(data: balance, service: service)),
+                AnyView(TokensSectionView(network: balance.network, service: service)),
                 AnyView(HistorySectionView(isLoading: $isHistoryLoading, service: service, network: network))
             ]
         }

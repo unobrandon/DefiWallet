@@ -58,16 +58,16 @@ extension MarketsCoordinator {
         PublicTreasuryView(service: services)
     }
 
-    @ViewBuilder func makeTokenDetail(tokenDetail: TokenDetails) -> some View {
-        TokenDetailView(tokenDetail: tokenDetail, tokenDescriptor: nil, externalId: nil, service: services)
+    @ViewBuilder func makeTokenDetail(tokenModel: TokenModel) -> some View {
+        TokenDetailView(tokenModel: tokenModel, tokenDescriptor: nil, externalId: nil, service: services)
     }
 
     @ViewBuilder func makeExternalTokenDetail(externalId: String) -> some View {
-        TokenDetailView(tokenDetail: nil, tokenDescriptor: nil, externalId: externalId, service: services)
+        TokenDetailView(tokenModel: nil, tokenDescriptor: nil, externalId: externalId, service: services)
     }
 
     @ViewBuilder func makeDescriptorTokenDetail(tokenDescriptor: TokenDescriptor) -> some View {
-        TokenDetailView(tokenDetail: nil, tokenDescriptor: tokenDescriptor, externalId: nil, service: services)
+        TokenDetailView(tokenModel: nil, tokenDescriptor: tokenDescriptor, externalId: nil, service: services)
     }
 
 }

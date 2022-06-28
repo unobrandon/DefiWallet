@@ -37,7 +37,7 @@ class MarketsService: ObservableObject {
     var gasChartLimit: Int = 24
 
     @Published var searchCategoriesText: String = ""
-    @Published var categoriesFilters: FilterCategories = .marketCapDesc
+    @Published var categoriesFilters: FilterCategories = .gainers
     var categoriesCancellable: AnyCancellable?
 
     @Published var searchExchangesText: String = ""

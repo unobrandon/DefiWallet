@@ -27,6 +27,10 @@ extension WalletCoordinator {
         NetworkDetailView(data: data, network: data.network, service: services)
     }
 
+    @ViewBuilder func makeTokens(network: String? = nil) -> some View {
+        TokensView(filtered: network, service: services)
+    }
+
     @ViewBuilder func makeHistory(network: String? = nil) -> some View {
         HistoryView(filtered: network, service: services)
     }
@@ -35,16 +39,16 @@ extension WalletCoordinator {
         HistoryDetailView(data: data, service: services)
     }
 
-    @ViewBuilder func makeTokenDetail(tokenDetail: TokenDetails) -> some View {
-        TokenDetailView(tokenDetail: tokenDetail, tokenDescriptor: nil, externalId: nil, service: services)
+    @ViewBuilder func makeTokenDetail(tokenModel: TokenModel) -> some View {
+        TokenDetailView(tokenModel: tokenModel, tokenDescriptor: nil, externalId: nil, service: services)
     }
 
     @ViewBuilder func makeExternalTokenDetail(externalId: String) -> some View {
-        TokenDetailView(tokenDetail: nil, tokenDescriptor: nil, externalId: externalId, service: services)
+        TokenDetailView(tokenModel: nil, tokenDescriptor: nil, externalId: externalId, service: services)
     }
 
     @ViewBuilder func makeDescriptorTokenDetail(tokenDescriptor: TokenDescriptor) -> some View {
-        TokenDetailView(tokenDetail: nil, tokenDescriptor: tokenDescriptor, externalId: nil, service: services)
+        TokenDetailView(tokenModel: nil, tokenDescriptor: tokenDescriptor, externalId: nil, service: services)
     }
 
     @ViewBuilder func makeSafari(url: URL) -> some View {

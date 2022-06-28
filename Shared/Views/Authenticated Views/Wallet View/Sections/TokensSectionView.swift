@@ -14,18 +14,35 @@ struct TokensSectionView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
 
-    private let tokens: [TokenBalance]
-    private let network: String
+    private var network: String?
+    private var tokens: [TokenModel] {
+        var allTokens: [TokenModel] = []
 
-    @State private var limitCells: Int = 4
+        for token in self.store.completeBalance {
+            guard let tokens = token.tokens else {
+                return []
+            }
+
+            for item in tokens {
+                allTokens.append(item)
+            }
+        }
+
+        if self.network != nil {
+            allTokens = allTokens.filter({ $0.network == self.network })
+        }
+
+        return allTokens.sorted(by: { $0.totalBalance ?? 0 > $1.totalBalance ?? 0 })
+    }
+
+    @State private var limitCells: Int = 5
     @State private var isLoading: Bool = false
     @State private var emptyTokens: Bool = false
 
-    init(data: CompleteBalance, service: AuthenticatedServices) {
+    init(network: String? = nil, service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
-        self.tokens = data.tokenBalance ?? []
-        self.network = data.network ?? ""
+        self.network = network
     }
 
     var body: some View {
@@ -46,21 +63,13 @@ struct TokensSectionView: View {
                 }
 
                 ForEach(tokens.prefix(limitCells), id: \.self) { item in
-                    TokenBalanceCell(service: service, data: item, network: network, isLast: tokens.count < limitCells ? tokens.last == item ? true : false : false, style: service.themeStyle, action: {
-//                        walletRouter.route(to: \.historyDetail, item)
-
-                        #if os(iOS)
-                            HapticFeedback.rigidHapticFeedback()
-                        #endif
+                    TokenBalanceCell(service: service, data: item, isLast: tokens.count < limitCells ? tokens.last == item ? true : false : false, style: service.themeStyle, action: {
+                        walletRouter.route(to: \.tokenDetail, item)
                     })
 
-                    if tokens.last == item || item == tokens[limitCells - 1] {
-                        ListStandardButton(title: "show \(tokens.count - limitCells) more...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
-//                            walletRouter.route(to: \.history, filter)
-
-                            #if os(iOS)
-                                HapticFeedback.rigidHapticFeedback()
-                            #endif
+                    if item == tokens.prefix(limitCells).last {
+                        ListStandardButton(title: tokens.count - limitCells != 0 ? "show \(tokens.count - limitCells) more..." : "show all...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                            walletRouter.route(to: \.tokens, network)
                         })
                     }
                 }
@@ -69,8 +78,7 @@ struct TokensSectionView: View {
     }
 
     private func showMoreLess() {
-//        walletRouter.route(to: \.history, filter)
-        print("show all tokens view")
+        walletRouter.route(to: \.tokens, network)
 
         #if os(iOS)
             HapticFeedback.rigidHapticFeedback()
