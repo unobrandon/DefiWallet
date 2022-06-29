@@ -54,9 +54,10 @@ extension Refresh.Modifier: ViewModifier {
     }
 
     func update(proxy: GeometryProxy, value: Refresh.HeaderAnchorKey.Value) {
+
         guard let item = value.first else { return }
         guard !footerUpdate.refresh else { return }
-        
+
         let bounds = proxy[item.bounds]
         var update = headerUpdate
 
@@ -78,9 +79,11 @@ extension Refresh.Modifier: ViewModifier {
         headerUpdate = update
         headerPadding = headerUpdate.refresh ? 0 : -max(rowHeight, bounds.height)
         headerPreviousProgress = update.progress
+
     }
 
     func update(proxy: GeometryProxy, value: Refresh.FooterAnchorKey.Value) {
+
         guard let item = value.first else { return }
         guard headerUpdate.progress == 0 else { return }
 
@@ -103,6 +106,7 @@ extension Refresh.Modifier: ViewModifier {
         }
 
         footerUpdate = update
+
     }
 
 }

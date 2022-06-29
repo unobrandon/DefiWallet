@@ -25,8 +25,8 @@ enum FilterCategories: String, Equatable {
 }
 
 enum PublicTreasuryCoins: String, Equatable {
-    case bitcoin = "bitcoin"
-    case ethereum = "ethereum"
+    case bitcoin
+    case ethereum
 }
 
 enum NetworkStatus: Equatable {

@@ -15,13 +15,15 @@ struct OverviewSectionView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
     private let completeBalance: CompleteBalance
-
+    private let network: String?
     private var rings: [RingProgressModel]
+    @State var hasCopiedAddress: Bool = false
 
-    init(completeBalance: CompleteBalance, service: AuthenticatedServices) {
+    init(completeBalance: CompleteBalance, network: String? = nil, service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
         self.completeBalance = completeBalance
+        self.network = network
 
         let totalAssets: Double = Double((completeBalance.tokens?.count ?? 0) + (completeBalance.nfts?.allNfts?.count ?? 0))
         let tokenProgress: Double = Double((completeBalance.tokens?.count ?? 0)) / totalAssets
@@ -34,120 +36,97 @@ struct OverviewSectionView: View {
     }
 
     var body: some View {
-        HStack(alignment: .center, spacing: 5) {
-//            VStack(alignment: .leading, spacing: 5) {
-                
-//                mainnetSection
-//            }.frame(height: 210)
-            balanceSection
-            breakdownSection
-        }
-        .padding(.top)
-        .padding(.horizontal)
-    }
-
-    // MARK: - Balance Section
-    @ViewBuilder
-    private var balanceSection: some View {
-        Button(action: {
-            print("maybe spin the numbers here")
-        }, label: {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Network Balance:")
-                    .fontTemplate(DefaultTemplate.body_secondary)
-
-                HStack(alignment: .center, spacing: 5) {
-                    Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.titleSemiBold)
-
-                    if let num = service.wallet.getNetworkTotal(completeBalance) {
-                        MovingNumbersView(number: num,
-                                          numberOfDecimalPlaces: 2,
-                                          fixedWidth: nil,
-                                          showComma: true) { str in
-                            Text(str).fontTemplate(DefaultTemplate.titleSemiBold)
-                        }
-                    }
-
-                    Spacer()
-                }.mask(AppGradients.movingNumbersMask)
-            }
-        }).buttonStyle(DefaultInteractiveStyle(style: service.themeStyle))
-    }
-
-    // MARK: - Mainnet Section
-    @ViewBuilder
-    private var  mainnetSection: some View {
-        ListSection(hasPadding: false, style: service.themeStyle) {
-            Button(action: {
-                print("route to coin details view")
-            }, label: {
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack(alignment: .center, spacing: 10) {
-                        Text("Mainnet").fontTemplate(DefaultTemplate.body_secondary)
-
-                        Spacer()
-                        HStack(alignment: .center, spacing: 2.5) {
-                            if let num = service.wallet.getNetworkTotal(completeBalance) {
-                                Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.gasPriceFont)
-
-                                MovingNumbersView(number: num,
-                                                  numberOfDecimalPlaces: 2,
-                                                  fixedWidth: nil,
-                                                  showComma: true) { str in
-                                    Text(str).fontTemplate(DefaultTemplate.gasPriceFont)
-                                }
-                            }
-                        }.mask(AppGradients.movingNumbersMask)
-
-                        Image(systemName: "chevron.right")
+        HStack(alignment: .bottom, spacing: 10) {
+            VStack(alignment: .center, spacing: 10) {
+                // Title
+                HStack(alignment: .center, spacing: 10) {
+                    if let network = network {
+                        Image((network == "bsc" ? "binance" : network) + "_logo")
                             .resizable()
-                            .font(Font.title.weight(.semibold))
-                            .scaledToFit()
-                            .frame(width: 6, height: 12, alignment: .center)
-                            .foregroundColor(.secondary)
-                    }
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 48, height: 48, alignment: .center)
+                            .clipShape(Circle())
+                            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 5, x: 0, y: 4)
+                            .padding(.bottom, 5)
 
-                    LightChartView(data: [2, 17, 9, 23, 10, 8],
-                                   type: .curved,
-                                   visualType: .filled(color: store.getNetworkColor(completeBalance.network ?? ""), lineWidth: 3),
-                                   offset: 0.2,
-                                   currentValueLineType: .none)
-                        .frame(height: 36, alignment: .center)
-                }.padding()
-            }).buttonStyle(DefaultInteractiveStyle(style: service.themeStyle))
-        }
-    }
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text((network == "eth" ? "Ethereum" : network == "bsc" ? "Binanace" : network.capitalized) + " Network").fontTemplate(DefaultTemplate.subheadingSemiBold)
 
-    // MARK: - Breakdown Section
-    @ViewBuilder
-    private var  breakdownSection: some View {
-//        ListSection(hasPadding: false, style: service.themeStyle) {
-            Button(action: {
-                print("percentage here")
-            }, label: {
-                VStack(alignment: .center, spacing: 20) {
-                    ZStack {
-                        ForEach(rings.indices, id: \.self) { index in
-                            AnimatedRingView(ring: rings[index], index: index, lineWidth: 7)
+                            Button(action: {
+                                UIPasteboard.general.string = service.currentUser.address
+                                HapticFeedback.successHapticFeedback()
+                                showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied wallet address", subtitle: nil)
+                                withAnimation {
+                                    hasCopiedAddress = true
+                                }
+
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                    withAnimation {
+                                        hasCopiedAddress = false
+                                    }
+                                }
+                            }, label: {
+                                HStack(alignment: .center, spacing: 5) {
+                                    Text(service.currentUser.username == service.currentUser.address ? service.currentUser.shortAddress : service.currentUser.username ?? service.currentUser.shortAddress)
+                                        .fontTemplate(FontTemplate(font: Font.custom("LabMono-Regular", size: 12), weight: .regular, foregroundColor: .secondary, lineSpacing: 0))
+
+                                    Image(systemName: hasCopiedAddress ? "checkmark" : "doc.on.doc")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: hasCopiedAddress ? 10 : 12.5, height: hasCopiedAddress ? 10 : 12.5, alignment: .center)
+                                        .font(Font.title.weight(.semibold))
+                                        .foregroundColor(.secondary)
+                                }
+                            }).buttonStyle(ClickInteractiveStyle(0.95))
                         }
-                    }.frame(width: 80, height: 80)
+                    }
+                    Spacer()
+                }
 
-                    VStack(alignment: .center, spacing: 4) {
-                        ForEach(rings) { ring in
-                            Label {
-                                Text(ring.value)
-                                    .fontTemplate(DefaultTemplate.caption)
-                                    .lineLimit(1)
-                            } icon: {
-                                Circle().frame(width: 8, height: 8).foregroundColor(ring.keyColor)
+                // Balance
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("Network Balance:")
+                        .fontTemplate(DefaultTemplate.body_secondary)
+
+                    HStack(alignment: .top, spacing: 5) {
+                        Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.titleSemiBold)
+
+                        if let num = service.wallet.getNetworkTotal(completeBalance) {
+                            MovingNumbersView(number: num,
+                                              numberOfDecimalPlaces: 2,
+                                              fixedWidth: nil,
+                                              showComma: true) { str in
+                                Text(str).fontTemplate(DefaultTemplate.titleSemiBold)
                             }
                         }
+                        Spacer()
+                    }.mask(AppGradients.movingNumbersMask)
+                }
+            }
+
+            Spacer()
+            // Breakdown
+            VStack(alignment: .center, spacing: 20) {
+                ZStack {
+                    ForEach(rings.indices, id: \.self) { index in
+                        AnimatedRingView(ring: rings[index], index: index, lineWidth: 5)
                     }
-                }.padding()
-                .frame(height: 210)
-            })
-            .buttonStyle(DefaultInteractiveStyle(style: service.themeStyle))
-//        }
+                }.frame(width: 50, height: 50)
+
+                VStack(alignment: .center, spacing: 4) {
+                    ForEach(rings) { ring in
+                        Label {
+                            Text(ring.value)
+                                .fontTemplate(DefaultTemplate.caption)
+                                .lineLimit(1)
+                        } icon: {
+                            Circle().frame(width: 8, height: 8).foregroundColor(ring.keyColor)
+                        }
+                    }
+                }
+            }
+        }
+        .padding(.horizontal)
     }
 
 }

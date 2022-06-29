@@ -91,7 +91,7 @@ struct CategoriesDetailView: View {
             }.enableRefresh()
         })
         .navigationBarTitle(category.name ?? "Category List", displayMode: .large)
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search tokens...")
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search tokens")
         .onAppear {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()

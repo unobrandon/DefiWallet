@@ -68,7 +68,7 @@ struct ExchangesView: View {
             }.enableRefresh()
         })
         .navigationBarTitle("Exchanges", displayMode: .large)
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search exchanges...", suggestions: {
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search exchanges", suggestions: {
             Text("hello")
         })
         .onAppear {

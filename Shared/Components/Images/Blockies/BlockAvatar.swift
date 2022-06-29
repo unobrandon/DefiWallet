@@ -244,9 +244,7 @@ extension Character {
      * an ascii character.
      */
     var asciiValue: UInt32 {
-        get {
-            let sss = String(self).unicodeScalars
-            return sss[sss.startIndex].value
-        }
+        let sss = String(self).unicodeScalars
+        return sss[sss.startIndex].value
     }
 }

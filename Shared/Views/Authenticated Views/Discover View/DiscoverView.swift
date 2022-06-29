@@ -43,7 +43,7 @@ struct DiscoverView: View {
             }
         })
         .navigationBarTitle("Discover", displayMode: .large)
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search all web3...")
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search nfts, news, & more")
     }
 
 }

@@ -86,7 +86,7 @@ struct ExchangesDetailView: View {
             }.enableRefresh()
         })
         .navigationBarTitle(exchange.name ?? "Exchange Tickers", displayMode: .large)
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search tickers...")
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search tickers")
         .onAppear {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()

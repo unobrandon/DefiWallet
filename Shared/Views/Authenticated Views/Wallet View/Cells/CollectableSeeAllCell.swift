@@ -30,7 +30,7 @@ struct CollectableSeeAllCell: View {
 
                     Text("see all").fontTemplate(DefaultTemplate.bodySemibold_nunito_secondary)
                 }.frame(maxWidth: .infinity, alignment: .center)
-                .padding(.vertical)
+                .padding(.vertical, 30)
             }
         }).buttonStyle(ClickInteractiveStyle(0.99))
     }

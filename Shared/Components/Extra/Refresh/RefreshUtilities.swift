@@ -9,7 +9,7 @@ import SwiftUI
 
 @available(iOS 13.0, *)
 extension View {
-    
+
     func clipped(_ value: Bool) -> some View {
         if value {
             return AnyView(self.clipped())

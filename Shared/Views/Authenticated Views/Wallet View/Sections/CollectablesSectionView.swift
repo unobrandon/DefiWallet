@@ -15,7 +15,7 @@ struct CollectablesSectionView: View {
     @ObservedObject private var store: WalletService
 
     @Binding private var isLoading: Bool
-    private let filter: Network?
+    private let filter: String?
     @State private var limitCells: Int = MobileConstants.deviceType == .phone ? 9 : 12
     private var data: [NftResult] {
         var nfts: [NftResult] = []
@@ -31,22 +31,24 @@ struct CollectablesSectionView: View {
             }
         }
 
+        if self.filter != nil {
+            nfts = nfts.filter({ $0.network == self.filter })
+        }
+
         return nfts
     }
 
-    let gridItems: [SwiftUI.GridItem] = MobileConstants.deviceType == .phone ? [SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible())] : [SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible())]
-
-    init(isLoading: Binding<Bool>, service: AuthenticatedServices, network: Network? = nil) {
+    init(isLoading: Binding<Bool>, network: String? = nil, service: AuthenticatedServices) {
         self._isLoading = isLoading
+        self.filter = network
         self.service = service
         self.store = service.wallet
-        self.filter = network
     }
 
     var body: some View {
         LazyVStack(alignment: .center, spacing: 0) {
             SectionHeaderView(title: "Collectables", actionTitle: store.history.isEmpty ? "" : "Show all", action: {
-                print("see more")
+                seeAll()
             })
             .padding(.vertical, 5)
 
@@ -54,37 +56,33 @@ struct CollectablesSectionView: View {
                 LoadingView(title: "")
             }
 
-            StaggeredGrid(columns: MobileConstants.deviceType == .phone ? 3 : 4, showsIndicators: false, spacing: 2.5, list: data, itemLimit: self.limitCells, content: { nftResult in
-                if nftResult == data.prefix(limitCells).last {
+            StaggeredGrid(columns: MobileConstants.deviceType == .phone ? 3 : 4, showsIndicators: false, spacing: 1, list: data, itemLimit: self.limitCells, content: { nftResult in
+                if limitCells <= data.count, nftResult == data.prefix(limitCells).last {
                     CollectableSeeAllCell(style: service.themeStyle, action: {
-                        print("collectable see all tapped")
+                        seeAll()
                     })
                 } else {
                     CollectableImageCell(service: service, data: nftResult, style: service.themeStyle, action: {
                         print("collectable tapped")
                     })
-//                    .frame(maxWidth: 150, maxHeight: 150, alignment: .center)
-//                    .clipped()
                 }
             })
-
-//            LazyVGrid(columns: gridItems, alignment: .center, spacing: 5) {
-//                ForEach(data.prefix(limitCells), id: \.self) { nftResult in
-//                    if nftResult == data.prefix(limitCells).last {
-//                        CollectableSeeAllCell(style: service.themeStyle, action: {
-//                            print("collectable see all tapped")
-//                        })
-//                    } else {
-//                        CollectableImageCell(service: service, data: nftResult, style: service.themeStyle, action: {
-//                            print("collectable tapped")
-//                        })
-//                        .frame(maxWidth: 150, maxHeight: 150, alignment: .center)
-//                        .clipped()
-//                    }
-//                }
-//            }
             .padding(.horizontal)
+
+            if data.isEmpty {
+                Text("empty collectables")
+                    .fontTemplate(DefaultTemplate.caption)
+                    .padding()
+            }
         }
+    }
+
+    private func seeAll() {
+        walletRouter.route(to: \.collectables, filter)
+
+        #if os(iOS)
+            HapticFeedback.rigidHapticFeedback()
+        #endif
     }
 
 }

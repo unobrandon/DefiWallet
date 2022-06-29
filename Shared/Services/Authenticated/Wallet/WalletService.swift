@@ -16,7 +16,6 @@ class WalletService: ObservableObject {
     @Published var accountPortfolio: AccountPortfolio?
     @Published var accountChart = [ChartValue]()
     @Published var completeBalance = [CompleteBalance]()
-    @Published var accountNfts = [NftResult]()
     @Published var history = [HistoryData]()
 //    @Published var wcProposal: WalletConnect.Session.Proposal?
     @Published var wcActiveSessions = [WCSessionInfo]()

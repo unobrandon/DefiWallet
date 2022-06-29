@@ -70,7 +70,7 @@ class ACarouselViewModel<Data, ID>: ObservableObject where Data : RandomAccessCo
 
     /// size of GeometryProxy
     var viewSize: CGSize = .zero
-    
+
     /// Counting of time
     /// work when `isTimerActive` is true
     /// Toggles the active subviewview and resets if the count is the same as

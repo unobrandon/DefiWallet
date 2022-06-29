@@ -70,7 +70,7 @@ struct CategoriesView: View {
             }.enableRefresh()
         })
         .navigationBarTitle("Categories", displayMode: .large)
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search categories...")
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search categories")
         .onChange(of: searchText, perform: { text in
             store.searchCategoriesText = text
         })

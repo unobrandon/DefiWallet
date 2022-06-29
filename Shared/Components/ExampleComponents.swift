@@ -9,6 +9,13 @@ import SwiftUI
 
 struct ExampleComponents: View {
     var body: some View {
+
+        StickyHeaderView(title: "Ethereum",
+                         subtitle: "subtitle of network view. will have to come back to this to fetch from backend.",
+                         style: service.themeStyle,
+                         localTitleImage: "eth_logo",
+                         localImage: "gradientBg3")
+
         LoadingIndicator(size: 25)
 
         RoundedButton("Show Noti", style: .secondary, systemImage: "paperplane.fill", action: {

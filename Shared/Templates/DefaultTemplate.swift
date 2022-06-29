@@ -81,6 +81,8 @@ struct DefaultTemplate {
     static let captionPrimary_semibold = FontTemplate(font: Font.system(size: 12.0), weight: .semibold, foregroundColor: .primary, lineSpacing: 1)
     static let captionError = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .red, lineSpacing: 1)
 
+    static let caption_Mono_secondary = FontTemplate(font: Font.custom("LabMono-Regular", size: 12), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)
+
     static let alertMessage = FontTemplate(font: Font.system(size: 12.0), weight: .semibold, foregroundColor: .primary, lineSpacing: 0)
 
     static let monospace = FontTemplate(font: Font.system(.caption, design: .monospaced), weight: .regular, foregroundColor: .primary, lineSpacing: 0)

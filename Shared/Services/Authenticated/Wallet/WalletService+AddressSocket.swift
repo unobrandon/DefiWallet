@@ -150,7 +150,7 @@ extension WalletService {
                       let firstDict = array.first,
                       let payload = firstDict["payload"] else { return }
 
-//                print("the transactions value is: \(payload)")
+                print("the transactions value is: \(payload)")
             }
         }
 
@@ -161,7 +161,7 @@ extension WalletService {
                       let payload = firstDict["payload"],
                       let assets = payload["polygon-assets"] as? [String: AnyObject] else { return }
 
-//                print("the polygon-assets value is: \(assets)")
+                print("the polygon-assets value is: \(assets)")
             }
         }
 

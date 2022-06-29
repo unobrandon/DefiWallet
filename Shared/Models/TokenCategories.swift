@@ -8,7 +8,7 @@
 import Foundation
 
 struct TokenCategory: Codable, Hashable {
-    
+
     static func == (lhs: TrendingItem, rhs: TrendingItem) -> Bool {
         return lhs.id == rhs.id && lhs.coinID == rhs.coinID
     }

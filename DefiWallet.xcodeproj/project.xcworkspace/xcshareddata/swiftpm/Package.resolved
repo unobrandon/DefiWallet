@@ -78,7 +78,7 @@
       "location" : "https://github.com/realm/realm-swift.git",
       "state" : {
         "branch" : "master",
-        "revision" : "d02407e9cc22758aa8d20f0a5dd172598bdf9212"
+        "revision" : "9f7a605dfcf6a60e019a296dc8d91c3b23837a82"
       }
     },
     {
@@ -86,8 +86,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "2e63d0061da449ad0ed130768d05dceb1496de44",
-        "version" : "5.12.5"
+        "revision" : "c4b8660bb3ef543fe4bdcaac0db956b32dc5583f",
+        "version" : "5.13.0"
       }
     },
     {
@@ -131,8 +131,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/rundfunk47/stinsen",
       "state" : {
-        "revision" : "36d97964075dc770046ddef9346a29bfa8982d6d",
-        "version" : "2.0.7"
+        "revision" : "add05384b65ae3e39474f51ab5b9281abd238c60",
+        "version" : "2.0.9"
       }
     },
     {

@@ -46,7 +46,6 @@ struct NetworkSectionView: View {
                 .padding(.bottom, service.themeStyle == .shadow ? 20 : 0)
             }
         }
-//        .gridStyle(StaggeredGridStyle(MobileConstants.deviceType == .phone ? .horizontal : .vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 5))
     }
 
 }

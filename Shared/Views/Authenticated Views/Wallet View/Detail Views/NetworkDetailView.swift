@@ -17,8 +17,10 @@ struct NetworkDetailView: View {
     private let network: String?
 
     @State private var showSheet = false
-    @State var isHistoryLoading = false
-    @State private var gridViews: [AnyView] = []
+    @State var isLoading = false
+    @State var scrollOffset: CGFloat = CGFloat.zero
+
+    let gridItems: [SwiftUI.GridItem] = MobileConstants.deviceType == .phone ? [SwiftUI.GridItem(.flexible())] : [SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible())]
 
     init(data: CompleteBalance, network: String? = nil, service: AuthenticatedServices) {
         self.balance = data
@@ -30,25 +32,40 @@ struct NetworkDetailView: View {
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView(.vertical, showsIndicators: false) {
-                StickyHeaderView(title: balance.network == "eth" ? "Ethereum" : balance.network == "bsc" ? "Binanace" : balance.network?.capitalized ?? "",
-                                 subtitle: "subtitle of network view. will have to come back to this to fetch from backend.",
-                                 style: service.themeStyle, localTitleImage: (balance.network == "bsc" ? "binance" : balance.network ?? "") + "_logo",
-                                 localImage: "gradientBg3")
+                OverviewSectionView(completeBalance: balance, network: balance.network, service: service)
+                    .background(GeometryReader {
+                        Color.clear.preference(key: ViewOffsetKey.self,
+                            value: -$0.frame(in: .named("networkDetail-scroll")).origin.y)
+                    })
+                    .onPreferenceChange(ViewOffsetKey.self) {
+                        self.scrollOffset = $0
+                    }
 
-                Grid(gridViews.indices, id: \.self) { gridViews[$0] }
-            }
+                LazyVGrid(columns: gridItems, alignment: .center, spacing: 0) {
+                    TokensSectionView(network: balance.network, service: service)
+                    CollectablesSectionView(isLoading: $isLoading, network: network, service: service)
+                    HistorySectionView(isLoading: $isLoading, service: service, network: network)
+                }
+            }.coordinateSpace(name: "networkDetail-scroll")
         })
-        .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))
+        .navigationBarTitle {
+            HStack(alignment: .center, spacing: 10) {
+                if let network = network, self.scrollOffset > 48 {
+                    Image((network == "bsc" ? "binance" : network) + "_logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 28, height: 28, alignment: .center)
+                        .clipShape(Circle())
+
+                    Text((network == "eth" ? "Ethereum" : network == "bsc" ? "Binanace" : network.capitalized) + " Network").fontTemplate(DefaultTemplate.sectionHeader_bold)
+                }
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()
             }
-
-            self.gridViews = [
-                AnyView(OverviewSectionView(completeBalance: balance, service: service)),
-                AnyView(TokensSectionView(network: balance.network, service: service)),
-                AnyView(HistorySectionView(isLoading: $isHistoryLoading, service: service, network: network))
-            ]
         }
     }
 

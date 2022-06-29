@@ -31,6 +31,10 @@ extension WalletCoordinator {
         TokensView(filtered: network, service: services)
     }
 
+    @ViewBuilder func makeCollectables(network: String? = nil) -> some View {
+        CollectableView(filtered: network, service: services)
+    }
+
     @ViewBuilder func makeHistory(network: String? = nil) -> some View {
         HistoryView(filtered: network, service: services)
     }

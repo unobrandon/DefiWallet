@@ -30,7 +30,7 @@ struct TokenBalanceCell: View {
                 self.actionTap()
             }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
-                    HStack(alignment: .top, spacing: 2.5) {
+                    HStack(alignment: .top, spacing: 5) {
                         ZStack {
                             RemoteImage(data.imageSmall ?? data.image ?? "", size: 42)
                                 .clipShape(Circle())
@@ -50,7 +50,7 @@ struct TokenBalanceCell: View {
                         .padding(.trailing, 7.5)
 
                         VStack(alignment: .leading, spacing: 0) {
-                            HStack(alignment: .center, spacing: 2.5) {
+                            HStack(alignment: .center, spacing: 5) {
                                 Text(data.name ?? "no name")
                                     .fontTemplate(DefaultTemplate.gasPriceFont)
                                     .lineLimit(2)
@@ -60,15 +60,20 @@ struct TokenBalanceCell: View {
                                 }
                             }
 
-                            ProminentRoundedLabel(text: (data.priceChangePercentage24H ?? 0 >= 0 ? "+" : "") +
-                                                  "\("".forTrailingZero(temp: data.priceChangePercentage24H?.truncate(places: 2) ?? 0.00))%",
-                                                  color: data.priceChangePercentage24H ?? 0 >= 0 ? .green : .red,
-                                                  fontSize: 13.0,
-                                                  style: service.themeStyle).offset(y: -1.5)
+                            if let native = data.nativeBalance,
+                               let roundedValue = native.truncate(places: 3) {
+                                HStack(alignment: .center, spacing: 2) {
+                                    Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.body_secondary_semibold)
+
+                                    Text(data.symbol?.uppercased() ?? "")
+                                        .fontTemplate(DefaultTemplate.body_secondary)
+                                        .lineLimit(1)
+                                }.padding(.trailing, 12)
+                            }
                         }
 
                         Spacer()
-                        VStack(alignment: .trailing, spacing: 0) {
+                        VStack(alignment: .trailing, spacing: 2) {
                             HStack(alignment: .center, spacing: 10) {
                                 Text("\(data.totalBalance?.convertToCurrency() ?? "$0.00")").fontTemplate(DefaultTemplate.gasPriceFont)
 
@@ -80,14 +85,11 @@ struct TokenBalanceCell: View {
                                     .foregroundColor(.secondary)
                             }
 
-                            if let native = data.nativeBalance,
-                               let roundedValue = native.truncate(places: 3) {
-                                HStack(alignment: .center, spacing: 2) {
-                                    Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.body_secondary_semibold)
-
-                                    Text(data.symbol?.uppercased() ?? "").fontTemplate(DefaultTemplate.body_secondary)
-                                }.padding(.trailing, 12)
-                            }
+                            ProminentRoundedLabel(text: (data.priceChangePercentage24H ?? 0 >= 0 ? "+" : "") +
+                                                  "\("".forTrailingZero(temp: data.priceChangePercentage24H?.truncate(places: 2) ?? 0.00))%",
+                                                  color: data.priceChangePercentage24H ?? 0 >= 0 ? .green : .red,
+                                                  fontSize: 13.0,
+                                                  style: service.themeStyle).padding(.trailing, 12.5)
                         }
                     }
                     .padding(.vertical, 10)

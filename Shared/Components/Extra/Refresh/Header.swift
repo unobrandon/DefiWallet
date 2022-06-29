@@ -14,7 +14,7 @@ extension Refresh {
 
         let action: () -> Void
         let label: (CGFloat) -> Label
-        
+
         @Binding var refreshing: Bool
 
         public init(refreshing: Binding<Bool>, action: @escaping () -> Void, @ViewBuilder label: @escaping (CGFloat) -> Label) {

@@ -374,6 +374,8 @@
 		05A6AABC27F9627800824C76 /* TrendingTokenStandardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A6AABA27F9627800824C76 /* TrendingTokenStandardCell.swift */; };
 		05A6AABE27F980A800824C76 /* MarketCapRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A6AABD27F980A800824C76 /* MarketCapRankView.swift */; };
 		05A6AABF27F980A800824C76 /* MarketCapRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A6AABD27F980A800824C76 /* MarketCapRankView.swift */; };
+		05B862E1286BF36600921C5F /* CollectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B862E0286BF36600921C5F /* CollectableView.swift */; };
+		05B862E2286BF36600921C5F /* CollectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B862E0286BF36600921C5F /* CollectableView.swift */; };
 		05BDC5B6280BCE3000851E16 /* GasPriceNavSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5B5280BCE3000851E16 /* GasPriceNavSection.swift */; };
 		05BDC5B7280BCE3000851E16 /* GasPriceNavSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5B5280BCE3000851E16 /* GasPriceNavSection.swift */; };
 		05BDC5B9280D06B500851E16 /* BorderedSelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDC5B8280D06B500851E16 /* BorderedSelectedButton.swift */; };
@@ -791,6 +793,7 @@
 		05A6AABA27F9627800824C76 /* TrendingTokenStandardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingTokenStandardCell.swift; sourceTree = "<group>"; };
 		05A6AABD27F980A800824C76 /* MarketCapRankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCapRankView.swift; sourceTree = "<group>"; };
 		05B6F35A27B617E500ECF820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05B862E0286BF36600921C5F /* CollectableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableView.swift; sourceTree = "<group>"; };
 		05BDC5B5280BCE3000851E16 /* GasPriceNavSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasPriceNavSection.swift; sourceTree = "<group>"; };
 		05BDC5B8280D06B500851E16 /* BorderedSelectedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedSelectedButton.swift; sourceTree = "<group>"; };
 		05BDC5BB280D116D00851E16 /* GlobalGasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalGasView.swift; sourceTree = "<group>"; };
@@ -1481,6 +1484,7 @@
 				0566AECF27E8F627006B645F /* Cells */,
 				0578070B27B8F1370008051B /* WalletView.swift */,
 				05D40F96286ADC1F002BDA0F /* TokensView.swift */,
+				05B862E0286BF36600921C5F /* CollectableView.swift */,
 				0566AECB27E8660C006B645F /* HistoryView.swift */,
 				05394150281A41B900CFAA53 /* SendToView.swift */,
 				05D40F93285DA6E7002BDA0F /* SwapTokenView.swift */,
@@ -2341,6 +2345,7 @@
 				0593022227E02B7E006DDFFF /* BorderlessButton.swift in Sources */,
 				0504A423283F287C000DB947 /* TokenDetailInfoSection.swift in Sources */,
 				05394154281A60E000CFAA53 /* SendToDetailView.swift in Sources */,
+				05B862E1286BF36600921C5F /* CollectableView.swift in Sources */,
 				0578070F27B8F1BC0008051B /* WalletCoordinator.swift in Sources */,
 				05F8EE1E27FFFBD0003BBC23 /* TokenCategory.swift in Sources */,
 			);
@@ -2507,6 +2512,7 @@
 				05E8590627CC198A00B85195 /* TermsView.swift in Sources */,
 				05583CAF27E9BF6600640E75 /* ModularGridStyle.swift in Sources */,
 				0578074A27BB5E610008051B /* FontTemplating.swift in Sources */,
+				05B862E2286BF36600921C5F /* CollectableView.swift in Sources */,
 				05F8EE2828000B53003BBC23 /* TopSectionView.swift in Sources */,
 				05E8589C27C9DA3700B85195 /* CarouselViewTwo.swift in Sources */,
 				053C7D4327CDCFDE0081DCEA /* EnsUsernameView.swift in Sources */,
