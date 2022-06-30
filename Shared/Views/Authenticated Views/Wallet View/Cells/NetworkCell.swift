@@ -66,7 +66,7 @@ struct NetworkCell: View {
                         }
 
                         Spacer()
-                        if let native = network.nativeBalance,
+                        if let native = network.totalBalance,
                            let roundedValue = native.truncate(places: 4),
                            let networkFormated = network.network?.formatNetwork() {
                             HStack(alignment: .center, spacing: 2) {

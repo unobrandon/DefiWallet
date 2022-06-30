@@ -33,6 +33,7 @@ struct NetworkDetailView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView(.vertical, showsIndicators: false) {
                 OverviewSectionView(completeBalance: balance, network: balance.network, service: service)
+                    .padding(.bottom)
                     .background(GeometryReader {
                         Color.clear.preference(key: ViewOffsetKey.self,
                             value: -$0.frame(in: .named("networkDetail-scroll")).origin.y)
@@ -40,6 +41,14 @@ struct NetworkDetailView: View {
                     .onPreferenceChange(ViewOffsetKey.self) {
                         self.scrollOffset = $0
                     }
+
+                if let native = balance.nativeBalance {
+                    ListSection(title: "native token", style: service.themeStyle) {
+                        TokenBalanceCell(service: service, data: native, isLast: true, style: service.themeStyle, action: {
+                            walletRouter.route(to: \.tokenDetail, native)
+                        })
+                    }
+                }
 
                 LazyVGrid(columns: gridItems, alignment: .center, spacing: 0) {
                     TokensSectionView(network: balance.network, service: service)

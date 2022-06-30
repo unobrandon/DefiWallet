@@ -20,7 +20,8 @@ struct CompleteBalance: Codable, Hashable {
     }
 
     let network: String?
-    let nativeBalance: Double?
+    let totalBalance: Double?
+    let nativeBalance: TokenModel?
     let tokens: [TokenModel]?
     let nfts: Nfts?
     let transactions: AccountTransactions?
