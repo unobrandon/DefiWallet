@@ -16,6 +16,7 @@ class WalletService: ObservableObject {
     @Published var accountPortfolio: AccountPortfolio?
     @Published var accountChart = [ChartValue]()
     @Published var completeBalance = [CompleteBalance]()
+    @Published var accountTotal: Double = 0.0
     @Published var history = [HistoryData]()
 //    @Published var wcProposal: WalletConnect.Session.Proposal?
     @Published var wcActiveSessions = [WCSessionInfo]()
@@ -56,7 +57,6 @@ class WalletService: ObservableObject {
         self.socketManager = socketManager
         self.addressSocket = socketManager.socket(forNamespace: "/address")
         self.compoundSocket = socketManager.socket(forNamespace: "/compound")
-
 //        self.walletConnectClient = WalletConnectClient(metadata: wcMetadata, relayer: relayer)
 //        self.walletConnectClient.delegate = self
 
@@ -66,7 +66,7 @@ class WalletService: ObservableObject {
     }
 
     deinit {
-        print("deinit wallet service!")
+        print("de-init wallet service!")
     }
 
     func loadStoredData() {
@@ -145,6 +145,116 @@ class WalletService: ObservableObject {
 
                 completion(!self.completeBalance.isEmpty ? self.completeBalance : nil)
             }
+        }
+    }
+
+    func getTokenIds() -> [String] {
+        var allTokenIds = ["binancecoin", "matic-network", "avalanche-2", "ethereum", "fantom", "balancer"]
+
+        for network in self.completeBalance {
+            guard let tokens = network.tokens else { continue }
+            for token in tokens {
+                guard let externalId = token.externalId else { continue }
+                allTokenIds.append(externalId)
+            }
+        }
+
+        return allTokenIds
+    }
+
+    func updateAccountBalancePrices(_ prices: [TokenPricesModel]) {
+        var overallTotal = 0.0
+
+        for network in completeBalance.indices {
+            guard let networkTokens = completeBalance[network].tokens else { continue }
+            var newTotal = 0.0
+            print("the  \(String(describing: completeBalance[network].nativeBalance?.externalId)) network id is: \(completeBalance[network].totalBalance)")
+
+            for token in networkTokens.indices {
+//                print("the token netwo id is: \(completeBalance[network].tokens?[token])")
+                if let index = prices.firstIndex(where: { $0.externalId == completeBalance[network].tokens?[token].externalId }) {
+                    DispatchQueue.main.async { [weak self] in
+                        let newPrice = prices[index]
+                        self?.completeBalance[network].tokens?[token].currentPrice = newPrice.currentPrice
+                        self?.completeBalance[network].tokens?[token].marketCap = newPrice.marketCap
+                        self?.completeBalance[network].tokens?[token].fullyDilutedValuation = newPrice.fullyDilutedValuation
+                        self?.completeBalance[network].tokens?[token].high24H = newPrice.high24H
+                        self?.completeBalance[network].tokens?[token].low24H = newPrice.low24H
+                        self?.completeBalance[network].tokens?[token].priceChange24H = newPrice.priceChange24H
+                        self?.completeBalance[network].tokens?[token].priceChangePercentage24H = newPrice.priceChangePercentage24H
+                        self?.completeBalance[network].tokens?[token].marketCapChange24H = newPrice.marketCapChange24H
+                        self?.completeBalance[network].tokens?[token].marketCapChangePercentage24H = newPrice.marketCapChangePercentage24H
+                        self?.completeBalance[network].tokens?[token].circulatingSupply = newPrice.circulatingSupply
+                        self?.completeBalance[network].tokens?[token].totalSupply = newPrice.totalSupply
+                        self?.completeBalance[network].tokens?[token].maxSupply = newPrice.maxSupply
+                        self?.completeBalance[network].tokens?[token].athChangePercentage = newPrice.athChangePercentage
+                        self?.completeBalance[network].tokens?[token].athDate = newPrice.athDate
+                        self?.completeBalance[network].tokens?[token].atlChangePercentage = newPrice.atlChangePercentage
+                        self?.completeBalance[network].tokens?[token].atlDate = newPrice.atlDate
+                        self?.completeBalance[network].tokens?[token].lastUpdated = newPrice.lastUpdated
+                        self?.completeBalance[network].tokens?[token].priceGraph = newPrice.priceGraph
+                        self?.completeBalance[network].tokens?[token].priceChangePercentage1h = newPrice.priceChangePercentage1h
+                        self?.completeBalance[network].tokens?[token].priceChangePercentage24h = newPrice.priceChangePercentage24h
+                        self?.completeBalance[network].tokens?[token].priceChangePercentage7d = newPrice.priceChangePercentage7d
+                        self?.completeBalance[network].tokens?[token].priceChangePercentage1y = newPrice.priceChangePercentage1y
+                        if let currentPrice = newPrice.currentPrice,
+                           let balance = self?.completeBalance[network].tokens?[token].nativeBalance {
+                            self?.completeBalance[network].tokens?[token].totalBalance = (balance * currentPrice)
+                            newTotal += (balance * currentPrice)
+                        }
+                    }
+
+                }
+            }
+
+            if let index = prices.firstIndex(where: { $0.externalId == completeBalance[network].nativeBalance?.externalId }) {
+                DispatchQueue.main.async { [weak self] in
+                    let newPrice = prices[index]
+                    self?.completeBalance[network].nativeBalance?.currentPrice = newPrice.currentPrice
+                    self?.completeBalance[network].nativeBalance?.marketCap = newPrice.marketCap
+                    self?.completeBalance[network].nativeBalance?.fullyDilutedValuation = newPrice.fullyDilutedValuation
+                    self?.completeBalance[network].nativeBalance?.high24H = newPrice.high24H
+                    self?.completeBalance[network].nativeBalance?.low24H = newPrice.low24H
+                    self?.completeBalance[network].nativeBalance?.priceChange24H = newPrice.priceChange24H
+                    self?.completeBalance[network].nativeBalance?.priceChangePercentage24H = newPrice.priceChangePercentage24H
+                    self?.completeBalance[network].nativeBalance?.marketCapChange24H = newPrice.marketCapChange24H
+                    self?.completeBalance[network].nativeBalance?.marketCapChangePercentage24H = newPrice.marketCapChangePercentage24H
+                    self?.completeBalance[network].nativeBalance?.circulatingSupply = newPrice.circulatingSupply
+                    self?.completeBalance[network].nativeBalance?.totalSupply = newPrice.totalSupply
+                    self?.completeBalance[network].nativeBalance?.maxSupply = newPrice.maxSupply
+                    self?.completeBalance[network].nativeBalance?.athChangePercentage = newPrice.athChangePercentage
+                    self?.completeBalance[network].nativeBalance?.athDate = newPrice.athDate
+                    self?.completeBalance[network].nativeBalance?.atlChangePercentage = newPrice.atlChangePercentage
+                    self?.completeBalance[network].nativeBalance?.atlDate = newPrice.atlDate
+                    self?.completeBalance[network].nativeBalance?.lastUpdated = newPrice.lastUpdated
+                    self?.completeBalance[network].nativeBalance?.priceGraph = newPrice.priceGraph
+                    self?.completeBalance[network].nativeBalance?.priceChangePercentage1h = newPrice.priceChangePercentage1h
+                    self?.completeBalance[network].nativeBalance?.priceChangePercentage24h = newPrice.priceChangePercentage24h
+                    self?.completeBalance[network].nativeBalance?.priceChangePercentage7d = newPrice.priceChangePercentage7d
+                    self?.completeBalance[network].nativeBalance?.priceChangePercentage1y = newPrice.priceChangePercentage1y
+                    if let currentPrice = newPrice.currentPrice,
+                       let balance = self?.completeBalance[network].nativeBalance?.nativeBalance {
+                        self?.completeBalance[network].nativeBalance?.totalBalance = (balance * currentPrice)
+                        newTotal += (balance * currentPrice)
+                    }
+                }
+
+            }
+
+            DispatchQueue.main.async { [weak self] in
+                overallTotal += newTotal
+                self?.completeBalance[network].totalBalance = newTotal
+            }
+
+        }
+
+        DispatchQueue.main.async { [weak self] in
+            self?.accountTotal = overallTotal
+            print("the new account total is: \(overallTotal) or \(self?.accountTotal)")
+        }
+
+        if let storage = StorageService.shared.balanceStorage {
+            storage.async.setObject(completeBalance, forKey: "balanceList") { _ in }
         }
     }
 

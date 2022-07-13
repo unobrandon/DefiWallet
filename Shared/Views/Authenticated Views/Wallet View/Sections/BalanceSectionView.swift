@@ -28,9 +28,10 @@ struct BalanceSectionView: View {
                     HStack(alignment: .center, spacing: 0) {
                         Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.titleSemiBold)
 
-                        MovingNumbersView(number: store.accountPortfolio?.totalValue ?? 0.00,
+                        MovingNumbersView(number: store.accountTotal,
                                           numberOfDecimalPlaces: 2,
                                           fixedWidth: 260,
+                                          theme: DefaultTemplate.titleSemiBold,
                                           animationDuration: 0.4,
                                           showComma: true) { str in
                             Text(str).fontTemplate(DefaultTemplate.titleSemiBold)
@@ -89,6 +90,16 @@ struct BalanceSectionView: View {
         }, actionSwap: { print("swap")
         }).padding(.top)
         .padding(.horizontal, 10)
+    }
+
+    private func getTotalBalance() -> Double {
+        var total = 0.0
+
+        for network in store.completeBalance {
+            total += network.totalBalance ?? 0.0
+        }
+
+        return total
     }
 
 }

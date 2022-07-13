@@ -22,6 +22,7 @@ struct WalletView: View {
     @State var isBalanceLoading: Bool = false
     @State var isHistoryLoading: Bool = false
     let gridItems: [SwiftUI.GridItem] = MobileConstants.deviceType == .phone ? [SwiftUI.GridItem(.flexible())] : [SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible())]
+    @State var walletPriceTimer: Timer?
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -76,13 +77,18 @@ struct WalletView: View {
             }
 
             store.emitAccountRequest()
+            let tokenIds = store.getTokenIds()
+            guard !tokenIds.isEmpty else { return }
+
+            self.service.socket.emitPricesUpdate(tokenIds)
+            self.startWalletPriceTimer()
         }
         .onDisappear {
-            store.stopAccountTimer()
+            stopWalletPriceTimer()
         }
     }
 
-    private func fetchNetworksBalances() {
+    func fetchNetworksBalances() {
         isBalanceLoading = true
         isHistoryLoading = true
 
@@ -90,6 +96,20 @@ struct WalletView: View {
             isBalanceLoading = false
             isHistoryLoading = false
         })
+    }
+
+    func startWalletPriceTimer() {
+
+        self.walletPriceTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { _ in
+            let tokenIds = store.getTokenIds()
+            self.service.socket.emitPricesUpdate(tokenIds)
+            print("emit Prices Update: \(tokenIds)")
+        }
+    }
+
+    func stopWalletPriceTimer() {
+        guard let timer = walletPriceTimer else { return }
+        timer.invalidate()
     }
 
 }

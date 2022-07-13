@@ -28,17 +28,17 @@ struct TokenDetails: Codable, Hashable {
     let hashingAlgorithm, telegramChannelID, twitterHandle, facebookUsername: String?
     let discordURL, blockchainURL, projectURL: [String]?
     let githubURL, officialForumURL, bitbucketURL: [String]?
-    let currentPrice: Double?
-    let marketCap, marketCapRank, overallRank: Int?
-    let fullyDilutedValuation: Int?
-    let totalVolume, high24H, low24H, priceChange24H: Double?
-    let priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
-    let totalSupply, maxSupply: Double?
-    let ath, athChangePercentage: Double?
-    let athDate, genesisDate, countryOrigin: String?
-    let atl, atlChangePercentage: Double?
-    let atlDate, subredditURL: String?
-    let lastUpdated, publicNotice: String?
+    var currentPrice: Double?
+    var marketCap, marketCapRank, overallRank: Int?
+    var fullyDilutedValuation: Int?
+    var totalVolume, high24H, low24H, priceChange24H: Double?
+    var priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
+    var totalSupply, maxSupply: Double?
+    var ath, athChangePercentage: Double?
+    var athDate, genesisDate, countryOrigin: String?
+    var atl, atlChangePercentage: Double?
+    var atlDate, subredditURL: String?
+    var lastUpdated, publicNotice: String?
     let roi: RoiModel?
     let allAddress: AllAddress?
     var priceGraph: GraphModel?

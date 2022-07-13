@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - CompleteBalance
-struct CompleteBalance: Codable, Hashable {
+struct CompleteBalance: Codable, Hashable, Equatable {
 
     static func == (lhs: CompleteBalance, rhs: CompleteBalance) -> Bool {
         return lhs.network == rhs.network && lhs.nativeBalance == rhs.nativeBalance
@@ -20,9 +20,9 @@ struct CompleteBalance: Codable, Hashable {
     }
 
     let network: String?
-    let totalBalance: Double?
-    let nativeBalance: TokenModel?
-    let tokens: [TokenModel]?
+    var totalBalance: Double?
+    var nativeBalance: TokenModel?
+    var tokens: [TokenModel]?
     let nfts: Nfts?
     let transactions: AccountTransactions?
 
@@ -44,19 +44,19 @@ struct TokenModel: Codable, Hashable {
     let imageLarge, imageThumb, imageSmall, image, network: String?
     let externalId, description, genesisDate, countryOrigin: String?
     let telegramChannelID, twitterHandle, bitcoinTalkUrl, facebookUsername: String?
-    let subredditUrl, publicNotice, lastUpdated: String?
-    let athDate, atlDate: String?
+    let subredditUrl, publicNotice: String?
+    var athDate, atlDate, lastUpdated: String?
     let categories, discordUrl, blockchainUrl, projectUrl, githubUrl, bitbucketUrl, officialForumURL: [String?]?
-    let decimals, overallRank, marketCapRank: Int?
-    let fullyDilutedValuation, marketCap: Int?
-    let nativeBalance, totalBalance: Double?
-    let currentPrice, totalVolume, high24H, low24H, priceChange24H: Double?
-    let priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
-    let totalSupply, maxSupply: Double?
-    let ath, athChangePercentage: Double?
-    let atl, atlChangePercentage: Double?
-    let priceChangePercentage1h, priceChangePercentage24h: Double?
-    let priceChangePercentage7d, priceChangePercentage1y: Double?
+    var decimals, overallRank, marketCapRank: Int?
+    var fullyDilutedValuation, marketCap: Int?
+    var nativeBalance, totalBalance: Double?
+    var currentPrice, totalVolume, high24H, low24H, priceChange24H: Double?
+    var priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
+    var totalSupply, maxSupply: Double?
+    var ath, athChangePercentage: Double?
+    var atl, atlChangePercentage: Double?
+    var priceChangePercentage1h, priceChangePercentage24h: Double?
+    var priceChangePercentage7d, priceChangePercentage1y: Double?
     let allAddress: AllAddress?
     let roi: RoiModel?
     var priceGraph: GraphModel?

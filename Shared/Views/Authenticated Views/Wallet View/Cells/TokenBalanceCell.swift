@@ -53,10 +53,12 @@ struct TokenBalanceCell: View {
                             HStack(alignment: .center, spacing: 5) {
                                 Text(data.name ?? "no name")
                                     .fontTemplate(DefaultTemplate.gasPriceFont)
+                                    .adjustsFontSizeToFitWidth(true)
+                                    .minimumScaleFactor(0.6)
                                     .lineLimit(2)
 
                                 if let rank = data.marketCapRank {
-                                    Text("#\(rank)").fontTemplate(DefaultTemplate.body_secondary_semibold)
+                                    Text("#\(rank)").fontTemplate(DefaultTemplate.body_secondary_medium)
                                 }
                             }
 
@@ -75,7 +77,18 @@ struct TokenBalanceCell: View {
                         Spacer()
                         VStack(alignment: .trailing, spacing: 2) {
                             HStack(alignment: .center, spacing: 10) {
-                                Text("\(data.totalBalance?.convertToCurrency() ?? "$0.00")").fontTemplate(DefaultTemplate.gasPriceFont)
+                                HStack(alignment: .center, spacing: 0) {
+                                    Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.bodySemibold_Nunito)
+
+                                    MovingNumbersView(number: data.totalBalance ?? 0.00,
+                                                      numberOfDecimalPlaces: 2,
+                                                      fixedWidth: nil,
+                                                      theme: DefaultTemplate.bodySemibold,
+                                                      showComma: true) { str in
+                                        Text(str).fontTemplate(DefaultTemplate.bodySemibold)
+                                    }
+                                }.mask(AppGradients.movingNumbersMask)
+//                                Text("\(data.totalBalance?.convertToCurrency() ?? "$0.00")").fontTemplate(DefaultTemplate.bodySemibold)
 
                                 Image(systemName: "chevron.right")
                                     .resizable()

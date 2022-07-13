@@ -55,15 +55,16 @@ struct NetworkVerticalCell: View {
                     HStack(alignment: .center, spacing: 0) {
                         Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.bodySemibold_Nunito)
 
-                        MovingNumbersView(number: store.getNetworkTotal(network) ?? 0.00,
+                        MovingNumbersView(number: network.totalBalance ?? 0.00,
                                           numberOfDecimalPlaces: 2,
                                           fixedWidth: nil,
+                                          theme: DefaultTemplate.bodySemibold_Nunito,
                                           showComma: true) { str in
                             Text(str).fontTemplate(DefaultTemplate.bodySemibold_Nunito)
                         }
                     }.mask(AppGradients.movingNumbersMask)
 
-                    if let native = network.totalBalance,
+                    if let native = network.nativeBalance?.nativeBalance,
                        let roundedValue = native.truncate(places: 4),
                        let networkFormatted = network.network?.formatNetwork() {
                         HStack(alignment: .center, spacing: 2) {

@@ -43,7 +43,7 @@ struct TokenListStandardCell: View {
 
                             HStack(alignment: .center, spacing: 4) {
                                 if let rank = data.marketCapRank {
-                                    Text("#\(rank)").fontTemplate(DefaultTemplate.body_secondary)
+                                    Text("#\(rank)").fontTemplate(DefaultTemplate.body_secondary_medium)
                                 }
 
                                 if let symbol = data.symbol?.uppercased() {
@@ -69,13 +69,13 @@ struct TokenListStandardCell: View {
                             HStack(alignment: .center, spacing: 10) {
                                 HStack(alignment: .center, spacing: 1) {
                                     if let num = Double("".forTrailingZero(temp: data.currentPrice?.truncate(places: 4) ?? 0.00)) {
-                                        Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.bodyBold)
+                                        Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.bodySemibold)
 
                                         MovingNumbersView(number: num,
                                                           numberOfDecimalPlaces: 2,
                                                           fixedWidth: nil,
                                                           showComma: true) { str in
-                                            Text(str).fontTemplate(DefaultTemplate.bodyBold)
+                                            Text(str).fontTemplate(DefaultTemplate.bodySemibold)
                                         }
                                     }
                                 }.mask(AppGradients.movingNumbersMask)

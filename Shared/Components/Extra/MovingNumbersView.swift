@@ -32,6 +32,8 @@ public struct MovingNumbersView<Element: View>: View {
     /// Give a fixed width to the view. This would give better transition effect as digits are not clipped off.
     public var fixedWidth: CGFloat?
 
+    public var theme: FontTemplating?
+
     /// Function to build digit, comma, and dot components
     public let elementBuilder: ElementBuilder
 
@@ -47,6 +49,7 @@ public struct MovingNumbersView<Element: View>: View {
     public init(number: Double,
                 numberOfDecimalPlaces: Int,
                 fixedWidth: CGFloat? = nil,
+                theme: FontTemplating? = nil,
                 verticalDigitSpacing: CGFloat = 0,
                 animationDuration: Double = 0.25,
                 showComma: Bool?,
@@ -54,6 +57,7 @@ public struct MovingNumbersView<Element: View>: View {
         self.number = number
         self.numberOfDecimalPlaces = numberOfDecimalPlaces
         self.fixedWidth = fixedWidth
+        self.theme = theme
         self.verticalDigitSpacing = verticalDigitSpacing
         self.animationDuration = animationDuration
         self.showComma = showComma ?? true
@@ -181,7 +185,7 @@ private extension MovingNumbersView {
         case let .digit(value, _):
             return AnyView(self.buildDigitStack(showingDigit: value))
         case let .decimalDigit(value, _):
-            return AnyView(self.buildDigitStack(showingDigit: value))
+            return AnyView(self.buildDigitDecimalStack(showingDigit: value))
         case .dot:
             return AnyView(self.buildDot())
         case .comma:
@@ -203,12 +207,28 @@ private extension MovingNumbersView {
         return dss
     }
 
+    func buildDigitDecimalStack(showingDigit digit: Int) -> some View {
+        let digit = CGFloat(digit)
+        let dss = TenDigitDecimalStack(
+            spacing: verticalDigitSpacing,
+            elementBuilder: elementBuilder,
+            theme: theme)
+            .drawingGroup()
+            .modifier(VerticalShift(
+                diffNumber: digit,
+                digitSpacing: verticalDigitSpacing))
+        return dss
+    }
+
     func buildComma() -> some View {
         elementBuilder((showComma ?? true) ? "," : "")
     }
 
     func buildDot() -> some View {
-        elementBuilder(".")
+        Text(".")
+        .font(theme?.font ?? Font.custom("Poppins-SemiBold", size: 16))
+            .fontWeight(theme?.weight ?? .semibold)
+            .foregroundColor(theme?.foregroundColor != nil ? .secondary : theme?.foregroundColor ?? .primary)
     }
 
     func buildMinus() -> some View {
@@ -223,6 +243,30 @@ private extension MovingNumbersView {
             VStack(alignment: .center, spacing: spacing) {
                 ForEach((0...9).reversed(), id: \.self) { iDigit in
                     self.elementBuilder("\(iDigit)")
+                }
+            }
+            .padding(.bottom, spacing)
+            // Padding so the bottom most digit (0)
+            // has the padding like others.
+        }
+    }
+
+    struct TenDigitDecimalStack: View {
+        var spacing: CGFloat?
+        let elementBuilder: ElementBuilder
+        var theme: FontTemplating?
+
+        var body: some View {
+            VStack(alignment: .center, spacing: spacing) {
+                ForEach((0...9).reversed(), id: \.self) { iDigit in
+                    if let theme = theme {
+                        Text("\(iDigit)")
+                            .font(theme.font)
+                            .fontWeight(theme.weight)
+                            .foregroundColor(.secondary)
+                    } else {
+                        self.elementBuilder("\(iDigit)")
+                    }
                 }
             }
             .padding(.bottom, spacing)

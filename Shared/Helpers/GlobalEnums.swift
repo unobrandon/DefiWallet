@@ -24,6 +24,12 @@ enum FilterCategories: String, Equatable {
     case marketCapAsc = "market_cap_asc"
 }
 
+enum SocketResponses: String, Codable {
+    case testSend = "test_send"
+    case testAnswer = "test_answer"
+    case priceUpdate = "price_update"
+}
+
 enum PublicTreasuryCoins: String, Equatable {
     case bitcoin
     case ethereum
