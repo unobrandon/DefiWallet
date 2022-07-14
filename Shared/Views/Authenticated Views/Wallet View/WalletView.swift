@@ -77,11 +77,7 @@ struct WalletView: View {
             }
 
             store.emitAccountRequest()
-            let tokenIds = store.getTokenIds()
-            guard !tokenIds.isEmpty else { return }
-
-            self.service.socket.emitPricesUpdate(tokenIds)
-            self.startWalletPriceTimer()
+            startWalletPriceTimer()
         }
         .onDisappear {
             stopWalletPriceTimer()
@@ -99,9 +95,10 @@ struct WalletView: View {
     }
 
     func startWalletPriceTimer() {
-
         self.walletPriceTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { _ in
             let tokenIds = store.getTokenIds()
+            guard !tokenIds.isEmpty else { return }
+
             self.service.socket.emitPricesUpdate(tokenIds)
             print("emit Prices Update: \(tokenIds)")
         }
@@ -110,6 +107,7 @@ struct WalletView: View {
     func stopWalletPriceTimer() {
         guard let timer = walletPriceTimer else { return }
         timer.invalidate()
+        walletPriceTimer = nil
     }
 
 }

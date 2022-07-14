@@ -109,7 +109,7 @@ extension WalletService {
                     storage.async.setObject(portfolio, forKey: "portfolio") { _ in }
                 }
 
-                print("the account value is: \(String(describing: totalValue)) & now: \(String(describing: self.accountPortfolio?.relativeChange24h))")
+                print("the account value is: \(String(describing: totalValue)) & now: \(String(describing: self.accountPortfolio?.relativeChange24h)) &&& final: \(portfolio)")
             }
         }
 

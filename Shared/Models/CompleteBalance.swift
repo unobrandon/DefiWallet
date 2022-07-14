@@ -52,7 +52,7 @@ struct TokenModel: Codable, Hashable {
     var nativeBalance, totalBalance: Double?
     var currentPrice, totalVolume, high24H, low24H, priceChange24H: Double?
     var priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
-    var totalSupply, maxSupply: Double?
+    var totalSupply, maxSupply, portfolioDiversity: Double?
     var ath, athChangePercentage: Double?
     var atl, atlChangePercentage: Double?
     var priceChangePercentage1h, priceChangePercentage24h: Double?
@@ -111,6 +111,7 @@ struct TokenModel: Codable, Hashable {
         case priceChangePercentage24h = "price_change_percentage_24h_in_currency"
         case priceChangePercentage7d = "price_change_percentage_7d_in_currency"
         case priceChangePercentage1y = "price_change_percentage_1y_in_currency"
+        case portfolioDiversity = "portfolio_diversity"
 
     }
 }

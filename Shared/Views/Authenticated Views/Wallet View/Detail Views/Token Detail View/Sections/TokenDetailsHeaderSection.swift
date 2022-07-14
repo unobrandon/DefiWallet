@@ -35,6 +35,7 @@ extension TokenDetailView {
                 MovingNumbersView(number: tokenModel?.currentPrice ?? 0.00,
                                   numberOfDecimalPlaces: tokenModel?.currentPrice?.decimalCount() ?? 2 < 2 ? 2 : tokenModel?.currentPrice?.decimalCount() ?? 2,
                                   fixedWidth: nil,
+                                  theme: DefaultTemplate.titleSemiBold,
                                   animationDuration: 0.4,
                                   showComma: true) { str in
                     Text(str).fontTemplate(DefaultTemplate.titleSemiBold)

@@ -95,6 +95,7 @@ struct OverviewSectionView: View {
                             MovingNumbersView(number: num,
                                               numberOfDecimalPlaces: 2,
                                               fixedWidth: nil,
+                                              theme: DefaultTemplate.titleSemiBold,
                                               showComma: true) { str in
                                 Text(str).fontTemplate(DefaultTemplate.titleSemiBold)
                             }

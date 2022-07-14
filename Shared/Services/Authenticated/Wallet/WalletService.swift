@@ -128,15 +128,20 @@ class WalletService: ObservableObject {
 
         let url = Constants.backendBaseUrl + "accountBalance" + "?address=\(address)" + "&currency=\(currency)"
 
-        AF.request(url, method: .get).responseDecodable(of: [CompleteBalance].self) { [self] response in
+        AF.request(url, method: .get).responseDecodable(of: AccountBalance.self) { [self] response in
             switch response.result {
             case .success(let accountBalance):
-                self.completeBalance = accountBalance
-                print("account balance is: \(self.completeBalance.count)")
+                if let total = accountBalance.portfolioTotal {
+                    self.accountTotal = total
+                }
 
-                if let storage = StorageService.shared.balanceStorage {
-                    storage.async.setObject(accountBalance, forKey: "balanceList") { _ in
-                        completion(self.completeBalance)
+                if let completeBalance = accountBalance.completeBalance {
+                    self.completeBalance = completeBalance
+
+                    if let storage = StorageService.shared.balanceStorage {
+                        storage.async.setObject(completeBalance, forKey: "balanceList") { _ in
+                            completion(self.completeBalance)
+                        }
                     }
                 }
 
@@ -149,13 +154,19 @@ class WalletService: ObservableObject {
     }
 
     func getTokenIds() -> [String] {
-        var allTokenIds = ["binancecoin", "matic-network", "avalanche-2", "ethereum", "fantom", "balancer"]
+        var allTokenIds: [String] = []
 
         for network in self.completeBalance {
-            guard let tokens = network.tokens else { continue }
-            for token in tokens {
-                guard let externalId = token.externalId else { continue }
+            if let externalId = network.nativeBalance?.externalId {
                 allTokenIds.append(externalId)
+            }
+
+            guard let tokens = network.tokens else { continue }
+
+            for token in tokens {
+                if let externalId = token.externalId {
+                    allTokenIds.append(externalId)
+                }
             }
         }
 

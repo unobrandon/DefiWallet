@@ -73,6 +73,11 @@ struct TokenDetailView: View {
                 .padding()
                 .padding(.vertical)
 
+                if let diversity = tokenModel?.portfolioDiversity {
+                    Text("Portfolio \nDiversity: \(diversity.truncate(places: 2))%")
+                        .fontTemplate(DefaultTemplate.metricFont)
+                }
+
                 detailsOverviewSection()
                 detailsNetworkSection()
                 detailsInfoSection()
