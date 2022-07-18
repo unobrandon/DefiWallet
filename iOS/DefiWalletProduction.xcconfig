@@ -20,6 +20,8 @@ PRODUCT_BUNDLE_IDENTIFIER = com.defiwallet.app
 
 ICON_ASSET = AppIcon-Prod
 
+BACKEND_URL = defiwallet-backend.herokuapp.com/
+
 // Web3 URL's
 ETH_NODE_WWS_URL = b8a2c97baf6d1f1c575ebd0e/eth/mainnet/ws
 

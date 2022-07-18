@@ -9,7 +9,6 @@
 //
 
 import Foundation
-import Alamofire
 
 // MARK: - AccountBalance
 struct AccountBalance: Codable {

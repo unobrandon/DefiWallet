@@ -16,6 +16,8 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>BACKEND_URL</key>
+	<string>$(BACKEND_URL)</string>
 	<key>ETH_NODE_WWS_URL</key>
 	<string>$(ETH_NODE_WWS_URL)</string>
 	<key>POLYGON_NODE_WWS_URL</key>

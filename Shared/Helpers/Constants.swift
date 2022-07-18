@@ -14,7 +14,6 @@ public struct Constants {
     static let infuraBaseWssUrl = "wss://mainnet.infura.io/ws/v3/"
     static let zapperBaseUrl = "https://api.zapper.fi/v1/"
     static let zerionWssUrl = "wss://api-v4.zerion.io"
-    static let backendBaseUrl = "https://defiwallet-backend.herokuapp.com/"
     static let walletConnectMetadataIcon = "https://ucarecdn.com/12bb9755-e63c-46ad-b118-3a44703a5d8f/C1F62A2EBB0145DA9D837855713C5A93.jpeg"
     // "https://iconstore.co/assets/img/set/cover/zodiac-signs-cover.png"
 
@@ -70,6 +69,11 @@ public struct Constants {
     }
 
     // MARK: Keys
+
+    static var backendBaseUrl: String {
+        guard let url = Bundle.main.infoDictionary?["BACKEND_URL"] as? String else { return "" }
+        return "https://" + url
+    }
 
     static var zapperApiKey: String {
         guard let key = Bundle.main.infoDictionary?["ZAPPER_API_KEY"] as? String else { return "api_key=" }

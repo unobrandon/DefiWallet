@@ -45,14 +45,14 @@ struct TokenModel: Codable, Hashable {
     let externalId, description, genesisDate, countryOrigin: String?
     let telegramChannelID, twitterHandle, bitcoinTalkUrl, facebookUsername: String?
     let subredditUrl, publicNotice: String?
-    var athDate, atlDate, lastUpdated: String?
+    var athDate, atlDate, lastUpdated, portfolioDiversity: String?
     let categories, discordUrl, blockchainUrl, projectUrl, githubUrl, bitbucketUrl, officialForumURL: [String?]?
     var decimals, overallRank, marketCapRank: Int?
     var fullyDilutedValuation, marketCap: Int?
     var nativeBalance, totalBalance: Double?
     var currentPrice, totalVolume, high24H, low24H, priceChange24H: Double?
     var priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
-    var totalSupply, maxSupply, portfolioDiversity: Double?
+    var totalSupply, maxSupply: Double?
     var ath, athChangePercentage: Double?
     var atl, atlChangePercentage: Double?
     var priceChangePercentage1h, priceChangePercentage24h: Double?
