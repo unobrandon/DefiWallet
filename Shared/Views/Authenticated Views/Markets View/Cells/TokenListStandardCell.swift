@@ -30,27 +30,34 @@ struct TokenListStandardCell: View {
                 self.actionTap()
             }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
-                    HStack(alignment: .center, spacing: 5) {
-                        RemoteImage(data.image ?? "", size: 42)
-                            .clipShape(Circle())
-                            .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.75), lineWidth: 1))
-                            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
+                    HStack(alignment: .center, spacing: 0) {
+                        HStack(alignment: .top, spacing: 1) {
+                            if let rank = data.marketCapRank {
+                                Text("\(rank)")
+                                    .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
+                                    .minimumScaleFactor(0.925)
+                                    .offset(x: -4)
+                            }
+
+                            RemoteImage(data.image ?? "", size: 42)
+                                .clipShape(Circle())
+                                .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.75), lineWidth: 1))
+                                .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
+                        }
 
                         VStack(alignment: .leading, spacing: 0) {
                             Text(data.name ?? "no name")
                                 .fontTemplate(DefaultTemplate.gasPriceFont)
-                                .lineLimit(2)
+                                .adjustsFontSizeToFitWidth(true)
+                                .minimumScaleFactor(0.85)
+                                .lineLimit(1)
 
-                            HStack(alignment: .center, spacing: 4) {
-                                if let rank = data.marketCapRank {
-                                    Text("#\(rank)").fontTemplate(DefaultTemplate.body_secondary_medium)
-                                }
-
-                                if let symbol = data.symbol?.uppercased() {
-                                    Text(symbol).fontTemplate(DefaultTemplate.body_secondary)
-                                }
-                            }.offset(y: -1.5)
-                        }.padding(.leading, 2.5)
+                            if let symbol = data.symbol?.uppercased() {
+                                Text(symbol)
+                                    .fontTemplate(DefaultTemplate.body_secondary)
+                                    .offset(y: -1.5)
+                            }
+                        }.padding(.leading, 10)
 
                         Spacer()
 
@@ -62,7 +69,7 @@ struct TokenListStandardCell: View {
                                            offset: 0.2,
                                            currentValueLineType: .none)
                                     .frame(width: 50, height: 30, alignment: .center)
-                                    .padding(.trailing, 2.5)
+                                    .padding(.trailing, 10)
                         }
 
                         VStack(alignment: .trailing, spacing: 2.5) {

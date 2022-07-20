@@ -84,10 +84,6 @@ struct ProfileView: View {
                         print("website")
                     })
 
-                    ListStandardButton(title: "FAQ & Support", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {
-                        print("FAQ")
-                    })
-
                     ListStandardButton(title: "Rate Us", systemImage: "star", isLast: false, style: service.themeStyle, action: {
                         print("Rate")
                     })
@@ -98,6 +94,10 @@ struct ProfileView: View {
 
                     ListStandardButton(title: "Twitter", systemImage: "lock", isLast: true, style: service.themeStyle, action: {
                         print("Twitter")
+                    })
+
+                    ListStandardButton(title: "FAQ & Support", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {
+                        print("FAQ")
                     })
                 }
 

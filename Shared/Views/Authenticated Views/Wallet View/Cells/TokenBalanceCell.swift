@@ -50,17 +50,11 @@ struct TokenBalanceCell: View {
                         .padding(.trailing, 7.5)
 
                         VStack(alignment: .leading, spacing: 0) {
-                            HStack(alignment: .center, spacing: 5) {
-                                Text(data.name ?? "no name")
-                                    .fontTemplate(DefaultTemplate.gasPriceFont)
-                                    .adjustsFontSizeToFitWidth(true)
-                                    .minimumScaleFactor(0.6)
-                                    .lineLimit(2)
-
-                                if let rank = data.marketCapRank {
-                                    Text("#\(rank)").fontTemplate(DefaultTemplate.body_secondary_medium)
-                                }
-                            }
+                            Text(data.name ?? "no name")
+                                .fontTemplate(DefaultTemplate.gasPriceFont)
+                                .adjustsFontSizeToFitWidth(true)
+                                .minimumScaleFactor(0.8)
+                                .lineLimit(1)
 
                             if let native = data.nativeBalance,
                                let roundedValue = native.truncate(places: 3) {

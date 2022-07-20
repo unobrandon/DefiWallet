@@ -33,16 +33,25 @@ struct TransactionListCell: View {
                     HStack(alignment: .center, spacing: 10) {
                         if let direction = data.direction, let network = data.network {
                             ZStack {
-                                StandardSystemImage(service.wallet.transactionDirectionImage(direction), color: service.wallet.transactionDirectionColor(direction), size: 42, cornerRadius: 21, style: style)
-                                    .padding(.horizontal, 10)
+                                if let image = data.imageSmall {
+                                    RemoteImage(image, size: 42)
+                                        .clipShape(Circle())
+                                        .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
+                                        .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
+                                } else {
+                                    StandardSystemImage(service.wallet.transactionDirectionImage(direction), color: service.wallet.transactionDirectionColor(direction), size: 42, cornerRadius: 21, style: style)
+                                        .padding(.horizontal, 10)
+                                }
 
-                                service.wallet.getNetworkTransactImage(network)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 18, height: 18, alignment: .center)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().foregroundColor(.clear).overlay(Circle().stroke(Color("baseBackground_bordered"), lineWidth: 2.5)))
-                                    .offset(x: -15, y: 15)
+                                if data.type == .token {
+                                    service.wallet.getNetworkTransactImage(network)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 18, height: 18, alignment: .center)
+                                        .clipShape(Circle())
+                                        .overlay(Circle().foregroundColor(.clear).overlay(Circle().stroke(Color("baseBackground_bordered"), lineWidth: 2.5)))
+                                        .offset(x: -15, y: 15)
+                                }
                             }
                         }
 
@@ -70,7 +79,7 @@ struct TransactionListCell: View {
 
                             // Lower details
                             HStack(alignment: .center, spacing: 5) {
-                                Text((data.direction == .sent ? "-" : "") + "\("".forTrailingZero(temp: Double(data.value ?? "0.00")?.truncate(places: 4) ?? 0.00))")
+                                Text((data.direction == .sent ? "-" : "") + "\("".forTrailingZero(temp: data.value?.truncate(places: 4) ?? 0.00))")
                                     .fontTemplate(FontTemplate(font: Font.system(size: 14.0), weight: .medium, foregroundColor: service.wallet.transactionDirectionColor(data.direction ?? .swap), lineSpacing: 0))
 
                                 Spacer()

@@ -49,7 +49,6 @@ struct TokensSectionView: View {
         LazyVStack(alignment: .center, spacing: 0) {
             SectionHeaderView(title: "Tokens", actionTitle: tokens.isEmpty ? "" : "Show all", action: showMoreLess)
             .padding(.bottom, 5)
-            .padding(.top)
 
             ListSection(style: service.themeStyle) {
                 if tokens.isEmpty, isLoading {
@@ -67,7 +66,7 @@ struct TokensSectionView: View {
                         walletRouter.route(to: \.tokenDetail, item)
                     })
 
-                    if item == tokens.prefix(limitCells).last {
+                    if limitCells <= tokens.count, item == tokens.prefix(limitCells).last {
                         ListStandardButton(title: tokens.count - limitCells != 0 ? "show \(tokens.count - limitCells) more..." : "show all...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
                             walletRouter.route(to: \.tokens, network)
                         })

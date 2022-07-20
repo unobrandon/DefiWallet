@@ -36,7 +36,7 @@ struct WalletView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 BalanceSectionView(service: service)
 
-                LazyVGrid(columns: gridItems, alignment: .center, spacing: 0) {
+                LazyVGrid(columns: gridItems, alignment: .center, spacing: 20) {
                     NetworkSectionView(isLoading: self.$isBalanceLoading, service: service)
                     TokensSectionView(service: service)
                     CollectablesSectionView(isLoading: self.$isBalanceLoading, service: service)

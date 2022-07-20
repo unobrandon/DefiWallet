@@ -43,7 +43,7 @@ struct HistoryDetailView: View {
                     Text(data.direction?.rawValue.capitalized ?? "").fontTemplate(DefaultTemplate.headingSemiBold)
                         .padding(.top, 30)
 
-                    Text((data.direction == .sent ? "-" : "") + "\("".forTrailingZero(temp: Double(data.value ?? "0")?.truncate(places: 8) ?? 0.00))")
+                    Text((data.direction == .sent ? "-" : "") + "\("".forTrailingZero(temp: data.value?.truncate(places: 8) ?? 0.00))")
                         .fontTemplate(FontTemplate(font: Font.custom("Poppins-SemiBold", size: 36),
                                                    weight: .semibold,
                                                    foregroundColor: data.direction == .sent ? .red : data.direction == .sent ? .green : .blue, lineSpacing: 0))
