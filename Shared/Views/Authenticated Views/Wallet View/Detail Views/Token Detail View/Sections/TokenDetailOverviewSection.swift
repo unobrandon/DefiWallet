@@ -19,17 +19,17 @@ extension TokenDetailView {
                     StackedStatisticLabel(title: "Total Volume", metric: "?")
                 }
 
-                if let marketCap = tokenModel?.marketCap,
-                   let change = tokenModel?.marketCapChangePercentage24H {
-                    StackedStatisticLabel(title: "Market Cap", metric: "\(Locale.current.currencySymbol ?? "")\("".formatLargeNumber(marketCap, size: .regular).capitalized)", number: nil, percent: "\(change >= 0 ? "+" : "")\(change.reduceScale(to: 3))%", percentColor: change >= 0 ? .green : .red, style: service.themeStyle)
-                }
-
-                if let totalVolume = tokenModel?.totalVolume,
-                    let marketCap = tokenModel?.marketCap {
-                    StackedStatisticLabel(title: "Volume / \nMarket Cap", metric: "\(Double(totalVolume / Double(marketCap)).reduceScale(to: 4))%")
-                } else {
-                    StackedStatisticLabel(title: "Volume / \nMarket Cap", metric: "?")
-                }
+//                if let marketCap = tokenModel?.marketCap,
+//                   let change = tokenModel?.marketCapChangePercentage24H {
+//                    StackedStatisticLabel(title: "Market Cap", metric: "\(Locale.current.currencySymbol ?? "")\("".formatLargeNumber(marketCap, size: .regular).capitalized)", number: nil, percent: "\(change >= 0 ? "+" : "")\(change.reduceScale(to: 3))%", percentColor: change >= 0 ? .green : .red, style: service.themeStyle)
+//                }
+//
+//                if let totalVolume = tokenModel?.totalVolume,
+//                    let marketCap = tokenModel?.marketCap {
+//                    StackedStatisticLabel(title: "Volume / \nMarket Cap", metric: "\(Double(totalVolume / Double(marketCap)).reduceScale(to: 4))%")
+//                } else {
+//                    StackedStatisticLabel(title: "Volume / \nMarket Cap", metric: "?")
+//                }
 
                 if let fullyDilutedValuation = tokenModel?.fullyDilutedValuation {
                     StackedStatisticLabel(title: "Fully Diluted \nValuation", metric: fullyDilutedValuation >= 99999999 ? "\(Locale.current.currencySymbol ?? "")" + "\("".formatLargeNumber(fullyDilutedValuation, size: .regular).capitalized)" : "\(Locale.current.currencySymbol ?? "")" + Double(fullyDilutedValuation).formatCommas())
@@ -37,12 +37,12 @@ extension TokenDetailView {
                     StackedStatisticLabel(title: "Fully Diluted \nValuation", metric: "?")
                 }
 
-                if let ath = tokenModel?.ath,
-                   let change = tokenModel?.athChangePercentage {
-                    StackedStatisticLabel(title: "All Time High", number: ath, percent: "\(change >= 0 ? "+" : "")\(change.reduceScale(to: 2))%", percentColor: change >= 0 ? .green : .red, style: service.themeStyle)
-                } else {
-                    StackedStatisticLabel(title: "All Time High", metric: "?")
-                }
+//                if let ath = tokenModel?.ath,
+//                   let change = tokenModel?.athChangePercentage {
+//                    StackedStatisticLabel(title: "All Time High", number: ath, percent: "\(change >= 0 ? "+" : "")\(change.reduceScale(to: 2))%", percentColor: change >= 0 ? .green : .red, style: service.themeStyle)
+//                } else {
+//                    StackedStatisticLabel(title: "All Time High", metric: "?")
+//                }
 
                 if let atl = tokenModel?.atl,
                    let change = tokenModel?.atlChangePercentage {

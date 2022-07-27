@@ -26,6 +26,7 @@ final class MarketsCoordinator: NavigationCoordinatable {
     @Route(.push) var publicTreasury = makePublicTreasury
     @Route(.push) var recentlyAdded = makeRecentlyAdded
     @Route(.push) var tokenExternalDetail = makeExternalTokenDetail
+    @Route(.push) var detailsTokenDetail = makeDetailsTokenDetail
     @Route(.push) var tokenDescriptorDetail = makeDescriptorTokenDetail
 
     let currentUser: CurrentUser

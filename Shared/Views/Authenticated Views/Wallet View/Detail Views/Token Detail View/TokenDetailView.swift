@@ -14,6 +14,7 @@ struct TokenDetailView: View {
     @ObservedObject var service: AuthenticatedServices
     @ObservedObject private var walletStore: WalletService
     @State var tokenModel: TokenModel?
+    @State var tokenDetails: TokenDetails?
     @State var tokenDescriptor: TokenDescriptor?
     @State var externalId: String?
     @State var scrollOffset: CGFloat = CGFloat.zero
@@ -26,10 +27,11 @@ struct TokenDetailView: View {
                 SwiftUI.GridItem(.flexible())]
     }()
 
-    init(tokenModel: TokenModel?, tokenDescriptor: TokenDescriptor?, externalId: String?, service: AuthenticatedServices) {
+    init(tokenModel: TokenModel?, tokenDetails: TokenDetails?, tokenDescriptor: TokenDescriptor?, externalId: String?, service: AuthenticatedServices) {
         self.service = service
         self.externalId = externalId
         self.tokenModel = tokenModel
+        self.tokenDetails = tokenDetails
         self.tokenDescriptor = tokenDescriptor
         self.walletStore = service.wallet
     }
@@ -46,11 +48,11 @@ struct TokenDetailView: View {
                         self.scrollOffset = $0
                     }
 
-                CustomLineChart(data: tokenModel?.priceGraph?.price ?? tokenChart.map({ $0.amount }), profit: tokenModel?.priceChangePercentage24H ?? 0 >= 0)
+                CustomLineChart(data: tokenModel?.priceGraph?.price ?? tokenDetails?.priceGraph?.price ?? tokenChart.map({ $0.amount }), profit: tokenModel?.priceChangePercentage24H ?? 0 >= 0)
                     .frame(height: 145)
                     .padding()
 
-                if !tokenChart.isEmpty || tokenModel?.priceGraph?.price != nil {
+                if !tokenChart.isEmpty || tokenModel?.priceGraph?.price != nil || tokenDetails?.priceGraph?.price != nil {
                     HStack(alignment: .center, spacing: 0) {
                         Spacer()
                         ChartOptionSegmentView(service: service, action: { item in
@@ -62,11 +64,11 @@ struct TokenDetailView: View {
                 }
 
                 HStack(alignment: .center, spacing: 20) {
-                    TransactButton(title: "Send \(tokenDescriptor?.symbol?.uppercased() ?? tokenModel?.symbol?.uppercased() ?? "")", systemImage: "paperplane.fill", size: 50, style: service.themeStyle, action: {
+                    TransactButton(title: "Send \(tokenDescriptor?.symbol?.uppercased() ?? tokenModel?.symbol?.uppercased() ?? tokenDetails?.symbol?.uppercased() ?? "")", systemImage: "paperplane.fill", size: 50, style: service.themeStyle, action: {
                         print("send token")
                     })
 
-                    TransactButton(title: "Swap \(tokenDescriptor?.symbol?.uppercased() ?? tokenModel?.symbol?.uppercased() ?? "")", systemImage: "arrow.left.arrow.right", size: 50, style: service.themeStyle, action: {
+                    TransactButton(title: "Swap \(tokenDescriptor?.symbol?.uppercased() ?? tokenModel?.symbol?.uppercased() ?? tokenDetails?.symbol?.uppercased() ?? "")", systemImage: "arrow.left.arrow.right", size: 50, style: service.themeStyle, action: {
                         print("send token")
                     })
                 }
@@ -91,12 +93,12 @@ struct TokenDetailView: View {
         .navigationBarTitle {
             if self.scrollOffset > 48 {
                 HStack(alignment: .center, spacing: 10) {
-                    if let imageSmall = tokenDescriptor?.imageSmall ?? tokenModel?.image {
+                    if let imageSmall = tokenDescriptor?.imageSmall ?? tokenModel?.image ?? tokenDetails?.image {
                         RemoteImage(imageSmall, size: 28)
                             .clipShape(Circle())
                     }
 
-                    Text(tokenDescriptor?.name ?? tokenModel?.name ?? "Details")
+                    Text(tokenDescriptor?.name ?? tokenModel?.name ?? tokenDetails?.name ?? "Details")
                         .fontTemplate(DefaultTemplate.sectionHeader_bold)
                 }
             }
@@ -141,7 +143,9 @@ struct TokenDetailView: View {
                 })
             })
 
-            service.market.fetchTokenDetails(id: tokenModel?.externalId ?? "", address: externalId, completion: { tokenDescriptor in
+            guard let external = tokenModel?.externalId else { return }
+
+            service.market.fetchTokenDetails(id: external, address: externalId, completion: { tokenDescriptor in
                 // Do your logic to get the token market data
                 if tokenDescriptor != nil {
                     self.tokenDescriptor = tokenDescriptor

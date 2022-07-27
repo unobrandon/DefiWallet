@@ -44,7 +44,7 @@ struct TopGainersView: View {
                         TokenListStandardCell(service: service, data: item,
                                               isLast: store.coinsByGains.count < limitCells ? store.coinsByGains.last == item ? true : false : false,
                                               style: service.themeStyle, action: {
-//                            walletRouter.route(to: \.tokenDetail, item)
+                            walletRouter.route(to: \.detailsTokenDetail, item)
 
                             print("the item is: \(item)")
                         })

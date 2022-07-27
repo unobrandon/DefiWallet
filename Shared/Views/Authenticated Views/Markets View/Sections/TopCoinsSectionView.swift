@@ -46,7 +46,7 @@ struct TopCoinsSectionView: View {
                         TokenListStandardCell(service: service, data: item,
                                               isLast: store.coinsByMarketCap.count < limitCells ? store.coinsByMarketCap.last == item ? true : false : false,
                                               style: service.themeStyle, action: {
-//                            marketRouter.route(to: \.tokenDetail, item)
+                            marketRouter.route(to: \.detailsTokenDetail, item)
                         })
 
                         if store.coinsByMarketCap.last == item || item == store.coinsByMarketCap[limitCells - 1] {
