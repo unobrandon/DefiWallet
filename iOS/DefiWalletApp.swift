@@ -8,13 +8,14 @@
 import SwiftUI
 import Stinsen
 
-@main
+@available(iOS 14.0, *)
 struct DefiWalletApp: App {
+
+    @UIApplicationDelegateAdaptor(IOSAppDelegate.self) var appDelegate
 
     var body: some Scene {
         WindowGroup {
             MainCoordinator().view()
         }
     }
-
 }

@@ -24,7 +24,7 @@ struct DefiWalletApp_macOS: App {
                     }
                 })
         }
-        .commands {AppCommands() }
+        .commands { AppCommands() }
 
         #if os(macOS)
             Settings { SettingsView() }.windowStyle(HiddenTitleBarWindowStyle())

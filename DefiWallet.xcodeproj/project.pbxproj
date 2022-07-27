@@ -93,6 +93,9 @@
 		051BCF6F27BCD69F0056E047 /* SwiftLintFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF6E27BCD69F0056E047 /* SwiftLintFramework */; };
 		051BCF7127BCD69F0056E047 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF7027BCD69F0056E047 /* Realm */; };
 		051BCF7327BCD69F0056E047 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF7227BCD69F0056E047 /* RealmSwift */; };
+		052554DA2890FEAA0060EC7A /* IOSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052554D92890FEAA0060EC7A /* IOSAppDelegate.swift */; };
+		052554DC28911FC00060EC7A /* IOSSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052554DB28911FC00060EC7A /* IOSSceneDelegate.swift */; };
+		052554DE289120FB0060EC7A /* StoreReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052554DD289120FB0060EC7A /* StoreReviewHelper.swift */; };
 		053113DF27E6C61400368657 /* Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113DE27E6C61400368657 /* Accessories.swift */; };
 		053113E027E6C61400368657 /* Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113DE27E6C61400368657 /* Accessories.swift */; };
 		053113E227E6C65D00368657 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113E127E6C65D00368657 /* Manager.swift */; };
@@ -639,6 +642,10 @@
 		051BCF5427BC970A0056E047 /* ZapperTransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZapperTransactionHistory.swift; sourceTree = "<group>"; };
 		051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedServices.swift; sourceTree = "<group>"; };
 		051BCF5C27BCAE150056E047 /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
+		052554D82890FB0B0060EC7A /* DefiWallet (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DefiWallet (iOS).entitlements"; sourceTree = "<group>"; };
+		052554D92890FEAA0060EC7A /* IOSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSAppDelegate.swift; sourceTree = "<group>"; };
+		052554DB28911FC00060EC7A /* IOSSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSSceneDelegate.swift; sourceTree = "<group>"; };
+		052554DD289120FB0060EC7A /* StoreReviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewHelper.swift; sourceTree = "<group>"; };
 		053113DE27E6C61400368657 /* Accessories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessories.swift; sourceTree = "<group>"; };
 		053113E127E6C65D00368657 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		053113E427E6C6CC00368657 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
@@ -1088,6 +1095,7 @@
 		0548B85227B4C957000478B8 = {
 			isa = PBXGroup;
 			children = (
+				052554D82890FB0B0060EC7A /* DefiWallet (iOS).entitlements */,
 				0548B87F27B4CAF5000478B8 /* Shared */,
 				0548B85D27B4C957000478B8 /* iOS */,
 				0548B87127B4C9A6000478B8 /* macOS */,
@@ -1109,6 +1117,8 @@
 			isa = PBXGroup;
 			children = (
 				0548B85E27B4C957000478B8 /* DefiWalletApp.swift */,
+				052554D92890FEAA0060EC7A /* IOSAppDelegate.swift */,
+				052554DB28911FC00060EC7A /* IOSSceneDelegate.swift */,
 				057806DE27B8CC880008051B /* Coordinators */,
 				05E858B727CA04A800B85195 /* Components */,
 				057806D727B86F860008051B /* Helpers */,
@@ -1397,6 +1407,7 @@
 				057806D827B870620008051B /* MobileConsants.swift */,
 				05E858B227C9F9F900B85195 /* HapticFeedback.swift */,
 				05E5F87F27D5D4190090290C /* ImagePickerHelper.swift */,
+				052554DD289120FB0060EC7A /* StoreReviewHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2122,9 +2133,11 @@
 				05D1096D27C15D80008DCC66 /* EthereumService.swift in Sources */,
 				053113DF27E6C61400368657 /* Accessories.swift in Sources */,
 				0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */,
+				052554DC28911FC00060EC7A /* IOSSceneDelegate.swift in Sources */,
 				059F73CF27D7160D00B27E80 /* DiscoverService.swift in Sources */,
 				05583CE627EC10DF00640E75 /* NetworkCell.swift in Sources */,
 				05CA871A2802A5CF006FACE0 /* CollectablesSectionView.swift in Sources */,
+				052554DE289120FB0060EC7A /* StoreReviewHelper.swift in Sources */,
 				05E858CA27CB240300B85195 /* AppGradients.swift in Sources */,
 				0504A41D283F27DC000DB947 /* ExchangeView.swift in Sources */,
 				0507BB18284DD27100D1A965 /* TopLosersView.swift in Sources */,
@@ -2289,6 +2302,7 @@
 				0578074F27BB5ED00008051B /* View+Extensions.swift in Sources */,
 				0593023B27E1816A006DDFFF /* ReversedStandardLabelStyle.swift in Sources */,
 				05A6AABB27F9627800824C76 /* TrendingTokenStandardCell.swift in Sources */,
+				052554DA2890FEAA0060EC7A /* IOSAppDelegate.swift in Sources */,
 				05C884D227FD1D96005E2455 /* AnimatedRingView.swift in Sources */,
 				053113F827E6CF3C00368657 /* CBBarcodeView.swift in Sources */,
 				05E858D127CB25EB00B85195 /* NotificationHUD.swift in Sources */,
@@ -2672,6 +2686,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2689,10 +2704,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MACH_O_TYPE = mh_execute;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRIP_STYLE = debugging;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2734,6 +2751,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2745,9 +2763,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MACH_O_TYPE = mh_execute;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRIP_STYLE = debugging;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -2760,6 +2780,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ICON_ASSET)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DefiWallet (iOS).entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "\"iOS\"";
@@ -2795,6 +2817,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ICON_ASSET)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DefiWallet (iOS).entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "\"iOS\"";
@@ -2923,6 +2947,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2940,10 +2965,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MACH_O_TYPE = mh_execute;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRIP_STYLE = debugging;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2956,6 +2983,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ICON_ASSET)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DefiWallet (iOS).entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "\"iOS\"";
@@ -3052,6 +3081,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3063,9 +3093,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MACH_O_TYPE = mh_execute;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRIP_STYLE = debugging;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -3078,6 +3110,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ICON_ASSET)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DefiWallet (iOS).entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "\"iOS\"";

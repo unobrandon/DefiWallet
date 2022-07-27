@@ -77,6 +77,7 @@ struct PasswordView: View {
                            password: passwordText,
                            address: store.unauthenticatedWallet.address,
                            currency: store.prefCurrency,
+                           deviceUuid: UIDevice.current.identifierForVendor?.uuidString ?? "",
                            completion: { result in
             self.registerError = !result
             self.store.password = passwordText

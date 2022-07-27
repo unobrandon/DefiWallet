@@ -10,7 +10,7 @@
 
 #include "Shared/DevPrivateKeys.xcconfig"
 
-BUILD_NUMBER = 3
+BUILD_NUMBER = 4
 
 MARKETING_VERSION = 0.0.1
 

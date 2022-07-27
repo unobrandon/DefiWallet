@@ -2,53 +2,49 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key></key>
+	<string></string>
+	<key>AVAX_NODE_WWS_URL</key>
+	<string>$(AVAX_NODE_WWS_URL)</string>
+	<key>BACKEND_URL</key>
+	<string>$(BACKEND_URL)</string>
+	<key>BSC_NODE_WWS_URL</key>
+	<string>$(BSC_NODE_WWS_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>$(DISPLAY_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(BUILD_NUMBER)</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Protect your wallet even further with biometric security.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Grant access to the photo library to set your avatar and more.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Grant access to the camera to scan QR codes and more.</string>
-	<key>BACKEND_URL</key>
-	<string>$(BACKEND_URL)</string>
 	<key>ETH_NODE_WWS_URL</key>
 	<string>$(ETH_NODE_WWS_URL)</string>
 	<key>POLYGON_NODE_WWS_URL</key>
 	<string>$(POLYGON_NODE_WWS_URL)</string>
-	<key>BSC_NODE_WWS_URL</key>
-	<string>$(BSC_NODE_WWS_URL)</string>
-	<key>AVAX_NODE_WWS_URL</key>
-	<string>$(AVAX_NODE_WWS_URL)</string>
 	<key>INFURA_PROJECT_ID</key>
 	<string>$(INFURA_PROJECT_ID)</string>
 	<key>INFURA_PROJECT_SECRET</key>
 	<string>$(INFURA_PROJECT_SECRET)</string>
-	<key>ZAPPER_API_KEY</key>
-	<string>$(ZAPPER_API_KEY)</string>
-	<key>WALLET_CONNECT_PROJECT_ID</key>
-	<string>$(WALLET_CONNECT_PROJECT_ID)</string>
-	<key>ZERION_API_KEY</key>
-	<string>$(ZERION_API_KEY)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Grant access to the camera to scan QR codes and more.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Protect your wallet even further with biometric security.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Grant access to the photo library to set your avatar and more.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>LabMono-Regular.otf</string>
@@ -67,8 +63,24 @@
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<true/>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneClassName</key>
+					<string>Default Configuration</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).IOSSceneDelegate</string>
+				</dict>
+			</array>
+		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UILaunchScreen</key>
@@ -85,5 +97,11 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>WALLET_CONNECT_PROJECT_ID</key>
+	<string>$(WALLET_CONNECT_PROJECT_ID)</string>
+	<key>ZAPPER_API_KEY</key>
+	<string>$(ZAPPER_API_KEY)</string>
+	<key>ZERION_API_KEY</key>
+	<string>$(ZERION_API_KEY)</string>
 </dict>
 </plist>
