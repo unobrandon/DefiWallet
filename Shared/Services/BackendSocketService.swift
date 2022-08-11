@@ -31,7 +31,7 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
 
     func connectSocket() {
         let session = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
-        let url = URL(string: "wss://defiwallet-backend.herokuapp.com/")!
+        let url = URL(string: Constants.backendWssBaseUrl)!
 
         webSocketTask = session.webSocketTask(with: url)
         if let webSocketTask = webSocketTask {
@@ -47,23 +47,26 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
         }
     }
 
-    func stopWalletPriceTimer() {
-        guard let timer = walletPriceTimer else { return }
-        timer.invalidate()
-    }
-
     func closeSocket() {
         guard let webSocketTask = webSocketTask else { return }
 
         let reason = "Closing connection".data(using: .utf8)
         webSocketTask.cancel(with: .goingAway, reason: reason)
+
+        self.wallet.networkStatus = .offline
         stopWalletPriceTimer()
+    }
+
+    private func stopWalletPriceTimer() {
+        guard let timer = walletPriceTimer else { return }
+        timer.invalidate()
     }
 
     func ping() {
         self.webSocketTask?.sendPing(pongReceiveHandler: { error in
             if let error = error {
                 print("Error when sending PING \(error)")
+                self.wallet.networkStatus = .offline
             } else {
                 DispatchQueue.global().asyncAfter(deadline: .now() + 5) {
                     self.ping()
@@ -113,8 +116,14 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
         print("Web socket did connect")
 
+        self.wallet.networkStatus = .connected
         self.ping()
         self.receive()
+    }
+
+    func urlSession(_ session: URLSession, taskIsWaitingForConnectivity task: URLSessionTask) {
+        print("Web socket task Is Waiting For Connectivity.")
+        self.wallet.networkStatus = .connecting
     }
 
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {

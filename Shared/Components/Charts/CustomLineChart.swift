@@ -171,7 +171,7 @@ struct AnimatedGraphPath: Shape {
             path.addLines(points)
         }
         .trimmedPath(from: 0, to: progress)
-        .strokedPath(StrokeStyle(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
+        .strokedPath(StrokeStyle(lineWidth: 1.5, lineCap: .round, lineJoin: .round))
     }
 
 }

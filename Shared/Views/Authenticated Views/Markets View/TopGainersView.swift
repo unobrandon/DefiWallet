@@ -34,7 +34,9 @@ struct TopGainersView: View {
                         .fontTemplate(DefaultTemplate.bodySemibold)
                         .multilineTextAlignment(.leading)
 
-                    ViewMoreText("This list sorts from the top 250 tokens ranked on top market caps to ensure the rankings are reasonable.")
+                    Text("This list sorts from the top 250 tokens ranked on top market caps to ensure the rankings are reasonable.")
+                        .fontTemplate(DefaultTemplate.body)
+                        .multilineTextAlignment(.leading)
                 }
                 .padding(.vertical, 10)
                 .padding(.horizontal)

@@ -20,7 +20,9 @@ struct CollectablesSectionView: View {
     private var data: [NftResult] {
         var nfts: [NftResult] = []
 
-        for network in self.store.completeBalance {
+        guard let completeBalance = self.store.accountBalance?.completeBalance else { return [] }
+
+        for network in completeBalance {
             guard let nft = network.nfts,
                   let result = nft.allNfts else {
                 return []
@@ -52,7 +54,7 @@ struct CollectablesSectionView: View {
             })
             .padding(.vertical, 5)
 
-            if isLoading, store.completeBalance.isEmpty {
+            if isLoading, store.accountBalance?.completeBalance != nil {
                 LoadingView(title: "")
             }
 

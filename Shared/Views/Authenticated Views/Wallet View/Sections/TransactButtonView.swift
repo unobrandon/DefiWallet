@@ -43,6 +43,10 @@ struct TransactButtonView: View {
                 Spacer()
 
                 TransactButton(title: "Deposit", systemImage: Constants.currencyCircleImage, size: 50, style: style, action: {
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
+
                     actionDeposit()
                 })
             }
@@ -51,6 +55,10 @@ struct TransactButtonView: View {
                 Spacer()
 
                 TransactButton(title: "Send", systemImage: "paperplane.fill", size: 50, style: style, action: {
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
+
                     actionSend()
                 })
             }
@@ -59,6 +67,10 @@ struct TransactButtonView: View {
                 Spacer()
 
                 TransactButton(title: "Receive", systemImage: "arrow.down.circle", size: 50, style: style, action: {
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
+
                     actionReceive()
                 })
             }
@@ -67,6 +79,10 @@ struct TransactButtonView: View {
                 Spacer()
 
                 TransactButton(title: "Swap", systemImage: "arrow.left.arrow.right", size: 50, style: style, action: {
+                    #if os(iOS)
+                        HapticFeedback.rigidHapticFeedback()
+                    #endif
+
                     actionSwap()
                 })
             }

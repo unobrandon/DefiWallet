@@ -28,9 +28,9 @@ struct BalanceSectionView: View {
                     HStack(alignment: .center, spacing: 0) {
                         Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.titleSemiBold)
 
-                        MovingNumbersView(number: store.accountTotal,
+                        MovingNumbersView(number: store.accountBalance?.portfolioTotal ?? 0.00,
                                           numberOfDecimalPlaces: 2,
-                                          fixedWidth: 260,
+                                          fixedWidth: nil,
                                           theme: DefaultTemplate.titleSemiBold,
                                           animationDuration: 0.4,
                                           showComma: true) { str in
@@ -38,16 +38,11 @@ struct BalanceSectionView: View {
                         }
                     }.mask(AppGradients.movingNumbersMask)
 
-                    HStack(alignment: .center, spacing: 5) {
-                        if let change = store.accountPortfolio?.relativeChange24h {
-                            ProminentRoundedLabel(text: (change >= 0 ? "+" : "") +
-                                                  "\("".forTrailingZero(temp: change.truncate(places: 2)))%",
-                                                  color: change >= 0 ? .green : .red,
-                                                  style: service.themeStyle)
-
-                            Text(store.getChartDuration(store.chartType))
-                                .fontTemplate(DefaultTemplate.caption)
-                        }
+                    if let change = store.accountPortfolio?.relativeChange24h {
+                        ProminentRoundedLabel(text: "\(Locale.current.currencySymbol ?? "")" + "\(store.accountPortfolio?.absoluteChange24h?.truncate(places: 2) ?? 0.00)" + (change >= 0 ? "  (+" : "  (") + "\("".forTrailingZero(temp: change.truncate(places: 2)))%)",
+                                              color: change >= 0 ? .green : .red,
+                                              fontSize: 13.0,
+                                              style: service.themeStyle)
                     }
                 }
                 Spacer()
@@ -63,12 +58,15 @@ struct BalanceSectionView: View {
                 .padding(.vertical, 10)
 
             if !store.accountChart.isEmpty {
-                HStack(alignment: .center, spacing: 0) {
+                HStack(alignment: .center, spacing: 10) {
                     Spacer()
+                    Text(store.getChartDuration(store.chartType))
+                        .fontTemplate(DefaultTemplate.caption)
+
                     ChartOptionSegmentView(service: service, action: { item in
                         store.emitSingleChartRequest(item)
                     })
-                    .padding([.vertical, .top], 10)
+                    .padding([.vertical, .top], 15)
                 }
             }
         }
@@ -79,27 +77,16 @@ struct BalanceSectionView: View {
                            enableSend: true,
                            enableReceive: false,
                            enableSwap: true,
-                           actionDeposit: { print("deposit")
+        actionDeposit: {
+            print("deposit")
         }, actionSend: {
             walletRouter.route(to: \.sendTo)
-
-            #if os(iOS)
-                HapticFeedback.rigidHapticFeedback()
-            #endif
-        }, actionReceive: { print("receive")
-        }, actionSwap: { print("swap")
+        }, actionReceive: {
+            print("receive")
+        }, actionSwap: {
+            print("swap")
         }).padding(.top)
         .padding(.horizontal, 10)
-    }
-
-    private func getTotalBalance() -> Double {
-        var total = 0.0
-
-        for network in store.completeBalance {
-            total += network.totalBalance ?? 0.0
-        }
-
-        return total
     }
 
 }

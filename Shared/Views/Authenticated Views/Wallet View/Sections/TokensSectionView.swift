@@ -18,7 +18,9 @@ struct TokensSectionView: View {
     private var tokens: [TokenModel] {
         var allTokens: [TokenModel] = []
 
-        for token in self.store.completeBalance {
+        guard let completeBalance = self.store.accountBalance?.completeBalance else { return [] }
+
+        for token in completeBalance {
             guard let tokens = token.tokens else {
                 return []
             }

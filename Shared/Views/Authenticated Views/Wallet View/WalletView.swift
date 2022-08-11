@@ -23,18 +23,24 @@ struct WalletView: View {
     @State var isHistoryLoading: Bool = false
     let gridItems: [SwiftUI.GridItem] = MobileConstants.deviceType == .phone ? [SwiftUI.GridItem(.flexible())] : [SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible())]
     @State var walletPriceTimer: Timer?
+    @State var scrollOffset: CGFloat = CGFloat.zero
 
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
-
-        fetchNetworksBalances()
     }
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView(.vertical, showsIndicators: false) {
                 BalanceSectionView(service: service)
+                    .background(GeometryReader {
+                        Color.clear.preference(key: ViewOffsetKey.self,
+                            value: -$0.frame(in: .named("wallet-scroll")).origin.y)
+                    })
+                    .onPreferenceChange(ViewOffsetKey.self) {
+                        self.scrollOffset = $0
+                    }
 
                 LazyVGrid(columns: gridItems, alignment: .center, spacing: 20) {
                     NetworkSectionView(isLoading: self.$isBalanceLoading, service: service)
@@ -46,12 +52,12 @@ struct WalletView: View {
                 FooterInformation()
                     .padding(.vertical)
                     .padding(.bottom, 40)
-            }
+            }.coordinateSpace(name: "wallet-scroll")
         })
         .navigationBarTitle("", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                WalletNavigationView(service: service).offset(y: -2.5)
+                WalletNavigationView(service: service, scrollOffset: $scrollOffset, isLoading: $isBalanceLoading).offset(y: -2.5)
             }
 
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -76,15 +82,20 @@ struct WalletView: View {
                 Tool.showTabBar()
             }
 
+            fetchNetworksBalances()
             store.emitAccountRequest()
             startWalletPriceTimer()
         }
         .onDisappear {
             stopWalletPriceTimer()
+            isBalanceLoading = false
+            isHistoryLoading = false
         }
     }
 
     func fetchNetworksBalances() {
+        guard !isBalanceLoading else { return }
+
         isBalanceLoading = true
         isHistoryLoading = true
 

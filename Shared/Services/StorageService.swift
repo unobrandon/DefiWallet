@@ -19,7 +19,7 @@ class StorageService {
     let memoryConfig: MemoryConfig
 
     var dataStorage: Storage<String, Data>?
-    var balanceStorage: Cache.Storage<String, [CompleteBalance]>?
+    var balanceStorage: Cache.Storage<String, AccountBalance>?
     var nftUriResponse: Cache.Storage<String, NftURIResponse>?
     var historyStorage: Cache.Storage<String, [HistoryData]>?
     var portfolioStorage: Cache.Storage<String, AccountPortfolio>?
@@ -50,7 +50,7 @@ class StorageService {
         do {
             self.balanceStorage = try Storage(diskConfig: diskConfig,
                                               memoryConfig: memoryConfig,
-                                              transformer: TransformerFactory.forCodable(ofType: [CompleteBalance].self))
+                                              transformer: TransformerFactory.forCodable(ofType: AccountBalance.self))
         } catch {
             print(error)
         }

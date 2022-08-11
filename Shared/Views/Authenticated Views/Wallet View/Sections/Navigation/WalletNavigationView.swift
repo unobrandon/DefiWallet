@@ -11,13 +11,17 @@ struct WalletNavigationView: View {
 
     private let service: AuthenticatedServices
     @ObservedObject private var store: WalletService
+    @Binding var scrollOffset: CGFloat
+    @Binding var isLoading: Bool
 
     @State var connectionStatus: String = "Welcome"
     @State var hasCopiedAddress: Bool = false
 
-    init(service: AuthenticatedServices) {
+    init(service: AuthenticatedServices, scrollOffset: Binding<CGFloat>, isLoading: Binding<Bool>) {
         self.service = service
         self.store = service.wallet
+        self._scrollOffset = scrollOffset
+        self._isLoading = isLoading
     }
 
     var body: some View {
@@ -39,12 +43,19 @@ struct WalletNavigationView: View {
                     }
                 } else {
                     UserAvatar(size: 34, user: service.currentUser, style: service.themeStyle)
+                        .overlay(
+                            ZStack {
+                                if isLoading {
+                                    LoadingIndicator(size: 46)
+                                }
+                            }
+                        )
                 }
 
                 Circle()
                     .strokeBorder(Color("baseBackground_bordered"), lineWidth: 2)
                     .frame(width: 10, height: 10, alignment: .center)
-                    .background(Circle().foregroundColor(service.ethereum.connectionStatus == .connected ? .green : service.ethereum.connectionStatus == .connecting ? .orange : .red))
+                    .background(Circle().foregroundColor(store.networkStatus == .connected ? .green : store.networkStatus == .connecting ? .orange : .red))
                     .offset(x: 12, y: 12)
             }
 
@@ -54,7 +65,22 @@ struct WalletNavigationView: View {
                     Text(session.name + others)
                         .fontTemplate(DefaultTemplate.bodyBold)
                 } else {
-                    Text(connectionStatus).fontTemplate(DefaultTemplate.bodyBold)
+                    if self.scrollOffset > 68, store.networkStatus == .connected {
+                        HStack(alignment: .center, spacing: 0) {
+                            Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.bodyBold)
+
+                            MovingNumbersView(number: store.accountBalance?.portfolioTotal ?? 0.00,
+                                              numberOfDecimalPlaces: 2,
+                                              fixedWidth: nil,
+                                              theme: DefaultTemplate.bodyBold,
+                                              animationDuration: 0.4,
+                                              showComma: true) { str in
+                                Text(str).fontTemplate(DefaultTemplate.bodyBold)
+                            }
+                        }
+                    } else {
+                        Text(connectionStatus).fontTemplate(DefaultTemplate.bodyBold)
+                    }
                 }
 
                 Button(action: {

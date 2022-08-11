@@ -115,7 +115,10 @@ struct TokenDetailView: View {
             }
 
             print("the token details are: \(String(describing: tokenModel?.externalId ?? "no id"))")
-            walletStore.completeBalance.forEach({ bal in
+
+            guard let completeBalance = self.walletStore.accountBalance?.completeBalance else { return }
+
+            completeBalance.forEach({ bal in
                 bal.tokens?.forEach({ token in
                     if tokenModel?.allAddress?.ethereum == token.tokenAddress {
                         print("HAVE THIS ETH TOKEN!!!")

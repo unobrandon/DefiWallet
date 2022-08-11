@@ -17,17 +17,15 @@ extension WalletService {
 
         addressSocket.on(clientEvent: .connect) { _, _ in
             self.emitAccountRequest()
-            self.networkStatus = .connected
         }
 
         addressSocket.on(clientEvent: .disconnect) { _, _ in
             self.stopAccountTimer()
-            self.networkStatus = .offline
         }
 
-        addressSocket.on(clientEvent: .reconnect) { _, _ in
-            self.networkStatus = .reconnecting
-        }
+//        addressSocket.on(clientEvent: .reconnect) { _, _ in
+//            self.networkStatus = .reconnecting
+//        }
     }
 
     func disconnectAccountSocket() {

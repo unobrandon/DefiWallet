@@ -19,7 +19,9 @@ struct HistorySectionView: View {
     private var data: [TransactionResult] {
         var transactions: [TransactionResult] = []
 
-        for network in self.store.completeBalance {
+        guard let completeBalance = self.store.accountBalance?.completeBalance else { return [] }
+
+        for network in completeBalance {
             guard let transact = network.transactions,
                   let result = transact.result else {
                 return []

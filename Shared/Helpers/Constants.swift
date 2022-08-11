@@ -75,6 +75,11 @@ public struct Constants {
         return "https://" + url
     }
 
+    static var backendWssBaseUrl: String {
+        guard let url = Bundle.main.infoDictionary?["BACKEND_URL"] as? String else { return "" }
+        return "wss://" + url
+    }
+
     static var zapperApiKey: String {
         guard let key = Bundle.main.infoDictionary?["ZAPPER_API_KEY"] as? String else { return "api_key=" }
         return "api_key=" + key

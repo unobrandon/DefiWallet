@@ -62,9 +62,10 @@ struct CollectableView: View {
                 Tool.hiddenTabBar()
             }
 
-            guard self.data.isEmpty else { return }
+            guard self.data.isEmpty,
+                  let completeBalance = self.store.accountBalance?.completeBalance else { return }
 
-            for network in self.store.completeBalance {
+            for network in completeBalance {
                 guard let transact = network.nfts?.allNfts else { return }
 
                 for item in transact {

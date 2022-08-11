@@ -30,7 +30,9 @@ struct RecentlyAddedView: View {
                         .fontTemplate(DefaultTemplate.bodySemibold)
                         .multilineTextAlignment(.leading)
 
-                    ViewMoreText("If you know of a missing token or would like to add a new one, please reach out to use and we are happy to assist.")
+                    Text("If you know of a missing token or would like to add a new one, please reach out to use and we are happy to assist.")
+                        .fontTemplate(DefaultTemplate.body)
+                        .multilineTextAlignment(.leading)
                 }
                 .padding(.vertical, 10)
                 .padding(.horizontal)

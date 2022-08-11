@@ -58,17 +58,13 @@ struct NotificationHUD: View {
 
                     VStack(alignment: .leading, spacing: 0) {
                         Text(title)
-                            .font(.none)
-                            .fontWeight(.medium)
-                            .foregroundColor(.primary)
+                            .fontTemplate(DefaultTemplate.bodyBold)
                             .multilineTextAlignment(.leading)
                             .lineLimit(2)
 
                         if subtitle != "" {
                             Text(subtitle)
-                                .font(.caption)
-                                .fontWeight(.regular)
-                                .foregroundColor(.secondary)
+                                .fontTemplate(DefaultTemplate.caption)
                                 .multilineTextAlignment(.leading)
                                 .lineLimit(3)
                         }

@@ -29,13 +29,13 @@ struct NetworkSectionView: View {
             })
             .padding(.bottom, 5)
 
-            if isLoading, store.completeBalance.isEmpty {
+            if isLoading, store.accountBalance?.completeBalance != nil {
                 LoadingView(title: "")
             }
 
             ScrollView(MobileConstants.deviceType == .phone ? .horizontal : .vertical, showsIndicators: false) {
                 HStack(alignment: .center, spacing: 10) {
-                    ForEach(store.completeBalance, id:\.self) { network in
+                    ForEach(store.accountBalance?.completeBalance ?? [], id:\.self) { network in
     //                    NetworkCell(network: network, service: service)
                         NetworkVerticalCell(network: network, service: service, action: {
                             walletRouter.route(to: \.networkDetail, network)

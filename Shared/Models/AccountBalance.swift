@@ -14,8 +14,8 @@ import Foundation
 struct AccountBalance: Codable {
 
     let error: [String]?
-    let completeBalance: [CompleteBalance]?
-    let portfolioTotal: Double?
+    var completeBalance: [CompleteBalance]?
+    var portfolioTotal: Double?
 
 }
 
