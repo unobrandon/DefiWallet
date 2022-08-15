@@ -11,6 +11,8 @@ import SwiftUI
 
 extension WalletService {
 
+/*
+
     func connectCompoundData() {
         compoundSocket.connect(withPayload: ["address": currentUser.address, "currency": currentUser.currency])
 
@@ -83,4 +85,7 @@ extension WalletService {
             }
         }
     }
+
+*/
+
 }

@@ -48,7 +48,7 @@ struct TokenDetailView: View {
                         self.scrollOffset = $0
                     }
 
-                CustomLineChart(data: tokenModel?.priceGraph?.price ?? tokenDetails?.priceGraph?.price ?? tokenChart.map({ $0.amount }), profit: tokenModel?.priceChangePercentage24H ?? 0 >= 0)
+                CustomLineChart(data: tokenModel?.priceGraph?.price ?? tokenDetails?.priceGraph?.price ?? tokenChart.map({ $0.amount }), profit: tokenModel?.priceChangePercentage24H ?? 0 >= 0, perspective: $walletStore.chartType)
                     .frame(height: 145)
                     .padding()
 

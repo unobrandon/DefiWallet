@@ -42,7 +42,7 @@ class WalletService: ObservableObject {
     var socketManager: SocketManager
 //    var walletConnectClient: WalletConnectClient
     var addressSocket: SocketIOClient
-    var compoundSocket: SocketIOClient
+//    var compoundSocket: SocketIOClient
 
     let portfolioRefreshInterval: Double = 15
     var chartType: String = UserDefaults.standard.string(forKey: "chartType") ?? "d"
@@ -55,20 +55,20 @@ class WalletService: ObservableObject {
 
         self.socketManager = socketManager
         self.addressSocket = socketManager.socket(forNamespace: "/address")
-        self.compoundSocket = socketManager.socket(forNamespace: "/compound")
+//        self.compoundSocket = socketManager.socket(forNamespace: "/compound")
 //        self.walletConnectClient = WalletConnectClient(metadata: wcMetadata, relayer: relayer)
 //        self.walletConnectClient.delegate = self
 
         self.loadStoredData()
         self.connectAccountData()
-        self.connectCompoundData()
+//        self.connectCompoundData()
     }
 
     deinit {
         print("de-init wallet service!")
     }
 
-    func loadStoredData() {
+    private func loadStoredData() {
 
         if let storage = StorageService.shared.historyStorage {
             storage.async.object(forKey: "historyList") { result in
@@ -118,7 +118,9 @@ class WalletService: ObservableObject {
             storage.async.object(forKey: "balanceList") { result in
                 switch result {
                 case .value(let balance):
-                    self.accountBalance = balance
+                    DispatchQueue.main.async {
+                        self.accountBalance = balance
+                    }
                 case .error(let error):
                     print("error getting local balance: \(error.localizedDescription)")
                 }
@@ -130,7 +132,9 @@ class WalletService: ObservableObject {
         AF.request(url, method: .get).responseDecodable(of: AccountBalance.self) { [self] response in
             switch response.result {
             case .success(let accountBalance):
-                self.accountBalance = accountBalance
+                DispatchQueue.main.async {
+                    self.accountBalance = accountBalance
+                }
 
                 if let storage = StorageService.shared.balanceStorage {
                     storage.async.setObject(accountBalance, forKey: "balanceList") { _ in

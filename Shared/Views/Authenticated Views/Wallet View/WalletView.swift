@@ -28,6 +28,8 @@ struct WalletView: View {
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
+
+        fetchNetworksBalances()
     }
 
     var body: some View {
@@ -82,8 +84,6 @@ struct WalletView: View {
                 Tool.showTabBar()
             }
 
-            fetchNetworksBalances()
-            store.emitAccountRequest()
             startWalletPriceTimer()
         }
         .onDisappear {
@@ -111,7 +111,7 @@ struct WalletView: View {
             guard !tokenIds.isEmpty else { return }
 
             self.service.socket.emitPricesUpdate(tokenIds)
-            print("emit Prices Update: \(tokenIds)")
+            self.store.emitAccountRequest(UserDefaults.standard.string(forKey: "chartType") ?? self.store.chartType)
         }
     }
 

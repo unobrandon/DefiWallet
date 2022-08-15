@@ -18,7 +18,7 @@ struct TokenPricesModel: Codable, Hashable {
         hasher.combine(currentPrice)
         hasher.combine(marketCapRank)
     }
-    
+
     let externalId, lastUpdated: String?
     let athDate, atlDate: String?
     let fullyDilutedValuation, marketCap, marketCapRank: Int?

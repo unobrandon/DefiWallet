@@ -14,7 +14,7 @@ struct SocketSendData: Codable {
 }
 
 struct SocketReceiveData: Codable {
-    var type: SocketResponses
+    var type: SocketResponses?
     var prices: [TokenPricesModel]?
 }
 
@@ -36,14 +36,6 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
         webSocketTask = session.webSocketTask(with: url)
         if let webSocketTask = webSocketTask {
             webSocketTask.resume()
-//            self.startWalletPriceTimer()
-        }
-    }
-
-    func startWalletPriceTimer(_ ids: [String]) {
-        self.walletPriceTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { _ in
-            self.emitPricesUpdate(ids)
-            print("emit Prices Update111: \(ids)")
         }
     }
 
@@ -114,7 +106,7 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
     }
 
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
-        print("Web socket did connect")
+        print("\(Constants.projectName) backend web socket did connect!")
 
         self.wallet.networkStatus = .connected
         self.ping()

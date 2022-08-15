@@ -11,8 +11,10 @@ import SwiftUIX
 struct CustomLineChart: View {
 
     var data: [Double]
+    var timeline: [Int]?
     var profit: Bool = false
 
+    @Binding var perspective: String
     @State var currentPlot = ""
     @State var offset: CGSize = .zero
     @State var showPlot = false
@@ -35,9 +37,9 @@ struct CustomLineChart: View {
                 let pathHeight = progress * (height - 10)
                 let pathWidth = width * CGFloat(item.offset)
 
-                guard graphProgress != 0 else {
-                    return CGPoint(x: pathWidth, y: 125.0)
-                }
+//                guard graphProgress != 0 else {
+//                    return CGPoint(x: pathWidth, y: 125.0)
+//                }
 
                 return CGPoint(x: pathWidth, y: -pathHeight + height)
             }
@@ -84,7 +86,7 @@ struct CustomLineChart: View {
                 , alignment: .bottomLeading)
             .contentShape(Rectangle())
             .gesture(DragGesture().onChanged({ value in
-                guard graphProgress == 0 else { return }
+//                guard graphProgress == 0 else { return }
 
                 withAnimation { showPlot = true }
 
@@ -92,6 +94,9 @@ struct CustomLineChart: View {
                 let index = max(min(Int((translation / width).rounded() + 1), data.count - 1), 0)
 
                 currentPlot = data[index].convertToCurrency()
+                if let time = timeline?[index] {
+                    currentPlot += "\n\(Date(timeIntervalSince1970: Double(time)).shortDateFormate())"
+                }
                 self.translation = translation
 
                 // removing half width...
@@ -112,18 +117,45 @@ struct CustomLineChart: View {
                 VStack(alignment: .trailing, spacing: 5) {
                     if let max = data.max() {
                         Text(max.convertToCurrency())
-                            .fontTemplate(DefaultTemplate.caption_semibold)
-                            .offset(y: -10)
+                            .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
+                    }
+
+                    if !data.isEmpty {
+                        VStack(alignment: .trailing, spacing: 40) {
+                            ForEach(0...3, id: \.self) { _ in
+                                Rectangle()
+                                    .frame(height: 1)
+                                    .frame(maxWidth: .infinity)
+                                    .foregroundColor(.systemGray6)
+                            }
+                        }
                     }
 
                     Spacer()
+
                     if let min = data.min() {
                         Text(min.convertToCurrency())
-                            .fontTemplate(DefaultTemplate.caption_semibold)
-                            .offset(y: 20)
+                            .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
+                            .offset(y: 10)
+                    }
+
+                    if let timeline = timeline {
+                        Divider().offset(y: 10)
+
+                        HStack() {
+                            ForEach(timeline.subArray(length: 4), id: \.self) { date in
+                                Text(Date(timeIntervalSince1970: Double(date)).chartDateFormate(perspective: perspective))
+                                    .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
+                                    .frame(maxWidth: .infinity)
+                                    .multilineTextAlignment(.leading)
+                                    .lineLimit(2)
+                                    .frame(maxHeight: 45)
+                            }.frame(maxWidth: .infinity, alignment: .trailing)
+                        }
+                        .offset(y: 10)
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .trailing)
+//                .frame(maxWidth: .infinity, alignment: .trailing)
             )
         }
         .onChange(of: isDrag) { _ in
@@ -171,7 +203,7 @@ struct AnimatedGraphPath: Shape {
             path.addLines(points)
         }
         .trimmedPath(from: 0, to: progress)
-        .strokedPath(StrokeStyle(lineWidth: 1.5, lineCap: .round, lineJoin: .round))
+        .strokedPath(StrokeStyle(lineWidth: 1.85, lineCap: .round, lineJoin: .round))
     }
 
 }

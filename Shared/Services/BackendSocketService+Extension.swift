@@ -18,14 +18,11 @@ extension BackendSocketService {
 
             webSocketTask?.send(msgString) { error in
                 if let error = error {
-                    print("Failed with error \(error.localizedDescription)")
-                } else {
-                    // no-op
-                    print("Sent socket price message!")
+                    print("Failed to emitPricesUpdate with error \(error.localizedDescription)")
                 }
             }
         } else {
-            print("errorrr sendinggg")
+            print("errorrr sendinggg emitPricesUpdate func")
         }
     }
 

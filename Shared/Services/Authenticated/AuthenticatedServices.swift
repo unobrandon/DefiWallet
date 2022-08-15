@@ -25,7 +25,7 @@ class AuthenticatedServices: ObservableObject {
     var profile: ProfileService = ProfileService()
 
     // MARK: network delegates
-    var ethereum: EthereumService
+//    var ethereum: EthereumService
     var socket: BackendSocketService
 
     enum MacTabStatus: String, Equatable {
@@ -48,7 +48,7 @@ class AuthenticatedServices: ObservableObject {
         self.currentUser = currentUser
         self.wallet = WalletService(currentUser: currentUser, socketManager: manager, wcMetadata: metadata)
         self.market = MarketsService(socketManager: manager)
-        self.ethereum = EthereumService(currentUser: currentUser)
+//        self.ethereum = EthereumService(currentUser: currentUser)
         self.socket = BackendSocketService(wallet: self.wallet)
         self.socket.connectSocket()
     }

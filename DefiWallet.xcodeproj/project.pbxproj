@@ -1000,6 +1000,7 @@
 			isa = PBXGroup;
 			children = (
 				051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */,
+				05E858BE27CA0F0C00B85195 /* Networks */,
 				055FFDEA2856D06800D8EA06 /* Wallet */,
 				055FFDEB2856D07800D8EA06 /* Market */,
 				059F73CE27D7160D00B27E80 /* DiscoverService.swift */,
@@ -1451,7 +1452,6 @@
 		057806E027B8DD460008051B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				05E858BE27CA0F0C00B85195 /* Networks */,
 				057806E727B8DF980008051B /* AuthenticationService.swift */,
 				05D1098227C31511008DCC66 /* StorageService.swift */,
 				05E904A2287545D100A47F78 /* BackendSocketService.swift */,

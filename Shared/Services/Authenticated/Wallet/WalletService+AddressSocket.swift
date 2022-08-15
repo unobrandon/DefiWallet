@@ -12,15 +12,15 @@ import SwiftUI
 extension WalletService {
 
     func connectAccountData() {
-        addressSocket.connect(withPayload: ["address": currentUser.address, "currency": currentUser.currency])
-        setSockets()
+        self.addressSocket.connect(withPayload: ["address": currentUser.address, "currency": currentUser.currency])
+        self.setSockets()
 
         addressSocket.on(clientEvent: .connect) { _, _ in
-            self.emitAccountRequest()
+            self.emitAccountRequest(UserDefaults.standard.string(forKey: "chartType"))
         }
 
         addressSocket.on(clientEvent: .disconnect) { _, _ in
-            self.stopAccountTimer()
+
         }
 
 //        addressSocket.on(clientEvent: .reconnect) { _, _ in
@@ -33,20 +33,9 @@ extension WalletService {
         addressSocket.removeAllHandlers()
     }
 
-    func stopAccountTimer() {
-        guard let timer = accountSocketTimer else { return }
-        timer.invalidate()
-    }
-
-    func startAccountTimer() {
-        self.accountSocketTimer = Timer.scheduledTimer(withTimeInterval: portfolioRefreshInterval, repeats: true) { _ in
-            self.emitAccountRequest()
-        }
-    }
-
-    func emitAccountRequest() {
-        self.addressSocket.emit("get", ["scope": ["portfolio", "charts", "staked-assets"],
-                                        "payload": ["address": self.currentUser.address, "currency": self.currentUser.currency, "charts_type": UserDefaults.standard.string(forKey: "chartType") ?? self.chartType]])
+    func emitAccountRequest(_ type: String? = "d") {
+        self.addressSocket.emit("get", ["scope": ["charts"],
+                                        "payload": ["address": self.currentUser.address, "currency": self.currentUser.currency, "charts_type": type]])
     }
 
     func setSockets() {
@@ -80,26 +69,26 @@ extension WalletService {
                 let xdaiAssetsValue = assets["xdai_assets_value"] as? Double
 
                 let portfolio = AccountPortfolio(arbitrumAssetsValue: arbitrumAssetsValue,
-                                                         assetsValue: assetsValue,
-                                                         auroraAssetsValue: auroraAssetsValue,
-                                                         avalancheAssetsValue: avalancheAssetsValue,
-                                                         borrowedValue: borrowedValue,
-                                                         bscAssetsValue: bscAssetsValue,
-                                                         depositedValue: depositedValue,
-                                                         ethereumAssetsValue: ethereumAssetsValue,
-                                                         fantomAssetsValue: fantomAssetsValue,
-                                                         lockedValue: lockedValue,
-                                                         loopringAssetsValue: loopringAssetsValue,
-                                                         nftFloorPriceValue: nftFloorPriceValue,
-                                                         nftLastPriceValue: nftLastPriceValue,
-                                                         optimismAssetsValue: optimismAssetsValue,
-                                                         polygonAssetsValue: polygonAssetsValue,
-                                                         solanaAssetsValue: solanaAssetsValue,
-                                                         stakedValue: stakedValue,
-                                                         totalValue: totalValue,
-                                                         xdaiAssetsValue: xdaiAssetsValue,
-                                                         absoluteChange24h: absoluteChange24h,
-                                                         relativeChange24h: relativeChange24h)
+                                                 assetsValue: assetsValue,
+                                                 auroraAssetsValue: auroraAssetsValue,
+                                                 avalancheAssetsValue: avalancheAssetsValue,
+                                                 borrowedValue: borrowedValue,
+                                                 bscAssetsValue: bscAssetsValue,
+                                                 depositedValue: depositedValue,
+                                                 ethereumAssetsValue: ethereumAssetsValue,
+                                                 fantomAssetsValue: fantomAssetsValue,
+                                                 lockedValue: lockedValue,
+                                                 loopringAssetsValue: loopringAssetsValue,
+                                                 nftFloorPriceValue: nftFloorPriceValue,
+                                                 nftLastPriceValue: nftLastPriceValue,
+                                                 optimismAssetsValue: optimismAssetsValue,
+                                                 polygonAssetsValue: polygonAssetsValue,
+                                                 solanaAssetsValue: solanaAssetsValue,
+                                                 stakedValue: stakedValue,
+                                                 totalValue: totalValue,
+                                                 xdaiAssetsValue: xdaiAssetsValue,
+                                                 absoluteChange24h: absoluteChange24h,
+                                                 relativeChange24h: relativeChange24h)
 
                 self.accountPortfolio = portfolio
 

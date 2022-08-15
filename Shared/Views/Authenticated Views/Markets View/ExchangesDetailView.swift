@@ -32,7 +32,7 @@ struct ExchangesDetailView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
 
-                CustomLineChart(data: store.exchangeDetails?.chartValue ?? [], profit: true)
+                CustomLineChart(data: store.exchangeDetails?.chartValue ?? [], profit: true, perspective: $service.wallet.chartType)
                     .frame(height: 120)
                     .padding()
 
