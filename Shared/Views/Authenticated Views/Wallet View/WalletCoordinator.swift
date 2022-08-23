@@ -16,6 +16,7 @@ final class WalletCoordinator: NavigationCoordinatable {
     @Route(.push) var sendTo = makeSendTo
     @Route(.push) var sendToDetail = makeSendToDetail
     @Route(.push) var swapToken = makeSwapToken
+    @Route(.modal) var swapListToken = makeSwapListToken
     @Route(.push) var networkDetail = makeNetworkDetail
     @Route(.push) var history = makeHistory
     @Route(.push) var tokens = makeTokens

@@ -19,6 +19,10 @@ struct SwapTokenView: View {
     @State var sendTokenAmount: String = ""
     @State var disablePrimaryAction: Bool = true
 
+    @State var sendToken: TokenModel?
+    @State var receiveToken: TokenModel?
+    @State var accountSendingTokens: [TokenModel]?
+
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
@@ -35,20 +39,21 @@ struct SwapTokenView: View {
                                 Text("Send")
                                     .fontTemplate(DefaultTemplate.caption_Mono_secondary)
 
-                                HStack(alignment: .center, spacing: 10) {
+                                HStack(alignment: .center, spacing: 0) {
                                     Button(action: {
                                         print("Select Send Token")
+                                        walletRouter.route(to: \.swapListToken, self.accountSendingTokens)
                                     }, label: {
                                         HStack(alignment: .center, spacing: 10) {
-                                            RemoteImage("", size: 36)
+                                            RemoteImage(sendToken?.image, size: 36)
                                                 .clipShape(Circle())
                                                 .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
                                                 .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
 
                                             VStack(alignment: .leading, spacing: 2.5) {
                                                 HStack(alignment: .center, spacing: 10) {
-                                                    Text("ETH")
-                                                    .fontTemplate(DefaultTemplate.sectionHeader_bold)
+                                                    Text(sendToken?.symbol?.uppercased() ?? "-")
+                                                        .fontTemplate(DefaultTemplate.sectionHeader_bold)
 
                                                     Image(systemName: "chevron.down")
                                                         .resizable()
@@ -58,7 +63,7 @@ struct SwapTokenView: View {
                                                         .foregroundColor(.primary)
                                                 }
 
-                                                Text("available: 0.238")
+                                                Text("available: \(sendToken?.nativeBalance ?? 0.0)")
                                                     .fontTemplate(DefaultTemplate.caption)
                                                     .adjustsFontSizeToFitWidth(true)
                                                     .minimumScaleFactor(0.85)
@@ -70,19 +75,29 @@ struct SwapTokenView: View {
                                     .buttonStyle(ClickInteractiveStyle(0.98))
                                     Spacer()
 
-                                    BorderedButton(title: "Max", size: .mini, tint: .blue, action: {
-                                        print("Max Amount")
-                                    })
-
                                     VStack(alignment: .trailing, spacing: 0) {
-                                        Text(sendTokenAmount.isEmpty ? "0" : sendTokenAmount)
-                                            .fontTemplate(DefaultTemplate.headingSemiBold)
-                                            .adjustsFontSizeToFitWidth(true)
-                                            .minimumScaleFactor(0.75)
-                                            .lineLimit(1)
+                                        HStack(alignment: .center, spacing: 10) {
+                                            BorderedButton(title: "Max", size: .mini, tint: .blue, action: {
+                                                print("Max Amount")
+                                                self.sendTokenAmount = "\(self.sendToken?.nativeBalance ?? 0.00)"
+                                            })
 
-                                        Text("-")
+                                            Text(sendTokenAmount.isEmpty ? "0" : sendTokenAmount)
+                                                .fontTemplate(DefaultTemplate.headingSemiBold)
+                                                .adjustsFontSizeToFitWidth(true)
+                                                .minimumScaleFactor(0.5)
+                                                .lineLimit(1)
+                                                .frame(minWidth: 40)
+                                                .multilineTextAlignment(.trailing)
+                                        }
+
+                                        let conversion = ((sendToken?.totalBalance ?? 0.0) / (sendToken?.nativeBalance ?? 0.0)) * (Double(self.sendTokenAmount) ?? 0.00)
+
+                                        Text(Double(self.sendTokenAmount) ?? 0 <= 0 ? "-" : conversion.convertToCurrency())
                                             .fontTemplate(DefaultTemplate.body_secondary)
+                                            .minimumScaleFactor(0.65)
+                                            .lineLimit(1)
+                                            .multilineTextAlignment(.trailing)
                                     }
                                 }
                             }
@@ -97,7 +112,7 @@ struct SwapTokenView: View {
 
                                 HStack {
                                     Button(action: {
-                                        print("Select Token")
+                                        walletRouter.route(to: \.swapListToken, self.accountSendingTokens)
                                     }, label: {
                                         HStack(alignment: .center, spacing: 10) {
                                             RemoteImage("", size: 36)
@@ -180,11 +195,19 @@ struct SwapTokenView: View {
                 Tool.hiddenTabBar()
             }
 
+            if let nativeToken = self.store.accountBalance?.completeBalance?.max(by: { $0.nativeBalance?.totalBalance ?? 0 < $1.nativeBalance?.totalBalance ?? 0 }) {
+                self.sendToken = nativeToken.nativeBalance
+                print("set local native token: \(self.sendToken?.name ?? "nil")")
+            }
+
             self.store.loadSwappableTokens(completion: { swapTokens in
                 guard let swapTokens = swapTokens else { return }
 
                 self.store.getAccountSwappableTokens(swapTokens, completion: { tokens in
                     print("got all the tokens: \(tokens?.count ?? 0)")
+
+                    self.sendToken = tokens?.first
+                    self.accountSendingTokens = tokens
                 })
             })
         }

@@ -35,10 +35,9 @@ struct StoreReviewHelper {
                 StoreReviewHelper.requestReview()
             }
         default:
-            //print("App run count is: \(appOpenCount)")
+            // print("App run count is: \(appOpenCount)")
             break;
         }
-        
     }
 
     static func requestReview() {

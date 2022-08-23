@@ -51,61 +51,48 @@ extension WalletService {
         }
 
         for networkItem in completeBal {
+            // Add native network token
             if let nativeToken = networkItem.nativeBalance,
                nativeToken.totalBalance ?? 0 > 0 {
                 allTokens.append(nativeToken)
-                print("got an native token \(nativeToken.name ?? "nil")")
             }
 
+            // Network token
             if let tokens = networkItem.tokens {
                 for networkToken in tokens {
                     if networkItem.network == "eth",
                        let eth = swappableTokens.eth,
                        eth.contains(where: { $0.key == networkToken.allAddress?.ethereum }) {
-                        print("got an eth contains!!! \(networkToken.name ?? "nil")")
-
                         allTokens.append(networkToken)
                     }
 
                     if networkItem.network == "bsc",
                        let bnb = swappableTokens.bnb,
                        bnb.contains(where: { $0.key == networkToken.allAddress?.binance }) {
-                        print("got an bnb contains!!! \(networkToken.name ?? "nil") for \(networkToken.network ?? "nil")")
-
                         allTokens.append(networkToken)
                     }
 
                     if networkItem.network == "avalanche",
                        let avax = swappableTokens.avax,
                        avax.contains(where: { $0.key == networkToken.allAddress?.avalanche }) {
-                        print("got an avax contains!!! \(networkToken.name ?? "nil")")
-
                         allTokens.append(networkToken)
                     }
 
                     if networkItem.network == "polygon", let polygon = swappableTokens.polygon,
                               polygon.contains(where: { $0.key == networkToken.allAddress?.polygon_pos }) {
-                        print("got an polygon contains!!! \(networkToken.name ?? "nil")")
-
                         allTokens.append(networkToken)
                     }
 
                     if networkItem.network == "fantom",
                        let fantom = swappableTokens.fantom,
                        fantom.contains(where: { $0.key == networkToken.allAddress?.polygon_pos }) {
-                      print("got an fantom contains!!! \(networkToken.name ?? "nil")")
-
                       allTokens.append(networkToken)
                     }
-
-//                    else {
-//                        print("\(networkToken.name ?? "nil") does not contain in \(networkItem.network ?? "nil")!")
-//                    }
                 }
             }
         }
 
-        completion(allTokens)
+        completion(allTokens.sorted(by: { $0.totalBalance ?? 0.0 > $1.totalBalance ?? 0.0 }))
     }
 
 }

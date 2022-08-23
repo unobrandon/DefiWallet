@@ -101,6 +101,15 @@ class StorageService {
             print("error getting trending storage \(error.localizedDescription)")
         }
 
+        // swappable tokens
+        do {
+            self.swappableTokens = try Storage(diskConfig: diskConfig,
+                                              memoryConfig: memoryConfig,
+                                              transformer: TransformerFactory.forCodable(ofType: SwappableTokens.self))
+        } catch {
+            print("error getting swappable tokens storage \(error.localizedDescription)")
+        }
+
         /*
         do {
             let documentsDirectory = try FileManager.default.url(for: .documentDirectory,

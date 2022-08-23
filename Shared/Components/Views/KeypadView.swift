@@ -60,9 +60,44 @@ struct KeypadButton : View {
             if title.count > 1 {
                 if !value.isEmpty {
                     value.removeLast()
+
+                    #if os(iOS)
+                        HapticFeedback.lightHapticFeedback()
+                    #endif
+                } else {
+                    #if os(iOS)
+                        HapticFeedback.errorHapticFeedback()
+                    #endif
                 }
+            } else if title == "." {
+                if value.isEmpty {
+                    value = "0."
+
+                    #if os(iOS)
+                        HapticFeedback.lightHapticFeedback()
+                    #endif
+                } else if !value.contains(".") {
+                    value.append(title)
+
+                    #if os(iOS)
+                        HapticFeedback.lightHapticFeedback()
+                    #endif
+                } else {
+                    #if os(iOS)
+                        HapticFeedback.errorHapticFeedback()
+                    #endif
+                }
+            } else if title == "0", !value.contains("."), Double(value) ?? 0 == 0 {
+                print("can not add zero to zero")
+                #if os(iOS)
+                    HapticFeedback.errorHapticFeedback()
+                #endif
             } else {
                 value.append(title)
+
+                #if os(iOS)
+                    HapticFeedback.lightHapticFeedback()
+                #endif
             }
 
             print("the keypad value is: \(value)")
