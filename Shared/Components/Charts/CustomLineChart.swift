@@ -62,7 +62,7 @@ struct CustomLineChart: View {
                     .opacity(graphProgress)
             }
             .overlay(
-                // Drag Indicator...
+                // Drag indicator...
                 VStack(spacing: 25) {
                     Text(currentPlot)
                         .fontTemplate(DefaultTemplate.captionPrimary_semibold)
@@ -80,7 +80,7 @@ struct CustomLineChart: View {
                         .overlay(Circle().fill(Color("AccentColor")).frame(width: 12, height: 12))
                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 3)
                 }
-                .frame(width: 80, height: 55)
+                .frame(width: 160, height: 85)
                 .offset(offset)
                 .opacity(showPlot ? 1 : 0)
                 , alignment: .bottomLeading)
@@ -100,7 +100,7 @@ struct CustomLineChart: View {
                 self.translation = translation
 
                 // removing half width...
-                offset = CGSize(width: points[index].x - 40, height: points[index].y - height)
+                offset = CGSize(width: points[index].x - 80, height: points[index].y - height + 10)
             }).onEnded({ _ in
                 withAnimation { showPlot = false }
             }).updating($isDrag, body: { _, out, _ in
@@ -115,30 +115,23 @@ struct CustomLineChart: View {
             }, perform: {  })
             .background(
                 VStack(alignment: .trailing, spacing: 5) {
-                    if let max = data.max() {
-                        Text(max.convertToCurrency())
-                            .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
-                    }
-
-                    if !data.isEmpty {
+                    if data.count >= 4 {
                         VStack(alignment: .trailing, spacing: 40) {
-                            ForEach(0...3, id: \.self) { _ in
-                                Rectangle()
-                                    .frame(height: 1)
-                                    .frame(maxWidth: .infinity)
-                                    .foregroundColor(.systemGray6)
+                            ForEach(data.subArray(length: 4).sorted(by: >), id: \.self) { data in
+                                VStack(alignment: .trailing, spacing: 2.5) {
+                                    Text(data.convertToCurrency())
+                                        .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
+
+                                    Rectangle()
+                                        .frame(height: 1)
+                                        .frame(maxWidth: .infinity)
+                                        .foregroundColor(.systemGray6)
+                                }
                             }
                         }
                     }
 
                     Spacer()
-
-                    if let min = data.min() {
-                        Text(min.convertToCurrency())
-                            .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
-                            .offset(y: 10)
-                    }
-
                     if let timeline = timeline {
                         Divider().offset(y: 10)
 
@@ -152,10 +145,9 @@ struct CustomLineChart: View {
                                     .frame(maxHeight: 45)
                             }.frame(maxWidth: .infinity, alignment: .trailing)
                         }
-                        .offset(y: 10)
+                        .offset(y: -10)
                     }
                 }
-//                .frame(maxWidth: .infinity, alignment: .trailing)
             )
         }
         .onChange(of: isDrag) { _ in

@@ -31,19 +31,10 @@ struct TokenListStandardCell: View {
             }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
                     HStack(alignment: .center, spacing: 0) {
-                        HStack(alignment: .top, spacing: 1) {
-                            if let rank = data.marketCapRank {
-                                Text("\(rank)")
-                                    .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
-                                    .minimumScaleFactor(0.925)
-                                    .offset(x: -4)
-                            }
-
-                            RemoteImage(data.image ?? "", size: 42)
-                                .clipShape(Circle())
-                                .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.75), lineWidth: 1))
-                                .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
-                        }
+                        RemoteImage(data.image ?? "", size: 42)
+                            .clipShape(Circle())
+                            .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.75), lineWidth: 1))
+                            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
 
                         VStack(alignment: .leading, spacing: 0) {
                             Text(data.name ?? "no name")
@@ -52,10 +43,23 @@ struct TokenListStandardCell: View {
                                 .minimumScaleFactor(0.85)
                                 .lineLimit(1)
 
-                            if let symbol = data.symbol?.uppercased() {
-                                Text(symbol)
-                                    .fontTemplate(DefaultTemplate.body_secondary)
-                                    .offset(y: -1.5)
+                            HStack(alignment: .center, spacing: 5) {
+                                if let rank = data.marketCapRank {
+                                    Text("\(rank)")
+                                        .fontTemplate(DefaultTemplate.caption_micro_Mono)
+                                        .minimumScaleFactor(0.925)
+                                        .padding(.vertical, 1)
+                                        .padding(.horizontal, 4)
+                                        .opacity(0.85)
+                                        .background(RoundedRectangle(cornerRadius: 3, style: .circular)
+                                            .foregroundColor(Color.systemGray.opacity(service.themeStyle == .shadow ? 1.0 : 0.15)))
+                                }
+
+                                if let symbol = data.symbol?.uppercased() {
+                                    Text(symbol)
+                                        .fontTemplate(DefaultTemplate.body_secondary)
+                                        .offset(y: -1.5)
+                                }
                             }
                         }.padding(.leading, 10)
 

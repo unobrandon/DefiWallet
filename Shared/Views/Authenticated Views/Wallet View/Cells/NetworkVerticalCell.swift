@@ -85,7 +85,9 @@ struct NetworkVerticalCell: View {
                 .padding(.horizontal)
                 .padding(.vertical, 10)
             }
-        }).buttonStyle(ClickInteractiveStyle(0.98))
+        })
+        .contentShape(Rectangle())
+        .buttonStyle(ClickInteractiveStyle(0.98))
     }
 
     private func actionTap() {

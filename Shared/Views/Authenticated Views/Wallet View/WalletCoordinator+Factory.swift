@@ -23,6 +23,10 @@ extension WalletCoordinator {
         SendToDetailView(address: address, service: services)
     }
 
+    @ViewBuilder func makeSwapToken() -> some View {
+        SwapTokenView(service: services)
+    }
+
     @ViewBuilder func makeNetworkDetail(data: CompleteBalance) -> some View {
         NetworkDetailView(data: data, network: data.network, service: services)
     }

@@ -31,6 +31,7 @@ class StorageService {
     var tokenCharts: Cache.Storage<String, [ChartValue]>?
     var tokenCategories: Cache.Storage<String, [TokenCategory]>?
     var topExchanges: Cache.Storage<String, [ExchangeModel]>?
+    var swappableTokens: Cache.Storage<String, SwappableTokens>?
     var exchangeDetails: Cache.Storage<String, ExchangeDetails>?
     var marketCapStorage: Cache.Storage<String, [TokenDetails]>?
     var topGainersOrLosers: Cache.Storage<String, [TokenDetails]>?

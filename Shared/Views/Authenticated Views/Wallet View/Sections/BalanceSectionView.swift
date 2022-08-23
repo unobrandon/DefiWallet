@@ -58,18 +58,20 @@ struct BalanceSectionView: View {
 //                              currentValueLineType: CurrentValueLineType.dash(color: .secondary, lineWidth: 0, dash: [8]))
                 .frame(height: 160)
                 .padding([.vertical, .top])
+                .padding(.top)
 
             if !store.accountChart.isEmpty {
                 HStack(alignment: .center, spacing: 0) {
                     Spacer()
 
                     VStack(alignment: .trailing, spacing: 8) {
-                        HStack(alignment: .center, spacing: 5) {
+                        HStack(alignment: .center, spacing: 4) {
                             Button {
                                 print("show warrning about only supporting ETH network chart")
                             } label: {
                                 Label("", systemImage: "info.circle")
                                     .foregroundColor(.secondary)
+                                    .imageScale(.small)
                             }
 
                             Picker("", selection: $chartType) {
@@ -115,9 +117,9 @@ struct BalanceSectionView: View {
             print("receive")
         }, actionSwap: {
             print("swap")
-            UserDefaults.standard.setValue("h", forKey: "chartType")
-        }).padding(.top)
-        .padding(.horizontal, 10)
+            walletRouter.route(to: \.swapToken)
+        })
+        .padding([.horizontal, .top], 10)
     }
 
 }
