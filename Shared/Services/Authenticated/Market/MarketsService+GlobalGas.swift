@@ -74,41 +74,4 @@ extension MarketsService {
         }
     }
 
-    func fetchEthGasPriceTrends(completion: @escaping () -> Void) {
-        if let storage = StorageService.shared.gasPriceTrends {
-            storage.async.object(forKey: "gasPriceTrends") { result in
-                switch result {
-                case .value(let trends):
-                    print("got eth gas price trends")
-                    DispatchQueue.main.async {
-                        self.ethGasPriceTrends = trends
-                    }
-                case .error(let error):
-                    print("error getting eth gas price trends: \(error.localizedDescription)")
-                }
-            }
-        }
-
-        // let url = Constants.backendBaseUrl + "ethGasTrend"
-        let url = "https://api.zapper.fi/v1/gas-price/trend?network=ethereum&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241"
-
-        AF.request(url, method: .get).responseDecodable(of: EthGasPriceTrends.self) { response in
-            switch response.result {
-            case .success(let ethGasPriceTrends):
-                DispatchQueue.main.async {
-                    self.ethGasPriceTrends = ethGasPriceTrends
-                }
-
-                if let storage = StorageService.shared.gasPriceTrends {
-                    storage.async.setObject(ethGasPriceTrends, forKey: "gasPriceTrends") { _ in }
-                }
-
-                completion()
-            case .failure(let error):
-                print("error fetching gas price: \(error)")
-                completion()
-            }
-        }
-    }
-
 }

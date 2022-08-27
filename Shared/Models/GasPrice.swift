@@ -7,32 +7,35 @@
 
 import Foundation
 
-struct GasPrice: Codable, Equatable {
-
-    let eip1559: Bool
-    let standard: Int
-    let fast: Int
-    let instant: Int
-    let network: Network
-
-}
-
-struct EthGasPriceTrends: Codable {
-    let trend: [EthGasTrend]?
-    let current: EthGasPrices?
+struct GasPrice: Codable {
+    let network: Network?
+    let gasPrices: NetworkGasPrice?
+    let historyChart: [NetworkGasHistoryChart]?
 }
 
 // MARK: - Current
-struct EthGasPrices: Codable {
-    let eip1559: Bool?
-    let standard, fast, instant: PostLondon?
+struct NetworkGasPrice: Codable {
+    let timestamp: String?
+    let lastBlock, avgTime, avgTx, avgGas: Int?
+    let speeds: [NetworkGasSpeed]?
 }
 
-// MARK: - Fast
-struct PostLondon: Codable {
-    let baseFeePerGas, maxPriorityFeePerGas, maxFeePerGas: Int?
+struct NetworkGasSpeed: Codable {
+    let acceptance, maxFeePerGas, maxPriorityFeePerGas, baseFee, estimatedFee: Int?
 }
 
+struct NetworkGasHistoryChart: Codable {
+    let timestamp: String?
+    let samples: Int?
+    let avgGas: Int?
+    let gasPrice: OCLH?
+    let tokenPrice: OCLH?
+    let txFee: OCLH?
+}
+
+struct OCLH: Codable {
+    let open, close, low, high: Int?
+}
 // MARK: - Trend
 struct EthGasTrend: Codable {
     let block, timestamp: Int?

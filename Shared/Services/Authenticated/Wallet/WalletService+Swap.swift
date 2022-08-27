@@ -92,7 +92,30 @@ extension WalletService {
             }
         }
 
-        completion(allTokens.sorted(by: { $0.totalBalance ?? 0.0 > $1.totalBalance ?? 0.0 }))
+        let result = allTokens.sorted(by: { $0.totalBalance ?? 0.0 > $1.totalBalance ?? 0.0 })
+
+        self.sendToken = result.first
+        self.accountSendingTokens = result
+        completion(result)
+    }
+
+    func getSwapQuote(amount: String, completion: @escaping (SwapQuote?, String?) -> Void) {
+
+        let fromTokenAddress = sendToken?.tokenAddress ?? "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+        let toTokenAddress = receiveToken?.tokenAddress ?? receiveSwapToken?.address ?? "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+        let url = Constants.backendBaseUrl + "getSwapQuote" + "?network=" + getNetworkNumber(sendToken?.network ?? "") + "&fromTokenAddress=" + fromTokenAddress + "&toTokenAddress=" + toTokenAddress + "&amount=" + amount
+
+        AF.request(url, method: .get).responseDecodable(of: SwapQuote.self) { response in
+            switch response.result {
+            case .success(let swapResult):
+                completion(swapResult, nil)
+
+            case .failure(let error):
+                print("error loading swap quote: \(error)")
+
+                completion(nil, error.errorDescription)
+            }
+        }
     }
 
 }

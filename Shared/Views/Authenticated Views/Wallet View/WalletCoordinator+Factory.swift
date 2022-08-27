@@ -27,8 +27,12 @@ extension WalletCoordinator {
         SwapTokenView(service: services)
     }
 
-    @ViewBuilder func makeSwapListToken(accountSendingTokens: [TokenModel]? = nil) -> some View {
-        SwappableTokenListView(accountSendingTokens: accountSendingTokens, service: services)
+    @ViewBuilder func makeSwapTokenDetail(swapQuote: SwapQuote) -> some View {
+        SwapDetailView(swapQuote: swapQuote, service: services)
+    }
+
+    @ViewBuilder func makeSwapListToken(isSendToken: Bool) -> some View {
+        SwappableTokenListView(isSendToken: isSendToken, service: services)
     }
 
     @ViewBuilder func makeNetworkDetail(data: CompleteBalance) -> some View {

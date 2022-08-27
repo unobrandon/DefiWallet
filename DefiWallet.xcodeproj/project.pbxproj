@@ -250,6 +250,12 @@
 		0566AED527E9610D006B645F /* ListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AED327E9610D006B645F /* ListInfoView.swift */; };
 		056749A128B4B77F001E0949 /* SwappableTokenListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056749A028B4B77F001E0949 /* SwappableTokenListView.swift */; };
 		056749A228B4B77F001E0949 /* SwappableTokenListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056749A028B4B77F001E0949 /* SwappableTokenListView.swift */; };
+		056749A428B5FE53001E0949 /* SwapQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056749A328B5FE53001E0949 /* SwapQuote.swift */; };
+		056749A528B5FE53001E0949 /* SwapQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056749A328B5FE53001E0949 /* SwapQuote.swift */; };
+		056749A728B9EB53001E0949 /* ListInfoSmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056749A628B9EB53001E0949 /* ListInfoSmallButton.swift */; };
+		056749A828B9EB53001E0949 /* ListInfoSmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056749A628B9EB53001E0949 /* ListInfoSmallButton.swift */; };
+		056749AA28BA0B28001E0949 /* SwapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056749A928BA0B28001E0949 /* SwapDetailView.swift */; };
+		056749AB28BA0B28001E0949 /* SwapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056749A928BA0B28001E0949 /* SwapDetailView.swift */; };
 		0567C19F281CDEBE00184935 /* ChartOptionSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567C19E281CDEBE00184935 /* ChartOptionSegmentView.swift */; };
 		0567C1A0281CDEBE00184935 /* ChartOptionSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567C19E281CDEBE00184935 /* ChartOptionSegmentView.swift */; };
 		056BD309283C7B040020C6C4 /* TokenDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056BD308283C7B030020C6C4 /* TokenDescriptor.swift */; };
@@ -744,6 +750,9 @@
 		0566AED027E8F64B006B645F /* HistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailView.swift; sourceTree = "<group>"; };
 		0566AED327E9610D006B645F /* ListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoView.swift; sourceTree = "<group>"; };
 		056749A028B4B77F001E0949 /* SwappableTokenListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwappableTokenListView.swift; sourceTree = "<group>"; };
+		056749A328B5FE53001E0949 /* SwapQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapQuote.swift; sourceTree = "<group>"; };
+		056749A628B9EB53001E0949 /* ListInfoSmallButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoSmallButton.swift; sourceTree = "<group>"; };
+		056749A928BA0B28001E0949 /* SwapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapDetailView.swift; sourceTree = "<group>"; };
 		0567C19E281CDEBE00184935 /* ChartOptionSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartOptionSegmentView.swift; sourceTree = "<group>"; };
 		056BD308283C7B030020C6C4 /* TokenDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDescriptor.swift; sourceTree = "<group>"; };
 		057806B727B838E60008051B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -1082,6 +1091,7 @@
 				05394153281A60E000CFAA53 /* SendToDetailView.swift */,
 				050225B227FC09450004D910 /* NetworkDetailView.swift */,
 				0566AED027E8F64B006B645F /* HistoryDetailView.swift */,
+				056749A928BA0B28001E0949 /* SwapDetailView.swift */,
 				054DC826283D851B00A1FDA6 /* Token Detail View */,
 			);
 			path = "Detail Views";
@@ -1408,6 +1418,7 @@
 				05583CEB27ED5CA100640E75 /* CoinByMarketCap.swift */,
 				056BD308283C7B030020C6C4 /* TokenDescriptor.swift */,
 				0539E25D28B48D2E00721565 /* SwappableTokens.swift */,
+				056749A328B5FE53001E0949 /* SwapQuote.swift */,
 				0504A416283F2709000DB947 /* ExchangeModel.swift */,
 				055FFDE72856BB7200D8EA06 /* ExchangeDetailsModel.swift */,
 				05A6AAAD27F93D4100824C76 /* TrendingCoin.swift */,
@@ -1688,6 +1699,7 @@
 			isa = PBXGroup;
 			children = (
 				05E858E627CB301B00B85195 /* ListStandardButton.swift */,
+				056749A628B9EB53001E0949 /* ListInfoSmallButton.swift */,
 			);
 			path = "List Buttons";
 			sourceTree = "<group>";
@@ -2207,6 +2219,7 @@
 				05583CFA27ED7EB800640E75 /* ProminentRoundedLabel.swift in Sources */,
 				0507BB2D285070FC00D1A965 /* MarqueeScrollView.swift in Sources */,
 				0500E4E4281F6D4C001A4FAB /* AppLyfeCycleModifier.swift in Sources */,
+				056749A728B9EB53001E0949 /* ListInfoSmallButton.swift in Sources */,
 				05583CDA27E9C20E00640E75 /* View+GridStyle.swift in Sources */,
 				0504A420283F27F3000DB947 /* ExchangesDetailView.swift in Sources */,
 				05D1096627C0C241008DCC66 /* AuthenticatedCoordinator+Factory.swift in Sources */,
@@ -2362,6 +2375,7 @@
 				05002E6A282B715D0010AF39 /* FooterKey.swift in Sources */,
 				0566AEC827E84711006B645F /* StandardSystemImage.swift in Sources */,
 				05CA872328040EA4006FACE0 /* TokenDetailView.swift in Sources */,
+				056749AA28BA0B28001E0949 /* SwapDetailView.swift in Sources */,
 				05CA873528053243006FACE0 /* SVGWebView.swift in Sources */,
 				053113FE27E6CFE500368657 /* ScanQRView.swift in Sources */,
 				057806FF27B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
@@ -2378,6 +2392,7 @@
 				053113EB27E6C76400368657 /* SlideOverCardView.swift in Sources */,
 				05002E6C282B71800010AF39 /* Refresh.swift in Sources */,
 				05E904A6287547D000A47F78 /* BackendSocketService+Extension.swift in Sources */,
+				056749A428B5FE53001E0949 /* SwapQuote.swift in Sources */,
 				05583CBC27E9C04A00640E75 /* GridItem.swift in Sources */,
 				0566AEC227E83792006B645F /* HistorySectionView.swift in Sources */,
 				05D40F8E285D0173002BDA0F /* WalletService+CompoundSocket.swift in Sources */,
@@ -2490,6 +2505,7 @@
 				0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */,
 				055FFDEE2856D10500D8EA06 /* MarketsService+GlobalGas.swift in Sources */,
 				05C884CC27FD0E00005E2455 /* OverviewSectionView.swift in Sources */,
+				056749A828B9EB53001E0949 /* ListInfoSmallButton.swift in Sources */,
 				05E858C027CAEFFA00B85195 /* SettingsView.swift in Sources */,
 				05E5F84327D30F0D0090290C /* DefaultRoundedInteractiveStyle.swift in Sources */,
 				05D1094927C08B2B008DCC66 /* MainCoordinator+Factory.swift in Sources */,
@@ -2508,6 +2524,7 @@
 				05583CA027E9974700640E75 /* Date+Extensions.swift in Sources */,
 				05C884D327FD1D96005E2455 /* AnimatedRingView.swift in Sources */,
 				0500E4E0281F6CDA001A4FAB /* ACarouselViewModel.swift in Sources */,
+				056749A528B5FE53001E0949 /* SwapQuote.swift in Sources */,
 				05A6AAAF27F93D4100824C76 /* TrendingCoin.swift in Sources */,
 				059F73D327D7164700B27E80 /* MarketsService.swift in Sources */,
 				05A6AAB227F958EF00824C76 /* ListTitleView.swift in Sources */,
@@ -2543,6 +2560,7 @@
 				05583CD227E9C19500640E75 /* GridPreferencesModifier.swift in Sources */,
 				0593021427D9E33E006DDFFF /* AccountNft.swift in Sources */,
 				05D1095827C08B3E008DCC66 /* WelcomeView.swift in Sources */,
+				056749AB28BA0B28001E0949 /* SwapDetailView.swift in Sources */,
 				050225C127FC18FB0004D910 /* GlobalEnums.swift in Sources */,
 				05583CCC27E9C15400640E75 /* GridPreferences.swift in Sources */,
 				05A3DE0E2845F0B800079FFD /* NetworkDropdownButton.swift in Sources */,

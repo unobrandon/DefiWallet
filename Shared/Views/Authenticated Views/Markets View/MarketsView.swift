@@ -57,7 +57,6 @@ struct MarketsView: View {
 
             store.startGasTimer()
             self.fetchGlobalData()
-            self.fetchGasTrends()
             self.fetchTrending()
         }
         .onDisappear {
@@ -94,12 +93,6 @@ struct MarketsView: View {
 
     private func fetchGlobalData() {
         store.fetchGlobalMarketData(completion: {
-            print("gas is done loading")
-        })
-    }
-
-    private func fetchGasTrends() {
-        store.fetchEthGasPriceTrends(completion: {
             print("gas is done loading")
         })
     }

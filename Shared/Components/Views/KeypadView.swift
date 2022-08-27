@@ -87,11 +87,21 @@ struct KeypadButton : View {
                         HapticFeedback.errorHapticFeedback()
                     #endif
                 }
-            } else if title == "0", !value.contains("."), Double(value) ?? 0 == 0 {
-                print("can not add zero to zero")
-                #if os(iOS)
-                    HapticFeedback.errorHapticFeedback()
-                #endif
+            } else if !value.contains("."), Double(value) ?? 1 == 0 {
+                if title != "0" {
+                    value.removeAll()
+                    value.append(title)
+
+                    print("can not add zero to \(title), so removed all")
+                    #if os(iOS)
+                        HapticFeedback.lightHapticFeedback()
+                    #endif
+                } else {
+                    print("can not add zero to zero")
+                    #if os(iOS)
+                        HapticFeedback.errorHapticFeedback()
+                    #endif
+                }
             } else {
                 value.append(title)
 

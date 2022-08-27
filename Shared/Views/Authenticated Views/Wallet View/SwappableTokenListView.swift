@@ -14,8 +14,6 @@ struct SwappableTokenListView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
 
-    var accountSendingTokens: [TokenModel]?
-
     @State private var swappableTokens: [SwapToken] = []
     @State private var noMore: Bool = false
     @State var showIndicator: Bool = false
@@ -23,31 +21,44 @@ struct SwappableTokenListView: View {
     @State private var limitCells: Int = 25
     @State private var searchText = ""
 
-    init(accountSendingTokens: [TokenModel]?, service: AuthenticatedServices) {
+    private let isSendToken: Bool
+
+    init(isSendToken: Bool, service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
-        self.accountSendingTokens = accountSendingTokens ?? nil
+        self.isSendToken = isSendToken
     }
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             NavigationView {
                 ScrollView {
-                    if swappableTokens.isEmpty, accountSendingTokens?.isEmpty ?? true, searchText.isEmpty {
+                    if swappableTokens.isEmpty, store.accountSendingTokens?.isEmpty ?? true, searchText.isEmpty {
                         Text("no swappable tokens found \n please try reloading and check your connection")
                             .fontTemplate(DefaultTemplate.caption)
                             .multilineTextAlignment(.center)
                             .padding(.vertical)
-                    } else if searchText.isEmpty, !swappableTokens.isEmpty {
+                    } else if searchText.isEmpty {
                         ListSection(title: "Tokens", style: service.themeStyle) {
-                            if let accountTokens = accountSendingTokens {
-                                ForEach(accountTokens, id: \.self) { item in
-                                    self.swapToken(nil, item, isLast: swappableTokens.isEmpty && item == accountTokens.last)
+                            if let accountTokens = store.accountSendingTokens {
+                                ForEach(isSendToken ? accountTokens : accountTokens.filter({ $0.network == store.sendToken?.network }), id: \.self) { item in
+                                    if item != store.sendToken {
+                                        self.swapToken(nil, item, isLast: swappableTokens.isEmpty && item == accountTokens.last)
+                                    }
                                 }
+                            } else if isSendToken {
+                                Text("your wallet does not own any tokens to swap.\n receive tokens to enable swapping")
+                                    .fontTemplate(DefaultTemplate.caption)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.vertical)
                             }
 
-                            ForEach(swappableTokens.prefix(limitCells), id: \.self) { item in
-                                self.swapToken(item, nil, isLast: item == swappableTokens.prefix(limitCells).last)
+                            if !isSendToken {
+                                ForEach(swappableTokens.prefix(limitCells), id: \.self) { item in
+                                    if item != store.receiveSwapToken {
+                                        self.swapToken(item, nil, isLast: item == swappableTokens.prefix(limitCells).last)
+                                    }
+                                }
                             }
                         }
                     }
@@ -98,7 +109,9 @@ struct SwappableTokenListView: View {
                 Tool.hiddenTabBar()
             }
 
-            fetchSwappableTokens()
+            if !isSendToken {
+                fetchSwappableTokens()
+            }
         }
     }
 
@@ -107,31 +120,38 @@ struct SwappableTokenListView: View {
             storage.async.object(forKey: "swappableTokens") { result in
                 switch result {
                 case .value(let swapList):
-                    if let eth = swapList.eth?.values {
+                    self.swappableTokens.removeAll()
+
+                    if store.sendToken?.network == "eth",
+                       let eth = swapList.eth?.values {
                         for ethToken in eth {
                             self.swappableTokens.append(ethToken)
                         }
                     }
 
-                    if let polygon = swapList.polygon?.values {
+                    if store.sendToken?.network == "polygon",
+                       let polygon = swapList.polygon?.values {
                         for polygonToken in polygon {
                             self.swappableTokens.append(polygonToken)
                         }
                     }
 
-                    if let avax = swapList.avax?.values {
+                    if store.sendToken?.network == "avax",
+                       let avax = swapList.avax?.values {
                         for avaxToken in avax {
                             self.swappableTokens.append(avaxToken)
                         }
                     }
 
-                    if let bnb = swapList.bnb?.values {
+                    if store.sendToken?.network == "bsc",
+                       let bnb = swapList.bnb?.values {
                         for bnbToken in bnb {
                             self.swappableTokens.append(bnbToken)
                         }
                     }
 
-                    if let fantom = swapList.fantom?.values {
+                    if store.sendToken?.network == "fantom",
+                       let fantom = swapList.fantom?.values {
                         for fantomToken in fantom {
                             self.swappableTokens.append(fantomToken)
                         }
@@ -151,37 +171,71 @@ struct SwappableTokenListView: View {
                 HapticFeedback.rigidHapticFeedback()
             #endif
 
-            DispatchQueue.global().asyncAfter(deadline: .now() + 0.3) {
-                walletRouter.popLast()
+            if isSendToken {
+                if tokenModel?.network != store.sendToken?.network {
+                    store.receiveToken = nil
+                    store.receiveSwapToken = nil
+                }
+
+                store.sendToken = tokenModel
+                print("selected send: \(tokenModel?.tokenAddress ?? swapToken?.address ?? "none")")
+            } else {
+                store.receiveToken = tokenModel
+                store.receiveSwapToken = swapToken
+                print("selected: \(tokenModel?.tokenAddress ?? swapToken?.address ?? "none")")
             }
+
+            walletRouter.popLast()
         }, label: {
             VStack(alignment: .center, spacing: 0) {
                 HStack(alignment: .center, spacing: 10) {
-                    RemoteImage(swapToken?.logoURI ?? tokenModel?.image ?? tokenModel?.imageSmall ?? "", size: 38)
-                        .clipShape(Circle())
-                        .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
-                        .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
+                    ZStack {
+                        RemoteImage(swapToken?.logoURI ?? tokenModel?.image ?? tokenModel?.imageSmall ?? "", size: 38)
+                            .clipShape(Circle())
+                            .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
+                            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
+
+                            if let net = tokenModel?.network {
+                                Image((net == "bsc" ? "binance" : net) + "_logo")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 15, height: 15, alignment: .center)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().foregroundColor(.clear).overlay(Circle().stroke(Color("baseBackground_bordered"), lineWidth: 2)))
+                                    .offset(x: -14, y: 14)
+                            } else if let net2 = store.sendToken?.network {
+                                Image((net2 == "bsc" ? "binance" : net2) + "_logo")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 15, height: 15, alignment: .center)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().foregroundColor(.clear).overlay(Circle().stroke(Color("baseBackground_bordered"), lineWidth: 2)))
+                                    .offset(x: -14, y: 14)
+                            }
+                    }
 
                     VStack(alignment: .leading, spacing: 0) {
                         Text(swapToken?.name ?? tokenModel?.name ?? "")
                             .fontTemplate(DefaultTemplate.bodySemibold_nunito)
 
-                        Text(swapToken?.displayedSymbol?.uppercased() ?? swapToken?.symbol?.uppercased() ?? tokenModel?.symbol?.uppercased() ?? "")
-                            .fontTemplate(DefaultTemplate.caption_Mono_secondary)
+                        HStack(alignment: .center, spacing: 2) {
+                            if let nativeBalance = tokenModel?.nativeBalance {
+                                Text(nativeBalance.formatCommas())
+                                    .fontTemplate(DefaultTemplate.caption_Mono_secondary)
+                            }
+
+                            Text(swapToken?.displayedSymbol?.uppercased() ?? swapToken?.symbol?.uppercased() ?? tokenModel?.symbol?.uppercased() ?? "")
+                                .fontTemplate(DefaultTemplate.caption_Mono_secondary)
+                        }
                     }
                     Spacer()
 
-                    if let totalBalance = tokenModel?.totalBalance,
-                       totalBalance >= 0.01 {
-                        Text(totalBalance.convertToCurrency())
-                            .fontTemplate(DefaultTemplate.caption_Mono_secondary)
-                    }
-
-                    Circle()
-                        .strokeBorder(DefaultTemplate.borderColor, lineWidth: 1.5)
-                        .background(Circle().fill(.clear))
-                        .frame(width: 16, height: 16)
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .font(Font.title.weight(.semibold))
+                        .scaledToFit()
+                        .frame(width: 6, height: 12, alignment: .center)
+                        .foregroundColor(.secondary)
 
                 }.padding(.horizontal)
                 .padding(.vertical, 10)

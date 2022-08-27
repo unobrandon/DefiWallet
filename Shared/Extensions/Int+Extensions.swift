@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension Int {
-    
+
     func convertEpochDate(monthFormat: Bool? = true) -> String {
         let truncatedTime = Int(self / 1000)
         let date = Date(timeIntervalSince1970: TimeInterval(truncatedTime))
@@ -16,6 +17,24 @@ extension Int {
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         formatter.dateFormat = monthFormat ?? true ? "MMM d, yy'" : "HH:mm"
         return formatter.string(from: date)
+    }
+
+    func decimalToNumber() -> Int {
+        var result = ""
+        for _ in 1...self {
+            guard result.count <= self else { break }
+
+            result.append(result.isEmpty ? "1" : "0")
+        }
+
+        return Int(result) ?? 0
+    }
+
+    func formatCommas() -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        return numberFormatter.string(from: NSNumber(value: self)) ?? "\(self)"
     }
 
     func getElapsedInterval() -> String {

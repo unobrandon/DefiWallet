@@ -15,7 +15,6 @@ class MarketsService: ObservableObject {
 
     @Published var gasPrices = [GasPrice]()
     @Published var gasSocketPrices: GasSocketPrice?
-    @Published var ethGasPriceTrends: EthGasPriceTrends?
     @Published var globalMarketData: GlobalMarketData?
     @Published var tokenCategories = [TokenCategory]()
     @Published var exchanges = [ExchangeModel]()

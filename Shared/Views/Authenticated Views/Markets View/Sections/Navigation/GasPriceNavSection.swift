@@ -21,21 +21,21 @@ struct GasPriceNavSection: View {
 
     var body: some View {
         Button(action: {
-            self.store.fetchEthGasPriceTrends(completion: {
+//            self.store.fetchEthGasPriceTrends(completion: {
                 action()
-            })
+//            })
         }, label: {
             HStack(alignment: .center, spacing: 5) {
-                if let gas = store.ethGasPriceTrends,
-                   let trends = gas.trend,
-                   let _ = gas.current?.standard {
-                    LightChartView(data: trends[0...8].map({ $0.baseFee ?? 0 }).reversed(),
-                                   type: .curved,
-                                   visualType: .filled(color: .purple, lineWidth: 2.5),
-                                   offset: 0.2,
-                                   currentValueLineType: .none)
-                            .frame(width: 40, height: 24, alignment: .center)
-                }
+//                if let gas = store.ethGasPriceTrends,
+//                   let trends = gas.trend,
+//                   let _ = gas.current?.standard {
+//                    LightChartView(data: trends[0...8].map({ $0.baseFee ?? 0 }).reversed(),
+//                                   type: .curved,
+//                                   visualType: .filled(color: .purple, lineWidth: 2.5),
+//                                   offset: 0.2,
+//                                   currentValueLineType: .none)
+//                            .frame(width: 40, height: 24, alignment: .center)
+//                }
 
                 if let gas = store.gasSocketPrices?.standard,
                    let formatedGas = gas / 1000000000 {

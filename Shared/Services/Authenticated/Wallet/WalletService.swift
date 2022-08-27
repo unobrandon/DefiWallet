@@ -17,6 +17,12 @@ class WalletService: ObservableObject {
     @Published var accountBalance: AccountBalance?
     @Published var accountChart = [ChartValue]()
     @Published var history = [HistoryData]()
+
+    @Published var accountSendingTokens: [TokenModel]?
+    @Published var sendToken: TokenModel?
+    @Published var receiveToken: TokenModel?
+    @Published var receiveSwapToken: SwapToken?
+
 //    @Published var wcProposal: WalletConnect.Session.Proposal?
     @Published var wcActiveSessions = [WCSessionInfo]()
     @Published var networkStatus: NetworkStatus {
@@ -480,6 +486,15 @@ class WalletService: ObservableObject {
         } else if network == "avalanche" { return .avalanche
         } else if network == "fantom" { return .fantom
         } else { return .ethereum }
+    }
+
+    func getNetworkNumber(_ network: String) -> String {
+        if network == "eth" { return "1"
+        } else if network == "polygon" { return "137"
+        } else if network == "bsc" { return "56"
+        } else if network == "avalanche" { return "43114"
+        } else if network == "fantom" { return "250"
+        } else { return "" }
     }
 
     func getChartDuration(_ timePeriod: String) -> String {
