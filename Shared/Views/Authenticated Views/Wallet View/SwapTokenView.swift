@@ -16,13 +16,10 @@ struct SwapTokenView: View {
 
     @State var showSheet: Bool = false
 
-    @State var sendTokenAmount: String = ""
-    @State var disablePrimaryAction: Bool = true
-    @State private var swapQuote: SwapQuote?
-
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
+
     }
 
     var body: some View {
@@ -87,10 +84,10 @@ struct SwapTokenView: View {
                                         HStack(alignment: .center, spacing: 10) {
                                             BorderedButton(title: "Max", size: .mini, tint: .blue, action: {
                                                 print("Max Amount")
-                                                self.sendTokenAmount = "\(store.sendToken?.nativeBalance ?? 0.00)"
+                                                store.sendTokenAmount = "\(store.sendToken?.nativeBalance ?? 0.00)"
                                             })
 
-                                            Text(sendTokenAmount.isEmpty ? "0" : sendTokenAmount)
+                                            Text(store.sendTokenAmount.isEmpty ? "0" : store.sendTokenAmount)
                                                 .fontTemplate(DefaultTemplate.headingSemiBold)
                                                 .multilineTextAlignment(.trailing)
                                                 .adjustsFontSizeToFitWidth(true)
@@ -160,9 +157,9 @@ struct SwapTokenView: View {
                                         .buttonStyle(ClickInteractiveStyle(0.98))
                                         Spacer()
 
-                                        let amount: Double = Double(self.swapQuote?.toTokenAmount ?? "0") ?? 0
-                                        let dec: Double = Double(self.swapQuote?.toToken?.decimals?.decimalToNumber() ?? 0)
-                                        Text(self.swapQuote?.toTokenAmount != nil ? "\(amount / dec)" : "0")
+                                        let amount: Double = Double(store.swapQuote?.toTokenAmount ?? "0") ?? 0
+                                        let dec: Double = Double(store.swapQuote?.toToken?.decimals?.decimalToNumber() ?? 0)
+                                        Text(store.swapQuote?.toTokenAmount != nil ? "\(amount / dec)" : "0")
                                             .fontTemplate(DefaultTemplate.headingSemiBold)
                                             .adjustsFontSizeToFitWidth(true)
                                             .minimumScaleFactor(0.6)
@@ -182,13 +179,16 @@ struct SwapTokenView: View {
                                 store.receiveToken = tempSend
 
                                 let decimalMultiplier = store.receiveToken?.decimals?.decimalToNumber() ?? store.receiveSwapToken?.decimals?.decimalToNumber() ?? Int(Constants.eighteenDecimal)
-                                let sendAmount = Double(self.sendTokenAmount) ?? 0.0
+                                let sendAmount = Double(self.store.sendTokenAmount) ?? 0.0
     //                            let newAmount = sendAmount * Double(decimalMultiplier)
 
+                                store.isLoadingSwapAction = true
+                                store.disablePrimaryAction = true
                                 store.getSwapQuote(amount: "\(Int(sendAmount * Double(decimalMultiplier)))", completion: { result, error in
-                                    print("done updating swap quote. result: \(String(describing: result)) && error: \(String(describing: error))")
-                                    self.disablePrimaryAction = error != nil
-                                    self.swapQuote = result
+                                    print("done updating swap quote4444. result: \(String(describing: result)) && error: \(String(describing: error))")
+                                    store.disablePrimaryAction = error != nil
+                                    store.swapQuote = result
+                                    store.isLoadingSwapAction = false
                                 })
                             }
                         }, label: {
@@ -214,12 +214,12 @@ struct SwapTokenView: View {
                     // transaction total fee
 
                     ListSection(title: "Summary", style: service.themeStyle) {
-                        let conversion = ((store.sendToken?.totalBalance ?? 0.0) / (store.sendToken?.nativeBalance ?? 0.0)) * (Double(self.sendTokenAmount) ?? 0.00)
+                        let conversion = ((store.sendToken?.totalBalance ?? 0.0) / (store.sendToken?.nativeBalance ?? 0.0)) * (Double(self.store.sendTokenAmount) ?? 0.00)
 
-                        ListInfoSmallView(title: "Swap Value", info: Double(self.sendTokenAmount) ?? 0 <= 0 ? "-" : "~" + conversion.convertToCurrency(), style: service.themeStyle, isLast: false)
+                        ListInfoSmallView(title: "Swap Value", info: Double(self.store.sendTokenAmount) ?? 0 <= 0 ? "-" : "~" + conversion.convertToCurrency(), style: service.themeStyle, isLast: false)
 
                         ListInfoSmallButton(title: "Gas Fee",
-                                            info: self.swapQuote?.estimatedGas != nil ? "\(self.swapQuote?.estimatedGas?.formatCommas() ?? "0") GWei" : "-",
+                                            info: self.store.swapQuote?.estimatedGas != nil ? "\(self.store.swapQuote?.estimatedGas?.formatCommas() ?? "0") GWei" : "-",
                                             subinfo: nil, systemImage: "fuelpump.fill",
                                             isLast: false, hasHaptic: false,
                                             style: service.themeStyle, action: {
@@ -232,23 +232,46 @@ struct SwapTokenView: View {
                     }
                 }
 
-                RoundedInteractiveButton("Preview Swap", isDisabled: $disablePrimaryAction, style: .primary, systemImage: nil, action: {
-                    if let swapQuote = swapQuote {
+                Button(action: {
+                    if let swapQuote = store.swapQuote {
                         walletRouter.route(to: \.swapTokenDetail, swapQuote)
                     }
+                }, label: {
+                    HStack(alignment: .center, spacing: 10) {
+                        Spacer()
+                        if store.isLoadingSwapAction {
+                            LoadingIndicator(size: 24, color: Color("baseButton"))
+                        } else {
+                            Text("Preview Swap")
+                                .fontTemplate(DefaultTemplate.primaryButton)
+                        }
+                        Spacer()
+                    }
+                    .background(RoundedRectangle(cornerRadius: 10, style: .circular)
+                                    .foregroundColor(store.disablePrimaryAction ? Color("disabledGray") : Color("AccentColor")).frame(height: 49))
+                    .foregroundColor(store.disablePrimaryAction ? .secondary : Color("AccentColor"))
                 })
+                .frame(maxWidth: 380)
+                .buttonStyle(ClickInteractiveStyle(0.99))
                 .padding([.horizontal, .bottom])
 
-                KeypadView(value: $sendTokenAmount)
+                KeypadView(value: $store.sendTokenAmount)
                     .frame(maxWidth: Constants.iPadMaxWidth)
                     .padding(.bottom, 30)
             }.ignoresSafeArea(.all, edges: .bottom)
         })
         .navigationBarTitle("Swap Tokens", displayMode: .inline)
-        .onChange(of: self.sendTokenAmount, perform: { value in
+        .onChange(of: store.sendTokenAmount, perform: { value in
+            guard store.swapQuote == nil else {
+                store.disablePrimaryAction = true
+                store.isLoadingSwapAction = true
+                return
+            }
+
             guard let amount = Double(value), amount > 0,
                   store.sendToken != nil, (store.receiveToken != nil || store.receiveSwapToken != nil) else {
-                self.disablePrimaryAction = true
+                store.disablePrimaryAction = true
+                store.isLoadingSwapAction = false
                 return
             }
 
@@ -259,45 +282,56 @@ struct SwapTokenView: View {
                  return
              }
 
+            store.isLoadingSwapAction = true
+            store.disablePrimaryAction = true
             store.getSwapQuote(amount: "\(Int(newAmount))", completion: { result, error in
                 print("done updating swap quote. result: \(String(describing: result)) && error: \(String(describing: error))")
-                self.disablePrimaryAction = error != nil
-                self.swapQuote = result
+                store.disablePrimaryAction = error != nil
+                store.swapQuote = result
+                store.isLoadingSwapAction = false
             })
         })
         .onChange(of: self.store.sendToken, perform: { _ in
-            self.sendTokenAmount = "0"
-            self.swapQuote = nil
-            self.disablePrimaryAction = true
+            store.sendTokenAmount = "0"
+            store.swapQuote = nil
+            store.disablePrimaryAction = true
         })
         .onChange(of: self.store.receiveToken, perform: { value in
-            if value != nil, let amount = Double(sendTokenAmount), amount > 0 {
+            if value != nil, let amount = Double(store.sendTokenAmount), amount > 0 {
                 let decimalMultiplier = store.receiveToken?.decimals?.decimalToNumber() ?? store.receiveSwapToken?.decimals?.decimalToNumber() ?? Int(Constants.eighteenDecimal)
                 let newAmount = amount * Double(decimalMultiplier)
 
+                store.isLoadingSwapAction = true
+                store.disablePrimaryAction = true
                 store.getSwapQuote(amount: "\(Int(newAmount))", completion: { result, error in
-                    print("done updating swap quote. result: \(String(describing: result)) && error: \(String(describing: error))")
-                    self.disablePrimaryAction = error != nil
-                    self.swapQuote = result
+                    print("done updating swap quote0000. result: \(String(describing: result)) && error: \(String(describing: error))")
+                    store.disablePrimaryAction = error != nil
+                    store.swapQuote = result
+                    store.isLoadingSwapAction = false
                 })
             } else {
-                self.disablePrimaryAction = true
-                self.swapQuote = nil
+                store.disablePrimaryAction = true
+                store.swapQuote = nil
+                store.isLoadingSwapAction = false
             }
         })
         .onChange(of: self.store.receiveSwapToken, perform: { value in
-            if value != nil, let amount = Double(sendTokenAmount), amount > 0 {
+            if value != nil, let amount = Double(store.sendTokenAmount), amount > 0 {
                 let decimalMultiplier = store.receiveToken?.decimals?.decimalToNumber() ?? store.receiveSwapToken?.decimals?.decimalToNumber() ?? Int(Constants.eighteenDecimal)
                 let newAmount = amount * Double(decimalMultiplier)
 
+                store.isLoadingSwapAction = true
+                store.disablePrimaryAction = true
                 store.getSwapQuote(amount: "\(Int(newAmount))", completion: { result, error in
-                    print("done updating swap quote. result: \(String(describing: result)) && error: \(String(describing: error))")
-                    self.disablePrimaryAction = error != nil
-                    self.swapQuote = result
+                    print("done updating swap quote3333. result: \(String(describing: result)) && error: \(String(describing: error))")
+                    self.store.disablePrimaryAction = error != nil
+                    self.store.swapQuote = result
+                    store.isLoadingSwapAction = false
                 })
             } else {
-                self.disablePrimaryAction = true
-                self.swapQuote = nil
+                store.disablePrimaryAction = true
+                store.swapQuote = nil
+                store.isLoadingSwapAction = false
             }
         })
         .onAppear {

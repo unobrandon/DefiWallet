@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 import Alamofire
 import WalletConnect
 import Relayer
@@ -41,6 +42,10 @@ class WalletService: ObservableObject {
             }
         }
     }
+    @Published var sendTokenAmount: String = ""
+    @Published var disablePrimaryAction: Bool = true
+    @Published var isLoadingSwapAction: Bool = false
+    @Published var swapQuote: SwapQuote?
 
 //    let relayer = Relayer(relayHost: "relay.walletconnect.com", projectId: Constants.walletConnectProjectId)
 
@@ -54,6 +59,7 @@ class WalletService: ObservableObject {
     var chartType: String = UserDefaults.standard.string(forKey: "chartType") ?? "d"
     var accountSocketTimer: Timer?
     var compoundSocketTimer: Timer?
+    var loadSwapCancellable: AnyCancellable?
 
     init(currentUser: CurrentUser, socketManager: SocketManager, wcMetadata: AppMetadata) {
         self.networkStatus = .connecting
@@ -68,6 +74,40 @@ class WalletService: ObservableObject {
         self.loadStoredData()
         self.connectAccountData()
 //        self.connectCompoundData()
+
+        loadSwapCancellable = $sendTokenAmount
+            .removeDuplicates()
+            .debounce(for: 1.0, scheduler: RunLoop.main)
+            .sink(receiveValue: { str in
+                guard let amount = Double(str), amount > 0,
+                      self.sendToken != nil, (self.receiveToken != nil || self.receiveSwapToken != nil) else {
+                    self.disablePrimaryAction = true
+                    self.isLoadingSwapAction = false
+                    self.swapQuote = nil
+                    return
+                }
+
+                let decimalMultiplier = self.receiveToken?.decimals?.decimalToNumber() ?? self.receiveSwapToken?.decimals?.decimalToNumber() ?? Int(Constants.eighteenDecimal)
+                let newAmount = amount * Double(decimalMultiplier)
+
+                guard !(newAmount.isNaN || newAmount.isInfinite) else {
+                     return
+                 }
+
+                self.isLoadingSwapAction = true
+                self.disablePrimaryAction = true
+                self.getSwapQuote(amount: "\(Int(newAmount))", completion: { result, error in
+                    print("done updating swap quote2222. result: \(String(describing: result)) && error: \(String(describing: error))")
+                    if error != nil {
+                        self.disablePrimaryAction = true
+                        self.swapQuote = nil
+                    } else {
+                        self.disablePrimaryAction = false
+                        self.swapQuote = result
+                    }
+                    self.isLoadingSwapAction = false
+                })
+            })
     }
 
     deinit {
