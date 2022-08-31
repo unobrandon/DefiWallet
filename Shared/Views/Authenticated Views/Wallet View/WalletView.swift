@@ -111,6 +111,7 @@ struct WalletView: View {
             guard !tokenIds.isEmpty else { return }
 
             self.service.socket.emitPricesUpdate(tokenIds)
+            // Emit Zerion chart account request
             self.store.emitAccountRequest(UserDefaults.standard.string(forKey: "chartType") ?? self.store.chartType)
         }
     }

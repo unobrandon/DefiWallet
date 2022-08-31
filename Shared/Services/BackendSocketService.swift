@@ -16,6 +16,7 @@ struct SocketSendData: Codable {
 struct SocketReceiveData: Codable {
     var type: SocketResponses?
     var prices: [TokenPricesModel]?
+    var swapResult: SwapTokens?
 }
 
 class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
@@ -31,8 +32,9 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
 
     func connectSocket() {
         let session = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
-        let url = URL(string: Constants.backendWssBaseUrl)!
+        guard let url = URL(string: Constants.backendWssBaseUrl) else { return }
 
+        webSocketTask = nil
         webSocketTask = session.webSocketTask(with: url)
         if let webSocketTask = webSocketTask {
             webSocketTask.resume()
@@ -58,7 +60,9 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
         self.webSocketTask?.sendPing(pongReceiveHandler: { error in
             if let error = error {
                 print("Error when sending PING \(error)")
-                self.wallet.networkStatus = .offline
+                DispatchQueue.main.async {
+                    self.wallet.networkStatus = .offline
+                }
             } else {
                 DispatchQueue.global().asyncAfter(deadline: .now() + 5) {
                     self.ping()
@@ -96,6 +100,13 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
                 guard let prices = receiveData.prices else { return }
                 self.wallet.updateAccountBalancePrices(prices)
 
+            case .swapQuote:
+                guard let swap = receiveData.swapResult else { return }
+                DispatchQueue.main.async {
+                    print("did receive a new swap result: \(swap.transaction?.gas ?? 0)")
+                    self.wallet.swapResult = swap
+                }
+
             default:
                 print("returned some other type")
             }
@@ -108,14 +119,18 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
         print("\(Constants.projectName) backend web socket did connect!")
 
-        self.wallet.networkStatus = .connected
+        DispatchQueue.main.async {
+            self.wallet.networkStatus = .connected
+        }
         self.ping()
         self.receive()
     }
 
     func urlSession(_ session: URLSession, taskIsWaitingForConnectivity task: URLSessionTask) {
         print("Web socket task Is Waiting For Connectivity.")
-        self.wallet.networkStatus = .connecting
+        DispatchQueue.main.async {
+            self.wallet.networkStatus = .connecting
+        }
     }
 
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {

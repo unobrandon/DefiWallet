@@ -94,7 +94,10 @@ extension WalletService {
 
         let result = allTokens.sorted(by: { $0.totalBalance ?? 0.0 > $1.totalBalance ?? 0.0 })
 
-        self.sendToken = result.first
+        if self.sendToken == nil {
+            self.sendToken = result.first
+        }
+
         self.accountSendingTokens = result
         completion(result)
     }

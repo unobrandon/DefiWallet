@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - SwapQuote
+
 struct SwapQuote: Codable {
 
     let fromToken: SwapToken?

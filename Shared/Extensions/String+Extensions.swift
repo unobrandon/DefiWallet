@@ -47,6 +47,24 @@ extension String {
         }
     }
 
+    func format1InchNetwork() -> String {
+        guard !self.isEmpty else { return self }
+
+        if self == "polygon" {
+            return "137"
+        } else if self == "avalanche" {
+            return "43114"
+        } else if self == "bsc" {
+            return "56"
+        } else if self == "eth" {
+            return "1"
+        } else if self == "fantom" {
+            return "250"
+        } else {
+            return self
+        }
+    }
+
     func formatAddress() -> String {
         guard !self.contains(".eth") else {
            return self

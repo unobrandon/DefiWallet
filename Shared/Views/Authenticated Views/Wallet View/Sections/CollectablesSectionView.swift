@@ -58,7 +58,7 @@ struct CollectablesSectionView: View {
                 LoadingView(title: "")
             }
 
-            StaggeredGrid(columns: MobileConstants.deviceType == .phone ? 2 : 3, showsIndicators: false, spacing: 1, list: data, itemLimit: self.limitCells, content: { nftResult in
+            StaggeredGrid(columns: MobileConstants.deviceType == .phone ? 3 : 4, showsIndicators: false, spacing: 1, list: data, itemLimit: self.limitCells, content: { nftResult in
                 if limitCells <= data.count, nftResult == data.prefix(limitCells).last {
                     CollectableSeeAllCell(style: service.themeStyle, action: {
                         seeAll()

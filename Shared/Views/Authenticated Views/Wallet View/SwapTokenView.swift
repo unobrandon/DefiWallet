@@ -261,36 +261,6 @@ struct SwapTokenView: View {
             }.ignoresSafeArea(.all, edges: .bottom)
         })
         .navigationBarTitle("Swap Tokens", displayMode: .inline)
-        .onChange(of: store.sendTokenAmount, perform: { value in
-            guard store.swapQuote == nil else {
-                store.disablePrimaryAction = true
-                store.isLoadingSwapAction = true
-                return
-            }
-
-            guard let amount = Double(value), amount > 0,
-                  store.sendToken != nil, (store.receiveToken != nil || store.receiveSwapToken != nil) else {
-                store.disablePrimaryAction = true
-                store.isLoadingSwapAction = false
-                return
-            }
-
-            let decimalMultiplier = store.receiveToken?.decimals?.decimalToNumber() ?? store.receiveSwapToken?.decimals?.decimalToNumber() ?? Int(Constants.eighteenDecimal)
-            let newAmount = amount * Double(decimalMultiplier)
-
-            guard !(newAmount.isNaN || newAmount.isInfinite) else {
-                 return
-             }
-
-            store.isLoadingSwapAction = true
-            store.disablePrimaryAction = true
-            store.getSwapQuote(amount: "\(Int(newAmount))", completion: { result, error in
-                print("done updating swap quote. result: \(String(describing: result)) && error: \(String(describing: error))")
-                store.disablePrimaryAction = error != nil
-                store.swapQuote = result
-                store.isLoadingSwapAction = false
-            })
-        })
         .onChange(of: self.store.sendToken, perform: { _ in
             store.sendTokenAmount = "0"
             store.swapQuote = nil
@@ -339,9 +309,8 @@ struct SwapTokenView: View {
                 Tool.hiddenTabBar()
             }
 
-            if let nativeToken = self.store.accountBalance?.completeBalance?.max(by: { $0.nativeBalance?.totalBalance ?? 0 < $1.nativeBalance?.totalBalance ?? 0 }) {
+            if self.store.sendToken == nil, let nativeToken = self.store.accountBalance?.completeBalance?.max(by: { $0.nativeBalance?.totalBalance ?? 0 < $1.nativeBalance?.totalBalance ?? 0 }) {
                 self.store.sendToken = nativeToken.nativeBalance
-                print("set local native token: \(self.store.sendToken?.name ?? "nil")")
             }
 
             self.store.loadSwappableTokens(completion: { swapTokens in

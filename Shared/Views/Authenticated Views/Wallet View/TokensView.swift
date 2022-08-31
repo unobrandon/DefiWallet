@@ -67,11 +67,17 @@ struct TokensView: View {
             guard self.data.isEmpty,
                   let completeBalance = self.store.accountBalance?.completeBalance else { return }
 
-            for network in completeBalance {
-                guard let transact = network.tokens else { return }
+            DispatchQueue.global(qos: .userInitiated).async {
+                for network in completeBalance {
+                    if let native = network.nativeBalance {
+                        self.data.append(native)
+                    }
 
-                for item in transact {
-                    self.data.append(item)
+                    guard let transact = network.tokens else { continue }
+
+                    for item in transact {
+                        self.data.append(item)
+                    }
                 }
             }
         }

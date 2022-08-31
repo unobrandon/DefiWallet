@@ -21,8 +21,12 @@ struct TokensSectionView: View {
         guard let completeBalance = self.store.accountBalance?.completeBalance else { return [] }
 
         for token in completeBalance {
+            if let native = token.nativeBalance {
+                allTokens.append(native)
+            }
+
             guard let tokens = token.tokens else {
-                return []
+                continue
             }
 
             for item in tokens {
