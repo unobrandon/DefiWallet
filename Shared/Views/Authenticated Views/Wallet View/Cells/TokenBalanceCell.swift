@@ -96,7 +96,7 @@ struct TokenBalanceCell: View {
                                                   "\("".forTrailingZero(temp: data.priceChangePercentage24H?.truncate(places: 2) ?? 0.00))%",
                                                   color: data.priceChangePercentage24H ?? 0 >= 0 ? .green : .red,
                                                   fontSize: 13.0,
-                                                  style: service.themeStyle).padding(.trailing, 12.5)
+                                                  style: service.themeStyle).padding(.trailing, 15)
                         }
                     }
                     .padding(.vertical, 10)

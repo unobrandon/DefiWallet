@@ -23,11 +23,15 @@ struct ViewMoreText: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             Button(action: {
-                withAnimation(.easeOut) {
+                withAnimation(.easeOut(duration: 0.15)) {
                     self.expanded.toggle()
                 }
+
+                #if os(iOS)
+                    HapticFeedback.lightHapticFeedback()
+                #endif
             }, label: {
                 Text(text)
                     .fontTemplate(isCaption ? DefaultTemplate.caption : DefaultTemplate.body)
@@ -49,22 +53,28 @@ struct ViewMoreText: View {
                             .hidden() // Hide the background
                     )
                     .padding(.top, 5)
-                    .padding(.bottom, truncated ? 2 : 5)
             })
             .disabled(!truncated)
+            .buttonStyle(ClickInteractiveStyle(0.999))
 
-            if truncated { toggleButton.padding(.bottom, 5) }
+            if truncated { toggleButton }
         }
     }
 
     var toggleButton: some View {
         Button(action: {
-            withAnimation(.easeOut) {
+            withAnimation(.easeOut(duration: 0.15)) {
                 self.expanded.toggle()
             }
+
+            #if os(iOS)
+                HapticFeedback.lightHapticFeedback()
+            #endif
         }, label: {
-            Text(self.expanded ? "Read less..." : "Read more...").font(.caption)
+            Text(self.expanded ? "Read less..." : "Read more...")
+                .fontTemplate(DefaultTemplate.caption_accent_regular)
         })
+        .buttonStyle(ClickInteractiveStyle(0.98))
     }
 
 }

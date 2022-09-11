@@ -81,9 +81,6 @@ struct TokensView: View {
                 }
             }
         }
-        .onDisappear {
-            self.data.removeAll()
-        }
         .navigationBarTitle("Tokens", displayMode: .large)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

@@ -42,19 +42,15 @@ struct NetworkDetailView: View {
                         self.scrollOffset = $0
                     }
 
-                if let native = balance.nativeBalance {
-                    ListSection(title: "native token", style: service.themeStyle) {
-                        TokenBalanceCell(service: service, data: native, isLast: true, style: service.themeStyle, action: {
-                            walletRouter.route(to: \.tokenDetail, native)
-                        })
-                    }
-                }
-
                 LazyVGrid(columns: gridItems, alignment: .center, spacing: 0) {
                     TokensSectionView(network: balance.network, service: service)
                     CollectablesSectionView(isLoading: $isLoading, network: network, service: service)
                     HistorySectionView(isLoading: $isLoading, service: service, network: network)
                 }
+
+                FooterInformation()
+                    .padding(.vertical)
+                    .padding(.bottom, 40)
             }.coordinateSpace(name: "networkDetail-scroll")
         })
         .navigationBarTitle {

@@ -34,7 +34,8 @@ struct CustomLineChart: View {
 
             let points = data.enumerated().compactMap { item -> CGPoint in
                 let progress = (item.element - minPoint) / (maxPoint - minPoint)
-                let pathHeight = progress * (height - 10)
+                let chartOffset = timeline != nil ? (height + 15) : height
+                let pathHeight = progress * chartOffset
                 let pathWidth = width * CGFloat(item.offset)
 
 //                guard graphProgress != 0 else {
@@ -116,8 +117,8 @@ struct CustomLineChart: View {
             .background(
                 VStack(alignment: .trailing, spacing: 5) {
                     if data.count >= 4 {
-                        VStack(alignment: .trailing, spacing: 40) {
-                            ForEach(data.subArray(length: 4).sorted(by: >), id: \.self) { data in
+                        VStack(alignment: .trailing, spacing: height / 4) {
+                            ForEach(data.sorted(by: >).subArray(length: 4), id: \.self) { data in
                                 VStack(alignment: .trailing, spacing: 2.5) {
                                     Text(data.convertToCurrency())
                                         .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
@@ -136,14 +137,14 @@ struct CustomLineChart: View {
                         Divider().offset(y: 10)
 
                         HStack() {
-                            ForEach(timeline.subArray(length: 4), id: \.self) { date in
+                            ForEach(timeline.sorted(by: >).subArray(length: 4), id: \.self) { date in
                                 Text(Date(timeIntervalSince1970: Double(date)).chartDateFormate(perspective: perspective))
                                     .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
                                     .frame(maxWidth: .infinity)
                                     .multilineTextAlignment(.leading)
                                     .lineLimit(2)
-                                    .frame(maxHeight: 45)
-                            }.frame(maxWidth: .infinity, alignment: .trailing)
+                                    .frame(maxHeight: 35)
+                            }.frame(maxWidth: .infinity, alignment: .bottomLeading)
                         }
                         .offset(y: -10)
                     }

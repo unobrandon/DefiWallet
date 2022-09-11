@@ -26,7 +26,7 @@ struct ListInfoSmallView: View {
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {
             HStack(alignment: .center, spacing: 5) {
-                Text(title).fontTemplate(DefaultTemplate.caption_semibold)
+                Text(title).fontTemplate(DefaultTemplate.caption)
 
                 Spacer()
                 Text(info)

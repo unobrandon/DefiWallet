@@ -32,6 +32,7 @@ struct DefaultTemplate {
     static let subheadingMedium_black = FontTemplate(font: Font.custom("Nunito-Medium", size: 18), weight: .medium, foregroundColor: .black, lineSpacing: 2)
     static let subheadingRegular_secondary = FontTemplate(font: Font.custom("Poppins-Regular", size: 18), weight: .regular, foregroundColor: .secondary, lineSpacing: 0)
     static let subheadingRegular = FontTemplate(font: Font.custom("Poppins-Regular", size: 18), weight: .regular, foregroundColor: .primary, lineSpacing: 2)
+    static let subheadingRegular_ninito = FontTemplate(font: Font.custom("Nunito-Regular", size: 18), weight: .regular, foregroundColor: .primary, lineSpacing: 2)
     static let subheadingLight = FontTemplate(font: Font.custom("Poppins-Light", size: 18), weight: .light, foregroundColor: .primary, lineSpacing: 2)
 
     static let gasPriceFont = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 16), weight: .semibold, foregroundColor: .primary, lineSpacing: 0)
@@ -81,7 +82,9 @@ struct DefaultTemplate {
     static let captionPrimary = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .primary, lineSpacing: 1)
     static let captionPrimary_semibold = FontTemplate(font: Font.system(size: 12.0), weight: .semibold, foregroundColor: .primary, lineSpacing: 1)
     static let captionError = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .red, lineSpacing: 1)
+    static let caption_accent_regular = FontTemplate(font: Font.custom("Poppins-Regular", size: 12.0), weight: .regular, foregroundColor: Color("AccentColor"), lineSpacing: 1)
 
+    static let caption_Mono = FontTemplate(font: Font.custom("LabMono-Regular", size: 12), weight: .regular, foregroundColor: .primary, lineSpacing: 1)
     static let caption_Mono_secondary = FontTemplate(font: Font.custom("LabMono-Regular", size: 12), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)
 
     static let caption_micro_Mono_secondary = FontTemplate(font: Font.custom("LabMono-Regular", size: 10), weight: .regular, foregroundColor: .secondary, lineSpacing: 1)

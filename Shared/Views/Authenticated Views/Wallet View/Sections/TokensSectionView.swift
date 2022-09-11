@@ -52,7 +52,7 @@ struct TokensSectionView: View {
     }
 
     var body: some View {
-        LazyVStack(alignment: .center, spacing: 0) {
+        VStack(alignment: .center, spacing: 0) {
             SectionHeaderView(title: "Tokens", actionTitle: tokens.isEmpty ? "" : "Show all", action: showMoreLess)
             .padding(.bottom, 5)
 

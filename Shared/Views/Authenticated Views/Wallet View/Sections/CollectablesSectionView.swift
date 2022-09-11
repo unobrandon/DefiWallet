@@ -48,7 +48,7 @@ struct CollectablesSectionView: View {
     }
 
     var body: some View {
-        LazyVStack(alignment: .center, spacing: 0) {
+        VStack(alignment: .center, spacing: 0) {
             SectionHeaderView(title: "Collectables", actionTitle: store.history.isEmpty ? "" : "Show all", action: {
                 seeAll()
             })

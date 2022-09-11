@@ -36,7 +36,7 @@ struct OverviewSectionView: View {
     }
 
     var body: some View {
-        HStack(alignment: .bottom, spacing: 10) {
+        HStack(alignment: .top, spacing: 10) {
             VStack(alignment: .center, spacing: 10) {
                 // Title
                 HStack(alignment: .center, spacing: 10) {
@@ -107,7 +107,7 @@ struct OverviewSectionView: View {
 
             Spacer()
             // Breakdown
-            VStack(alignment: .center, spacing: 20) {
+            VStack(alignment: .center, spacing: 15) {
                 ZStack {
                     ForEach(rings.indices, id: \.self) { index in
                         AnimatedRingView(ring: rings[index], index: index, lineWidth: 5)

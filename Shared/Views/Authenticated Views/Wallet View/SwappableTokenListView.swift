@@ -72,7 +72,8 @@ struct SwappableTokenListView: View {
                             }
                         }
                     }, label: {
-                        if searchText.isEmpty, !swappableTokens.isEmpty {
+                        if searchText.isEmpty,
+                           (!swappableTokens.isEmpty || !(store.accountSendingTokens?.isEmpty ?? true)) {
                             if noMore {
                                 FooterInformation()
                             } else {
@@ -111,6 +112,9 @@ struct SwappableTokenListView: View {
 
             if !isSendToken {
                 fetchSwappableTokens()
+            } else {
+                self.noMore = store.accountSendingTokens?.count ?? 0 <= limitCells
+                print("the no more iss: \(store.accountSendingTokens?.count ?? 0) && \(limitCells) nowww: \(store.accountSendingTokens?.count ?? 0 <= limitCells)")
             }
         }
     }
@@ -158,6 +162,7 @@ struct SwappableTokenListView: View {
                     }
 
                     self.swappableTokens = self.swappableTokens.sorted(by: { $0.name?.lowercased() ?? "" < $1.name?.lowercased() ?? "" })
+                    self.noMore = swappableTokens.count <= limitCells
                 case .error(let error):
                     print("error getting swappable tokens: \(error.localizedDescription)")
                 }

@@ -69,7 +69,7 @@ struct ListStandardButton: View {
                                 .resizable()
                                 .scaledToFit()
                                 .foregroundColor(Color.primary)
-                                .frame(width: 32, height: 32, alignment: .center)
+                                .frame(width: 20, height: 20, alignment: .center)
                                 .padding(.trailing, 5)
                         } else {
                             EmptyView().frame(height: 20)

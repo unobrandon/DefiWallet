@@ -48,7 +48,9 @@ struct TokenDetailView: View {
                         self.scrollOffset = $0
                     }
 
-                CustomLineChart(data: tokenModel?.priceGraph?.price ?? tokenDetails?.priceGraph?.price ?? tokenChart.map({ $0.amount }), profit: tokenModel?.priceChangePercentage24H ?? 0 >= 0, perspective: $walletStore.chartType)
+                CustomLineChart(data: tokenModel?.priceGraph?.price ?? tokenDetails?.priceGraph?.price ?? tokenChart.map({ $0.amount }),
+                                profit: tokenModel?.priceChangePercentage24H ?? tokenDetails?.priceChangePercentage24H ?? 0 >= 0,
+                                perspective: $walletStore.chartType)
                     .frame(height: 145)
                     .padding()
 
@@ -68,25 +70,28 @@ struct TokenDetailView: View {
                         print("send token")
                     })
 
-                    TransactButton(title: "Swap \(tokenDescriptor?.symbol?.uppercased() ?? tokenModel?.symbol?.uppercased() ?? tokenDetails?.symbol?.uppercased() ?? "")", systemImage: "arrow.left.arrow.right", size: 50, style: service.themeStyle, action: {
-                        print("send token")
+                    TransactButton(title: "Swap \(tokenDescriptor?.symbol?.uppercased() ?? tokenModel?.symbol?.uppercased() ?? tokenDetails?.symbol?.uppercased() ?? "")",
+                                   systemImage: "arrow.left.arrow.right",
+                                   size: 50,
+                                   style: service.themeStyle,
+                                   action: {
+                        print("swap token")
                     })
                 }
                 .padding()
                 .padding(.vertical)
 
-                if let diversity = tokenModel?.portfolioDiversity {
-                    Text("Portfolio \nDiversity: \(diversity)")
-                        .fontTemplate(DefaultTemplate.metricFont)
+                if tokenModel != nil {
+                    detailsEquitySection()
                 }
 
                 detailsOverviewSection()
-                detailsNetworkSection()
-                detailsInfoSection()
-
-                FooterInformation()
+                detailsAboutSection()
+                detailsLinksSection()
 
                 Spacer()
+                FooterInformation()
+                    .padding(.top, 40)
             }.coordinateSpace(name: "tokenDetail-scroll")
         })
         // .navigationBarTitle("", displayMode: .inline) //tokenDescriptor?.name ?? tokenDetail?.name ?? "Details", displayMode: .inline)
@@ -120,7 +125,7 @@ struct TokenDetailView: View {
 
             completeBalance.forEach({ bal in
                 bal.tokens?.forEach({ token in
-                    if tokenModel?.allAddress?.ethereum == token.tokenAddress {
+                    if tokenModel?.allAddress?.ethereum == token.tokenAddress || tokenDetails?.allAddress?.ethereum == token.tokenAddress {
                         print("HAVE THIS ETH TOKEN!!!")
                     }
 
