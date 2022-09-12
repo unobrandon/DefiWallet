@@ -415,6 +415,10 @@
 		05C1B8A428CDC39E007D703C /* TokenDetailsEquitySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C1B8A228CDC39E007D703C /* TokenDetailsEquitySection.swift */; };
 		05C1B8A628CDD780007D703C /* TokenDetailLinksSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C1B8A528CDD780007D703C /* TokenDetailLinksSection.swift */; };
 		05C1B8A728CDD780007D703C /* TokenDetailLinksSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C1B8A528CDD780007D703C /* TokenDetailLinksSection.swift */; };
+		05C1B8AC28CEF3EE007D703C /* MultipleLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C1B8AB28CEF3EE007D703C /* MultipleLinksView.swift */; };
+		05C1B8AD28CEF3EE007D703C /* MultipleLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C1B8AB28CEF3EE007D703C /* MultipleLinksView.swift */; };
+		05C1B8AF28CEFCAE007D703C /* TokenDetailNetworkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C1B8AE28CEFCAE007D703C /* TokenDetailNetworkSection.swift */; };
+		05C1B8B028CEFCAE007D703C /* TokenDetailNetworkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C1B8AE28CEFCAE007D703C /* TokenDetailNetworkSection.swift */; };
 		05C884CB27FD0E00005E2455 /* OverviewSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */; };
 		05C884CC27FD0E00005E2455 /* OverviewSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */; };
 		05C884CE27FD1D33005E2455 /* RingProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C884CD27FD1D33005E2455 /* RingProgressModel.swift */; };
@@ -494,6 +498,8 @@
 		05D1098727C3537D008DCC66 /* ProdPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098527C3537C008DCC66 /* ProdPrivateKeys.xcconfig */; };
 		05D1098927C36EFF008DCC66 /* DevPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */; };
 		05D1098A27C36EFF008DCC66 /* DevPrivateKeys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */; };
+		05D389B928CF1C1200FFD3CD /* TokenDetailCategorySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D389B828CF1C1200FFD3CD /* TokenDetailCategorySection.swift */; };
+		05D389BA28CF1C1200FFD3CD /* TokenDetailCategorySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D389B828CF1C1200FFD3CD /* TokenDetailCategorySection.swift */; };
 		05D40F882858600A002BDA0F /* TransactionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F872858600A002BDA0F /* TransactionListCell.swift */; };
 		05D40F892858600A002BDA0F /* TransactionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F872858600A002BDA0F /* TransactionListCell.swift */; };
 		05D40F8B285CFFB2002BDA0F /* InvestmentsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D40F8A285CFFB2002BDA0F /* InvestmentsSectionView.swift */; };
@@ -847,6 +853,8 @@
 		05C10E022845B1310050D2D5 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		05C1B8A228CDC39E007D703C /* TokenDetailsEquitySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailsEquitySection.swift; sourceTree = "<group>"; };
 		05C1B8A528CDD780007D703C /* TokenDetailLinksSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailLinksSection.swift; sourceTree = "<group>"; };
+		05C1B8AB28CEF3EE007D703C /* MultipleLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleLinksView.swift; sourceTree = "<group>"; };
+		05C1B8AE28CEFCAE007D703C /* TokenDetailNetworkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailNetworkSection.swift; sourceTree = "<group>"; };
 		05C884CA27FD0E00005E2455 /* OverviewSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewSectionView.swift; sourceTree = "<group>"; };
 		05C884CD27FD1D33005E2455 /* RingProgressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingProgressModel.swift; sourceTree = "<group>"; };
 		05C884D127FD1D96005E2455 /* AnimatedRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedRingView.swift; sourceTree = "<group>"; };
@@ -878,6 +886,7 @@
 		05D1098227C31511008DCC66 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		05D1098527C3537C008DCC66 /* ProdPrivateKeys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ProdPrivateKeys.xcconfig; sourceTree = "<group>"; };
 		05D1098827C36EFF008DCC66 /* DevPrivateKeys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DevPrivateKeys.xcconfig; sourceTree = "<group>"; };
+		05D389B828CF1C1200FFD3CD /* TokenDetailCategorySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailCategorySection.swift; sourceTree = "<group>"; };
 		05D40F872858600A002BDA0F /* TransactionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListCell.swift; sourceTree = "<group>"; };
 		05D40F8A285CFFB2002BDA0F /* InvestmentsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsSectionView.swift; sourceTree = "<group>"; };
 		05D40F8D285D0173002BDA0F /* WalletService+CompoundSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletService+CompoundSocket.swift"; sourceTree = "<group>"; };
@@ -1090,6 +1099,7 @@
 				0531141627E7E63000368657 /* DappProposalView.swift */,
 				05BDC5BB280D116D00851E16 /* GlobalGasView.swift */,
 				05BDC5C1280D2AB600851E16 /* GlobalMarketView.swift */,
+				05C1B8AB28CEF3EE007D703C /* MultipleLinksView.swift */,
 			);
 			path = SlideOverCards;
 			sourceTree = "<group>";
@@ -1243,7 +1253,9 @@
 				054DC828283D854500A1FDA6 /* TokenDetailsHeaderSection.swift */,
 				05C1B8A228CDC39E007D703C /* TokenDetailsEquitySection.swift */,
 				054DC82B283D860800A1FDA6 /* TokenDetailOverviewSection.swift */,
+				05C1B8AE28CEFCAE007D703C /* TokenDetailNetworkSection.swift */,
 				0504A422283F287C000DB947 /* TokenDetailAboutSection.swift */,
+				05D389B828CF1C1200FFD3CD /* TokenDetailCategorySection.swift */,
 				05C1B8A528CDD780007D703C /* TokenDetailLinksSection.swift */,
 			);
 			path = Sections;
@@ -2172,6 +2184,7 @@
 				05BDC5B6280BCE3000851E16 /* GasPriceNavSection.swift in Sources */,
 				0593025A27E19C98006DDFFF /* LineChart.swift in Sources */,
 				05F7B58428090518005A94C8 /* WalletService+AddressSocket.swift in Sources */,
+				05C1B8AC28CEF3EE007D703C /* MultipleLinksView.swift in Sources */,
 				05E858C427CB230B00B85195 /* EmptyAvatar.swift in Sources */,
 				050225C027FC18FB0004D910 /* GlobalEnums.swift in Sources */,
 				0578071227B8F2A30008051B /* WalletCoordinator+Factory.swift in Sources */,
@@ -2366,6 +2379,7 @@
 				0593020D27D9900A006DDFFF /* AccountBalance.swift in Sources */,
 				05CA87202803DD0D006FACE0 /* Color+Extensions.swift in Sources */,
 				05583CA327E9A0B100640E75 /* ViewOffsetKey.swift in Sources */,
+				05D389B928CF1C1200FFD3CD /* TokenDetailCategorySection.swift in Sources */,
 				05E858A027C9F62000B85195 /* ImportWalletView.swift in Sources */,
 				05F8EE24280004C5003BBC23 /* CategoryCell.swift in Sources */,
 				0593021927DFCB3D006DDFFF /* ProfileHeaderButton.swift in Sources */,
@@ -2426,6 +2440,7 @@
 				05E858FF27CC08F200B85195 /* RoundedInteractiveButton.swift in Sources */,
 				05002E70282B71B90010AF39 /* HeaderKey.swift in Sources */,
 				0578077927BB71410008051B /* Blob.swift in Sources */,
+				05C1B8AF28CEFCAE007D703C /* TokenDetailNetworkSection.swift in Sources */,
 				0593022227E02B7E006DDFFF /* BorderlessButton.swift in Sources */,
 				0504A423283F287C000DB947 /* TokenDetailAboutSection.swift in Sources */,
 				05394154281A60E000CFAA53 /* SendToDetailView.swift in Sources */,
@@ -2580,6 +2595,7 @@
 				05A3DE0E2845F0B800079FFD /* NetworkDropdownButton.swift in Sources */,
 				05E858AB27C9F75C00B85195 /* GenerateWalletView.swift in Sources */,
 				05E858A127C9F62000B85195 /* ImportWalletView.swift in Sources */,
+				05C1B8AD28CEF3EE007D703C /* MultipleLinksView.swift in Sources */,
 				05583CA427E9A0B100640E75 /* ViewOffsetKey.swift in Sources */,
 				0504A41B283F27B2000DB947 /* ExchangeCell.swift in Sources */,
 				05583CEA27ED305F00640E75 /* NetworkVerticalCell.swift in Sources */,
@@ -2605,6 +2621,7 @@
 				0578074A27BB5E610008051B /* FontTemplating.swift in Sources */,
 				05B862E2286BF36600921C5F /* CollectableView.swift in Sources */,
 				05F8EE2828000B53003BBC23 /* TopSectionView.swift in Sources */,
+				05D389BA28CF1C1200FFD3CD /* TokenDetailCategorySection.swift in Sources */,
 				05E8589C27C9DA3700B85195 /* CarouselViewTwo.swift in Sources */,
 				053C7D4327CDCFDE0081DCEA /* EnsUsernameView.swift in Sources */,
 				0578077027BB6D200008051B /* DefaultTemplate.swift in Sources */,
@@ -2651,6 +2668,7 @@
 				0507BB19284DD27100D1A965 /* TopLosersView.swift in Sources */,
 				053113FC27E6CF7100368657 /* CBScanner.swift in Sources */,
 				0500307628582A41000C5DFF /* ExchangePairCell.swift in Sources */,
+				05C1B8B028CEFCAE007D703C /* TokenDetailNetworkSection.swift in Sources */,
 				05E8589927C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
 				05583CC627E9C11400640E75 /* EnvironmentValues+GridStyle.swift in Sources */,
 				054DC82A283D854500A1FDA6 /* TokenDetailsHeaderSection.swift in Sources */,
@@ -2769,7 +2787,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MACH_O_TYPE = mh_execute;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2828,7 +2846,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MACH_O_TYPE = mh_execute;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -2863,7 +2881,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2900,7 +2918,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3030,7 +3048,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MACH_O_TYPE = mh_execute;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -3066,7 +3084,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3158,7 +3176,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MACH_O_TYPE = mh_execute;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -3193,7 +3211,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

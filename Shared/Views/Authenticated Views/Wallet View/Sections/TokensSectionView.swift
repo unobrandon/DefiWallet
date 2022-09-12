@@ -73,7 +73,7 @@ struct TokensSectionView: View {
                     })
 
                     if limitCells <= tokens.count, item == tokens.prefix(limitCells).last {
-                        ListStandardButton(title: tokens.count - limitCells != 0 ? "show \(tokens.count - limitCells) more..." : "show all...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                        ListStandardButton(title: "show all...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
                             walletRouter.route(to: \.tokens, network)
                         })
                     }

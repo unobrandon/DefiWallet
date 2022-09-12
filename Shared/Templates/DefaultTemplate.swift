@@ -81,6 +81,7 @@ struct DefaultTemplate {
     static let caption_semibold = FontTemplate(font: Font.system(size: 12.0), weight: .semibold, foregroundColor: .secondary, lineSpacing: 1)
     static let captionPrimary = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .primary, lineSpacing: 1)
     static let captionPrimary_semibold = FontTemplate(font: Font.system(size: 12.0), weight: .semibold, foregroundColor: .primary, lineSpacing: 1)
+    static let captionPrimary_medium = FontTemplate(font: Font.system(size: 12.0), weight: .medium, foregroundColor: .primary, lineSpacing: 1)
     static let captionError = FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .red, lineSpacing: 1)
     static let caption_accent_regular = FontTemplate(font: Font.custom("Poppins-Regular", size: 12.0), weight: .regular, foregroundColor: Color("AccentColor"), lineSpacing: 1)
 

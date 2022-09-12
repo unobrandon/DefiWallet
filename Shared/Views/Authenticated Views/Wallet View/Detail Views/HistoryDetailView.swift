@@ -90,14 +90,7 @@ struct HistoryDetailView: View {
 
                 ListSection(title: "More", style: service.themeStyle) {
                     ListStandardButton(title: "View on \(store.getBlockExplorerName(data.network ?? ""))", systemImage: "safari", isLast: false, style: service.themeStyle, action: {
-                        guard let url = URL(string: store.getScannerUrl(data.network ?? "") + (data.blockHash ?? "")) else {
-                            #if os(iOS)
-                            HapticFeedback.errorHapticFeedback()
-                            #endif
-                            return
-                        }
-
-                        walletRouter.route(to: \.safari, url)
+                        walletRouter.route(to: \.safari, store.getScannerUrl(data.network ?? "") + (data.blockHash ?? ""))
                     })
 
                     ListStandardButton(title: "Share transaction", systemImage: "square.and.arrow.up", isLast: true, style: service.themeStyle, action: {

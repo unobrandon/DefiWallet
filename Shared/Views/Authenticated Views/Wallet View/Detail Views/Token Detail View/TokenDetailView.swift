@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TokenDetailView: View {
 
-    @EnvironmentObject private var walletRouter: WalletCoordinator.Router
+    @EnvironmentObject var walletRouter: WalletCoordinator.Router
 
     @ObservedObject var service: AuthenticatedServices
     @ObservedObject private var walletStore: WalletService
@@ -18,6 +18,7 @@ struct TokenDetailView: View {
     @State var tokenDescriptor: TokenDescriptor?
     @State var externalId: String?
     @State var scrollOffset: CGFloat = CGFloat.zero
+    @State var openLinkSheet: Bool = false
 
     @State private var tokenChart = [ChartValue]()
 
@@ -26,6 +27,8 @@ struct TokenDetailView: View {
                 SwiftUI.GridItem(.flexible()),
                 SwiftUI.GridItem(.flexible())]
     }()
+
+    let categoriesColumns = [SwiftUI.GridItem(.flexible(), alignment: .leading), SwiftUI.GridItem(.flexible(), alignment: .leading)]
 
     init(tokenModel: TokenModel?, tokenDetails: TokenDetails?, tokenDescriptor: TokenDescriptor?, externalId: String?, service: AuthenticatedServices) {
         self.service = service
@@ -121,35 +124,35 @@ struct TokenDetailView: View {
 
             print("the token details are: \(String(describing: tokenModel?.externalId ?? "no id"))")
 
-            guard let completeBalance = self.walletStore.accountBalance?.completeBalance else { return }
+            if let completeBalance = self.walletStore.accountBalance?.completeBalance {
+                completeBalance.forEach({ bal in
+                    bal.tokens?.forEach({ token in
+                        if tokenModel?.allAddress?.ethereum == token.tokenAddress || tokenDetails?.allAddress?.ethereum == token.tokenAddress {
+                            print("HAVE THIS ETH TOKEN!!!")
+                        }
 
-            completeBalance.forEach({ bal in
-                bal.tokens?.forEach({ token in
-                    if tokenModel?.allAddress?.ethereum == token.tokenAddress || tokenDetails?.allAddress?.ethereum == token.tokenAddress {
-                        print("HAVE THIS ETH TOKEN!!!")
-                    }
+                        if tokenModel?.allAddress?.binance == token.tokenAddress {
+                            print("HAVE THIS BINANCE TOKEN!!!")
+                        }
 
-                    if tokenModel?.allAddress?.binance == token.tokenAddress {
-                        print("HAVE THIS BINANCE TOKEN!!!")
-                    }
+                        if tokenModel?.allAddress?.avalanche == token.tokenAddress {
+                            print("HAVE THIS Avalanche TOKEN!!!")
+                        }
 
-                    if tokenModel?.allAddress?.avalanche == token.tokenAddress {
-                        print("HAVE THIS Avalanche TOKEN!!!")
-                    }
+                        if tokenModel?.allAddress?.polygon_pos == token.tokenAddress {
+                            print("HAVE THIS polygon TOKEN!!!")
+                        }
 
-                    if tokenModel?.allAddress?.polygon_pos == token.tokenAddress {
-                        print("HAVE THIS polygon TOKEN!!!")
-                    }
+                        if tokenModel?.allAddress?.fantom == token.tokenAddress {
+                            print("HAVE THIS fantom TOKEN!!!")
+                        }
 
-                    if tokenModel?.allAddress?.fantom == token.tokenAddress {
-                        print("HAVE THIS fantom TOKEN!!!")
-                    }
-
-                    if tokenModel?.allAddress?.solana == token.tokenAddress {
-                        print("HAVE THIS solana TOKEN!!!")
-                    }
+                        if tokenModel?.allAddress?.solana == token.tokenAddress {
+                            print("HAVE THIS solana TOKEN!!!")
+                        }
+                    })
                 })
-            })
+            }
 
             guard let external = tokenModel?.externalId else { return }
 

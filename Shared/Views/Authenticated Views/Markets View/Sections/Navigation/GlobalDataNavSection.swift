@@ -36,7 +36,7 @@ struct GlobalDataNavSection: View {
                         HStack(alignment: .center, spacing: 0) {
                             Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.bodyBold)
 
-                            Text("".formatLargeDoubleNumber(num, size: .regular, scale: 3)).fontTemplate(DefaultTemplate.bodyBold)
+                            Text("".formatLargeDoubleNumber(num, size: .regular, scale: 2)).fontTemplate(DefaultTemplate.bodyBold)
                         }
                     }
 

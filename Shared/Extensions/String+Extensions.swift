@@ -65,12 +65,12 @@ extension String {
         }
     }
 
-    func formatAddress() -> String {
+    func formatAddress(_ prefix: Int? = nil) -> String {
         guard !self.contains(".eth") else {
            return self
         }
 
-        return self.prefix(4) + "..." + self.suffix(4)
+        return self.prefix(prefix ?? 4) + "..." + self.suffix(prefix ?? 4)
     }
 
     func formatAddressExtended() -> String {

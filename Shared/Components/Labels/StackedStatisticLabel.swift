@@ -30,7 +30,11 @@ struct StackedStatisticLabel: View {
             Text(title).fontTemplate(FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .secondary, lineSpacing: 1))
 
             if let metric = metric {
-                Text(metric).fontTemplate(DefaultTemplate.metricFont)
+                Text(metric)
+                    .fontTemplate(DefaultTemplate.metricFont)
+                    .adjustsFontSizeToFitWidth(true)
+                    .minimumScaleFactor(0.65)
+                    .lineLimit(1)
             }
 
             if let number = number {
@@ -41,7 +45,9 @@ struct StackedStatisticLabel: View {
                                       numberOfDecimalPlaces: number.decimalCount() < 3 ? number.decimalCount() : 3,
                                       fixedWidth: nil,
                                       showComma: true) { str in
-                        Text(str).fontTemplate(DefaultTemplate.metricFont)
+                        Text(str)
+                            .fontTemplate(DefaultTemplate.metricFont)
+                            .lineLimit(1)
                     }
                 }.mask(AppGradients.movingNumbersMask)
             }

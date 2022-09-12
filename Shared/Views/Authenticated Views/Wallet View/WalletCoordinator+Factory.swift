@@ -67,8 +67,8 @@ extension WalletCoordinator {
         TokenDetailView(tokenModel: nil, tokenDetails: nil, tokenDescriptor: tokenDescriptor, externalId: nil, service: services)
     }
 
-    @ViewBuilder func makeSafari(url: URL) -> some View {
-        SafariView(url: url)
+    @ViewBuilder func makeSafari(url: String) -> some View {
+        SafariView(url: URL(string: url)!)
     }
 
     private func formateNetwork(_ txt: String? = nil) -> Network? {

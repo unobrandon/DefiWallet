@@ -69,16 +69,26 @@ extension WalletService {
     }
 
     func getNetworkTransactImage(_ network: String) -> Image {
-        if network == "eth" {
+        if network == "eth" || network == "ethereum" {
             return Image("eth_logo")
         } else if network == "polygon" {
             return Image("polygon_logo")
-        } else if network == "bsc" {
+        } else if network == "bsc" || network == "binance" {
             return Image("binance_logo")
         } else if network == "avalanche" {
             return Image("avalanche_logo")
         } else if network == "fantom" {
             return Image("fantom_logo")
+        } else if network == "xdai" {
+            return Image("xdai_logo")
+        } else if network == "solana" {
+            return Image("solana_logo")
+        } else if network == "moonriver" {
+            return Image("moonriver_logo")
+        } else if network == "moonbeam" {
+            return Image("moonbeam_logo")
+        } else if network == "huobi token" {
+            return Image("huobi-token_logo")
         } else {
             return Image("")
         }

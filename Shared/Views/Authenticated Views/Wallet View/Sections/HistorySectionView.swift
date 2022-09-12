@@ -70,7 +70,7 @@ struct HistorySectionView: View {
                     })
 
                     if item == transactionData.prefix(limitCells).last {
-                        ListStandardButton(title: data.count - limitCells != 0 ? "show \(data.count - limitCells) more..." : "show all...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                        ListStandardButton(title: "show all...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
                             walletRouter.route(to: \.history, filter)
                         })
                     }

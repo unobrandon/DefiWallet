@@ -44,8 +44,8 @@ extension TokenDetailView {
                 StackedStatisticLabel(title: "Diversity", metric: "\(tokenModel?.portfolioDiversity ?? "0.00%")", number: nil)
             }
             .padding(.horizontal, 15)
-            .padding(.top, 10)
-            .padding(.bottom, 5)
+            .padding(.top)
+            .padding(.bottom, 10)
         }
     }
 
