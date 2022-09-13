@@ -42,7 +42,7 @@ struct StackedStatisticLabel: View {
                     Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.metricFont)
 
                     MovingNumbersView(number: number,
-                                      numberOfDecimalPlaces: number.decimalCount() < 3 ? number.decimalCount() : 3,
+                                      numberOfDecimalPlaces: number.decimalCount() < 3 ? number.decimalCount() : 2,
                                       fixedWidth: nil,
                                       showComma: true) { str in
                         Text(str)

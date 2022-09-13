@@ -23,7 +23,7 @@ extension MarketsCoordinator {
     }
 
     @ViewBuilder func makeCategoryDetail(category: TokenCategory) -> some View {
-        CategoriesDetailView(category: category, service: services)
+        CategoriesDetailView(fromWalletView: false, category: category, service: services)
     }
 
     @ViewBuilder func makeExchanges() -> some View {

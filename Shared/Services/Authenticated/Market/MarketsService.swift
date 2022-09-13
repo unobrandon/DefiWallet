@@ -37,6 +37,7 @@ class MarketsService: ObservableObject {
 
     @Published var searchCategoriesText: String = ""
     @Published var categoriesFilters: FilterCategories = .gainers
+    @Published var categoriesDetailFilters: FilterCategories = .marketCapDesc
     var categoriesCancellable: AnyCancellable?
 
     @Published var searchExchangesText: String = ""
@@ -133,7 +134,7 @@ class MarketsService: ObservableObject {
     func fetchCategoryDetails(categoryId: String, currency: String, page: Int? = 1) {
 
         if let storage = StorageService.shared.marketCapStorage {
-            storage.async.object(forKey: "categoryList\(categoryId)\(page ?? 1)") { result in
+            storage.async.object(forKey: "categoryList\(page ?? 1)" + categoryId + self.categoriesDetailFilters.rawValue) { result in
                 switch result {
                 case .value(let list):
                     print("got local category List")
@@ -142,14 +143,13 @@ class MarketsService: ObservableObject {
                     }
                 case .error(let error):
                     print("error getting local category List: \(error.localizedDescription)")
-                    self.tokenCategoryList.removeAll()
                 }
             }
         }
 
         let baseUrl = "https://api.coingecko.com/api/v3/coins/markets"
         let filteredSection = "?vs_currency=" + currency + "&category=" + categoryId
-        let lastSection = "&order=market_cap_desc&per_page=50&page=\(page ?? 1)&sparkline=true"
+        let lastSection = "&order=" + self.categoriesDetailFilters.rawValue + "&per_page=50&page=\(page ?? 1)&sparkline=true"
 
         AF.request(baseUrl + filteredSection + lastSection, method: .get).responseDecodable(of: [TokenDetails].self) { response in
             switch response.result {
@@ -157,10 +157,10 @@ class MarketsService: ObservableObject {
                 DispatchQueue.main.async {
                     self.tokenCategoryList = categories
                 }
-                print("got categories tokens!! \(categories.count)")
+                print("got categories tokens!! \(categories.count) and \(baseUrl + filteredSection + lastSection)")
 
                 if let storage = StorageService.shared.marketCapStorage {
-                    storage.async.setObject(categories, forKey: "categoryList\(categoryId)\(page ?? 1)") { _ in }
+                    storage.async.setObject(categories, forKey: "categoryList\(page ?? 1)" + categoryId + self.categoriesDetailFilters.rawValue) { _ in }
                 }
 
             case .failure(let error):

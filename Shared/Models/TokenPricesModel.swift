@@ -21,8 +21,8 @@ struct TokenPricesModel: Codable, Hashable {
 
     let externalId, lastUpdated: String?
     let athDate, atlDate: String?
-    let fullyDilutedValuation, marketCap, marketCapRank: Int?
-    let currentPrice, totalVolume, high24H, low24H, priceChange24H: Double?
+    let marketCapRank: Int?
+    let currentPrice, totalVolume, high24H, low24H, priceChange24H, marketCap, fullyDilutedValuation: Double?
     let priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
     let totalSupply, maxSupply: Double?
     let atlChangePercentage, athChangePercentage: Double?

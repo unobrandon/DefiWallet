@@ -24,8 +24,10 @@ final class WalletCoordinator: NavigationCoordinatable {
     @Route(.push) var collectables = makeCollectables
     @Route(.push) var historyDetail = makeHistoryDetail
     @Route(.push) var tokenDetail = makeTokenDetail
+    @Route(.push) var tokenDetails = makeTokenDetails
     @Route(.push) var tokenExternalDetail = makeExternalTokenDetail
     @Route(.push) var tokenDescriptorDetail = makeDescriptorTokenDetail
+    @Route(.push) var tokenCategoryDetail = makeTokenCategoryDetail
     @Route(.modal) var safari = makeSafari
 
     let currentUser: CurrentUser

@@ -48,13 +48,13 @@ struct HistorySectionView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            SectionHeaderView(title: "History", actionTitle: store.history.isEmpty ? "" : "Show all", action: showMoreLess)
+            SectionHeaderView(title: "History", actionTitle: data.isEmpty ? "" : "Show all", action: showMoreLess)
             .padding(.vertical, 5)
 
             ListSection(style: service.themeStyle) {
-                if store.history.isEmpty, isLoading {
+                if data.isEmpty, isLoading {
                     LoadingView(title: "")
-                } else if store.history.isEmpty, !isLoading {
+                } else if data.isEmpty, !isLoading {
                     HStack {
                         Spacer()
                         Text("empty transactions").fontTemplate(DefaultTemplate.caption)

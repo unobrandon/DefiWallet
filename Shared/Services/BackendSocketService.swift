@@ -17,6 +17,7 @@ struct SocketReceiveData: Codable {
     var type: SocketResponses?
     var prices: [TokenPricesModel]?
     var swapResult: SwapTokens?
+    var marketChart: [TokenDetails]?
 }
 
 class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
@@ -105,6 +106,12 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
                 DispatchQueue.main.async {
                     print("did receive a new swap result: \(swap.transaction?.gas ?? 0)")
                     self.wallet.swapResult = swap
+                }
+
+            case .marketCharts:
+                guard let chart = receiveData.marketChart else { return }
+                DispatchQueue.main.async {
+                    print("did receive marketChart result: \(chart.count)")
                 }
 
             default:

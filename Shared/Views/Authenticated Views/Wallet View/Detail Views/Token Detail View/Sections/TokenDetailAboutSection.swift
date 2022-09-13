@@ -15,11 +15,11 @@ extension TokenDetailView {
     func detailsAboutSection() -> some View {
         VStack(alignment: .center, spacing: 10) {
             ListSection(title: "About", hasPadding: true, style: service.themeStyle) {
-                if let description = tokenDescriptor?.tokenDescription ?? tokenModel?.description ?? tokenDetails?.tokenDescription, !description.isEmpty {
+                if let description = tokenModel?.description ?? tokenDetails?.tokenDescription ?? tokenDescriptor?.tokenDescription, !description.isEmpty {
                     ViewMoreText(description, isCaption: false, lineLimit: 5)
                         .padding(.horizontal)
                         .padding(.vertical, 10)
-                    
+
                     if service.themeStyle == .shadow {
                         Divider().padding(.leading)
                     } else if service.themeStyle == .border {
@@ -27,17 +27,17 @@ extension TokenDetailView {
                             .frame(height: 1)
                     }
                 }
-                
-                if let country = tokenDescriptor?.countryOrigin ?? tokenModel?.countryOrigin ?? tokenDetails?.countryOrigin, !country.isEmpty {
+
+                if let country =  tokenModel?.countryOrigin ?? tokenDetails?.countryOrigin ?? tokenDescriptor?.countryOrigin, !country.isEmpty {
                     ListInfoSmallView(title: "Country", info: country, secondaryInfo: nil, style: service.themeStyle, isLast: false)
                 }
-                
-                if let est = tokenDescriptor?.genesisDate ?? tokenModel?.genesisDate ?? tokenDetails?.genesisDate, !est.isEmpty {
+
+                if let est = tokenModel?.genesisDate ?? tokenDetails?.genesisDate ?? tokenDescriptor?.genesisDate, !est.isEmpty {
                     ListInfoSmallView(title: "Established", info: est, secondaryInfo: nil, style: service.themeStyle, isLast: false)
                 }
             }
 
-            detailsCategorySection()
+            detailsNetworksSection()
         }
     }
 

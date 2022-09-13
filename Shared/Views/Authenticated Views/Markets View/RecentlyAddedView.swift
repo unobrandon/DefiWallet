@@ -25,13 +25,13 @@ struct RecentlyAddedView: View {
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
-                VStack(alignment: .leading, spacing: 2.5) {
+                VStack(alignment: .leading, spacing: 10) {
                     Text("A list of the newest tokens added to the \(Constants.projectName)'s token list.")
                         .fontTemplate(DefaultTemplate.bodySemibold)
                         .multilineTextAlignment(.leading)
 
-                    Text("If you know of a missing token or would like to add a new one, please reach out to use and we are happy to assist.")
-                        .fontTemplate(DefaultTemplate.body)
+                    Text("If you know of a missing token or would like to add a new one, please feel free reaching out.")
+                        .fontTemplate(DefaultTemplate.caption)
                         .multilineTextAlignment(.leading)
                 }
                 .padding(.vertical, 10)

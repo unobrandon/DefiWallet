@@ -53,4 +53,27 @@ extension BackendSocketService {
         }
     }
 
+    func emitMarketChartUpdate(currency: String, perPage: String, page: String) {
+        let model = ["currency" : currency,
+                     "perPage" : perPage,
+                     "page": page]
+
+        if let swapData = try? JSONEncoder().encode(model) {
+            let jsonString = String(data: swapData, encoding: .utf8)
+
+            let swap = SocketSendData(type: .marketCharts, ids: nil, data: jsonString ?? "")
+
+            if let encodedData = try? JSONEncoder().encode(swap) {
+                let jsonString = String(data: encodedData, encoding: .utf8)
+                let msgString = URLSessionWebSocketTask.Message.string(jsonString ?? "no data")
+
+                webSocketTask?.send(msgString) { error in
+                    if let error = error {
+                        print("Failed to emitMarketChartUpdate with error \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+    }
+
 }

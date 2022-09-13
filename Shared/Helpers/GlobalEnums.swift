@@ -18,6 +18,8 @@ enum FilterHistory: Equatable {
 
 enum FilterCategories: String, Equatable {
     case name = "name_asc"
+    case id = "id_asc"
+    case volume = "volume_asc"
     case gainers = "market_cap_change_24h_desc"
     case losers = "market_cap_change_24h_asc"
     case marketCapDesc = "market_cap_desc"
@@ -29,6 +31,7 @@ enum SocketResponses: String, Codable {
     case testAnswer = "test_answer"
     case priceUpdate = "price_update"
     case swapQuote = "swap_quote"
+    case marketCharts = "market_charts"
 }
 
 enum PublicTreasuryCoins: String, Equatable {

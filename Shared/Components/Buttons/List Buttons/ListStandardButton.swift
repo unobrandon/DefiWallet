@@ -71,11 +71,14 @@ struct ListStandardButton: View {
                                 .foregroundColor(Color.primary)
                                 .frame(width: 20, height: 20, alignment: .center)
                                 .padding(.trailing, 5)
+                                .padding(.vertical, 5)
                         } else {
                             EmptyView().frame(height: 20)
                         }
 
-                        Text(title).fontTemplate(DefaultTemplate.body)
+                        Text(title)
+                            .fontTemplate(DefaultTemplate.body)
+                            .lineLimit(2)
 
                         Spacer()
                         Image(systemName: "chevron.right")

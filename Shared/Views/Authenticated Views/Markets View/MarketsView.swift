@@ -58,6 +58,11 @@ struct MarketsView: View {
             store.startGasTimer()
             self.fetchGlobalData()
             self.fetchTrending()
+
+            DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
+                print("sending socket market")
+                self.service.socket.emitMarketChartUpdate(currency: self.service.currentUser.currency, perPage: "10", page: "1")
+            }
         }
         .onDisappear {
             store.stopGasTimer()

@@ -1253,10 +1253,10 @@
 				054DC828283D854500A1FDA6 /* TokenDetailsHeaderSection.swift */,
 				05C1B8A228CDC39E007D703C /* TokenDetailsEquitySection.swift */,
 				054DC82B283D860800A1FDA6 /* TokenDetailOverviewSection.swift */,
-				05C1B8AE28CEFCAE007D703C /* TokenDetailNetworkSection.swift */,
 				0504A422283F287C000DB947 /* TokenDetailAboutSection.swift */,
-				05D389B828CF1C1200FFD3CD /* TokenDetailCategorySection.swift */,
+				05C1B8AE28CEFCAE007D703C /* TokenDetailNetworkSection.swift */,
 				05C1B8A528CDD780007D703C /* TokenDetailLinksSection.swift */,
+				05D389B828CF1C1200FFD3CD /* TokenDetailCategorySection.swift */,
 			);
 			path = Sections;
 			sourceTree = "<group>";

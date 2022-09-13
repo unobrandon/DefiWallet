@@ -26,14 +26,14 @@ struct PublicTreasuryView: View {
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
-                VStack(alignment: .leading, spacing: 5) {
+                VStack(alignment: .leading, spacing: 10) {
                     Text("A curated list of public companies that are holding large amounts of Bitcoin or Ethereum.")
                         .fontTemplate(DefaultTemplate.bodySemibold)
                         .multilineTextAlignment(.leading)
 
                     if let treasury = store.publicTreasury {
                         Text("The \(currentCoin.rawValue.capitalized) public treasury has a total of \("".formatLargeDoubleNumber(treasury.totalHoldings ?? 0, size: .large, scale: 2)) \(currentCoin == .bitcoin ? "BTC" : "ETH") with a value of $\("".formatLargeDoubleNumber(treasury.totalValueUsd ?? 0.00, size: .large, scale: 2)) that makes up a market cap dominance of \(treasury.marketCapDominance?.truncate(places: 2) ?? 0.00)%.")
-                            .fontTemplate(DefaultTemplate.captionPrimary)
+                            .fontTemplate(DefaultTemplate.caption)
                             .multilineTextAlignment(.leading)
                     }
                 }

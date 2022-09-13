@@ -30,7 +30,7 @@ struct ExchangesView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    VStack(alignment: .leading, spacing: 2.5) {
+                    VStack(alignment: .leading, spacing: 5) {
                         Text("A digital currency exchange (DCE), allows customers to trade crypto for other assets, such as traditional fiat or other cryptocurrency's.")
                             .fontTemplate(DefaultTemplate.bodySemibold)
                             .multilineTextAlignment(.leading)

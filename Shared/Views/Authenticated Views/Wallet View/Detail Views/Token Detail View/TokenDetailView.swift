@@ -28,7 +28,7 @@ struct TokenDetailView: View {
                 SwiftUI.GridItem(.flexible())]
     }()
 
-    let categoriesColumns = [SwiftUI.GridItem(.flexible(), alignment: .leading), SwiftUI.GridItem(.flexible(), alignment: .leading)]
+    var categories: [TokenCategory]?
 
     init(tokenModel: TokenModel?, tokenDetails: TokenDetails?, tokenDescriptor: TokenDescriptor?, externalId: String?, service: AuthenticatedServices) {
         self.service = service
@@ -37,6 +37,22 @@ struct TokenDetailView: View {
         self.tokenDetails = tokenDetails
         self.tokenDescriptor = tokenDescriptor
         self.walletStore = service.wallet
+
+        guard let categories = tokenModel?.categories?.filter({ $0 != "" }) else {
+            return
+        }
+
+        var allCategories: [TokenCategory] = []
+
+        for category in categories {
+            guard let category = category else { continue }
+
+            let id = category.replacingOccurrences(of: " ", with: "-").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").lowercased()
+            let result = TokenCategory(id: id, externalId: id, name: category, description: nil, marketCap: nil, marketCapChange24H: nil, top3_Coins: nil, volume24H: nil, updatedAt: nil)
+            allCategories.append(result)
+        }
+
+        self.categories = allCategories
     }
 
     var body: some View {
@@ -112,17 +128,12 @@ struct TokenDetailView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .onDisappear() {
-            self.tokenDescriptor = nil
-            self.tokenModel = nil
-            self.externalId = nil
-        }
         .onAppear {
             DispatchQueue.main.async {
                 Tool.hiddenTabBar()
             }
 
-            print("the token details are: \(String(describing: tokenModel?.externalId ?? "no id"))")
+            print("the token details are: \(String(describing: tokenModel?.externalId ?? tokenDetails?.tokenDescriptor?.externalID ?? tokenDescriptor?.externalID ?? "no id"))")
 
             if let completeBalance = self.walletStore.accountBalance?.completeBalance {
                 completeBalance.forEach({ bal in
@@ -131,30 +142,30 @@ struct TokenDetailView: View {
                             print("HAVE THIS ETH TOKEN!!!")
                         }
 
-                        if tokenModel?.allAddress?.binance == token.tokenAddress {
+                        if tokenModel?.allAddress?.binance == token.tokenAddress || tokenDetails?.allAddress?.binance == token.tokenAddress {
                             print("HAVE THIS BINANCE TOKEN!!!")
                         }
 
-                        if tokenModel?.allAddress?.avalanche == token.tokenAddress {
+                        if tokenModel?.allAddress?.avalanche == token.tokenAddress || tokenDetails?.allAddress?.avalanche == token.tokenAddress {
                             print("HAVE THIS Avalanche TOKEN!!!")
                         }
 
-                        if tokenModel?.allAddress?.polygon_pos == token.tokenAddress {
+                        if tokenModel?.allAddress?.polygon_pos == token.tokenAddress || tokenDetails?.allAddress?.polygon_pos == token.tokenAddress {
                             print("HAVE THIS polygon TOKEN!!!")
                         }
 
-                        if tokenModel?.allAddress?.fantom == token.tokenAddress {
+                        if tokenModel?.allAddress?.fantom == token.tokenAddress || tokenDetails?.allAddress?.fantom == token.tokenAddress {
                             print("HAVE THIS fantom TOKEN!!!")
                         }
 
-                        if tokenModel?.allAddress?.solana == token.tokenAddress {
+                        if tokenModel?.allAddress?.solana == token.tokenAddress || tokenDetails?.allAddress?.solana == token.tokenAddress {
                             print("HAVE THIS solana TOKEN!!!")
                         }
                     })
                 })
             }
 
-            guard let external = tokenModel?.externalId else { return }
+            guard let external = tokenModel?.externalId ?? tokenDetails?.tokenDescriptor?.externalID ?? tokenDescriptor?.externalID else { return }
 
             service.market.fetchTokenDetails(id: external, address: externalId, completion: { tokenDescriptor in
                 // Do your logic to get the token market data

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TokenCategory: Codable, Hashable {
+struct TokenCategory: Codable, Hashable, Identifiable {
 
     static func == (lhs: TokenCategory, rhs: TokenCategory) -> Bool {
         return lhs.id == rhs.id && lhs.name == rhs.name

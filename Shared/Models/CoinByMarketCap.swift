@@ -29,9 +29,8 @@ struct TokenDetails: Codable, Hashable {
     let discordURL, blockchainURL, projectURL: [String]?
     let githubURL, officialForumURL, bitbucketURL: [String]?
     var currentPrice: Double?
-    var marketCap, marketCapRank, overallRank: Int?
-    var fullyDilutedValuation: Int?
-    var totalVolume, high24H, low24H, priceChange24H: Double?
+    var marketCapRank, overallRank: Int?
+    var marketCap, totalVolume, high24H, low24H, priceChange24H, fullyDilutedValuation: Double?
     var priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
     var totalSupply, maxSupply: Double?
     var ath, athChangePercentage: Double?

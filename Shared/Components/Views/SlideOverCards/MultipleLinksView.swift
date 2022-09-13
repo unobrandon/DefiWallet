@@ -30,10 +30,14 @@ struct MultipleLinksView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
+                    .adjustsFontSizeToFitWidth(true)
+                    .minimumScaleFactor(0.7)
+                    .lineLimit(1)
 
                 Spacer()
             }
             .padding(.bottom)
+            .padding(.trailing, 50)
 
             ListSection(title: "Additional Links", hasPadding: false, style: service.themeStyle) {
                 ForEach(links, id: \.self) { link in

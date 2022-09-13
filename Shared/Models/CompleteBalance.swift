@@ -48,8 +48,7 @@ struct TokenModel: Codable, Hashable {
     var athDate, atlDate, lastUpdated, portfolioDiversity: String?
     let categories, discordUrl, blockchainUrl, projectUrl, githubUrl, bitbucketUrl, officialForumURL: [String?]?
     var decimals, overallRank, marketCapRank: Int?
-    var fullyDilutedValuation, marketCap: Int?
-    var nativeBalance, totalBalance: Double?
+    var nativeBalance, totalBalance, marketCap, fullyDilutedValuation: Double?
     var currentPrice, totalVolume, high24H, low24H, priceChange24H: Double?
     var priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
     var totalSupply, maxSupply: Double?

@@ -10,17 +10,20 @@ import SwiftUI
 struct CategoriesDetailView: View {
 
     @EnvironmentObject private var marketRouter: MarketsCoordinator.Router
+    @EnvironmentObject private var walletRouter: WalletCoordinator.Router
 
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: MarketsService
     let category: TokenCategory
+    let fromWalletView: Bool
 
     @State private var searchText: String = ""
     @State private var noMore: Bool = false
     @State var showIndicator: Bool = false
     @State private var limitCells: Int = 25
 
-    init(category: TokenCategory, service: AuthenticatedServices) {
+    init(fromWalletView: Bool? = nil, category: TokenCategory, service: AuthenticatedServices) {
+        self.fromWalletView = fromWalletView ?? false
         self.category = category
         self.service = service
         self.store = service.market
@@ -60,13 +63,17 @@ struct CategoriesDetailView: View {
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
 
-                ListSection(title: "top market cap", style: service.themeStyle) {
+                ListSection(title: !searchText.isEmpty ? "searched tokens" : "\(store.categoriesDetailFilters == .marketCapDesc ? "by top market cap" : store.categoriesDetailFilters == .volume ? "by top volume" : store.categoriesDetailFilters == .id ? "names A-Z" : "")", style: service.themeStyle) {
                     ForEach(store.tokenCategoryList.prefix(limitCells).indices, id: \.self) { index in
                         TokenListStandardCell(service: service, data: store.tokenCategoryList[index],
                                               isLast: false,
                                               style: service.themeStyle, action: {
-                            marketRouter.route(to: \.detailsTokenDetail, store.tokenCategoryList[index])
-                            print("the item is: \(store.tokenCategoryList[index].name ?? "no name")")
+                            if fromWalletView {
+                                walletRouter.route(to: \.tokenDetails, store.tokenCategoryList[index])
+                            } else {
+                                marketRouter.route(to: \.detailsTokenDetail, store.tokenCategoryList[index])
+                                print("the item is: \(store.tokenCategoryList[index].name ?? "no name")")
+                            }
                         })
                     }
                 }
@@ -76,7 +83,7 @@ struct CategoriesDetailView: View {
                         limitCells += 25
                         withAnimation(.easeInOut) {
                             showIndicator = false
-                            noMore = store.tokenCategories.count <= limitCells
+                            noMore = store.tokenCategoryList.count <= limitCells
                         }
                     }
                 }, label: {
@@ -97,9 +104,59 @@ struct CategoriesDetailView: View {
                 Tool.hiddenTabBar()
             }
 
-            guard let id = category.externalId else { return }
-            service.market.fetchCategoryDetails(categoryId: id, currency: service.currentUser.currency)
+            fetchTokenCategoriesList()
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Section {
+                        Button {
+                            store.tokenCategoryList.removeAll()
+                            withAnimation(.easeInOut) { store.categoriesDetailFilters = .id }
+                            self.limitCells = 25
+                            self.fetchTokenCategoriesList()
+                        } label: {
+                            Label("Name", systemImage: store.categoriesDetailFilters == .id ? "checkmark" : "")
+                        }
+
+                        Button {
+                            store.tokenCategoryList.removeAll()
+                            withAnimation(.easeInOut) { store.categoriesDetailFilters = .marketCapDesc }
+                            self.limitCells = 25
+                            self.fetchTokenCategoriesList()
+                        } label: {
+                            Label("Market Cap", systemImage: store.categoriesDetailFilters == .marketCapDesc ? "checkmark" : "")
+                        }
+
+                        Button {
+                            store.tokenCategoryList.removeAll()
+                            withAnimation(.easeInOut) { store.categoriesDetailFilters = .volume }
+                            self.limitCells = 25
+                            self.fetchTokenCategoriesList()
+                        } label: {
+                            Label("Volume", systemImage: store.categoriesDetailFilters == .volume ? "checkmark" : "")
+                        }
+                    }
+                } label: {
+                    HStack {
+                        Image(systemName: "list.bullet")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 18, height: 18, alignment: .center)
+                        Text("Sort")
+                    }
+                }
+                .buttonStyle(.borderless)
+                .controlSize(.small)
+                .buttonBorderShape(.roundedRectangle)
+                .buttonStyle(ClickInteractiveStyle(0.99))
+            }
+        }
+    }
+
+    private func fetchTokenCategoriesList() {
+        guard let id = category.externalId else { return }
+        service.market.fetchCategoryDetails(categoryId: id, currency: service.currentUser.currency)
     }
 
 }

@@ -28,13 +28,13 @@ struct TopLosersView: View {
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
-                VStack(alignment: .leading, spacing: 2.5) {
+                VStack(alignment: .leading, spacing: 10) {
                     Text("A list of top losers by 24 hour market cap percentage change.")
                         .fontTemplate(DefaultTemplate.bodySemibold)
                         .multilineTextAlignment(.leading)
 
                     Text("This list sorts from the top 250 tokens ranked on top market caps to ensure the rankings are reasonable.")
-                        .fontTemplate(DefaultTemplate.body)
+                        .fontTemplate(DefaultTemplate.caption)
                         .multilineTextAlignment(.leading)
                 }
                 .padding(.vertical, 10)
