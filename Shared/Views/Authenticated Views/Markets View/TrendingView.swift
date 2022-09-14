@@ -25,7 +25,7 @@ struct TrendingView: View {
                 ListSection(style: service.themeStyle) {
                     ForEach(store.trendingCoins, id: \.self) { item in
                         if let item = item.item {
-                            TrendingTokenStandardCell(service: service, data: item, isLast: store.trendingCoins.last?.item == item ? true : false, style: service.themeStyle, action: {
+                            TrendingTokenStandardCell(service: service, data: item, isLast: false, style: service.themeStyle, action: {
                                 guard let id = item.id else {
                                     #if os(iOS)
                                         HapticFeedback.errorHapticFeedback()
