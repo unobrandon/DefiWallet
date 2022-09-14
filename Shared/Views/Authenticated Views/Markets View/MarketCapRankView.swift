@@ -27,7 +27,7 @@ struct MarketCapRankView: View {
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
-                ListSection(style: service.themeStyle) {
+                ListSection(title: "by top market cap", style: service.themeStyle) {
                     ForEach(store.coinsByMarketCap.prefix(limitCells), id: \.self) { item in
                         TokenListStandardCell(service: service, data: item,
                                               isLast: store.coinsByMarketCap.count < limitCells ? store.coinsByMarketCap.last == item ? true : false : false,

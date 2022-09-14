@@ -43,9 +43,9 @@ struct NetworkSectionView: View {
                         .frame(width: 140)
                     }
                 }.padding(.horizontal)
-                .padding(.bottom, service.themeStyle == .shadow ? 20 : 0)
             }
         }
+        .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 15, x: 0, y: 8)
     }
 
 }

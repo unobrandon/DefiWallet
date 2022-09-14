@@ -30,28 +30,50 @@ struct TrendingTokenListCell: View {
                 HapticFeedback.rigidHapticFeedback()
             #endif
         }, label: {
-            HStack(alignment: .center, spacing: 5) {
-                Text("\((data.score ?? -1) + 1)")
+            HStack(alignment: .center, spacing: 10) {
+                Text("\((data.score ?? -1) + 1).)")
                     .fontTemplate(DefaultTemplate.caption_semibold)
 
-                RemoteImage(data.thumb ?? "", size: 22)
+                RemoteImage(data.thumb ?? "", size: 24)
                     .clipShape(Circle())
                     .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1.0))
                     .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 4, x: 0, y: 2)
-                    .padding(.trailing, 5)
 
-                Text(data.name ?? "").fontTemplate(DefaultTemplate.bodyMedium)                    .padding(.trailing, 5)
-                Text(data.symbol ?? "").fontTemplate(DefaultTemplate.caption_semibold)
-                Text("#\(data.marketCapRank ?? 0)").fontTemplate(DefaultTemplate.caption)
+                Text(data.symbol ?? "")
+                    .fontTemplate(DefaultTemplate.bodyMedium)
+                    .adjustsFontSizeToFitWidth(true)
+                    .minimumScaleFactor(0.8)
+                    .lineLimit(1)
+
+//                VStack(alignment: .leading, spacing: 0) {
+//                    Text(data.name ?? "")
+//                        .fontTemplate(DefaultTemplate.bodyMedium)
+//                        .adjustsFontSizeToFitWidth(true)
+//                        .minimumScaleFactor(0.8)
+//                        .lineLimit(2)
+//
+//                    Text(data.symbol ?? "")
+//                        .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
+//                }
+
+//                if let marketCapRank = data.marketCapRank {
+//                    Text("#\(marketCapRank)")
+//                        .fontTemplate(DefaultTemplate.caption_micro_Mono)
+//                        .minimumScaleFactor(0.925)
+//                        .padding(.vertical, 1)
+//                        .padding(.horizontal, 4)
+//                        .opacity(0.85)
+//                        .background(RoundedRectangle(cornerRadius: 3, style: .circular)
+//                            .foregroundColor(DefaultTemplate.gray5))
+//                }
+
+//                Spacer()
             }
-            .padding(.vertical, 7.5)
-            .padding(.horizontal, 15)
-            .background(RoundedRectangle(cornerRadius: 10, style: .circular)
-                .foregroundColor(Color("AccentColor").opacity(style == .shadow ? 1.0 : 0.15)).frame(height: 40).frame(maxWidth: .infinity))
-            .shadow(color: Color("AccentColor").opacity(style == .shadow ? 0.175 : 0.0),
-                    radius: 4, x: 0, y: 5)
-            .padding(1.5)
+//            .background(RoundedRectangle(cornerRadius: 10, style: .circular)
+//                .foregroundColor(Color("AccentColor").opacity(style == .shadow ? 1.0 : 0.15)).frame(height: 40).frame(maxWidth: .infinity))
+//            .shadow(color: Color("AccentColor").opacity(style == .shadow ? 0.175 : 0.0),
+//                    radius: 4, x: 0, y: 5)
         })
-        .buttonStyle(ClickInteractiveStyle(0.95))
+        .buttonStyle(ClickInteractiveStyle(0.99))
     }
 }

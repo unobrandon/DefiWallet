@@ -19,7 +19,7 @@ struct TokenDescriptor: Codable, Hashable {
     }
 
     let allAddress: AllAddress?
-    let projectURL, blockchainURL: [String]?
+    let projectURL, blockchainURL, categories: [String]?
     let officialForumURL, discordURL, blogURL, githubURL, bitbucketURL: [String]?
     let externalID, symbol, name, hashingAlgorithm: String?
     let tokenDescription, ethAddress, xdaiAddress, fantomAddress, avaxAddress, solanaAddress, moonriverAddress, moonbeamAddress, publicNotice: String?
@@ -34,6 +34,7 @@ struct TokenDescriptor: Codable, Hashable {
     enum CodingKeys: String, CodingKey {
         case allAddress = "all_address"
         case projectURL = "project_url"
+        case categories = "categories"
         case blockchainURL = "blockchain_url"
         case officialForumURL = "official_forum_url"
         case discordURL = "discord_url"
@@ -79,7 +80,7 @@ struct AllAddress: Codable, Hashable {
         hasher.combine(polygon_pos)
     }
 
-    let ethereum, xdai, polygon_pos, solana, moonriver, moonbeam, fantom, avalanche, huobi_token, binance : String?
+    let ethereum, xdai, polygon_pos, solana, moonriver, moonbeam, fantom, avalanche, huobi_token, binance, kucoin, arbitrum, okex, cronos, harmony : String?
 
     enum CodingKeys: String, CodingKey {
         case ethereum
@@ -92,6 +93,11 @@ struct AllAddress: Codable, Hashable {
         case polygon_pos = "polygon-pos"
         case huobi_token = "huobi-token"
         case binance = "binance-smart-chain"
+        case kucoin = "kucoin-community-chain"
+        case arbitrum = "arbitrum-one"
+        case okex = "okex-chain"
+        case cronos
+        case harmony = "harmony-shard-0"
     }
 
 }

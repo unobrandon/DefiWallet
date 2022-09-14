@@ -19,7 +19,7 @@ struct CollectableSeeAllCell: View {
 
     var body: some View {
         Button(action: { action() }, label: {
-            ListSection(hasPadding: false, style: style) {
+            ListSection(hasPadding: false, removeShadow: true, style: style) {
                 VStack(alignment: .center, spacing: 10) {
                     Image(systemName: "arrow.right.circle")
                         .resizable()

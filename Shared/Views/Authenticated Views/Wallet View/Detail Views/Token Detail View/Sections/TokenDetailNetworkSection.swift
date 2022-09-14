@@ -13,7 +13,7 @@ extension TokenDetailView {
 
     @ViewBuilder
     func detailsNetworksSection() -> some View {
-        if let allAddresses = tokenModel?.allAddress {
+        if let allAddresses = tokenModel?.allAddress ?? tokenDetails?.allAddress ?? tokenDescriptor?.allAddress {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Networks:")
                     .font(.caption)
@@ -26,83 +26,93 @@ extension TokenDetailView {
                 LazyVGrid(columns: Array(repeating: SwiftUI.GridItem(.flexible(), spacing: 7.5), count: MobileConstants.deviceType == .phone ? 2 : 3), spacing: 7.5) {
                     if let eth = allAddresses.ethereum {
                         tokenNetworkCell(name: "Ethereum", address: eth, action: { _ in
-                            UIPasteboard.general.string = eth
-                            HapticFeedback.successHapticFeedback()
-                            showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied ethereum address", subtitle: eth.formatAddress(8))
+                            copyAction("Ethereum", eth)
                         })
                     }
 
                     if let polygon = allAddresses.polygon_pos {
                         tokenNetworkCell(name: "Polygon", address: polygon, action: { _ in
-                            UIPasteboard.general.string = polygon
-                            HapticFeedback.successHapticFeedback()
-                            showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied polygon address", subtitle: polygon.formatAddress(8))
+                            copyAction("Polygon", polygon)
                         })
                     }
 
                     if let bnb = allAddresses.binance {
                         tokenNetworkCell(name: "Binance", address: bnb, action: { _ in
-                            UIPasteboard.general.string = bnb
-                            HapticFeedback.successHapticFeedback()
-                            showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied binance address", subtitle: bnb.formatAddress(8))
+                            copyAction("Binance", bnb)
                         })
                     }
 
                     if let avax = allAddresses.avalanche {
                         tokenNetworkCell(name: "Avalanche", address: avax, action: { _ in
-                            UIPasteboard.general.string = avax
-                            HapticFeedback.successHapticFeedback()
-                            showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied avalanche address", subtitle: avax.formatAddress(8))
+                            copyAction("Avalanche", avax)
                         })
                     }
 
                     if let fantom = allAddresses.fantom {
                         tokenNetworkCell(name: "Fantom", address: fantom, action: { _ in
-                            UIPasteboard.general.string = fantom
-                            HapticFeedback.successHapticFeedback()
-                            showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied fantom address", subtitle: fantom.formatAddress(8))
+                            copyAction("Fantom", fantom)
                         })
                     }
 
                     if let xdai = allAddresses.xdai {
                         tokenNetworkCell(name: "xDAI", address: xdai, action: { _ in
-                            UIPasteboard.general.string = xdai
-                            HapticFeedback.successHapticFeedback()
-                            showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied xDAI address", subtitle: xdai.formatAddress(8))
+                            copyAction("xDAI", xdai)
                         })
                     }
 
                     if let solana = allAddresses.solana {
                         tokenNetworkCell(name: "Solana", address: solana, action: { _ in
-                            UIPasteboard.general.string = solana
-                            HapticFeedback.successHapticFeedback()
-                            showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied solana address", subtitle: solana.formatAddress(8))
+                            copyAction("Solana", solana)
                         })
                     }
 
                     if let moonriver = allAddresses.moonriver {
                         tokenNetworkCell(name: "Moonriver", address: moonriver, action: { _ in
-                            UIPasteboard.general.string = moonriver
-                            HapticFeedback.successHapticFeedback()
-                            showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied moonriver address", subtitle: moonriver.formatAddress(8))
+                            copyAction("Moonriver", moonriver)
                         })
                     }
 
                     if let moonbeam = allAddresses.moonbeam {
                         tokenNetworkCell(name: "Moonbeam", address: moonbeam, action: { _ in
-                            UIPasteboard.general.string = moonbeam
-                            HapticFeedback.successHapticFeedback()
-                            showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied moonbeam address", subtitle: moonbeam.formatAddress(8))
+                            copyAction("Moonbeam", moonbeam)
                         })
                     }
 
                     if let huobi = allAddresses.huobi_token {
                         tokenNetworkCell(name: "Huobi Token", address: huobi, action: { _ in
-                            UIPasteboard.general.string = huobi
-                            HapticFeedback.successHapticFeedback()
-                            showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied huobi token address", subtitle: huobi.formatAddress(8))
+                            copyAction("Huobi Token", huobi)
                         })
                     }
+
+//                    if let kucoin = allAddresses.kucoin {
+//                        tokenNetworkCell(name: "KuCoin", address: kucoin, action: { _ in
+//                            copyAction("KuCoin", kucoin)
+//                        })
+//                    }
+
+//                    if let arbitrum = allAddresses.arbitrum {
+//                        tokenNetworkCell(name: "Arbitrum", address: arbitrum, action: { _ in
+//                            copyAction("Arbitrum", arbitrum)
+//                        })
+//                    }
+//
+//                    if let okex = allAddresses.okex {
+//                        tokenNetworkCell(name: "OKExChain", address: okex, action: { _ in
+//                            copyAction("OKExChain", okex)
+//                        })
+//                    }
+
+//                    if let cronos = allAddresses.cronos {
+//                        tokenNetworkCell(name: "Crypto.com", address: cronos, action: { _ in
+//                            copyAction("Crypto.com", cronos)
+//                        })
+//                    }
+//
+//                    if let harmony = allAddresses.harmony {
+//                        tokenNetworkCell(name: "Harmony", address: harmony, action: { _ in
+//                            copyAction("Harmony", harmony)
+//                        })
+//                    }
                 }
                 .padding(.horizontal, 5)
             }
@@ -122,6 +132,7 @@ extension TokenDetailView {
                     .scaledToFill()
                     .frame(width: 25, height: 25, alignment: .center)
                     .clipShape(Circle())
+                    .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
                     .padding(.leading, 10)
 
                 VStack(alignment: .leading, spacing: 0) {
@@ -145,10 +156,18 @@ extension TokenDetailView {
             }
             .padding(.vertical, 5)
             .background(RoundedRectangle(cornerRadius: 6, style: .circular)
-                .foregroundColor(Color("baseButton_selected")))
-            .foregroundColor(Color("baseButton_selected"))
+                .foregroundColor(Color("baseButton")))
+            .foregroundColor(Color("baseButton"))
+            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 5, x: 0, y: 3)
+            .overlay(RoundedRectangle(cornerRadius: 6, style: .circular).strokeBorder(DefaultTemplate.borderColor, lineWidth: service.themeStyle == .shadow ? 1.0 : 1.35))
         })
         .buttonStyle(ClickInteractiveStyle(0.98))
+    }
+
+    private func copyAction(_ name: String, _ address: String) {
+        UIPasteboard.general.string = address
+        HapticFeedback.successHapticFeedback()
+        showNotiHUD(image: "doc.on.doc", color: Color("AccentColor"), title: "Copied \(name) address", subtitle: address.formatAddress(8))
     }
 
 }

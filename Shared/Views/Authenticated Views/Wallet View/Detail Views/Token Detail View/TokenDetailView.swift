@@ -10,6 +10,7 @@ import SwiftUI
 struct TokenDetailView: View {
 
     @EnvironmentObject var walletRouter: WalletCoordinator.Router
+    @EnvironmentObject var marketRouter: MarketsCoordinator.Router
 
     @ObservedObject var service: AuthenticatedServices
     @ObservedObject private var walletStore: WalletService
@@ -29,8 +30,10 @@ struct TokenDetailView: View {
     }()
 
     var categories: [TokenCategory]?
+    let fromMarketView: Bool
 
-    init(tokenModel: TokenModel?, tokenDetails: TokenDetails?, tokenDescriptor: TokenDescriptor?, externalId: String?, service: AuthenticatedServices) {
+    init(fromMarketView: Bool? = nil, tokenModel: TokenModel?, tokenDetails: TokenDetails?, tokenDescriptor: TokenDescriptor?, externalId: String?, service: AuthenticatedServices) {
+        self.fromMarketView = fromMarketView ?? false
         self.service = service
         self.externalId = externalId
         self.tokenModel = tokenModel
@@ -38,7 +41,7 @@ struct TokenDetailView: View {
         self.tokenDescriptor = tokenDescriptor
         self.walletStore = service.wallet
 
-        guard let categories = tokenModel?.categories?.filter({ $0 != "" }) else {
+        guard let categories = tokenModel?.categories?.filter({ $0 != "" }) ?? tokenDetails?.categories?.filter({ $0 != "" }) ?? tokenDescriptor?.categories?.filter({ $0 != "" }) else {
             return
         }
 
@@ -133,12 +136,12 @@ struct TokenDetailView: View {
                 Tool.hiddenTabBar()
             }
 
-            print("the token details are: \(String(describing: tokenModel?.externalId ?? tokenDetails?.tokenDescriptor?.externalID ?? tokenDescriptor?.externalID ?? "no id"))")
+            print("the token details are: \(String(describing: tokenModel?.id ?? tokenModel?.externalId ?? tokenDetails?.tokenDescriptor?.externalID ?? tokenDescriptor?.externalID ??  "no id")) && \(String(describing: externalId))")
 
             if let completeBalance = self.walletStore.accountBalance?.completeBalance {
                 completeBalance.forEach({ bal in
                     bal.tokens?.forEach({ token in
-                        if tokenModel?.allAddress?.ethereum == token.tokenAddress || tokenDetails?.allAddress?.ethereum == token.tokenAddress {
+                        if tokenModel?.allAddress?.ethereum == token.tokenAddress || tokenDetails?.allAddress?.ethereum == token.tokenAddress || tokenDescriptor?.ethAddress == token.tokenAddress {
                             print("HAVE THIS ETH TOKEN!!!")
                         }
 
@@ -165,7 +168,7 @@ struct TokenDetailView: View {
                 })
             }
 
-            guard let external = tokenModel?.externalId ?? tokenDetails?.tokenDescriptor?.externalID ?? tokenDescriptor?.externalID else { return }
+            let external = tokenModel?.id ?? tokenModel?.externalId ?? tokenDetails?.id ?? tokenDescriptor?.externalID ?? externalId
 
             service.market.fetchTokenDetails(id: external, address: externalId, completion: { tokenDescriptor in
                 // Do your logic to get the token market data

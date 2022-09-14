@@ -13,7 +13,6 @@ struct TopSectionView: View {
 
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: MarketsService
-    @State private var placeholderItems: [String] = ["welcomeCarouselThree", "gradientBg1", "gradientBg2", "gradientBg3"]
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -22,32 +21,10 @@ struct TopSectionView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 20) {
-                    ForEach(store.trendingCoins, id: \.self) { data in
-                        if let data = data.item {
-                            TrendingTokenListCell(service: service, data: data, style: service.themeStyle, action: { item in
-                                print("selected the item: \(item.name ?? "")")
-                            })
-                        }
-                    }
-                }.marquee(duration: 30, direction: .rightToLeft)
-            }
-            .overlay(content: {
-                HStack {
-                    let color = Color("baseBackground")
-                    LinearGradient(colors: [color, color.opacity(0.75), color.opacity(0.5), color.opacity(0.01)], startPoint: .leading, endPoint: .trailing)
-                        .frame(width: 25)
+            LazyVGrid(columns: Array(repeating: SwiftUI.GridItem(.flexible(), spacing: 5), count: MobileConstants.deviceType == .phone ? 2 : 4), spacing: 5) {
 
-                    Spacer()
-                    LinearGradient(colors: [color, color.opacity(0.75), color.opacity(0.5), color.opacity(0.01)].reversed(), startPoint: .leading, endPoint: .trailing)
-                        .frame(width: 25)
-                }
-            })
-            .padding(.bottom, 10)
+                // MARK: Top Categories
 
-            // MARK: Top Categories / Exchanges
-            HStack(alignment: .center, spacing: 5) {
                 Button(action: {
                     print("Top Categories")
                     marketRouter.route(to: \.categoriesView)
@@ -78,6 +55,8 @@ struct TopSectionView: View {
                 })
                 .buttonStyle(ClickInteractiveStyle(0.975))
 
+                // MARK: Exchanges
+
                 Button(action: {
                     print("Exchanges")
                     marketRouter.route(to: \.exchangesView)
@@ -107,10 +86,9 @@ struct TopSectionView: View {
                     .shadow(color: .black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 12, x: 0, y: 6)
                 })
                 .buttonStyle(ClickInteractiveStyle(0.975))
-            }
 
-            // MARK: Top Gainer / Top Losers
-            HStack(alignment: .center, spacing: 5) {
+                // MARK: Top Gainer
+
                 Button(action: {
                     print("Top Gainers")
                     marketRouter.route(to: \.topGainers)
@@ -140,6 +118,8 @@ struct TopSectionView: View {
                     .shadow(color: .black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 12, x: 0, y: 6)
                 })
                 .buttonStyle(ClickInteractiveStyle(0.975))
+
+                // MARK: Top Losers
 
                 Button(action: {
                     print("Top Losers")
@@ -171,7 +151,34 @@ struct TopSectionView: View {
                 })
                 .buttonStyle(ClickInteractiveStyle(0.975))
             }
+            .padding(.horizontal)
         }
-        .padding([.horizontal, .bottom])
+        .padding(.bottom)
+
+//        ScrollView(.horizontal, showsIndicators: false) {
+//            HStack(spacing: 20) {
+//                ForEach(store.trendingCoins, id: \.self) { data in
+//                    if let data = data.item {
+//                        TrendingTokenListCell(service: service, data: data, style: service.themeStyle, action: { item in
+//                            print("selected the item: \(item.name ?? "")")
+//                        })
+//                    }
+//                }
+//            }.marquee(duration: 24, direction: .rightToLeft)
+//        }
+//        .overlay(content: {
+//            HStack {
+//                let color = Color("baseBackground")
+//                LinearGradient(colors: [color, color.opacity(0.75), color.opacity(0.5), color.opacity(0.01)], startPoint: .leading, endPoint: .trailing)
+//                    .frame(width: 25)
+//
+//                Spacer()
+//                LinearGradient(colors: [color, color.opacity(0.75), color.opacity(0.5), color.opacity(0.01)].reversed(), startPoint: .leading, endPoint: .trailing)
+//                    .frame(width: 25)
+//            }
+//        })
+//        .padding(.bottom)
+
     }
+
 }

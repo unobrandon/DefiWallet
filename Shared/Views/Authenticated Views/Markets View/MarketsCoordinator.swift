@@ -28,6 +28,7 @@ final class MarketsCoordinator: NavigationCoordinatable {
     @Route(.push) var tokenExternalDetail = makeExternalTokenDetail
     @Route(.push) var detailsTokenDetail = makeDetailsTokenDetail
     @Route(.push) var tokenDescriptorDetail = makeDescriptorTokenDetail
+    @Route(.modal) var safari = makeSafari
 
     let currentUser: CurrentUser
     let services: AuthenticatedServices

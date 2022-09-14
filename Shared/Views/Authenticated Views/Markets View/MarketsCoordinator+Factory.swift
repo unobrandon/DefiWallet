@@ -59,19 +59,23 @@ extension MarketsCoordinator {
     }
 
     @ViewBuilder func makeTokenDetail(tokenModel: TokenModel) -> some View {
-        TokenDetailView(tokenModel: tokenModel, tokenDetails: nil, tokenDescriptor: nil, externalId: nil, service: services)
+        TokenDetailView(fromMarketView: true, tokenModel: tokenModel, tokenDetails: nil, tokenDescriptor: nil, externalId: nil, service: services)
     }
 
     @ViewBuilder func makeExternalTokenDetail(externalId: String) -> some View {
-        TokenDetailView(tokenModel: nil, tokenDetails: nil, tokenDescriptor: nil, externalId: externalId, service: services)
+        TokenDetailView(fromMarketView: true, tokenModel: nil, tokenDetails: nil, tokenDescriptor: nil, externalId: externalId, service: services)
     }
 
     @ViewBuilder func makeDetailsTokenDetail(tokenDetails: TokenDetails) -> some View {
-        TokenDetailView(tokenModel: nil, tokenDetails: tokenDetails, tokenDescriptor: nil, externalId: nil, service: services)
+        TokenDetailView(fromMarketView: true, tokenModel: nil, tokenDetails: tokenDetails, tokenDescriptor: nil, externalId: nil, service: services)
     }
 
     @ViewBuilder func makeDescriptorTokenDetail(tokenDescriptor: TokenDescriptor) -> some View {
-        TokenDetailView(tokenModel: nil, tokenDetails: nil, tokenDescriptor: tokenDescriptor, externalId: nil, service: services)
+        TokenDetailView(fromMarketView: true, tokenModel: nil, tokenDetails: nil, tokenDescriptor: tokenDescriptor, externalId: nil, service: services)
+    }
+
+    @ViewBuilder func makeSafari(url: String) -> some View {
+        SafariView(url: URL(string: url)!)
     }
 
 }

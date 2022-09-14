@@ -70,6 +70,7 @@ struct CollectablesSectionView: View {
                 }
             })
             .padding(.horizontal)
+            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 15, x: 0, y: 8)
 
             if data.isEmpty {
                 Text("empty collectables")

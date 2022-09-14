@@ -14,7 +14,7 @@ struct TrendingSectionView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: MarketsService
 
-    @State private var limitCells: Int = 4
+    @State private var limitCells: Int = 6
     @Binding var isTrendingLoading: Bool
 
     init(isLoading: Binding<Bool>, service: AuthenticatedServices) {
@@ -25,35 +25,36 @@ struct TrendingSectionView: View {
 
     var body: some View {
         ListSection(style: service.themeStyle) {
-            Button(action: {
-                self.actionTap()
-            }, label: {
-                VStack(alignment: .center, spacing: 0) {
-                    ListTitleView(title: "🔥 Trending", actionText: "See all", style: service.themeStyle)
+            VStack(alignment: .center, spacing: 0) {
+                Button(action: {
+                    self.actionTap()
+                }, label: {
+                    ListTitleView(title: "🔥 Trending", actionText: "Show all", style: service.themeStyle)
+                })
+                .buttonStyle(DefaultInteractiveStyle(style: service.themeStyle))
 
-                    if store.trendingCoins.isEmpty, isTrendingLoading {
-                        LoadingView(title: "")
-                    } else if store.trendingCoins.isEmpty, !isTrendingLoading {
-                        HStack {
-                            Spacer()
-                            Text("error loading trending").fontTemplate(DefaultTemplate.caption)
-                            Spacer()
-                        }.padding(.vertical, 30)
-                    }
+                if store.trendingCoins.isEmpty, isTrendingLoading {
+                    LoadingView(title: "")
+                } else if store.trendingCoins.isEmpty, !isTrendingLoading {
+                    HStack {
+                        Spacer()
+                        Text("error loading trending").fontTemplate(DefaultTemplate.caption)
+                        Spacer()
+                    }.padding(.vertical, 30)
+                }
 
-                    LazyVStack(alignment: .center, spacing: 0) {
-                        ForEach(store.trendingCoins.prefix(limitCells), id: \.self) { item in
-                            if let item = item.item {
-                                TrendingTokenListCell(service: service, data: item, style: service.themeStyle, action: { item in
-                                    print("tapped trending: \(item.name ?? "")")
-                                })
-                            }
+                LazyVGrid(columns: Array(repeating: SwiftUI.GridItem(.flexible(), spacing: 5), count: MobileConstants.deviceType == .phone ? 2 : 3), alignment: .leading, spacing: 10) {
+                    ForEach(store.trendingCoins.prefix(limitCells), id: \.self) { item in
+                        if let item = item.item {
+                            TrendingTokenListCell(service: service, data: item, style: service.themeStyle, action: { item in
+                                print("tapped trending: \(item.name ?? "")")
+                            })
                         }
                     }
-                    .padding(.vertical, 7.5)
                 }
-            })
-            .buttonStyle(DefaultInteractiveStyle(style: service.themeStyle))
+                .padding(10)
+                .padding(.horizontal, 10)
+            }
             .frame(minWidth: 100, maxWidth: .infinity)
         }
     }

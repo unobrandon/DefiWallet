@@ -112,7 +112,7 @@ struct DefaultTemplate {
         #if targetEnvironment(macCatalyst)
         return Color(NSColor.systemGray4)
         #elseif os(macOS)
-        return Color(NSColor(red: 0.82, green: 0.82, blue: 0.84, alpha: 1.0))
+        return Color(NSColor(red: 0.89, green: 0.89, blue: 0.91, alpha: 1.0))
         #elseif os(iOS)
         return Color(.systemGray4)
         #endif
@@ -122,9 +122,29 @@ struct DefaultTemplate {
         #if targetEnvironment(macCatalyst)
         return Color(NSColor.systemGray3)
         #elseif os(macOS)
-        return Color(NSColor(red: 0.82, green: 0.82, blue: 0.84, alpha: 1.0))
+        return Color(NSColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1.0))
         #elseif os(iOS)
         return Color(.systemGray3)
+        #endif
+    }()
+
+    static var gray5: Color = {
+        #if targetEnvironment(macCatalyst)
+        return Color(NSColor.systemGray5)
+        #elseif os(macOS)
+        return Color(NSColor(red: 0.92, green: 0.92, blue: 0.94, alpha: 1.0))
+        #elseif os(iOS)
+        return Color(.systemGray5)
+        #endif
+    }()
+
+    static var gray6: Color = {
+        #if targetEnvironment(macCatalyst)
+        return Color(NSColor.systemGray6)
+        #elseif os(macOS)
+        return Color(NSColor(red: 0.94, green: 0.94, blue: 0.96, alpha: 1.0))
+        #elseif os(iOS)
+        return Color(.systemGray6)
         #endif
     }()
 

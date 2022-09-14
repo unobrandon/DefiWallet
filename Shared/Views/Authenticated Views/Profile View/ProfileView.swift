@@ -92,11 +92,11 @@ struct ProfileView: View {
                         print("Discord")
                     })
 
-                    ListStandardButton(title: "Twitter", systemImage: "lock", isLast: true, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Twitter", systemImage: "lock", isLast: false, style: service.themeStyle, action: {
                         print("Twitter")
                     })
 
-                    ListStandardButton(title: "FAQ & Support", systemImage: "square.text.square", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "FAQ & Support", systemImage: "square.text.square", isLast: true, style: service.themeStyle, action: {
                         print("FAQ")
                     })
                 }

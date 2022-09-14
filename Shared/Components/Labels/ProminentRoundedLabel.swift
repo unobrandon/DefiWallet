@@ -29,7 +29,5 @@ struct ProminentRoundedLabel: View {
             .padding(.horizontal, 6)
             .background(RoundedRectangle(cornerRadius: 5, style: .circular)
                             .foregroundColor(color.opacity(style == .shadow ? 1.0 : 0.15)))
-            .shadow(color: color.opacity(style == .shadow ? 0.175 : 0.0),
-                    radius: 5, x: 0, y: 3)
     }
 }

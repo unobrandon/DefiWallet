@@ -24,11 +24,7 @@ struct DefaultInteractiveStyle: ButtonStyle {
     }
 
     private func getColor(_ pressed: Bool) -> Color {
-        if style == .border {
-            return pressed ? Color("baseButton_selected_bordered") : Color(style == .border ? "baseBackground_bordered" : "baseBackground")
-        } else {
-            return pressed ? Color("baseButton_selected") : Color("baseButton")
-        }
+        return pressed ? Color(style == .border ? "baseButton_selected_bordered" : "baseButton_selected") : Color("baseButton")
     }
 
 }

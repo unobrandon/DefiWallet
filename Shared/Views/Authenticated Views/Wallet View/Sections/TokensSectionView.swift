@@ -68,7 +68,7 @@ struct TokensSectionView: View {
                 }
 
                 ForEach(tokens.prefix(limitCells), id: \.self) { item in
-                    TokenBalanceCell(service: service, data: item, isLast: tokens.count < limitCells ? tokens.last == item ? true : false : false, style: service.themeStyle, action: {
+                    TokenBalanceCell(service: service, data: item, isLast: false, style: service.themeStyle, action: {
                         walletRouter.route(to: \.tokenDetail, item)
                     })
 

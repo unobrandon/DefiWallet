@@ -27,12 +27,15 @@ extension TokenDetailView {
                     if let result = result,
                        let name = result.name {
                         Button(action: {
-                            print("go to category: \(name)")
-                            walletRouter.route(to: \.tokenCategoryDetail, result)
+                            if fromMarketView {
+                                marketRouter.route(to: \.categoryDetailView, result)
+                            } else {
+                                walletRouter.route(to: \.tokenCategoryDetail, result)
+                            }
                         }, label: {
-                            HStack(alignment: .top, spacing: 0) {
+                            HStack(alignment: .center, spacing: 0) {
                                 Text(name)
-                                    .fontTemplate(FontTemplate(font: Font.system(size: 12.0), weight: .medium, foregroundColor: .primary, lineSpacing: 0))
+                                    .fontTemplate(FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .primary, lineSpacing: 0))
                                     .adjustsFontSizeToFitWidth(true)
                                     .minimumScaleFactor(0.65)
                                     .lineLimit(2)
@@ -42,19 +45,20 @@ extension TokenDetailView {
                                     .resizable()
                                     .font(Font.title.weight(.semibold))
                                     .scaledToFit()
-                                    .frame(width: 6, height: 12, alignment: .center)
+                                    .frame(height: 12, alignment: .center)
                                     .foregroundColor(.secondary)
                                     .padding(.trailing, 5)
                             }
-                            .padding(10)
-                            .background(RoundedRectangle(cornerRadius: 6, style: .circular)
-                                .foregroundColor(Color("baseButton_selected")))
-                            .shadow(color: Color("baseButton_selected").opacity(service.themeStyle == .shadow ? 0.175 : 0.0),
-                                    radius: 5, x: 0, y: 3)
+                            .padding(.vertical, 7.5)
+                            .padding(.horizontal, 12)
+                            .background(RoundedRectangle(cornerRadius: 25, style: .circular)
+                                .foregroundColor(Color("baseButton")))
+                            .overlay(RoundedRectangle(cornerRadius: 25, style: .circular).strokeBorder(DefaultTemplate.borderColor, lineWidth: service.themeStyle == .shadow ? 1.0 : 1.35))
                         })
                         .buttonStyle(ClickInteractiveStyle(0.98))
                     }
                 })
+                .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 5, x: 0, y: 3)
                 .padding(.horizontal, 5)
             }
             .padding(.bottom, 30)

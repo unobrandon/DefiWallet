@@ -94,6 +94,8 @@ struct CustomLineChart: View {
                 let translation = value.location.x
                 let index = max(min(Int((translation / width).rounded() + 1), data.count - 1), 0)
 
+                guard data.count >= index + 1 else { return }
+
                 currentPlot = data[index].convertToCurrency()
                 if let time = timeline?[index] {
                     currentPlot += "\n\(Date(timeIntervalSince1970: Double(time)).shortDateFormate())"
@@ -126,7 +128,7 @@ struct CustomLineChart: View {
                                     Rectangle()
                                         .frame(height: 1)
                                         .frame(maxWidth: .infinity)
-                                        .foregroundColor(.systemGray6)
+                                        .foregroundColor(DefaultTemplate.borderColor)
                                 }
                             }
                         }

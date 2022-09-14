@@ -13,17 +13,18 @@ struct TrendingCoins: Codable {
 }
 
 // MARK: - TrendingCoin
-struct TrendingCoin: Codable, Hashable {
+struct TrendingCoin: Codable, Hashable, Identifiable {
 
     static func == (lhs: TrendingCoin, rhs: TrendingCoin) -> Bool {
-        return lhs.item == rhs.item && lhs.item == rhs.item
+        return lhs.id == rhs.id && lhs.item == rhs.item
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(item)
+        hasher.combine(id)
         hasher.combine(item)
     }
 
+    let id: String?
     let item: TrendingItem?
 }
 

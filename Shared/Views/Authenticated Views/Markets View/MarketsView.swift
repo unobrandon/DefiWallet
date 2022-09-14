@@ -51,7 +51,7 @@ struct MarketsView: View {
 
             self.gridViews = [
                 AnyView(TopSectionView(service: service)),
-//                AnyView(TrendingSectionView(isLoading: $isTrendingLoading, service: service)),
+                AnyView(TrendingSectionView(isLoading: $isTrendingLoading, service: service)),
                 AnyView(TopCoinsSectionView(isLoading: $isMarketCapLoading, service: service))
             ]
 

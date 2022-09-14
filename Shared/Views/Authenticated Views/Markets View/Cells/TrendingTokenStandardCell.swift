@@ -30,24 +30,42 @@ struct TrendingTokenStandardCell: View {
                 self.actionTap()
             }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
-                    HStack(alignment: .top, spacing: 5) {
+                    HStack(alignment: .top, spacing: 10) {
                         Text("\((data.score ?? -1) + 1)")
                             .fontTemplate(DefaultTemplate.caption_semibold)
 
-                        RemoteImage(data.small ?? "", size: 36)
+                        RemoteImage(data.small ?? "", size: 42)
                             .clipShape(Circle())
                             .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1))
-                            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
+                            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 6, x: 0, y: 4)
 
                         VStack(alignment: .leading, spacing: 0) {
-                            Text(data.name ?? "").fontTemplate(DefaultTemplate.gasPriceFont)
-                            Text(data.symbol ?? "").fontTemplate(DefaultTemplate.body_secondary)
+                            Text(data.name ?? "")
+                                .fontTemplate(DefaultTemplate.gasPriceFont)
+                                .adjustsFontSizeToFitWidth(true)
+                                .minimumScaleFactor(0.85)
+                                .lineLimit(1)
+
+                            if let symbol = data.symbol?.uppercased() {
+                                Text(symbol)
+                                    .fontTemplate(DefaultTemplate.body_secondary)
+                                    .offset(y: -1.5)
+                            }
                         }
 
                         Spacer()
                         VStack(alignment: .trailing, spacing: 0) {
-                            HStack(alignment: .center, spacing: 10) {
-                                Text("#\(data.marketCapRank ?? 0)").fontTemplate(DefaultTemplate.bodyMedium)
+                            HStack(alignment: .center, spacing: 15) {
+                                if let marketCapRank = data.marketCapRank {
+                                    Text("#\(marketCapRank)")
+                                        .fontTemplate(DefaultTemplate.caption_micro_Mono)
+                                        .minimumScaleFactor(0.925)
+                                        .padding(.vertical, 1)
+                                        .padding(.horizontal, 4)
+                                        .opacity(0.85)
+                                        .background(RoundedRectangle(cornerRadius: 3, style: .circular)
+                                            .foregroundColor(DefaultTemplate.gray5))
+                                }
 
                                 Image(systemName: "chevron.right")
                                     .resizable()

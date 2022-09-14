@@ -29,7 +29,7 @@ struct CollectableImageCell: View {
 
     var body: some View {
         Button(action: { action() }, label: {
-            ListSection(hasPadding: false, style: service.themeStyle) {
+            ListSection(hasPadding: false, removeShadow: true, style: service.themeStyle) {
                 VStack(alignment: .leading, spacing: 0) {
                     if let uriResponce = uriResponce {
                         ZStack(alignment: .bottomLeading) {

@@ -28,7 +28,7 @@ struct NetworkVerticalCell: View {
         Button(action: {
             self.actionTap()
         }, label: {
-            ListSection(hasPadding: false, style: service.themeStyle) {
+            ListSection(hasPadding: false, removeShadow: true, style: service.themeStyle) {
                 VStack(alignment: .leading, spacing: 2.5) {
                     HStack(alignment: .top) {
                         Image((network.network == "bsc" ? "binance" : network.network ?? "") + "_logo")

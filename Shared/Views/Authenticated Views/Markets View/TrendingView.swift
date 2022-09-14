@@ -44,8 +44,10 @@ struct TrendingView: View {
                         }
                     }
                 }
+                .padding(.vertical)
+
+                FooterInformation()
             }
-            .padding(.vertical)
         })
         .navigationBarTitle("🔥 Trending", displayMode: .inline)
         .onAppear {
