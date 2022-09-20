@@ -139,9 +139,9 @@ class UnauthenticatedServices: ObservableObject {
         return true
     }
 
-    func registerUser(username: String, password: String, address: String, currency: String, deviceUuid: String, completion: ((Bool) -> Void)?) {
+    func registerUser(username: String, password: String, address: String, currency: String, deviceToken: String, completion: ((Bool) -> Void)?) {
         DispatchQueue.global(qos: .userInteractive).async {
-            let backendUrl: String = "createNewUser?username=\(username)&password=\(password)&address=\(address)&currency=\(currency)&uuid=\(deviceUuid)"
+            let backendUrl: String = "createNewUser?username=\(username)&password=\(password)&address=\(address)&currency=\(currency)&deviceToken=\(deviceToken)"
 
             AF.request(Constants.backendBaseUrl + backendUrl, method: .get).responseDecodable(of: RegisteredUser.self) { response in
                 switch response.result {

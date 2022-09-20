@@ -43,10 +43,10 @@ struct TrendingSectionView: View {
                     }.padding(.vertical, 30)
                 }
 
-                LazyVGrid(columns: Array(repeating: SwiftUI.GridItem(.flexible(), spacing: 5), count: MobileConstants.deviceType == .phone ? 2 : 3), alignment: .leading, spacing: 10) {
-                    ForEach(store.trendingCoins.prefix(limitCells), id: \.self) { item in
-                        if let item = item.item {
-                            TrendingTokenListCell(service: service, data: item, style: service.themeStyle, action: { item in
+                LazyVGrid(columns: Array(repeating: SwiftUI.GridItem(.flexible(), spacing: 2), count: MobileConstants.deviceType == .phone ? 2 : 3), alignment: .leading, spacing: 10) {
+                    ForEach(store.trendingCoins.prefix(limitCells).indices, id: \.self) { index in
+                        if let item = store.trendingCoins[index].item {
+                            TrendingTokenListCell(service: service, data: item, index: index, style: service.themeStyle, action: { item in
                                 print("tapped trending: \(item.name ?? "")")
                             })
                         }

@@ -13,8 +13,10 @@ extension TokenDetailView {
 
     @ViewBuilder
     func detailsAboutSection() -> some View {
-        VStack(alignment: .center, spacing: 10) {
-            ListSection(title: "About", hasPadding: true, style: service.themeStyle) {
+        VStack(alignment: .center, spacing: 5) {
+            ListTitleView(title: "About", showDivider: false, style: service.themeStyle)
+
+            ListSection(hasPadding: true, style: service.themeStyle) {
                 if let description = tokenModel?.description ?? tokenDetails?.tokenDescription ?? tokenDescriptor?.tokenDescription, !description.isEmpty {
                     ViewMoreText(description, isCaption: false, lineLimit: 5)
                         .padding(.horizontal)

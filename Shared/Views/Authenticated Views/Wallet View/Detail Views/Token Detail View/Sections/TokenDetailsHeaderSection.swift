@@ -35,7 +35,7 @@ extension TokenDetailView {
                                 .padding(.horizontal, 4.5)
                                 .opacity(0.85)
                                 .background(RoundedRectangle(cornerRadius: 3, style: .circular)
-                                    .foregroundColor(DefaultTemplate.gray5.opacity(service.themeStyle == .shadow ? 1.0 : 0.15)))
+                                    .foregroundColor(DefaultTemplate.gray5))
                         }
 
                         Text(tokenDescriptor?.symbol?.uppercased() ?? tokenModel?.symbol?.uppercased() ?? tokenDetails?.symbol?.uppercased() ?? "")

@@ -14,14 +14,8 @@ extension TokenDetailView {
     @ViewBuilder
     func detailsNetworksSection() -> some View {
         if let allAddresses = tokenModel?.allAddress ?? tokenDetails?.allAddress ?? tokenDescriptor?.allAddress {
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Networks:")
-                    .font(.caption)
-                    .fontWeight(.regular)
-                    .textCase(.uppercase)
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal)
+            VStack(alignment: .leading, spacing: 5) {
+                ListTitleView(title: "Networks", showDivider: false, style: service.themeStyle)
 
                 LazyVGrid(columns: Array(repeating: SwiftUI.GridItem(.flexible(), spacing: 7.5), count: MobileConstants.deviceType == .phone ? 2 : 3), spacing: 7.5) {
                     if let eth = allAddresses.ethereum {
@@ -114,10 +108,9 @@ extension TokenDetailView {
 //                        })
 //                    }
                 }
-                .padding(.horizontal, 5)
+                .padding(.horizontal)
             }
-            .padding(.bottom, 30)
-            .padding(.horizontal)
+            .padding(.bottom, 10)
         }
     }
 

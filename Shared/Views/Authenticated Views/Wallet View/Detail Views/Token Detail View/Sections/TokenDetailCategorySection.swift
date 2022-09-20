@@ -15,17 +15,11 @@ extension TokenDetailView {
     func detailsCategorySection() -> some View {
         if let categories = categories, !categories.isEmpty {
             VStack(alignment: .leading, spacing: 10) {
-                Text("Categories:")
-                    .font(.caption)
-                    .fontWeight(.regular)
-                    .textCase(.uppercase)
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal)
+                ListTitleView(title: "Categories", showDivider: false, style: service.themeStyle)
 
-                StaggeredGrid(columns: MobileConstants.deviceType == .phone ? 2 : 3, showsIndicators: false, spacing: 5, list: categories, itemLimit: 100, content: { result in
-                    if let result = result,
-                       let name = result.name {
+                FlexibleView(data: categories, spacing: 5, alignment: .leading) { result in
+//                    if let result = result,
+//                       let name = result.name {
                         Button(action: {
                             if fromMarketView {
                                 marketRouter.route(to: \.categoryDetailView, result)
@@ -34,8 +28,8 @@ extension TokenDetailView {
                             }
                         }, label: {
                             HStack(alignment: .center, spacing: 0) {
-                                Text(name)
-                                    .fontTemplate(FontTemplate(font: Font.system(size: 12.0), weight: .regular, foregroundColor: .primary, lineSpacing: 0))
+                                Text(result.name ?? "")
+                                    .fontTemplate(FontTemplate(font: Font.system(size: 12.0), weight: .medium, foregroundColor: service.themeStyle == .shadow ? Color.white : Color("AccentColor"), lineSpacing: 0))
                                     .adjustsFontSizeToFitWidth(true)
                                     .minimumScaleFactor(0.65)
                                     .lineLimit(2)
@@ -46,23 +40,24 @@ extension TokenDetailView {
                                     .font(Font.title.weight(.semibold))
                                     .scaledToFit()
                                     .frame(height: 12, alignment: .center)
-                                    .foregroundColor(.secondary)
+                                    .foregroundColor(service.themeStyle == .shadow ? Color.white : Color("AccentColor"))
                                     .padding(.trailing, 5)
                             }
                             .padding(.vertical, 7.5)
                             .padding(.horizontal, 12)
                             .background(RoundedRectangle(cornerRadius: 25, style: .circular)
-                                .foregroundColor(Color("baseButton")))
-                            .overlay(RoundedRectangle(cornerRadius: 25, style: .circular).strokeBorder(DefaultTemplate.borderColor, lineWidth: service.themeStyle == .shadow ? 1.0 : 1.35))
+                                .foregroundColor(Color("AccentColor").opacity(service.themeStyle == .shadow ? 1.0 : 0.15)))
+                            .shadow(color: Color("AccentColor").opacity(service.themeStyle == .shadow ? 0.175 : 0.0),
+                                    radius: 5, x: 0, y: 3)
+                            .overlay(RoundedRectangle(cornerRadius: 25, style: .circular).strokeBorder(Color("AccentColor"), lineWidth: service.themeStyle == .shadow ? 0.0 : 0.75))
                         })
                         .buttonStyle(ClickInteractiveStyle(0.98))
-                    }
-                })
+//                    }
+                }
                 .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 5, x: 0, y: 3)
-                .padding(.horizontal, 5)
+                .padding(.horizontal)
             }
-            .padding(.bottom, 30)
-            .padding(.horizontal)
+            .padding(.bottom)
         }
     }
 

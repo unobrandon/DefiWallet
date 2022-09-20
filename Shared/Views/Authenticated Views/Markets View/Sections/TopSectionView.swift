@@ -153,7 +153,7 @@ struct TopSectionView: View {
             }
             .padding(.horizontal)
         }
-        .padding(.bottom)
+        .padding(.bottom, 30)
 
 //        ScrollView(.horizontal, showsIndicators: false) {
 //            HStack(spacing: 20) {

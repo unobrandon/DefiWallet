@@ -184,10 +184,10 @@ class WalletService: ObservableObject {
                 }
 
                 if let storage = StorageService.shared.balanceStorage {
-                    storage.async.setObject(accountBalance, forKey: "balanceList") { _ in
-                        completion(self.accountBalance?.completeBalance)
-                    }
+                    storage.async.setObject(accountBalance, forKey: "balanceList") { _ in }
                 }
+
+                completion(self.accountBalance?.completeBalance)
 
             case .failure(let error):
                 print("error loading balance: \(error)")

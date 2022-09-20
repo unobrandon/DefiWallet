@@ -42,10 +42,11 @@ struct TokensSectionView: View {
     }
 
     @State private var limitCells: Int = 5
-    @State private var isLoading: Bool = false
     @State private var emptyTokens: Bool = false
+    @Binding private var isLoading: Bool
 
-    init(network: String? = nil, service: AuthenticatedServices) {
+    init(isLoading: Binding<Bool>, network: String? = nil, service: AuthenticatedServices) {
+        self._isLoading = isLoading
         self.service = service
         self.store = service.wallet
         self.network = network
@@ -56,26 +57,26 @@ struct TokensSectionView: View {
             SectionHeaderView(title: "Tokens", actionTitle: tokens.isEmpty ? "" : "Show all", action: showMoreLess)
             .padding(.bottom, 5)
 
-            ListSection(style: service.themeStyle) {
-                if tokens.isEmpty, isLoading {
-                    LoadingView(title: "")
-                } else if tokens.isEmpty, !isLoading {
-                    HStack {
-                        Spacer()
-                        Text("empty tokens").fontTemplate(DefaultTemplate.caption)
-                        Spacer()
-                    }.padding(.vertical)
-                }
-
-                ForEach(tokens.prefix(limitCells), id: \.self) { item in
-                    TokenBalanceCell(service: service, data: item, isLast: false, style: service.themeStyle, action: {
-                        walletRouter.route(to: \.tokenDetail, item)
-                    })
-
-                    if limitCells <= tokens.count, item == tokens.prefix(limitCells).last {
-                        ListStandardButton(title: "show all...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
-                            walletRouter.route(to: \.tokens, network)
+            if tokens.isEmpty, isLoading {
+                LoadingView(title: "")
+            } else if tokens.isEmpty, !isLoading {
+                HStack {
+                    Spacer()
+                    Text("empty tokens").fontTemplate(DefaultTemplate.caption)
+                    Spacer()
+                }.padding(.vertical)
+            } else {
+                ListSection(style: service.themeStyle) {
+                    ForEach(tokens.prefix(limitCells), id: \.self) { item in
+                        TokenBalanceCell(service: service, data: item, isLast: false, style: service.themeStyle, action: {
+                            walletRouter.route(to: \.tokenDetail, item)
                         })
+
+                        if limitCells <= tokens.count, item == tokens.prefix(limitCells).last {
+                            ListStandardButton(title: "show all...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                                walletRouter.route(to: \.tokens, network)
+                            })
+                        }
                     }
                 }
             }

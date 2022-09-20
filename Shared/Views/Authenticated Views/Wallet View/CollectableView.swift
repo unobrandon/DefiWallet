@@ -30,7 +30,7 @@ struct CollectableView: View {
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
-                StaggeredGrid(columns: MobileConstants.deviceType == .phone ? 2 : 3, showsIndicators: false, spacing: 2.5, list: filterCollectables(), itemLimit: self.limitCells, content: { nftResult in
+                StaggeredGrid(columns: MobileConstants.deviceType == .phone ? 2 : 3, showsIndicators: false, spacing: 10, list: filterCollectables(), itemLimit: self.limitCells, content: { nftResult in
                     CollectableImageCell(service: service, data: nftResult, style: service.themeStyle, size: .large, action: {
                         // walletRouter.route(to: \.tokenDetail, item)
                     })

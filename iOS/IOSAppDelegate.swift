@@ -15,8 +15,8 @@ class IOSAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCent
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.registerForPushNotifications()
-//        let deviceIdentifier: String = UIDevice.current.identifierForVendor!.uuidString
-//        print("hello did finish: \(deviceIdentifier)")
+        let deviceIdentifier: String = UIDevice.current.identifierForVendor!.uuidString
+        print("hello did finish: \(deviceIdentifier)")
 
         return true
     }

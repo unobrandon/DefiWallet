@@ -44,7 +44,7 @@ struct NewsBlogSection: View {
                     LazyVStack(alignment: .center, spacing: 0) {
                         ForEach(store.trendingCoins.prefix(limitCells), id: \.self) { item in
                             if let item = item.item {
-                                TrendingTokenListCell(service: service, data: item, style: service.themeStyle, action: { item in
+                                TrendingTokenListCell(service: service, data: item, index: nil, style: service.themeStyle, action: { item in
                                     print("tapped trending: \(item.name ?? "")")
                                 })
                             }

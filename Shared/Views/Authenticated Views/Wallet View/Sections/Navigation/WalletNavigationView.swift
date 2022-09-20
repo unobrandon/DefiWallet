@@ -12,16 +12,14 @@ struct WalletNavigationView: View {
     private let service: AuthenticatedServices
     @ObservedObject private var store: WalletService
     @Binding var scrollOffset: CGFloat
-    @Binding var isLoading: Bool
 
     @State var connectionStatus: String = "Welcome"
     @State var hasCopiedAddress: Bool = false
 
-    init(service: AuthenticatedServices, scrollOffset: Binding<CGFloat>, isLoading: Binding<Bool>) {
+    init(service: AuthenticatedServices, scrollOffset: Binding<CGFloat>) {
         self.service = service
         self.store = service.wallet
         self._scrollOffset = scrollOffset
-        self._isLoading = isLoading
     }
 
     var body: some View {
@@ -43,13 +41,6 @@ struct WalletNavigationView: View {
                     }
                 } else {
                     UserAvatar(size: 34, user: service.currentUser, style: service.themeStyle)
-                        .overlay(
-                            ZStack {
-                                if isLoading {
-                                    LoadingIndicator(size: 46)
-                                }
-                            }
-                        )
                 }
 
                 Circle()

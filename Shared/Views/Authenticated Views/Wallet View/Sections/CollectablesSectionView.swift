@@ -49,28 +49,27 @@ struct CollectablesSectionView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            SectionHeaderView(title: "Collectables", actionTitle: store.history.isEmpty ? "" : "Show all", action: {
+            SectionHeaderView(title: "Collectables", actionTitle: data.isEmpty ? "" : "Show all", action: {
                 seeAll()
             })
             .padding(.vertical, 5)
 
-            if isLoading, store.accountBalance?.completeBalance != nil {
+            if isLoading, store.accountBalance?.completeBalance == nil {
                 LoadingView(title: "")
             }
 
-            StaggeredGrid(columns: MobileConstants.deviceType == .phone ? 3 : 4, showsIndicators: false, spacing: 1, list: data, itemLimit: self.limitCells, content: { nftResult in
-                if limitCells <= data.count, nftResult == data.prefix(limitCells).last {
-                    CollectableSeeAllCell(style: service.themeStyle, action: {
-                        seeAll()
-                    })
-                } else {
+            StaggeredGrid(columns: MobileConstants.deviceType == .phone ? 3 : 4, showsIndicators: false, spacing: 5, list: data, itemLimit: self.limitCells, content: { nftResult in
+//                if limitCells <= data.count, nftResult == data.prefix(limitCells).last {
+//                    CollectableSeeAllCell(style: service.themeStyle, action: {
+//                        seeAll()
+//                    })
+//                } else {
                     CollectableImageCell(service: service, data: nftResult, style: service.themeStyle, action: {
                         print("collectable tapped")
                     })
-                }
+//                }
             })
             .padding(.horizontal)
-            .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 15, x: 0, y: 8)
 
             if data.isEmpty {
                 Text("empty collectables")

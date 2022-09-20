@@ -75,9 +75,6 @@ struct TopCoinsSectionView: View {
                 .padding(.vertical)
                 .padding(.bottom, 40)
         }
-        .onAppear {
-            fetchTopCoins()
-        }
     }
 
     private func showMoreLess() {
@@ -86,12 +83,6 @@ struct TopCoinsSectionView: View {
         #if os(iOS)
             HapticFeedback.rigidHapticFeedback()
         #endif
-    }
-
-    private func fetchTopCoins() {
-        store.fetchCoinsByMarketCap(currency: service.currentUser.currency, perPage: 25, page: 1, completion: {
-            isMarketCapLoading = false
-        })
     }
 
 }

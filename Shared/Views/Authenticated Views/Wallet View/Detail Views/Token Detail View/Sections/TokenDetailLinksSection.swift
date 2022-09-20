@@ -13,8 +13,10 @@ extension TokenDetailView {
 
     @ViewBuilder
     func detailsLinksSection() -> some View {
-        VStack(alignment: .center, spacing: 0) {
-            ListSection(title: "Links", hasPadding: true, style: service.themeStyle) {
+        VStack(alignment: .center, spacing: 5) {
+            ListTitleView(title: "Links", showDivider: false, style: service.themeStyle)
+
+            ListSection(hasPadding: true, style: service.themeStyle) {
                 if let blockchainURL = tokenDescriptor?.blockchainURL?.filter { $0 != "" } ?? tokenModel?.blockchainUrl?.filter { $0 != "" } ?? tokenDetails?.blockchainURL?.filter { $0 != "" }, !blockchainURL.isEmpty {
                     ListStandardButton(title: "Blockchain Explorer", systemImage: "link", isLast: false, hasHaptic: false, style: service.themeStyle, action: {
                         if blockchainURL.count == 1 {
@@ -119,9 +121,11 @@ extension TokenDetailView {
             }
 
             detailsCategorySection()
-                .padding(.top, 10)
+                .padding(.top, 5)
 
-            ListSection(title: "Social", hasPadding: true, style: service.themeStyle) {
+            ListTitleView(title: "Social", showDivider: false, style: service.themeStyle)
+
+            ListSection(hasPadding: true, style: service.themeStyle) {
                 if let discordURL = tokenDescriptor?.discordURL?.filter { $0 != "" } ?? tokenModel?.discordUrl?.filter { $0 != "" } ?? tokenDetails?.discordURL?.filter { $0 != "" }, !discordURL.isEmpty {
                     ListStandardButton(title: "Discord", localImage: "discord_logo", isLast: false, hasHaptic: false, style: service.themeStyle, action: {
                         if discordURL.count == 1 {

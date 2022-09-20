@@ -13,11 +13,13 @@ struct TrendingTokenListCell: View {
 
     private let data: TrendingItem
     private let style: AppStyle
+    private let index: Int?
     private let action: (TrendingItem) -> Void
 
-    init(service: AuthenticatedServices, data: TrendingItem, style: AppStyle, action: @escaping (TrendingItem) -> Void) {
+    init(service: AuthenticatedServices, data: TrendingItem, index: Int? = nil, style: AppStyle, action: @escaping (TrendingItem) -> Void) {
         self.service = service
         self.data = data
+        self.index = index ?? -1
         self.style = style
         self.action = action
     }
@@ -31,10 +33,12 @@ struct TrendingTokenListCell: View {
             #endif
         }, label: {
             HStack(alignment: .center, spacing: 10) {
-                Text("\((data.score ?? -1) + 1).)")
-                    .fontTemplate(DefaultTemplate.caption_semibold)
+                if let index = index {
+                    Text("\(index + 1).)")
+                        .fontTemplate(DefaultTemplate.caption_semibold)
+                }
 
-                RemoteImage(data.thumb ?? "", size: 24)
+                RemoteImage(data.thumb ?? "", size: 22)
                     .clipShape(Circle())
                     .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1.0))
                     .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 4, x: 0, y: 2)

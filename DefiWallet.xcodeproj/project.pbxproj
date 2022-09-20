@@ -611,6 +611,8 @@
 		05E904A7287547D000A47F78 /* BackendSocketService+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E904A5287547D000A47F78 /* BackendSocketService+Extension.swift */; };
 		05E904A9287554CC00A47F78 /* TokenPricesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E904A8287554CC00A47F78 /* TokenPricesModel.swift */; };
 		05E904AA287554CC00A47F78 /* TokenPricesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E904A8287554CC00A47F78 /* TokenPricesModel.swift */; };
+		05ED7FA628D567E9007D8623 /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED7FA528D567E9007D8623 /* FlexibleView.swift */; };
+		05ED7FA728D567E9007D8623 /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED7FA528D567E9007D8623 /* FlexibleView.swift */; };
 		05EE4431281C8E1500D4189F /* BlockAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE4430281C8E1500D4189F /* BlockAvatar.swift */; };
 		05EE4432281C8E1500D4189F /* BlockAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE4430281C8E1500D4189F /* BlockAvatar.swift */; };
 		05F7B58228088072005A94C8 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 05F7B58128088072005A94C8 /* SocketIO */; };
@@ -946,6 +948,7 @@
 		05E904A2287545D100A47F78 /* BackendSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendSocketService.swift; sourceTree = "<group>"; };
 		05E904A5287547D000A47F78 /* BackendSocketService+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BackendSocketService+Extension.swift"; sourceTree = "<group>"; };
 		05E904A8287554CC00A47F78 /* TokenPricesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenPricesModel.swift; sourceTree = "<group>"; };
+		05ED7FA528D567E9007D8623 /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
 		05EE4430281C8E1500D4189F /* BlockAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockAvatar.swift; sourceTree = "<group>"; };
 		05F7B58328090518005A94C8 /* WalletService+AddressSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletService+AddressSocket.swift"; sourceTree = "<group>"; };
 		05F8EE1D27FFFBD0003BBC23 /* TokenCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCategory.swift; sourceTree = "<group>"; };
@@ -1130,6 +1133,7 @@
 				05002E66282B70BD0010AF39 /* Refresh */,
 				053C7D3A27CD903B0081DCEA /* MovingNumbersView.swift */,
 				05D40F90285D9A98002BDA0F /* StaggeredGrid.swift */,
+				05ED7FA528D567E9007D8623 /* FlexibleView.swift */,
 				05583C9827E965FF00640E75 /* SafariView.swift */,
 				0500307128581079000C5DFF /* YTVideoView.swift */,
 				05CA873428053243006FACE0 /* SVGWebView.swift */,
@@ -2321,6 +2325,7 @@
 				05A6AAAB27F93C0600824C76 /* TrendingSectionView.swift in Sources */,
 				05E858D627CB264600B85195 /* DefaultInteractiveStyle.swift in Sources */,
 				05CA87172802A48E006FACE0 /* NftUriResponce.swift in Sources */,
+				05ED7FA628D567E9007D8623 /* FlexibleView.swift in Sources */,
 				0507BB1E28502C0300D1A965 /* PublicTreasury.swift in Sources */,
 				054DC829283D854500A1FDA6 /* TokenDetailsHeaderSection.swift in Sources */,
 				05E5F86027D406370090290C /* NotiPermissionsView.swift in Sources */,
@@ -2689,6 +2694,7 @@
 				05E858F927CB5A3200B85195 /* TextFieldSingleList.swift in Sources */,
 				0507BB2E285070FC00D1A965 /* MarqueeScrollView.swift in Sources */,
 				05002E79282B84830010AF39 /* ViewMoreText.swift in Sources */,
+				05ED7FA728D567E9007D8623 /* FlexibleView.swift in Sources */,
 				050225B427FC09450004D910 /* NetworkDetailView.swift in Sources */,
 				056BD30A283C7B040020C6C4 /* TokenDescriptor.swift in Sources */,
 				05D1096E27C15D80008DCC66 /* EthereumService.swift in Sources */,

@@ -99,3 +99,26 @@ struct NetworkVerticalCell: View {
     }
 
 }
+
+// MARK: Logic for overall portfolio chart
+
+// get each token's historical chart data
+// get each token's portfolio diversity
+
+// get historical timeline for each token when it comes in and out
+// also check if the token's IN transaction is within the required timeline
+
+// create new 'chart token model'
+    // - tokenName
+    // - tokenChart
+    // - tokenHistory
+
+// blank loop through the timeline array count
+// - have newChart variable
+
+// Start looping from how much you currently have and subtract amount every time historical transaction comes up.
+
+// loop through each 'chart token model'
+    // - get the history IN & OUTs + token amounts
+    // - create func that finds token amount you had at that one point in time.
+

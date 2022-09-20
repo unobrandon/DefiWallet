@@ -35,9 +35,8 @@ struct GlobalMarketView: View {
 
                 if let percent = store.globalMarketData?.marketCapChangePercentage24HUsd,
                    let num = Int(store.globalMarketData?.totalMarketCap?[service.currentUser.currency] ?? 0.0) {
-                    Text("The global crypto market cap is $\("".formatLargeNumber(num, size: .large)), a \("".forTrailingZero(temp: percent.truncate(places: 2)))% \(percent >= 0 ? "increase" : "decrease") over the last day.")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+                    Text("The global crypto market cap is $\("".formatLargeNumber(num, size: .large)), a \("".forTrailingZero(temp: percent.truncate(places: 3)))% \(percent >= 0 ? "increase" : "decrease") over the last day.")
+                        .fontTemplate(DefaultTemplate.bodySemibold)
                         .multilineTextAlignment(.leading)
                         .lineLimit(4)
                         .padding(.bottom)

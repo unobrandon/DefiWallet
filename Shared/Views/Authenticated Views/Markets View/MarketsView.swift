@@ -55,17 +55,15 @@ struct MarketsView: View {
                 AnyView(TopCoinsSectionView(isLoading: $isMarketCapLoading, service: service))
             ]
 
+            fetchLocalMarketCap()
             store.startGasTimer()
-            self.fetchGlobalData()
-            self.fetchTrending()
-
-            DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
-                print("sending socket market")
-                self.service.socket.emitMarketChartUpdate(currency: self.service.currentUser.currency, perPage: "10", page: "1")
-            }
+            service.socket.startMarketCapTimer(currency: service.currentUser.currency)
+            fetchGlobalData()
+            fetchTrending()
         }
         .onDisappear {
             store.stopGasTimer()
+            service.socket.stopMarketCapTimer()
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -98,7 +96,7 @@ struct MarketsView: View {
 
     private func fetchGlobalData() {
         store.fetchGlobalMarketData(completion: {
-            print("gas is done loading")
+            print("global market data is done loading")
         })
     }
 
@@ -106,8 +104,29 @@ struct MarketsView: View {
         isTrendingLoading = true
 
         store.fetchTrending(completion: {
-            isTrendingLoading = false
+            DispatchQueue.main.async {
+                isTrendingLoading = false
+            }
         })
+    }
+
+    private func fetchLocalMarketCap() {
+        service.socket.emitMarketChartUpdate(currency: service.currentUser.currency, perPage: "10", page: "1")
+
+        guard store.coinsByMarketCap.isEmpty else { return }
+
+        if let storage = StorageService.shared.marketCapStorage {
+            storage.async.object(forKey: "marketCapList") { result in
+                switch result {
+                case .value(let list):
+                    DispatchQueue.main.async {
+                        store.coinsByMarketCap = list
+                    }
+                case .error(let error):
+                    print("error getting local market cap: \(error.localizedDescription)")
+                }
+            }
+        }
     }
 
 }

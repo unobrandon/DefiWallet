@@ -543,26 +543,20 @@ class MarketsService: ObservableObject {
             }
         }
 
-//        let url = Constants.backendBaseUrl + "trending"
-        let urlDirect = "https://api.coingecko.com/api/v3/search/trending"
+        let url = Constants.backendBaseUrl + "trending"
+//        let urlDirect = "https://api.coingecko.com/api/v3/search/trending"
 
-        AF.request(urlDirect, method: .get).responseDecodable(of: TrendingCoins.self) { response in
+        AF.request(url, method: .get).responseDecodable(of: TrendingCoins.self) { response in
             switch response.result {
             case .success(let trending):
                 if let list = trending.coins {
-                    print("trending coins success: \(list.count)")
-                    self.trendingCoins = list
+                    DispatchQueue.main.async {
+                        print("trending coins success: \(list.count)")
+                        self.trendingCoins = list
+                    }
 
                     if let storage = StorageService.shared.trendingStorage {
-                        storage.async.setObject(list, forKey: "trendingList") { result in
-                            switch result {
-                            case .value(let val):
-                                print("saved trending coins successfully: \(val)")
-
-                            case .error(let error):
-                                print("error saving: \(error)")
-                            }
-                        }
+                        storage.async.setObject(list, forKey: "trendingList") { _ in }
                     }
                 }
 

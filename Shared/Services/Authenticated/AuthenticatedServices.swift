@@ -49,7 +49,7 @@ class AuthenticatedServices: ObservableObject {
         self.wallet = WalletService(currentUser: currentUser, socketManager: manager, wcMetadata: metadata)
         self.market = MarketsService(socketManager: manager)
 //        self.ethereum = EthereumService(currentUser: currentUser)
-        self.socket = BackendSocketService(wallet: self.wallet)
+        self.socket = BackendSocketService(wallet: self.wallet, market: self.market)
         self.socket.connectSocket()
     }
 

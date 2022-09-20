@@ -43,7 +43,7 @@ struct NetworkDetailView: View {
                     }
 
                 LazyVGrid(columns: gridItems, alignment: .center, spacing: 0) {
-                    TokensSectionView(network: balance.network, service: service)
+                    TokensSectionView(isLoading: $isLoading, network: balance.network, service: service)
                     CollectablesSectionView(isLoading: $isLoading, network: network, service: service)
                     HistorySectionView(isLoading: $isLoading, service: service, network: network)
                 }

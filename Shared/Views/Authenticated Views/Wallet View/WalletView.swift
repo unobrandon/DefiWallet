@@ -19,11 +19,12 @@ struct WalletView: View {
     @State private var showSheet = false
     @State var gridViews: [AnyView] = []
 
-    @State var isBalanceLoading: Bool = false
-    @State var isHistoryLoading: Bool = false
+    @State var isBalanceLoading: Bool = true
+    @State var isHistoryLoading: Bool = true
     let gridItems: [SwiftUI.GridItem] = MobileConstants.deviceType == .phone ? [SwiftUI.GridItem(.flexible())] : [SwiftUI.GridItem(.flexible()), SwiftUI.GridItem(.flexible())]
     @State var walletPriceTimer: Timer?
     @State var scrollOffset: CGFloat = CGFloat.zero
+    private let walletPriceInterval: Double = 5
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -46,8 +47,9 @@ struct WalletView: View {
 
                 LazyVGrid(columns: gridItems, alignment: .center, spacing: 20) {
                     NetworkSectionView(isLoading: self.$isBalanceLoading, service: service)
-                    TokensSectionView(service: service)
+                    TokensSectionView(isLoading: self.$isBalanceLoading, service: service)
                     CollectablesSectionView(isLoading: self.$isBalanceLoading, service: service)
+                        .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 15, x: 0, y: 8)
                     HistorySectionView(isLoading: self.$isHistoryLoading, service: service, network: nil)
                 }
 
@@ -59,7 +61,7 @@ struct WalletView: View {
         .navigationBarTitle("", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                WalletNavigationView(service: service, scrollOffset: $scrollOffset, isLoading: $isBalanceLoading).offset(y: -2.5)
+                WalletNavigationView(service: service, scrollOffset: $scrollOffset).offset(y: -2.5)
             }
 
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -94,19 +96,21 @@ struct WalletView: View {
     }
 
     func fetchNetworksBalances() {
-        guard !isBalanceLoading else { return }
+//        guard !isBalanceLoading else { return }
 
         isBalanceLoading = true
         isHistoryLoading = true
 
         store.fetchAccountBalance(service.currentUser.address, service.currentUser.currency, completion: { _ in
-            isBalanceLoading = false
-            isHistoryLoading = false
+            DispatchQueue.main.async {
+                isBalanceLoading = false
+                isHistoryLoading = false
+            }
         })
     }
 
     func startWalletPriceTimer() {
-        self.walletPriceTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { _ in
+        self.walletPriceTimer = Timer.scheduledTimer(withTimeInterval: walletPriceInterval, repeats: true) { _ in
             let tokenIds = store.getTokenIds()
             guard !tokenIds.isEmpty else { return }
 

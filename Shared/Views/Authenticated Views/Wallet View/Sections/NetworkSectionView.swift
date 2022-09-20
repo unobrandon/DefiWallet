@@ -29,7 +29,7 @@ struct NetworkSectionView: View {
             })
             .padding(.bottom, 5)
 
-            if isLoading, store.accountBalance?.completeBalance != nil {
+            if isLoading, store.accountBalance?.completeBalance == nil {
                 LoadingView(title: "")
             }
 

@@ -60,7 +60,7 @@ extension MarketsService {
                 DispatchQueue.main.async {
                     self.globalMarketData = global
                 }
-                print("done getting global market data: \(global)")
+                print("done getting global market data: \(global.activeCryptocurrencies ?? 0)")
 
                 if let storage = StorageService.shared.globalMarketData {
                     storage.async.setObject(global, forKey: "globalMarketData") { _ in }
