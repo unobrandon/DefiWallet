@@ -12,6 +12,11 @@ extension TokenDetailView {
     @ViewBuilder
     func detailsOverviewSection() -> some View {
         VStack(spacing: 5) {
+            if let notice = tokenModel?.publicNotice {
+                AlertBanner(message: notice, color: .red)
+                    .padding(.bottom, 30)
+            }
+
             ListTitleView(title: "Overview", showDivider: false, style: service.themeStyle)
 
             ListSection(hasPadding: true, style: service.themeStyle) {
