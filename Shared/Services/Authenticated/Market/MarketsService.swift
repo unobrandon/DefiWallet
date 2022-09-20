@@ -35,9 +35,13 @@ class MarketsService: ObservableObject {
     let gasRefreshInterval: Double = 10
     var gasChartLimit: Int = 24
 
-    @Published var searchCategoriesText: String = ""
     @Published var categoriesFilters: FilterCategories = .gainers
     @Published var categoriesDetailFilters: FilterCategories = .marketCapDesc
+
+    @Published var searchMarketsText: String = ""
+    var marketsCancellable: AnyCancellable?
+
+    @Published var searchCategoriesText: String = ""
     var categoriesCancellable: AnyCancellable?
 
     @Published var searchExchangesText: String = ""
@@ -47,6 +51,18 @@ class MarketsService: ObservableObject {
         self.socketManager = socketManager
         self.gasSocket = socketManager.socket(forNamespace: "/gas")
         self.assetSocket = socketManager.socket(forNamespace: "/assets")
+
+        marketsCancellable = $searchMarketsText
+            .removeDuplicates()
+            .debounce(for: 0.5, scheduler: RunLoop.main)
+            .sink(receiveValue: { str in
+                guard !str.isEmpty else {
+//                    self.fetchTokenCategories(filter: self.categoriesFilters, limit: 25, skip: 0, completion: {   })
+                    return
+                }
+
+                self.searchTokenCategories(text: str, limit: 10, skip: 0)
+            })
 
         categoriesCancellable = $searchCategoriesText
             .removeDuplicates()

@@ -16,15 +16,12 @@ struct MarketsView: View {
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: MarketsService
 
-    @State var searchText: String = ""
-    @State var searchHide: Bool = true
-
-    @State var gridViews: [AnyView] = []
-
-    @State var isMarketCapLoading: Bool = true
-    @State var isTrendingLoading: Bool = false
-    @State var showGasSheet: Bool = false
-    @State var showGlobalSheet: Bool = false
+    @State private var searchText: String = ""
+    @State private var gridViews: [AnyView] = []
+    @State private var isMarketCapLoading: Bool = true
+    @State private var isTrendingLoading: Bool = false
+    @State private var showGasSheet: Bool = false
+    @State private var showGlobalSheet: Bool = false
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -34,16 +31,19 @@ struct MarketsView: View {
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView(.vertical, showsIndicators: false) {
-                Grid(gridViews.indices, id:\.self) { index in
-                    gridViews[index]
+                if searchText.isEmpty {
+                    Grid(gridViews.indices, id:\.self) { index in
+                        gridViews[index]
+                    }
                 }
             }
         })
         .navigationBarTitle("Markets", displayMode: .large)
         .gridStyle(StaggeredGridStyle(.vertical, tracks: MobileConstants.deviceType == .phone ? 1 : 2, spacing: 0))
-//        .navigationSearchBar { SearchBar("Search tokens and more...", text: $searchText) }
-//        .navigationSearchBarHiddenWhenScrolling(searchHide)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search markets")
+        .onChange(of: searchText, perform: { text in
+            store.searchMarketsText = text
+        })
         .onAppear {
             DispatchQueue.main.async {
                 Tool.showTabBar()
@@ -55,6 +55,15 @@ struct MarketsView: View {
                 AnyView(TopCoinsSectionView(isLoading: $isMarketCapLoading, service: service))
             ]
 
+            store.tokenCategories = []
+            store.exchanges = []
+            store.exchangeDetails = nil
+            store.coinsByGains = []
+            store.coinsByLosers = []
+            store.recentlyAddedTokens = []
+            store.publicTreasury = nil
+            store.tokenCategoryList = []
+
             fetchLocalMarketCap()
             store.startGasTimer()
             service.socket.startMarketCapTimer(currency: service.currentUser.currency)
@@ -64,6 +73,7 @@ struct MarketsView: View {
         .onDisappear {
             store.stopGasTimer()
             service.socket.stopMarketCapTimer()
+            gridViews = []
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
