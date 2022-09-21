@@ -20,6 +20,7 @@ struct TokenDetailView: View {
     @State var externalId: String?
     @State var scrollOffset: CGFloat = CGFloat.zero
     @State var openLinkSheet: Bool = false
+    @State var chartType: String
 
     @State private var tokenChart = [ChartValue]()
 
@@ -32,7 +33,7 @@ struct TokenDetailView: View {
     var categories: [TokenCategory]?
     let fromMarketView: Bool
 
-    init(fromMarketView: Bool? = nil, tokenModel: TokenModel?, tokenDetails: TokenDetails?, tokenDescriptor: TokenDescriptor?, externalId: String?, service: AuthenticatedServices) {
+    init(fromMarketView: Bool? = nil, tokenModel: TokenModel? = nil, tokenDetails: TokenDetails? = nil, tokenDescriptor: TokenDescriptor? = nil, externalId: String? = nil, service: AuthenticatedServices) {
         self.fromMarketView = fromMarketView ?? false
         self.service = service
         self.externalId = externalId
@@ -40,6 +41,7 @@ struct TokenDetailView: View {
         self.tokenDetails = tokenDetails
         self.tokenDescriptor = tokenDescriptor
         self.walletStore = service.wallet
+        self.chartType = UserDefaults.standard.string(forKey: "chartDetailType") ?? "d"
 
         guard let categories = tokenModel?.categories?.filter({ $0 != "" }) ?? tokenDetails?.categories?.filter({ $0 != "" }) ?? tokenDescriptor?.categories?.filter({ $0 != "" }) else {
             return
@@ -79,11 +81,33 @@ struct TokenDetailView: View {
                 if !tokenChart.isEmpty || tokenModel?.priceGraph?.price != nil || tokenDetails?.priceGraph?.price != nil {
                     HStack(alignment: .center, spacing: 0) {
                         Spacer()
-                        ChartOptionSegmentView(service: service, action: { item in
-                            walletStore.emitSingleChartRequest(item)
-                        })
+
+                        VStack(alignment: .trailing, spacing: 8) {
+                            Picker("", selection: $chartType) {
+                                Text("1H")
+                                    .tag("h")
+                                Text("1D")
+                                    .tag("d")
+                                Text("1W")
+                                    .tag("w")
+                                Text("1M")
+                                    .tag("m")
+                                Text("1Y")
+                                    .tag("y")
+                            }
+                            .pickerStyle(.segmented)
+                            .frame(width: 200, height: 30)
+
+                            Text(walletStore.getChartDuration(chartType))
+                                .fontTemplate(DefaultTemplate.caption)
+                        }
                         .padding(.top, 10)
                         .padding(10)
+                        .onChange(of: chartType) { newValue in
+//                            let val = newValue == "1H" ? "h" : newValue == "1D" ? "d" : newValue == "1W" ? "w" : newValue == "1M" ? "m" : newValue == "1Y" ? "y" : ""
+//                            walletStore.emitSingleChartRequest(newValue)
+                            UserDefaults.standard.setValue(newValue, forKey: "chartDetailType")
+                        }
                     }
                 }
 
@@ -136,69 +160,53 @@ struct TokenDetailView: View {
                 Tool.hiddenTabBar()
             }
 
-            print("the token details are: \(String(describing: tokenModel?.id ?? tokenModel?.externalId ?? tokenDetails?.tokenDescriptor?.externalID ?? tokenDescriptor?.externalID ??  "no id")) && \(String(describing: externalId))")
-
-            if let completeBalance = self.walletStore.accountBalance?.completeBalance {
-                completeBalance.forEach({ bal in
-                    bal.tokens?.forEach({ token in
-                        if tokenModel?.allAddress?.ethereum == token.tokenAddress || tokenDetails?.allAddress?.ethereum == token.tokenAddress || tokenDescriptor?.ethAddress == token.tokenAddress {
-                            print("HAVE THIS ETH TOKEN!!!")
-                        }
-
-                        if tokenModel?.allAddress?.binance == token.tokenAddress || tokenDetails?.allAddress?.binance == token.tokenAddress {
-                            print("HAVE THIS BINANCE TOKEN!!!")
-                        }
-
-                        if tokenModel?.allAddress?.avalanche == token.tokenAddress || tokenDetails?.allAddress?.avalanche == token.tokenAddress {
-                            print("HAVE THIS Avalanche TOKEN!!!")
-                        }
-
-                        if tokenModel?.allAddress?.polygon_pos == token.tokenAddress || tokenDetails?.allAddress?.polygon_pos == token.tokenAddress {
-                            print("HAVE THIS polygon TOKEN!!!")
-                        }
-
-                        if tokenModel?.allAddress?.fantom == token.tokenAddress || tokenDetails?.allAddress?.fantom == token.tokenAddress {
-                            print("HAVE THIS fantom TOKEN!!!")
-                        }
-
-                        if tokenModel?.allAddress?.solana == token.tokenAddress || tokenDetails?.allAddress?.solana == token.tokenAddress {
-                            print("HAVE THIS solana TOKEN!!!")
-                        }
-                    })
-                })
-            }
-
             let external = tokenModel?.id ?? tokenModel?.externalId ?? tokenDetails?.id ?? tokenDescriptor?.externalID ?? externalId
 
-            service.market.fetchTokenDetails(id: external, address: externalId, completion: { tokenDescriptor in
-                // Do your logic to get the token market data
-                if tokenDescriptor != nil {
-                    self.tokenDescriptor = tokenDescriptor
-                }
+            print("the token details are: \(String(describing: external ?? "no id"))")
 
-                var address: String? {
-                    if let eth = tokenDescriptor?.ethAddress { return eth
-                    } else if let avax = tokenDescriptor?.avaxAddress { return avax
-                    } else if let fantom = tokenDescriptor?.fantomAddress { return fantom
-                    } else if let solana = tokenDescriptor?.solanaAddress { return solana
-                    } else if let river = tokenDescriptor?.moonriverAddress { return river
-                    } else if let beam = tokenDescriptor?.moonbeamAddress { return beam
-                    } else if let xdai = tokenDescriptor?.xdaiAddress { return xdai
-                    } else { return nil }
-                }
+            loadLocalTokenData(external, completion: {
 
-                print("successfully got the token details here: \n\(String(describing: externalId)) \nor: \n\(String(describing: address)) \nanswer: \n\(tokenDescriptor.debugDescription)")
-
-                if let address = address {
-                    service.market.emitFullInfoAssetSocket(address, currency: service.currentUser.currency)
-                } else if let externalId = tokenDescriptor?.externalID {
+                if let externalId = external {
                     service.market.fetchTokenChart(id: externalId, from: Date(timeIntervalSinceNow: -3600), toDate: Date(), completion: { chart in
                         if let chart = chart {
                             self.tokenChart = chart
                         }
                     })
                 }
+
+//                guard tokenModel == nil, tokenDetails == nil, tokenDescriptor == nil else { return }
+
+                service.market.fetchTokenDetails(id: external, address: externalId, completion: { tokenDescriptor in
+                    if tokenDescriptor != nil, self.tokenDescriptor == nil {
+                        self.tokenDescriptor = tokenDescriptor
+                    }
+                })
             })
+        }
+    }
+
+    private func loadLocalTokenData(_ externalId: String?, completion: @escaping () -> Void) {
+        guard tokenModel == nil,
+              (tokenDetails != nil || externalId != nil),
+              let completeBalance = self.walletStore.accountBalance?.completeBalance else {
+            completion()
+            return
+        }
+
+        if let item = completeBalance.first(where: { $0.nativeBalance?.externalId == externalId }) {
+            self.tokenModel = item.nativeBalance
+            completion()
+            return
+        } else {
+            for bal in completeBalance {
+                if let token = bal.tokens?.first(where: { $0.externalId == externalId }) {
+                    self.tokenModel = token
+                    break
+                }
+            }
+
+            completion()
+            return
         }
     }
 

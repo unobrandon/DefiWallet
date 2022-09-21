@@ -50,7 +50,7 @@ extension TokenDetailView {
                 Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.titleSemiBold)
 
                 MovingNumbersView(number: tokenModel?.currentPrice ?? tokenDetails?.currentPrice ?? 0.00,
-                                  numberOfDecimalPlaces: tokenModel?.currentPrice?.decimalCount() ?? 2 < 2 ? 2 : tokenModel?.currentPrice?.decimalCount() ?? 2,
+                                  numberOfDecimalPlaces: tokenModel?.currentPrice?.decimalCount() ?? tokenDetails?.currentPrice?.decimalCount() ?? 2 < 2 ? 2 : tokenModel?.currentPrice?.decimalCount() ?? tokenDetails?.currentPrice?.decimalCount() ?? 2,
                                   fixedWidth: nil,
                                   theme: DefaultTemplate.titleSemiBold,
                                   animationDuration: 0.4,

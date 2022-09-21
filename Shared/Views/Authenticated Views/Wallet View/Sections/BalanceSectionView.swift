@@ -13,12 +13,10 @@ struct BalanceSectionView: View {
 
     @ObservedObject private var service: AuthenticatedServices
     @ObservedObject private var store: WalletService
-    @State var chartType: String
 
     init(service: AuthenticatedServices) {
         self.service = service
         self.store = service.wallet
-        self.chartType = UserDefaults.standard.string(forKey: "chartType") ?? "d"
     }
 
     var body: some View {
@@ -40,18 +38,27 @@ struct BalanceSectionView: View {
                         }
                     }.mask(AppGradients.movingNumbersMask)
 
-                    if let change = store.accountPortfolio?.relativeChange24h {
-                        ProminentRoundedLabel(text: "\(store.accountPortfolio?.absoluteChange24h?.convertToCurrency() ?? "")" + (change >= 0 ? "  (+" : "  (") + "\("".forTrailingZero(temp: change.truncate(places: 2)))%)",
-                                              color: change >= 0 ? .green : .red,
-                                              fontSize: 13.0,
-                                              style: service.themeStyle)
+                    HStack(alignment: .center, spacing: 5) {
+                        if let priceChange = store.accountBalance?.portfolio24hChange {
+                            ProminentRoundedLabel(text: priceChange.convertToCurrency(),
+                                                  color: priceChange >= 0 ? .green : .red,
+                                                  fontSize: 13.0,
+                                                  style: service.themeStyle)
+                        }
+
+                        if let prcentChange = store.accountBalance?.portfolio24hPercentChange,
+                           let isPositive = prcentChange >= 0 {
+                            Text((isPositive ? "(+" : "(") +
+                                 "\("".forTrailingZero(temp: prcentChange.reduceScale(to: 3)))%)"  )
+                                .fontTemplate(FontTemplate(font: Font.system(size: 13.0), weight: .semibold, foregroundColor: isPositive ? .green : .red, lineSpacing: 0))
+                        }
                     }
                 }
                 Spacer()
             }
 
             // stride(from: 1, to: store.accountChart.count - 1, by: 4).map({ store.accountChart[$0].amount })
-            CustomLineChart(data: store.accountChart.map({ $0.amount }), timeline: store.accountChart.map({ $0.timestamp }), profit: store.accountPortfolio?.relativeChange24h ?? 0 >= 0, perspective: $chartType)
+            CustomLineChart(data: store.accountChart.map({ $0.amount }), timeline: store.accountChart.map({ $0.timestamp }), profit: store.accountBalance?.portfolio24hChange ?? 0 >= 0, perspective: $store.chartType)
 //                    LineChart(data: store.accountChart.map({ $0.amount }),
 //                              frame: CGRect(x: 20, y: 0, width: MobileConstants.screenWidth - 40, height: 140),
 //                              visualType: ChartVisualType.filled(color: store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red, lineWidth: 2), offset: 0,
@@ -67,14 +74,14 @@ struct BalanceSectionView: View {
                     VStack(alignment: .trailing, spacing: 8) {
                         HStack(alignment: .center, spacing: 4) {
                             Button {
-                                print("show warrning about only supporting ETH network chart")
+                                print("show warning about only supporting ETH network chart")
                             } label: {
                                 Label("", systemImage: "info.circle")
                                     .foregroundColor(.secondary)
                                     .imageScale(.small)
                             }
 
-                            Picker("", selection: $chartType) {
+                            Picker("", selection: $store.chartType) {
                                 Text("1H")
                                     .tag("h")
                                 Text("1D")
@@ -95,7 +102,7 @@ struct BalanceSectionView: View {
                     }
                     .padding([.vertical, .top], 15)
                     .padding(.top, 15)
-                    .onChange(of: chartType) { newValue in
+                    .onChange(of: store.chartType) { newValue in
 //                        let val = newValue == "1H" ? "h" : newValue == "1D" ? "d" : newValue == "1W" ? "w" : newValue == "1M" ? "m" : newValue == "1Y" ? "y" : ""
                         store.emitSingleChartRequest(newValue)
                     }

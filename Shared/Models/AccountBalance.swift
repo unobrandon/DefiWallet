@@ -16,6 +16,8 @@ struct AccountBalance: Codable {
     let error: [String]?
     var completeBalance: [CompleteBalance]?
     var portfolioTotal: Double?
+    var portfolio24hChange: Double?
+    var portfolio24hPercentChange: Double?
 
 }
 

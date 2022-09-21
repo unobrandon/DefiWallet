@@ -95,7 +95,7 @@ struct WalletView: View {
         }
     }
 
-    func fetchNetworksBalances() {
+    private func fetchNetworksBalances() {
 //        guard !isBalanceLoading else { return }
 
         isBalanceLoading = true
@@ -109,7 +109,7 @@ struct WalletView: View {
         })
     }
 
-    func startWalletPriceTimer() {
+    private func startWalletPriceTimer() {
         self.walletPriceTimer = Timer.scheduledTimer(withTimeInterval: walletPriceInterval, repeats: true) { _ in
             let tokenIds = store.getTokenIds()
             guard !tokenIds.isEmpty else { return }
@@ -120,7 +120,7 @@ struct WalletView: View {
         }
     }
 
-    func stopWalletPriceTimer() {
+    private func stopWalletPriceTimer() {
         guard let timer = walletPriceTimer else { return }
         timer.invalidate()
         walletPriceTimer = nil

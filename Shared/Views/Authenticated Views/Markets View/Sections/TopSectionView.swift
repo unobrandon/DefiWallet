@@ -38,8 +38,8 @@ struct TopSectionView: View {
                             Image(systemName: "list.number")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 18, height: 18, alignment: .center)
-                                .font(Font.title.weight(.light))
+                                .frame(width: 20, height: 20, alignment: .center)
+                                .font(Font.title.weight(.medium))
                                 .foregroundColor(.black)
 
                             Text("Top Categories")
@@ -70,8 +70,8 @@ struct TopSectionView: View {
                             Image(systemName: "arrow.2.squarepath")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 18, height: 18, alignment: .center)
-                                .font(Font.title.weight(.light))
+                                .frame(width: 20, height: 20, alignment: .center)
+                                .font(Font.title.weight(.medium))
                                 .foregroundColor(.black)
 
                             Text("Top Exchanges")
@@ -102,8 +102,8 @@ struct TopSectionView: View {
                             Image(systemName: "chart.line.uptrend.xyaxis")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 18, height: 18, alignment: .center)
-                                .font(Font.title.weight(.light))
+                                .frame(width: 20, height: 20, alignment: .center)
+                                .font(Font.title.weight(.medium))
                                 .foregroundColor(.black)
 
                             Text("Top Gainers")
@@ -134,8 +134,8 @@ struct TopSectionView: View {
                             Image(systemName: "arrow.down.forward")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 14, height: 14, alignment: .center)
-                                .font(Font.title.weight(.light))
+                                .frame(width: 16, height: 16, alignment: .center)
+                                .font(Font.title.weight(.medium))
                                 .foregroundColor(.black)
 
                             Text("Top Losers")
