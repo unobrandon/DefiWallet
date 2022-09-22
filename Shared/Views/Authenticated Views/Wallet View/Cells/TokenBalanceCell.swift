@@ -30,9 +30,9 @@ struct TokenBalanceCell: View {
                 self.actionTap()
             }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
-                    HStack(alignment: .top, spacing: 5) {
+                    HStack(alignment: .center, spacing: 5) {
                         ZStack {
-                            RemoteImage(data.imageSmall ?? data.image ?? "", size: 42)
+                            RemoteImage(data.imageSmall ?? data.image ?? "", size: 44)
                                 .clipShape(Circle())
                                 .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
                                 .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
@@ -44,7 +44,7 @@ struct TokenBalanceCell: View {
                                     .frame(width: 18, height: 18, alignment: .center)
                                     .clipShape(Circle())
                                     .overlay(Circle().foregroundColor(.clear).overlay(Circle().stroke(Color("baseBackground_bordered"), lineWidth: 2.5)))
-                                    .offset(x: -15, y: 15)
+                                    .offset(x: -16, y: 16)
                             }
                         }
                         .padding(.trailing, 7.5)

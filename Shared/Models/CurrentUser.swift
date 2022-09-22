@@ -9,7 +9,7 @@ import Foundation
 
 struct CurrentUser: Codable, Equatable {
 
-    let objectId: String
+    let objectId: String?
     let sessionToken: String
     let address: String
     let mediumAddress: String

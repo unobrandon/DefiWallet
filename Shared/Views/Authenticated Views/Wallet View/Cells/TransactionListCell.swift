@@ -34,12 +34,12 @@ struct TransactionListCell: View {
                         if let direction = data.direction, let network = data.network {
                             ZStack {
                                 if let image = data.imageSmall {
-                                    RemoteImage(image, size: 42)
+                                    RemoteImage(image, size: 44)
                                         .clipShape(Circle())
                                         .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
                                         .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
                                 } else {
-                                    StandardSystemImage(service.wallet.transactionDirectionImage(direction), color: service.wallet.transactionDirectionColor(direction), size: 42, cornerRadius: 21, style: style)
+                                    StandardSystemImage(service.wallet.transactionDirectionImage(direction), color: service.wallet.transactionDirectionColor(direction), size: 44, cornerRadius: 24, style: style)
                                         .padding(.horizontal, 10)
                                 }
 
@@ -50,7 +50,7 @@ struct TransactionListCell: View {
                                         .frame(width: 18, height: 18, alignment: .center)
                                         .clipShape(Circle())
                                         .overlay(Circle().foregroundColor(.clear).overlay(Circle().stroke(Color("baseBackground_bordered"), lineWidth: 2.5)))
-                                        .offset(x: -15, y: 15)
+                                        .offset(x: -16, y: 16)
                                 }
                             }
                         }

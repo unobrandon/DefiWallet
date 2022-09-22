@@ -31,7 +31,7 @@ struct TokenListStandardCell: View {
             }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
                     HStack(alignment: .center, spacing: 0) {
-                        RemoteImage(data.image ?? "", size: 42)
+                        RemoteImage(data.image ?? "", size: 44)
                             .clipShape(Circle())
                             .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.75), lineWidth: 1))
                             .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 6, x: 0, y: 4)

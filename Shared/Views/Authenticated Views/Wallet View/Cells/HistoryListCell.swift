@@ -32,7 +32,7 @@ struct HistoryListCell: View {
                 VStack(alignment: .trailing, spacing: 0) {
                     HStack(alignment: .center, spacing: 10) {
                         ZStack {
-                            StandardSystemImage(service.wallet.transactionImage(data.direction), color: service.wallet.transactionColor(data.direction), size: 42, cornerRadius: 21, style: style)
+                            StandardSystemImage(service.wallet.transactionImage(data.direction), color: service.wallet.transactionColor(data.direction), size: 44, cornerRadius: 24, style: style)
                                 .padding(.horizontal, 10)
 
                             service.wallet.getNetworkImage(data.network)
@@ -41,7 +41,7 @@ struct HistoryListCell: View {
                                 .frame(width: 18, height: 18, alignment: .center)
                                 .clipShape(Circle())
                                 .overlay(Circle().foregroundColor(.clear).overlay(Circle().stroke(Color("baseBackground_bordered"), lineWidth: 2.5)))
-                                .offset(x: -15, y: 15)
+                                .offset(x: -16, y: 16)
                         }
 
                         VStack(alignment: .leading, spacing: 0) {

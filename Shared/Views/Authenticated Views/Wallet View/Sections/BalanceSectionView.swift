@@ -39,17 +39,17 @@ struct BalanceSectionView: View {
                     }.mask(AppGradients.movingNumbersMask)
 
                     HStack(alignment: .center, spacing: 5) {
-                        if let priceChange = store.accountBalance?.portfolio24hChange {
-                            ProminentRoundedLabel(text: priceChange.convertToCurrency(),
-                                                  color: priceChange >= 0 ? .green : .red,
+                        if let percentChange = store.accountBalance?.portfolio24hPercentChange {
+                            ProminentRoundedLabel(text: "\("".forTrailingZero(temp: percentChange.reduceScale(to: 3)))%",
+                                                  color: percentChange >= 0 ? .green : .red,
                                                   fontSize: 13.0,
                                                   style: service.themeStyle)
                         }
 
-                        if let prcentChange = store.accountBalance?.portfolio24hPercentChange,
-                           let isPositive = prcentChange >= 0 {
+                        if let priceChange = store.accountBalance?.portfolio24hChange,
+                           let isPositive = priceChange >= 0 {
                             Text((isPositive ? "(+" : "(") +
-                                 "\("".forTrailingZero(temp: prcentChange.reduceScale(to: 3)))%)"  )
+                                 priceChange.convertToCurrency() + ")")
                                 .fontTemplate(FontTemplate(font: Font.system(size: 13.0), weight: .semibold, foregroundColor: isPositive ? .green : .red, lineSpacing: 0))
                         }
                     }
