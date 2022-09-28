@@ -40,13 +40,13 @@ struct InvestmentsSectionView: View {
                     }.padding(.vertical, 30)
                 }
 
-                ForEach(data.prefix(limitCells), id: \.self) { item in
+//                ForEach(data.prefix(limitCells), id: \.self) { item in
 //                    TransactionListCell(service: service, data: item, isLast: false, style: service.themeStyle, action: {
 //                        #if os(iOS)
 //                            HapticFeedback.rigidHapticFeedback()
 //                        #endif
 //                    })
-                }
+//                }
             }
         }
     }

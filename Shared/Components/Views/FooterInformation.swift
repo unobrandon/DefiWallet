@@ -14,7 +14,7 @@ struct FooterInformation: View {
     var body: some View {
         VStack(alignment: .center, spacing: 3) {
             HStack {
-                Image("AppIcon-Dev")
+                Image("Logo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 27, height: 18, alignment: .center)

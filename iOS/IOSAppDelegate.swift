@@ -67,7 +67,9 @@ class IOSAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCent
             guard settings.authorizationStatus == .authorized else { return }
 
             UNUserNotificationCenter.current().delegate = self
-            UIApplication.shared.registerForRemoteNotifications()
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
         }
     }
 

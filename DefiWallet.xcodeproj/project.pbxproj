@@ -322,6 +322,14 @@
 		0578077D27BB822D0008051B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077B27BB822C0008051B /* String+Extensions.swift */; };
 		0578077F27BB87C80008051B /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077E27BB87C80008051B /* Wallet.swift */; };
 		0578078027BB87C80008051B /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0578077E27BB87C80008051B /* Wallet.swift */; };
+		0582298428E3F6F400B6E883 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298328E3F6F400B6E883 /* NSObject+Extensions.swift */; };
+		0582298528E3F6F400B6E883 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298328E3F6F400B6E883 /* NSObject+Extensions.swift */; };
+		0582298728E3F72D00B6E883 /* UIVisualEffectView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298628E3F72D00B6E883 /* UIVisualEffectView+Extensions.swift */; };
+		0582298828E3F72D00B6E883 /* UIVisualEffectView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298628E3F72D00B6E883 /* UIVisualEffectView+Extensions.swift */; };
+		0582298A28E3F7CB00B6E883 /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298928E3F7CB00B6E883 /* CustomBlurView.swift */; };
+		0582298B28E3F7CB00B6E883 /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298928E3F7CB00B6E883 /* CustomBlurView.swift */; };
+		0582298D28E3F81E00B6E883 /* GlassMorphicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298C28E3F81E00B6E883 /* GlassMorphicCard.swift */; };
+		0582298E28E3F81E00B6E883 /* GlassMorphicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298C28E3F81E00B6E883 /* GlassMorphicCard.swift */; };
 		058C785F27D06D5600EB91CA /* HeaderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C785E27D06D5600EB91CA /* HeaderIcon.swift */; };
 		058C786027D06D5600EB91CA /* HeaderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C785E27D06D5600EB91CA /* HeaderIcon.swift */; };
 		058C786527D07E3700EB91CA /* PrivateKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C786427D07E3600EB91CA /* PrivateKeysView.swift */; };
@@ -808,6 +816,10 @@
 		0578077427BB71410008051B /* Blob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
 		0578077B27BB822C0008051B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		0578077E27BB87C80008051B /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		0582298328E3F6F400B6E883 /* NSObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
+		0582298628E3F72D00B6E883 /* UIVisualEffectView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVisualEffectView+Extensions.swift"; sourceTree = "<group>"; };
+		0582298928E3F7CB00B6E883 /* CustomBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
+		0582298C28E3F81E00B6E883 /* GlassMorphicCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassMorphicCard.swift; sourceTree = "<group>"; };
 		058C785E27D06D5600EB91CA /* HeaderIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderIcon.swift; sourceTree = "<group>"; };
 		058C786427D07E3600EB91CA /* PrivateKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeysView.swift; sourceTree = "<group>"; };
 		058C786727D0831700EB91CA /* AlertBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBanner.swift; sourceTree = "<group>"; };
@@ -1501,6 +1513,8 @@
 				05583C9E27E9974700640E75 /* Date+Extensions.swift */,
 				05C10DFF28459D250050D2D5 /* Array+Extensions.swift */,
 				0539414C281A2C9200CFAA53 /* Locale+Extensions.swift */,
+				0582298328E3F6F400B6E883 /* NSObject+Extensions.swift */,
+				0582298628E3F72D00B6E883 /* UIVisualEffectView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1872,6 +1886,8 @@
 				05E8590727CC1A8800B85195 /* FooterInformation.swift */,
 				0593022927E03A1C006DDFFF /* BackgroundColorView.swift */,
 				0561E84228AF61EC006C9A4B /* KeypadView.swift */,
+				0582298928E3F7CB00B6E883 /* CustomBlurView.swift */,
+				0582298C28E3F81E00B6E883 /* GlassMorphicCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2177,6 +2193,7 @@
 				0539414D281A2C9200CFAA53 /* Locale+Extensions.swift in Sources */,
 				05E8590227CC12A400B85195 /* TermsOfServiceButton.swift in Sources */,
 				0578070427B8E8E00008051B /* RoundedButton.swift in Sources */,
+				0582298728E3F72D00B6E883 /* UIVisualEffectView+Extensions.swift in Sources */,
 				05E858EE27CB388B00B85195 /* AppTheme.swift in Sources */,
 				05E858E727CB301B00B85195 /* ListStandardButton.swift in Sources */,
 				05583CB127E9BFA000640E75 /* StaggeredGridStyle.swift in Sources */,
@@ -2350,6 +2367,7 @@
 				05E5F84927D321920090290C /* Shake.swift in Sources */,
 				056BD309283C7B040020C6C4 /* TokenDescriptor.swift in Sources */,
 				05002E74282B71F70010AF39 /* Modifier.swift in Sources */,
+				0582298428E3F6F400B6E883 /* NSObject+Extensions.swift in Sources */,
 				0593021027D9C790006DDFFF /* Double+Extensions.swift in Sources */,
 				0500307228581079000C5DFF /* YTVideoView.swift in Sources */,
 				0593021627DEFA95006DDFFF /* CompleteBalance.swift in Sources */,
@@ -2427,6 +2445,7 @@
 				05002E6C282B71800010AF39 /* Refresh.swift in Sources */,
 				05E904A6287547D000A47F78 /* BackendSocketService+Extension.swift in Sources */,
 				056749A428B5FE53001E0949 /* SwapQuote.swift in Sources */,
+				0582298D28E3F81E00B6E883 /* GlassMorphicCard.swift in Sources */,
 				05583CBC27E9C04A00640E75 /* GridItem.swift in Sources */,
 				0566AEC227E83792006B645F /* HistorySectionView.swift in Sources */,
 				05D40F8E285D0173002BDA0F /* WalletService+CompoundSocket.swift in Sources */,
@@ -2450,6 +2469,7 @@
 				0504A423283F287C000DB947 /* TokenDetailAboutSection.swift in Sources */,
 				05394154281A60E000CFAA53 /* SendToDetailView.swift in Sources */,
 				05B862E1286BF36600921C5F /* CollectableView.swift in Sources */,
+				0582298A28E3F7CB00B6E883 /* CustomBlurView.swift in Sources */,
 				0578070F27B8F1BC0008051B /* WalletCoordinator.swift in Sources */,
 				05F8EE1E27FFFBD0003BBC23 /* TokenCategory.swift in Sources */,
 			);
@@ -2482,6 +2502,7 @@
 				05D1094F27C08B3E008DCC66 /* InvestView.swift in Sources */,
 				0500307928584C7E000C5DFF /* AccountTransactions.swift in Sources */,
 				05D1095027C08B3E008DCC66 /* WalletCoordinator+Factory.swift in Sources */,
+				0582298E28E3F81E00B6E883 /* GlassMorphicCard.swift in Sources */,
 				0504A41E283F27DC000DB947 /* ExchangeView.swift in Sources */,
 				05583CB227E9BFA000640E75 /* StaggeredGridStyle.swift in Sources */,
 				05D1094E27C08B3E008DCC66 /* DiscoverCoordinator.swift in Sources */,
@@ -2604,6 +2625,7 @@
 				05583CA427E9A0B100640E75 /* ViewOffsetKey.swift in Sources */,
 				0504A41B283F27B2000DB947 /* ExchangeCell.swift in Sources */,
 				05583CEA27ED305F00640E75 /* NetworkVerticalCell.swift in Sources */,
+				0582298528E3F6F400B6E883 /* NSObject+Extensions.swift in Sources */,
 				05D1095727C08B3E008DCC66 /* MarketsView.swift in Sources */,
 				05E5F88127D5D8250090290C /* ImagePickerHelper.swift in Sources */,
 				0531140A27E6E39F00368657 /* WalletConnectDelegate.swift in Sources */,
@@ -2617,6 +2639,7 @@
 				05D1094627C08B2B008DCC66 /* MainCoordinator.swift in Sources */,
 				053113E027E6C61400368657 /* Accessories.swift in Sources */,
 				054DC82D283D860800A1FDA6 /* TokenDetailOverviewSection.swift in Sources */,
+				0582298B28E3F7CB00B6E883 /* CustomBlurView.swift in Sources */,
 				05583CFB27ED7EB800640E75 /* ProminentRoundedLabel.swift in Sources */,
 				05C884D627FD3BBF005E2455 /* TokensSectionView.swift in Sources */,
 				05D1094527C08B2B008DCC66 /* UnauthenticatedCoordinator+Factory.swift in Sources */,
@@ -2649,6 +2672,7 @@
 				05583CC327E9C0B100640E75 /* Tracks.swift in Sources */,
 				053113E327E6C65D00368657 /* Manager.swift in Sources */,
 				053113E927E6C72000368657 /* SlideOverCard.swift in Sources */,
+				0582298828E3F72D00B6E883 /* UIVisualEffectView+Extensions.swift in Sources */,
 				056749A228B4B77F001E0949 /* SwappableTokenListView.swift in Sources */,
 				0578071D27B90A050008051B /* Constants.swift in Sources */,
 				0507BB1F28502C0300D1A965 /* PublicTreasury.swift in Sources */,

@@ -40,7 +40,6 @@ struct TokenListStandardCell: View {
                             Text(data.name ?? "no name")
                                 .fontTemplate(DefaultTemplate.gasPriceFont)
                                 .adjustsFontSizeToFitWidth(true)
-                                .minimumScaleFactor(0.85)
                                 .lineLimit(1)
 
                             HStack(alignment: .center, spacing: 5) {

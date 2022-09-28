@@ -49,24 +49,24 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func sceneDidBecomeActive(_ scene: UIScene) {
-        //print("scene did become active")
-        //if self.environment.isUserAuthenticated == .signedIn {
-            //self.auth.contacts.updateContacts(contactList: Chat.instance.contactList?.contacts ?? [], completion: { _ in })
+//        print("scene did become active")
+//        if self.environment.isUserAuthenticated == .signedIn {
+//            self.auth.contacts.updateContacts(contactList: Chat.instance.contactList?.contacts ?? [], completion: { _ in })
 //            self.auth.contacts.observeQuickSnaps()
 //            self.auth.profile.observeFirebaseUser()
-            //ChatrApp.connect()
+//            ChatrApp.connect()
 //            self.auth.dialogs.fetchDialogs(completion: { _ in
 //                self.auth.contacts.observeQuickSnaps()
 //                self.auth.profile.observeFirebaseUser()
 //                self.environment.initIAPurchase()
 //            })
-        //}
+//        }
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        //print("scene will resign active")
+//        print("scene will resign active")
 //        if self.environment.isUserAuthenticated == .signedIn {
 //            if self.environment.profile.results.first?.isLocalAuthOn ?? false {
 //                self.environment.isLoacalAuth = true
@@ -84,14 +84,14 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
-        //print("scene will enter foreground \(Thread.isMainThread)")
+//        print("scene will enter foreground \(Thread.isMainThread)")
         
         StoreReviewHelper.incrementAppOpenedCount()
         StoreReviewHelper.checkAndAskForReview()
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
-        //print("scene did enter background")
+//        print("scene did enter background")
 //        if self.environment.isUserAuthenticated == .signedIn {
 //            if let dialog = self.environment.selectedConnectyDialog {
 //                dialog.sendUserStoppedTyping()
@@ -110,7 +110,7 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-    
+
     private func sendLocalAuth() {
 //        guard self.environment.profile.results.first?.isLocalAuthOn == true else { return }
 
@@ -120,7 +120,7 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             let reason = "Identify yourself!"
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
-                
+
                 DispatchQueue.main.async {
                     if success {
 //                        self.environment.isLoacalAuth = false

@@ -31,8 +31,8 @@ struct ProfileView: View {
                     })
                 }
 
-                ListSection(title: nil, style: service.themeStyle) {
-                }
+//                ListSection(title: nil, style: service.themeStyle) {
+//                }
 
                 ListSection(title: "General", style: service.themeStyle) {
                     ListStandardButton(title: "ENS Domain", systemImage: "person", isLast: false, style: service.themeStyle, action: {
@@ -60,6 +60,9 @@ struct ProfileView: View {
                         }
                     })
                 }
+
+                GlassMorphicCard(name: "Brandon Shaw", address: "0xsdfge435tgerw43e34")
+                    .padding(.bottom)
 
                 ListSection(title: "Security & Privacy", style: service.themeStyle) {
                     ListStandardButton(title: "Sensitive Info", systemImage: "eye", isLast: false, style: service.themeStyle, action: {

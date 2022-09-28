@@ -78,6 +78,12 @@ extension UIView {
         return res
     }
 
+    func subView(forClass: AnyClass?) -> UIView? {
+        return subviews.first { view in
+            type(of: view) == forClass
+        }
+    }
+
 }
 
 struct Tool {

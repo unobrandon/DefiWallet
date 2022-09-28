@@ -53,13 +53,12 @@ struct TokenBalanceCell: View {
                             Text(data.name ?? "no name")
                                 .fontTemplate(DefaultTemplate.gasPriceFont)
                                 .adjustsFontSizeToFitWidth(true)
-                                .minimumScaleFactor(0.8)
                                 .lineLimit(1)
 
                             if let native = data.nativeBalance,
                                let roundedValue = native.truncate(places: 3) {
                                 HStack(alignment: .center, spacing: 2) {
-                                    Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.body_secondary_semibold)
+                                    Text("".forTrailingZero(temp: roundedValue)).fontTemplate(DefaultTemplate.body_secondary_medium)
 
                                     Text(data.symbol?.uppercased() ?? "")
                                         .fontTemplate(DefaultTemplate.body_secondary)
