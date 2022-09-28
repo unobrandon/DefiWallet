@@ -34,7 +34,7 @@ struct ScanQRView: View {
                 .multilineTextAlignment(.center)
                 .lineLimit(3)
                 .padding(.horizontal)
-                .padding(.bottom, 40)
+                .padding(.bottom)
 
             if !foundLink {
                 ScanQACameraView(foundLink: $foundLink, service: service)
