@@ -13,7 +13,7 @@ struct TokenDetailView: View {
     @EnvironmentObject var marketRouter: MarketsCoordinator.Router
 
     @ObservedObject var service: AuthenticatedServices
-    @ObservedObject private var walletStore: WalletService
+    @ObservedObject var walletStore: WalletService
     @State var tokenModel: TokenModel?
     @State var tokenDetails: TokenDetails?
     @State var tokenDescriptor: TokenDescriptor?
@@ -165,16 +165,18 @@ struct TokenDetailView: View {
             print("the token details are: \(String(describing: external ?? "no id"))")
 
             loadLocalTokenData(external, completion: {
-
                 if let externalId = external {
-                    service.market.fetchTokenChart(id: externalId, from: Date(timeIntervalSinceNow: -3600), toDate: Date(), completion: { chart in
-                        if let chart = chart {
-                            self.tokenChart = chart
-                        }
-                    })
-                }
+                    service.socket.startTokenDetailChartTimer(externalId: externalId,
+                                                              from: Int(Date(timeIntervalSinceNow: chartType.getUnixDateFromChartType()).timeIntervalSince1970),
+                                                              toDate: Int(Date().timeIntervalSince1970),
+                                                              currency: service.currentUser.currency)
 
-//                guard tokenModel == nil, tokenDetails == nil, tokenDescriptor == nil else { return }
+//                    service.market.fetchTokenChart(id: externalId, from: Date(timeIntervalSinceNow: -3600), toDate: Date(), currency: service.currentUser.currency, completion: { chart in
+//                        if let chart = chart {
+//                            self.tokenChart = chart
+//                        }
+//                    })
+                }
 
                 service.market.fetchTokenDetails(id: external, address: externalId, completion: { tokenDescriptor in
                     if tokenDescriptor != nil, self.tokenDescriptor == nil {
@@ -182,12 +184,14 @@ struct TokenDetailView: View {
                     }
                 })
             })
+        }.onDisappear {
+            service.socket.stopTokenDetailChartTimer()
         }
     }
 
     private func loadLocalTokenData(_ externalId: String?, completion: @escaping () -> Void) {
-        guard tokenModel == nil,
-              (tokenDetails != nil || externalId != nil),
+        // The point of this is to merge an empty TokenModel (model of portfolio) to the TokenDetails (model of outside 'Market' trends)
+        guard tokenModel == nil, (tokenDetails != nil || externalId != nil),
               let completeBalance = self.walletStore.accountBalance?.completeBalance else {
             completion()
             return
@@ -196,7 +200,6 @@ struct TokenDetailView: View {
         if let item = completeBalance.first(where: { $0.nativeBalance?.externalId == externalId }) {
             self.tokenModel = item.nativeBalance
             completion()
-            return
         } else {
             for bal in completeBalance {
                 if let token = bal.tokens?.first(where: { $0.externalId == externalId }) {
@@ -206,7 +209,6 @@ struct TokenDetailView: View {
             }
 
             completion()
-            return
         }
     }
 

@@ -23,6 +23,7 @@ class WalletService: ObservableObject {
     @Published var sendToken: TokenModel?
     @Published var receiveToken: TokenModel?
     @Published var receiveSwapToken: SwapToken?
+    @Published var tokenDetailChart: [[Double]]?
 
 //    @Published var wcProposal: WalletConnect.Session.Proposal?
     @Published var wcActiveSessions = [WCSessionInfo]()
@@ -362,18 +363,6 @@ class WalletService: ObservableObject {
     }
 
     func fetchNftUri(_ url: String, response: @escaping (NftURIResponse) -> Void) {
-        if let storage = StorageService.shared.nftUriResponse {
-            storage.async.object(forKey: url) { result in
-                switch result {
-                case .value(let nftUri):
-                    print("my nft uri is: \(nftUri)")
-                    response(nftUri)
-                case .error:
-                    print("error")
-                }
-            }
-        }
-
         var requestUrl = ""
 
         print("the url requested is: \(url)")

@@ -504,14 +504,14 @@ class MarketsService: ObservableObject {
                 print("done getting token details data: \(String(describing: token.name))")
 
             case .failure(let error):
-                print("error fetching global market data: \(error)")
+                print("error fetching token details data: \(error)")
                 completion(nil)
             }
         }
     }
 
-    func fetchTokenChart(id: String, from: Date, toDate: Date, completion: @escaping ([ChartValue]?) -> Void) {
-        let url = Constants.backendBaseUrl + "getTokenByIdChart?tokenId=" + id + "&from=\(Int(from.timeIntervalSince1970))" + "&to=\(Int(toDate.timeIntervalSince1970))"
+    func fetchTokenChart(id: String, from: Date, toDate: Date, currency: String, completion: @escaping ([ChartValue]?) -> Void) {
+        let url = Constants.backendBaseUrl + "getTokenByIdChart?tokenId=" + id + "&from=\(Int(from.timeIntervalSince1970))" + "&to=\(Int(toDate.timeIntervalSince1970))" + "&currency=\(currency)"
 
         print("the url to find the token chart is: \(url.debugDescription)")
 

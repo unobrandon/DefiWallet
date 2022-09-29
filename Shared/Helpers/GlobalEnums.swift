@@ -32,6 +32,7 @@ enum SocketResponses: String, Codable {
     case priceUpdate = "price_update"
     case swapQuote = "swap_quote"
     case marketCharts = "market_charts"
+    case tokenChart = "token_chart"
 }
 
 enum PublicTreasuryCoins: String, Equatable {

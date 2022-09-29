@@ -156,6 +156,7 @@ struct CategoriesDetailView: View {
 
     private func fetchTokenCategoriesList() {
         guard let id = category.externalId else { return }
+
         service.market.fetchCategoryDetails(categoryId: id, currency: service.currentUser.currency)
     }
 

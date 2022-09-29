@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 
 struct BalanceSectionView: View {
 
@@ -57,15 +58,45 @@ struct BalanceSectionView: View {
                 Spacer()
             }
 
-            // stride(from: 1, to: store.accountChart.count - 1, by: 4).map({ store.accountChart[$0].amount })
-            CustomLineChart(data: store.accountChart.map({ $0.amount }), timeline: store.accountChart.map({ $0.timestamp }), profit: store.accountBalance?.portfolio24hChange ?? 0 >= 0, perspective: $store.chartType)
-//                    LineChart(data: store.accountChart.map({ $0.amount }),
-//                              frame: CGRect(x: 20, y: 0, width: MobileConstants.screenWidth - 40, height: 140),
-//                              visualType: ChartVisualType.filled(color: store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red, lineWidth: 2), offset: 0,
-//                              currentValueLineType: CurrentValueLineType.dash(color: .secondary, lineWidth: 0, dash: [8]))
-                .frame(height: 160)
-                .padding([.vertical, .top])
-                .padding(.top)
+//            if #available(iOS 16.0, *) {
+//                let isProfitable = store.accountBalance?.portfolio24hChange ?? 0 >= 0
+//                let chartColor = isProfitable ? Color.green : Color.red
+//
+//                Chart {
+//                    ForEach(store.accountChart) { data in
+//                        let chartTimestamp = Date(timeIntervalSince1970: Double(data.timestamp)).chartDateFormate(perspective: store.chartType)
+//                        let chartCurrency = data.amount.convertToCurrency()
+//
+//                        // MARK: Area Mark For Gradient BG
+//                        AreaMark(x: .value("Time", chartTimestamp), y: .value("Amount", chartCurrency))
+//                            .foregroundStyle(.linearGradient(colors: [
+//                                chartColor.opacity(0.6),
+//                                chartColor.opacity(0.5),
+//                                chartColor.opacity(0.3),
+//                                chartColor.opacity(0.1),
+//                                .clear
+//                            ], startPoint: .top, endPoint: .bottom))
+//                            .interpolationMethod(.catmullRom)
+//
+//                        // MARK: Line Mark
+//                        LineMark(x: .value("Time", chartTimestamp), y: .value("Amount", chartCurrency))
+//                            .foregroundStyle(chartColor)
+//                            .interpolationMethod(.catmullRom)
+//                    }
+//                }
+//                .frame(height: 160)
+//                .padding(.top, 60)
+//            } else {
+                // stride(from: 1, to: store.accountChart.count - 1, by: 4).map({ store.accountChart[$0].amount })
+                CustomLineChart(data: store.accountChart.map({ $0.amount }), timeline: store.accountChart.map({ $0.timestamp }), profit: store.accountBalance?.portfolio24hChange ?? 0 >= 0, perspective: $store.chartType)
+    //                    LineChart(data: store.accountChart.map({ $0.amount }),
+    //                              frame: CGRect(x: 20, y: 0, width: MobileConstants.screenWidth - 40, height: 140),
+    //                              visualType: ChartVisualType.filled(color: store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red, lineWidth: 2), offset: 0,
+    //                              currentValueLineType: CurrentValueLineType.dash(color: .secondary, lineWidth: 0, dash: [8]))
+                    .frame(height: 160)
+                    .padding([.vertical, .top])
+                    .padding(.top)
+//            }
 
             if !store.accountChart.isEmpty {
                 HStack(alignment: .center, spacing: 0) {

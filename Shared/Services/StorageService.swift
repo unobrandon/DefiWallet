@@ -99,6 +99,15 @@ class StorageService {
         } catch {
             print("error getting swappable tokens storage \(error.localizedDescription)")
         }
+        
+        // token detail tokens **tokenDescriptor
+        do {
+            self.tokenDescriptor = try Storage(diskConfig: diskConfig,
+                                              memoryConfig: memoryConfig,
+                                              transformer: TransformerFactory.forCodable(ofType: TokenDescriptor.self))
+        } catch {
+            print("error getting token detail tokens **tokenDescriptor storage \(error.localizedDescription)")
+        }
 
         /*
         do {
@@ -121,6 +130,19 @@ class StorageService {
         }
 
         */
+
+        loadStorage()
+    }
+
+    private func loadStorage() {
+        // NFT URI
+        do {
+            self.nftUriResponse = try Storage(diskConfig: diskConfig,
+                                              memoryConfig: memoryConfig,
+                                              transformer: TransformerFactory.forCodable(ofType: NftURIResponse.self))
+        } catch {
+            print("error getting NFT URI storage \(error.localizedDescription)")
+        }
     }
 
 }

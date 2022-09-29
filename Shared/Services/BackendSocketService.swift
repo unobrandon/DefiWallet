@@ -19,6 +19,7 @@ struct SocketReceiveData: Codable {
     var prices: [TokenPricesModel]?
     var swapResult: SwapTokens?
     var marketChart: [TokenDetails]?
+    var tokenChart: [[Double]]?
 }
 
 class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
@@ -29,8 +30,11 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
     var disconnectedTimer: Timer?
     var walletPriceTimer: Timer?
     var marketCapTimer: Timer?
+    var tokenDetailChartTimer: Timer?
     private let disconnectedInterval: Double = 5
+    private let walletPriceInterval: Double = 5
     private let marketCapInterval: Double = 10
+    private let tokenDetailChartPriceInterval: Double = 5
 
     init(wallet: WalletService, market: MarketsService) {
         print("backend socket init")
@@ -62,6 +66,7 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
 
         stopWalletPriceTimer()
         stopMarketCapTimer()
+        stopTokenDetailChartTimer()
     }
 
     private func stopDisconnectedTimer() {
@@ -70,14 +75,22 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
         disconnectedTimer = nil
     }
 
-    private func stopWalletPriceTimer() {
+    func stopWalletPriceTimer() {
         guard let timer = walletPriceTimer else { return }
         timer.invalidate()
+        walletPriceTimer = nil
     }
 
     func stopMarketCapTimer() {
         guard let timer = marketCapTimer else { return }
         timer.invalidate()
+        marketCapTimer = nil
+    }
+
+    func stopTokenDetailChartTimer() {
+        guard let timer = tokenDetailChartTimer else { return }
+        timer.invalidate()
+        tokenDetailChartTimer = nil
     }
 
     func startDisconnectedTimer() {
@@ -88,9 +101,23 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
         }
     }
 
+    func startWalletPriceTimer(_ tokenIds: [String], currency: String) {
+        self.walletPriceTimer = Timer.scheduledTimer(withTimeInterval: walletPriceInterval, repeats: true) { _ in
+            self.emitPricesUpdate(tokenIds, currency: currency)
+            // Emit Zerion chart account request
+            self.wallet.emitAccountRequest(UserDefaults.standard.string(forKey: "chartType") ?? self.wallet.chartType)
+        }
+    }
+
     func startMarketCapTimer(currency: String) {
         self.marketCapTimer = Timer.scheduledTimer(withTimeInterval: marketCapInterval, repeats: true) { _ in
             self.emitMarketChartUpdate(currency: currency, perPage: "10", page: "1")
+        }
+    }
+
+    func startTokenDetailChartTimer(externalId: String, from: Int, toDate: Int, currency: String) {
+        self.tokenDetailChartTimer = Timer.scheduledTimer(withTimeInterval: tokenDetailChartPriceInterval, repeats: true) { _ in
+            self.emitTokenDetailChartUpdate(externalId: externalId, from: from, toDate: toDate, currency: currency)
         }
     }
 
@@ -156,6 +183,13 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
                     if let storage = StorageService.shared.marketCapStorage {
                         storage.async.setObject(chart, forKey: "marketCapList") { _ in }
                     }
+                }
+
+            case .tokenChart:
+                guard let chart = receiveData.tokenChart else { return }
+                DispatchQueue.main.async {
+                    print("did receive token detail result: \(chart.last?.last ?? 0)")
+                    self.wallet.tokenDetailChart = chart
                 }
 
             default:

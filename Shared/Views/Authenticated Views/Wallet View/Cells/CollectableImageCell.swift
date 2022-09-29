@@ -118,13 +118,26 @@ struct CollectableImageCell: View {
     }
 
     private func loadTokenImage() {
-        guard uriResponce == nil else { return }
+        guard uriResponce == nil,
+              let url = data.tokenURI,
+              let storage = StorageService.shared.nftUriResponse else { return }
 
-        if let url = data.tokenURI {
-            service.wallet.fetchNftUri(url, response: { uriResponce in
-                self.uriResponce = uriResponce
-                print("the web nft uri is: \(uriResponce)")
-            })
+        storage.async.object(forKey: url) { result in
+            switch result {
+            case .value(let nftUri):
+                print("my nft uri is: \(nftUri)")
+                DispatchQueue.global(qos: .background).async {
+                    self.uriResponce = nftUri
+                }
+            case .error:
+                print("error")
+                DispatchQueue.global(qos: .background).async {
+                    service.wallet.fetchNftUri(url, response: { uriResponce in
+                        self.uriResponce = uriResponce
+                        print("the web nft uri is: \(uriResponce)")
+                    })
+                }
+            }
         }
     }
 

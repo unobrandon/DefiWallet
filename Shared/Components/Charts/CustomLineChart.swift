@@ -15,6 +15,7 @@ struct CustomLineChart: View {
     var profit: Bool = false
 
     @Binding var perspective: String
+    @State var currentPlotValue: Double = 0.0
     @State var currentPlot = ""
     @State var offset: CGSize = .zero
     @State var showPlot = false
@@ -65,15 +66,31 @@ struct CustomLineChart: View {
             .overlay(
                 // Drag indicator...
                 VStack(spacing: 25) {
-                    Text(currentPlot)
-                        .fontTemplate(DefaultTemplate.captionPrimary_semibold)
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 10)
-                        .background(BlurEffectView(style: .systemUltraThinMaterial)
-                                        .clipShape(RoundedRectangle(cornerRadius: 5)))
-                        .shadow(color: Color.black.opacity(0.15), radius: 8, x: 0, y: 2)
-                        .offset(x: translation < 10 ? 30 : 0)
-                        .offset(x: translation > (proxy.size.width - 60) ? -30 : 0)
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack(alignment: .center, spacing: 0) {
+                            Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.sectionHeader_bold)
+
+                            MovingNumbersView(number: currentPlotValue,
+                                              numberOfDecimalPlaces: 2,
+                                              fixedWidth: nil,
+                                              theme: DefaultTemplate.sectionHeader_bold,
+                                              showComma: true) { str in
+                                Text(str).fontTemplate(DefaultTemplate.sectionHeader_bold)
+                            }
+                        }.mask(AppGradients.movingNumbersMask)
+
+                        if !currentPlot.isEmpty {
+                            Text(currentPlot)
+                                .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
+                        }
+                    }
+                    .padding(.vertical, 5)
+                    .padding(.horizontal, 10)
+                    .background(BlurEffectView(style: .systemUltraThinMaterial)
+                                    .clipShape(RoundedRectangle(cornerRadius: 5)))
+                    .shadow(color: Color.black.opacity(0.15), radius: 8, x: 0, y: 2)
+                    .offset(x: translation < 35 ? (35 - translation) + 10 : 0)
+                    .offset(x: translation > (proxy.size.width - 50) ? -50 : 0)
 
                     BlurEffectView(style: .systemUltraThinMaterial)
                         .frame(width: 20, height: 20)
@@ -96,9 +113,9 @@ struct CustomLineChart: View {
 
                 guard data.count >= index + 1 else { return }
 
-                currentPlot = data[index].convertToCurrency()
+                currentPlotValue = data[index]
                 if let time = timeline?[index] {
-                    currentPlot += "\n\(Date(timeIntervalSince1970: Double(time)).shortDateFormate())"
+                    currentPlot = "\(Date(timeIntervalSince1970: Double(time)).shortDateFormate())"
                 }
                 self.translation = translation
 
@@ -174,8 +191,7 @@ struct CustomLineChart: View {
         }
     }
 
-    @ViewBuilder
-    func fillBG() -> some View {
+    @ViewBuilder func fillBG() -> some View {
         let color = profit ? Color.green : Color.red
         LinearGradient(colors: [
             color.opacity(0.3),

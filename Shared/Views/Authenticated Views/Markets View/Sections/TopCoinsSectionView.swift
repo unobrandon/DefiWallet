@@ -48,12 +48,12 @@ struct TopCoinsSectionView: View {
                                               style: service.themeStyle, action: {
                             marketRouter.route(to: \.detailsTokenDetail, item)
                         })
+                    }
 
-                        if store.coinsByMarketCap.last == item || item == store.coinsByMarketCap[limitCells - 1] {
-                            ListStandardButton(title: "view all...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
-                                marketRouter.route(to: \.marketCapRank)
-                            })
-                        }
+                    if !store.coinsByMarketCap.isEmpty {
+                        ListStandardButton(title: "view all...", systemImage: "ellipsis.circle", isLast: true, style: service.themeStyle, action: {
+                            marketRouter.route(to: \.marketCapRank)
+                        })
                     }
                 }
             }

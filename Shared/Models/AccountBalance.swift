@@ -40,8 +40,9 @@ struct AccountPortfolio: Codable, Hashable {
     let absoluteChange24h, relativeChange24h: Double?
 }
 
-struct ChartValue: Codable {
+struct ChartValue: Codable, Identifiable {
 
+    let id = UUID()
     let timestamp: Int
     let amount: Double
 

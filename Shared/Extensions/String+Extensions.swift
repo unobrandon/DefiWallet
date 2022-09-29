@@ -210,6 +210,22 @@ extension String {
         }
     }
 
+    func getUnixDateFromChartType() -> Double {
+        if self == "h" {
+            return -3600
+        } else if self == "d" {
+            return -86400
+        } else if self == "w" {
+            return -604800
+        } else if self == "m" {
+            return -2629743
+        } else if self == "y" {
+            return -31556926
+        } else {
+           return -86400
+        }
+    }
+
     func toArray() throws -> [Any] {
         guard let stringData = data(using: .utf16, allowLossyConversion: false) else { return [] }
         guard let array = try JSONSerialization.jsonObject(with: stringData, options: .mutableContainers) as? [Any] else {

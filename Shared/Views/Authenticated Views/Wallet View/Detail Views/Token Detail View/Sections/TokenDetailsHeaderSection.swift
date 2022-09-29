@@ -49,8 +49,10 @@ extension TokenDetailView {
             HStack(alignment: .center, spacing: 0) {
                 Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.titleSemiBold)
 
-                MovingNumbersView(number: tokenModel?.currentPrice ?? tokenDetails?.currentPrice ?? 0.00,
-                                  numberOfDecimalPlaces: tokenModel?.currentPrice?.decimalCount() ?? tokenDetails?.currentPrice?.decimalCount() ?? 2 < 2 ? 2 : tokenModel?.currentPrice?.decimalCount() ?? tokenDetails?.currentPrice?.decimalCount() ?? 2,
+                let socketChart = walletStore.tokenDetailChart?.last?.last
+                let num = socketChart ?? tokenModel?.currentPrice ?? tokenDetails?.currentPrice ?? 0.00
+                MovingNumbersView(number: num,
+                                  numberOfDecimalPlaces: socketChart?.decimalCount() ?? tokenModel?.currentPrice?.decimalCount() ?? tokenDetails?.currentPrice?.decimalCount() ?? 2 < 2 ? 2 : tokenModel?.currentPrice?.decimalCount() ?? tokenDetails?.currentPrice?.decimalCount() ?? 2,
                                   fixedWidth: nil,
                                   theme: DefaultTemplate.titleSemiBold,
                                   animationDuration: 0.4,

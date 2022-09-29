@@ -9,8 +9,8 @@ import Foundation
 
 extension BackendSocketService {
 
-    func emitPricesUpdate(_ tokenIds: [String]) {
-        let package = SocketSendData(type: .priceUpdate, ids: tokenIds, data: "usd")
+    func emitPricesUpdate(_ tokenIds: [String], currency: String) {
+        let package = SocketSendData(type: .priceUpdate, ids: tokenIds, data: currency)
 
         if let encodedData = try? JSONEncoder().encode(package) {
             let jsonString = String(data: encodedData, encoding: .utf8)
@@ -62,6 +62,30 @@ extension BackendSocketService {
             let jsonString = String(data: swapData, encoding: .utf8)
 
             let swap = SocketSendData(type: .marketCharts, ids: nil, data: jsonString ?? "")
+
+            if let encodedData = try? JSONEncoder().encode(swap) {
+                let jsonString = String(data: encodedData, encoding: .utf8)
+                let msgString = URLSessionWebSocketTask.Message.string(jsonString ?? "no data")
+
+                webSocketTask?.send(msgString) { error in
+                    if let error = error {
+                        print("Failed to emitMarketChartUpdate with error \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+    }
+
+    func emitTokenDetailChartUpdate(externalId: String, from: Int, toDate: Int, currency: String) {
+        let model = ["externalId" : externalId,
+                     "from" : from.description,
+                     "to" : toDate.description,
+                     "currency": currency]
+
+        if let swapData = try? JSONEncoder().encode(model) {
+            let jsonString = String(data: swapData, encoding: .utf8)
+
+            let swap = SocketSendData(type: .tokenChart, ids: nil, data: jsonString ?? "")
 
             if let encodedData = try? JSONEncoder().encode(swap) {
                 let jsonString = String(data: encodedData, encoding: .utf8)
