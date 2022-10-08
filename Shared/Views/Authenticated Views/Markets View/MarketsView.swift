@@ -68,7 +68,6 @@ struct MarketsView: View {
         .onDisappear {
             store.stopGasTimer()
             service.socket.stopMarketCapTimer()
-            gridViews = []
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
