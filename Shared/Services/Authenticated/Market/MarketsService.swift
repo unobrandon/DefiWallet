@@ -510,21 +510,31 @@ class MarketsService: ObservableObject {
         }
     }
 
-    func fetchTokenChart(id: String, from: Date, toDate: Date, currency: String, completion: @escaping ([ChartValue]?) -> Void) {
-        let url = Constants.backendBaseUrl + "getTokenByIdChart?tokenId=" + id + "&from=\(Int(from.timeIntervalSince1970))" + "&to=\(Int(toDate.timeIntervalSince1970))" + "&currency=\(currency)"
+    func fetchTokenChart(id: String, days: String, currency: String, completion: @escaping ([ChartValue]?) -> Void) {
+        let url = Constants.backendBaseUrl + "getTokenByIdChart?tokenId=" + id + "&days=" + days + "&currency=\(currency)"
 
         print("the url to find the token chart is: \(url.debugDescription)")
 
-        AF.request(url, method: .get).responseDecodable(of: [ChartValue].self) { response in
+        AF.request(url, method: .get).responseDecodable(of: [[Double]].self) { response in
             switch response.result {
             case .success(let chart):
-                if let storage = StorageService.shared.tokenCharts {
-                    storage.async.setObject(chart, forKey: "tokenCharts\(id)") { _ in }
+                var totalChart: [ChartValue] = []
+
+                for items in chart {
+                    if let time = items.first,
+                       let value = items.last {
+                        totalChart.append(ChartValue(timestamp: Int(time), amount: value))
+                    }
                 }
-                print("done getting token chart data \(chart)")
+
+                if let storage = StorageService.shared.tokenCharts {
+                    storage.async.setObject(totalChart, forKey: "tokenCharts\(id)") { _ in }
+                }
+
+                print("done getting token chart data \(totalChart.count)")
 
                 DispatchQueue.main.async {
-                    completion(chart)
+                    completion(totalChart)
                 }
 
             case .failure(let error):

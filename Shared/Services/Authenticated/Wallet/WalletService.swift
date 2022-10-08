@@ -24,6 +24,7 @@ class WalletService: ObservableObject {
     @Published var receiveToken: TokenModel?
     @Published var receiveSwapToken: SwapToken?
     @Published var tokenDetailChart: [[Double]]?
+    @Published var tokenDetailPrice: Double?
 
 //    @Published var wcProposal: WalletConnect.Session.Proposal?
     @Published var wcActiveSessions = [WCSessionInfo]()

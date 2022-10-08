@@ -22,7 +22,7 @@ struct TokenDetailView: View {
     @State var openLinkSheet: Bool = false
     @State var chartType: String
 
-    @State private var tokenChart = [ChartValue]()
+    @State var tokenChart = [ChartValue]()
 
     @State var gridItems: [SwiftUI.GridItem] = {
         return [SwiftUI.GridItem(.flexible()),
@@ -72,20 +72,19 @@ struct TokenDetailView: View {
                         self.scrollOffset = $0
                     }
 
-                CustomLineChart(data: tokenModel?.priceGraph?.price ?? tokenDetails?.priceGraph?.price ?? tokenChart.map({ $0.amount }),
-                                profit: tokenModel?.priceChangePercentage24H ?? tokenDetails?.priceChangePercentage24H ?? 0 >= 0,
-                                perspective: $walletStore.chartType)
+                CustomLineChart(data: tokenChart.map({ $0.amount }),
+                                timeline: tokenChart.map({ $0.timestamp }), profit: tokenChart.first?.amount ?? 0 <= tokenChart.last?.amount ?? 0,
+                                perspective: $chartType)
                     .frame(height: 145)
                     .padding()
+                    .padding(.top)
 
-                if !tokenChart.isEmpty || tokenModel?.priceGraph?.price != nil || tokenDetails?.priceGraph?.price != nil {
+                if !tokenChart.isEmpty {
                     HStack(alignment: .center, spacing: 0) {
                         Spacer()
 
                         VStack(alignment: .trailing, spacing: 8) {
                             Picker("", selection: $chartType) {
-                                Text("1H")
-                                    .tag("h")
                                 Text("1D")
                                     .tag("d")
                                 Text("1W")
@@ -94,6 +93,9 @@ struct TokenDetailView: View {
                                     .tag("m")
                                 Text("1Y")
                                     .tag("y")
+                                Text("MAX")
+                                    .tag("max")
+                                    .padding(.horizontal, 2.5)
                             }
                             .pickerStyle(.segmented)
                             .frame(width: 200, height: 30)
@@ -104,9 +106,9 @@ struct TokenDetailView: View {
                         .padding(.top, 10)
                         .padding(10)
                         .onChange(of: chartType) { newValue in
-//                            let val = newValue == "1H" ? "h" : newValue == "1D" ? "d" : newValue == "1W" ? "w" : newValue == "1M" ? "m" : newValue == "1Y" ? "y" : ""
-//                            walletStore.emitSingleChartRequest(newValue)
+                            fetchTokenChart(newValue)
                             UserDefaults.standard.setValue(newValue, forKey: "chartDetailType")
+                            HapticFeedback.lightHapticFeedback()
                         }
                     }
                 }
@@ -166,16 +168,10 @@ struct TokenDetailView: View {
 
             loadLocalTokenData(external, completion: {
                 if let externalId = external {
-                    service.socket.startTokenDetailChartTimer(externalId: externalId,
-                                                              from: Int(Date(timeIntervalSinceNow: chartType.getUnixDateFromChartType()).timeIntervalSince1970),
-                                                              toDate: Int(Date().timeIntervalSince1970),
+                    service.socket.startTokenDetailPriceTimer(externalId: externalId,
                                                               currency: service.currentUser.currency)
 
-//                    service.market.fetchTokenChart(id: externalId, from: Date(timeIntervalSinceNow: -3600), toDate: Date(), currency: service.currentUser.currency, completion: { chart in
-//                        if let chart = chart {
-//                            self.tokenChart = chart
-//                        }
-//                    })
+                    fetchTokenChart(chartType)
                 }
 
                 service.market.fetchTokenDetails(id: external, address: externalId, completion: { tokenDescriptor in
@@ -185,8 +181,21 @@ struct TokenDetailView: View {
                 })
             })
         }.onDisappear {
-            service.socket.stopTokenDetailChartTimer()
+            service.socket.stopTokenDetailPriceTimer()
+            self.walletStore.tokenDetailPrice = nil
         }
+    }
+
+    private func fetchTokenChart(_ type: String) {
+        guard let external = tokenModel?.id ?? tokenModel?.externalId ?? tokenDetails?.id ?? tokenDescriptor?.externalID ?? externalId else {
+            return
+        }
+
+        service.market.fetchTokenChart(id: external, days: type.getDaysFromChartType(), currency: service.currentUser.currency, completion: { chart in
+            if let chart = chart {
+                self.tokenChart = chart
+            }
+        })
     }
 
     private func loadLocalTokenData(_ externalId: String?, completion: @escaping () -> Void) {

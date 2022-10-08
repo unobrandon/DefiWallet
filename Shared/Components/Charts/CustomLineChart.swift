@@ -71,7 +71,7 @@ struct CustomLineChart: View {
                             Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.sectionHeader_bold)
 
                             MovingNumbersView(number: currentPlotValue,
-                                              numberOfDecimalPlaces: 2,
+                                              numberOfDecimalPlaces: currentPlotValue.decimalCount() < 2 || currentPlotValue >= 1.0 ? 2 : currentPlotValue.decimalCount() >= 6 ? 6 : currentPlotValue.decimalCount(),
                                               fixedWidth: nil,
                                               theme: DefaultTemplate.sectionHeader_bold,
                                               showComma: true) { str in
@@ -153,8 +153,6 @@ struct CustomLineChart: View {
 
                     Spacer()
                     if let timeline = timeline {
-                        Divider().offset(y: 10)
-
                         HStack() {
                             ForEach(timeline.sorted(by: >).subArray(length: 4), id: \.self) { date in
                                 Text(Date(timeIntervalSince1970: Double(date)).chartDateFormate(perspective: perspective))
@@ -214,7 +212,7 @@ struct AnimatedGraphPath: Shape {
             path.addLines(points)
         }
         .trimmedPath(from: 0, to: progress)
-        .strokedPath(StrokeStyle(lineWidth: 1.85, lineCap: .round, lineJoin: .round))
+        .strokedPath(StrokeStyle(lineWidth: points.count <= 250 ? 1.85 : points.count <= 500 ? 1.33 : 1.0, lineCap: .round, lineJoin: .round))
     }
 
 }

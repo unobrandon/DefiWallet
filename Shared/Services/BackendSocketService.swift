@@ -20,6 +20,7 @@ struct SocketReceiveData: Codable {
     var swapResult: SwapTokens?
     var marketChart: [TokenDetails]?
     var tokenChart: [[Double]]?
+    var tokenPrice: Double?
 }
 
 class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
@@ -30,11 +31,11 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
     var disconnectedTimer: Timer?
     var walletPriceTimer: Timer?
     var marketCapTimer: Timer?
-    var tokenDetailChartTimer: Timer?
+    var tokenDetailPriceTimer: Timer?
     private let disconnectedInterval: Double = 5
     private let walletPriceInterval: Double = 5
     private let marketCapInterval: Double = 10
-    private let tokenDetailChartPriceInterval: Double = 5
+    private let tokenDetailPriceInterval: Double = 10
 
     init(wallet: WalletService, market: MarketsService) {
         print("backend socket init")
@@ -66,7 +67,7 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
 
         stopWalletPriceTimer()
         stopMarketCapTimer()
-        stopTokenDetailChartTimer()
+        stopTokenDetailPriceTimer()
     }
 
     private func stopDisconnectedTimer() {
@@ -87,10 +88,10 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
         marketCapTimer = nil
     }
 
-    func stopTokenDetailChartTimer() {
-        guard let timer = tokenDetailChartTimer else { return }
+    func stopTokenDetailPriceTimer() {
+        guard let timer = tokenDetailPriceTimer else { return }
         timer.invalidate()
-        tokenDetailChartTimer = nil
+        tokenDetailPriceTimer = nil
     }
 
     func startDisconnectedTimer() {
@@ -115,9 +116,12 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
         }
     }
 
-    func startTokenDetailChartTimer(externalId: String, from: Int, toDate: Int, currency: String) {
-        self.tokenDetailChartTimer = Timer.scheduledTimer(withTimeInterval: tokenDetailChartPriceInterval, repeats: true) { _ in
-            self.emitTokenDetailChartUpdate(externalId: externalId, from: from, toDate: toDate, currency: currency)
+    func startTokenDetailPriceTimer(externalId: String, currency: String) {
+        // First initial call to get price
+        self.emitTokenDetailPriceUpdate(externalId: externalId, currency: currency)
+
+        self.tokenDetailPriceTimer = Timer.scheduledTimer(withTimeInterval: tokenDetailPriceInterval, repeats: true) { _ in
+            self.emitTokenDetailPriceUpdate(externalId: externalId, currency: currency)
         }
     }
 
@@ -190,6 +194,13 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
                 DispatchQueue.main.async {
                     print("did receive token detail result: \(chart.last?.last ?? 0)")
                     self.wallet.tokenDetailChart = chart
+                }
+
+            case .tokenPrice:
+                guard let price = receiveData.tokenPrice else { return }
+                DispatchQueue.main.async {
+                    print("did receive token detail price result: \(price)")
+                    self.wallet.tokenDetailPrice = price
                 }
 
             default:

@@ -39,6 +39,7 @@ struct CategoryCell: View {
                             ProminentRoundedLabel(text: (data.marketCapChange24H ?? 0 >= 0 ? "+" : "") +
                                                   "\("".forTrailingZero(temp: data.marketCapChange24H?.truncate(places: 2) ?? 0.00))%",
                                                   color: data.marketCapChange24H ?? 0 >= 0 ? .green : .red,
+                                                  fontSize: 12.0,
                                                   style: service.themeStyle)
 
                             if let num = Int(data.marketCap ?? 0), num != 0 {

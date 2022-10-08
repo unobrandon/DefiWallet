@@ -76,16 +76,14 @@ extension BackendSocketService {
         }
     }
 
-    func emitTokenDetailChartUpdate(externalId: String, from: Int, toDate: Int, currency: String) {
+    func emitTokenDetailPriceUpdate(externalId: String, currency: String) {
         let model = ["externalId" : externalId,
-                     "from" : from.description,
-                     "to" : toDate.description,
                      "currency": currency]
 
         if let swapData = try? JSONEncoder().encode(model) {
             let jsonString = String(data: swapData, encoding: .utf8)
 
-            let swap = SocketSendData(type: .tokenChart, ids: nil, data: jsonString ?? "")
+            let swap = SocketSendData(type: .tokenPrice, ids: nil, data: jsonString ?? "")
 
             if let encodedData = try? JSONEncoder().encode(swap) {
                 let jsonString = String(data: encodedData, encoding: .utf8)

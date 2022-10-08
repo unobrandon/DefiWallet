@@ -226,6 +226,22 @@ extension String {
         }
     }
 
+    func getDaysFromChartType() -> String {
+        if self == "d" {
+            return "1"
+        } else if self == "w" {
+            return "7"
+        } else if self == "m" {
+            return "30"
+        } else if self == "y" {
+            return "365"
+        } else if self == "max" {
+            return "max"
+        } else {
+           return "1"
+        }
+    }
+
     func toArray() throws -> [Any] {
         guard let stringData = data(using: .utf16, allowLossyConversion: false) else { return [] }
         guard let array = try JSONSerialization.jsonObject(with: stringData, options: .mutableContainers) as? [Any] else {

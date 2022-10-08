@@ -101,7 +101,7 @@ struct TokenListStandardCell: View {
                             ProminentRoundedLabel(text: (data.priceChangePercentage24H ?? 0 >= 0 ? "+" : "") +
                                                   "\("".forTrailingZero(temp: data.priceChangePercentage24H?.truncate(places: 2) ?? 0.00))%",
                                                   color: data.priceChangePercentage24H ?? 0 >= 0 ? .green : .red,
-                                                  fontSize: 13.0,
+                                                  fontSize: 12.0,
                                                   style: service.themeStyle)
                                 .padding(.trailing, 12)
 

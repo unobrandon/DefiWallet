@@ -99,7 +99,7 @@ class StorageService {
         } catch {
             print("error getting swappable tokens storage \(error.localizedDescription)")
         }
-        
+
         // token detail tokens **tokenDescriptor
         do {
             self.tokenDescriptor = try Storage(diskConfig: diskConfig,
@@ -107,6 +107,15 @@ class StorageService {
                                               transformer: TransformerFactory.forCodable(ofType: TokenDescriptor.self))
         } catch {
             print("error getting token detail tokens **tokenDescriptor storage \(error.localizedDescription)")
+        }
+
+        // token Charts
+        do {
+            self.tokenCharts = try Storage(diskConfig: diskConfig,
+                                              memoryConfig: memoryConfig,
+                                              transformer: TransformerFactory.forCodable(ofType: [ChartValue].self))
+        } catch {
+            print("error getting token Charts storage \(error.localizedDescription)")
         }
 
         /*

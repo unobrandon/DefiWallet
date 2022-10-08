@@ -127,6 +127,7 @@ extension WalletService {
         } else if timePeriod == "w" { return "last 7 days"
         } else if timePeriod == "m" { return "last 30 days"
         } else if timePeriod == "y" { return "last 12 months"
+        } else if timePeriod == "max" { return "all time"
         } else { return "" }
     }
 

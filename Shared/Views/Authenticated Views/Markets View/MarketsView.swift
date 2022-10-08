@@ -17,7 +17,6 @@ struct MarketsView: View {
     @ObservedObject private var store: MarketsService
 
     @State private var searchText: String = ""
-    @State private var gridViews: [AnyView] = []
     @State private var isMarketCapLoading: Bool = true
     @State private var isTrendingLoading: Bool = false
     @State private var showGasSheet: Bool = false
@@ -32,8 +31,10 @@ struct MarketsView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView(.vertical, showsIndicators: false) {
                 if searchText.isEmpty {
-                    Grid(gridViews.indices, id:\.self) { index in
-                        gridViews[index]
+                    LazyVGrid(columns: Array(repeating: SwiftUI.GridItem(.flexible(), spacing: 2), count: MobileConstants.deviceType == .phone ? 1 : 2), alignment: .leading, spacing: 10) {
+                        TopSectionView(service: service)
+                        TrendingSectionView(isLoading: $isTrendingLoading, service: service)
+                        TopCoinsSectionView(isLoading: $isMarketCapLoading, service: service)
                     }
                 }
             }
@@ -48,12 +49,6 @@ struct MarketsView: View {
             DispatchQueue.main.async {
                 Tool.showTabBar()
             }
-
-            self.gridViews = [
-                AnyView(TopSectionView(service: service)),
-                AnyView(TrendingSectionView(isLoading: $isTrendingLoading, service: service)),
-                AnyView(TopCoinsSectionView(isLoading: $isMarketCapLoading, service: service))
-            ]
 
             store.tokenCategories = []
             store.exchanges = []
