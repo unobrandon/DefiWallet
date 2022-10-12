@@ -78,7 +78,7 @@ struct CollectableImageCell: View {
                             .scaledToFill()
                             .aspectRatio(contentMode: .fill)
                             .transition(.fade(duration: 0.35))
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
 
                         service.wallet.getNetworkTransactImage(data.network ?? "")
                             .resizable()

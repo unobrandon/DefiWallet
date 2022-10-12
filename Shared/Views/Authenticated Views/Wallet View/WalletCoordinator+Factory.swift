@@ -47,6 +47,10 @@ extension WalletCoordinator {
         CollectableView(filtered: network, service: services)
     }
 
+    @ViewBuilder func makeCollectableDetail(data: NftResult) -> some View {
+        CollectableDetailView(fromMarketView: false, data: data, service: services)
+    }
+
     @ViewBuilder func makeHistory(network: String? = nil) -> some View {
         HistoryView(filtered: network, service: services)
     }

@@ -65,7 +65,7 @@ struct CollectablesSectionView: View {
 //                    })
 //                } else {
                     CollectableImageCell(service: service, data: nftResult, style: service.themeStyle, action: {
-                        print("collectable tapped")
+                        showDetails(nftResult)
                     })
 //                }
             })
@@ -77,6 +77,14 @@ struct CollectablesSectionView: View {
                     .padding()
             }
         }
+    }
+
+    private func showDetails(_ data: NftResult) {
+        walletRouter.route(to: \.collectableDetail, data)
+
+        #if os(iOS)
+            HapticFeedback.rigidHapticFeedback()
+        #endif
     }
 
     private func seeAll() {

@@ -155,6 +155,10 @@
 		053EC29227BE0E3600FBC681 /* InvestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053EC29127BE0E3600FBC681 /* InvestService.swift */; };
 		053EC29327BE0E3600FBC681 /* InvestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053EC29127BE0E3600FBC681 /* InvestService.swift */; };
 		053EC29527BE0FE600FBC681 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 053EC29427BE0FE600FBC681 /* RealmSwift */; };
+		0547E65928F698B900234085 /* CollectableDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547E65828F698B900234085 /* CollectableDetailView.swift */; };
+		0547E65A28F698B900234085 /* CollectableDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547E65828F698B900234085 /* CollectableDetailView.swift */; };
+		0547E65C28F69FCE00234085 /* PinchZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547E65B28F69FCE00234085 /* PinchZoomView.swift */; };
+		0547E65D28F69FCE00234085 /* PinchZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547E65B28F69FCE00234085 /* PinchZoomView.swift */; };
 		0548B85F27B4C957000478B8 /* DefiWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B85E27B4C957000478B8 /* DefiWalletApp.swift */; };
 		0548B86327B4C959000478B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0548B86227B4C959000478B8 /* Assets.xcassets */; };
 		0548B87327B4C9A6000478B8 /* DefiWalletApp_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548B87227B4C9A6000478B8 /* DefiWalletApp_macOS.swift */; };
@@ -712,6 +716,8 @@
 		053C7D4127CDCFDE0081DCEA /* EnsUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnsUsernameView.swift; sourceTree = "<group>"; };
 		053C7D4427CDD5620081DCEA /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		053EC29127BE0E3600FBC681 /* InvestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestService.swift; sourceTree = "<group>"; };
+		0547E65828F698B900234085 /* CollectableDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableDetailView.swift; sourceTree = "<group>"; };
+		0547E65B28F69FCE00234085 /* PinchZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchZoomView.swift; sourceTree = "<group>"; };
 		0548B85B27B4C957000478B8 /* DefiWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DefiWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0548B85E27B4C957000478B8 /* DefiWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefiWalletApp.swift; sourceTree = "<group>"; };
 		0548B86227B4C959000478B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1126,6 +1132,7 @@
 				050225B227FC09450004D910 /* NetworkDetailView.swift */,
 				0566AED027E8F64B006B645F /* HistoryDetailView.swift */,
 				056749A928BA0B28001E0949 /* SwapDetailView.swift */,
+				0547E65828F698B900234085 /* CollectableDetailView.swift */,
 				054DC826283D851B00A1FDA6 /* Token Detail View */,
 			);
 			path = "Detail Views";
@@ -1149,6 +1156,7 @@
 				05583C9827E965FF00640E75 /* SafariView.swift */,
 				0500307128581079000C5DFF /* YTVideoView.swift */,
 				05CA873428053243006FACE0 /* SVGWebView.swift */,
+				0547E65B28F69FCE00234085 /* PinchZoomView.swift */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -2218,6 +2226,7 @@
 				05CA871A2802A5CF006FACE0 /* CollectablesSectionView.swift in Sources */,
 				052554DE289120FB0060EC7A /* StoreReviewHelper.swift in Sources */,
 				05E858CA27CB240300B85195 /* AppGradients.swift in Sources */,
+				0547E65C28F69FCE00234085 /* PinchZoomView.swift in Sources */,
 				0504A41D283F27DC000DB947 /* ExchangeView.swift in Sources */,
 				0507BB18284DD27100D1A965 /* TopLosersView.swift in Sources */,
 				053113E527E6C6CC00368657 /* Modifiers.swift in Sources */,
@@ -2294,6 +2303,7 @@
 				05C884D527FD3BBF005E2455 /* TokensSectionView.swift in Sources */,
 				05A6AAAE27F93D4100824C76 /* TrendingCoin.swift in Sources */,
 				05E858AA27C9F75C00B85195 /* GenerateWalletView.swift in Sources */,
+				0547E65928F698B900234085 /* CollectableDetailView.swift in Sources */,
 				0593022D27E03F45006DDFFF /* UserAvatar.swift in Sources */,
 				057806BE27B8432B0008051B /* Constants.swift in Sources */,
 				056749A128B4B77F001E0949 /* SwappableTokenListView.swift in Sources */,
@@ -2588,6 +2598,7 @@
 				0578077A27BB71410008051B /* Blob.swift in Sources */,
 				0593021127D9C790006DDFFF /* Double+Extensions.swift in Sources */,
 				050225B727FC095F0004D910 /* PinnedHeaderView.swift in Sources */,
+				0547E65A28F698B900234085 /* CollectableDetailView.swift in Sources */,
 				0500E4E2281F6CDA001A4FAB /* ACarouselAutoScroll.swift in Sources */,
 				05BDC5BD280D116D00851E16 /* GlobalGasView.swift in Sources */,
 				0566AECD27E8660C006B645F /* HistoryView.swift in Sources */,
@@ -2676,6 +2687,7 @@
 				056749A228B4B77F001E0949 /* SwappableTokenListView.swift in Sources */,
 				0578071D27B90A050008051B /* Constants.swift in Sources */,
 				0507BB1F28502C0300D1A965 /* PublicTreasury.swift in Sources */,
+				0547E65D28F69FCE00234085 /* PinchZoomView.swift in Sources */,
 				05E858C827CB238800B85195 /* Character+Extensions.swift in Sources */,
 				05D40F892858600A002BDA0F /* TransactionListCell.swift in Sources */,
 				053C7D3C27CD903B0081DCEA /* MovingNumbersView.swift in Sources */,

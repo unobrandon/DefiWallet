@@ -22,6 +22,7 @@ final class WalletCoordinator: NavigationCoordinatable {
     @Route(.push) var history = makeHistory
     @Route(.push) var tokens = makeTokens
     @Route(.push) var collectables = makeCollectables
+    @Route(.push) var collectableDetail = makeCollectableDetail
     @Route(.push) var historyDetail = makeHistoryDetail
     @Route(.push) var tokenDetail = makeTokenDetail
     @Route(.push) var tokenDetails = makeTokenDetails

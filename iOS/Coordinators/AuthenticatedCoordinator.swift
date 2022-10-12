@@ -14,8 +14,8 @@ final class AuthenticatedCoordinator: TabCoordinatable {
         startingItems: [
              \AuthenticatedCoordinator.wallet,
              \AuthenticatedCoordinator.markets,
-             \AuthenticatedCoordinator.discover,
-             \AuthenticatedCoordinator.invest,
+//             \AuthenticatedCoordinator.discover,
+//             \AuthenticatedCoordinator.invest,
              \AuthenticatedCoordinator.profile
         ])
 

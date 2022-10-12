@@ -33,6 +33,7 @@ struct CollectableView: View {
                 StaggeredGrid(columns: MobileConstants.deviceType == .phone ? 2 : 3, showsIndicators: false, spacing: 10, list: filterCollectables(), itemLimit: self.limitCells, content: { nftResult in
                     CollectableImageCell(service: service, data: nftResult, style: service.themeStyle, size: .large, action: {
                         // walletRouter.route(to: \.tokenDetail, item)
+                        showDetails(nftResult)
                     })
                 })
                 .padding()
@@ -134,6 +135,15 @@ struct CollectableView: View {
         } else {
             return data.sorted(by: { $0.isValid ?? 0 > $1.isValid ?? 0 })
         }
+    }
+
+    
+    private func showDetails(_ data: NftResult) {
+        walletRouter.route(to: \.collectableDetail, data)
+
+        #if os(iOS)
+            HapticFeedback.rigidHapticFeedback()
+        #endif
     }
 
 }

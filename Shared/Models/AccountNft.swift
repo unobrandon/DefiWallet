@@ -82,9 +82,8 @@ struct NftMetadata: Codable, Hashable {
         hasher.combine(image)
     }
 
-    let name, image, imagePreview, description, externalUrl: String?
+    let name, image, imageUrl, imagePreview, description, externalUrl: String?
     let isNormalized: Bool?
-    let imageUrl: String?
 
     enum CodingKeys: String, CodingKey {
         case description
