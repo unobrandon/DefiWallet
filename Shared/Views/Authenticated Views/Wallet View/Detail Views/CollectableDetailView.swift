@@ -19,7 +19,6 @@ struct CollectableDetailView: View {
     @State var data: NftResult
     @State private var uriResponce: NftURIResponse?
     @State var scrollOffset: CGFloat = CGFloat.zero
-    @State private var imageSize = CGSize.zero
     @State var openLinkSheet: Bool = false
     @State var svgLoadError: Bool = false
 
@@ -41,7 +40,8 @@ struct CollectableDetailView: View {
                             ZStack {
                                 SVGWebView(uriResponce.image ?? uriResponce.image_url ?? "", isAvailable: $svgLoadError)
                                     .aspectRatio(1, contentMode: .fill)
-                                    .clipShape(RoundedRectangle(cornerRadius: 0, style: .circular))
+                                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
+                                    .padding(.horizontal, 10)
                                     .zIndex(5)
                                     .pinchToZoom()
 
@@ -57,7 +57,8 @@ struct CollectableDetailView: View {
                                 .resizable()
                                 .scaledToFill()
                                 .aspectRatio(contentMode: .fill)
-                                .clipShape(RoundedRectangle(cornerRadius: 0, style: .circular))
+                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
+                                .padding(.horizontal, 10)
                                 .zIndex(5)
                                 .pinchToZoom()
                         } else if uriResponce.image != nil || uriResponce.image_url != nil {
@@ -68,20 +69,11 @@ struct CollectableDetailView: View {
                                 .scaledToFill()
                                 .aspectRatio(contentMode: .fill)
                                 .transition(.fade(duration: 0.35))
-                                .clipShape(RoundedRectangle(cornerRadius: 0, style: .circular))
+                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
+                                .padding(.horizontal, 10)
                                 .zIndex(5)
                                 .pinchToZoom()
                         }
-
-//                        service.wallet.getNetworkTransactImage(data.network ?? "")
-//                            .resizable()
-//                            .scaledToFill()
-//                            .frame(width: 18, height: 18, alignment: .center)
-//                            .clipShape(Circle())
-//                            .padding(size == .small ? 5 : 7.5)
-                    }
-                    .measureSize { size in
-                        imageSize = size
                     }
                     .background(GeometryReader {
                         Color.clear.preference(key: ViewOffsetKey.self,
@@ -89,62 +81,94 @@ struct CollectableDetailView: View {
                     })
                     .onPreferenceChange(ViewOffsetKey.self) {
                         self.scrollOffset = $0
-                        print("the offset is: \($0) and image height: \(imageSize.height)")
                     }
                 } else {
-                    ZStack(alignment: .bottomLeading) {
-                        WebImage(url: URL(string: data.metadata?.imagePreview ?? data.metadata?.imageUrl ?? data.metadata?.image ?? ""))
-                            .resizable()
-                            .placeholder { Rectangle() }
-                            .indicator(.activity)
-                            .scaledToFill()
-                            .aspectRatio(contentMode: .fill)
-                            .transition(.fade(duration: 0.35))
-                            .clipShape(RoundedRectangle(cornerRadius: 0, style: .circular))
-                            .zIndex(5)
-                            .pinchToZoom()
-
-//                        service.wallet.getNetworkTransactImage(data.network ?? "")
-//                            .resizable()
-//                            .scaledToFill()
-//                            .frame(width: size == .small ? 14 : 18, height: size == .small ? 14 : 18, alignment: .center)
-//                            .clipShape(Circle())
-//                            .padding(size == .small ? 5 : 7.5)
-                    }
-                    .measureSize { size in
-                        imageSize = size
-                    }
-                    .background(GeometryReader {
-                        Color.clear.preference(key: ViewOffsetKey.self,
-                            value: -$0.frame(in: .named("collectableDetail-scroll")).origin.y)
-                    })
-                    .onPreferenceChange(ViewOffsetKey.self) {
-                        self.scrollOffset = $0
-                        print("the offset is: \($0) and image height: \(imageSize.height)")
-                    }
+                    WebImage(url: URL(string: data.metadata?.imagePreview ?? data.metadata?.imageUrl ?? data.metadata?.image ?? ""))
+                        .resizable()
+                        .placeholder { Rectangle() }
+                        .indicator(.activity)
+                        .scaledToFill()
+                        .aspectRatio(contentMode: .fill)
+                        .transition(.fade(duration: 0.35))
+                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
+                        .padding(.horizontal, 10)
+                        .zIndex(5)
+                        .pinchToZoom()
+                        .background(GeometryReader {
+                            Color.clear.preference(key: ViewOffsetKey.self,
+                                value: -$0.frame(in: .named("collectableDetail-scroll")).origin.y)
+                        })
+                        .onPreferenceChange(ViewOffsetKey.self) {
+                            self.scrollOffset = $0
+                        }
                 }
 
                 VStack(alignment: .leading, spacing: 0) {
                     Text(data.metadata?.name ?? data.name ?? "")
-                        .fontTemplate(DefaultTemplate.titleSemiBold)
+                        .fontTemplate(DefaultTemplate.headingSemiBold)
                         .lineLimit(4)
 
-                    Text(data.symbol ?? "")
-                        .fontTemplate(DefaultTemplate.body_Mono_secondary)
+                    Text(data.symbol?.capitalized ?? "")
+                        .fontTemplate(DefaultTemplate.body_standard)
                         .lineLimit(1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 5)
-                .padding([.horizontal, .bottom], 10)
-                Spacer()
+                .padding(.horizontal)
+                .padding([.horizontal, .bottom])
+
+                if let description = data.metadata?.description, !description.isEmpty {
+                    ListTitleView(title: "Description", showDivider: false, style: service.themeStyle)
+
+                    ListSection(hasPadding: true, style: service.themeStyle) {
+                        HStack(alignment: .center, spacing: 0) {
+                            ViewMoreText(description, isCaption: false, lineLimit: 5)
+                                .padding(.horizontal)
+                                .padding(.vertical, 10)
+                            Spacer()
+                        }
+
+                        if service.themeStyle == .shadow {
+                            Divider().padding(.leading)
+                        } else if service.themeStyle == .border {
+                            Rectangle().foregroundColor(DefaultTemplate.borderColor)
+                                .frame(height: 1)
+                        }
+                    }
+                }
+
+                ListTitleView(title: "Details", showDivider: false, style: service.themeStyle)
+
+                ListSection(style: service.themeStyle) {
+                    ListInfoView(title: "Address", info:data.tokenAddress?.formatAddress(8) ?? "", style: service.themeStyle, isLast: false)
+
+                    ListInfoView(title: "Owner", info: data.ownerOf?.formatAddress(8) ?? "", style: service.themeStyle, isLast: false)
+
+                    ListInfoView(title: "Quantity", info: data.amount ?? "", style: service.themeStyle, isLast: false)
+
+                    ListInfoView(title: "Block Number Minted", info: data.blockNumberMinted ?? "", style: service.themeStyle, isLast: false)
+
+                    ListInfoView(title: "Block Number", info: data.blockNumber ?? "", style: service.themeStyle, isLast: false)
+
+                    ListInfoView(title: "Network", info: (data.network == "bsc" ? "Binance": data.network?.uppercased() ?? ""), style: service.themeStyle, isLast: false)
+
+                    ListInfoView(title: "Contract Type", info: data.contractType ?? "", style: service.themeStyle, isLast: false)
+
+                    if let externalUrl = data.metadata?.externalUrl ?? data.metadata?.url, !externalUrl.isEmpty {
+                        ListStandardButton(title: "External Link", systemImage: "safari", isLast: true, style: service.themeStyle, action: {
+                            openLink(externalUrl)
+                        })
+                    }
+                }
 
                 FooterInformation()
-                    .padding(.vertical, 60)
+                    .padding(.top, 40)
+                    .padding(.bottom)
             }.coordinateSpace(name: "collectableDetail-scroll")
         })
         .navigationBarTitle {
             HStack(alignment: .center, spacing: 10) {
-                if self.scrollOffset > imageSize.height + 30 {
+                if self.scrollOffset > 100 {
                     Text(data.metadata?.name ?? data.name ?? "")
                         .fontTemplate(DefaultTemplate.sectionHeader_bold)
                         .lineLimit(1)
@@ -182,6 +206,14 @@ struct CollectableDetailView: View {
                     })
                 }
             }
+        }
+    }
+
+    private func openLink(_ link: String) {
+        if fromMarketView {
+            marketRouter.route(to: \.safari, link)
+        } else {
+            walletRouter.route(to: \.safari, link)
         }
     }
 

@@ -11,7 +11,7 @@ struct DefaultTemplate {
 
     static let titleExtraBold = FontTemplate(font: Font.custom("Poppins-ExtraBold", size: 32), weight: .black, foregroundColor: .primary, lineSpacing: 2)
     static let titleBold = FontTemplate(font: Font.custom("Poppins-Bold", size: 32), weight: .bold, foregroundColor: .primary, lineSpacing: 2)
-    static let titleSemiBold = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 32), weight: .semibold, foregroundColor: .primary, lineSpacing: 2)
+    static let titleSemiBold = FontTemplate(font: Font.custom("Poppins-SemiBold", size: 32), weight: .semibold, foregroundColor: .primary, lineSpacing: 0)
     static let titleMedium = FontTemplate(font: Font.custom("Poppins-Medium", size: 32), weight: .medium, foregroundColor: .primary, lineSpacing: 2)
     static let titleRegular = FontTemplate(font: Font.custom("Poppins-Regular", size: 32), weight: .regular, foregroundColor: .primary, lineSpacing: 2)
     static let titleLight = FontTemplate(font: Font.custom("Poppins-Light", size: 32), weight: .light, foregroundColor: .primary, lineSpacing: 2)

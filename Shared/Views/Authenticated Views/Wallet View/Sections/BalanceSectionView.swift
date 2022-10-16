@@ -88,7 +88,7 @@ struct BalanceSectionView: View {
 //                .padding(.top, 60)
 //            } else {
                 // stride(from: 1, to: store.accountChart.count - 1, by: 4).map({ store.accountChart[$0].amount })
-                CustomLineChart(data: store.accountChart.map({ $0.amount }), timeline: store.accountChart.map({ $0.timestamp }), profit: store.accountBalance?.portfolio24hChange ?? 0 >= 0, perspective: $store.chartType)
+            CustomLineChart(data: store.accountChart.map({ $0.amount }), timeline: store.accountChart.map({ $0.timestamp }), profit: store.accountBalance?.portfolio24hChange ?? 0 >= 0, dynamicLineWidth: false, perspective: $store.chartType)
     //                    LineChart(data: store.accountChart.map({ $0.amount }),
     //                              frame: CGRect(x: 20, y: 0, width: MobileConstants.screenWidth - 40, height: 140),
     //                              visualType: ChartVisualType.filled(color: store.accountPortfolio?.relativeChange24h ?? 0 >= 0 ? Color.green : Color.red, lineWidth: 2), offset: 0,

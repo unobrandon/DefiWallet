@@ -82,16 +82,39 @@ struct NftMetadata: Codable, Hashable {
         hasher.combine(image)
     }
 
-    let name, image, imageUrl, imagePreview, description, externalUrl: String?
+    let name, image, imageUrl, imagePreview, description, externalUrl, url: String?
     let isNormalized: Bool?
+    let attributes: NftAttributes?
 
     enum CodingKeys: String, CodingKey {
-        case description
-        case name, image
+        case description, attributes
+        case name, image, url
         case externalUrl = "external_url"
         case imagePreview = "image_preview"
         case isNormalized = "is_normalized"
         case imageUrl = "image_url"
+    }
+
+}
+
+// MARK: - NftAttributes
+struct NftAttributes: Codable, Hashable {
+
+    static func == (lhs: NftAttributes, rhs: NftAttributes) -> Bool {
+        return lhs.traitType == rhs.traitType && lhs.value == rhs.value
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(traitType)
+        hasher.combine(value)
+    }
+
+    let traitType: String?
+    let value: String?
+
+    enum CodingKeys: String, CodingKey {
+        case traitType = "trait_type"
+        case value
     }
 
 }

@@ -13,6 +13,7 @@ struct CustomLineChart: View {
     var data: [Double]
     var timeline: [Int]?
     var profit: Bool = false
+    var dynamicLineWidth: Bool? = true
 
     @Binding var perspective: String
     @State var currentPlotValue: Double = 0.0
@@ -47,7 +48,7 @@ struct CustomLineChart: View {
             }
 
             ZStack {
-                AnimatedGraphPath(progress: graphProgress, points: points)
+                AnimatedGraphPath(progress: graphProgress, points: points, dynamicLineWidth: dynamicLineWidth ?? true)
                     .fill(LinearGradient(colors: [
                         profit ? Color.green : Color.red,
                         profit ? Color.green : Color.red
@@ -205,6 +206,7 @@ struct AnimatedGraphPath: Shape {
 
     var progress: CGFloat
     var points: [CGPoint]
+    var dynamicLineWidth: Bool
 
     func path(in rect: CGRect) -> Path {
         Path { path in
@@ -212,7 +214,7 @@ struct AnimatedGraphPath: Shape {
             path.addLines(points)
         }
         .trimmedPath(from: 0, to: progress)
-        .strokedPath(StrokeStyle(lineWidth: points.count <= 250 ? 1.85 : points.count <= 500 ? 1.33 : 1.0, lineCap: .round, lineJoin: .round))
+        .strokedPath(StrokeStyle(lineWidth: !dynamicLineWidth ? 1.85 : points.count <= 250 ? 1.85 : points.count <= 500 ? 1.33 : 1.0, lineCap: .round, lineJoin: .round))
     }
 
 }
