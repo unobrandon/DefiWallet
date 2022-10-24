@@ -96,6 +96,7 @@ struct BalanceSectionView: View {
                     .frame(height: 160)
                     .padding([.vertical, .top])
                     .padding(.top)
+                    .blur(radius: store.isLoadingPortfolioChart ? 10 : 0)
 //            }
 
             if !store.accountChart.isEmpty {
@@ -126,6 +127,7 @@ struct BalanceSectionView: View {
                             }
                             .pickerStyle(.segmented)
                             .frame(width: 200, height: 30)
+                            .disabled(store.isLoadingPortfolioChart)
                         }
 
                         Text(store.getChartDuration(store.chartType))
@@ -135,7 +137,13 @@ struct BalanceSectionView: View {
                     .padding(.top, 15)
                     .onChange(of: store.chartType) { newValue in
 //                        let val = newValue == "1H" ? "h" : newValue == "1D" ? "d" : newValue == "1W" ? "w" : newValue == "1M" ? "m" : newValue == "1Y" ? "y" : ""
-                        store.emitSingleChartRequest(newValue)
+                        DispatchQueue.main.async {
+                            store.isLoadingPortfolioChart = true
+                        }
+
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            store.emitSingleChartRequest(newValue)
+                        }
                     }
                 }
             }

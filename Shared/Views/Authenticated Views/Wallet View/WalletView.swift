@@ -107,14 +107,23 @@ struct WalletView: View {
     private func fetchNetworksBalances() {
 //        guard !isBalanceLoading else { return }
 
-        isBalanceLoading = true
-        isHistoryLoading = true
+        isBalanceLoading = false
+        isHistoryLoading = false
 
         store.fetchAccountBalance(service.currentUser.address, service.currentUser.currency, completion: { _ in
             DispatchQueue.main.async {
                 isBalanceLoading = false
                 isHistoryLoading = false
             }
+
+            store.gatherLocalAccountTokens(completion: { jsonString in
+                guard let jsonString = jsonString else {
+                    print("not valid json string produced...")
+                    return
+                }
+
+                self.service.socket.emitPortfolioChartUpdate(currency: service.currentUser.currency, duration: store.chartType.getDaysFromChartType(), jsonData: jsonString)
+            })
         })
     }
 

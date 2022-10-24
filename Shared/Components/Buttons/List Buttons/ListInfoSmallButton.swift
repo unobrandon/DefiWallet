@@ -13,6 +13,7 @@ struct ListInfoSmallButton: View {
     private let info: String
     private let subinfo: String?
     private var systemImage: String = ""
+    private var actionSystemImage: String?
     private var localImage: String = ""
     private let isLast: Bool
     private let hasHaptic: Bool?
@@ -47,10 +48,11 @@ struct ListInfoSmallButton: View {
 
     // Text Only
 
-    init(title: String, info: String?, subinfo: String?, isLast: Bool, hasHaptic: Bool? = true, style: AppStyle, action: @escaping () -> Void) {
+    init(title: String, info: String?, subinfo: String?, actionSystemImage: String? = "", isLast: Bool, hasHaptic: Bool? = true, style: AppStyle, action: @escaping () -> Void) {
         self.title = title
         self.info = info ?? ""
         self.subinfo = subinfo
+        self.actionSystemImage = actionSystemImage ?? ""
         self.isLast = isLast
         self.hasHaptic = hasHaptic
         self.style = style
@@ -95,13 +97,13 @@ struct ListInfoSmallButton: View {
                             Text(info)
                                 .fontTemplate(DefaultTemplate.bodySemibold_standard)
                         }
-                        .padding(.trailing, 5)
+                        .padding(.trailing, actionSystemImage?.isEmpty ?? true ? 5 : 2)
 
-                        Image(systemName: "chevron.right")
+                        Image(systemName: actionSystemImage ?? "chevron.right")
                             .resizable()
                             .font(Font.title.weight(.bold))
                             .scaledToFit()
-                            .frame(width: 7, height: 15, alignment: .center)
+                            .frame(width: actionSystemImage?.isEmpty ?? true ? 7 : 15, height: 15, alignment: .center)
                             .foregroundColor(.secondary)
                     }
                     .padding(.horizontal)

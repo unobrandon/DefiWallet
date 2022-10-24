@@ -52,7 +52,7 @@ struct NotificationHUD: View {
                     Image(systemName: image)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 26, height: 26, alignment: .center)
+                        .frame(width: 22, height: 22, alignment: .center)
                         .foregroundColor(color)
                         .font(Font.title.weight(.regular))
 

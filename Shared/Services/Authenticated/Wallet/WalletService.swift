@@ -18,6 +18,7 @@ class WalletService: ObservableObject {
     @Published var accountBalance: AccountBalance?
     @Published var accountChart = [ChartValue]()
     @Published var history = [HistoryData]()
+    @Published var isLoadingPortfolioChart: Bool = false
 
     @Published var accountSendingTokens: [TokenModel]?
     @Published var sendToken: TokenModel?
@@ -199,6 +200,69 @@ class WalletService: ObservableObject {
         }
     }
 
+    // MARK: Logic for overall portfolio chart
+
+    // get each token's historical chart data
+    // get each token's portfolio diversity
+
+    // get historical timeline for each token when it comes in and out
+    // also check if the token's IN transaction is within the required timeline
+
+    // create new 'chart token model'
+        /// - tokenId
+        /// - tokenChart
+        /// - tokenHistory
+        /// - tokenNetwork
+        /// - token portfolio diversity - but need to check this for every timeline point incase other tokens come or go
+
+    // blank loop through the timeline array count
+    // - have newChart variable
+
+    // Start looping from how much you currently have and subtract amount every time historical transaction comes up.
+
+    // loop through each 'chart token model'
+        /// - get the history IN & OUTs + token amounts
+        /// - create func that finds token amount you had at that one point in time.
+
+    func gatherLocalAccountTokens(completion: @escaping (String?) -> Void) {
+        // here we get the local data to formate to send to backend & return the complete chart
+        guard let portfolio = self.accountBalance?.completeBalance else {
+            completion(nil)
+            return
+        }
+
+        var newChart: [String] = []
+
+        for network in portfolio {
+            // start with all current native tokens & other tokens
+            if let external = network.nativeBalance?.externalId,
+               let diversity = network.nativeBalance?.portfolioDiversity?.replacingOccurrences(of: "%", with: ""),
+               Double(diversity) ?? 0.0 >= 0.25 {
+                newChart.append(external)
+            }
+
+            if let tokens = network.tokens {
+                for token in tokens {
+                    if let external = token.externalId,
+                       let diversity = token.portfolioDiversity?.replacingOccurrences(of: "%", with: ""),
+                       Double(diversity) ?? 0.0 >= 0.25 {
+                        newChart.append(external)
+                    }
+                }
+            }
+        }
+
+        guard let chartData = try? JSONEncoder().encode(newChart) else {
+            completion(nil)
+            return
+        }
+
+        let jsonString = String(data: chartData, encoding: .utf8)
+        print("I am thinking of sending this model to the backend: \(String(describing: jsonString))")
+
+        completion(jsonString)
+    }
+
     func getTokenIds() -> [String] {
         var allTokenIds: [String] = []
 
@@ -223,6 +287,8 @@ class WalletService: ObservableObject {
 
     func updateAccountBalancePrices(_ prices: [TokenPricesModel]) {
         var overallTotal = 0.0
+        var totalChange = 0.0
+        var totalPercentChange = 0.0
 
         guard let completeBalance = self.accountBalance?.completeBalance else { return }
 
@@ -259,8 +325,11 @@ class WalletService: ObservableObject {
                         self?.accountBalance?.completeBalance?[network].tokens?[token].priceChangePercentage1y = newPrice.priceChangePercentage1y
                         if let currentPrice = newPrice.currentPrice,
                            let balance = self?.accountBalance?.completeBalance?[network].tokens?[token].nativeBalance {
-                            self?.accountBalance?.completeBalance?[network].tokens?[token].totalBalance = (balance * currentPrice)
-                            newTotal += (balance * currentPrice)
+                            let tokenBalance = balance * currentPrice
+                            self?.accountBalance?.completeBalance?[network].tokens?[token].totalBalance = tokenBalance
+                            newTotal += tokenBalance
+                            totalChange += ((newPrice.priceChange24H ?? 0.0) * (tokenBalance / (self?.accountBalance?.portfolioTotal ?? 0.0)))
+                            totalPercentChange += ((newPrice.priceChangePercentage24h ?? 0.0) * (tokenBalance / (self?.accountBalance?.portfolioTotal ?? 0.0)))
                         }
                     }
 
@@ -294,8 +363,11 @@ class WalletService: ObservableObject {
                     self?.accountBalance?.completeBalance?[network].nativeBalance?.priceChangePercentage1y = newPrice.priceChangePercentage1y
                     if let currentPrice = newPrice.currentPrice,
                        let balance = self?.accountBalance?.completeBalance?[network].nativeBalance?.nativeBalance {
-                        self?.accountBalance?.completeBalance?[network].nativeBalance?.totalBalance = (balance * currentPrice)
-                        newTotal += (balance * currentPrice)
+                        let tokenBalance = balance * currentPrice
+                        self?.accountBalance?.completeBalance?[network].nativeBalance?.totalBalance = tokenBalance
+                        newTotal += tokenBalance
+                        totalChange += ((newPrice.priceChange24H ?? 0.0) * (tokenBalance / (self?.accountBalance?.portfolioTotal ?? 0.0)))
+                        totalPercentChange += ((newPrice.priceChangePercentage24h ?? 0.0) * (tokenBalance / (self?.accountBalance?.portfolioTotal ?? 0.0)))
                     }
                 }
 
@@ -310,7 +382,9 @@ class WalletService: ObservableObject {
 
         DispatchQueue.main.async { [weak self] in
             self?.accountBalance?.portfolioTotal = overallTotal
-            print("the new account total is: \(overallTotal)")
+            self?.accountBalance?.portfolio24hChange = totalChange
+            self?.accountBalance?.portfolio24hPercentChange = totalPercentChange
+            print("the new account total is: \(overallTotal) portfolio change: \(totalChange) & percent change: \(totalPercentChange)")
         }
 
         if let storage = StorageService.shared.balanceStorage, let completeBalance = self.accountBalance {

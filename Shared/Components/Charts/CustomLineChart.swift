@@ -155,7 +155,7 @@ struct CustomLineChart: View {
                     Spacer()
                     if let timeline = timeline {
                         HStack() {
-                            ForEach(timeline.sorted(by: >).subArray(length: 4), id: \.self) { date in
+                            ForEach(timeline.sorted(by: <).subArray(length: 4), id: \.self) { date in
                                 Text(Date(timeIntervalSince1970: Double(date)).chartDateFormate(perspective: perspective))
                                     .fontTemplate(DefaultTemplate.caption_micro_Mono_secondary)
                                     .frame(maxWidth: .infinity)

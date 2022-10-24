@@ -84,10 +84,10 @@ struct NftMetadata: Codable, Hashable {
 
     let name, image, imageUrl, imagePreview, description, externalUrl, url: String?
     let isNormalized: Bool?
-    let attributes: NftAttributes?
+//    let attributes: NftAttributes?
 
     enum CodingKeys: String, CodingKey {
-        case description, attributes
+        case description
         case name, image, url
         case externalUrl = "external_url"
         case imagePreview = "image_preview"

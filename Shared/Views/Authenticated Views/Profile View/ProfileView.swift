@@ -43,7 +43,7 @@ struct ProfileView: View {
                         print("Currency")
                     })
 
-                    ListStandardButton(title: "Language", systemImage: "text.quote", isLast: false, style: service.themeStyle, action: {
+                    ListStandardButton(title: "Dapp Connections", systemImage: "text.quote", isLast: false, style: service.themeStyle, action: {
                         print("Currency")
                     })
 

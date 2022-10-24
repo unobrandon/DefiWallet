@@ -11,6 +11,8 @@ import SwiftUI
 struct SocketSendData: Codable {
     let type: SocketResponses
     let ids: [String]?
+    let currency: String?
+    let duration: String?
     let data: String?
 }
 

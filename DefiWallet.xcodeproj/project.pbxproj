@@ -334,6 +334,8 @@
 		0582298B28E3F7CB00B6E883 /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298928E3F7CB00B6E883 /* CustomBlurView.swift */; };
 		0582298D28E3F81E00B6E883 /* GlassMorphicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298C28E3F81E00B6E883 /* GlassMorphicCard.swift */; };
 		0582298E28E3F81E00B6E883 /* GlassMorphicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298C28E3F81E00B6E883 /* GlassMorphicCard.swift */; };
+		058ABEBD29066A8800CD2892 /* Float+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058ABEBC29066A8800CD2892 /* Float+Extensions.swift */; };
+		058ABEBE29066A8800CD2892 /* Float+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058ABEBC29066A8800CD2892 /* Float+Extensions.swift */; };
 		058C785F27D06D5600EB91CA /* HeaderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C785E27D06D5600EB91CA /* HeaderIcon.swift */; };
 		058C786027D06D5600EB91CA /* HeaderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C785E27D06D5600EB91CA /* HeaderIcon.swift */; };
 		058C786527D07E3700EB91CA /* PrivateKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C786427D07E3600EB91CA /* PrivateKeysView.swift */; };
@@ -826,6 +828,7 @@
 		0582298628E3F72D00B6E883 /* UIVisualEffectView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVisualEffectView+Extensions.swift"; sourceTree = "<group>"; };
 		0582298928E3F7CB00B6E883 /* CustomBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
 		0582298C28E3F81E00B6E883 /* GlassMorphicCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassMorphicCard.swift; sourceTree = "<group>"; };
+		058ABEBC29066A8800CD2892 /* Float+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Extensions.swift"; sourceTree = "<group>"; };
 		058C785E27D06D5600EB91CA /* HeaderIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderIcon.swift; sourceTree = "<group>"; };
 		058C786427D07E3600EB91CA /* PrivateKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeysView.swift; sourceTree = "<group>"; };
 		058C786727D0831700EB91CA /* AlertBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBanner.swift; sourceTree = "<group>"; };
@@ -1518,6 +1521,7 @@
 				05CA871F2803DD0D006FACE0 /* Color+Extensions.swift */,
 				0593020F27D9C790006DDFFF /* Double+Extensions.swift */,
 				05C10E022845B1310050D2D5 /* Int+Extensions.swift */,
+				058ABEBC29066A8800CD2892 /* Float+Extensions.swift */,
 				05583C9E27E9974700640E75 /* Date+Extensions.swift */,
 				05C10DFF28459D250050D2D5 /* Array+Extensions.swift */,
 				0539414C281A2C9200CFAA53 /* Locale+Extensions.swift */,
@@ -2197,6 +2201,7 @@
 				05C10E0028459D250050D2D5 /* Array+Extensions.swift in Sources */,
 				05583C9F27E9974700640E75 /* Date+Extensions.swift in Sources */,
 				05A3DE0D2845F0B800079FFD /* NetworkDropdownButton.swift in Sources */,
+				058ABEBD29066A8800CD2892 /* Float+Extensions.swift in Sources */,
 				0593025327E19C51006DDFFF /* ChartType.swift in Sources */,
 				0539414D281A2C9200CFAA53 /* Locale+Extensions.swift in Sources */,
 				05E8590227CC12A400B85195 /* TermsOfServiceButton.swift in Sources */,
@@ -2644,6 +2649,7 @@
 				0578075027BB5ED00008051B /* View+Extensions.swift in Sources */,
 				05583CC027E9C08400640E75 /* LayoutMath.swift in Sources */,
 				0531141827E7E63000368657 /* DappProposalView.swift in Sources */,
+				058ABEBE29066A8800CD2892 /* Float+Extensions.swift in Sources */,
 				05583CD827E9C1F800640E75 /* GridStyleKey.swift in Sources */,
 				05D1095627C08B3E008DCC66 /* ProfileCoordinator+Factory.swift in Sources */,
 				0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,

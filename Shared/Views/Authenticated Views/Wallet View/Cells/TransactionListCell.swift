@@ -15,6 +15,7 @@ struct TransactionListCell: View {
     private var isLast: Bool
     private let style: AppStyle
     private let action: () -> Void
+    private let numberFormatter = NumberFormatter()
 
     init(service: AuthenticatedServices, data: TransactionResult, isLast: Bool, style: AppStyle, action: @escaping () -> Void) {
         self.service = service
@@ -22,6 +23,7 @@ struct TransactionListCell: View {
         self.isLast = isLast
         self.style = style
         self.action = action
+        self.numberFormatter.numberStyle = NumberFormatter.Style.decimal
     }
 
     var body: some View {
@@ -31,9 +33,9 @@ struct TransactionListCell: View {
             }, label: {
                 VStack(alignment: .trailing, spacing: 0) {
                     HStack(alignment: .center, spacing: 10) {
-                        if let direction = data.direction, let network = data.network {
+                        if let direction = data.direction {
                             ZStack {
-                                if let image = data.imageSmall {
+                                if let image = data.imageSmall ?? data.imageLarge {
                                     RemoteImage(image, size: 44)
                                         .clipShape(Circle())
                                         .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
@@ -43,7 +45,7 @@ struct TransactionListCell: View {
                                         .padding(.horizontal, 10)
                                 }
 
-                                if data.type == .token {
+                                if let network = data.network, data.type == .token {
                                     service.wallet.getNetworkTransactImage(network)
                                         .resizable()
                                         .scaledToFill()
@@ -79,8 +81,16 @@ struct TransactionListCell: View {
 
                             // Lower details
                             HStack(alignment: .center, spacing: 5) {
-                                Text((data.direction == .sent ? "-" : "") + "\("".forTrailingZero(temp: data.value?.truncate(places: 4) ?? 0.00))")
+                                let finalNumber = numberFormatter.number(from: "\(data.value ?? 0.00)")
+
+                                Text((data.direction == .sent ? "-" : "") + "\(Double(truncating: finalNumber ?? 0.00))")
                                     .fontTemplate(FontTemplate(font: Font.system(size: 14.0), weight: .medium, foregroundColor: service.wallet.transactionDirectionColor(data.direction ?? .swap), lineSpacing: 0))
+                                    .lineLimit(1)
+
+                                if let name = data.symbol ?? data.name {
+                                    Text(name.lowercased())
+                                        .fontTemplate(DefaultTemplate.caption)
+                                }
 
                                 Spacer()
                                 if data.receiptStatus == "0" {

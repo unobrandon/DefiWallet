@@ -123,6 +123,8 @@ extension WalletService {
                     }
                 }
 
+                self.isLoadingPortfolioChart = false
+
                 if !self.accountChart.isEmpty, let storage = StorageService.shared.chartStorage {
                     let type = UserDefaults.standard.string(forKey: "chartType") ?? self.chartType
                     storage.async.setObject(self.accountChart, forKey: "portfolioChart\(type)") { _ in }

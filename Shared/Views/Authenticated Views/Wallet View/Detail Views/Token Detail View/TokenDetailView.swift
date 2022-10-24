@@ -73,7 +73,7 @@ struct TokenDetailView: View {
                     }
 
                 CustomLineChart(data: tokenChart.map({ $0.amount }),
-                                timeline: tokenChart.map({ $0.timestamp }), profit: tokenChart.first?.amount ?? 0 <= tokenChart.last?.amount ?? 0,
+                                timeline: tokenChart.map({ ($0.timestamp / 1000) }), profit: tokenChart.first?.amount ?? 0 <= tokenChart.last?.amount ?? 0,
                                 perspective: $chartType)
                     .frame(height: 145)
                     .padding()

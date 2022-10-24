@@ -24,7 +24,7 @@ struct ListInfoView: View {
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {
             HStack(alignment: .center) {
-                Text(title).fontTemplate(DefaultTemplate.body_secondary)
+                Text(title).fontTemplate(DefaultTemplate.bodySemibold_nunito_secondary)
 
                 Spacer()
                 Text(info)
