@@ -88,7 +88,6 @@
 		051BCF6527BCD6830056E047 /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF6427BCD6830056E047 /* Stinsen */; };
 		051BCF6727BCD6890056E047 /* Colorful in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF6627BCD6890056E047 /* Colorful */; };
 		051BCF6927BCD68C0056E047 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF6827BCD68C0056E047 /* SwiftUICharts */; };
-		051BCF6F27BCD69F0056E047 /* SwiftLintFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF6E27BCD69F0056E047 /* SwiftLintFramework */; };
 		051BCF7127BCD69F0056E047 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF7027BCD69F0056E047 /* Realm */; };
 		051BCF7327BCD69F0056E047 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 051BCF7227BCD69F0056E047 /* RealmSwift */; };
 		052554DA2890FEAA0060EC7A /* IOSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052554D92890FEAA0060EC7A /* IOSAppDelegate.swift */; };
@@ -107,13 +106,10 @@
 		053113EF27E6CECA00368657 /* BarcodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113EE27E6CECA00368657 /* BarcodeData.swift */; };
 		053113F027E6CECA00368657 /* BarcodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113EE27E6CECA00368657 /* BarcodeData.swift */; };
 		053113F227E6CEE400368657 /* BarcodeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113F127E6CEE400368657 /* BarcodeFrame.swift */; };
-		053113F327E6CEE400368657 /* BarcodeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113F127E6CEE400368657 /* BarcodeFrame.swift */; };
 		053113F527E6CF0800368657 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113F427E6CF0800368657 /* CameraPreview.swift */; };
-		053113F627E6CF0800368657 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113F427E6CF0800368657 /* CameraPreview.swift */; };
 		053113F827E6CF3C00368657 /* CBBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113F727E6CF3C00368657 /* CBBarcodeView.swift */; };
 		053113F927E6CF3C00368657 /* CBBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113F727E6CF3C00368657 /* CBBarcodeView.swift */; };
 		053113FB27E6CF7100368657 /* CBScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113FA27E6CF7100368657 /* CBScanner.swift */; };
-		053113FC27E6CF7100368657 /* CBScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113FA27E6CF7100368657 /* CBScanner.swift */; };
 		053113FE27E6CFE500368657 /* ScanQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113FD27E6CFE500368657 /* ScanQRView.swift */; };
 		053113FF27E6CFE500368657 /* ScanQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113FD27E6CFE500368657 /* ScanQRView.swift */; };
 		0531140127E6DD1500368657 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531140027E6DD1500368657 /* CloseButton.swift */; };
@@ -334,8 +330,8 @@
 		0582298B28E3F7CB00B6E883 /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298928E3F7CB00B6E883 /* CustomBlurView.swift */; };
 		0582298D28E3F81E00B6E883 /* GlassMorphicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298C28E3F81E00B6E883 /* GlassMorphicCard.swift */; };
 		0582298E28E3F81E00B6E883 /* GlassMorphicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582298C28E3F81E00B6E883 /* GlassMorphicCard.swift */; };
-		058ABEBD29066A8800CD2892 /* Float+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058ABEBC29066A8800CD2892 /* Float+Extensions.swift */; };
-		058ABEBE29066A8800CD2892 /* Float+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058ABEBC29066A8800CD2892 /* Float+Extensions.swift */; };
+		058ABEC02907346500CD2892 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 058ABEBF2907346500CD2892 /* SocketIO */; };
+		058ABEC1290739B900CD2892 /* CollectablesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA87192802A5CF006FACE0 /* CollectablesSectionView.swift */; };
 		058C785F27D06D5600EB91CA /* HeaderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C785E27D06D5600EB91CA /* HeaderIcon.swift */; };
 		058C786027D06D5600EB91CA /* HeaderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C785E27D06D5600EB91CA /* HeaderIcon.swift */; };
 		058C786527D07E3700EB91CA /* PrivateKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C786427D07E3600EB91CA /* PrivateKeysView.swift */; };
@@ -450,11 +446,9 @@
 		05CA87172802A48E006FACE0 /* NftUriResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA87162802A48E006FACE0 /* NftUriResponce.swift */; };
 		05CA87182802A48E006FACE0 /* NftUriResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA87162802A48E006FACE0 /* NftUriResponce.swift */; };
 		05CA871A2802A5CF006FACE0 /* CollectablesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA87192802A5CF006FACE0 /* CollectablesSectionView.swift */; };
-		05CA871B2802A5CF006FACE0 /* CollectablesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA87192802A5CF006FACE0 /* CollectablesSectionView.swift */; };
 		05CA871D2803BD14006FACE0 /* CollectableVerticalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA871C2803BD14006FACE0 /* CollectableVerticalCell.swift */; };
 		05CA871E2803BD14006FACE0 /* CollectableVerticalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA871C2803BD14006FACE0 /* CollectableVerticalCell.swift */; };
 		05CA87202803DD0D006FACE0 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA871F2803DD0D006FACE0 /* Color+Extensions.swift */; };
-		05CA87212803DD0D006FACE0 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA871F2803DD0D006FACE0 /* Color+Extensions.swift */; };
 		05CA872328040EA4006FACE0 /* TokenDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA872228040EA4006FACE0 /* TokenDetailView.swift */; };
 		05CA872428040EA4006FACE0 /* TokenDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA872228040EA4006FACE0 /* TokenDetailView.swift */; };
 		05CA872628052BA4006FACE0 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CA872528052BA4006FACE0 /* Nunito-SemiBold.ttf */; };
@@ -828,7 +822,6 @@
 		0582298628E3F72D00B6E883 /* UIVisualEffectView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVisualEffectView+Extensions.swift"; sourceTree = "<group>"; };
 		0582298928E3F7CB00B6E883 /* CustomBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
 		0582298C28E3F81E00B6E883 /* GlassMorphicCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassMorphicCard.swift; sourceTree = "<group>"; };
-		058ABEBC29066A8800CD2892 /* Float+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Extensions.swift"; sourceTree = "<group>"; };
 		058C785E27D06D5600EB91CA /* HeaderIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderIcon.swift; sourceTree = "<group>"; };
 		058C786427D07E3600EB91CA /* PrivateKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeysView.swift; sourceTree = "<group>"; };
 		058C786727D0831700EB91CA /* AlertBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBanner.swift; sourceTree = "<group>"; };
@@ -1006,9 +999,9 @@
 				0531140727E6E34400368657 /* WalletConnect in Frameworks */,
 				051BCF6527BCD6830056E047 /* Stinsen in Frameworks */,
 				051BCF6127BCD6710056E047 /* Alamofire in Frameworks */,
+				058ABEC02907346500CD2892 /* SocketIO in Frameworks */,
 				059F73C927D7041A00B27E80 /* SwiftUIX in Frameworks */,
 				051BCF6727BCD6890056E047 /* Colorful in Frameworks */,
-				051BCF6F27BCD69F0056E047 /* SwiftLintFramework in Frameworks */,
 				051BCF6327BCD6800056E047 /* web3swift in Frameworks */,
 				051BCF7127BCD69F0056E047 /* Realm in Frameworks */,
 				051BCF7327BCD69F0056E047 /* RealmSwift in Frameworks */,
@@ -1521,7 +1514,6 @@
 				05CA871F2803DD0D006FACE0 /* Color+Extensions.swift */,
 				0593020F27D9C790006DDFFF /* Double+Extensions.swift */,
 				05C10E022845B1310050D2D5 /* Int+Extensions.swift */,
-				058ABEBC29066A8800CD2892 /* Float+Extensions.swift */,
 				05583C9E27E9974700640E75 /* Date+Extensions.swift */,
 				05C10DFF28459D250050D2D5 /* Array+Extensions.swift */,
 				0539414C281A2C9200CFAA53 /* Locale+Extensions.swift */,
@@ -2036,13 +2028,13 @@
 				051BCF6427BCD6830056E047 /* Stinsen */,
 				051BCF6627BCD6890056E047 /* Colorful */,
 				051BCF6827BCD68C0056E047 /* SwiftUICharts */,
-				051BCF6E27BCD69F0056E047 /* SwiftLintFramework */,
 				051BCF7027BCD69F0056E047 /* Realm */,
 				051BCF7227BCD69F0056E047 /* RealmSwift */,
 				05D1098027C1DDDD008DCC66 /* Cache */,
 				059F73C827D7041A00B27E80 /* SwiftUIX */,
 				0531140627E6E34400368657 /* WalletConnect */,
 				0531141227E7A26600368657 /* SDWebImageSwiftUI */,
+				058ABEBF2907346500CD2892 /* SocketIO */,
 			);
 			productName = "DefiWallet (macOS)";
 			productReference = 0548B87027B4C9A6000478B8 /* DefiWallet.app */;
@@ -2201,7 +2193,6 @@
 				05C10E0028459D250050D2D5 /* Array+Extensions.swift in Sources */,
 				05583C9F27E9974700640E75 /* Date+Extensions.swift in Sources */,
 				05A3DE0D2845F0B800079FFD /* NetworkDropdownButton.swift in Sources */,
-				058ABEBD29066A8800CD2892 /* Float+Extensions.swift in Sources */,
 				0593025327E19C51006DDFFF /* ChartType.swift in Sources */,
 				0539414D281A2C9200CFAA53 /* Locale+Extensions.swift in Sources */,
 				05E8590227CC12A400B85195 /* TermsOfServiceButton.swift in Sources */,
@@ -2645,11 +2636,11 @@
 				05D1095727C08B3E008DCC66 /* MarketsView.swift in Sources */,
 				05E5F88127D5D8250090290C /* ImagePickerHelper.swift in Sources */,
 				0531140A27E6E39F00368657 /* WalletConnectDelegate.swift in Sources */,
+				058ABEC1290739B900CD2892 /* CollectablesSectionView.swift in Sources */,
 				05D1094727C08B2B008DCC66 /* UnauthenticatedCoordinator.swift in Sources */,
 				0578075027BB5ED00008051B /* View+Extensions.swift in Sources */,
 				05583CC027E9C08400640E75 /* LayoutMath.swift in Sources */,
 				0531141827E7E63000368657 /* DappProposalView.swift in Sources */,
-				058ABEBE29066A8800CD2892 /* Float+Extensions.swift in Sources */,
 				05583CD827E9C1F800640E75 /* GridStyleKey.swift in Sources */,
 				05D1095627C08B3E008DCC66 /* ProfileCoordinator+Factory.swift in Sources */,
 				0578070027B8E5B20008051B /* UnauthenticatedServices.swift in Sources */,
@@ -2670,7 +2661,6 @@
 				05E8589C27C9DA3700B85195 /* CarouselViewTwo.swift in Sources */,
 				053C7D4327CDCFDE0081DCEA /* EnsUsernameView.swift in Sources */,
 				0578077027BB6D200008051B /* DefaultTemplate.swift in Sources */,
-				05CA87212803DD0D006FACE0 /* Color+Extensions.swift in Sources */,
 				05E5F84A27D321920090290C /* Shake.swift in Sources */,
 				05CA873C28055F3C006FACE0 /* CollectableSeeAllCell.swift in Sources */,
 				0578074D27BB5E860008051B /* FontTemplateModifier.swift in Sources */,
@@ -2680,7 +2670,6 @@
 				05C10E042845B1310050D2D5 /* Int+Extensions.swift in Sources */,
 				05CA87182802A48E006FACE0 /* NftUriResponce.swift in Sources */,
 				05A6AABC27F9627800824C76 /* TrendingTokenStandardCell.swift in Sources */,
-				05CA871B2802A5CF006FACE0 /* CollectablesSectionView.swift in Sources */,
 				05D1095C27C08D06008DCC66 /* MacAuthenticatedCoordinator.swift in Sources */,
 				05583CB727E9BFE000640E75 /* Grid.swift in Sources */,
 				053EC29327BE0E3600FBC681 /* InvestService.swift in Sources */,
@@ -2713,7 +2702,6 @@
 				058C786C27D09E5900EB91CA /* CompletedView.swift in Sources */,
 				05C884CF27FD1D33005E2455 /* RingProgressModel.swift in Sources */,
 				0507BB19284DD27100D1A965 /* TopLosersView.swift in Sources */,
-				053113FC27E6CF7100368657 /* CBScanner.swift in Sources */,
 				0500307628582A41000C5DFF /* ExchangePairCell.swift in Sources */,
 				05C1B8B028CEFCAE007D703C /* TokenDetailNetworkSection.swift in Sources */,
 				05E8589927C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
@@ -2721,7 +2709,6 @@
 				054DC82A283D854500A1FDA6 /* TokenDetailsHeaderSection.swift in Sources */,
 				0504A424283F287C000DB947 /* TokenDetailAboutSection.swift in Sources */,
 				05CA871E2803BD14006FACE0 /* CollectableVerticalCell.swift in Sources */,
-				053113F627E6CF0800368657 /* CameraPreview.swift in Sources */,
 				05394155281A60E000CFAA53 /* SendToDetailView.swift in Sources */,
 				05583CE127EC01D800640E75 /* BalanceSectionView.swift in Sources */,
 				0507BB2B2850482900D1A965 /* MarketsService+Socket.swift in Sources */,
@@ -2741,7 +2728,6 @@
 				056BD30A283C7B040020C6C4 /* TokenDescriptor.swift in Sources */,
 				05D1096E27C15D80008DCC66 /* EthereumService.swift in Sources */,
 				0593021727DEFA95006DDFFF /* CompleteBalance.swift in Sources */,
-				053113F327E6CEE400368657 /* BarcodeFrame.swift in Sources */,
 				05D40F8F285D0173002BDA0F /* WalletService+CompoundSocket.swift in Sources */,
 				05E858CB27CB240300B85195 /* AppGradients.swift in Sources */,
 				05CA873628053243006FACE0 /* SVGWebView.swift in Sources */,
@@ -2991,7 +2977,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"macOS\"";
-				DEVELOPMENT_TEAM = TEV97DGLYR;
+				DEVELOPMENT_TEAM = GA572ZF2XM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -3023,7 +3009,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"macOS\"";
-				DEVELOPMENT_TEAM = TEV97DGLYR;
+				DEVELOPMENT_TEAM = GA572ZF2XM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -3468,11 +3454,6 @@
 			package = 057806CF27B862480008051B /* XCRemoteSwiftPackageReference "ChartView" */;
 			productName = SwiftUICharts;
 		};
-		051BCF6E27BCD69F0056E047 /* SwiftLintFramework */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 057806D527B865330008051B /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = SwiftLintFramework;
-		};
 		051BCF7027BCD69F0056E047 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 051BCF5027BC86140056E047 /* XCRemoteSwiftPackageReference "realm-swift" */;
@@ -3537,6 +3518,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 057806CF27B862480008051B /* XCRemoteSwiftPackageReference "ChartView" */;
 			productName = SwiftUICharts;
+		};
+		058ABEBF2907346500CD2892 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05F7B58028088071005A94C8 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
 		};
 		059F73C827D7041A00B27E80 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
