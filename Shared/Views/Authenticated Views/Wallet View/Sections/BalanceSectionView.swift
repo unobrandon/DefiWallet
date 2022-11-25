@@ -127,7 +127,6 @@ struct BalanceSectionView: View {
                             }
                             .pickerStyle(.segmented)
                             .frame(width: 200, height: 30)
-                            .disabled(store.isLoadingPortfolioChart)
                         }
 
                         Text(store.getChartDuration(store.chartType))

@@ -210,7 +210,7 @@
     {
       "identity" : "web3swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/skywinder/web3swift",
+      "location" : "https://github.com/skywinder/web3swift.git",
       "state" : {
         "revision" : "4312a7178e1255c3ef65ac909657d29f6dd81bb6",
         "version" : "2.6.6"

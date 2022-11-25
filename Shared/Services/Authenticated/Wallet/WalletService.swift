@@ -201,6 +201,8 @@ class WalletService: ObservableObject {
     }
 
     // MARK: Logic for overall portfolio chart
+    
+    // Need 2 primary timelines to create the new overall timeline
 
     // get each token's historical chart data
     // get each token's portfolio diversity
