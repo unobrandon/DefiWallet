@@ -53,8 +53,8 @@ struct WalletView: View {
                 }
 
                 FooterInformation()
-                    .padding(.vertical)
-                    .padding(.bottom, 40)
+                    .padding(.top, 40)
+                    .padding(.bottom)
             }.coordinateSpace(name: "wallet-scroll")
         })
         .navigationBarTitle("", displayMode: .inline)
