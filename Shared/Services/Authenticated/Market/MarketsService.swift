@@ -44,6 +44,7 @@ class MarketsService: ObservableObject {
     @Published var searchCategoriesText: String = ""
     var categoriesCancellable: AnyCancellable?
 
+    @Published var exchangesFilters: FilterExchanges = .gainers
     @Published var searchExchangesText: String = ""
     var exchangesCancellable: AnyCancellable?
 
@@ -108,22 +109,22 @@ class MarketsService: ObservableObject {
             }
         }
 
-        let url = Constants.backendBaseUrl + "fetchCategories?order=" + filter.rawValue + "&queryLimit=\(limit)" + "&querySkip=\(skip)"
+        let url = Constants.backendBaseUrl + "fetchCategories?order=" + filter.rawValue + "&pageSize=\(limit)" + "&skipItems=\(skip)"
 //        let url = "https://api.coingecko.com/api/v3/coins/categories?order=" + filter.rawValue
 
         AF.request(url, method: .get).responseDecodable(of: [TokenCategory].self) { response in
             switch response.result {
             case .success(let categories):
-                DispatchQueue.main.async {
-                    self.tokenCategories = categories
-                }
-                print("got categories network!! \(categories.count)")
-
                 if let storage = StorageService.shared.tokenCategories {
                     storage.async.setObject(categories, forKey: "tokenCategories"  + filter.rawValue) { _ in }
                 }
 
-                completion()
+                DispatchQueue.main.async {
+                    self.tokenCategories = categories
+                    print("got categories network!! \(categories.count)")
+
+                    completion()
+                }
             case .failure(let error):
                 print("error getting tokenCategories network: \(error)")
             }
@@ -185,11 +186,11 @@ class MarketsService: ObservableObject {
         }
     }
 
-    func fetchTopExchanges(limit: Int, skip: Int, completion: @escaping () -> Void) {
-        let url = Constants.backendBaseUrl + "topExchanges?skip=\(skip)" + "&limit=\(limit)"
+    func fetchTopExchanges(filter: FilterExchanges, pageSize: Int, skip: Int, completion: @escaping () -> Void) {
+        let url = Constants.backendBaseUrl + "fetchExchanges" + "?order=\(filter.rawValue)" + "&pageSize=\(pageSize)" + "&skipItems=\(skip)"
 
         if let storage = StorageService.shared.topExchanges {
-            storage.async.object(forKey: "topExchanges\(skip)") { result in
+            storage.async.object(forKey: "exchanges\(filter.rawValue)\(skip)") { result in
                 switch result {
                 case .value(let exchanges):
                     print("got local exchanges!! \(exchanges)")
@@ -206,16 +207,16 @@ class MarketsService: ObservableObject {
         AF.request(url, method: .get).responseDecodable(of: [ExchangeModel].self) { response in
             switch response.result {
             case .success(let exchanges):
+                if let storage = StorageService.shared.topExchanges {
+                    storage.async.setObject(exchanges, forKey: "exchanges\(filter.rawValue)\(skip)") { _ in }
+                }
+
                 DispatchQueue.main.async {
                     self.exchanges += exchanges
-                }
-                print("got exchanges!! \(exchanges.count)")
+                    print("got exchanges!! \(self.exchanges.count)")
 
-                if let storage = StorageService.shared.topExchanges {
-                    storage.async.setObject(exchanges, forKey: "topExchanges\(skip)") { _ in }
+                    completion()
                 }
-
-                completion()
             case .failure(let error):
                 print("error getting api exchanges: \(error)")
             }
@@ -314,16 +315,15 @@ class MarketsService: ObservableObject {
         AF.request(url, method: .get).responseDecodable(of: [TokenDetails].self) { response in
             switch response.result {
             case .success(let gainers):
-                DispatchQueue.main.async {
-                    self.coinsByGains += gainers
-                }
-                print("got top gainers!! \(gainers.count)")
-
                 if let storage = StorageService.shared.topGainersOrLosers {
                     storage.async.setObject(gainers, forKey: "topGainers") { _ in }
                 }
 
-                completion()
+                DispatchQueue.main.async {
+                    self.coinsByGains += gainers
+                    print("got top gainers!! \(gainers.count)")
+                    completion()
+                }
             case .failure(let error):
                 print("error getting api top gainers: \(error)")
                 if let storage = StorageService.shared.topGainersOrLosers {
@@ -352,16 +352,16 @@ class MarketsService: ObservableObject {
         AF.request(url, method: .get).responseDecodable(of: [TokenDetails].self) { response in
             switch response.result {
             case .success(let losers):
-                DispatchQueue.main.async {
-                    self.coinsByLosers += losers
-                }
-                print("got top losers!! \(losers.count)")
-
                 if let storage = StorageService.shared.topGainersOrLosers {
                     storage.async.setObject(losers, forKey: "topLosers") { _ in }
                 }
 
-                completion()
+                DispatchQueue.main.async {
+                    self.coinsByLosers += losers
+                    print("got top losers!! \(losers.count)")
+
+                    completion()
+                }
             case .failure(let error):
                 print("error getting api top losers: \(error)")
                 if let storage = StorageService.shared.topGainersOrLosers {
@@ -390,16 +390,16 @@ class MarketsService: ObservableObject {
         AF.request(url, method: .get).responseDecodable(of: [TokenDetails].self) { response in
             switch response.result {
             case .success(let recent):
-                DispatchQueue.main.async {
-                    self.recentlyAddedTokens += recent
-                }
-                print("got recently added!!: \(recent.count) && \(self.recentlyAddedTokens.count)")
-
                 if let storage = StorageService.shared.recentlyAddedTokens {
                     storage.async.setObject(recent, forKey: "recentlyAddedTokens") { _ in }
                 }
 
-                completion()
+                DispatchQueue.main.async {
+                    self.recentlyAddedTokens += recent
+                    print("got recently added!!: \(recent.count) && \(self.recentlyAddedTokens.count)")
+
+                    completion()
+                }
             case .failure(let error):
                 print("error getting api recently added: \(error)")
                 if let storage = StorageService.shared.recentlyAddedTokens {
@@ -445,16 +445,16 @@ class MarketsService: ObservableObject {
         AF.request(url, method: .get).responseDecodable(of: PublicTreasury.self) { response in
             switch response.result {
             case .success(let treasury):
-                DispatchQueue.main.async {
-                    self.publicTreasury = treasury
-                }
-                print("got top treasury!!")
-
                 if let storage = StorageService.shared.publicTreasury {
                     storage.async.setObject(treasury, forKey: "publicTreasury\(coin.rawValue)") { _ in }
                 }
 
-                completion()
+                DispatchQueue.main.async {
+                    self.publicTreasury = treasury
+                    print("got top treasury!!")
+
+                    completion()
+                }
             case .failure(let error):
                 print("error getting api top treasury: \(error)")
             }
@@ -575,18 +575,21 @@ class MarketsService: ObservableObject {
         AF.request(url, method: .get).responseDecodable(of: TrendingCoins.self) { response in
             switch response.result {
             case .success(let trending):
-                if let list = trending.coins {
-                    DispatchQueue.main.async {
-                        print("trending coins success: \(list.count)")
-                        self.trendingCoins = list
-                    }
-
-                    if let storage = StorageService.shared.trendingStorage {
-                        storage.async.setObject(list, forKey: "trendingList") { _ in }
-                    }
+                guard let list = trending.coins else {
+                    completion()
+                    return
                 }
 
-                completion()
+                if let storage = StorageService.shared.trendingStorage {
+                    storage.async.setObject(list, forKey: "trendingList") { _ in }
+                }
+
+                DispatchQueue.main.async {
+                    self.trendingCoins = list
+                    print("trending coins success: \(list.count)")
+
+                    completion()
+                }
 
             case .failure(let error):
                 print("error loading trending list: \(error)")

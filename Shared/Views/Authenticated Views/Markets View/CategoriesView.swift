@@ -26,7 +26,7 @@ struct CategoriesView: View {
         self.service = service
         self.store = service.market
 
-        service.market.tokenCategories.removeAll()
+        self.store.tokenCategories.removeAll()
     }
 
     var body: some View {
@@ -93,7 +93,7 @@ struct CategoriesView: View {
                             self.limitCells = 25
                             self.fetchTokenCategories()
                         } label: {
-                            Label("Name", systemImage: store.categoriesFilters == .name ? "checkmark" : "")
+                            Label("Name", systemImage: store.categoriesFilters == .name ? "checkmark.circle.fill" : "circle")
                         }
 
                         Button {
@@ -102,7 +102,7 @@ struct CategoriesView: View {
                             self.limitCells = 25
                             self.fetchTokenCategories()
                         } label: {
-                            Label("Market Cap", systemImage: store.categoriesFilters == .marketCapDesc ? "checkmark" : "")
+                            Label("Market Cap", systemImage: store.categoriesFilters == .marketCapDesc ? "checkmark.circle.fill" : "circle")
                         }
 
                         Button {
@@ -111,7 +111,7 @@ struct CategoriesView: View {
                             self.limitCells = 25
                             self.fetchTokenCategories()
                         } label: {
-                            Label("24hr Gainers", systemImage: store.categoriesFilters == .gainers ? "checkmark" : "")
+                            Label("24hr Gainers", systemImage: store.categoriesFilters == .gainers ? "checkmark.circle.fill" : "circle")
                         }
 
                         Button {
@@ -120,7 +120,7 @@ struct CategoriesView: View {
                             self.limitCells = 25
                             self.fetchTokenCategories()
                         } label: {
-                            Label("24hr Losers", systemImage: store.categoriesFilters == .losers ? "checkmark" : "")
+                            Label("24hr Losers", systemImage: store.categoriesFilters == .losers ? "checkmark.circle.fill" : "circle")
                         }
                     }
                 } label: {

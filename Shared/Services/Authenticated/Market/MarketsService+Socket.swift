@@ -15,7 +15,6 @@ extension MarketsService {
 
         gasSocket.on(clientEvent: .connect) { _, _ in
             self.setGasSocket()
-            self.emitGasRequest()
         }
 
         gasSocket.on(clientEvent: .disconnect) { _, _ in

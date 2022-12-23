@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UserNotifications
+import FirebaseCore
 
 @UIApplicationMain
 class IOSAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -14,6 +15,9 @@ class IOSAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCent
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        FirebaseApp.configure()
+
         self.registerForPushNotifications()
         let deviceIdentifier: String = UIDevice.current.identifierForVendor!.uuidString
         print("hello did finish: \(deviceIdentifier)")

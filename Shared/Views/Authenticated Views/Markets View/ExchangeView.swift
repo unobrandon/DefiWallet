@@ -23,19 +23,19 @@ struct ExchangesView: View {
         self.service = service
         self.store = service.market
 
-        service.market.tokenCategories.removeAll()
+        self.store.exchanges.removeAll()
     }
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
-                LazyVStack(alignment: .leading) {
+                LazyVStack(alignment: .leading, spacing: 15) {
                     VStack(alignment: .leading, spacing: 5) {
-                        Text("A digital currency exchange (DCE), allows customers to trade crypto for other assets, such as traditional fiat or other cryptocurrency's.")
+                        Text("A digital currency exchange (DCE) is a platform that allows customers to trade cryptocurrencies for other assets, such as fiat currencies or other cryptocurrencies.")
                             .fontTemplate(DefaultTemplate.bodySemibold)
                             .multilineTextAlignment(.leading)
 
-                        ViewMoreText("Exchanges may accept credit card payments, wire transfers or other forms of payment in exchange for digital currencies or cryptocurrencies. \n\nAn exchange can be a market maker that typically takes the bid–ask spreads as a transaction commission for is service or, as a matching platform, simply charges fees.\n\nSome brokerages which also focus on other assets such as stocks, like Robinhood and eToro, let users purchase but not withdraw cryptocurrencies to cryptocurrency wallets. Dedicated cryptocurrency exchanges such as Binance and Coinbase do allow cryptocurrency withdrawals, however.")
+                        ViewMoreText("Exchanges provide a platform for the exchange of digital currencies and cryptocurrencies, accepting a range of payment methods such as credit card payments and wire transfers. \n\nThese exchanges can act as intermediaries, facilitating trades and earning a commission from the spread between bid and ask prices, or they may simply charge a fee for their services. \n\nWhile some brokerage firms, like Robinhood and eToro, allow users to purchase cryptocurrencies, they do not permit withdrawals to cryptocurrency wallets. Dedicated cryptocurrency exchanges, on the other hand, such as Binance and Coinbase, do offer the option to withdraw cryptocurrencies.")
                     }
                     .padding(.vertical, 10)
                     .padding(.horizontal)
@@ -68,6 +68,61 @@ struct ExchangesView: View {
             }.enableRefresh()
         })
         .navigationBarTitle("Exchanges", displayMode: .large)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Section {
+                        Button {
+                            store.exchanges.removeAll()
+                            withAnimation(.easeInOut) { store.exchangesFilters = .name }
+                            self.limitCells = 25
+                            self.fetchExchanges()
+                        } label: {
+                            Label("Name", systemImage: store.exchangesFilters == .name ? "checkmark.circle.fill" : "circle")
+                        }
+
+                        Button {
+                            store.exchanges.removeAll()
+                            withAnimation(.easeInOut) { store.exchangesFilters = .oldest }
+                            self.limitCells = 25
+                            self.fetchExchanges()
+                        } label: {
+                            Label("Oldest", systemImage: store.exchangesFilters == .oldest ? "checkmark.circle.fill" : "circle")
+                        }
+
+                        Button {
+                            store.exchanges.removeAll()
+                            withAnimation(.easeInOut) { store.exchangesFilters = .gainers }
+                            self.limitCells = 25
+                            self.fetchExchanges()
+                        } label: {
+                            Label("24hr Gainers", systemImage: store.exchangesFilters == .gainers ? "checkmark.circle.fill" : "circle")
+                        }
+
+                        Button {
+                            store.exchanges.removeAll()
+                            withAnimation(.easeInOut) { store.exchangesFilters = .losers }
+                            self.limitCells = 25
+                            self.fetchExchanges()
+                        } label: {
+                            Label("24hr Losers", systemImage: store.exchangesFilters == .losers ? "checkmark.circle.fill" : "circle")
+                        }
+                    }
+                } label: {
+                    HStack {
+                        Image(systemName: "list.bullet")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 18, height: 18, alignment: .center)
+                        Text("Sort")
+                    }
+                }
+                .buttonStyle(.borderless)
+                .controlSize(.small)
+                .buttonBorderShape(.roundedRectangle)
+                .buttonStyle(ClickInteractiveStyle(0.99))
+            }
+        }
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search exchanges", suggestions: {
             Text("hello")
         })
@@ -76,14 +131,15 @@ struct ExchangesView: View {
                 Tool.hiddenTabBar()
             }
 
-            guard service.market.tokenCategories.isEmpty else { return }
+            guard store.exchanges.isEmpty else { return }
 
             self.fetchExchanges()
         }
     }
 
     private func fetchExchanges() {
-        store.fetchTopExchanges(limit: limitCells, skip: limitCells - 25, completion: {
+        showIndicator = true
+        store.fetchTopExchanges(filter: store.exchangesFilters, pageSize: 25, skip: limitCells - 25, completion: {
             print("done fetching exchanges: \(store.exchanges.count) ** \(limitCells)")
             withAnimation(.easeInOut) {
                 showIndicator = false

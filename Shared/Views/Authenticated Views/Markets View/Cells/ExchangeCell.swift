@@ -38,7 +38,7 @@ struct ExchangeCell: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(data.name ?? "").fontTemplate(DefaultTemplate.gasPriceFont)
 
-                        if let description = data.exchangeModelDescription, !description.isEmpty {
+                        if let description = data.description, !description.isEmpty {
                             Text(description)
                                 .fontTemplate(DefaultTemplate.caption)
                                 .lineLimit(2)

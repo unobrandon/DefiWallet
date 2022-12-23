@@ -20,15 +20,17 @@ extension MarketsService {
         AF.request(url, method: .get).responseDecodable(of: GasPrice.self) { response in
             switch response.result {
             case .success(let gasPrice):
-                if let gasIndex = self.gasPrices.firstIndex(where: { $0.network == gasPrice.network }) {
-                    self.gasPrices[gasIndex] = gasPrice
-                } else {
-                    self.gasPrices.append(gasPrice)
+                DispatchQueue.main.async {
+                    if let gasIndex = self.gasPrices.firstIndex(where: { $0.network == gasPrice.network }) {
+                        self.gasPrices[gasIndex] = gasPrice
+                    } else {
+                        self.gasPrices.append(gasPrice)
+                    }
+
+                    print("done getting gas price for \(network): \(gasPrice)")
+
+                    completion()
                 }
-
-                print("done getting gas price for \(network): \(gasPrice)")
-
-                completion()
             case .failure(let error):
                 print("error fetching gas price: \(error)")
                 completion()
@@ -57,16 +59,16 @@ extension MarketsService {
         AF.request(url, method: .get).responseDecodable(of: GlobalMarketData.self) { response in
             switch response.result {
             case .success(let global):
-                DispatchQueue.main.async {
-                    self.globalMarketData = global
-                }
-                print("done getting global market data: \(global.activeCryptocurrencies ?? 0)")
-
                 if let storage = StorageService.shared.globalMarketData {
                     storage.async.setObject(global, forKey: "globalMarketData") { _ in }
                 }
 
-                completion()
+                DispatchQueue.main.async {
+                    self.globalMarketData = global
+                    print("done getting global market data: \(global.activeCryptocurrencies ?? 0)")
+
+                    completion()
+                }
             case .failure(let error):
                 print("error fetching global market data: \(error)")
                 completion()

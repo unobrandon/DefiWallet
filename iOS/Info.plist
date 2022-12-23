@@ -32,6 +32,8 @@
 	<string>$(INFURA_PROJECT_ID)</string>
 	<key>INFURA_PROJECT_SECRET</key>
 	<string>$(INFURA_PROJECT_SECRET)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

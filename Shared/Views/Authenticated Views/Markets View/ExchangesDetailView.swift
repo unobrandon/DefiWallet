@@ -24,26 +24,23 @@ struct ExchangesDetailView: View {
         self.exchange = exchange
         self.service = service
         self.store = service.market
-
-        self.store.tokenCategoryList.removeAll()
     }
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
-
                 CustomLineChart(data: store.exchangeDetails?.chartValue ?? [], profit: true, perspective: $service.wallet.chartType)
                     .frame(height: 120)
                     .padding()
 
                 HStack {
                     VStack(alignment: .leading, spacing: 2.5) {
-                        Text("The \(exchange.name ?? "") 24 hour trade volume is \("".formatLargeDoubleNumber(exchange.tradeVolume24HBtc ?? 0.00, size: .large, scale: 3)) BTC.")
+                        Text("\(exchange.name ?? "")'s 24 hour trade volume is \("".formatLargeDoubleNumber(exchange.tradeVolume24HBtc ?? 0.00, size: .large, scale: 3)) Bitcoin.")
                             .fontTemplate(DefaultTemplate.bodySemibold)
                             .multilineTextAlignment(.leading)
-                            .padding(.bottom, exchange.exchangeModelDescription ?? "" != "" ? 0 : 20)
+                            .padding(.bottom, exchange.description ?? "" != "" ? 0 : 20)
 
-                        if let description = exchange.exchangeModelDescription, !description.isEmpty {
+                        if let description = exchange.description, !description.isEmpty {
                             ViewMoreText(description)
                         }
 
@@ -56,7 +53,7 @@ struct ExchangesDetailView: View {
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
 
-                ListSection(title: "exchange tickers", style: service.themeStyle) {
+                ListSection(title: "exchange's tickers", style: service.themeStyle) {
                     ForEach(store.exchangeDetails?.tickers?.prefix(limitCells) ?? [], id: \.self) { ticker in
                         ExchangePairCell(service: service, data: ticker, isLast: false, style: service.themeStyle, action: {
                             guard let urlString = ticker.tradeURL, let url = URL(string: urlString) else { return }
@@ -71,7 +68,7 @@ struct ExchangesDetailView: View {
                         limitCells += 25
                         withAnimation(.easeInOut) {
                             showIndicator = false
-                            noMore = store.tokenCategories.count <= limitCells
+                            noMore = store.exchangeDetails?.tickers?.count ?? 0 <= limitCells
                         }
                     }
                 }, label: {
@@ -92,7 +89,7 @@ struct ExchangesDetailView: View {
                 Tool.hiddenTabBar()
             }
 
-            guard let id = exchange.externalID else { return }
+            guard let id = exchange.externalId else { return }
 //            service.market.fetchCategoryDetails(categoryId: id, currency: service.currentUser.currency)
             store.fetchExchangeDetails(id, chartDays: 7, page: 1)
         }

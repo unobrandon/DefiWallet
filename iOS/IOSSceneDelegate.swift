@@ -29,7 +29,7 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
-        //print("scene did disconnect")
+        // print("scene did disconnect")
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
@@ -37,7 +37,7 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        if let incomingURL = userActivity.webpageURL {
+//        if let incomingURL = userActivity.webpageURL {
 //            DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL, completion: { (dynamicLink, error) in
 //                guard error == nil else { return }
 //
@@ -45,9 +45,9 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                    self.environment.handleIncomingDynamicLink(dynamicLink)
 //                }
 //            })
-        }
+//        }
     }
-    
+
     func sceneDidBecomeActive(_ scene: UIScene) {
 //        print("scene did become active")
 //        if self.environment.isUserAuthenticated == .signedIn {
@@ -85,11 +85,11 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
 //        print("scene will enter foreground \(Thread.isMainThread)")
-        
+
         StoreReviewHelper.incrementAppOpenedCount()
         StoreReviewHelper.checkAndAskForReview()
     }
-    
+
     func sceneDidEnterBackground(_ scene: UIScene) {
 //        print("scene did enter background")
 //        if self.environment.isUserAuthenticated == .signedIn {
@@ -114,19 +114,19 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func sendLocalAuth() {
 //        guard self.environment.profile.results.first?.isLocalAuthOn == true else { return }
 
-        let context = LAContext()
-        var error: NSError?
+//        let context = LAContext()
+//        var error: NSError?
 
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            let reason = "Identify yourself!"
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+//        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+//            let reason = "Identify yourself!"
+//            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
 
-                DispatchQueue.main.async {
-                    if success {
+//                DispatchQueue.main.async {
+//                    if success {
 //                        self.environment.isLoacalAuth = false
-                    }
-                }
-            }
-        }
+//                    }
+//                }
+//            }
+//        }
     }
 }

@@ -19,9 +19,8 @@ struct TokenCategory: Codable, Hashable, Identifiable {
     }
 
     let id, externalId, name, description: String?
-    let marketCap, marketCapChange24H: Double?
+    let marketCap, marketCapChange24H, volume24H: Double?
     let top3_Coins: [String]?
-    let volume24H: Double?
     let updatedAt: String?
 
     enum CodingKeys: String, CodingKey {

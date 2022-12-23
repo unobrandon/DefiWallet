@@ -26,6 +26,14 @@ enum FilterCategories: String, Equatable {
     case marketCapAsc = "market_cap_asc"
 }
 
+enum FilterExchanges: String, Equatable {
+    case name = "name_asc"
+    case gainers = "trade_volume_24h_btc_desc"
+    case losers = "trade_volume_24h_btc_asc"
+    case newest = "year_established_desc"
+    case oldest = "year_established_asc"
+}
+
 enum SocketResponses: String, Codable {
     case testSend = "test_send"
     case testAnswer = "test_answer"

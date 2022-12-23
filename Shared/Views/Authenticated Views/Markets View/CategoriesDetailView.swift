@@ -116,7 +116,7 @@ struct CategoriesDetailView: View {
                             self.limitCells = 25
                             self.fetchTokenCategoriesList()
                         } label: {
-                            Label("Name", systemImage: store.categoriesDetailFilters == .id ? "checkmark" : "")
+                            Label("Name", systemImage: store.categoriesDetailFilters == .id ? "checkmark.circle.fill" : "circle")
                         }
 
                         Button {
@@ -125,7 +125,7 @@ struct CategoriesDetailView: View {
                             self.limitCells = 25
                             self.fetchTokenCategoriesList()
                         } label: {
-                            Label("Market Cap", systemImage: store.categoriesDetailFilters == .marketCapDesc ? "checkmark" : "")
+                            Label("Market Cap", systemImage: store.categoriesDetailFilters == .marketCapDesc ? "checkmark.circle.fill" : "circle")
                         }
 
                         Button {
@@ -134,7 +134,7 @@ struct CategoriesDetailView: View {
                             self.limitCells = 25
                             self.fetchTokenCategoriesList()
                         } label: {
-                            Label("Volume", systemImage: store.categoriesDetailFilters == .volume ? "checkmark" : "")
+                            Label("Volume", systemImage: store.categoriesDetailFilters == .volume ? "checkmark.circle.fill" : "circle")
                         }
                     }
                 } label: {

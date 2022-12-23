@@ -24,7 +24,7 @@ struct ListTitleView: View {
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {
             HStack(alignment: .center) {
-                Text(title).fontTemplate(DefaultTemplate.sectionHeader_semibold)
+                Text(title).fontTemplate(DefaultTemplate.subheadingSemiBold)
 
                 Spacer()
                 if let text = actionText, !text.isEmpty {

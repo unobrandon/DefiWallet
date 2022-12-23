@@ -10,29 +10,27 @@ import Foundation
 struct ExchangeModel: Codable, Hashable {
 
     static func == (lhs: ExchangeModel, rhs: ExchangeModel) -> Bool {
-        return lhs.objectID == rhs.objectID && lhs.externalID == rhs.externalID
+        return lhs.objectID == rhs.objectID && lhs.externalId == rhs.externalId
     }
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(objectID)
-        hasher.combine(externalID)
+        hasher.combine(externalId)
     }
 
-    let externalID, name, exchangeModelDescription: String?
-    let yearEstablished: Int?
+    let externalId, name, description: String?
     let country: String?
-    let url: String?
-    let image: String?
+    let url, image: String?
     let ytVideoId: String?
     let hasTradingIncentive: Bool?
-    let trustScore, trustScoreRank: Int?
+    let trustScore, trustScoreRank, yearEstablished: Int?
     let tradeVolume24HBtc, tradeVolume24HBtcNormalized: Double?
     let createdAt, updatedAt, objectID: String?
 
     enum CodingKeys: String, CodingKey {
-        case externalID = "external_id"
+        case externalId = "external_id"
         case name
-        case exchangeModelDescription = "description"
+        case description = "description"
         case yearEstablished = "year_established"
         case country, url, image
         case ytVideoId = "yt_video_id"

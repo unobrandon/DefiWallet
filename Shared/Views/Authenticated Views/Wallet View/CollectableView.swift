@@ -89,16 +89,16 @@ struct CollectableView: View {
 
                     Section {
                         Button { withAnimation(.easeInOut) { networkFilter = "eth" }} label: {
-                            Label("Ethereum", systemImage: networkFilter == "eth" ? "checkmark" : "")
+                            Label("Ethereum", systemImage: networkFilter == "eth" ? "checkmark.circle.fill" : "circle")
                         }
                         Button { withAnimation(.easeInOut) { networkFilter = "polygon" }} label: {
-                            Label("Polygon", systemImage: networkFilter == "polygon" ? "checkmark" : "")
+                            Label("Polygon", systemImage: networkFilter == "polygon" ? "checkmark.circle.fill" : "circle")
                         }
                         Button { withAnimation(.easeInOut) { networkFilter = "bsc" }} label: {
-                            Label("Binance Smart Chain", systemImage: networkFilter == "bsc" ? "checkmark" : "")
+                            Label("Binance Smart Chain", systemImage: networkFilter == "bsc" ? "checkmark.circle.fill" : "circle")
                         }
                         Button { withAnimation(.easeInOut) { networkFilter = "avalanche" }} label: {
-                            Label("Avalanche", systemImage: networkFilter == "avalanche" ? "checkmark" : "")
+                            Label("Avalanche", systemImage: networkFilter == "avalanche" ? "checkmark.circle.fill" : "circle")
                         }
                     }
                 } label: {

@@ -201,7 +201,7 @@ class WalletService: ObservableObject {
     }
 
     // MARK: Logic for overall portfolio chart
-    
+
     // Need 2 primary timelines to create the new overall timeline
 
     // get each token's historical chart data
@@ -259,10 +259,7 @@ class WalletService: ObservableObject {
             return
         }
 
-        let jsonString = String(data: chartData, encoding: .utf8)
-        print("I am thinking of sending this model to the backend: \(String(describing: jsonString))")
-
-        completion(jsonString)
+        completion(String(data: chartData, encoding: .utf8))
     }
 
     func getTokenIds() -> [String] {

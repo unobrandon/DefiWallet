@@ -53,7 +53,7 @@ struct TokenDetailView: View {
             guard let category = category else { continue }
 
             let id = category.replacingOccurrences(of: " ", with: "-").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").lowercased()
-            let result = TokenCategory(id: id, externalId: id, name: category, description: nil, marketCap: nil, marketCapChange24H: nil, top3_Coins: nil, volume24H: nil, updatedAt: nil)
+            let result = TokenCategory(id: id, externalId: id, name: category, description: nil, marketCap: nil, marketCapChange24H: nil, volume24H: nil, top3_Coins: nil, updatedAt: nil)
             allCategories.append(result)
         }
 
