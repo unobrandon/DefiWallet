@@ -29,7 +29,6 @@ class MarketsService: ObservableObject {
 
     var socketManager: SocketManager
     var gasSocket: SocketIOClient
-    var assetSocket: SocketIOClient
     var gasSocketTimer: Timer?
 
     let gasRefreshInterval: Double = 10
@@ -51,7 +50,6 @@ class MarketsService: ObservableObject {
     init(socketManager: SocketManager) {
         self.socketManager = socketManager
         self.gasSocket = socketManager.socket(forNamespace: "/gas")
-        self.assetSocket = socketManager.socket(forNamespace: "/assets")
 
         marketsCancellable = $searchMarketsText
             .removeDuplicates()
@@ -89,7 +87,7 @@ class MarketsService: ObservableObject {
 //                self.searchTokenCategories(text: str, limit: 10, skip: 0)
             })
 
-        connectSockets()
+        connectGasSocket()
     }
 
     func fetchTokenCategories(filter: FilterCategories, limit: Int, skip: Int, completion: @escaping () -> Void) {

@@ -1,20 +1,13 @@
 //
-//  ZapperTransactionHistory.swift
+//  HistoryData.swift
 //  DefiWallet
 //
-//  Created by Brandon Shaw on 2/15/22.
+//  Created by Brandon Shaw on 12/23/22.
 //
 
 import Foundation
-import Alamofire
 
-// MARK: - TransactionHistory
-struct ZapperTransactionHistory: Codable {
-    let error: [String]?
-    let data: [HistoryData]?
-}
-
-// MARK: - Datum
+// MARK: - HistoryData
 struct HistoryData: Decodable, Encodable, Hashable {
 
     static func == (lhs: HistoryData, rhs: HistoryData) -> Bool {
@@ -42,26 +35,6 @@ struct HistoryData: Decodable, Encodable, Hashable {
     let account: String
     let fromEns, accountEns, destinationEns: String?
 
-}
-
-enum Direction: String, Codable {
-    case exchange
-    case incoming
-    case outgoing
-}
-
-enum Name: String, Codable {
-    case exchange = "Exchange"
-    case receive = "Receive"
-    case send = "Send"
-}
-
-enum Network: String, Codable {
-    case avalanche = "avalanche"
-    case binanceSmartChain = "binance-smart-chain"
-    case ethereum = "ethereum"
-    case polygon = "polygon"
-    case fantom = "fantom"
 }
 
 // MARK: - SubTransaction

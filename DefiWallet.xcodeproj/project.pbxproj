@@ -77,8 +77,8 @@
 		0507BB2B2850482900D1A965 /* MarketsService+Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507BB292850482900D1A965 /* MarketsService+Socket.swift */; };
 		0507BB2D285070FC00D1A965 /* MarqueeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507BB2C285070FC00D1A965 /* MarqueeScrollView.swift */; };
 		0507BB2E285070FC00D1A965 /* MarqueeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507BB2C285070FC00D1A965 /* MarqueeScrollView.swift */; };
-		051BCF5527BC970A0056E047 /* ZapperTransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* ZapperTransactionHistory.swift */; };
-		051BCF5627BC970A0056E047 /* ZapperTransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5427BC970A0056E047 /* ZapperTransactionHistory.swift */; };
+		05096E732955AE03002D6807 /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05096E722955AE03002D6807 /* HistoryData.swift */; };
+		05096E742955AE03002D6807 /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05096E722955AE03002D6807 /* HistoryData.swift */; };
 		051BCF5827BCACB30056E047 /* AuthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */; };
 		051BCF5927BCACB30056E047 /* AuthenticatedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */; };
 		051BCF5D27BCAE150056E047 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCF5C27BCAE150056E047 /* WalletService.swift */; };
@@ -252,8 +252,6 @@
 		0565CCCC2931E75C005202AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0565CCCB2931E75C005202AD /* GoogleService-Info.plist */; };
 		0566AEC227E83792006B645F /* HistorySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC127E83792006B645F /* HistorySectionView.swift */; };
 		0566AEC327E83792006B645F /* HistorySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC127E83792006B645F /* HistorySectionView.swift */; };
-		0566AEC527E8399B006B645F /* HistoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC427E8399B006B645F /* HistoryListCell.swift */; };
-		0566AEC627E8399B006B645F /* HistoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC427E8399B006B645F /* HistoryListCell.swift */; };
 		0566AEC827E84711006B645F /* StandardSystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC727E84711006B645F /* StandardSystemImage.swift */; };
 		0566AEC927E84711006B645F /* StandardSystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEC727E84711006B645F /* StandardSystemImage.swift */; };
 		0566AECC27E8660C006B645F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566AECB27E8660C006B645F /* HistoryView.swift */; };
@@ -692,7 +690,7 @@
 		0507BB2628503E2500D1A965 /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 		0507BB292850482900D1A965 /* MarketsService+Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarketsService+Socket.swift"; sourceTree = "<group>"; };
 		0507BB2C285070FC00D1A965 /* MarqueeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeScrollView.swift; sourceTree = "<group>"; };
-		051BCF5427BC970A0056E047 /* ZapperTransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZapperTransactionHistory.swift; sourceTree = "<group>"; };
+		05096E722955AE03002D6807 /* HistoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryData.swift; sourceTree = "<group>"; };
 		051BCF5727BCACB30056E047 /* AuthenticatedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedServices.swift; sourceTree = "<group>"; };
 		051BCF5C27BCAE150056E047 /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		052554D82890FB0B0060EC7A /* DefiWallet (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DefiWallet (iOS).entitlements"; sourceTree = "<group>"; };
@@ -784,7 +782,6 @@
 		0561E84228AF61EC006C9A4B /* KeypadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadView.swift; sourceTree = "<group>"; };
 		0565CCCB2931E75C005202AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0566AEC127E83792006B645F /* HistorySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySectionView.swift; sourceTree = "<group>"; };
-		0566AEC427E8399B006B645F /* HistoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCell.swift; sourceTree = "<group>"; };
 		0566AEC727E84711006B645F /* StandardSystemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardSystemImage.swift; sourceTree = "<group>"; };
 		0566AECB27E8660C006B645F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		0566AED027E8F64B006B645F /* HistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailView.swift; sourceTree = "<group>"; };
@@ -1481,7 +1478,6 @@
 			children = (
 				05583CE527EC10DF00640E75 /* NetworkCell.swift */,
 				05583CE827ED305F00640E75 /* NetworkVerticalCell.swift */,
-				0566AEC427E8399B006B645F /* HistoryListCell.swift */,
 				05D40F872858600A002BDA0F /* TransactionListCell.swift */,
 				05C884D727FD47EB005E2455 /* TokenBalanceCell.swift */,
 				05CA873728053CDD006FACE0 /* CollectableImageCell.swift */,
@@ -1507,6 +1503,7 @@
 				0578077E27BB87C80008051B /* Wallet.swift */,
 				0531141C27E7EE1B00368657 /* WCSessionInfo.swift */,
 				05E8589327C5D7F000B85195 /* GasPrice.swift */,
+				05096E722955AE03002D6807 /* HistoryData.swift */,
 				05D1096F27C17D49008DCC66 /* ERC20Token.swift */,
 				0593020C27D9900A006DDFFF /* AccountBalance.swift */,
 				0593021527DEFA95006DDFFF /* CompleteBalance.swift */,
@@ -1514,7 +1511,6 @@
 				0593021227D9E33E006DDFFF /* AccountNft.swift */,
 				0500307728584C7E000C5DFF /* AccountTransactions.swift */,
 				05CA87162802A48E006FACE0 /* NftUriResponce.swift */,
-				051BCF5427BC970A0056E047 /* ZapperTransactionHistory.swift */,
 				05583CEB27ED5CA100640E75 /* CoinByMarketCap.swift */,
 				056BD308283C7B030020C6C4 /* TokenDescriptor.swift */,
 				0539E25D28B48D2E00721565 /* SwappableTokens.swift */,
@@ -2332,7 +2328,6 @@
 				058C786527D07E3700EB91CA /* PrivateKeysView.swift in Sources */,
 				05002E72282B71DA0010AF39 /* List+Refresh.swift in Sources */,
 				05D40F94285DA6E7002BDA0F /* SwapTokenView.swift in Sources */,
-				051BCF5527BC970A0056E047 /* ZapperTransactionHistory.swift in Sources */,
 				055FFDED2856D10500D8EA06 /* MarketsService+GlobalGas.swift in Sources */,
 				0593026327E19D27006DDFFF /* Math.swift in Sources */,
 				05583CD727E9C1F800640E75 /* GridStyleKey.swift in Sources */,
@@ -2355,7 +2350,6 @@
 				057806EB27B8E1640008051B /* MainCoordinator+Factory.swift in Sources */,
 				0578074327BB5B770008051B /* InvestCoordinator+Factory.swift in Sources */,
 				053113FB27E6CF7100368657 /* CBScanner.swift in Sources */,
-				0566AEC527E8399B006B645F /* HistoryListCell.swift in Sources */,
 				0566AED427E9610D006B645F /* ListInfoView.swift in Sources */,
 				05E8590527CC198A00B85195 /* TermsView.swift in Sources */,
 				0539E25B28B47E9100721565 /* KeyboardInteractiveStyle.swift in Sources */,
@@ -2504,6 +2498,7 @@
 				05A6AAB527F95AFA00824C76 /* TrendingTokenListCell.swift in Sources */,
 				05EE4431281C8E1500D4189F /* BlockAvatar.swift in Sources */,
 				0507BB1B284F141E00D1A965 /* RecentlyAddedView.swift in Sources */,
+				05096E732955AE03002D6807 /* HistoryData.swift in Sources */,
 				05002E6A282B715D0010AF39 /* FooterKey.swift in Sources */,
 				0566AEC827E84711006B645F /* StandardSystemImage.swift in Sources */,
 				05CA872328040EA4006FACE0 /* TokenDetailView.swift in Sources */,
@@ -2686,7 +2681,6 @@
 				05EE4432281C8E1500D4189F /* BlockAvatar.swift in Sources */,
 				055FFDE92856BB7300D8EA06 /* ExchangeDetailsModel.swift in Sources */,
 				05583CD527E9C1D100640E75 /* GridStyle.swift in Sources */,
-				051BCF5627BC970A0056E047 /* ZapperTransactionHistory.swift in Sources */,
 				0548B88D27B4DFF1000478B8 /* SideNavigationBar.swift in Sources */,
 				05E5F84D27D34F570090290C /* BiometryPermissionsView.swift in Sources */,
 				0500E4E1281F6CDA001A4FAB /* ACarousel.swift in Sources */,
@@ -2797,6 +2791,7 @@
 				05E858F927CB5A3200B85195 /* TextFieldSingleList.swift in Sources */,
 				0507BB2E285070FC00D1A965 /* MarqueeScrollView.swift in Sources */,
 				05002E79282B84830010AF39 /* ViewMoreText.swift in Sources */,
+				05096E742955AE03002D6807 /* HistoryData.swift in Sources */,
 				05ED7FA728D567E9007D8623 /* FlexibleView.swift in Sources */,
 				050225B427FC09450004D910 /* NetworkDetailView.swift in Sources */,
 				056BD30A283C7B040020C6C4 /* TokenDescriptor.swift in Sources */,
@@ -2820,7 +2815,6 @@
 				05583CF227ED6A5100640E75 /* TopCoinsSectionView.swift in Sources */,
 				05E858C527CB230B00B85195 /* EmptyAvatar.swift in Sources */,
 				05E858FC27CB5FCC00B85195 /* TextViewBordered.swift in Sources */,
-				0566AEC627E8399B006B645F /* HistoryListCell.swift in Sources */,
 				0507BB2528503B3800D1A965 /* CoinTreasuryDropdownButton.swift in Sources */,
 				05583CC927E9C12F00640E75 /* GridItemBoundsPreferencesKey.swift in Sources */,
 				05F8EE1F27FFFBD0003BBC23 /* TokenCategory.swift in Sources */,

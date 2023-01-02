@@ -21,8 +21,6 @@ class StorageService {
     var dataStorage: Storage<String, Data>?
     var balanceStorage: Cache.Storage<String, AccountBalance>?
     var nftUriResponse: Cache.Storage<String, NftURIResponse>?
-    var historyStorage: Cache.Storage<String, [HistoryData]>?
-    var portfolioStorage: Cache.Storage<String, AccountPortfolio>?
     var chartStorage: Cache.Storage<String, [ChartValue]>?
     var trendingStorage: Cache.Storage<String, [TrendingCoin]>?
     var globalMarketData: Cache.Storage<String, GlobalMarketData>?
@@ -53,24 +51,6 @@ class StorageService {
                                               transformer: TransformerFactory.forCodable(ofType: AccountBalance.self))
         } catch {
             print(error)
-        }
-
-        // history
-        do {
-            self.historyStorage = try Storage(diskConfig: diskConfig,
-                                              memoryConfig: memoryConfig,
-                                              transformer: TransformerFactory.forCodable(ofType: [HistoryData].self))
-        } catch {
-            print(error)
-        }
-
-        // portfolio
-        do {
-            self.portfolioStorage = try Storage(diskConfig: diskConfig,
-                                              memoryConfig: memoryConfig,
-                                              transformer: TransformerFactory.forCodable(ofType: AccountPortfolio.self))
-        } catch {
-            print("error getting Portfolio storage \(error.localizedDescription)")
         }
 
         // trending

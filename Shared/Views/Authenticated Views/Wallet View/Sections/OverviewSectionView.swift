@@ -91,15 +91,15 @@ struct OverviewSectionView: View {
                     HStack(alignment: .top, spacing: 5) {
                         Text(Locale.current.currencySymbol ?? "").fontTemplate(DefaultTemplate.titleSemiBold)
 
-                        if let num = service.wallet.getNetworkTotal(completeBalance) {
-                            MovingNumbersView(number: num,
-                                              numberOfDecimalPlaces: 2,
-                                              fixedWidth: nil,
-                                              theme: DefaultTemplate.titleSemiBold,
-                                              showComma: true) { str in
-                                Text(str).fontTemplate(DefaultTemplate.titleSemiBold)
-                            }
-                        }
+//                        if let num = service.wallet.getNetworkTotal(completeBalance) {
+//                            MovingNumbersView(number: num,
+//                                              numberOfDecimalPlaces: 2,
+//                                              fixedWidth: nil,
+//                                              theme: DefaultTemplate.titleSemiBold,
+//                                              showComma: true) { str in
+//                                Text(str).fontTemplate(DefaultTemplate.titleSemiBold)
+//                            }
+//                        }
                         Spacer()
                     }.mask(AppGradients.movingNumbersMask)
                 }

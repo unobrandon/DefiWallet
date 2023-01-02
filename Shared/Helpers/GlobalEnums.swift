@@ -7,6 +7,26 @@
 
 import Foundation
 
+enum Direction: String, Codable {
+    case exchange
+    case incoming
+    case outgoing
+}
+
+enum Name: String, Codable {
+    case exchange = "Exchange"
+    case receive = "Receive"
+    case send = "Send"
+}
+
+enum Network: String, Codable {
+    case avalanche = "avalanche"
+    case binanceSmartChain = "binance-smart-chain"
+    case ethereum = "ethereum"
+    case polygon = "polygon"
+    case fantom = "fantom"
+}
+
 enum FilterHistory: Equatable {
     case all
     case ethereum

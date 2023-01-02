@@ -19,10 +19,8 @@ extension WalletService {
             self.emitAccountRequest(UserDefaults.standard.string(forKey: "chartType"))
         }
 
-        addressSocket.on(clientEvent: .disconnect) { _, _ in
-
-        }
-
+//        addressSocket.on(clientEvent: .disconnect) { _, _ in
+//        }
 //        addressSocket.on(clientEvent: .reconnect) { _, _ in
 //            self.networkStatus = .reconnecting
 //        }
@@ -39,67 +37,6 @@ extension WalletService {
     }
 
     func setSockets() {
-        self.addressSocket.on("received address portfolio") { data, _ in
-            DispatchQueue.main.async {
-                guard let array = data as? [[String: AnyObject]],
-                      let firstDict = array.first,
-                      let payload = firstDict["payload"],
-                      let assets = payload["portfolio"] as? [String: AnyObject] else { return }
-
-                let absoluteChange24h = assets["absolute_change_24h"] as? Double
-                let arbitrumAssetsValue = assets["arbitrum_assets_value"] as? Double
-                let assetsValue = assets["assets_value"] as? Double
-                let auroraAssetsValue = assets["aurora_assets_value"] as? Double
-                let avalancheAssetsValue = assets["avalanche_assets_value"] as? Double
-                let borrowedValue = assets["borrowed_value"] as? Double
-                let bscAssetsValue = assets["bsc_assets_value"] as? Double
-                let depositedValue = assets["deposited_value"] as? Double
-                let ethereumAssetsValue = assets["ethereum_assets_value"] as? Double
-                let fantomAssetsValue = assets["fantom_assets_value"] as? Double
-                let lockedValue = assets["locked_value"] as? Double
-                let loopringAssetsValue = assets["loopring_assets_value"] as? Double
-                let nftFloorPriceValue = assets["nft_floor_price_value"] as? Double
-                let nftLastPriceValue = assets["nft_last_price_value"] as? Double
-                let optimismAssetsValue = assets["optimism_assets_value"] as? Double
-                let polygonAssetsValue = assets["polygon_assets_value"] as? Double
-                let relativeChange24h = assets["relative_change_24h"] as? Double
-                let solanaAssetsValue = assets["solana_assets_value"] as? Double
-                let stakedValue = assets["staked_value"] as? Double
-                let totalValue = assets["total_value"] as? Double
-                let xdaiAssetsValue = assets["xdai_assets_value"] as? Double
-
-                let portfolio = AccountPortfolio(arbitrumAssetsValue: arbitrumAssetsValue,
-                                                 assetsValue: assetsValue,
-                                                 auroraAssetsValue: auroraAssetsValue,
-                                                 avalancheAssetsValue: avalancheAssetsValue,
-                                                 borrowedValue: borrowedValue,
-                                                 bscAssetsValue: bscAssetsValue,
-                                                 depositedValue: depositedValue,
-                                                 ethereumAssetsValue: ethereumAssetsValue,
-                                                 fantomAssetsValue: fantomAssetsValue,
-                                                 lockedValue: lockedValue,
-                                                 loopringAssetsValue: loopringAssetsValue,
-                                                 nftFloorPriceValue: nftFloorPriceValue,
-                                                 nftLastPriceValue: nftLastPriceValue,
-                                                 optimismAssetsValue: optimismAssetsValue,
-                                                 polygonAssetsValue: polygonAssetsValue,
-                                                 solanaAssetsValue: solanaAssetsValue,
-                                                 stakedValue: stakedValue,
-                                                 totalValue: totalValue,
-                                                 xdaiAssetsValue: xdaiAssetsValue,
-                                                 absoluteChange24h: absoluteChange24h,
-                                                 relativeChange24h: relativeChange24h)
-
-                self.accountPortfolio = portfolio
-
-                if let storage = StorageService.shared.portfolioStorage {
-                    storage.async.setObject(portfolio, forKey: "portfolio") { _ in }
-                }
-
-                print("the account value is: \(String(describing: totalValue)) & now: \(String(describing: self.accountPortfolio?.relativeChange24h)) &&& final: \(portfolio)")
-            }
-        }
-
         self.addressSocket.on("received address charts") { data, _ in
             DispatchQueue.main.async {
                 guard let array = data as? [[String: AnyObject]],
@@ -131,38 +68,6 @@ extension WalletService {
                 }
             }
         }
-
-        self.addressSocket.on("received address transactions") { data, _ in
-            DispatchQueue.main.async {
-                guard let array = data as? [[String: AnyObject]],
-                      let firstDict = array.first,
-                      let payload = firstDict["payload"] else { return }
-
-                print("the transactions value is: \(payload)")
-            }
-        }
-
-        self.addressSocket.on("received address polygon-assets") { data, _ in
-            DispatchQueue.main.async {
-                guard let array = data as? [[String: AnyObject]],
-                      let firstDict = array.first,
-                      let payload = firstDict["payload"],
-                      let assets = payload["polygon-assets"] as? [String: AnyObject] else { return }
-
-                print("the polygon-assets value is: \(assets)")
-            }
-        }
-
-        self.addressSocket.on("received address staked-assets") { data, _ in
-            DispatchQueue.main.async {
-                guard let array = data as? [[String: AnyObject]],
-                      let firstDict = array.first,
-                      let payload = firstDict["payload"] else { return }
-
-                print("the staked-assets value is: \(payload)")
-            }
-        }
-
     }
 
     func emitSingleChartRequest(_ type: String? = "d") {

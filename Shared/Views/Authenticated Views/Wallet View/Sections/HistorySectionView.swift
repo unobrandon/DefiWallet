@@ -87,12 +87,4 @@ struct HistorySectionView: View {
         #endif
     }
 
-    private func filterHistory(_ filter: Network? = nil) -> [HistoryData] {
-        if let filter = filter {
-            return self.store.history.filter({ $0.network == filter })
-        } else {
-            return self.store.history
-        }
-    }
-
 }

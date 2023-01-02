@@ -14,7 +14,6 @@ import SocketIO
 
 class WalletService: ObservableObject {
 
-    @Published var accountPortfolio: AccountPortfolio?
     @Published var accountBalance: AccountBalance?
     @Published var accountChart = [ChartValue]()
     @Published var history = [HistoryData]()
@@ -119,30 +118,6 @@ class WalletService: ObservableObject {
     }
 
     private func loadStoredData() {
-
-        if let storage = StorageService.shared.historyStorage {
-            storage.async.object(forKey: "historyList") { result in
-                switch result {
-                case .value(let history):
-                    self.history = history
-                case .error(let error):
-                    print("error getting local history: \(error.localizedDescription)")
-                }
-            }
-        }
-
-        if let storage = StorageService.shared.portfolioStorage {
-            storage.async.object(forKey: "portfolio") { result in
-                switch result {
-                case .value(let portfolio):
-                    DispatchQueue.main.async {
-                        self.accountPortfolio = portfolio
-                    }
-                case .error(let error):
-                    print("error getting local portfolio: \(error.localizedDescription)")
-                }
-            }
-        }
 
         if let storage = StorageService.shared.chartStorage {
             let type = UserDefaults.standard.string(forKey: "chartType") ?? self.chartType
@@ -460,41 +435,6 @@ class WalletService: ObservableObject {
 
             case .failure(let error):
                 print("error loading nft uri: \(error)")
-            }
-        }
-    }
-
-    func fetchHistory(_ address: String, completion: @escaping () -> Void) {
-
-        // Good ETH address to test with: 0x660c6f9ff81018d5c13ab769148ec4db4940d01c
-        let url = Constants.zapperBaseUrl + "transactions?address=\(address)&addresses%5B%5D=\(address)&" + Constants.zapperApiKey
-
-        AF.request(url, method: .get).responseDecodable(of: ZapperTransactionHistory.self, emptyResponseCodes: [200]) { response in
-            switch response.result {
-            case .success(let history):
-                if let history = history.data {
-                    self.history = history
-                    print("history count is: \(history.count)")
-
-                    if let storage = StorageService.shared.historyStorage {
-                        storage.async.setObject(history, forKey: "historyList") { result in
-                            switch result {
-                            case .value(let val):
-                                print("saved history successfully: \(val)")
-
-                            case .error(let error):
-                                print("error saving history locally: \(error)")
-                            }
-                        }
-                    }
-                }
-
-                completion()
-
-            case .failure(let error):
-                print("error loading history: \(error)")
-
-                completion()
             }
         }
     }

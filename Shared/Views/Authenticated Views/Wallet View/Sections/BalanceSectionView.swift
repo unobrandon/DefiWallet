@@ -136,11 +136,8 @@ struct BalanceSectionView: View {
                     .padding(.top, 15)
                     .onChange(of: store.chartType) { newValue in
 //                        let val = newValue == "1H" ? "h" : newValue == "1D" ? "d" : newValue == "1W" ? "w" : newValue == "1M" ? "m" : newValue == "1Y" ? "y" : ""
-                        DispatchQueue.main.async {
-                            store.isLoadingPortfolioChart = true
-                        }
-
                         DispatchQueue.global(qos: .userInitiated).async {
+                            store.isLoadingPortfolioChart = true
                             store.emitSingleChartRequest(newValue)
                         }
                     }

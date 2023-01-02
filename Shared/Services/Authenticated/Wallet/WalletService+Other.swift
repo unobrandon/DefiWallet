@@ -163,23 +163,4 @@ extension WalletService {
         }
     }
 
-    // Remove this. Not good logic.
-    func getNetworkTotal(_ completeBalance: CompleteBalance) -> Double? {
-        if completeBalance.network == "eth" {
-            return accountPortfolio?.ethereumAssetsValue
-        } else if completeBalance.network == "bsc" {
-            return accountPortfolio?.bscAssetsValue
-        } else if completeBalance.network == "polygon" {
-            return accountPortfolio?.polygonAssetsValue
-        } else if completeBalance.network == "avalanche" {
-            return accountPortfolio?.avalancheAssetsValue
-        } else if completeBalance.network == "fantom" {
-            return accountPortfolio?.fantomAssetsValue
-        } else if completeBalance.network == "solana" {
-            return accountPortfolio?.solanaAssetsValue
-        } else {
-            return 0.00
-        }
-    }
-
 }
