@@ -195,7 +195,7 @@ struct SwappableTokenListView: View {
             VStack(alignment: .center, spacing: 0) {
                 HStack(alignment: .center, spacing: 10) {
                     ZStack {
-                        RemoteImage(swapToken?.logoURI ?? tokenModel?.image ?? tokenModel?.imageSmall ?? "", size: 38)
+                        RemoteImage(swapToken?.logoURI ?? tokenModel?.imageLarge ?? tokenModel?.imageSmall ?? "", size: 38)
                             .clipShape(Circle())
                             .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
                             .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)

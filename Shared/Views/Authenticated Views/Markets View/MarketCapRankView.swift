@@ -17,7 +17,7 @@ struct MarketCapRankView: View {
     @State private var noMore: Bool = false
     @State var showIndicator: Bool = false
     @State private var page: Int = 1
-    @State private var limitCells: Int = 25
+    @State private var limitCells: Int = 10
 
     init(service: AuthenticatedServices) {
         self.service = service
@@ -40,16 +40,17 @@ struct MarketCapRankView: View {
                 }.padding(.top)
 
                 RefreshFooter(refreshing: $showIndicator, action: {
-                    guard limitCells <= store.coinsByMarketCap.count else {
+                    guard limitCells > store.coinsByMarketCap.count else {
                         page += 1
 
                         DispatchQueue.main.async {
                             store.fetchCoinsByMarketCap(currency: service.currentUser.currency, page: page, completion: {
+                                limitCells += 10
+                                print("the count of each are: \(store.coinsByMarketCap.count) && \(limitCells)")
+
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                    limitCells += 25
                                     withAnimation(.easeInOut) {
                                         showIndicator = false
-                                        noMore = store.coinsByMarketCap.count <= limitCells
                                     }
                                 }
                             })
@@ -58,11 +59,9 @@ struct MarketCapRankView: View {
                         return
                     }
 
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        limitCells += 25
-                        withAnimation(.easeInOut) {
-                            showIndicator = false
-                        }
+                    noMore = true
+                    withAnimation(.easeInOut) {
+                        showIndicator = false
                     }
                 }, label: {
                     if noMore {

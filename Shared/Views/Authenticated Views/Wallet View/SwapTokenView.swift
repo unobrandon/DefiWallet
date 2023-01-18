@@ -40,7 +40,7 @@ struct SwapTokenView: View {
                                         }, label: {
                                             HStack(alignment: .center, spacing: 10) {
                                                 ZStack {
-                                                    RemoteImage(store.sendToken?.image ?? store.sendToken?.imageThumb ?? "", size: 36)
+                                                    RemoteImage(store.sendToken?.imageLarge ?? store.sendToken?.imageThumb ?? "", size: 36)
                                                         .clipShape(Circle())
                                                         .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
                                                         .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)
@@ -111,7 +111,7 @@ struct SwapTokenView: View {
                                         }, label: {
                                             HStack(alignment: .center, spacing: 10) {
                                                 ZStack {
-                                                    RemoteImage(store.receiveToken?.image ?? store.receiveToken?.imageThumb ?? store.receiveSwapToken?.logoURI ?? "", size: 36)
+                                                    RemoteImage(store.receiveToken?.imageLarge ?? store.receiveToken?.imageThumb ?? store.receiveSwapToken?.logoURI ?? "", size: 36)
                                                         .clipShape(Circle())
                                                         .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
                                                         .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)

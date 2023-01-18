@@ -46,9 +46,8 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
     }
 
     func connectSocket() {
-        print("called connect sockettt")
         let session = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
-        guard let url = URL(string: Constants.backendWssBaseUrl) else { return }
+        guard let url = URL(string: Constants.backendWssBaseUrl + "?id=" + wallet.currentUser.address) else { return }
 
         webSocketTask = nil
         webSocketTask = session.webSocketTask(with: url)
@@ -204,6 +203,9 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
                     print("did receive token detail price result: \(price)")
                     self.wallet.tokenDetailPrice = price
                 }
+
+            case .transaction:
+                print("we received a TRANSACTION!!!")
 
             default:
                 print("returned some other type")

@@ -32,7 +32,7 @@ struct TokenBalanceCell: View {
                 VStack(alignment: .trailing, spacing: 0) {
                     HStack(alignment: .center, spacing: 5) {
                         ZStack {
-                            RemoteImage(data.imageSmall ?? data.image ?? "", size: 44)
+                            RemoteImage(data.imageSmall ?? data.imageLarge ?? "", size: 44)
                                 .clipShape(Circle())
                                 .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(0.8), lineWidth: 1))
                                 .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 8, x: 0, y: 6)

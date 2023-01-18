@@ -48,7 +48,7 @@ struct HistorySectionView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            SectionHeaderView(title: "History", actionTitle: data.isEmpty ? "" : "Show all", action: showMoreLess)
+            SectionHeaderView(title: "Transactions", actionTitle: data.isEmpty ? "" : "Show all", action: showMoreLess)
             .padding(.vertical, 5)
 
             ListSection(style: service.themeStyle) {

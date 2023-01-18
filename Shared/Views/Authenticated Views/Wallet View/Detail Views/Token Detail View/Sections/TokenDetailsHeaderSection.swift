@@ -13,7 +13,7 @@ extension TokenDetailView {
     func detailsHeaderSection() -> some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .center, spacing: 10) {
-                RemoteImage(tokenDescriptor?.imageLarge ?? tokenModel?.image ?? tokenDetails?.image, size: 54)
+                RemoteImage(tokenDescriptor?.imageLarge ?? tokenModel?.imageLarge ?? tokenDetails?.imageLarge, size: 54)
                     .clipShape(Circle())
                     .overlay(Circle().strokeBorder(DefaultTemplate.borderColor.opacity(1.0), lineWidth: 1.0))
                     .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 5, x: 0, y: 4)

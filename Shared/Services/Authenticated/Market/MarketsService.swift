@@ -263,7 +263,7 @@ class MarketsService: ObservableObject {
         }
     }
 
-    func fetchCoinsByMarketCap(currency: String, perPage: Int? = 25, page: Int? = 1, completion: @escaping () -> Void) {
+    func fetchCoinsByMarketCap(currency: String, perPage: Int? = 10, page: Int? = 1, completion: @escaping () -> Void) {
 
         if let storage = StorageService.shared.marketCapStorage {
             storage.async.object(forKey: "marketCapList") { result in
@@ -279,7 +279,7 @@ class MarketsService: ObservableObject {
             }
         }
 
-        let url = Constants.backendBaseUrl + "topCoinsByMarketCap" + "?currency=" + currency + "&perPage=\(perPage ?? 25)" + "&page=\(page ?? 1)"
+        let url = Constants.backendBaseUrl + "topCoinsByMarketCap" + "?currency=" + currency + "&perPage=\(perPage ?? 10)" + "&page=\(page ?? 1)"
 //        let url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=" + currency + "&order=market_cap_desc&per_page=\(perPage ?? 25)" + "&page=\(page ?? 1)" + "&sparkline=true&price_change_percentage=24h"
 
         AF.request(url, method: .get).responseDecodable(of: [TokenDetails].self) { response in

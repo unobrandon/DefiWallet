@@ -13,13 +13,14 @@ struct WalletNavigationView: View {
     @ObservedObject private var store: WalletService
     @Binding var scrollOffset: CGFloat
 
-    @State var connectionStatus: String = "Welcome"
+    @State var connectionStatus: String = ""
     @State var hasCopiedAddress: Bool = false
 
     init(service: AuthenticatedServices, scrollOffset: Binding<CGFloat>) {
         self.service = service
         self.store = service.wallet
         self._scrollOffset = scrollOffset
+        self.connectionStatus = getWelcome()
     }
 
     var body: some View {
@@ -114,7 +115,7 @@ struct WalletNavigationView: View {
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                     withAnimation {
-                        connectionStatus = "Welcome"
+                        connectionStatus = getWelcome()
                     }
                 }
             case .offline:
@@ -124,4 +125,17 @@ struct WalletNavigationView: View {
             }
             })
     }
+
+    private func getWelcome() -> String {
+        var welcomeMsg = ""
+
+        if let appOpenCount = UserDefaults.standard.value(forKey: "APP_OPENED_COUNT") as? Int {
+            welcomeMsg = appOpenCount < 1 ? "Welcome Back," : "Welcome 👋,"
+        } else {
+            welcomeMsg = "Welcome 👋"
+        }
+
+        return welcomeMsg
+    }
+
 }

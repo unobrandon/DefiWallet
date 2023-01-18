@@ -24,7 +24,7 @@ struct TokenDetails: Codable, Hashable {
     }
 
     let id, symbol, name, tokenDescription, createdAt: String?
-    let image, imageLarge: String?
+    let imageLarge: String?
     let hashingAlgorithm, telegramChannelID, twitterHandle, facebookUsername: String?
     let discordURL, blockchainURL, projectURL, categories: [String]?
     let githubURL, officialForumURL, bitbucketURL: [String]?
@@ -44,7 +44,7 @@ struct TokenDetails: Codable, Hashable {
     var tokenDescriptor: TokenDescriptor?
 
     enum CodingKeys: String, CodingKey {
-        case id, symbol, name, image, createdAt
+        case id, symbol, name, createdAt
         case categories = "categories"
         case imageLarge = "image_large"
         case tokenDescription = "description"

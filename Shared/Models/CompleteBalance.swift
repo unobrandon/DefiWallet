@@ -41,7 +41,7 @@ struct TokenModel: Codable, Hashable {
     }
 
     let id, tokenAddress, name, symbol, createdAt: String?
-    let imageLarge, imageThumb, imageSmall, image, network: String?
+    let imageLarge, imageThumb, imageSmall, network: String?
     let externalId, description, genesisDate, countryOrigin: String?
     let telegramChannelID, twitterHandle, bitcoinTalkUrl, facebookUsername: String?
     let subredditUrl, publicNotice: String?
@@ -64,7 +64,7 @@ struct TokenModel: Codable, Hashable {
         case tokenAddress = "token_address"
         case name, symbol, decimals, categories
         case nativeBalance, network, description
-        case createdAt, image, id
+        case createdAt, id
         case ath, atl, roi, totalBalance
         case imageLarge = "image_large"
         case imageSmall = "image_small"

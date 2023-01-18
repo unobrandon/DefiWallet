@@ -146,7 +146,7 @@ struct TokenDetailView: View {
         .navigationBarTitle {
             if self.scrollOffset > 48 {
                 HStack(alignment: .center, spacing: 10) {
-                    if let imageSmall = tokenDescriptor?.imageSmall ?? tokenModel?.image ?? tokenDetails?.image {
+                    if let imageSmall = tokenDescriptor?.imageSmall ?? tokenModel?.imageSmall ?? tokenDetails?.imageLarge {
                         RemoteImage(imageSmall, size: 28)
                             .clipShape(Circle())
                     }
