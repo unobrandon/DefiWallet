@@ -62,7 +62,7 @@ struct HistorySectionView: View {
                     }.padding(.vertical, 30)
                 }
 
-                let transactionData = data.sorted(by: { $0.blockTimestamp ?? 0 > $1.blockTimestamp ?? 0 })
+                let transactionData = data.sorted(by: { $0.timestamp ?? "0" > $1.timestamp ?? "0" })
                 ForEach(transactionData.prefix(limitCells), id: \.self) { item in
                     TransactionListCell(service: service, data: item, isLast: false, style: service.themeStyle, action: {
                         walletRouter.route(to: \.historyDetail, item)

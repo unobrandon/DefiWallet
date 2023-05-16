@@ -39,7 +39,7 @@ struct TokenDetails: Codable, Hashable {
     var atlDate, subredditURL: String?
     var lastUpdated, publicNotice: String?
     let roi: RoiModel?
-    let allAddress: AllAddress?
+    let allAddress: [String]?
     var priceGraph: GraphModel?
     var tokenDescriptor: TokenDescriptor?
 

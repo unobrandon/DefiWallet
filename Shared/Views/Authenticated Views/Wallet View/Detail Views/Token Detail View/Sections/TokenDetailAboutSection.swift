@@ -39,7 +39,7 @@ extension TokenDetailView {
                 }
             }
 
-            detailsNetworksSection()
+            // detailsNetworksSection()
         }
     }
 

@@ -32,7 +32,7 @@ struct HistoryView: View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 ListSection(style: service.themeStyle) {
-                    ForEach(filterHistory().sorted(by: { $0.blockTimestamp ?? 0 > $1.blockTimestamp ?? 0 }).prefix(limitCells), id: \.self) { item in
+                    ForEach(filterHistory().sorted(by: { $0.timestamp ?? "0" > $1.timestamp ?? "0" }).prefix(limitCells), id: \.self) { item in
                         TransactionListCell(service: service, data: item, isLast: false, style: service.themeStyle, action: {
                             walletRouter.route(to: \.historyDetail, item)
                         })

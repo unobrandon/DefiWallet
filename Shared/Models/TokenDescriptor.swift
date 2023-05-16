@@ -18,7 +18,7 @@ struct TokenDescriptor: Codable, Hashable {
         hasher.combine(externalID)
     }
 
-    let allAddress: AllAddress?
+    let allAddress: [String]?
     let projectURL, blockchainURL, categories: [String]?
     let officialForumURL, discordURL, blogURL, githubURL, bitbucketURL: [String]?
     let externalID, symbol, name, hashingAlgorithm: String?

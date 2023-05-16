@@ -57,6 +57,8 @@ extension WalletService {
                 allTokens.append(nativeToken)
             }
 
+            // TO-DO: Fix because I change allAddress to a string array.
+            /*
             // Network token
             if let tokens = networkItem.tokens {
                 for networkToken in tokens {
@@ -90,6 +92,7 @@ extension WalletService {
                     }
                 }
             }
+            */
         }
 
         let result = allTokens.sorted(by: { $0.totalBalance ?? 0.0 > $1.totalBalance ?? 0.0 })

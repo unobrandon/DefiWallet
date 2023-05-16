@@ -140,20 +140,18 @@ class UnauthenticatedServices: ObservableObject {
     }
 
     func registerUser(username: String, password: String, address: String, currency: String, deviceToken: String, completion: ((Bool) -> Void)?) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            let backendUrl: String = "createNewUser?username=\(username)&password=\(password)&address=\(address)&currency=\(currency)&deviceToken=\(deviceToken)"
-
-            AF.request(Constants.backendBaseUrl + backendUrl, method: .get).responseDecodable(of: RegisteredUser.self) { response in
-                switch response.result {
-                case .success(let newUser):
-                    print("success reregistering: \(newUser)")
-                    self.registeredUser = newUser
-
-                    completion?(true)
-                case .failure(let error):
-                    print("error loading register: \(error)")
-                    completion?(false)
-                }
+        let backendUrl = "createNewUser?username=\(username)&password=\(password)&address=\(address)&currency=\(currency)&deviceToken=\(deviceToken)"
+        let requestUrl = Constants.backendBaseUrl + backendUrl
+        
+        AF.request(requestUrl, method: .get).responseDecodable(of: RegisteredUser.self) { response in
+            switch response.result {
+            case .success(let newUser):
+                print("success registering: \(newUser)")
+                self.registeredUser = newUser
+                completion?(true)
+            case .failure(let error):
+                print("error loading register: \(error)")
+                completion?(false)
             }
         }
     }

@@ -56,7 +56,7 @@ struct TokenModel: Codable, Hashable {
     var atl, atlChangePercentage: Double?
     var priceChangePercentage1h, priceChangePercentage24h: Double?
     var priceChangePercentage7d, priceChangePercentage1y: Double?
-    let allAddress: AllAddress?
+    let allAddress: [String]?
     let roi: RoiModel?
     var priceGraph: GraphModel?
 

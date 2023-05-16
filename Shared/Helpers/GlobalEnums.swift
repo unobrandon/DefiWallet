@@ -59,6 +59,7 @@ enum SocketResponses: String, Codable {
     case testAnswer = "test_answer"
     case priceUpdate = "price_update"
     case transaction = "transaction"
+    case nft = "nft"
     case swapQuote = "swap_quote"
     case marketCharts = "market_charts"
     case tokenChart = "token_chart"

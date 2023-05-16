@@ -20,6 +20,8 @@ struct SocketReceiveData: Codable {
     var type: SocketResponses?
     var prices: [TokenPricesModel]?
     var swapResult: SwapTokens?
+    var transaction: TransactionResult?
+    var nft: WalletNft?
     var marketChart: [TokenDetails]?
     var tokenChart: [[Double]]?
     var tokenPrice: Double?
@@ -38,6 +40,7 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
     private let walletPriceInterval: Double = 5
     private let marketCapInterval: Double = 10
     private let tokenDetailPriceInterval: Double = 10
+    private var session: URLSession?
 
     init(wallet: WalletService, market: MarketsService) {
         print("backend socket init")
@@ -46,8 +49,12 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
     }
 
     func connectSocket() {
-        let session = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
-        guard let url = URL(string: Constants.backendWssBaseUrl + "?id=" + wallet.currentUser.address) else { return }
+        if (session == nil) {
+            self.session = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
+        }
+
+        guard let url = URL(string: Constants.backendWssBaseUrl + "?id=" + wallet.currentUser.address.lowercased()),
+              let session = session else { return }
 
         webSocketTask = nil
         webSocketTask = session.webSocketTask(with: url)
@@ -57,10 +64,16 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
     }
 
     func closeSocket() {
-        guard let webSocketTask = webSocketTask else { return }
+        print("trying to close socket")
+        guard let webSocketTask = webSocketTask,
+              let sesh = session else { return }
 
         let reason = "Closing connection".data(using: .utf8)
-        webSocketTask.cancel(with: .goingAway, reason: reason)
+        webSocketTask.cancel(with: .normalClosure, reason: reason)
+        sesh.invalidateAndCancel()
+        session = nil
+
+        print("closed socket")
 
         DispatchQueue.main.async {
             self.wallet.networkStatus = .offline
@@ -206,7 +219,20 @@ class BackendSocketService: NSObject, URLSessionWebSocketDelegate {
 
             case .transaction:
                 print("we received a TRANSACTION!!!")
+                guard let txs = receiveData.transaction else { return }
 
+                DispatchQueue.main.async {
+                    print("the transaction is: \(String(describing: txs.name)) or: \(String(describing: txs.network))")
+                    self.wallet.transactionNoti = txs
+                }
+
+            case .nft:
+                print("we received a NFT!!! \(receiveData)")
+                guard let nft = receiveData.nft else { return }
+                DispatchQueue.main.async {
+                    print("the nft name is: \(nft.tokenName ?? "no name")")
+                    self.wallet.nftNoti = nft
+                }
             default:
                 print("returned some other type")
             }

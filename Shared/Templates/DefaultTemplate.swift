@@ -110,11 +110,11 @@ struct DefaultTemplate {
 
     static var borderColor: Color = {
         #if targetEnvironment(macCatalyst)
-        return Color(NSColor.systemGray4)
+        return Color(NSColor.systemGray5)
         #elseif os(macOS)
         return Color(NSColor(red: 0.89, green: 0.89, blue: 0.91, alpha: 1.0))
         #elseif os(iOS)
-        return Color(.systemGray4)
+        return Color(.systemGray5)
         #endif
     }()
 

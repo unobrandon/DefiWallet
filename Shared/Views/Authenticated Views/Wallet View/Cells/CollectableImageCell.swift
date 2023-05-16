@@ -36,7 +36,7 @@ struct CollectableImageCell: View {
                             ZStack {
                                 SVGWebView(uriResponce.image ?? uriResponce.image_url ?? "", isAvailable: $svgLoadError)
                                 .aspectRatio(1, contentMode: .fill)
-                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
+                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
 
                                 if svgLoadError {
                                     Text("error loading image")                                    .fontTemplate(DefaultTemplate.bodySemibold_nunito)
@@ -50,7 +50,7 @@ struct CollectableImageCell: View {
                                 .resizable()
                                 .scaledToFill()
                                 .aspectRatio(contentMode: .fill)
-                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
+                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
                         } else if uriResponce.image != nil || uriResponce.image_url != nil {
                             WebImage(url: URL(string: uriResponce.image ?? uriResponce.image_url ?? ""))
                                 .resizable()
@@ -59,7 +59,7 @@ struct CollectableImageCell: View {
                                 .scaledToFill()
                                 .aspectRatio(contentMode: .fill)
                                 .transition(.fade(duration: 0.35))
-                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
+                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
                         }
 
                         service.wallet.getNetworkTransactImage(data.network ?? "")
@@ -78,7 +78,7 @@ struct CollectableImageCell: View {
                             .scaledToFill()
                             .aspectRatio(contentMode: .fill)
                             .transition(.fade(duration: 0.35))
-                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
 
                         service.wallet.getNetworkTransactImage(data.network ?? "")
                             .resizable()
@@ -91,7 +91,7 @@ struct CollectableImageCell: View {
 
                 Text(data.metadata?.name ?? data.name ?? "")
                     .fontTemplate(size == .small ? DefaultTemplate.captionPrimary_semibold : DefaultTemplate.bodySemibold_standard)
-                    .lineLimit(3)
+                    .lineLimit(1)
                     .padding(.horizontal, 10)
                     .padding(.top, 5)
 
@@ -101,9 +101,9 @@ struct CollectableImageCell: View {
                     .padding([.horizontal, .bottom], 10)
             }
             .background(Color("baseButton"))
-            .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
+            .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
             .shadow(color: Color.black.opacity(service.themeStyle == .shadow ? 0.15 : 0.0), radius: 10, x: 0, y: 5)
-            .overlay(RoundedRectangle(cornerRadius: 15, style: .circular).strokeBorder(DefaultTemplate.borderColor, lineWidth: service.themeStyle == .shadow ? 1.0 : 1.35))
+            .overlay(RoundedRectangle(cornerRadius: 10, style: .circular).strokeBorder(DefaultTemplate.borderColor, lineWidth: service.themeStyle == .shadow ? 1.0 : 1.35))
         }).buttonStyle(ClickInteractiveStyle(0.98))
         .onAppear {
 //            if let metadata = data.metadata {

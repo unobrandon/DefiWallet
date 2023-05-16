@@ -43,11 +43,11 @@ extension MarketsCoordinator {
     }
 
     @ViewBuilder func makeTopGainers() -> some View {
-        TopGainersView(service: services)
+        TopGainersLosersView(service: services, gainOrLoss: "gains")
     }
 
     @ViewBuilder func makeTopLosers() -> some View {
-        TopLosersView(service: services)
+		TopGainersLosersView(service: services, gainOrLoss: "loss")
     }
 
     @ViewBuilder func makeRecentlyAdded() -> some View {

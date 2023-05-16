@@ -47,23 +47,23 @@ struct HistoryDetailView: View {
                         }
                     }
 
-                    let finalNumber = numberFormatter.number(from: "\(data.value ?? 0.00)")
+//                    let finalNumber = numberFormatter.number(from: "\(data.value ?? 0.00)")
 
-                    Text((data.direction == .sent ? "-" : "") + "\(Double(truncating: finalNumber ?? 0.00))")
-                        .fontTemplate(FontTemplate(font: Font.custom("Poppins-SemiBold", size: 36),
-                                                   weight: .semibold,
-                                                   foregroundColor: data.direction == .sent ? .red : data.direction == .sent ? .green : .blue, lineSpacing: 0))
-                        .irregularGradient(colors: data.direction == .sent ? [Color("alertRed"), .orange] : data.direction == .received ? [Color("darkGreen"), .green] : [Color("accentColor"), .teal],
-                                           background: data.direction == .sent ? Color("alertRed") : data.direction == .received ? Color.green : Color("AccentColor"))
-                        .lineLimit(1)
-                        .padding([.top, .horizontal])
+//                    Text((data.direction == .sent ? "-" : "") + "\(Double(truncating: finalNumber ?? 0.00))")
+//                        .fontTemplate(FontTemplate(font: Font.custom("Poppins-SemiBold", size: 36),
+//                                                   weight: .semibold,
+//                                                   foregroundColor: data.direction == .sent ? .red : data.direction == .sent ? .green : .blue, lineSpacing: 0))
+//                        .irregularGradient(colors: data.direction == .sent ? [Color("alertRed"), .orange] : data.direction == .received ? [Color("darkGreen"), .green] : [Color("accentColor"), .teal],
+//                                           background: data.direction == .sent ? Color("alertRed") : data.direction == .received ? Color.green : Color("AccentColor"))
+//                        .lineLimit(1)
+//                        .padding([.top, .horizontal])
 
                     Text(data.direction?.rawValue.capitalized ?? "").fontTemplate(DefaultTemplate.headingSemiBold)
 
-                    if let timestamp = data.blockTimestamp {
-                        Text(Date(timeIntervalSince1970: Double(timestamp / 1000)).mediumDateFormate())
-                            .fontTemplate(DefaultTemplate.body_secondary)
-                    }
+//                    if let timestamp = data.blockTimestamp {
+//                        Text(Date(timeIntervalSince1970: Double(timestamp / 1000)).mediumDateFormate())
+//                            .fontTemplate(DefaultTemplate.body_secondary)
+//                    }
                 }
                 .padding(.vertical, 40)
 

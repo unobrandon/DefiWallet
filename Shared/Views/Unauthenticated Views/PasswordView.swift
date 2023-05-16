@@ -67,6 +67,17 @@ struct PasswordView: View {
                 }
             }.padding(.horizontal)
         }.navigationBarTitle("Create Password", displayMode: .inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    unauthenticatedRouter.route(to: \.biometry)
+
+                    #if os(iOS)
+                        HapticFeedback.lightHapticFeedback()
+                    #endif
+                }, label: Text("skip").foregroundColor(.secondary))
+            }
+        }
     }
 
     private func setPassword() {
@@ -90,7 +101,7 @@ struct PasswordView: View {
             }
 
             let context = LAContext()
-            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil),                     !UserDefaults.standard.bool(forKey: "biometryEnabled") {
+            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil), !UserDefaults.standard.bool(forKey: "biometryEnabled") {
                 unauthenticatedRouter.route(to: \.biometry)
             } else {
 //                if hasENS {

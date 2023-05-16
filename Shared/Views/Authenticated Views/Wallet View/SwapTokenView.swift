@@ -232,6 +232,10 @@ struct SwapTokenView: View {
                     }
                 }
 
+                KeypadView(value: $store.sendTokenAmount)
+                    .frame(maxWidth: Constants.iPadMaxWidth)
+                    .padding(.bottom, 10)
+
                 Button(action: {
                     if let swapQuote = store.swapQuote {
                         walletRouter.route(to: \.swapTokenDetail, swapQuote)
@@ -247,17 +251,14 @@ struct SwapTokenView: View {
                         }
                         Spacer()
                     }
-                    .background(RoundedRectangle(cornerRadius: 10, style: .circular)
+                    .background(RoundedRectangle(cornerRadius: 16, style: .circular)
                                     .foregroundColor(store.disablePrimaryAction ? Color("disabledGray") : Color("AccentColor")).frame(height: 49))
-                    .foregroundColor(store.disablePrimaryAction ? .secondary : Color("AccentColor"))
+                    .foregroundColor(store.disablePrimaryAction ? Color("disabledGray") : Color("AccentColor"))
                 })
                 .frame(maxWidth: 380)
                 .buttonStyle(ClickInteractiveStyle(0.99))
-                .padding([.horizontal, .bottom])
-
-                KeypadView(value: $store.sendTokenAmount)
-                    .frame(maxWidth: Constants.iPadMaxWidth)
-                    .padding(.bottom, 30)
+                .padding(.horizontal)
+                .padding(.bottom, 40)
             }.ignoresSafeArea(.all, edges: .bottom)
         })
         .navigationBarTitle("Swap Tokens", displayMode: .inline)

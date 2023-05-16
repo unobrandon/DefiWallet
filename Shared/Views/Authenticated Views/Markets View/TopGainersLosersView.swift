@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TopGainersView: View {
+struct TopGainersLosersView: View {
 
     @EnvironmentObject private var walletRouter: MarketsCoordinator.Router
 
@@ -17,20 +17,24 @@ struct TopGainersView: View {
     @State private var noMore: Bool = false
     @State var showIndicator: Bool = false
     @State private var limitCells: Int = 25
+	
+	private var page: Int = 1
+	private var gainOrLoss: String
 
-    init(service: AuthenticatedServices) {
+	init(service: AuthenticatedServices, gainOrLoss: String) {
         self.service = service
         self.store = service.market
+		self.gainOrLoss = gainOrLoss
 
-        store.coinsByGains.removeAll()
-        self.fetchTopGainers()
+        store.coinsByGainsLosers.removeAll()
+		self.fetchTopGainersLosers(gainOrLoss: gainOrLoss, page: self.page)
     }
 
     var body: some View {
         BackgroundColorView(style: service.themeStyle, {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("A list of top gainers by 24 hour market cap percentage change.")
+					Text("A list of top \(self.gainOrLoss) by 24 hour market cap percentage change.")
                         .fontTemplate(DefaultTemplate.bodySemibold)
                         .multilineTextAlignment(.leading)
 
@@ -42,9 +46,9 @@ struct TopGainersView: View {
                 .padding(.horizontal)
 
                 ListSection(title: "By 24hr Market Cap Change", style: service.themeStyle) {
-                    ForEach(store.coinsByGains.prefix(limitCells), id: \.self) { item in
+                    ForEach(store.coinsByGainsLosers.prefix(limitCells), id: \.self) { item in
                         TokenListStandardCell(service: service, data: item,
-                                              isLast: store.coinsByGains.count < limitCells ? store.coinsByGains.last == item ? true : false : false,
+                                              isLast: store.coinsByGainsLosers.count < limitCells ? store.coinsByGainsLosers.last == item ? true : false : false,
                                               style: service.themeStyle, action: {
                             walletRouter.route(to: \.detailsTokenDetail, item)
 
@@ -54,11 +58,11 @@ struct TopGainersView: View {
                 }.padding(.top)
 
                 RefreshFooter(refreshing: $showIndicator, action: {
-                    if limitCells <= store.coinsByGains.count {
+                    if limitCells <= store.coinsByGainsLosers.count {
                         limitCells += 25
                         withAnimation(.easeInOut) {
                             showIndicator = false
-                            noMore = store.coinsByGains.count <= limitCells
+                            noMore = store.coinsByGainsLosers.count <= limitCells
                         }
                     }
                 }, label: {
@@ -80,12 +84,14 @@ struct TopGainersView: View {
         }
     }
 
-    private func fetchTopGainers() {
-        store.fetchTopGainers(currency: service.currentUser.currency, completion: {
-            print("done fetching top gainers: \(store.exchanges.count) ** \(limitCells)")
+	private func fetchTopGainersLosers(gainOrLoss: String, page: Int) {
+        showIndicator = true
+
+		store.fetchTopCoins(currency: service.currentUser.currency, gainOrLoss: gainOrLoss, page: page.description, completion: {
+            print("done fetching top \(gainOrLoss): \(store.coinsByGainsLosers.count) ** \(limitCells) 4 page: \(page)")
             withAnimation(.easeInOut) {
                 showIndicator = false
-                noMore = store.exchanges.count < limitCells - 25
+                noMore = store.coinsByGainsLosers.count < limitCells - 25
             }
         })
     }

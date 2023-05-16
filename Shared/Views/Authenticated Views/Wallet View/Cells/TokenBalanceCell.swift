@@ -104,7 +104,8 @@ struct TokenBalanceCell: View {
                     if style == .shadow, !isLast {
                         Divider().padding(.leading, 65)
                     } else if style == .border, !isLast {
-                        Rectangle().foregroundColor(DefaultTemplate.borderColor)
+                        Rectangle()
+                            .foregroundColor(DefaultTemplate.borderColor)
                             .frame(height: 1)
                     }
                 }

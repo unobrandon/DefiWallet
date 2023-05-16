@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+// TODO: Delete file after confirming TopGainersLosersView works as both.
+/// Need to login to check.
+
+/*
+
 struct TopLosersView: View {
 
     @EnvironmentObject private var walletRouter: MarketsCoordinator.Router
@@ -22,7 +27,7 @@ struct TopLosersView: View {
         self.service = service
         self.store = service.market
 
-        store.coinsByLosers.removeAll()
+//        store.coinsByLosers.removeAll()
     }
 
     var body: some View {
@@ -82,9 +87,10 @@ struct TopLosersView: View {
     }
 
     private func fetchTopLosers() {
-        guard store.coinsByLosers.isEmpty else { return }
+//        guard store.coinsByLosers.isEmpty else { return }
+        showIndicator = true
 
-        store.fetchTopLosers(currency: service.currentUser.currency, completion: {
+        store.fetchTopCoins(currency: service.currentUser.currency, gainOrLoss: "loss", page: "1", completion: {
             print("done fetching top losers: \(store.coinsByLosers.count) ** \(limitCells)")
             withAnimation(.easeInOut) {
                 showIndicator = false
@@ -94,3 +100,5 @@ struct TopLosersView: View {
     }
 
 }
+
+*/

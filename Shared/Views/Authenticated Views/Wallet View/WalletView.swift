@@ -80,6 +80,14 @@ struct WalletView: View {
                 }
             }
         }
+        .onChange(of: store.transactionNoti, perform: { value in
+            print("received a new val: \(value?.name ?? "none")")
+            showNotiHUD(image: "arrow.down.circle", color: Color("AccentColor"), title: "\(value?.direction?.rawValue.capitalized ?? "Contract Executed") \(value?.value ?? 0.0) \(value?.symbol ?? "")", subtitle: "\(value?.direction == .received ? "from:" : "to:") \(value?.fromAddress?.formatAddress() ?? value?.toAddress?.formatAddress() ?? "")")
+        })
+        .onChange(of: store.nftNoti, perform: { value in
+            print("received a new nft val: \(value?.tokenName ?? "none")")
+            showNotiHUD(image: "arrow.down.circle", color: Color("AccentColor"), title: "\(value?.direction?.capitalized ?? "Contract Executed") \(value?.amount ?? 0.0) \(value?.tokenSymbol ?? "")", subtitle: "\(value?.direction == "received" ? "from:" : "to:") \(value?.fromAddress?.formatAddress() ?? value?.toAddress?.formatAddress() ?? "")")
+        })
         .onAppear {
             DispatchQueue.main.async {
                 Tool.showTabBar()
@@ -93,14 +101,14 @@ struct WalletView: View {
                 print("starting new wallet timer!!")
                 self.service.socket.startWalletPriceTimer(tokenIds, currency: service.currentUser.currency)
 
-                stopSocktStartTimer()
+                stopSocketStartTimer()
             }
         }
         .onDisappear {
             self.service.socket.stopWalletPriceTimer()
             isBalanceLoading = false
             isHistoryLoading = false
-            stopSocktStartTimer()
+            stopSocketStartTimer()
         }
     }
 
@@ -127,7 +135,7 @@ struct WalletView: View {
         })
     }
 
-    private func stopSocktStartTimer() {
+    private func stopSocketStartTimer() {
         guard let timer = startSocketTimer else { return }
         timer.invalidate()
         self.startSocketTimer = nil

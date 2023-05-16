@@ -53,8 +53,7 @@ struct MarketsView: View {
             store.tokenCategories = []
             store.exchanges = []
             store.exchangeDetails = nil
-            store.coinsByGains = []
-            store.coinsByLosers = []
+            store.coinsByGainsLosers = []
             store.recentlyAddedTokens = []
             store.publicTreasury = nil
             store.tokenCategoryList = []

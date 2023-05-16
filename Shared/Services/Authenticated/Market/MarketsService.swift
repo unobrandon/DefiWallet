@@ -20,8 +20,7 @@ class MarketsService: ObservableObject {
     @Published var exchanges = [ExchangeModel]()
     @Published var exchangeDetails: ExchangeDetails?
     @Published var coinsByMarketCap = [TokenDetails]()
-    @Published var coinsByGains = [TokenDetails]()
-    @Published var coinsByLosers = [TokenDetails]()
+    @Published var coinsByGainsLosers = [TokenDetails]()
     @Published var recentlyAddedTokens = [TokenDetails]()
     @Published var publicTreasury: PublicTreasury?
     @Published var tokenCategoryList = [TokenDetails]()
@@ -307,81 +306,6 @@ class MarketsService: ObservableObject {
         }
     }
 
-    func fetchTopGainers(currency: String, completion: @escaping () -> Void) {
-        let url = Constants.backendBaseUrl + "topCoinsByGainsOrLoss?currency=\(currency)" + "&gainOrLoss=gains"
-
-        AF.request(url, method: .get).responseDecodable(of: [TokenDetails].self) { response in
-            switch response.result {
-            case .success(let gainers):
-                if let storage = StorageService.shared.topGainersOrLosers {
-                    storage.async.setObject(gainers, forKey: "topGainers") { _ in }
-                }
-
-                DispatchQueue.main.async {
-                    self.coinsByGains += gainers
-                    print("got top gainers!! \(gainers.count)")
-                    completion()
-                }
-            case .failure(let error):
-                print("error getting api top gainers: \(error)")
-                if let storage = StorageService.shared.topGainersOrLosers {
-                    storage.async.object(forKey: "topGainers") { result in
-                        switch result {
-                        case .value(let gainers):
-                            print("got local gainers!! \(gainers)")
-
-                            DispatchQueue.main.async {
-                                self.coinsByGains += gainers
-                                completion()
-                            }
-                        case .error(let error):
-                            print("error getting gainers: \(error.localizedDescription)")
-                            completion()
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    func fetchTopLosers(currency: String, completion: @escaping () -> Void) {
-        let url = Constants.backendBaseUrl + "topCoinsByGainsOrLoss?currency=\(currency)" + "&gainOrLoss=loss"
-
-        AF.request(url, method: .get).responseDecodable(of: [TokenDetails].self) { response in
-            switch response.result {
-            case .success(let losers):
-                if let storage = StorageService.shared.topGainersOrLosers {
-                    storage.async.setObject(losers, forKey: "topLosers") { _ in }
-                }
-
-                DispatchQueue.main.async {
-                    self.coinsByLosers += losers
-                    print("got top losers!! \(losers.count)")
-
-                    completion()
-                }
-            case .failure(let error):
-                print("error getting api top losers: \(error)")
-                if let storage = StorageService.shared.topGainersOrLosers {
-                    storage.async.object(forKey: "topLosers") { result in
-                        switch result {
-                        case .value(let losers):
-                            print("got local losers!! \(losers)")
-
-                            DispatchQueue.main.async {
-                                self.coinsByLosers += losers
-                                completion()
-                            }
-                        case .error(let error):
-                            print("error getting losers: \(error.localizedDescription)")
-                            completion()
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     func fetchRecentlyAdded(completion: @escaping () -> Void) {
         let url = Constants.backendBaseUrl + "recentlyAddedTokens"
 
@@ -412,6 +336,48 @@ class MarketsService: ObservableObject {
                             }
                         case .error(let error):
                             print("error getting losers: \(error.localizedDescription)")
+                            completion()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    func fetchTopCoins(currency: String, gainOrLoss: String, page: String, completion: @escaping () -> Void) {
+        let url = Constants.backendBaseUrl + "topCoinsByGainsOrLoss?currency=\(currency)" + "&gainOrLoss=\(gainOrLoss)" + "&page=\(page)"
+
+        AF.request(url, method: .get).responseDecodable(of: [TokenDetails].self) { response in
+            switch response.result {
+            case .success(let coins):
+                let storageKey = gainOrLoss == "gains" ? "topGainers" : "topLosers"
+
+                if let storage = StorageService.shared.topGainersOrLosers, !coins.isEmpty {
+                    storage.async.setObject(coins, forKey: storageKey) { _ in }
+                }
+
+                DispatchQueue.main.async {
+					self.coinsByGainsLosers += coins
+                    print("got top \(gainOrLoss)!! \(coins.count)")
+                    completion()
+                }
+            case .failure(let error):
+                print("error getting api top \(gainOrLoss): \(error)")
+
+                if let storage = StorageService.shared.topGainersOrLosers {
+                    let storageKey = gainOrLoss == "gains" ? "topGainers" : "topLosers"
+
+                    storage.async.object(forKey: storageKey) { result in
+                        switch result {
+                        case .value(let coins):
+                            print("got local \(gainOrLoss)!! \(coins)")
+
+                            DispatchQueue.main.async {
+								self.coinsByGainsLosers += coins
+                                completion()
+                            }
+                        case .error(let error):
+                            print("error getting \(gainOrLoss): \(error.localizedDescription)")
                             completion()
                         }
                     }

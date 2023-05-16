@@ -18,6 +18,8 @@ class WalletService: ObservableObject {
     @Published var accountChart = [ChartValue]()
     @Published var history = [HistoryData]()
     @Published var isLoadingPortfolioChart: Bool = false
+    @Published var transactionNoti: TransactionResult?
+    @Published var nftNoti: WalletNft?
 
     @Published var accountSendingTokens: [TokenModel]?
     @Published var sendToken: TokenModel?

@@ -10,7 +10,7 @@ import SwiftUI
 struct NotificationHUD: View {
 
     @State var showHUD: Bool = false
-    let delayDuration = 3.5
+    let delayDuration = 6.5
 
     private let image: String
     private let color: Color

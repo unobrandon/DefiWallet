@@ -7,6 +7,44 @@
 
 import Foundation
 
+// MARK: - WalletNft
+struct WalletNft: Codable, Hashable {
+
+    static func == (lhs: WalletNft, rhs: WalletNft) -> Bool {
+        return lhs.blockHash == rhs.blockHash && lhs.network == rhs.network
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(blockHash)
+        hasher.combine(network)
+    }
+
+    let confirmed: Bool?
+    let network: String?
+    let retries: Int?
+    let blockNumber, blockHash, timestamp, transactionHash: String?
+    let contract, toAddress, fromAddress, tokenName: String?
+    let tokenSymbol, tokenContractType, type: String?
+    let amount: Double?
+    let gas, gasPrice, nonce, receiptCumulativeGasUsed: String?
+    let receiptGasUsed, direction: String?
+
+    enum CodingKeys: String, CodingKey {
+        case confirmed, network, retries
+        case blockNumber = "block_number"
+        case blockHash = "block_hash"
+        case timestamp
+        case transactionHash = "transaction_hash"
+        case contract, toAddress, fromAddress
+        case tokenName = "token_name"
+        case tokenSymbol = "token_symbol"
+        case tokenContractType = "token_contract_type"
+        case type, amount, gas
+        case gasPrice = "gas_price"
+        case nonce, receiptCumulativeGasUsed, receiptGasUsed, direction
+    }
+}
+
 // MARK: - AccountNft
 struct AccountNft: Codable {
 

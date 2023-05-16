@@ -66,10 +66,10 @@ struct TransactionListCell: View {
                                 }
 
                                 Spacer()
-                                if let timestamp = data.blockTimestamp {
-                                    Text(timestamp.getElapsedInterval())
-                                        .fontTemplate(DefaultTemplate.caption)
-                                }
+//                                if let timestamp = data.timestamp {
+//                                    Text(timestamp.getElapsedInterval())
+//                                        .fontTemplate(DefaultTemplate.caption)
+//                                }
 
                                 Image(systemName: "chevron.right")
                                     .resizable()
@@ -81,11 +81,11 @@ struct TransactionListCell: View {
 
                             // Lower details
                             HStack(alignment: .center, spacing: 5) {
-                                let finalNumber = numberFormatter.number(from: "\(data.value ?? 0.00)")
-
-                                Text((data.direction == .sent ? "-" : "") + "\(Double(truncating: finalNumber ?? 0.00))")
-                                    .fontTemplate(FontTemplate(font: Font.system(size: 14.0), weight: .medium, foregroundColor: service.wallet.transactionDirectionColor(data.direction ?? .swap), lineSpacing: 0))
-                                    .lineLimit(1)
+//                                let finalNumber = numberFormatter.number(from: "\(data.value ?? 0.00)")
+//
+//                                Text((data.direction == .sent ? "-" : "") + "\(Double(truncating: finalNumber ?? 0.00))")
+//                                    .fontTemplate(FontTemplate(font: Font.system(size: 14.0), weight: .medium, foregroundColor: service.wallet.transactionDirectionColor(data.direction ?? .swap), lineSpacing: 0))
+//                                    .lineLimit(1)
 
                                 if let name = data.symbol ?? data.name {
                                     Text(name.lowercased())

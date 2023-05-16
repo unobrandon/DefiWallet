@@ -11,6 +11,7 @@ extension TokenDetailView {
 
     // MARK: Token Details About Section
 
+    /*
     @ViewBuilder
     func detailsNetworksSection() -> some View {
         if let allAddresses = tokenModel?.allAddress ?? tokenDetails?.allAddress ?? tokenDescriptor?.allAddress {
@@ -113,6 +114,7 @@ extension TokenDetailView {
             .padding(.bottom, 10)
         }
     }
+    */
 
     @ViewBuilder
     func tokenNetworkCell(name: String, address: String, action: @escaping (String) -> Void) -> some View {

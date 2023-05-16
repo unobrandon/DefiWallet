@@ -29,7 +29,7 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
-        // print("scene did disconnect")
+         print("scene did disconnect")
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
@@ -49,7 +49,7 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-//        print("scene did become active")
+        print("scene did become active")
 //        if self.environment.isUserAuthenticated == .signedIn {
 //            self.auth.contacts.updateContacts(contactList: Chat.instance.contactList?.contacts ?? [], completion: { _ in })
 //            self.auth.contacts.observeQuickSnaps()
@@ -66,7 +66,7 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-//        print("scene will resign active")
+        print("scene will resign active")
 //        if self.environment.isUserAuthenticated == .signedIn {
 //            if self.environment.profile.results.first?.isLocalAuthOn ?? false {
 //                self.environment.isLoacalAuth = true
@@ -91,7 +91,7 @@ class IOSSceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-//        print("scene did enter background")
+        print("scene did enter background")
 //        if self.environment.isUserAuthenticated == .signedIn {
 //            if let dialog = self.environment.selectedConnectyDialog {
 //                dialog.sendUserStoppedTyping()
