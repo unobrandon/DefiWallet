@@ -13,7 +13,7 @@ struct CompletedView: View {
 
     @ObservedObject private var store: UnauthenticatedServices
 
-    @State var confettiCounter: Int = 0
+    @State private var confettiCounter: Int = 0
 
     init(services: UnauthenticatedServices) {
         self.store = services

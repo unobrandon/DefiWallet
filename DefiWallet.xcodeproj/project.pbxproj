@@ -114,8 +114,6 @@
 		053113FF27E6CFE500368657 /* ScanQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053113FD27E6CFE500368657 /* ScanQRView.swift */; };
 		0531140127E6DD1500368657 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531140027E6DD1500368657 /* CloseButton.swift */; };
 		0531140227E6DD1500368657 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531140027E6DD1500368657 /* CloseButton.swift */; };
-		0531140527E6E33900368657 /* WalletConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 0531140427E6E33900368657 /* WalletConnect */; };
-		0531140727E6E34400368657 /* WalletConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 0531140627E6E34400368657 /* WalletConnect */; };
 		0531140927E6E39F00368657 /* WalletConnectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531140827E6E39F00368657 /* WalletConnectDelegate.swift */; };
 		0531140A27E6E39F00368657 /* WalletConnectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531140827E6E39F00368657 /* WalletConnectDelegate.swift */; };
 		0531140D27E7985300368657 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531140C27E7985300368657 /* RemoteImage.swift */; };
@@ -151,6 +149,22 @@
 		053EC29227BE0E3600FBC681 /* InvestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053EC29127BE0E3600FBC681 /* InvestService.swift */; };
 		053EC29327BE0E3600FBC681 /* InvestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053EC29127BE0E3600FBC681 /* InvestService.swift */; };
 		053EC29527BE0FE600FBC681 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 053EC29427BE0FE600FBC681 /* RealmSwift */; };
+		05452C012A1B0EA900112564 /* DefaultCryptoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05452C002A1B0EA900112564 /* DefaultCryptoProvider.swift */; };
+		05452C022A1B0EA900112564 /* DefaultCryptoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05452C002A1B0EA900112564 /* DefaultCryptoProvider.swift */; };
+		05452C042A1B10BC00112564 /* DefaultSocketFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05452C032A1B10BC00112564 /* DefaultSocketFactory.swift */; };
+		05452C052A1B10BC00112564 /* DefaultSocketFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05452C032A1B10BC00112564 /* DefaultSocketFactory.swift */; };
+		05452C082A1B154D00112564 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 05452C072A1B154D00112564 /* Starscream */; };
+		05452C0B2A1D845600112564 /* WalletConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 05452C0A2A1D845600112564 /* WalletConnect */; };
+		05452C0D2A1D845600112564 /* WalletConnectAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 05452C0C2A1D845600112564 /* WalletConnectAuth */; };
+		05452C0F2A1D845600112564 /* WalletConnectEcho in Frameworks */ = {isa = PBXBuildFile; productRef = 05452C0E2A1D845600112564 /* WalletConnectEcho */; };
+		05452C112A1D845600112564 /* WalletConnectNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 05452C102A1D845600112564 /* WalletConnectNetworking */; };
+		05452C132A1D845600112564 /* WalletConnectPairing in Frameworks */ = {isa = PBXBuildFile; productRef = 05452C122A1D845600112564 /* WalletConnectPairing */; };
+		05452C152A1D845600112564 /* WalletConnectPush in Frameworks */ = {isa = PBXBuildFile; productRef = 05452C142A1D845600112564 /* WalletConnectPush */; };
+		05452C172A1D845600112564 /* WalletConnectRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 05452C162A1D845600112564 /* WalletConnectRouter */; };
+		05452C192A1D845600112564 /* WalletConnectVerify in Frameworks */ = {isa = PBXBuildFile; productRef = 05452C182A1D845600112564 /* WalletConnectVerify */; };
+		05452C1B2A1D845600112564 /* Web3Inbox in Frameworks */ = {isa = PBXBuildFile; productRef = 05452C1A2A1D845600112564 /* Web3Inbox */; };
+		05452C1D2A1D845600112564 /* Web3Modal in Frameworks */ = {isa = PBXBuildFile; productRef = 05452C1C2A1D845600112564 /* Web3Modal */; };
+		05452C1F2A1D845600112564 /* Web3Wallet in Frameworks */ = {isa = PBXBuildFile; productRef = 05452C1E2A1D845600112564 /* Web3Wallet */; };
 		0547E65928F698B900234085 /* CollectableDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547E65828F698B900234085 /* CollectableDetailView.swift */; };
 		0547E65A28F698B900234085 /* CollectableDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547E65828F698B900234085 /* CollectableDetailView.swift */; };
 		0547E65C28F69FCE00234085 /* PinchZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547E65B28F69FCE00234085 /* PinchZoomView.swift */; };
@@ -727,6 +741,8 @@
 		053C7D4127CDCFDE0081DCEA /* EnsUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnsUsernameView.swift; sourceTree = "<group>"; };
 		053C7D4427CDD5620081DCEA /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		053EC29127BE0E3600FBC681 /* InvestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestService.swift; sourceTree = "<group>"; };
+		05452C002A1B0EA900112564 /* DefaultCryptoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCryptoProvider.swift; sourceTree = "<group>"; };
+		05452C032A1B10BC00112564 /* DefaultSocketFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSocketFactory.swift; sourceTree = "<group>"; };
 		0547E65828F698B900234085 /* CollectableDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableDetailView.swift; sourceTree = "<group>"; };
 		0547E65B28F69FCE00234085 /* PinchZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchZoomView.swift; sourceTree = "<group>"; };
 		0548B85B27B4C957000478B8 /* DefiWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DefiWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -996,28 +1012,39 @@
 				0531141127E7A25D00368657 /* SDWebImageSwiftUI in Frameworks */,
 				0565CCB42931E3FE005202AD /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				05D1097F27C1DDC9008DCC66 /* Cache in Frameworks */,
+				05452C152A1D845600112564 /* WalletConnectPush in Frameworks */,
+				05452C0F2A1D845600112564 /* WalletConnectEcho in Frameworks */,
 				0565CCB82931E3FE005202AD /* FirebaseAuthCombine-Community in Frameworks */,
 				0565CCC02931E3FE005202AD /* FirebaseDynamicLinks in Frameworks */,
+				05452C1B2A1D845600112564 /* Web3Inbox in Frameworks */,
+				05452C0D2A1D845600112564 /* WalletConnectAuth in Frameworks */,
+				05452C192A1D845600112564 /* WalletConnectVerify in Frameworks */,
 				0565CCAE2931E3FE005202AD /* FirebaseAnalytics in Frameworks */,
+				05452C1F2A1D845600112564 /* Web3Wallet in Frameworks */,
 				0565CCB02931E3FE005202AD /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				0565CCB22931E3FE005202AD /* FirebaseAnalyticsSwift in Frameworks */,
 				0565CCC22931E3FF005202AD /* FirebaseFirestore in Frameworks */,
+				05452C172A1D845600112564 /* WalletConnectRouter in Frameworks */,
 				053EC29527BE0FE600FBC681 /* RealmSwift in Frameworks */,
 				057806C227B85E700008051B /* Stinsen in Frameworks */,
+				05452C112A1D845600112564 /* WalletConnectNetworking in Frameworks */,
 				057806C527B85EBD0008051B /* Alamofire in Frameworks */,
 				05F7B58228088072005A94C8 /* SocketIO in Frameworks */,
 				0565CCC42931E3FF005202AD /* FirebaseFirestoreCombine-Community in Frameworks */,
 				057806C827B85F9F0008051B /* web3swift in Frameworks */,
-				0531140527E6E33900368657 /* WalletConnect in Frameworks */,
 				0565CCC82931E3FF005202AD /* FirebaseFunctions in Frameworks */,
 				057806D127B862480008051B /* SwiftUICharts in Frameworks */,
 				057806CE27B862270008051B /* Colorful in Frameworks */,
 				0565CCBA2931E3FE005202AD /* FirebaseCrashlytics in Frameworks */,
+				05452C1D2A1D845600112564 /* Web3Modal in Frameworks */,
 				0565CCCA2931E3FF005202AD /* FirebaseFunctionsCombine-Community in Frameworks */,
 				0565CCBC2931E3FE005202AD /* FirebaseDatabase in Frameworks */,
+				05452C132A1D845600112564 /* WalletConnectPairing in Frameworks */,
 				057806CB27B862010008051B /* SwiftUIX in Frameworks */,
+				05452C0B2A1D845600112564 /* WalletConnect in Frameworks */,
 				0565CCB62931E3FE005202AD /* FirebaseAuth in Frameworks */,
 				0565CCC62931E3FF005202AD /* FirebaseFirestoreSwift in Frameworks */,
+				05452C082A1B154D00112564 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,7 +1054,6 @@
 			files = (
 				0531141327E7A26600368657 /* SDWebImageSwiftUI in Frameworks */,
 				05D1098127C1DDDD008DCC66 /* Cache in Frameworks */,
-				0531140727E6E34400368657 /* WalletConnect in Frameworks */,
 				051BCF6527BCD6830056E047 /* Stinsen in Frameworks */,
 				051BCF6127BCD6710056E047 /* Alamofire in Frameworks */,
 				058ABEC02907346500CD2892 /* SocketIO in Frameworks */,
@@ -1586,6 +1612,8 @@
 				05D1098227C31511008DCC66 /* StorageService.swift */,
 				05E904A2287545D100A47F78 /* BackendSocketService.swift */,
 				05E904A5287547D000A47F78 /* BackendSocketService+Extension.swift */,
+				05452C002A1B0EA900112564 /* DefaultCryptoProvider.swift */,
+				05452C032A1B10BC00112564 /* DefaultSocketFactory.swift */,
 				051BCF5B27BCAD3C0056E047 /* Unauthenticated */,
 				051BCF5A27BCAD200056E047 /* Authenticated */,
 			);
@@ -2064,7 +2092,6 @@
 				057806D027B862480008051B /* SwiftUICharts */,
 				053EC29427BE0FE600FBC681 /* RealmSwift */,
 				05D1097E27C1DDC9008DCC66 /* Cache */,
-				0531140427E6E33900368657 /* WalletConnect */,
 				0531141027E7A25D00368657 /* SDWebImageSwiftUI */,
 				05F7B58128088072005A94C8 /* SocketIO */,
 				0565CCAD2931E3FE005202AD /* FirebaseAnalytics */,
@@ -2082,6 +2109,18 @@
 				0565CCC52931E3FF005202AD /* FirebaseFirestoreSwift */,
 				0565CCC72931E3FF005202AD /* FirebaseFunctions */,
 				0565CCC92931E3FF005202AD /* FirebaseFunctionsCombine-Community */,
+				05452C072A1B154D00112564 /* Starscream */,
+				05452C0A2A1D845600112564 /* WalletConnect */,
+				05452C0C2A1D845600112564 /* WalletConnectAuth */,
+				05452C0E2A1D845600112564 /* WalletConnectEcho */,
+				05452C102A1D845600112564 /* WalletConnectNetworking */,
+				05452C122A1D845600112564 /* WalletConnectPairing */,
+				05452C142A1D845600112564 /* WalletConnectPush */,
+				05452C162A1D845600112564 /* WalletConnectRouter */,
+				05452C182A1D845600112564 /* WalletConnectVerify */,
+				05452C1A2A1D845600112564 /* Web3Inbox */,
+				05452C1C2A1D845600112564 /* Web3Modal */,
+				05452C1E2A1D845600112564 /* Web3Wallet */,
 			);
 			productName = DefiWallet;
 			productReference = 0548B85B27B4C957000478B8 /* DefiWallet.app */;
@@ -2111,7 +2150,6 @@
 				051BCF7227BCD69F0056E047 /* RealmSwift */,
 				05D1098027C1DDDD008DCC66 /* Cache */,
 				059F73C827D7041A00B27E80 /* SwiftUIX */,
-				0531140627E6E34400368657 /* WalletConnect */,
 				0531141227E7A26600368657 /* SDWebImageSwiftUI */,
 				058ABEBF2907346500CD2892 /* SocketIO */,
 			);
@@ -2156,10 +2194,11 @@
 				057806D527B865330008051B /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				051BCF5027BC86140056E047 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				05D1097D27C1DDC9008DCC66 /* XCRemoteSwiftPackageReference "Cache" */,
-				0531140327E6E33900368657 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */,
 				0531140F27E7A25C00368657 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				05F7B58028088071005A94C8 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 				0565CCAC2931E3FE005202AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				05452C062A1B154D00112564 /* XCRemoteSwiftPackageReference "Starscream" */,
+				05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */,
 			);
 			productRefGroup = 0548B85C27B4C957000478B8 /* Products */;
 			projectDirPath = "";
@@ -2367,6 +2406,7 @@
 				0539E25B28B47E9100721565 /* KeyboardInteractiveStyle.swift in Sources */,
 				0500E4EE281FB647001A4FAB /* CategoriesDetailView.swift in Sources */,
 				0578077F27BB87C80008051B /* Wallet.swift in Sources */,
+				05452C012A1B0EA900112564 /* DefaultCryptoProvider.swift in Sources */,
 				057806E527B8DF240008051B /* CurrentUser.swift in Sources */,
 				0578071827B8F6980008051B /* ProfileCoordinator.swift in Sources */,
 				0500E4DF281F6CD3001A4FAB /* ACarouselViewModel.swift in Sources */,
@@ -2406,6 +2446,7 @@
 				050397D6280F08A100F9806F /* CustomLineChart.swift in Sources */,
 				05583CAE27E9BF6600640E75 /* ModularGridStyle.swift in Sources */,
 				0500307828584C7E000C5DFF /* AccountTransactions.swift in Sources */,
+				05452C042A1B10BC00112564 /* DefaultSocketFactory.swift in Sources */,
 				05E858F527CB481D00B85195 /* TextFieldSingleBordered.swift in Sources */,
 				0593025727E19C7A006DDFFF /* CurvedChart.swift in Sources */,
 				05E8589827C9D5D000B85195 /* CarouselViewOne.swift in Sources */,
@@ -2655,6 +2696,7 @@
 				050397D7280F08A100F9806F /* CustomLineChart.swift in Sources */,
 				053113EC27E6C76400368657 /* SlideOverCardView.swift in Sources */,
 				05583CDE27EC00BB00640E75 /* NetworkSectionView.swift in Sources */,
+				05452C052A1B10BC00112564 /* DefaultSocketFactory.swift in Sources */,
 				050225BE27FC0D1D0004D910 /* StickyHeaderView.swift in Sources */,
 				057806E927B8DF980008051B /* AuthenticationService.swift in Sources */,
 				05583CBD27E9C04A00640E75 /* GridItem.swift in Sources */,
@@ -2797,6 +2839,7 @@
 				05D1095527C08B3E008DCC66 /* ProfileView.swift in Sources */,
 				0504A421283F27F3000DB947 /* ExchangesDetailView.swift in Sources */,
 				0593026427E19D27006DDFFF /* Math.swift in Sources */,
+				05452C022A1B0EA900112564 /* DefaultCryptoProvider.swift in Sources */,
 				059F73D627D7166A00B27E80 /* ProfileService.swift in Sources */,
 				0578075327BB5EF10008051B /* Font+Extensions.swift in Sources */,
 				0548B88827B4D28D000478B8 /* TabBarButton.swift in Sources */,
@@ -3422,20 +3465,28 @@
 				kind = branch;
 			};
 		};
-		0531140327E6E33900368657 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/WalletConnect/WalletConnectSwiftV2";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.0;
-			};
-		};
 		0531140F27E7A25C00368657 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
+			};
+		};
+		05452C062A1B154D00112564 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WalletConnect/WalletConnectSwiftV2";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 		0565CCAC2931E3FE005202AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -3556,16 +3607,6 @@
 			package = 051BCF5027BC86140056E047 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
-		0531140427E6E33900368657 /* WalletConnect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0531140327E6E33900368657 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
-			productName = WalletConnect;
-		};
-		0531140627E6E34400368657 /* WalletConnect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0531140327E6E33900368657 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
-			productName = WalletConnect;
-		};
 		0531141027E7A25D00368657 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0531140F27E7A25C00368657 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
@@ -3580,6 +3621,66 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 051BCF5027BC86140056E047 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		05452C072A1B154D00112564 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05452C062A1B154D00112564 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+		05452C0A2A1D845600112564 /* WalletConnect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = WalletConnect;
+		};
+		05452C0C2A1D845600112564 /* WalletConnectAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = WalletConnectAuth;
+		};
+		05452C0E2A1D845600112564 /* WalletConnectEcho */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = WalletConnectEcho;
+		};
+		05452C102A1D845600112564 /* WalletConnectNetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = WalletConnectNetworking;
+		};
+		05452C122A1D845600112564 /* WalletConnectPairing */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = WalletConnectPairing;
+		};
+		05452C142A1D845600112564 /* WalletConnectPush */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = WalletConnectPush;
+		};
+		05452C162A1D845600112564 /* WalletConnectRouter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = WalletConnectRouter;
+		};
+		05452C182A1D845600112564 /* WalletConnectVerify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = WalletConnectVerify;
+		};
+		05452C1A2A1D845600112564 /* Web3Inbox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = Web3Inbox;
+		};
+		05452C1C2A1D845600112564 /* Web3Modal */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = Web3Modal;
+		};
+		05452C1E2A1D845600112564 /* Web3Wallet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05452C092A1D845600112564 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = Web3Wallet;
 		};
 		0565CCAD2931E3FE005202AD /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -90,6 +90,12 @@ public struct Constants {
     static var infuraProjectSecret: String {
         return Bundle.main.infoDictionary?["INFURA_PROJECT_SECRET"] as? String ?? ""
     }
+	static var thirdWebClientId: String {
+		return Bundle.main.infoDictionary?["THIRDWEB_CLIENT_ID"] as? String ?? ""
+	}
+	static var thirdWebSecretKey: String {
+		return Bundle.main.infoDictionary?["THIRDWEB_SECRET_KEY"] as? String ?? ""
+	}
     static var walletConnectProjectId: String {
         return Bundle.main.infoDictionary?["WALLET_CONNECT_PROJECT_ID"] as? String ?? ""
     }

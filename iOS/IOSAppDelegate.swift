@@ -8,6 +8,7 @@
 import SwiftUI
 import UserNotifications
 import FirebaseCore
+import WalletConnectPush
 
 @UIApplicationMain
 class IOSAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -42,12 +43,9 @@ class IOSAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCent
     // MARK: Push notifications
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let tokenParts = deviceToken.map { data -> String in
-            return String(format: "%02.2hhx", data)
-        }
-
-        let token = tokenParts.joined()
-        print("Device Token: \(token)")
+		Task(priority: .high) {
+			try await Push.wallet.register(deviceToken: deviceToken)
+		}
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

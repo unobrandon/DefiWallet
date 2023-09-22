@@ -8,8 +8,9 @@
 import SwiftUI
 import Combine
 import Alamofire
-import WalletConnect
-import Relayer
+import WalletConnectPairing
+import WalletConnectNetworking
+import Web3Wallet
 import SocketIO
 
 class WalletService: ObservableObject {
@@ -72,6 +73,17 @@ class WalletService: ObservableObject {
 
         self.socketManager = socketManager
         self.addressSocket = socketManager.socket(forNamespace: "/address")
+
+//		Networking.configure(projectId: Constants.walletConnectProjectId, socketFactory: DefaultSocketFactory())
+		
+		Web3Wallet.configure(
+			metadata: wcMetadata,
+			crypto: DefaultCryptoProvider(),
+			// Used for the Echo: "echo.walletconnect.com" will be used by default if not provided
+			echoHost: "echo.walletconnect.com",
+			// Used for the Echo: "APNSEnvironment.production" will be used by default if not provided
+			environment: .production
+		)
 //        self.compoundSocket = socketManager.socket(forNamespace: "/compound")
 //        self.walletConnectClient = WalletConnectClient(metadata: wcMetadata, relayer: relayer)
 //        self.walletConnectClient.delegate = self

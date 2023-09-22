@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import WalletConnect
 import web3swift
 
+/*
 extension WalletService: WalletConnectClientDelegate {
 
     func connectDapp(uri: String, completion: @escaping (Bool) -> Void) {
@@ -111,3 +111,4 @@ extension WalletService: WalletConnectClientDelegate {
     }
 
 }
+*/

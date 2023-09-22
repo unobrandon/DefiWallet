@@ -81,24 +81,25 @@ struct PasswordView: View {
     }
 
     private func setPassword() {
+		/*
         self.disablePrimaryAction = true
         self.isLoading = true
 
-        store.registerUser(username: store.unauthenticatedWallet.address,
+        store.createNewUser(username: store.unauthenticatedWallet.address,
                            password: passwordText,
                            address: store.unauthenticatedWallet.address,
                            currency: store.prefCurrency,
                            deviceToken: UIDevice.current.identifierForVendor?.uuidString ?? "",
                            completion: { result in
-            self.registerError = !result
-            self.store.password = passwordText
+//            self.registerError = !result
+//            self.store.password = passwordText
             self.isLoading = false
             self.disablePrimaryAction = false
 
-            guard result else {
-                HapticFeedback.errorHapticFeedback()
-                return
-            }
+//            guard result else {
+//                HapticFeedback.errorHapticFeedback()
+//                return
+//            }
 
             let context = LAContext()
             if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil), !UserDefaults.standard.bool(forKey: "biometryEnabled") {
@@ -117,6 +118,7 @@ struct PasswordView: View {
 //                }
             }
         })
+		 */
     }
 
     private func enablePrimaryButton() {

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import WalletConnect
 
 struct DappProposalView: View {
 

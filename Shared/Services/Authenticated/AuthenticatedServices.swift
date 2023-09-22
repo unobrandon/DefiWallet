@@ -8,7 +8,7 @@
 import Foundation
 import web3swift
 import SocketIO
-import WalletConnect
+import WalletConnectPairing
 
 class AuthenticatedServices: ObservableObject {
 
@@ -43,7 +43,8 @@ class AuthenticatedServices: ObservableObject {
         let metadata = AppMetadata(name: Constants.projectName,
                                    description: "Difi Wallet App",
                                    url: "defi.wallet",
-                                   icons: [Constants.walletConnectMetadataIcon])
+                                   icons: [Constants.walletConnectMetadataIcon],
+								   verifyUrl: "verify.walletconnect.com")
 
         self.currentUser = currentUser
         self.wallet = WalletService(currentUser: currentUser, socketManager: manager, wcMetadata: metadata)

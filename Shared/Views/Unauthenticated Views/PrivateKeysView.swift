@@ -31,7 +31,7 @@ struct PrivateKeysView: View {
 
                 OnboardingHeaderView(imageName: "key",
                                      title: "Recovery Phrase",
-                                     subtitle: "Write down or copy these words in the right order.")
+                                     subtitle: "Write down or copy these words in the correct order.")
 
                 Spacer()
                 AlertBanner(message: alertMessage, color: .orange)

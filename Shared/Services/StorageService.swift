@@ -15,7 +15,7 @@ class StorageService {
 
     private let storageExpiry = Date().addingTimeInterval(168*3600)
 
-    let diskConfig = DiskConfig(name: "DefiWallet")
+	let diskConfig = DiskConfig(name: Constants.projectName)
     let memoryConfig: MemoryConfig
 
     var dataStorage: Storage<String, Data>?

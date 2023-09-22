@@ -29,7 +29,9 @@ struct WalletNavigationView: View {
                 if let sessions = store.wcActiveSessions, !sessions.isEmpty {
                     Menu {
                         ForEach(sessions.indices, id: \.self) { session in
-                            Button("Disconnect \(sessions[session].name)", action: { store.disconnectDapp(sessionTopic: sessions[session].topic) })
+                            Button("Disconnect \(sessions[session].name)", action: {
+//								store.disconnectDapp(sessionTopic: sessions[session].topic)
+							})
                         }
                     } label: {
                         ZStack(alignment: .center) {

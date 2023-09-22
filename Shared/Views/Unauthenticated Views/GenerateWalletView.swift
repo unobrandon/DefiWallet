@@ -102,12 +102,38 @@ struct GenerateWalletView: View {
                         isConnecting = true
                     }
 
-                    #if os(iOS)
-                        HapticFeedback.successHapticFeedback()
-                    #endif
-                    DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.3)) {
-                        unauthenticatedRouter.route(to: \.privateKeys)
-                    }
+					store.createNewUser(username: nil, password: nil, address: store.unauthenticatedWallet.address.lowercased(), currency: nil, deviceToken: nil, completion: { _ in
+						print("done!")
+					})
+					
+//					store.authRequestPayload(completion: { requestPayload in
+//						print("done!")
+//						if let request = requestPayload {
+//							store.authVerifyMessage(request, completion: { _ in
+//								#if os(iOS)
+//									HapticFeedback.successHapticFeedback()
+//								#endif
+//
+//								DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.3)) {
+//									unauthenticatedRouter.route(to: \.privateKeys)
+//								}
+//							})
+//						}
+//					})
+
+//					store.authRequestMessage(completion: { requestMsg in
+//						if let request = requestMsg {
+//							store.authVerifyMessage(request, completion: { _ in
+//								#if os(iOS)
+//									HapticFeedback.successHapticFeedback()
+//								#endif
+//
+//								DispatchQueue.main.asyncAfter(deadline: .now() + (Constants.generateWalletDelay * 0.3)) {
+//									unauthenticatedRouter.route(to: \.privateKeys)
+//								}
+//							})
+//						}
+//					})
                 }
             })
         }

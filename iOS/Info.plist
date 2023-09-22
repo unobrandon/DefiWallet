@@ -32,6 +32,10 @@
 	<string>$(INFURA_PROJECT_ID)</string>
 	<key>INFURA_PROJECT_SECRET</key>
 	<string>$(INFURA_PROJECT_SECRET)</string>
+	<key>THIRDWEB_CLIENT_ID</key>
+	<string>$(THIRDWEB_CLIENT_ID)</string>
+	<key>THIRDWEB_SECRET_KEY</key>
+	<string>$(THIRDWEB_SECRET_KEY)</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>
